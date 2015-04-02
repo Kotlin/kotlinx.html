@@ -65,6 +65,19 @@ fun main(args : Array<String>) {
 
 	System.out.println(document.serialize())
 
+	println(document {
+		appendChild(
+			buildHTML().filter { if (it.name == "div") SKIP else PASS  }.html {
+				body {
+					div {
+						a { +"link1" }
+					}
+					a { +"link2" }
+				}
+			}
+		)
+	}.serialize())
+
 	document.getElementsByTagName("div").item(0).buildAndAppendChild {
 		div {
 			+"aaa"
