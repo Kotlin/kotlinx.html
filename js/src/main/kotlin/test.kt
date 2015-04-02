@@ -9,13 +9,16 @@ import kotlin.js.dom.html.window
 
 fun onReady() {
     val div = document.buildHTML().div {
-        div(listOf("bold")) {
+        div("bold") {
             div {
                 a("http://kotlinlang.org") {
                     +"Kotlin site"
                     div {
 
                     }
+                }
+                p {
+                    +"content"
                 }
             }
         }

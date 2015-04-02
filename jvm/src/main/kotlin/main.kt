@@ -17,14 +17,14 @@ fun <T> TagConsumer<T>.buildMe() =
 			a {
 				+"wfwe"
 			}
-			div(listOf("block", "deprecated")) {
+			div("block deprecated") {
 				a(href = "http://kotlinlang.org") {
 					target = Targets._blank
 					attributes["custom"] = "custom"
 					+"test me"
 				}
 			}
-			div(listOf("alive")) {
+			div("alive") {
 			}
 		}
 	}

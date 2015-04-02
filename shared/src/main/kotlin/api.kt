@@ -1,8 +1,6 @@
 package html4k
 
-public fun Map<*, *>.isNotEmpty() : Boolean = !isEmpty()
-
-trait TagConsumer<R> {
+public trait TagConsumer<R> {
     fun onTagStart(tag : Tag)
     fun onTagAttributeChange(tag : Tag, attribute : String, value : String)
     fun onTagEnd(tag : Tag)
@@ -12,17 +10,24 @@ trait TagConsumer<R> {
     fun finalize() : R
 }
 
-trait Tag {
+public trait Tag {
     val name : String
-    val observer : TagConsumer<*>
+    val consumer: TagConsumer<*>
 
     val attributes : MutableMap<String, String>
 }
 
 inline fun <T : Tag> T.visit(block : T.() -> Unit) {
-    observer.onTagStart(this)
+    consumer.onTagStart(this)
     this.block()
-    observer.onTagEnd(this)
+    consumer.onTagEnd(this)
 }
 
 fun Iterable<Pair<String, String?>>.toAttributesMap() : Map<String, String> = filter{it.second != null}.map { it.first to it.second!! }.toMap()
+
+fun <T, C : TagConsumer<T>, TAG : Tag> C.build(attributes : Map<String, String>, builder : (Map<String, String>, TagConsumer<T>, TAG.() -> Unit) -> Unit, block : TAG.() -> Unit) : C {
+    builder(attributes, this, block)
+    return this
+}
+
+fun Map<*, *>.isNotEmpty() : Boolean = !isEmpty()
