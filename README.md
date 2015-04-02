@@ -48,7 +48,7 @@ window.setInterval({
 ```
 
 # Interceptors
-You can define interceptors chain that could transform HTML during building. 
+You can define interceptors chain that could transform HTML during building or make some observations.
 There is default "filter interceptor so you can filter out some elements
 Here is example that filters HTML that way so all div will be omited but content will remain
 
@@ -76,4 +76,24 @@ The code above will produce the following output
     <a>link1</a><a>link2</a>
   </body>
 </html>
+```
+The other interceptor doesn't mutate HTML but measures generation time
+
+```kotlin
+System.out.appendHTML().measureTime().html {
+	head {
+		title("Welcome page")
+	}
+	body {
+		div {
+			+"<<<special chars & entities goes here>>>"
+		}
+		div {
+			CDATA("Here is my content")
+		}
+	}
+}.let {
+	it.first.println()
+	it.first.println("Generated in ${it.second} ms")
+}
 ```
