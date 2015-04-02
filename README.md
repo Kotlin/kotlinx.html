@@ -21,7 +21,7 @@ System.out.appendHTML().html {
 ```
 
 Same for StringBuilder
-```kolin
+```kotlin
 StringBuilder {
     appendHTML().html {
         body {
