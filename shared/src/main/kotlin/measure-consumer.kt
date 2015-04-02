@@ -32,7 +32,7 @@ private class MeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<
         downstream.onCDATA(content)
     }
 
-    override fun finalize(): Pair<R, Long> = Pair(downstream.finalize(), (Date().getTime() - start.getTime()).toLong())
+    override fun finalize(): Pair<R, Long> = Pair(downstream.finalize(), Date().getTime().toLong() - start.getTime())
 }
 
 public fun <R> TagConsumer<R>.measureTime() : TagConsumer<Pair<R, Long>> = MeasureConsumer(this)
