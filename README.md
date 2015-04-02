@@ -4,6 +4,8 @@ Probably need to be imported to kotlinx.html
 
 Provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript
 
+**Work is in progress yet so most tags and attributes are missing yet and need to be generated from HTML schema**
+
 # Stream
 You can build HTML directly to Writer (JVM only) or Appendable (both JVM and JS)
 
