@@ -4,6 +4,7 @@ import html4k.*
 import html4k.consumers.PredicateResult
 import html4k.consumers.delayed
 import html4k.consumers.filter
+import html4k.consumers.measureTime
 import html4k.dom.*
 import html4k.stream.*
 import org.w3c.dom.Element
@@ -35,7 +36,7 @@ fun main(args : Array<String>) {
 
 	System.out.appendHTML().filter { if (it.name == "div" && it.attributes["class"]?.contains("deprecated") ?: false) SKIP else PASS }.buildMe().append("\n")
 
-	System.out.appendHTML().html {
+	System.out.appendHTML().measureTime().html {
 		head {
 			title("Welcome page")
 		}
@@ -47,7 +48,10 @@ fun main(args : Array<String>) {
 				CDATA("Here is my content")
 			}
 		}
-	}.println()
+	}.let {
+		it.first.println()
+		it.first.println("Generated in ${it.second} ms")
+	}
 
 	val document = document {
 		val html = buildHTML().html {
