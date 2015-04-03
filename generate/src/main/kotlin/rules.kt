@@ -17,7 +17,7 @@ val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
         "over", "mouse",
         "start(ed)?", "end(ed)?", "stop", "key", "load(ed)?", "check(ed)?",
         "time", "ready", "content", "changed?",
-        "click", "play", "context",
+        "click", "play(ing)?", "context",
         "row", "col", "group(ed)?", "auto",
         "list", "field", "data", "block", "script",
         "item"

@@ -49,7 +49,3 @@ private fun String.makeCamelCaseByDictionary() : String {
 
     return current.toString()
 }
-
-fun main(args: Array<String>) {
-    println("contenteditable".humanize())
-}
