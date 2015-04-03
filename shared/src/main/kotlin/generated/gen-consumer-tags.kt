@@ -11,8 +11,8 @@ public fun <T, C : TagConsumer<T>> C.select(block : SELECT.() -> Unit) : T = bui
 
 public fun <T, C : TagConsumer<T>> C.legEnd(block : LEGEND.() -> Unit) : T = build(emptyMap(), ::buildLEGEND, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.textarea(rowS : RowS? = null, colS : ColS? = null, content : String = "") : T = build(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.textarea(rowS : RowS? = null, colS : ColS? = null, block : TEXTAREA.() -> Unit) : T = build(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, block).finalize()
+public fun <T, C : TagConsumer<T>> C.textArea(rowS : RowS? = null, colS : ColS? = null, content : String = "") : T = build(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.textArea(rowS : RowS? = null, colS : ColS? = null, block : TEXTAREA.() -> Unit) : T = build(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.caption(block : CAPTION.() -> Unit) : T = build(emptyMap(), ::buildCAPTION, block).finalize()
 

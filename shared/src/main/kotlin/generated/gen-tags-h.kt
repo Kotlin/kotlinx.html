@@ -568,7 +568,7 @@ public class HEADER(initialAttributes : Map<String, String>, override val consum
     fun table(block : TABLE.() -> Unit) : Unit = super.table(block)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -801,7 +801,7 @@ public class H1(initialAttributes : Map<String, String>, override val consumer :
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -1031,7 +1031,7 @@ public class H2(initialAttributes : Map<String, String>, override val consumer :
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -1261,7 +1261,7 @@ public class H3(initialAttributes : Map<String, String>, override val consumer :
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -1491,7 +1491,7 @@ public class H4(initialAttributes : Map<String, String>, override val consumer :
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -1721,7 +1721,7 @@ public class H5(initialAttributes : Map<String, String>, override val consumer :
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -1951,7 +1951,7 @@ public class H6(initialAttributes : Map<String, String>, override val consumer :
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)

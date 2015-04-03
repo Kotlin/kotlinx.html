@@ -19,9 +19,9 @@ public open class HTMLTag(override val tagName : String, override val consumer :
     open fun legEnd(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag textarea here")
-    open fun textarea(rowS : RowS? = null, colS : ColS? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, {+content})
+    open fun textArea(rowS : RowS? = null, colS : ColS? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, {+content})
     deprecated("you shouldn't use tag textarea here")
-    open fun textarea(rowS : RowS? = null, colS : ColS? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, block)
+    open fun textArea(rowS : RowS? = null, colS : ColS? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, block)
 
     deprecated("you shouldn't use tag caption here")
     open fun caption(block : CAPTION.() -> Unit) : Unit = buildCAPTION(emptyMap(), consumer, block)

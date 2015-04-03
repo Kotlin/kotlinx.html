@@ -20,5 +20,5 @@ val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
         "click", "play(ing)?", "context",
         "row", "col", "group(ed)?", "auto",
         "list", "field", "data", "block", "script",
-        "item"
+        "item", "area"
 ).map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }

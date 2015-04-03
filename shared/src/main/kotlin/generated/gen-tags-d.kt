@@ -227,7 +227,7 @@ public class DEL(initialAttributes : Map<String, String>, override val consumer 
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -457,7 +457,7 @@ public class DFN(initialAttributes : Map<String, String>, override val consumer 
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -774,7 +774,7 @@ public class DD(initialAttributes : Map<String, String>, override val consumer :
     fun table(block : TABLE.() -> Unit) : Unit = super.table(block)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -1090,7 +1090,7 @@ public class DT(initialAttributes : Map<String, String>, override val consumer :
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -1407,7 +1407,7 @@ public class DIV(initialAttributes : Map<String, String>, override val consumer 
     fun table(block : TABLE.() -> Unit) : Unit = super.table(block)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -1731,7 +1731,7 @@ public class DETAILS(initialAttributes : Map<String, String>, override val consu
     fun table(block : TABLE.() -> Unit) : Unit = super.table(block)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -2051,7 +2051,7 @@ public class DIALOG(initialAttributes : Map<String, String>, override val consum
     fun table(block : TABLE.() -> Unit) : Unit = super.table(block)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -2287,7 +2287,7 @@ public class DATALIST(initialAttributes : Map<String, String>, override val cons
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)

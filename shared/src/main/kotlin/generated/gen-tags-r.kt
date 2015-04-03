@@ -225,7 +225,7 @@ public class RP(initialAttributes : Map<String, String>, override val consumer :
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -455,7 +455,7 @@ public class RT(initialAttributes : Map<String, String>, override val consumer :
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
@@ -691,7 +691,7 @@ public class RUBY(initialAttributes : Map<String, String>, override val consumer
     fun svg(content : String) : Unit = super.svg(content)
 
     override
-    fun textarea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textarea(rowS, colS, content)
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
 
     override
     fun time(block : TIME.() -> Unit) : Unit = super.time(block)
