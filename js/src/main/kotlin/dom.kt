@@ -10,7 +10,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
     private val path = arrayListOf<HTMLElement>()
 
     override fun onTagStart(tag: Tag) {
-        val element = document.createElement(tag.name) as HTMLElement
+        val element = document.createElement(tag.tagName) as HTMLElement
 
         tag.attributes.forEach {
             element.setAttribute(it.getKey(), it.getValue())
@@ -34,8 +34,8 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
     }
 
     override fun onTagEnd(tag: Tag) {
-        if (path.isEmpty() || path.last().tagName.toLowerCase() != tag.name.toLowerCase()) {
-            throw IllegalStateException("We haven't entered tag ${tag.name} but trying to leave")
+        if (path.isEmpty() || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
+            throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
 
         path.remove(path.lastIndex)

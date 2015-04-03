@@ -8,12 +8,12 @@ class HTMLStreamBuilder<O : Appendable>(val out : O) : TagConsumer<O> {
 
     override fun onTagStart(tag: Tag) {
         out.append("<")
-        out.append(tag.name)
+        out.append(tag.tagName)
 
         if (tag.attributes.isNotEmpty()) {
             tag.attributes.entrySet().map { e ->
                 if (!e.getKey().isValidXmlAttributeName()) {
-                    throw IllegalArgumentException("Tag ${tag.name} has invalid attribute name ${e.getKey()}")
+                    throw IllegalArgumentException("Tag ${tag.tagName} has invalid attribute name ${e.getKey()}")
                 }
                 StringBuilder {
                     append(e.getKey())
@@ -33,7 +33,7 @@ class HTMLStreamBuilder<O : Appendable>(val out : O) : TagConsumer<O> {
 
     override fun onTagEnd(tag: Tag) {
         out.append("</")
-        out.append(tag.name)
+        out.append(tag.tagName)
         out.append(">")
     }
 

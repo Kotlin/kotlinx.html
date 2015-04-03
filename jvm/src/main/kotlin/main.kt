@@ -19,7 +19,7 @@ fun <T> TagConsumer<T>.buildMe() =
 			}
 			div("block deprecated") {
 				a(href = "http://kotlinlang.org") {
-					target = Targets.blank
+					target = Target.blank
 					attributes["custom"] = "custom"
 					+"test me"
 				}
@@ -31,10 +31,10 @@ fun <T> TagConsumer<T>.buildMe() =
 
 fun main(args : Array<String>) {
 	System.out.appendHTML().buildMe().println()
-	System.out.appendHTML().filter { if (it.name == "div") SKIP else PASS }.buildMe().println()
-	System.out.appendHTML().filter { if (it.name == "div") DROP else PASS }.buildMe().println()
+	System.out.appendHTML().filter { if (it.tagName == "div") SKIP else PASS }.buildMe().println()
+	System.out.appendHTML().filter { if (it.tagName == "div") DROP else PASS }.buildMe().println()
 
-	System.out.appendHTML().filter { if (it.name == "div" && it.attributes["class"]?.contains("deprecated") ?: false) SKIP else PASS }.buildMe().append("\n")
+	System.out.appendHTML().filter { if (it.tagName == "div" && it.attributes["class"]?.contains("deprecated") ?: false) SKIP else PASS }.buildMe().append("\n")
 
 	System.out.appendHTML().measureTime().html {
 		head {
@@ -58,7 +58,7 @@ fun main(args : Array<String>) {
 			body {
 				div {
 					a("http://kotlinlang.org") {
-						target = Targets.blank
+						target = Target.blank
 						+"me here"
 					}
 				}
@@ -71,7 +71,7 @@ fun main(args : Array<String>) {
 
 	println(document {
 		appendChild(
-			buildHTML().filter { if (it.name == "div") SKIP else PASS  }.html {
+			buildHTML().filter { if (it.tagName == "div") SKIP else PASS  }.html {
 				body {
 					div {
 						a { +"link1" }

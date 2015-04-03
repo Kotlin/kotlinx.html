@@ -11,8 +11,8 @@ public fun <T, C : TagConsumer<T>> C.select(block : SELECT.() -> Unit) : T = bui
 
 public fun <T, C : TagConsumer<T>> C.legend(block : LEGEND.() -> Unit) : T = build(emptyMap(), ::buildLEGEND, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.textarea(content : String = "") : T = build(emptyMap(), ::buildTEXTAREA, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.textarea(block : TEXTAREA.() -> Unit) : T = build(emptyMap(), ::buildTEXTAREA, block).finalize()
+public fun <T, C : TagConsumer<T>> C.textarea(rows : Rows? = null, cols : Cols? = null, content : String = "") : T = build(listOf("rows" to rows?.enumEncode(),"cols" to cols?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.textarea(rows : Rows? = null, cols : Cols? = null, block : TEXTAREA.() -> Unit) : T = build(listOf("rows" to rows?.enumEncode(),"cols" to cols?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.caption(block : CAPTION.() -> Unit) : T = build(emptyMap(), ::buildCAPTION, block).finalize()
 
@@ -43,8 +43,8 @@ public fun <T, C : TagConsumer<T>> C.dfn(block : DFN.() -> Unit) : T = build(emp
 public fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, content : String = "") : T = build(listOf("type" to type,"src" to src).toAttributesMap(), ::buildSCRIPT, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit) : T = build(listOf("type" to type,"src" to src).toAttributesMap(), ::buildSCRIPT, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.input(content : String = "") : T = build(emptyMap(), ::buildINPUT, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.input(block : INPUT.() -> Unit) : T = build(emptyMap(), ::buildINPUT, block).finalize()
+public fun <T, C : TagConsumer<T>> C.input(alt : String? = null, content : String = "") : T = build(listOf("alt" to alt).toAttributesMap(), ::buildINPUT, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.input(alt : String? = null, block : INPUT.() -> Unit) : T = build(listOf("alt" to alt).toAttributesMap(), ::buildINPUT, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.meta(content : String = "") : T = build(emptyMap(), ::buildMETA, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.meta(block : META.() -> Unit) : T = build(emptyMap(), ::buildMETA, block).finalize()
@@ -151,8 +151,8 @@ public fun <T, C : TagConsumer<T>> C.html(block : HTML.() -> Unit) : T = build(e
 
 public fun <T, C : TagConsumer<T>> C.details(block : DETAILS.() -> Unit) : T = build(emptyMap(), ::buildDETAILS, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.area(content : String = "") : T = build(emptyMap(), ::buildAREA, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.area(block : AREA.() -> Unit) : T = build(emptyMap(), ::buildAREA, block).finalize()
+public fun <T, C : TagConsumer<T>> C.area(alt : String? = null, content : String = "") : T = build(listOf("alt" to alt).toAttributesMap(), ::buildAREA, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.area(alt : String? = null, block : AREA.() -> Unit) : T = build(listOf("alt" to alt).toAttributesMap(), ::buildAREA, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.pre(block : PRE.() -> Unit) : T = build(emptyMap(), ::buildPRE, block).finalize()
 
@@ -173,8 +173,8 @@ public fun <T, C : TagConsumer<T>> C.header(block : HEADER.() -> Unit) : T = bui
 public fun <T, C : TagConsumer<T>> C.option(content : String = "") : T = build(emptyMap(), ::buildOPTION, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.option(block : OPTION.() -> Unit) : T = build(emptyMap(), ::buildOPTION, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.img(src : String? = null, content : String = "") : T = build(listOf("src" to src).toAttributesMap(), ::buildIMG, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.img(src : String? = null, block : IMG.() -> Unit) : T = build(listOf("src" to src).toAttributesMap(), ::buildIMG, block).finalize()
+public fun <T, C : TagConsumer<T>> C.img(alt : String? = null, src : String? = null, content : String = "") : T = build(listOf("alt" to alt,"src" to src).toAttributesMap(), ::buildIMG, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.img(alt : String? = null, src : String? = null, block : IMG.() -> Unit) : T = build(listOf("alt" to alt,"src" to src).toAttributesMap(), ::buildIMG, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.code(block : CODE.() -> Unit) : T = build(emptyMap(), ::buildCODE, block).finalize()
 
@@ -233,7 +233,7 @@ public fun <T, C : TagConsumer<T>> C.ruby(block : RUBY.() -> Unit) : T = build(e
 
 public fun <T, C : TagConsumer<T>> C.ins(block : INS.() -> Unit) : T = build(emptyMap(), ::buildINS, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.form(block : FORM.() -> Unit) : T = build(emptyMap(), ::buildFORM, block).finalize()
+public fun <T, C : TagConsumer<T>> C.form(action : String? = null, block : FORM.() -> Unit) : T = build(listOf("action" to action).toAttributesMap(), ::buildFORM, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.time(block : TIME.() -> Unit) : T = build(emptyMap(), ::buildTIME, block).finalize()
 

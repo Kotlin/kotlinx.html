@@ -1,11 +1,13 @@
 package html4k.generate
 
 import java.util.HashMap
+import java.util.HashSet
 
 object Repository {
     val tags = HashMap<String, TagInfo>()
     val attributes = HashMap<String, AttributeInfo>()
     val attributeEnums = HashMap<String, List<AttributeEnumValue>>()
+    val strictEnums = HashSet<String>()
 }
 
 data class AttributeEnumValue (
@@ -16,7 +18,7 @@ data class AttributeEnumValue (
 data class AttributeInfo(
         val name : String,
         val type : String = "String",
-        val safeAlias : String = "",
+        val safeAlias : String,
         val trueFalse : List<String> = listOf()
 )
 

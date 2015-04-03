@@ -24,6 +24,8 @@ fun <O : Appendable> O.tagClass(tag : TagInfo) : O = with {
             emptyLine()
         }
     }
+
+    emptyLine()
 }
 
 fun <O : Appendable> O.builderFunction(tag : TagInfo) : O = with {
@@ -44,7 +46,7 @@ fun <O : Appendable> O.tagChildrenMethod(children : String) {
     arguments addAll tag.suggestedAttributes.map { Var(Repository.attributes[it].fieldName, Repository.attributes[it].type + "?") }
 
     if (tag.possibleChildren.isNotEmpty()) {
-        arguments.add(Var("block", "${children.toUpperCase()}.() -> Unit"))
+        arguments.add(Var("block", "${tag.nameUpper}.() -> Unit"))
     } else {
         arguments.add(Var("content", "String"))
     }
@@ -53,7 +55,7 @@ fun <O : Appendable> O.tagChildrenMethod(children : String) {
     append("    ")
     function(tag.safeName, arguments, "Unit")
 
-    defineIs("super.${children}(" + arguments.map {it.name}.join(", ") + ")")
+    defineIs("super.${tag.safeName}(" + arguments.map {it.name}.join(", ") + ")")
 }
 
 fun <O : Appendable> O.tagAttributeVar(attribute : AttributeInfo) {

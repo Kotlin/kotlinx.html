@@ -11,7 +11,7 @@ private abstract class Attribute<T>(val name : String) : ReadWriteProperty<Tag, 
     fun get(thisRef: Tag, desc: PropertyMetadata) : T =
             thisRef.attributes[name]?.let {
                 decode(desc, it)
-            } ?: throw IllegalStateException("Attribute ${name} is not yet defined for tag ${thisRef.name}")
+            } ?: throw IllegalStateException("Attribute ${name} is not yet defined for tag ${thisRef.tagName}")
 
     override
     fun set(thisRef: Tag, desc: PropertyMetadata, value : T) {

@@ -11,7 +11,7 @@ public trait TagConsumer<R> {
 }
 
 public trait Tag {
-    val name : String
+    val tagName: String
     val consumer: TagConsumer<*>
 
     val attributes : MutableMap<String, String>

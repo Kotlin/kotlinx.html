@@ -10,8 +10,10 @@ fun main(args: Array<String>) {
     fillRepository()
 
     val packg = "html4k"
+    val todir = "shared/src/main/kotlin/generated"
+    File(todir).mkdirs()
 
-    FileOutputStream("shared/src/main/kotlin/gen-htmltag.kt").writer().use {
+    FileOutputStream("$todir/gen-htmltag.kt").writer().use {
         it.with {
             packg(packg)
             emptyLine()
@@ -26,8 +28,8 @@ fun main(args: Array<String>) {
             val baseTagClass = Clazz(
                     name = "HTMLTag",
                     variables = listOf(
-                            Var("name", "String", false, true),
-                            Var("consumer", "TagConsumer<*>", false, true),
+                            Var("tagName", "String", override = true),
+                            Var("consumer", "TagConsumer<*>", override = true),
                             Var("initialAttributes", "Map<String, String>")
                     ),
                     parents = listOf("Tag"),
@@ -66,7 +68,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("shared/src/main/kotlin/gen-builders.kt").writer().use {
+    FileOutputStream("$todir/gen-builders.kt").writer().use {
         it.with {
             packg(packg)
             emptyLine()
@@ -84,25 +86,27 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("shared/src/main/kotlin/gen-tags.kt").writer("UTF-8").use {
-        it.with {
-            packg(packg)
-            emptyLine()
-            import("html4k.*")
-            import("html4k.impl.*")
-            emptyLine()
+    Repository.tags.values().groupBy { it.name[0] }.entrySet().forEach { e ->
+        FileOutputStream("$todir/gen-tags-${e.getKey()}.kt").writer("UTF-8").use {
+            it.with {
+                packg(packg)
+                emptyLine()
+                import("html4k.*")
+                import("html4k.impl.*")
+                emptyLine()
 
-            warning()
-            emptyLine()
-            emptyLine()
+                warning()
+                emptyLine()
+                emptyLine()
 
-            Repository.tags.values().forEach {
-                tagClass(it)
+                e.getValue().forEach {
+                    tagClass(it)
+                }
             }
         }
     }
 
-    FileOutputStream("shared/src/main/kotlin/gen-consumer-tags.kt").writer("UTF-8").use {
+    FileOutputStream("$todir/gen-consumer-tags.kt").writer("UTF-8").use {
         it.with {
             packg(packg)
             emptyLine()
@@ -123,7 +127,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("shared/src/main/kotlin/gen-enums.kt").writer("UTF-8").use {
+    FileOutputStream("$todir/gen-enums.kt").writer("UTF-8").use {
         it.with {
             packg(packg)
             emptyLine()
@@ -134,8 +138,12 @@ fun main(args: Array<String>) {
             emptyLine()
             emptyLine()
 
-            Repository.attributeEnums.keySet().forEach {
-                enum(it)
+            Repository.attributeEnums.keySet().forEach { e ->
+                if (e in Repository.strictEnums) {
+                    enum(e)
+                } else {
+                    enumObject(e)
+                }
                 emptyLine()
             }
         }
