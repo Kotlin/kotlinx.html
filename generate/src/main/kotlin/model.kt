@@ -16,7 +16,8 @@ data class AttributeEnumValue (
 data class AttributeInfo(
         val name : String,
         val type : String = "String",
-        val safeAlias : String = ""
+        val safeAlias : String = "",
+        val trueFalse : List<String> = listOf()
 )
 
 val AttributeInfo.fieldName : String

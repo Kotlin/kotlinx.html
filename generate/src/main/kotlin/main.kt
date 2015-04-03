@@ -1,31 +1,15 @@
 package html4k.generate
 
+import org.jetbrains
 import java.io.File
 import java.io.FileOutputStream
 import java.io.Writer
 
+
 fun main(args: Array<String>) {
+    fillRepository()
 
     val packg = "html4k"
-
-    Repository.attributes += listOf(
-            AttributeInfo("href"),
-            AttributeInfo("target", "Targets"),
-            AttributeInfo("class", safeAlias = "classes")
-    ).toMap { it.name }
-
-    Repository.tags += listOf (
-            TagInfo("a", listOf("span"), suggestedAttributes = listOf("href", "target")),
-            TagInfo("span", listOf("span")),
-            TagInfo("div", listOf("div", "p", "a", "span"), suggestedAttributes = listOf("class")),
-            TagInfo("p", listOf("a", "p", "span")),
-            TagInfo("head", listOf("title")),
-            TagInfo("body", listOf("div", "p", "a", "span")),
-            TagInfo("title"),
-            TagInfo("html", listOf("head", "body"))
-    ).toMap { it.name }
-
-    Repository.attributeEnums["Targets"] = listOf("_blank", "_self", "_parent", "_top").toAttributeValues()
 
     FileOutputStream("shared/src/main/kotlin/gen-htmltag.kt").writer().use {
         it.with {

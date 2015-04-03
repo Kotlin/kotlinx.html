@@ -4,13 +4,13 @@ package html4k.generate
 private fun List<AttributeEnumValue>.replaceAllIfStartsWithUnderscore() : List<AttributeEnumValue> =
     if (all { it.fieldName.startsWith("_") && it.fieldName.length() > 1 }) map { it.copy(fieldName = it.fieldName.substring(1)) } else this
 
-private val reservedNames = setOf("class", "val", "var")
+val reservedNames = setOf("class", "val", "var", "object")
 
-private fun String.replaceIfReserved() = if (this in reservedNames) this + "_" else this
+fun String.replaceIfReserved() = if (this in reservedNames) this + "_" else this
 
-private fun AttributeEnumValue.escapeUnsafeValues() : AttributeEnumValue = this.copy(fieldName =
-        this.fieldName.replaceAll("[^\\w\\d_]", "_").replaceIfReserved()
-)
+fun String.escapeUnsafeValues() : String = replaceAll("[^\\w\\d_]", "_").replaceIfReserved()
+
+private fun AttributeEnumValue.escapeUnsafeValues() : AttributeEnumValue = copy(fieldName = fieldName.escapeUnsafeValues())
 
 fun List<String>.toAttributeValues() : List<AttributeEnumValue> =
         map {AttributeEnumValue(it, it)}
