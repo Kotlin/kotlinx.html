@@ -20,6 +20,7 @@ public fun <T, C : TagConsumer<T>> C.html(block : HTML.() -> Unit) : T = build(e
 public fun <T, C : TagConsumer<T>> C.body(block : BODY.() -> Unit) : T = build(emptyMap(), ::buildBODY, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.title(content : String = "") : T = build(emptyMap(), ::buildTITLE, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.title(block : TITLE.() -> Unit) : T = build(emptyMap(), ::buildTITLE, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.span(block : SPAN.() -> Unit) : T = build(emptyMap(), ::buildSPAN, block).finalize()
 

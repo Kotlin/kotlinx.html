@@ -32,6 +32,8 @@ public open class HTMLTag(override val name : String, override val consumer : Ta
 
     deprecated("you shouldn't use tag title here")
     open fun title(content : String = "") : Unit = buildTITLE(emptyMap(), consumer, {+content})
+    deprecated("you shouldn't use tag title here")
+    open fun title(block : TITLE.() -> Unit) : Unit = buildTITLE(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag span here")
     open fun span(block : SPAN.() -> Unit) : Unit = buildSPAN(emptyMap(), consumer, block)

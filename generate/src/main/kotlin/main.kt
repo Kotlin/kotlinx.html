@@ -55,7 +55,10 @@ fun main(args: Array<String>) {
             emptyLine()
 
             Repository.tags.values().forEach {
-                htmlTagBuilderMethod(it)
+                if (it.possibleChildren.isEmpty()) {
+                    htmlTagBuilderMethod(it, false)
+                }
+                htmlTagBuilderMethod(it, true)
                 emptyLine()
             }
 
@@ -118,7 +121,10 @@ fun main(args: Array<String>) {
         emptyLine()
 
         Repository.tags.values().forEach {
-            consumerBuilder(it)
+            if (it.possibleChildren.isEmpty()) {
+                consumerBuilder(it, false)
+            }
+            consumerBuilder(it, true)
             emptyLine()
         }
     }}

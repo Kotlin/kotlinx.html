@@ -71,31 +71,31 @@ fun <O : Appendable> O.tagAttributeVar(attribute : AttributeInfo) {
     delegateBy(attributeClass)
 }
 
-fun <O : Appendable> O.consumerBuilder(tag : TagInfo) {
+fun <O : Appendable> O.consumerBuilder(tag : TagInfo, blockOrContent : Boolean) {
     append("public ")
-    function(tag.name, tagBuilderFunctionArguments(tag), "T", listOf("T", "C : TagConsumer<T>"), "C")
+    function(tag.name, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
     defineIs(StringBuilder {
         functionCall("build", listOf(
                 buildSuggestedAttributesArgument(tag),
                 "::build${tag.nameUpper}",
-                if (tag.possibleChildren.isNotEmpty()) "block" else "{+content}"
+                if (blockOrContent) "block" else "{+content}"
         ))
         append(".finalize()")
     })
 }
 
-fun <O : Appendable> O.htmlTagBuilderMethod(tag : TagInfo) {
+fun <O : Appendable> O.htmlTagBuilderMethod(tag : TagInfo, blockOrContent : Boolean) {
     append("    deprecated(\"you shouldn't use tag ${tag.name} here\")\n")
     append("    open ")
 
-    val arguments = tagBuilderFunctionArguments(tag)
+    val arguments = tagBuilderFunctionArguments(tag, blockOrContent)
 
     val delegateArguments = ArrayList<String>()
 
     delegateArguments.add(buildSuggestedAttributesArgument(tag))
 
     delegateArguments.add("consumer")
-    if (tag.possibleChildren.isNotEmpty()) {
+    if (blockOrContent) {
         delegateArguments.add("block")
     } else {
         delegateArguments.add("{+content}")
@@ -123,7 +123,7 @@ private fun buildSuggestedAttributesArgument(tag: TagInfo) : String =
         }.join(",", "listOf(", ").toAttributesMap()")
     }
 
-private fun tagBuilderFunctionArguments(tag: TagInfo): ArrayList<Var> {
+private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean = tag.possibleChildren.isNotEmpty()) : ArrayList<Var> {
     val arguments = ArrayList<Var>()
 
     tag.suggestedAttributes.forEach {
@@ -131,7 +131,7 @@ private fun tagBuilderFunctionArguments(tag: TagInfo): ArrayList<Var> {
         arguments.add(Var(attributeInfo.fieldName, attributeInfo.type + "?", defaultValue = "null"))
     }
 
-    if (tag.possibleChildren.isNotEmpty()) {
+    if (blockOrContent) {
         arguments.add(Var("block", "${tag.nameUpper}.() -> Unit"))
     } else {
         arguments.add(Var("content", "String", defaultValue = "\"\""))
