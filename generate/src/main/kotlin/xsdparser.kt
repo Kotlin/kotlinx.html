@@ -53,14 +53,14 @@ fun fillRepository() {
 
                 if (enumEntries.size() == 1 && enumEntries.single() == name) {
                     // probably ticker
-                    attributeInfo = AttributeInfo(name, "Boolean", safeName, trueFalse = listOf(name, "")) // TODO escape bad characters in name
+                    attributeInfo = AttributeInfo(name, "Boolean", safeName, trueFalse = listOf(name, ""))
                 } else if (enumEntries.size() == 2 && enumEntries.sort() == listOf("off", "on")) {
-                    attributeInfo = AttributeInfo(name, "Boolean", safeName, trueFalse = listOf("on", "off")) // TODO escape bad characters in name
+                    attributeInfo = AttributeInfo(name, "Boolean", safeName, trueFalse = listOf("on", "off"))
                 } else {
                     val enumTypeName = name.capitalize()
                     Repository.attributeEnums[enumTypeName] = enumEntries.toAttributeValues()
 
-                    attributeInfo = AttributeInfo(name, enumTypeName, safeName) // TODO escape bad characters in name
+                    attributeInfo = AttributeInfo(name, enumTypeName, safeName)
                 }
             } else {
                 attributeInfo = AttributeInfo(name, "String", safeName)
@@ -72,7 +72,6 @@ fun fillRepository() {
 
     schema.getElementDecls().values().forEach { elementDeclaration ->
         val name = elementDeclaration.getName()
-        val safeName = name.escapeUnsafeValues()
         val type = elementDeclaration.getType()
 
         val tagInfo : TagInfo
@@ -91,14 +90,12 @@ fun fillRepository() {
             }
 
             println("$name: $children")
-            tagInfo = TagInfo(name, children, attributes, attributes.filter {it in suggestedNames})
+            tagInfo = TagInfo(name, children, attributes, attributes.filter {it in suggestedNames} + (globalSuggestedAttributes.get(name) ?: emptyList()))
         } else {
             throw UnsupportedOperationException()
         }
 
-        if (name == safeName) {
-            Repository.tags[name] = tagInfo
-        }
+        Repository.tags[name] = tagInfo
     }
 }
 

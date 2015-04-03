@@ -4,7 +4,7 @@ package html4k.generate
 private fun List<AttributeEnumValue>.replaceAllIfStartsWithUnderscore() : List<AttributeEnumValue> =
     if (all { it.fieldName.startsWith("_") && it.fieldName.length() > 1 }) map { it.copy(fieldName = it.fieldName.substring(1)) } else this
 
-val reservedNames = setOf("class", "val", "var", "object")
+val reservedNames = setOf("class", "val", "var", "object", "true", "false")
 
 fun String.replaceIfReserved() = if (this in reservedNames) this + "_" else this
 

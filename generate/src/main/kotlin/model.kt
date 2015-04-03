@@ -30,5 +30,8 @@ data class TagInfo(
         val suggestedAttributes : List<String> = listOf()
 )
 
+val TagInfo.safeName : String
+    get() = name.escapeUnsafeValues()
+
 val TagInfo.nameUpper : String
-    get() = name.toUpperCase()
+    get() = safeName.toUpperCase()

@@ -3,16 +3,14 @@ package html4k.generate
 import java.util.ArrayList
 
 fun <O : Appendable> O.tagClass(tag : TagInfo) : O = with {
-    val tagName = tag.name
-
     clazz(Clazz(
-            name = tagName.toUpperCase(),
+            name = tag.safeName.toUpperCase(),
             variables = listOf(
                     Var("initialAttributes", "Map<String, String>", false, false, true),
                     Var("consumer", "TagConsumer<*>", false, true)
             ),
             parents = listOf(
-                    "HTMLTag(\"$tagName\", consumer, initialAttributes)"
+                    "HTMLTag(\"${tag.name}\", consumer, initialAttributes)"
             )
     )) {
         (tag.attributes + tag.suggestedAttributes).distinct().forEach {
@@ -53,7 +51,7 @@ fun <O : Appendable> O.tagChildrenMethod(children : String) {
 
     append("    override\n")
     append("    ")
-    function(children, arguments, "Unit")
+    function(tag.safeName, arguments, "Unit")
 
     defineIs("super.${children}(" + arguments.map {it.name}.join(", ") + ")")
 }
@@ -73,7 +71,7 @@ fun <O : Appendable> O.tagAttributeVar(attribute : AttributeInfo) {
 
 fun <O : Appendable> O.consumerBuilder(tag : TagInfo, blockOrContent : Boolean) {
     append("public ")
-    function(tag.name, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
+    function(tag.safeName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
     defineIs(StringBuilder {
         functionCall("build", listOf(
                 buildSuggestedAttributesArgument(tag),
@@ -101,7 +99,7 @@ fun <O : Appendable> O.htmlTagBuilderMethod(tag : TagInfo, blockOrContent : Bool
         delegateArguments.add("{+content}")
     }
 
-    function(tag.name, arguments, "Unit")
+    function(tag.safeName, arguments, "Unit")
     defineIs("build${tag.nameUpper}" + delegateArguments.join(", ", "(", ")"))
 }
 
