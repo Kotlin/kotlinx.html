@@ -5,7 +5,13 @@ import java.util.HashMap
 object Repository {
     val tags = HashMap<String, TagInfo>()
     val attributes = HashMap<String, AttributeInfo>()
+    val attributeEnums = HashMap<String, List<AttributeEnumValue>>()
 }
+
+data class AttributeEnumValue (
+        val realName : String,
+        val fieldName : String
+)
 
 data class AttributeInfo(
         val name : String,

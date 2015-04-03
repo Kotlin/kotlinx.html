@@ -19,7 +19,7 @@ fun <T> TagConsumer<T>.buildMe() =
 			}
 			div("block deprecated") {
 				a(href = "http://kotlinlang.org") {
-					target = Targets._blank
+					target = Targets.blank
 					attributes["custom"] = "custom"
 					+"test me"
 				}
@@ -58,7 +58,7 @@ fun main(args : Array<String>) {
 			body {
 				div {
 					a("http://kotlinlang.org") {
-						target = Targets._blank
+						target = Targets.blank
 						+"me here"
 					}
 				}

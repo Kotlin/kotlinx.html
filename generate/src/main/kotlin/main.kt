@@ -25,44 +25,47 @@ fun main(args: Array<String>) {
             TagInfo("html", listOf("head", "body"))
     ).toMap { it.name }
 
-    FileOutputStream("shared/src/main/kotlin/gen-htmltag.kt").writer().use { it.with {
-        packg(packg)
-        emptyLine()
-        import("html4k.*")
-        import("html4k.impl.*")
-        emptyLine()
+    Repository.attributeEnums["Targets"] = listOf("_blank", "_self", "_parent", "_top").toAttributeValues()
 
-        warning()
-        emptyLine()
-        emptyLine()
-
-        val baseTagClass = Clazz(
-                name = "HTMLTag",
-                variables = listOf(
-                        Var("name", "String", false, true),
-                        Var("consumer", "TagConsumer<*>", false, true),
-                        Var("initialAttributes", "Map<String, String>")
-                ),
-                parents = listOf("Tag"),
-                isOpen = true
-        )
-
-        clazz(baseTagClass) {
+    FileOutputStream("shared/src/main/kotlin/gen-htmltag.kt").writer().use {
+        it.with {
+            packg(packg)
             emptyLine()
-            append("    ")
-            variable(Var("attributes", "DelegatingMap", false, true))
-            defineIs("DelegatingMap(initialAttributes, this) {consumer}")
+            import("html4k.*")
+            import("html4k.impl.*")
             emptyLine()
 
-            Repository.tags.values().forEach {
-                if (it.possibleChildren.isEmpty()) {
-                    htmlTagBuilderMethod(it, false)
-                }
-                htmlTagBuilderMethod(it, true)
+            warning()
+            emptyLine()
+            emptyLine()
+
+            val baseTagClass = Clazz(
+                    name = "HTMLTag",
+                    variables = listOf(
+                            Var("name", "String", false, true),
+                            Var("consumer", "TagConsumer<*>", false, true),
+                            Var("initialAttributes", "Map<String, String>")
+                    ),
+                    parents = listOf("Tag"),
+                    isOpen = true
+            )
+
+            clazz(baseTagClass) {
                 emptyLine()
-            }
+                append("    ")
+                variable(Var("attributes", "DelegatingMap", false, true))
+                defineIs("DelegatingMap(initialAttributes, this) {consumer}")
+                emptyLine()
 
-            append("""
+                Repository.tags.values().forEach {
+                    if (it.possibleChildren.isEmpty()) {
+                        htmlTagBuilderMethod(it, false)
+                    }
+                    htmlTagBuilderMethod(it, true)
+                    emptyLine()
+                }
+
+                append("""
     fun Entities.plus() {
         consumer.onTagContentEntity(this)
     }
@@ -75,57 +78,82 @@ fun main(args: Array<String>) {
         consumer.onCDATA(s)
     }
             """)
-        }
-    }}
-
-    FileOutputStream("shared/src/main/kotlin/gen-builders.kt").writer().use { it.with {
-        packg(packg)
-        emptyLine()
-        import("html4k.*")
-        import("html4k.impl.*")
-        emptyLine()
-
-        warning()
-        emptyLine()
-        emptyLine()
-
-        Repository.tags.values().forEach {
-            builderFunction(it)
-        }
-    }}
-
-    FileOutputStream("shared/src/main/kotlin/gen-tags.kt").writer("UTF-8").use { it.with {
-        packg(packg)
-        emptyLine()
-        import("html4k.*")
-        import("html4k.impl.*")
-        emptyLine()
-
-        warning()
-        emptyLine()
-        emptyLine()
-
-        Repository.tags.values().forEach {
-            tagClass(it)
-        }
-    }}
-
-    FileOutputStream("shared/src/main/kotlin/gen-consumer-tags.kt").writer("UTF-8").use { it.with {
-        packg(packg)
-        emptyLine()
-        import("html4k.*")
-        emptyLine()
-
-        warning()
-        emptyLine()
-        emptyLine()
-
-        Repository.tags.values().forEach {
-            if (it.possibleChildren.isEmpty()) {
-                consumerBuilder(it, false)
             }
-            consumerBuilder(it, true)
-            emptyLine()
         }
-    }}
+    }
+
+    FileOutputStream("shared/src/main/kotlin/gen-builders.kt").writer().use {
+        it.with {
+            packg(packg)
+            emptyLine()
+            import("html4k.*")
+            import("html4k.impl.*")
+            emptyLine()
+
+            warning()
+            emptyLine()
+            emptyLine()
+
+            Repository.tags.values().forEach {
+                builderFunction(it)
+            }
+        }
+    }
+
+    FileOutputStream("shared/src/main/kotlin/gen-tags.kt").writer("UTF-8").use {
+        it.with {
+            packg(packg)
+            emptyLine()
+            import("html4k.*")
+            import("html4k.impl.*")
+            emptyLine()
+
+            warning()
+            emptyLine()
+            emptyLine()
+
+            Repository.tags.values().forEach {
+                tagClass(it)
+            }
+        }
+    }
+
+    FileOutputStream("shared/src/main/kotlin/gen-consumer-tags.kt").writer("UTF-8").use {
+        it.with {
+            packg(packg)
+            emptyLine()
+            import("html4k.*")
+            emptyLine()
+
+            warning()
+            emptyLine()
+            emptyLine()
+
+            Repository.tags.values().forEach {
+                if (it.possibleChildren.isEmpty()) {
+                    consumerBuilder(it, false)
+                }
+                consumerBuilder(it, true)
+                emptyLine()
+            }
+        }
+    }
+
+    FileOutputStream("shared/src/main/kotlin/gen-enums.kt").writer("UTF-8").use {
+        it.with {
+            packg(packg)
+            emptyLine()
+            import("html4k.*")
+            emptyLine()
+
+            warning()
+            emptyLine()
+            emptyLine()
+
+            Repository.attributeEnums.keySet().forEach {
+                enum(it)
+                emptyLine()
+            }
+        }
+    }
 }

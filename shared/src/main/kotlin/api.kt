@@ -17,6 +17,10 @@ public trait Tag {
     val attributes : MutableMap<String, String>
 }
 
+trait AttributeEnum {
+    val realValue : String
+}
+
 inline fun <T : Tag> T.visit(block : T.() -> Unit) {
     consumer.onTagStart(this)
     this.block()

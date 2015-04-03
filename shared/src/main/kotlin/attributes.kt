@@ -49,8 +49,8 @@ public open class BooleanAttribute(name : String, val trueValue: String = "true"
 //    }
 //}
 
-fun <T : Enum<T>> T.enumEncode() : String = name()
-public class EnumAttribute<T : Enum<T>>(name : String, val values : Map<String, T>) : Attribute<T>(name) {
+fun <T : AttributeEnum> T.enumEncode() : String = realValue
+public class EnumAttribute<T : AttributeEnum>(name : String, val values : Map<String, T>) : Attribute<T>(name) {
     override fun encode(desc: PropertyMetadata, value: T): String = value.enumEncode()
     override fun decode(desc: PropertyMetadata, value: String): T = values[value] ?: throw IllegalArgumentException("Unknown value $value for ${desc.name}")
 }
