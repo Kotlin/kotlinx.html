@@ -16,12 +16,12 @@ public open class HTMLTag(override val tagName : String, override val consumer :
     open fun select(block : SELECT.() -> Unit) : Unit = buildSELECT(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag legend here")
-    open fun legend(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap(), consumer, block)
+    open fun legEnd(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag textarea here")
-    open fun textarea(rows : Rows? = null, cols : Cols? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rows?.enumEncode(),"cols" to cols?.enumEncode()).toAttributesMap(), consumer, {+content})
+    open fun textarea(rowS : RowS? = null, colS : ColS? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, {+content})
     deprecated("you shouldn't use tag textarea here")
-    open fun textarea(rows : Rows? = null, cols : Cols? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rows?.enumEncode(),"cols" to cols?.enumEncode()).toAttributesMap(), consumer, block)
+    open fun textarea(rowS : RowS? = null, colS : ColS? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, block)
 
     deprecated("you shouldn't use tag caption here")
     open fun caption(block : CAPTION.() -> Unit) : Unit = buildCAPTION(emptyMap(), consumer, block)
@@ -106,7 +106,7 @@ public open class HTMLTag(override val tagName : String, override val consumer :
     open fun samp(block : SAMP.() -> Unit) : Unit = buildSAMP(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag hgroup here")
-    open fun hgroup(block : HGROUP.() -> Unit) : Unit = buildHGROUP(emptyMap(), consumer, block)
+    open fun hGroup(block : HGROUP.() -> Unit) : Unit = buildHGROUP(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag sup here")
     open fun sup(block : SUP.() -> Unit) : Unit = buildSUP(emptyMap(), consumer, block)
@@ -198,7 +198,7 @@ public open class HTMLTag(override val tagName : String, override val consumer :
     open fun col(block : COL.() -> Unit) : Unit = buildCOL(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag optgroup here")
-    open fun optgroup(block : OPTGROUP.() -> Unit) : Unit = buildOPTGROUP(emptyMap(), consumer, block)
+    open fun optGroup(block : OPTGROUP.() -> Unit) : Unit = buildOPTGROUP(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag tbody here")
     open fun tbody(block : TBODY.() -> Unit) : Unit = buildTBODY(emptyMap(), consumer, block)
@@ -207,7 +207,7 @@ public open class HTMLTag(override val tagName : String, override val consumer :
     open fun dl(block : DL.() -> Unit) : Unit = buildDL(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag fieldset here")
-    open fun fieldset(block : FIELDSET.() -> Unit) : Unit = buildFIELDSET(emptyMap(), consumer, block)
+    open fun fieldSet(block : FIELDSET.() -> Unit) : Unit = buildFIELDSET(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag section here")
     open fun section(block : SECTION.() -> Unit) : Unit = buildSECTION(emptyMap(), consumer, block)
@@ -244,7 +244,7 @@ public open class HTMLTag(override val tagName : String, override val consumer :
     open fun pre(block : PRE.() -> Unit) : Unit = buildPRE(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag blockquote here")
-    open fun blockquote(block : BLOCKQUOTE.() -> Unit) : Unit = buildBLOCKQUOTE(emptyMap(), consumer, block)
+    open fun blockQuote(block : BLOCKQUOTE.() -> Unit) : Unit = buildBLOCKQUOTE(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag meter here")
     open fun meter(block : METER.() -> Unit) : Unit = buildMETER(emptyMap(), consumer, block)
@@ -259,7 +259,7 @@ public open class HTMLTag(override val tagName : String, override val consumer :
     open fun aside(block : ASIDE.() -> Unit) : Unit = buildASIDE(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag noscript here")
-    open fun noscript(block : NOSCRIPT.() -> Unit) : Unit = buildNOSCRIPT(emptyMap(), consumer, block)
+    open fun noScript(block : NOSCRIPT.() -> Unit) : Unit = buildNOSCRIPT(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag header here")
     open fun header(block : HEADER.() -> Unit) : Unit = buildHEADER(emptyMap(), consumer, block)
@@ -315,9 +315,9 @@ public open class HTMLTag(override val tagName : String, override val consumer :
     open fun h6(block : H6.() -> Unit) : Unit = buildH6(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag keygen here")
-    open fun keygen(content : String = "") : Unit = buildKEYGEN(emptyMap(), consumer, {+content})
+    open fun keyGen(content : String = "") : Unit = buildKEYGEN(emptyMap(), consumer, {+content})
     deprecated("you shouldn't use tag keygen here")
-    open fun keygen(block : KEYGEN.() -> Unit) : Unit = buildKEYGEN(emptyMap(), consumer, block)
+    open fun keyGen(block : KEYGEN.() -> Unit) : Unit = buildKEYGEN(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag head here")
     open fun head(block : HEAD.() -> Unit) : Unit = buildHEAD(emptyMap(), consumer, block)
@@ -340,13 +340,13 @@ public open class HTMLTag(override val tagName : String, override val consumer :
     open fun figure(block : FIGURE.() -> Unit) : Unit = buildFIGURE(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag datalist here")
-    open fun datalist(block : DATALIST.() -> Unit) : Unit = buildDATALIST(emptyMap(), consumer, block)
+    open fun dataList(block : DATALIST.() -> Unit) : Unit = buildDATALIST(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag label here")
     open fun label(block : LABEL.() -> Unit) : Unit = buildLABEL(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag colgroup here")
-    open fun colgroup(block : COLGROUP.() -> Unit) : Unit = buildCOLGROUP(emptyMap(), consumer, block)
+    open fun colGroup(block : COLGROUP.() -> Unit) : Unit = buildCOLGROUP(emptyMap(), consumer, block)
 
     deprecated("you shouldn't use tag kbd here")
     open fun kbd(block : KBD.() -> Unit) : Unit = buildKBD(emptyMap(), consumer, block)

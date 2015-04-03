@@ -1,5 +1,7 @@
 package html4k.generate
 
+import java.util.regex.Pattern
+
 val globalSuggestedAttributes = listOf(
         "a" to "href",
         "a" to "target",
@@ -9,3 +11,14 @@ val globalSuggestedAttributes = listOf(
         "div" to "class"
 ).groupBy { it.first }.mapValues { it.getValue().map {it.second} }
 
+val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
+        "^on", "encoded?", "form", "type",
+        "run", "href", "drag(gable)?",
+        "over", "mouse",
+        "start(ed)?", "end(ed)?", "stop", "key", "load(ed)?", "check(ed)?",
+        "time", "ready", "content", "changed?",
+        "click", "play", "context",
+        "row", "col", "group(ed)?", "auto",
+        "list", "field", "data", "block", "script",
+        "item"
+).map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }

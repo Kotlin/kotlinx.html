@@ -9,10 +9,10 @@ import html4k.*
 
 public fun <T, C : TagConsumer<T>> C.select(block : SELECT.() -> Unit) : T = build(emptyMap(), ::buildSELECT, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.legend(block : LEGEND.() -> Unit) : T = build(emptyMap(), ::buildLEGEND, block).finalize()
+public fun <T, C : TagConsumer<T>> C.legEnd(block : LEGEND.() -> Unit) : T = build(emptyMap(), ::buildLEGEND, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.textarea(rows : Rows? = null, cols : Cols? = null, content : String = "") : T = build(listOf("rows" to rows?.enumEncode(),"cols" to cols?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.textarea(rows : Rows? = null, cols : Cols? = null, block : TEXTAREA.() -> Unit) : T = build(listOf("rows" to rows?.enumEncode(),"cols" to cols?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, block).finalize()
+public fun <T, C : TagConsumer<T>> C.textarea(rowS : RowS? = null, colS : ColS? = null, content : String = "") : T = build(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.textarea(rowS : RowS? = null, colS : ColS? = null, block : TEXTAREA.() -> Unit) : T = build(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.caption(block : CAPTION.() -> Unit) : T = build(emptyMap(), ::buildCAPTION, block).finalize()
 
@@ -66,7 +66,7 @@ public fun <T, C : TagConsumer<T>> C.rt(block : RT.() -> Unit) : T = build(empty
 
 public fun <T, C : TagConsumer<T>> C.samp(block : SAMP.() -> Unit) : T = build(emptyMap(), ::buildSAMP, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.hgroup(block : HGROUP.() -> Unit) : T = build(emptyMap(), ::buildHGROUP, block).finalize()
+public fun <T, C : TagConsumer<T>> C.hGroup(block : HGROUP.() -> Unit) : T = build(emptyMap(), ::buildHGROUP, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.sup(block : SUP.() -> Unit) : T = build(emptyMap(), ::buildSUP, block).finalize()
 
@@ -126,13 +126,13 @@ public fun <T, C : TagConsumer<T>> C.small(block : SMALL.() -> Unit) : T = build
 public fun <T, C : TagConsumer<T>> C.col(content : String = "") : T = build(emptyMap(), ::buildCOL, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.col(block : COL.() -> Unit) : T = build(emptyMap(), ::buildCOL, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.optgroup(block : OPTGROUP.() -> Unit) : T = build(emptyMap(), ::buildOPTGROUP, block).finalize()
+public fun <T, C : TagConsumer<T>> C.optGroup(block : OPTGROUP.() -> Unit) : T = build(emptyMap(), ::buildOPTGROUP, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.tbody(block : TBODY.() -> Unit) : T = build(emptyMap(), ::buildTBODY, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.dl(block : DL.() -> Unit) : T = build(emptyMap(), ::buildDL, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.fieldset(block : FIELDSET.() -> Unit) : T = build(emptyMap(), ::buildFIELDSET, block).finalize()
+public fun <T, C : TagConsumer<T>> C.fieldSet(block : FIELDSET.() -> Unit) : T = build(emptyMap(), ::buildFIELDSET, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.section(block : SECTION.() -> Unit) : T = build(emptyMap(), ::buildSECTION, block).finalize()
 
@@ -156,7 +156,7 @@ public fun <T, C : TagConsumer<T>> C.area(alt : String? = null, block : AREA.() 
 
 public fun <T, C : TagConsumer<T>> C.pre(block : PRE.() -> Unit) : T = build(emptyMap(), ::buildPRE, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.blockquote(block : BLOCKQUOTE.() -> Unit) : T = build(emptyMap(), ::buildBLOCKQUOTE, block).finalize()
+public fun <T, C : TagConsumer<T>> C.blockQuote(block : BLOCKQUOTE.() -> Unit) : T = build(emptyMap(), ::buildBLOCKQUOTE, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.meter(block : METER.() -> Unit) : T = build(emptyMap(), ::buildMETER, block).finalize()
 
@@ -166,7 +166,7 @@ public fun <T, C : TagConsumer<T>> C.article(block : ARTICLE.() -> Unit) : T = b
 
 public fun <T, C : TagConsumer<T>> C.aside(block : ASIDE.() -> Unit) : T = build(emptyMap(), ::buildASIDE, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.noscript(block : NOSCRIPT.() -> Unit) : T = build(emptyMap(), ::buildNOSCRIPT, block).finalize()
+public fun <T, C : TagConsumer<T>> C.noScript(block : NOSCRIPT.() -> Unit) : T = build(emptyMap(), ::buildNOSCRIPT, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.header(block : HEADER.() -> Unit) : T = build(emptyMap(), ::buildHEADER, block).finalize()
 
@@ -202,8 +202,8 @@ public fun <T, C : TagConsumer<T>> C.h5(block : H5.() -> Unit) : T = build(empty
 
 public fun <T, C : TagConsumer<T>> C.h6(block : H6.() -> Unit) : T = build(emptyMap(), ::buildH6, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.keygen(content : String = "") : T = build(emptyMap(), ::buildKEYGEN, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.keygen(block : KEYGEN.() -> Unit) : T = build(emptyMap(), ::buildKEYGEN, block).finalize()
+public fun <T, C : TagConsumer<T>> C.keyGen(content : String = "") : T = build(emptyMap(), ::buildKEYGEN, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.keyGen(block : KEYGEN.() -> Unit) : T = build(emptyMap(), ::buildKEYGEN, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.head(block : HEAD.() -> Unit) : T = build(emptyMap(), ::buildHEAD, block).finalize()
 
@@ -218,11 +218,11 @@ public fun <T, C : TagConsumer<T>> C.ol(block : OL.() -> Unit) : T = build(empty
 
 public fun <T, C : TagConsumer<T>> C.figure(block : FIGURE.() -> Unit) : T = build(emptyMap(), ::buildFIGURE, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.datalist(block : DATALIST.() -> Unit) : T = build(emptyMap(), ::buildDATALIST, block).finalize()
+public fun <T, C : TagConsumer<T>> C.dataList(block : DATALIST.() -> Unit) : T = build(emptyMap(), ::buildDATALIST, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.label(block : LABEL.() -> Unit) : T = build(emptyMap(), ::buildLABEL, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.colgroup(block : COLGROUP.() -> Unit) : T = build(emptyMap(), ::buildCOLGROUP, block).finalize()
+public fun <T, C : TagConsumer<T>> C.colGroup(block : COLGROUP.() -> Unit) : T = build(emptyMap(), ::buildCOLGROUP, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.kbd(block : KBD.() -> Unit) : T = build(emptyMap(), ::buildKBD, block).finalize()
 

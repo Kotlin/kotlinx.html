@@ -13,8 +13,12 @@ fun <O : Appendable> O.tagClass(tag : TagInfo) : O = with {
                     "HTMLTag(\"${tag.name}\", consumer, initialAttributes)"
             )
     )) {
+        val lowerCasedNames = (tag.attributes + tag.suggestedAttributes).map {it.toLowerCase()}.distinct()
+
         (tag.attributes + tag.suggestedAttributes).distinct().forEach {
-            tagAttributeVar(Repository.attributes[it])
+            if (it[0].isLowerCase() || it.toLowerCase() !in lowerCasedNames) {
+                tagAttributeVar(Repository.attributes[it])
+            }
         }
 
         emptyLine()

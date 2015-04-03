@@ -23,27 +23,43 @@ enum public class Shape(override val realValue : String) : AttributeEnum {
 
 val shapeValues : Map<String, Shape> = Shape.values().toMap { it.realValue }
 
+enum public class RunAt(override val realValue : String) : AttributeEnum {
+    server : RunAt("server")
+}
+
+val runAtValues : Map<String, RunAt> = RunAt.values().toMap { it.realValue }
+
+enum public class KeyType(override val realValue : String) : AttributeEnum {
+    rsa : KeyType("rsa")
+}
+
+val keyTypeValues : Map<String, KeyType> = KeyType.values().toMap { it.realValue }
+
+enum public class EncType(override val realValue : String) : AttributeEnum {
+    multipartFormData : EncType("multipart/form-data")
+    applicationXWwwFormUrlEncoded : EncType("application/x-www-form-urlencoded")
+    textPlain : EncType("text/plain")
+}
+
+val encTypeValues : Map<String, EncType> = EncType.values().toMap { it.realValue }
+
 enum public class Span(override val realValue : String) : AttributeEnum {
 }
 
 val spanValues : Map<String, Span> = Span.values().toMap { it.realValue }
 
+enum public class ColSpan(override val realValue : String) : AttributeEnum {
+}
+
+val colSpanValues : Map<String, ColSpan> = ColSpan.values().toMap { it.realValue }
+
 enum public class Sandbox(override val realValue : String) : AttributeEnum {
-    allow_same_origin : Sandbox("allow-same-origin")
-    allow_forms : Sandbox("allow-forms")
-    allow_scripts : Sandbox("allow-scripts")
+    allowSameOrigin : Sandbox("allow-same-origin")
+    allowFormS : Sandbox("allow-forms")
+    allowScriptS : Sandbox("allow-scripts")
 }
 
 val sandboxValues : Map<String, Sandbox> = Sandbox.values().toMap { it.realValue }
-
-enum public class Formmethod(override val realValue : String) : AttributeEnum {
-    get : Formmethod("get")
-    post : Formmethod("post")
-    put : Formmethod("put")
-    delete : Formmethod("delete")
-}
-
-val formmethodValues : Map<String, Formmethod> = Formmethod.values().toMap { it.realValue }
 
 public object Target {
     val blank : String = "_blank"
@@ -54,41 +70,28 @@ public object Target {
 }
 
 
-public object Http_equiv {
-    val content_language : String = "content-language"
-    val content_type : String = "content-type"
-    val default_style : String = "default-style"
+enum public class ColS(override val realValue : String) : AttributeEnum {
+}
+
+val colSValues : Map<String, ColS> = ColS.values().toMap { it.realValue }
+
+public object HttpEquiv {
+    val contentLanguage : String = "content-language"
+    val contentType : String = "content-type"
+    val defaultStyle : String = "default-style"
     val refresh : String = "refresh"
-    val values : List<String> = listOf("content_language","content_type","default_style","refresh")
+    val values : List<String> = listOf("contentLanguage","contentType","defaultStyle","refresh")
 }
 
 
-enum public class Keytype(override val realValue : String) : AttributeEnum {
-    rsa : Keytype("rsa")
+enum public class FormMethod(override val realValue : String) : AttributeEnum {
+    get : FormMethod("get")
+    post : FormMethod("post")
+    put : FormMethod("put")
+    delete : FormMethod("delete")
 }
 
-val keytypeValues : Map<String, Keytype> = Keytype.values().toMap { it.realValue }
-
-enum public class Enctype(override val realValue : String) : AttributeEnum {
-    multipart_form_data : Enctype("multipart/form-data")
-    application_x_www_form_urlencoded : Enctype("application/x-www-form-urlencoded")
-    text_plain : Enctype("text/plain")
-}
-
-val enctypeValues : Map<String, Enctype> = Enctype.values().toMap { it.realValue }
-
-enum public class Formenctype(override val realValue : String) : AttributeEnum {
-    multipart_form_data : Formenctype("multipart/form-data")
-    application_x_www_form_urlencoded : Formenctype("application/x-www-form-urlencoded")
-    text_plain : Formenctype("text/plain")
-}
-
-val formenctypeValues : Map<String, Formenctype> = Formenctype.values().toMap { it.realValue }
-
-enum public class Rows(override val realValue : String) : AttributeEnum {
-}
-
-val rowsValues : Map<String, Rows> = Rows.values().toMap { it.realValue }
+val formMethodValues : Map<String, FormMethod> = FormMethod.values().toMap { it.realValue }
 
 enum public class Draggable(override val realValue : String) : AttributeEnum {
     true_ : Draggable("true")
@@ -98,11 +101,14 @@ enum public class Draggable(override val realValue : String) : AttributeEnum {
 
 val draggableValues : Map<String, Draggable> = Draggable.values().toMap { it.realValue }
 
-enum public class Runat(override val realValue : String) : AttributeEnum {
-    server : Runat("server")
+public object FormTarget {
+    val blank : String = "_blank"
+    val parent : String = "_parent"
+    val self : String = "_self"
+    val top : String = "_top"
+    val values : List<String> = listOf("blank","parent","self","top")
 }
 
-val runatValues : Map<String, Runat> = Runat.values().toMap { it.realValue }
 
 public object Media {
     val screen : String = "screen"
@@ -117,6 +123,14 @@ public object Media {
     val values : List<String> = listOf("screen","print","tty","tv","projection","handheld","braille","aural","all")
 }
 
+
+enum public class FormEncType(override val realValue : String) : AttributeEnum {
+    multipartFormData : FormEncType("multipart/form-data")
+    applicationXWwwFormUrlEncoded : FormEncType("application/x-www-form-urlencoded")
+    textPlain : FormEncType("text/plain")
+}
+
+val formEncTypeValues : Map<String, FormEncType> = FormEncType.values().toMap { it.realValue }
 
 public object Lang {
     val aa : String = "aa"
@@ -138,22 +152,22 @@ public object Lang {
     val ang : String = "ang"
     val apa : String = "apa"
     val ar : String = "ar"
-    val ar_ae : String = "ar-ae"
-    val ar_bh : String = "ar-bh"
-    val ar_dz : String = "ar-dz"
-    val ar_eg : String = "ar-eg"
-    val ar_iq : String = "ar-iq"
-    val ar_jo : String = "ar-jo"
-    val ar_kw : String = "ar-kw"
-    val ar_lb : String = "ar-lb"
-    val ar_ly : String = "ar-ly"
-    val ar_ma : String = "ar-ma"
-    val ar_om : String = "ar-om"
-    val ar_qa : String = "ar-qa"
-    val ar_sa : String = "ar-sa"
-    val ar_sy : String = "ar-sy"
-    val ar_tn : String = "ar-tn"
-    val ar_ye : String = "ar-ye"
+    val arAe : String = "ar-ae"
+    val arBh : String = "ar-bh"
+    val arDz : String = "ar-dz"
+    val arEg : String = "ar-eg"
+    val arIq : String = "ar-iq"
+    val arJo : String = "ar-jo"
+    val arKw : String = "ar-kw"
+    val arLb : String = "ar-lb"
+    val arLy : String = "ar-ly"
+    val arMa : String = "ar-ma"
+    val arOm : String = "ar-om"
+    val arQa : String = "ar-qa"
+    val arSa : String = "ar-sa"
+    val arSy : String = "ar-sy"
+    val arTn : String = "ar-tn"
+    val arYe : String = "ar-ye"
     val arc : String = "arc"
     val arn : String = "arn"
     val arp : String = "arp"
@@ -234,12 +248,12 @@ public object Lang {
     val dar : String = "dar"
     val day : String = "day"
     val de : String = "de"
-    val de_at : String = "de-at"
-    val de_be : String = "de-be"
-    val de_ch : String = "de-ch"
-    val de_de : String = "de-de"
-    val de_li : String = "de-li"
-    val de_lu : String = "de-lu"
+    val deAt : String = "de-at"
+    val deBe : String = "de-be"
+    val deCh : String = "de-ch"
+    val deDe : String = "de-de"
+    val deLi : String = "de-li"
+    val deLu : String = "de-lu"
     val del : String = "del"
     val den : String = "den"
     val dgr : String = "dgr"
@@ -259,39 +273,39 @@ public object Lang {
     val el : String = "el"
     val elx : String = "elx"
     val en : String = "en"
-    val en_au : String = "en-au"
-    val en_bz : String = "en-bz"
-    val en_ca : String = "en-ca"
-    val en_gb : String = "en-gb"
-    val en_ie : String = "en-ie"
-    val en_jm : String = "en-jm"
-    val en_nz : String = "en-nz"
-    val en_ph : String = "en-ph"
-    val en_tt : String = "en-tt"
-    val en_us : String = "en-us"
-    val en_za : String = "en-za"
-    val en_zw : String = "en-zw"
+    val enAu : String = "en-au"
+    val enBz : String = "en-bz"
+    val enCa : String = "en-ca"
+    val enGb : String = "en-gb"
+    val enIe : String = "en-ie"
+    val enJm : String = "en-jm"
+    val enNz : String = "en-nz"
+    val enPh : String = "en-ph"
+    val enTt : String = "en-tt"
+    val enUs : String = "en-us"
+    val enZa : String = "en-za"
+    val enZw : String = "en-zw"
     val enm : String = "enm"
     val eo : String = "eo"
     val es : String = "es"
-    val es_ar : String = "es-ar"
-    val es_bo : String = "es-bo"
-    val es_cl : String = "es-cl"
-    val es_co : String = "es-co"
-    val es_do : String = "es-do"
-    val es_ec : String = "es-ec"
-    val es_es : String = "es-es"
-    val es_gt : String = "es-gt"
-    val es_hn : String = "es-hn"
-    val es_mx : String = "es-mx"
-    val es_pa : String = "es-pa"
-    val es_pe : String = "es-pe"
-    val es_pr : String = "es-pr"
-    val es_py : String = "es-py"
-    val es_sv : String = "es-sv"
-    val es_us : String = "es-us"
-    val es_uy : String = "es-uy"
-    val es_ve : String = "es-ve"
+    val esAr : String = "es-ar"
+    val esBo : String = "es-bo"
+    val esCl : String = "es-cl"
+    val esCo : String = "es-co"
+    val esDo : String = "es-do"
+    val esEc : String = "es-ec"
+    val esEs : String = "es-es"
+    val esGt : String = "es-gt"
+    val esHn : String = "es-hn"
+    val esMx : String = "es-mx"
+    val esPa : String = "es-pa"
+    val esPe : String = "es-pe"
+    val esPr : String = "es-pr"
+    val esPy : String = "es-py"
+    val esSv : String = "es-sv"
+    val esUs : String = "es-us"
+    val esUy : String = "es-uy"
+    val esVe : String = "es-ve"
     val et : String = "et"
     val ewo : String = "ewo"
     val eu : String = "eu"
@@ -306,12 +320,12 @@ public object Lang {
     val fo : String = "fo"
     val fon : String = "fon"
     val fr : String = "fr"
-    val fr_fr : String = "fr-fr"
-    val fr_be : String = "fr-be"
-    val fr_ca : String = "fr-ca"
-    val fr_ch : String = "fr-ch"
-    val fr_lu : String = "fr-lu"
-    val fr_mc : String = "fr-mc"
+    val frFr : String = "fr-fr"
+    val frBe : String = "fr-be"
+    val frCa : String = "fr-ca"
+    val frCh : String = "fr-ch"
+    val frLu : String = "fr-lu"
+    val frMc : String = "fr-mc"
     val frm : String = "frm"
     val fro : String = "fro"
     val fur : String = "fur"
@@ -369,8 +383,8 @@ public object Lang {
     val iro : String = "iro"
     val is_ : String = "is"
     val it : String = "it"
-    val it_it : String = "it-it"
-    val it_ch : String = "it-ch"
+    val itIt : String = "it-it"
+    val itCh : String = "it-ch"
     val iu : String = "iu"
     val ja : String = "ja"
     val jbo : String = "jbo"
@@ -470,16 +484,16 @@ public object Lang {
     val nd : String = "nd"
     val nds : String = "nds"
     val ne : String = "ne"
-    val ne_np : String = "ne-np"
-    val ne_in : String = "ne-in"
+    val neNp : String = "ne-np"
+    val neIn : String = "ne-in"
     val new : String = "new"
     val ng : String = "ng"
     val nia : String = "nia"
     val nic : String = "nic"
     val niu : String = "niu"
     val nl : String = "nl"
-    val nl_nl : String = "nl-nl"
-    val nl_be : String = "nl-be"
+    val nlNl : String = "nl-nl"
+    val nlBe : String = "nl-be"
     val nn : String = "nn"
     val no : String = "no"
     val nog : String = "nog"
@@ -518,8 +532,8 @@ public object Lang {
     val pro : String = "pro"
     val ps : String = "ps"
     val pt : String = "pt"
-    val pt_pt : String = "pt-pt"
-    val pt_br : String = "pt-br"
+    val ptPt : String = "pt-pt"
+    val ptBr : String = "pt-br"
     val qu : String = "qu"
     val raj : String = "raj"
     val rap : String = "rap"
@@ -579,8 +593,8 @@ public object Lang {
     val sus : String = "sus"
     val sux : String = "sux"
     val sv : String = "sv"
-    val sv_se : String = "sv-se"
-    val sv_fi : String = "sv-fi"
+    val svSe : String = "sv-se"
+    val svFi : String = "sv-fi"
     val sw : String = "sw"
     val syr : String = "syr"
     val ta : String = "ta"
@@ -646,23 +660,23 @@ public object Lang {
     val zap : String = "zap"
     val zen : String = "zen"
     val zh : String = "zh"
-    val zh_cn : String = "zh-cn"
-    val zh_hk : String = "zh-hk"
-    val zh_mo : String = "zh-mo"
-    val zh_sg : String = "zh-sg"
-    val zh_tw : String = "zh-tw"
-    val zh_guoyu : String = "zh-guoyu"
-    val zh_hakka : String = "zh-hakka"
-    val zh_min : String = "zh-min"
-    val zh_min_nan : String = "zh-min-nan"
-    val zh_wuu : String = "zh-wuu"
-    val zh_xiang : String = "zh-xiang"
-    val zh_gan : String = "zh-gan"
-    val zh_yue : String = "zh-yue"
+    val zhCn : String = "zh-cn"
+    val zhHk : String = "zh-hk"
+    val zhMo : String = "zh-mo"
+    val zhSg : String = "zh-sg"
+    val zhTw : String = "zh-tw"
+    val zhGuoyu : String = "zh-guoyu"
+    val zhHakka : String = "zh-hakka"
+    val zhMin : String = "zh-min"
+    val zhMinNan : String = "zh-min-nan"
+    val zhWuu : String = "zh-wuu"
+    val zhXiang : String = "zh-xiang"
+    val zhGan : String = "zh-gan"
+    val zhYue : String = "zh-yue"
     val znd : String = "znd"
     val zu : String = "zu"
     val zun : String = "zun"
-    val values : List<String> = listOf("aa","ab","ae","ace","ach","ada","ady","af","afa","afh","ak","akk","ale","alg","am","an","ang","apa","ar","ar_ae","ar_bh","ar_dz","ar_eg","ar_iq","ar_jo","ar_kw","ar_lb","ar_ly","ar_ma","ar_om","ar_qa","ar_sa","ar_sy","ar_tn","ar_ye","arc","arn","arp","art","arw","as_","ast","ath","aus","av","awa","ay","az","ba","bad","bai","bal","bm","ban","bas","bat","be","bej","bem","ber","bg","bh","bho","bi","bik","bin","bla","bn","bnt","bo","br","bs","bra","btk","bua","bug","byn","ca","cad","cai","car","cau","ce","ceb","cel","ch","chb","chg","chk","chm","chn","cho","chp","chr","chy","cmc","co","cop","cpe","cpf","cpp","cr","crh","crp","cs","csb","cu","cus","cv","cy","da","dak","dar","day","de","de_at","de_be","de_ch","de_de","de_li","de_lu","del","den","dgr","din","div","doi","dra","dsb","dua","dum","dyu","dz","ee","efi","egy","eka","el","elx","en","en_au","en_bz","en_ca","en_gb","en_ie","en_jm","en_nz","en_ph","en_tt","en_us","en_za","en_zw","enm","eo","es","es_ar","es_bo","es_cl","es_co","es_do","es_ec","es_es","es_gt","es_hn","es_mx","es_pa","es_pe","es_pr","es_py","es_sv","es_us","es_uy","es_ve","et","ewo","eu","fa","fan","fat","ff","fi","fil","fiu","fj","fo","fon","fr","fr_fr","fr_be","fr_ca","fr_ch","fr_lu","fr_mc","frm","fro","fur","fy","ga","gaa","gay","gba","gd","gem","gez","gil","gl","gmh","gn","goh","gon","gor","got","grb","grc","gu","gv","gwi","ha","hai","haw","he","hi","hil","him","hit","hmn","ho","hr","hsb","hu","hup","hy","hz","ia","iba","id","ie","ig","ijo","ii","ik","ilo","inc","ine","inh","io","ira","iro","is_","it","it_it","it_ch","iu","ja","jbo","jpr","jrb","jv","ka","kaa","kab","kac","kam","kar","kaw","kbd","kg","kha","khi","kho","ki","kj","kk","kl","km","kmb","kn","ko","kok","kos","kpe","kr","krc","kro","kru","kum","kut","kv","ky","la","lad","lah","lam","lb","lg","lez","ln","lo","lol","loz","lt","lu","lua","lui","lun","luo","lus","lv","mad","mag","mai","mak","map","mas","mdf","mdr","men","mg","mga","mh","mi","mic","min","mis","mk","mkh","ml","mn","mnc","mni","mno","mo","moh","mos","mr","ms","mt","mul","mun","mus","mwl","mwr","my","myn","myv","na","nap","nb","nd","nds","ne","ne_np","ne_in","new","ng","nia","nic","niu","nl","nl_nl","nl_be","nn","no","nog","non","nr","nso","nub","nv","nwc","ny","nym","nyn","nyo","nzi","oc","oj","om","or","os","osa","ota","oto","pa","paa","pag","pal","pam","pap","pau","peo","phi","phn","pi","pl","pon","pro","ps","pt","pt_pt","pt_br","qu","raj","rap","rar","rm","rn","ro","roa","rom","ru","rw","sa","sad","sah","sai","sal","sam","sas","sat","sc","scn","sco","sd","se","sel","sem","sg","sga","sgn","shn","si","sid","sio","sit","sk","sl","sla","sm","sma","smi","smj","smn","sms","sn","snk","so","sog","son","sq","sr","srr","ss","ssa","st","su","suk","sus","sux","sv","sv_se","sv_fi","sw","syr","ta","tai","te","tem","ter","tet","tg","th","ti","tig","tiv","tk","tkl","tl","tlh","tli","tmh","tn","to","tog","tpi","tr","ts","tsi","tt","tum","tup","tut","tvl","tw","ty","tyv","udm","ug","uga","uk","umb","und","ur","uz","vai","ve","vi","vo","vot","wa","wak","wal","war","was","wen","wo","xal","xh","yao","yap","yi","yo","ypk","za","zap","zen","zh","zh_cn","zh_hk","zh_mo","zh_sg","zh_tw","zh_guoyu","zh_hakka","zh_min","zh_min_nan","zh_wuu","zh_xiang","zh_gan","zh_yue","znd","zu","zun")
+    val values : List<String> = listOf("aa","ab","ae","ace","ach","ada","ady","af","afa","afh","ak","akk","ale","alg","am","an","ang","apa","ar","arAe","arBh","arDz","arEg","arIq","arJo","arKw","arLb","arLy","arMa","arOm","arQa","arSa","arSy","arTn","arYe","arc","arn","arp","art","arw","as_","ast","ath","aus","av","awa","ay","az","ba","bad","bai","bal","bm","ban","bas","bat","be","bej","bem","ber","bg","bh","bho","bi","bik","bin","bla","bn","bnt","bo","br","bs","bra","btk","bua","bug","byn","ca","cad","cai","car","cau","ce","ceb","cel","ch","chb","chg","chk","chm","chn","cho","chp","chr","chy","cmc","co","cop","cpe","cpf","cpp","cr","crh","crp","cs","csb","cu","cus","cv","cy","da","dak","dar","day","de","deAt","deBe","deCh","deDe","deLi","deLu","del","den","dgr","din","div","doi","dra","dsb","dua","dum","dyu","dz","ee","efi","egy","eka","el","elx","en","enAu","enBz","enCa","enGb","enIe","enJm","enNz","enPh","enTt","enUs","enZa","enZw","enm","eo","es","esAr","esBo","esCl","esCo","esDo","esEc","esEs","esGt","esHn","esMx","esPa","esPe","esPr","esPy","esSv","esUs","esUy","esVe","et","ewo","eu","fa","fan","fat","ff","fi","fil","fiu","fj","fo","fon","fr","frFr","frBe","frCa","frCh","frLu","frMc","frm","fro","fur","fy","ga","gaa","gay","gba","gd","gem","gez","gil","gl","gmh","gn","goh","gon","gor","got","grb","grc","gu","gv","gwi","ha","hai","haw","he","hi","hil","him","hit","hmn","ho","hr","hsb","hu","hup","hy","hz","ia","iba","id","ie","ig","ijo","ii","ik","ilo","inc","ine","inh","io","ira","iro","is_","it","itIt","itCh","iu","ja","jbo","jpr","jrb","jv","ka","kaa","kab","kac","kam","kar","kaw","kbd","kg","kha","khi","kho","ki","kj","kk","kl","km","kmb","kn","ko","kok","kos","kpe","kr","krc","kro","kru","kum","kut","kv","ky","la","lad","lah","lam","lb","lg","lez","ln","lo","lol","loz","lt","lu","lua","lui","lun","luo","lus","lv","mad","mag","mai","mak","map","mas","mdf","mdr","men","mg","mga","mh","mi","mic","min","mis","mk","mkh","ml","mn","mnc","mni","mno","mo","moh","mos","mr","ms","mt","mul","mun","mus","mwl","mwr","my","myn","myv","na","nap","nb","nd","nds","ne","neNp","neIn","new","ng","nia","nic","niu","nl","nlNl","nlBe","nn","no","nog","non","nr","nso","nub","nv","nwc","ny","nym","nyn","nyo","nzi","oc","oj","om","or","os","osa","ota","oto","pa","paa","pag","pal","pam","pap","pau","peo","phi","phn","pi","pl","pon","pro","ps","pt","ptPt","ptBr","qu","raj","rap","rar","rm","rn","ro","roa","rom","ru","rw","sa","sad","sah","sai","sal","sam","sas","sat","sc","scn","sco","sd","se","sel","sem","sg","sga","sgn","shn","si","sid","sio","sit","sk","sl","sla","sm","sma","smi","smj","smn","sms","sn","snk","so","sog","son","sq","sr","srr","ss","ssa","st","su","suk","sus","sux","sv","svSe","svFi","sw","syr","ta","tai","te","tem","ter","tet","tg","th","ti","tig","tiv","tk","tkl","tl","tlh","tli","tmh","tn","to","tog","tpi","tr","ts","tsi","tt","tum","tup","tut","tvl","tw","ty","tyv","udm","ug","uga","uk","umb","und","ur","uz","vai","ve","vi","vo","vot","wa","wak","wal","war","was","wen","wo","xal","xh","yao","yap","yi","yo","ypk","za","zap","zen","zh","zhCn","zhHk","zhMo","zhSg","zhTw","zhGuoyu","zhHakka","zhMin","zhMinNan","zhWuu","zhXiang","zhGan","zhYue","znd","zu","zun")
 }
 
 
@@ -682,75 +696,7 @@ enum public class Dir(override val realValue : String) : AttributeEnum {
 
 val dirValues : Map<String, Dir> = Dir.values().toMap { it.realValue }
 
-enum public class Rowspan(override val realValue : String) : AttributeEnum {
-}
-
-val rowspanValues : Map<String, Rowspan> = Rowspan.values().toMap { it.realValue }
-
-public object Type {
-    val text_asp : String = "text/asp"
-    val text_asa : String = "text/asa"
-    val text_css : String = "text/css"
-    val text_html : String = "text/html"
-    val text_javascript : String = "text/javascript"
-    val text_plain : String = "text/plain"
-    val text_scriptlet : String = "text/scriptlet"
-    val text_x_component : String = "text/x-component"
-    val text_x_html_insertion : String = "text/x-html-insertion"
-    val text_xml : String = "text/xml"
-    val values : List<String> = listOf("text_asp","text_asa","text_css","text_html","text_javascript","text_plain","text_scriptlet","text_x_component","text_x_html_insertion","text_xml")
-}
-
-
-enum public class Cols(override val realValue : String) : AttributeEnum {
-}
-
-val colsValues : Map<String, Cols> = Cols.values().toMap { it.realValue }
-
-enum public class Scope(override val realValue : String) : AttributeEnum {
-    col : Scope("col")
-    colgroup : Scope("colgroup")
-    row : Scope("row")
-    rowgroup : Scope("rowgroup")
-}
-
-val scopeValues : Map<String, Scope> = Scope.values().toMap { it.realValue }
-
-public object Rel {
-    val Alternate : String = "Alternate"
-    val Appendix : String = "Appendix"
-    val Bookmark : String = "Bookmark"
-    val Chapter : String = "Chapter"
-    val Contents : String = "Contents"
-    val Copyright : String = "Copyright"
-    val Glossary : String = "Glossary"
-    val Help : String = "Help"
-    val Index : String = "Index"
-    val Next : String = "Next"
-    val Prev : String = "Prev"
-    val Section : String = "Section"
-    val Start : String = "Start"
-    val Stylesheet : String = "Stylesheet"
-    val Subsection : String = "Subsection"
-    val values : List<String> = listOf("Alternate","Appendix","Bookmark","Chapter","Contents","Copyright","Glossary","Help","Index","Next","Prev","Section","Start","Stylesheet","Subsection")
-}
-
-
-public object Formtarget {
-    val blank : String = "_blank"
-    val parent : String = "_parent"
-    val self : String = "_self"
-    val top : String = "_top"
-    val values : List<String> = listOf("blank","parent","self","top")
-}
-
-
-enum public class Colspan(override val realValue : String) : AttributeEnum {
-}
-
-val colspanValues : Map<String, Colspan> = Colspan.values().toMap { it.realValue }
-
-public object Hreflang {
+public object HrefLang {
     val aa : String = "aa"
     val ab : String = "ab"
     val ae : String = "ae"
@@ -770,22 +716,22 @@ public object Hreflang {
     val ang : String = "ang"
     val apa : String = "apa"
     val ar : String = "ar"
-    val ar_ae : String = "ar-ae"
-    val ar_bh : String = "ar-bh"
-    val ar_dz : String = "ar-dz"
-    val ar_eg : String = "ar-eg"
-    val ar_iq : String = "ar-iq"
-    val ar_jo : String = "ar-jo"
-    val ar_kw : String = "ar-kw"
-    val ar_lb : String = "ar-lb"
-    val ar_ly : String = "ar-ly"
-    val ar_ma : String = "ar-ma"
-    val ar_om : String = "ar-om"
-    val ar_qa : String = "ar-qa"
-    val ar_sa : String = "ar-sa"
-    val ar_sy : String = "ar-sy"
-    val ar_tn : String = "ar-tn"
-    val ar_ye : String = "ar-ye"
+    val arAe : String = "ar-ae"
+    val arBh : String = "ar-bh"
+    val arDz : String = "ar-dz"
+    val arEg : String = "ar-eg"
+    val arIq : String = "ar-iq"
+    val arJo : String = "ar-jo"
+    val arKw : String = "ar-kw"
+    val arLb : String = "ar-lb"
+    val arLy : String = "ar-ly"
+    val arMa : String = "ar-ma"
+    val arOm : String = "ar-om"
+    val arQa : String = "ar-qa"
+    val arSa : String = "ar-sa"
+    val arSy : String = "ar-sy"
+    val arTn : String = "ar-tn"
+    val arYe : String = "ar-ye"
     val arc : String = "arc"
     val arn : String = "arn"
     val arp : String = "arp"
@@ -866,12 +812,12 @@ public object Hreflang {
     val dar : String = "dar"
     val day : String = "day"
     val de : String = "de"
-    val de_at : String = "de-at"
-    val de_be : String = "de-be"
-    val de_ch : String = "de-ch"
-    val de_de : String = "de-de"
-    val de_li : String = "de-li"
-    val de_lu : String = "de-lu"
+    val deAt : String = "de-at"
+    val deBe : String = "de-be"
+    val deCh : String = "de-ch"
+    val deDe : String = "de-de"
+    val deLi : String = "de-li"
+    val deLu : String = "de-lu"
     val del : String = "del"
     val den : String = "den"
     val dgr : String = "dgr"
@@ -891,39 +837,39 @@ public object Hreflang {
     val el : String = "el"
     val elx : String = "elx"
     val en : String = "en"
-    val en_au : String = "en-au"
-    val en_bz : String = "en-bz"
-    val en_ca : String = "en-ca"
-    val en_gb : String = "en-gb"
-    val en_ie : String = "en-ie"
-    val en_jm : String = "en-jm"
-    val en_nz : String = "en-nz"
-    val en_ph : String = "en-ph"
-    val en_tt : String = "en-tt"
-    val en_us : String = "en-us"
-    val en_za : String = "en-za"
-    val en_zw : String = "en-zw"
+    val enAu : String = "en-au"
+    val enBz : String = "en-bz"
+    val enCa : String = "en-ca"
+    val enGb : String = "en-gb"
+    val enIe : String = "en-ie"
+    val enJm : String = "en-jm"
+    val enNz : String = "en-nz"
+    val enPh : String = "en-ph"
+    val enTt : String = "en-tt"
+    val enUs : String = "en-us"
+    val enZa : String = "en-za"
+    val enZw : String = "en-zw"
     val enm : String = "enm"
     val eo : String = "eo"
     val es : String = "es"
-    val es_ar : String = "es-ar"
-    val es_bo : String = "es-bo"
-    val es_cl : String = "es-cl"
-    val es_co : String = "es-co"
-    val es_do : String = "es-do"
-    val es_ec : String = "es-ec"
-    val es_es : String = "es-es"
-    val es_gt : String = "es-gt"
-    val es_hn : String = "es-hn"
-    val es_mx : String = "es-mx"
-    val es_pa : String = "es-pa"
-    val es_pe : String = "es-pe"
-    val es_pr : String = "es-pr"
-    val es_py : String = "es-py"
-    val es_sv : String = "es-sv"
-    val es_us : String = "es-us"
-    val es_uy : String = "es-uy"
-    val es_ve : String = "es-ve"
+    val esAr : String = "es-ar"
+    val esBo : String = "es-bo"
+    val esCl : String = "es-cl"
+    val esCo : String = "es-co"
+    val esDo : String = "es-do"
+    val esEc : String = "es-ec"
+    val esEs : String = "es-es"
+    val esGt : String = "es-gt"
+    val esHn : String = "es-hn"
+    val esMx : String = "es-mx"
+    val esPa : String = "es-pa"
+    val esPe : String = "es-pe"
+    val esPr : String = "es-pr"
+    val esPy : String = "es-py"
+    val esSv : String = "es-sv"
+    val esUs : String = "es-us"
+    val esUy : String = "es-uy"
+    val esVe : String = "es-ve"
     val et : String = "et"
     val ewo : String = "ewo"
     val eu : String = "eu"
@@ -938,12 +884,12 @@ public object Hreflang {
     val fo : String = "fo"
     val fon : String = "fon"
     val fr : String = "fr"
-    val fr_fr : String = "fr-fr"
-    val fr_be : String = "fr-be"
-    val fr_ca : String = "fr-ca"
-    val fr_ch : String = "fr-ch"
-    val fr_lu : String = "fr-lu"
-    val fr_mc : String = "fr-mc"
+    val frFr : String = "fr-fr"
+    val frBe : String = "fr-be"
+    val frCa : String = "fr-ca"
+    val frCh : String = "fr-ch"
+    val frLu : String = "fr-lu"
+    val frMc : String = "fr-mc"
     val frm : String = "frm"
     val fro : String = "fro"
     val fur : String = "fur"
@@ -1001,8 +947,8 @@ public object Hreflang {
     val iro : String = "iro"
     val is_ : String = "is"
     val it : String = "it"
-    val it_it : String = "it-it"
-    val it_ch : String = "it-ch"
+    val itIt : String = "it-it"
+    val itCh : String = "it-ch"
     val iu : String = "iu"
     val ja : String = "ja"
     val jbo : String = "jbo"
@@ -1102,16 +1048,16 @@ public object Hreflang {
     val nd : String = "nd"
     val nds : String = "nds"
     val ne : String = "ne"
-    val ne_np : String = "ne-np"
-    val ne_in : String = "ne-in"
+    val neNp : String = "ne-np"
+    val neIn : String = "ne-in"
     val new : String = "new"
     val ng : String = "ng"
     val nia : String = "nia"
     val nic : String = "nic"
     val niu : String = "niu"
     val nl : String = "nl"
-    val nl_nl : String = "nl-nl"
-    val nl_be : String = "nl-be"
+    val nlNl : String = "nl-nl"
+    val nlBe : String = "nl-be"
     val nn : String = "nn"
     val no : String = "no"
     val nog : String = "nog"
@@ -1150,8 +1096,8 @@ public object Hreflang {
     val pro : String = "pro"
     val ps : String = "ps"
     val pt : String = "pt"
-    val pt_pt : String = "pt-pt"
-    val pt_br : String = "pt-br"
+    val ptPt : String = "pt-pt"
+    val ptBr : String = "pt-br"
     val qu : String = "qu"
     val raj : String = "raj"
     val rap : String = "rap"
@@ -1211,8 +1157,8 @@ public object Hreflang {
     val sus : String = "sus"
     val sux : String = "sux"
     val sv : String = "sv"
-    val sv_se : String = "sv-se"
-    val sv_fi : String = "sv-fi"
+    val svSe : String = "sv-se"
+    val svFi : String = "sv-fi"
     val sw : String = "sw"
     val syr : String = "syr"
     val ta : String = "ta"
@@ -1278,23 +1224,77 @@ public object Hreflang {
     val zap : String = "zap"
     val zen : String = "zen"
     val zh : String = "zh"
-    val zh_cn : String = "zh-cn"
-    val zh_hk : String = "zh-hk"
-    val zh_mo : String = "zh-mo"
-    val zh_sg : String = "zh-sg"
-    val zh_tw : String = "zh-tw"
-    val zh_guoyu : String = "zh-guoyu"
-    val zh_hakka : String = "zh-hakka"
-    val zh_min : String = "zh-min"
-    val zh_min_nan : String = "zh-min-nan"
-    val zh_wuu : String = "zh-wuu"
-    val zh_xiang : String = "zh-xiang"
-    val zh_gan : String = "zh-gan"
-    val zh_yue : String = "zh-yue"
+    val zhCn : String = "zh-cn"
+    val zhHk : String = "zh-hk"
+    val zhMo : String = "zh-mo"
+    val zhSg : String = "zh-sg"
+    val zhTw : String = "zh-tw"
+    val zhGuoyu : String = "zh-guoyu"
+    val zhHakka : String = "zh-hakka"
+    val zhMin : String = "zh-min"
+    val zhMinNan : String = "zh-min-nan"
+    val zhWuu : String = "zh-wuu"
+    val zhXiang : String = "zh-xiang"
+    val zhGan : String = "zh-gan"
+    val zhYue : String = "zh-yue"
     val znd : String = "znd"
     val zu : String = "zu"
     val zun : String = "zun"
-    val values : List<String> = listOf("aa","ab","ae","ace","ach","ada","ady","af","afa","afh","ak","akk","ale","alg","am","an","ang","apa","ar","ar_ae","ar_bh","ar_dz","ar_eg","ar_iq","ar_jo","ar_kw","ar_lb","ar_ly","ar_ma","ar_om","ar_qa","ar_sa","ar_sy","ar_tn","ar_ye","arc","arn","arp","art","arw","as_","ast","ath","aus","av","awa","ay","az","ba","bad","bai","bal","bm","ban","bas","bat","be","bej","bem","ber","bg","bh","bho","bi","bik","bin","bla","bn","bnt","bo","br","bs","bra","btk","bua","bug","byn","ca","cad","cai","car","cau","ce","ceb","cel","ch","chb","chg","chk","chm","chn","cho","chp","chr","chy","cmc","co","cop","cpe","cpf","cpp","cr","crh","crp","cs","csb","cu","cus","cv","cy","da","dak","dar","day","de","de_at","de_be","de_ch","de_de","de_li","de_lu","del","den","dgr","din","div","doi","dra","dsb","dua","dum","dyu","dz","ee","efi","egy","eka","el","elx","en","en_au","en_bz","en_ca","en_gb","en_ie","en_jm","en_nz","en_ph","en_tt","en_us","en_za","en_zw","enm","eo","es","es_ar","es_bo","es_cl","es_co","es_do","es_ec","es_es","es_gt","es_hn","es_mx","es_pa","es_pe","es_pr","es_py","es_sv","es_us","es_uy","es_ve","et","ewo","eu","fa","fan","fat","ff","fi","fil","fiu","fj","fo","fon","fr","fr_fr","fr_be","fr_ca","fr_ch","fr_lu","fr_mc","frm","fro","fur","fy","ga","gaa","gay","gba","gd","gem","gez","gil","gl","gmh","gn","goh","gon","gor","got","grb","grc","gu","gv","gwi","ha","hai","haw","he","hi","hil","him","hit","hmn","ho","hr","hsb","hu","hup","hy","hz","ia","iba","id","ie","ig","ijo","ii","ik","ilo","inc","ine","inh","io","ira","iro","is_","it","it_it","it_ch","iu","ja","jbo","jpr","jrb","jv","ka","kaa","kab","kac","kam","kar","kaw","kbd","kg","kha","khi","kho","ki","kj","kk","kl","km","kmb","kn","ko","kok","kos","kpe","kr","krc","kro","kru","kum","kut","kv","ky","la","lad","lah","lam","lb","lg","lez","ln","lo","lol","loz","lt","lu","lua","lui","lun","luo","lus","lv","mad","mag","mai","mak","map","mas","mdf","mdr","men","mg","mga","mh","mi","mic","min","mis","mk","mkh","ml","mn","mnc","mni","mno","mo","moh","mos","mr","ms","mt","mul","mun","mus","mwl","mwr","my","myn","myv","na","nap","nb","nd","nds","ne","ne_np","ne_in","new","ng","nia","nic","niu","nl","nl_nl","nl_be","nn","no","nog","non","nr","nso","nub","nv","nwc","ny","nym","nyn","nyo","nzi","oc","oj","om","or","os","osa","ota","oto","pa","paa","pag","pal","pam","pap","pau","peo","phi","phn","pi","pl","pon","pro","ps","pt","pt_pt","pt_br","qu","raj","rap","rar","rm","rn","ro","roa","rom","ru","rw","sa","sad","sah","sai","sal","sam","sas","sat","sc","scn","sco","sd","se","sel","sem","sg","sga","sgn","shn","si","sid","sio","sit","sk","sl","sla","sm","sma","smi","smj","smn","sms","sn","snk","so","sog","son","sq","sr","srr","ss","ssa","st","su","suk","sus","sux","sv","sv_se","sv_fi","sw","syr","ta","tai","te","tem","ter","tet","tg","th","ti","tig","tiv","tk","tkl","tl","tlh","tli","tmh","tn","to","tog","tpi","tr","ts","tsi","tt","tum","tup","tut","tvl","tw","ty","tyv","udm","ug","uga","uk","umb","und","ur","uz","vai","ve","vi","vo","vot","wa","wak","wal","war","was","wen","wo","xal","xh","yao","yap","yi","yo","ypk","za","zap","zen","zh","zh_cn","zh_hk","zh_mo","zh_sg","zh_tw","zh_guoyu","zh_hakka","zh_min","zh_min_nan","zh_wuu","zh_xiang","zh_gan","zh_yue","znd","zu","zun")
+    val values : List<String> = listOf("aa","ab","ae","ace","ach","ada","ady","af","afa","afh","ak","akk","ale","alg","am","an","ang","apa","ar","arAe","arBh","arDz","arEg","arIq","arJo","arKw","arLb","arLy","arMa","arOm","arQa","arSa","arSy","arTn","arYe","arc","arn","arp","art","arw","as_","ast","ath","aus","av","awa","ay","az","ba","bad","bai","bal","bm","ban","bas","bat","be","bej","bem","ber","bg","bh","bho","bi","bik","bin","bla","bn","bnt","bo","br","bs","bra","btk","bua","bug","byn","ca","cad","cai","car","cau","ce","ceb","cel","ch","chb","chg","chk","chm","chn","cho","chp","chr","chy","cmc","co","cop","cpe","cpf","cpp","cr","crh","crp","cs","csb","cu","cus","cv","cy","da","dak","dar","day","de","deAt","deBe","deCh","deDe","deLi","deLu","del","den","dgr","din","div","doi","dra","dsb","dua","dum","dyu","dz","ee","efi","egy","eka","el","elx","en","enAu","enBz","enCa","enGb","enIe","enJm","enNz","enPh","enTt","enUs","enZa","enZw","enm","eo","es","esAr","esBo","esCl","esCo","esDo","esEc","esEs","esGt","esHn","esMx","esPa","esPe","esPr","esPy","esSv","esUs","esUy","esVe","et","ewo","eu","fa","fan","fat","ff","fi","fil","fiu","fj","fo","fon","fr","frFr","frBe","frCa","frCh","frLu","frMc","frm","fro","fur","fy","ga","gaa","gay","gba","gd","gem","gez","gil","gl","gmh","gn","goh","gon","gor","got","grb","grc","gu","gv","gwi","ha","hai","haw","he","hi","hil","him","hit","hmn","ho","hr","hsb","hu","hup","hy","hz","ia","iba","id","ie","ig","ijo","ii","ik","ilo","inc","ine","inh","io","ira","iro","is_","it","itIt","itCh","iu","ja","jbo","jpr","jrb","jv","ka","kaa","kab","kac","kam","kar","kaw","kbd","kg","kha","khi","kho","ki","kj","kk","kl","km","kmb","kn","ko","kok","kos","kpe","kr","krc","kro","kru","kum","kut","kv","ky","la","lad","lah","lam","lb","lg","lez","ln","lo","lol","loz","lt","lu","lua","lui","lun","luo","lus","lv","mad","mag","mai","mak","map","mas","mdf","mdr","men","mg","mga","mh","mi","mic","min","mis","mk","mkh","ml","mn","mnc","mni","mno","mo","moh","mos","mr","ms","mt","mul","mun","mus","mwl","mwr","my","myn","myv","na","nap","nb","nd","nds","ne","neNp","neIn","new","ng","nia","nic","niu","nl","nlNl","nlBe","nn","no","nog","non","nr","nso","nub","nv","nwc","ny","nym","nyn","nyo","nzi","oc","oj","om","or","os","osa","ota","oto","pa","paa","pag","pal","pam","pap","pau","peo","phi","phn","pi","pl","pon","pro","ps","pt","ptPt","ptBr","qu","raj","rap","rar","rm","rn","ro","roa","rom","ru","rw","sa","sad","sah","sai","sal","sam","sas","sat","sc","scn","sco","sd","se","sel","sem","sg","sga","sgn","shn","si","sid","sio","sit","sk","sl","sla","sm","sma","smi","smj","smn","sms","sn","snk","so","sog","son","sq","sr","srr","ss","ssa","st","su","suk","sus","sux","sv","svSe","svFi","sw","syr","ta","tai","te","tem","ter","tet","tg","th","ti","tig","tiv","tk","tkl","tl","tlh","tli","tmh","tn","to","tog","tpi","tr","ts","tsi","tt","tum","tup","tut","tvl","tw","ty","tyv","udm","ug","uga","uk","umb","und","ur","uz","vai","ve","vi","vo","vot","wa","wak","wal","war","was","wen","wo","xal","xh","yao","yap","yi","yo","ypk","za","zap","zen","zh","zhCn","zhHk","zhMo","zhSg","zhTw","zhGuoyu","zhHakka","zhMin","zhMinNan","zhWuu","zhXiang","zhGan","zhYue","znd","zu","zun")
 }
 
+
+public object Type {
+    val textAsp : String = "text/asp"
+    val textAsa : String = "text/asa"
+    val textCss : String = "text/css"
+    val textHtml : String = "text/html"
+    val textJavaScript : String = "text/javascript"
+    val textPlain : String = "text/plain"
+    val textScriptLet : String = "text/scriptlet"
+    val textXComponent : String = "text/x-component"
+    val textXHtmlInsertion : String = "text/x-html-insertion"
+    val textXml : String = "text/xml"
+    val values : List<String> = listOf("textAsp","textAsa","textCss","textHtml","textJavaScript","textPlain","textScriptLet","textXComponent","textXHtmlInsertion","textXml")
+}
+
+
+enum public class Scope(override val realValue : String) : AttributeEnum {
+    col : Scope("col")
+    colGroup : Scope("colgroup")
+    row : Scope("row")
+    rowGroup : Scope("rowgroup")
+}
+
+val scopeValues : Map<String, Scope> = Scope.values().toMap { it.realValue }
+
+public object Rel {
+    val alternate : String = "Alternate"
+    val appEndIx : String = "Appendix"
+    val bookmark : String = "Bookmark"
+    val chapter : String = "Chapter"
+    val contentS : String = "Contents"
+    val copyright : String = "Copyright"
+    val glossary : String = "Glossary"
+    val help : String = "Help"
+    val index : String = "Index"
+    val next : String = "Next"
+    val prev : String = "Prev"
+    val section : String = "Section"
+    val start : String = "Start"
+    val stylesheet : String = "Stylesheet"
+    val subsection : String = "Subsection"
+    val values : List<String> = listOf("alternate","appEndIx","bookmark","chapter","contentS","copyright","glossary","help","index","next","prev","section","start","stylesheet","subsection")
+}
+
+
+enum public class RowSpan(override val realValue : String) : AttributeEnum {
+}
+
+val rowSpanValues : Map<String, RowSpan> = RowSpan.values().toMap { it.realValue }
+
+enum public class RowS(override val realValue : String) : AttributeEnum {
+}
+
+val rowSValues : Map<String, RowS> = RowS.values().toMap { it.realValue }
 

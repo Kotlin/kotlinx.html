@@ -180,7 +180,7 @@
         <xsd:attribute name="onsubmit"/>
         <xsd:attribute name="onsuspend"/>
         <xsd:attribute name="ontimeupdate"/>
-        <xsd:attribute name="onvolumenchange"/>
+        <xsd:attribute name="onvolumechange"/>
         <xsd:attribute name="onwaiting"/>
     </xsd:attributeGroup>
 
