@@ -80,7 +80,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
 
 
 public fun HTMLDocument.buildHTML() : TagConsumer<HTMLElement> = JSDOMBuilder(this)
-inline fun Node.buildAndAppendChild(block : TagConsumer<HTMLElement>.() -> HTMLElement) : HTMLElement =
+public inline fun Node.buildAndAppendChild(block : TagConsumer<HTMLElement>.() -> HTMLElement) : HTMLElement =
         (ownerDocument as HTMLDocument).buildHTML().block().let { element ->
             appendChild(element)
             element

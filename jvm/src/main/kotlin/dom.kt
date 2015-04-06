@@ -76,25 +76,25 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     override fun finalize() = path.last()
 }
 
-fun Document.buildHTML() : TagConsumer<Element> = HTMLDOMBuilder(this)
-inline fun Node.buildAndAppendChild(block : TagConsumer<Element>.() -> Element) : Element =
+public fun Document.buildHTML() : TagConsumer<Element> = HTMLDOMBuilder(this)
+public inline fun Node.buildAndAppendChild(block : TagConsumer<Element>.() -> Element) : Element =
     getOwnerDocument().buildHTML().block().let { element ->
         appendChild(element)
         element
     }
 
-inline fun document(block : Document.() -> Unit) : Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
+public inline fun document(block : Document.() -> Unit) : Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
     document.block()
     document
 }
 
-fun Writer.write(document : Document, prettyPrint : Boolean = true) : Writer {
+public fun Writer.write(document : Document, prettyPrint : Boolean = true) : Writer {
     write("<!DOCTYPE html>\n")
     write(document.getDocumentElement(), prettyPrint)
     return this
 }
 
-fun Writer.write(element: Element, prettyPrint : Boolean = true) : Writer {
+public fun Writer.write(element: Element, prettyPrint : Boolean = true) : Writer {
     val transformer = TransformerFactory.newInstance().newTransformer();
     transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
     transformer.setOutputProperty(OutputKeys.METHOD, "html");
@@ -110,5 +110,5 @@ fun Writer.write(element: Element, prettyPrint : Boolean = true) : Writer {
     return this
 }
 
-fun Element.serialize(prettyPrint : Boolean = true) : String = StringWriter().let { it.write(this, prettyPrint).toString() }
-fun Document.serialize(prettyPrint : Boolean = true) : String = StringWriter().let { it.write(this, prettyPrint).toString() }
+public fun Element.serialize(prettyPrint : Boolean = true) : String = StringWriter().let { it.write(this, prettyPrint).toString() }
+public fun Document.serialize(prettyPrint : Boolean = true) : String = StringWriter().let { it.write(this, prettyPrint).toString() }
