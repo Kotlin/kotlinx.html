@@ -10,11 +10,9 @@ import html4k.impl.*
 
 public class A(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("a", consumer, initialAttributes) {
     var onAbort : String by attributeStringOnAbort
-    var contentEditable : Boolean by attributeBooleanContentEditable
     var onLoadedMetaData : String by attributeStringOnLoadedMetaData
     var onScroll : String by attributeStringOnScroll
     var onSeeking : String by attributeStringOnSeeking
-    var id : String by attributeString
     var onLoad : String by attributeStringOnLoad
     var ping : String by attributeString
     var onDragStart : String by attributeStringOnDragStart
@@ -23,17 +21,11 @@ public class A(initialAttributes : Map<String, String>, override val consumer : 
     var onShow : String by attributeStringOnShow
     var onClick : String by attributeStringOnClick
     var onFocus : String by attributeStringOnFocus
-    var contextMenu : String by attributeStringContextMenu
     var onStalled : String by attributeStringOnStalled
     var onProgress : String by attributeStringOnProgress
-    var draggable : Draggable by attributeDraggableDraggableDraggableValues
-    var item : String by attributeString
     var onVolumeChange : String by attributeStringOnVolumeChange
-    var subject : String by attributeString
     var onCanPlay : String by attributeStringOnCanPlay
     var onContextMenu : String by attributeStringOnContextMenu
-    var classes : String by attributeStringClass
-    var runAt : RunAt by attributeRunAtRunAtRunAtValues
     var onError : String by attributeStringOnError
     var onFormChange : String by attributeStringOnFormChange
     var onSeeked : String by attributeStringOnSeeked
@@ -54,26 +46,18 @@ public class A(initialAttributes : Map<String, String>, override val consumer : 
     var onMouseDown : String by attributeStringOnMouseDown
     var onChange : String by attributeStringOnChange
     var onKeyPress : String by attributeStringOnKeyPress
-    var itemProp : String by attributeStringItemProp
     var onDoubleClick : String by attributeStringOnDoubleClick
     var onReadyStateChange : String by attributeStringOnReadyStateChange
     var onDragEnter : String by attributeStringOnDragEnter
-    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
-    var lang : String by attributeString
     var onWaiting : String by attributeStringOnWaiting
-    var accessKey : String by attributeStringAccessKey
     var onPause : String by attributeStringOnPause
-    var style : String by attributeString
     var onEmptied : String by attributeStringOnEmptied
-    var dir : Dir by attributeDirDirDirValues
     var onSelect : String by attributeStringOnSelect
     var onLoadStart : String by attributeStringOnLoadStart
     var onDragOver : String by attributeStringOnDragOver
     var onSuspend : String by attributeStringOnSuspend
-    var tabIndex : String by attributeString
     var onMouseUp : String by attributeStringOnMouseUp
     var rel : String by attributeString
-    var role : String by attributeString
     var target : String by attributeString
     var onMouseMove : String by attributeStringOnMouseMove
     var onMouseOut : String by attributeStringOnMouseOut
@@ -81,12 +65,8 @@ public class A(initialAttributes : Map<String, String>, override val consumer : 
     var onCanPlayThrough : String by attributeStringOnCanPlayThrough
     var onEnded : String by attributeStringOnEnded
     var onBlur : String by attributeStringOnBlur
-    var dataMsgId : String by attributeStringDataMsgId
     var onDrop : String by attributeStringOnDrop
-    var spellCheck : Boolean by attributeBooleanSpellCheck
     var onInvalid : String by attributeStringOnInvalid
-    var title : String by attributeString
-    var dataFolderName : String by attributeStringDataFolderName
     var onSubmit : String by attributeStringOnSubmit
 
     override
@@ -336,11 +316,9 @@ public class A(initialAttributes : Map<String, String>, override val consumer : 
 
 public class ABBR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("abbr", consumer, initialAttributes) {
     var onAbort : String by attributeStringOnAbort
-    var contentEditable : Boolean by attributeBooleanContentEditable
     var onLoadedMetaData : String by attributeStringOnLoadedMetaData
     var onScroll : String by attributeStringOnScroll
     var onSeeking : String by attributeStringOnSeeking
-    var id : String by attributeString
     var onLoad : String by attributeStringOnLoad
     var onDragStart : String by attributeStringOnDragStart
     var onInput : String by attributeStringOnInput
@@ -348,17 +326,11 @@ public class ABBR(initialAttributes : Map<String, String>, override val consumer
     var onShow : String by attributeStringOnShow
     var onClick : String by attributeStringOnClick
     var onFocus : String by attributeStringOnFocus
-    var contextMenu : String by attributeStringContextMenu
     var onStalled : String by attributeStringOnStalled
     var onProgress : String by attributeStringOnProgress
-    var draggable : Draggable by attributeDraggableDraggableDraggableValues
-    var item : String by attributeString
     var onVolumeChange : String by attributeStringOnVolumeChange
-    var subject : String by attributeString
     var onCanPlay : String by attributeStringOnCanPlay
     var onContextMenu : String by attributeStringOnContextMenu
-    var classes : String by attributeStringClass
-    var runAt : RunAt by attributeRunAtRunAtRunAtValues
     var onError : String by attributeStringOnError
     var onFormChange : String by attributeStringOnFormChange
     var onSeeked : String by attributeStringOnSeeked
@@ -376,37 +348,25 @@ public class ABBR(initialAttributes : Map<String, String>, override val consumer
     var onMouseDown : String by attributeStringOnMouseDown
     var onChange : String by attributeStringOnChange
     var onKeyPress : String by attributeStringOnKeyPress
-    var itemProp : String by attributeStringItemProp
     var onDoubleClick : String by attributeStringOnDoubleClick
     var onReadyStateChange : String by attributeStringOnReadyStateChange
     var onDragEnter : String by attributeStringOnDragEnter
-    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
-    var lang : String by attributeString
     var onWaiting : String by attributeStringOnWaiting
-    var accessKey : String by attributeStringAccessKey
     var onPause : String by attributeStringOnPause
-    var style : String by attributeString
     var onEmptied : String by attributeStringOnEmptied
-    var dir : Dir by attributeDirDirDirValues
     var onSelect : String by attributeStringOnSelect
     var onLoadStart : String by attributeStringOnLoadStart
     var onDragOver : String by attributeStringOnDragOver
     var onSuspend : String by attributeStringOnSuspend
-    var tabIndex : String by attributeString
     var onMouseUp : String by attributeStringOnMouseUp
-    var role : String by attributeString
     var onMouseMove : String by attributeStringOnMouseMove
     var onMouseOut : String by attributeStringOnMouseOut
     var onPlay : String by attributeStringOnPlay
     var onCanPlayThrough : String by attributeStringOnCanPlayThrough
     var onEnded : String by attributeStringOnEnded
     var onBlur : String by attributeStringOnBlur
-    var dataMsgId : String by attributeStringDataMsgId
     var onDrop : String by attributeStringOnDrop
-    var spellCheck : Boolean by attributeBooleanSpellCheck
     var onInvalid : String by attributeStringOnInvalid
-    var title : String by attributeString
-    var dataFolderName : String by attributeStringDataFolderName
     var onSubmit : String by attributeStringOnSubmit
 
     override
@@ -566,11 +526,9 @@ public class ABBR(initialAttributes : Map<String, String>, override val consumer
 
 public class ADDRESS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("address", consumer, initialAttributes) {
     var onAbort : String by attributeStringOnAbort
-    var contentEditable : Boolean by attributeBooleanContentEditable
     var onLoadedMetaData : String by attributeStringOnLoadedMetaData
     var onScroll : String by attributeStringOnScroll
     var onSeeking : String by attributeStringOnSeeking
-    var id : String by attributeString
     var onLoad : String by attributeStringOnLoad
     var onDragStart : String by attributeStringOnDragStart
     var onInput : String by attributeStringOnInput
@@ -578,17 +536,11 @@ public class ADDRESS(initialAttributes : Map<String, String>, override val consu
     var onShow : String by attributeStringOnShow
     var onClick : String by attributeStringOnClick
     var onFocus : String by attributeStringOnFocus
-    var contextMenu : String by attributeStringContextMenu
     var onStalled : String by attributeStringOnStalled
     var onProgress : String by attributeStringOnProgress
-    var draggable : Draggable by attributeDraggableDraggableDraggableValues
-    var item : String by attributeString
     var onVolumeChange : String by attributeStringOnVolumeChange
-    var subject : String by attributeString
     var onCanPlay : String by attributeStringOnCanPlay
     var onContextMenu : String by attributeStringOnContextMenu
-    var classes : String by attributeStringClass
-    var runAt : RunAt by attributeRunAtRunAtRunAtValues
     var onError : String by attributeStringOnError
     var onFormChange : String by attributeStringOnFormChange
     var onSeeked : String by attributeStringOnSeeked
@@ -606,37 +558,25 @@ public class ADDRESS(initialAttributes : Map<String, String>, override val consu
     var onMouseDown : String by attributeStringOnMouseDown
     var onChange : String by attributeStringOnChange
     var onKeyPress : String by attributeStringOnKeyPress
-    var itemProp : String by attributeStringItemProp
     var onDoubleClick : String by attributeStringOnDoubleClick
     var onReadyStateChange : String by attributeStringOnReadyStateChange
     var onDragEnter : String by attributeStringOnDragEnter
-    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
-    var lang : String by attributeString
     var onWaiting : String by attributeStringOnWaiting
-    var accessKey : String by attributeStringAccessKey
     var onPause : String by attributeStringOnPause
-    var style : String by attributeString
     var onEmptied : String by attributeStringOnEmptied
-    var dir : Dir by attributeDirDirDirValues
     var onSelect : String by attributeStringOnSelect
     var onLoadStart : String by attributeStringOnLoadStart
     var onDragOver : String by attributeStringOnDragOver
     var onSuspend : String by attributeStringOnSuspend
-    var tabIndex : String by attributeString
     var onMouseUp : String by attributeStringOnMouseUp
-    var role : String by attributeString
     var onMouseMove : String by attributeStringOnMouseMove
     var onMouseOut : String by attributeStringOnMouseOut
     var onPlay : String by attributeStringOnPlay
     var onCanPlayThrough : String by attributeStringOnCanPlayThrough
     var onEnded : String by attributeStringOnEnded
     var onBlur : String by attributeStringOnBlur
-    var dataMsgId : String by attributeStringDataMsgId
     var onDrop : String by attributeStringOnDrop
-    var spellCheck : Boolean by attributeBooleanSpellCheck
     var onInvalid : String by attributeStringOnInvalid
-    var title : String by attributeString
-    var dataFolderName : String by attributeStringDataFolderName
     var onSubmit : String by attributeStringOnSubmit
 
     override
@@ -886,11 +826,9 @@ public class ADDRESS(initialAttributes : Map<String, String>, override val consu
 
 public class AREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("area", consumer, initialAttributes) {
     var onAbort : String by attributeStringOnAbort
-    var contentEditable : Boolean by attributeBooleanContentEditable
     var onLoadedMetaData : String by attributeStringOnLoadedMetaData
     var onScroll : String by attributeStringOnScroll
     var onSeeking : String by attributeStringOnSeeking
-    var id : String by attributeString
     var onLoad : String by attributeStringOnLoad
     var ping : String by attributeString
     var onDragStart : String by attributeStringOnDragStart
@@ -900,17 +838,11 @@ public class AREA(initialAttributes : Map<String, String>, override val consumer
     var onShow : String by attributeStringOnShow
     var onClick : String by attributeStringOnClick
     var onFocus : String by attributeStringOnFocus
-    var contextMenu : String by attributeStringContextMenu
     var onStalled : String by attributeStringOnStalled
     var onProgress : String by attributeStringOnProgress
-    var draggable : Draggable by attributeDraggableDraggableDraggableValues
-    var item : String by attributeString
     var onVolumeChange : String by attributeStringOnVolumeChange
-    var subject : String by attributeString
     var onCanPlay : String by attributeStringOnCanPlay
     var onContextMenu : String by attributeStringOnContextMenu
-    var classes : String by attributeStringClass
-    var runAt : RunAt by attributeRunAtRunAtRunAtValues
     var onError : String by attributeStringOnError
     var onFormChange : String by attributeStringOnFormChange
     var onSeeked : String by attributeStringOnSeeked
@@ -933,26 +865,18 @@ public class AREA(initialAttributes : Map<String, String>, override val consumer
     var onMouseDown : String by attributeStringOnMouseDown
     var onChange : String by attributeStringOnChange
     var onKeyPress : String by attributeStringOnKeyPress
-    var itemProp : String by attributeStringItemProp
     var onDoubleClick : String by attributeStringOnDoubleClick
     var onReadyStateChange : String by attributeStringOnReadyStateChange
     var onDragEnter : String by attributeStringOnDragEnter
-    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
-    var lang : String by attributeString
     var onWaiting : String by attributeStringOnWaiting
-    var accessKey : String by attributeStringAccessKey
     var onPause : String by attributeStringOnPause
-    var style : String by attributeString
     var onEmptied : String by attributeStringOnEmptied
-    var dir : Dir by attributeDirDirDirValues
     var onSelect : String by attributeStringOnSelect
     var onLoadStart : String by attributeStringOnLoadStart
     var onDragOver : String by attributeStringOnDragOver
     var onSuspend : String by attributeStringOnSuspend
-    var tabIndex : String by attributeString
     var onMouseUp : String by attributeStringOnMouseUp
     var rel : String by attributeString
-    var role : String by attributeString
     var target : String by attributeString
     var onMouseMove : String by attributeStringOnMouseMove
     var onMouseOut : String by attributeStringOnMouseOut
@@ -960,23 +884,17 @@ public class AREA(initialAttributes : Map<String, String>, override val consumer
     var onCanPlayThrough : String by attributeStringOnCanPlayThrough
     var onEnded : String by attributeStringOnEnded
     var onBlur : String by attributeStringOnBlur
-    var dataMsgId : String by attributeStringDataMsgId
     var onDrop : String by attributeStringOnDrop
-    var spellCheck : Boolean by attributeBooleanSpellCheck
     var onInvalid : String by attributeStringOnInvalid
-    var title : String by attributeString
-    var dataFolderName : String by attributeStringDataFolderName
     var onSubmit : String by attributeStringOnSubmit
 
 }
 
 public class ARTICLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("article", consumer, initialAttributes) {
     var onAbort : String by attributeStringOnAbort
-    var contentEditable : Boolean by attributeBooleanContentEditable
     var onLoadedMetaData : String by attributeStringOnLoadedMetaData
     var onScroll : String by attributeStringOnScroll
     var onSeeking : String by attributeStringOnSeeking
-    var id : String by attributeString
     var onLoad : String by attributeStringOnLoad
     var onDragStart : String by attributeStringOnDragStart
     var onInput : String by attributeStringOnInput
@@ -984,17 +902,11 @@ public class ARTICLE(initialAttributes : Map<String, String>, override val consu
     var onShow : String by attributeStringOnShow
     var onClick : String by attributeStringOnClick
     var onFocus : String by attributeStringOnFocus
-    var contextMenu : String by attributeStringContextMenu
     var onStalled : String by attributeStringOnStalled
     var onProgress : String by attributeStringOnProgress
-    var draggable : Draggable by attributeDraggableDraggableDraggableValues
-    var item : String by attributeString
     var onVolumeChange : String by attributeStringOnVolumeChange
-    var subject : String by attributeString
     var onCanPlay : String by attributeStringOnCanPlay
     var onContextMenu : String by attributeStringOnContextMenu
-    var classes : String by attributeStringClass
-    var runAt : RunAt by attributeRunAtRunAtRunAtValues
     var onError : String by attributeStringOnError
     var onFormChange : String by attributeStringOnFormChange
     var onSeeked : String by attributeStringOnSeeked
@@ -1012,37 +924,25 @@ public class ARTICLE(initialAttributes : Map<String, String>, override val consu
     var onMouseDown : String by attributeStringOnMouseDown
     var onChange : String by attributeStringOnChange
     var onKeyPress : String by attributeStringOnKeyPress
-    var itemProp : String by attributeStringItemProp
     var onDoubleClick : String by attributeStringOnDoubleClick
     var onReadyStateChange : String by attributeStringOnReadyStateChange
     var onDragEnter : String by attributeStringOnDragEnter
-    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
-    var lang : String by attributeString
     var onWaiting : String by attributeStringOnWaiting
-    var accessKey : String by attributeStringAccessKey
     var onPause : String by attributeStringOnPause
-    var style : String by attributeString
     var onEmptied : String by attributeStringOnEmptied
-    var dir : Dir by attributeDirDirDirValues
     var onSelect : String by attributeStringOnSelect
     var onLoadStart : String by attributeStringOnLoadStart
     var onDragOver : String by attributeStringOnDragOver
     var onSuspend : String by attributeStringOnSuspend
-    var tabIndex : String by attributeString
     var onMouseUp : String by attributeStringOnMouseUp
-    var role : String by attributeString
     var onMouseMove : String by attributeStringOnMouseMove
     var onMouseOut : String by attributeStringOnMouseOut
     var onPlay : String by attributeStringOnPlay
     var onCanPlayThrough : String by attributeStringOnCanPlayThrough
     var onEnded : String by attributeStringOnEnded
     var onBlur : String by attributeStringOnBlur
-    var dataMsgId : String by attributeStringDataMsgId
     var onDrop : String by attributeStringOnDrop
-    var spellCheck : Boolean by attributeBooleanSpellCheck
     var onInvalid : String by attributeStringOnInvalid
-    var title : String by attributeString
-    var dataFolderName : String by attributeStringDataFolderName
     var onSubmit : String by attributeStringOnSubmit
 
     override
@@ -1292,11 +1192,9 @@ public class ARTICLE(initialAttributes : Map<String, String>, override val consu
 
 public class ASIDE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("aside", consumer, initialAttributes) {
     var onAbort : String by attributeStringOnAbort
-    var contentEditable : Boolean by attributeBooleanContentEditable
     var onLoadedMetaData : String by attributeStringOnLoadedMetaData
     var onScroll : String by attributeStringOnScroll
     var onSeeking : String by attributeStringOnSeeking
-    var id : String by attributeString
     var onLoad : String by attributeStringOnLoad
     var onDragStart : String by attributeStringOnDragStart
     var onInput : String by attributeStringOnInput
@@ -1304,17 +1202,11 @@ public class ASIDE(initialAttributes : Map<String, String>, override val consume
     var onShow : String by attributeStringOnShow
     var onClick : String by attributeStringOnClick
     var onFocus : String by attributeStringOnFocus
-    var contextMenu : String by attributeStringContextMenu
     var onStalled : String by attributeStringOnStalled
     var onProgress : String by attributeStringOnProgress
-    var draggable : Draggable by attributeDraggableDraggableDraggableValues
-    var item : String by attributeString
     var onVolumeChange : String by attributeStringOnVolumeChange
-    var subject : String by attributeString
     var onCanPlay : String by attributeStringOnCanPlay
     var onContextMenu : String by attributeStringOnContextMenu
-    var classes : String by attributeStringClass
-    var runAt : RunAt by attributeRunAtRunAtRunAtValues
     var onError : String by attributeStringOnError
     var onFormChange : String by attributeStringOnFormChange
     var onSeeked : String by attributeStringOnSeeked
@@ -1332,37 +1224,25 @@ public class ASIDE(initialAttributes : Map<String, String>, override val consume
     var onMouseDown : String by attributeStringOnMouseDown
     var onChange : String by attributeStringOnChange
     var onKeyPress : String by attributeStringOnKeyPress
-    var itemProp : String by attributeStringItemProp
     var onDoubleClick : String by attributeStringOnDoubleClick
     var onReadyStateChange : String by attributeStringOnReadyStateChange
     var onDragEnter : String by attributeStringOnDragEnter
-    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
-    var lang : String by attributeString
     var onWaiting : String by attributeStringOnWaiting
-    var accessKey : String by attributeStringAccessKey
     var onPause : String by attributeStringOnPause
-    var style : String by attributeString
     var onEmptied : String by attributeStringOnEmptied
-    var dir : Dir by attributeDirDirDirValues
     var onSelect : String by attributeStringOnSelect
     var onLoadStart : String by attributeStringOnLoadStart
     var onDragOver : String by attributeStringOnDragOver
     var onSuspend : String by attributeStringOnSuspend
-    var tabIndex : String by attributeString
     var onMouseUp : String by attributeStringOnMouseUp
-    var role : String by attributeString
     var onMouseMove : String by attributeStringOnMouseMove
     var onMouseOut : String by attributeStringOnMouseOut
     var onPlay : String by attributeStringOnPlay
     var onCanPlayThrough : String by attributeStringOnCanPlayThrough
     var onEnded : String by attributeStringOnEnded
     var onBlur : String by attributeStringOnBlur
-    var dataMsgId : String by attributeStringDataMsgId
     var onDrop : String by attributeStringOnDrop
-    var spellCheck : Boolean by attributeBooleanSpellCheck
     var onInvalid : String by attributeStringOnInvalid
-    var title : String by attributeString
-    var dataFolderName : String by attributeStringDataFolderName
     var onSubmit : String by attributeStringOnSubmit
 
     override
@@ -1612,11 +1492,9 @@ public class ASIDE(initialAttributes : Map<String, String>, override val consume
 
 public class AUDIO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("audio", consumer, initialAttributes) {
     var onAbort : String by attributeStringOnAbort
-    var contentEditable : Boolean by attributeBooleanContentEditable
     var onLoadedMetaData : String by attributeStringOnLoadedMetaData
     var onScroll : String by attributeStringOnScroll
     var onSeeking : String by attributeStringOnSeeking
-    var id : String by attributeString
     var onLoad : String by attributeStringOnLoad
     var onDragStart : String by attributeStringOnDragStart
     var src : String by attributeString
@@ -1625,17 +1503,11 @@ public class AUDIO(initialAttributes : Map<String, String>, override val consume
     var onShow : String by attributeStringOnShow
     var onClick : String by attributeStringOnClick
     var onFocus : String by attributeStringOnFocus
-    var contextMenu : String by attributeStringContextMenu
     var onStalled : String by attributeStringOnStalled
     var onProgress : String by attributeStringOnProgress
-    var draggable : Draggable by attributeDraggableDraggableDraggableValues
-    var item : String by attributeString
     var onVolumeChange : String by attributeStringOnVolumeChange
-    var subject : String by attributeString
     var onCanPlay : String by attributeStringOnCanPlay
     var onContextMenu : String by attributeStringOnContextMenu
-    var classes : String by attributeStringClass
-    var runAt : RunAt by attributeRunAtRunAtRunAtValues
     var onError : String by attributeStringOnError
     var onFormChange : String by attributeStringOnFormChange
     var onSeeked : String by attributeStringOnSeeked
@@ -1654,27 +1526,19 @@ public class AUDIO(initialAttributes : Map<String, String>, override val consume
     var onMouseDown : String by attributeStringOnMouseDown
     var onChange : String by attributeStringOnChange
     var onKeyPress : String by attributeStringOnKeyPress
-    var itemProp : String by attributeStringItemProp
     var loop : Boolean by attributeBooleanLoopLoopEmpty
     var onDoubleClick : String by attributeStringOnDoubleClick
     var onReadyStateChange : String by attributeStringOnReadyStateChange
     var onDragEnter : String by attributeStringOnDragEnter
-    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
-    var lang : String by attributeString
     var onWaiting : String by attributeStringOnWaiting
-    var accessKey : String by attributeStringAccessKey
     var onPause : String by attributeStringOnPause
     var autoBuffer : Boolean by attributeBooleanAutoBufferAutoBufferEmpty
-    var style : String by attributeString
     var onEmptied : String by attributeStringOnEmptied
-    var dir : Dir by attributeDirDirDirValues
     var onSelect : String by attributeStringOnSelect
     var onLoadStart : String by attributeStringOnLoadStart
     var onDragOver : String by attributeStringOnDragOver
     var onSuspend : String by attributeStringOnSuspend
-    var tabIndex : String by attributeString
     var onMouseUp : String by attributeStringOnMouseUp
-    var role : String by attributeString
     var onMouseMove : String by attributeStringOnMouseMove
     var controls : Boolean by attributeBooleanControlsControlsEmpty
     var onMouseOut : String by attributeStringOnMouseOut
@@ -1682,12 +1546,8 @@ public class AUDIO(initialAttributes : Map<String, String>, override val consume
     var onCanPlayThrough : String by attributeStringOnCanPlayThrough
     var onEnded : String by attributeStringOnEnded
     var onBlur : String by attributeStringOnBlur
-    var dataMsgId : String by attributeStringDataMsgId
     var onDrop : String by attributeStringOnDrop
-    var spellCheck : Boolean by attributeBooleanSpellCheck
     var onInvalid : String by attributeStringOnInvalid
-    var title : String by attributeString
-    var dataFolderName : String by attributeStringDataFolderName
     var onSubmit : String by attributeStringOnSubmit
 
     override

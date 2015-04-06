@@ -4,6 +4,7 @@ import org.jetbrains
 import java.io.File
 import java.io.FileOutputStream
 import java.io.Writer
+import java.util.ArrayList
 
 
 fun main(args: Array<String>) {
@@ -12,6 +13,8 @@ fun main(args: Array<String>) {
     val packg = "html4k"
     val todir = "shared/src/main/kotlin/generated"
     File(todir).mkdirs()
+
+    val commonAttributes = Repository.tags.values().fold(Repository.attributes.keySet()) { acc, e -> acc.intersect(e.attributes) }
 
     FileOutputStream("$todir/gen-htmltag.kt").writer().use {
         it.with {
@@ -41,6 +44,12 @@ fun main(args: Array<String>) {
                 append("    ")
                 variable(Var("attributes", "DelegatingMap", false, true))
                 defineIs("DelegatingMap(initialAttributes, this) {consumer}")
+                emptyLine()
+
+                commonAttributes.forEach {
+                    tagAttributeVar(Repository.attributes[it])
+                }
+
                 emptyLine()
 
                 Repository.tags.values().forEach {
@@ -100,7 +109,7 @@ fun main(args: Array<String>) {
                 emptyLine()
 
                 e.getValue().forEach {
-                    tagClass(it)
+                    tagClass(it, commonAttributes)
                 }
             }
         }

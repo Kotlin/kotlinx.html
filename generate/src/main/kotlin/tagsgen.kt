@@ -3,7 +3,7 @@ package html4k.generate
 import java.util.ArrayList
 import java.util.LinkedList
 
-fun <O : Appendable> O.tagClass(tag : TagInfo) : O = with {
+fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) : O = with {
     clazz(Clazz(
             name = tag.safeName.toUpperCase(),
             variables = listOf(
@@ -15,8 +15,9 @@ fun <O : Appendable> O.tagClass(tag : TagInfo) : O = with {
             )
     )) {
         val lowerCasedNames = (tag.attributes + tag.suggestedAttributes).map {it.toLowerCase()}.distinct()
+        val attributes = (tag.attributes + tag.suggestedAttributes).distinct().filter {it !in excludeAttributes}
 
-        (tag.attributes + tag.suggestedAttributes).distinct().forEach {
+        attributes.forEach {
             if (it[0].isLowerCase() || it.toLowerCase() !in lowerCasedNames) {
                 tagAttributeVar(Repository.attributes[it])
             }
