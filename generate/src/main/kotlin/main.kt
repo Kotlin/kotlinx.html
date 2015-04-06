@@ -159,7 +159,9 @@ fun main(args: Array<String>) {
             emptyLine()
 
             Repository.attributeEnums.keySet().forEach { e ->
-                if (e in Repository.strictEnums) {
+                if (excludeAttributes.any { it.matcher(e).find() }) {
+                    // ignore
+                } else if (e in Repository.strictEnums) {
                     enum(e)
                 } else {
                     enumObject(e)
