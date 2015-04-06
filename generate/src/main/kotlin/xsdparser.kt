@@ -13,16 +13,17 @@ val HTML_NAMESPACE = "html-5"
 
 private val attributeNamesMap = mapOf("class" to "classes")
 
-private fun flattenTerm(term : XSTerm, result : MutableCollection<String>) {
+private fun flattenTerm(term : XSTerm, result : MutableCollection<String>, visitedModelNames : MutableSet<String>) {
     if (term.isElementDecl()) {
         result.add(term.asElementDecl().getName())
     } else if (term.isModelGroupDecl()) {
+        visitedModelNames.add(term.asModelGroupDecl().getName())
         term.asModelGroupDecl().getModelGroup().toList().map {it.getTerm()}.forEach {
-            flattenTerm(it, result)
+            flattenTerm(it, result, visitedModelNames)
         }
     } else if (term.isModelGroup()) {
         term.asModelGroup().toList().map {it.getTerm()}.forEach {
-            flattenTerm(it, result)
+            flattenTerm(it, result, visitedModelNames)
         }
     }
 }
@@ -106,8 +107,19 @@ fun fillRepository() {
             }
 
             val children = HashSet<String>()
+            val modelGroupNames = HashSet<String>()
             complex.getContentType().asParticle()?.let { particle ->
-                flattenTerm(particle.getTerm(), children)
+                flattenTerm(particle.getTerm(), children, modelGroupNames)
+            }
+
+            val split = modelGroupNames.groupBy { it in Repository.tagGroups }
+            split[false]?.forEach {
+                val tagGroup = TagGroup(it)
+                tagGroup.tags.add(name)
+                Repository.tagGroups[it] = tagGroup
+            }
+            split[true]?.forEach {
+                Repository.tagGroups[it].tags.add(name)
             }
 
             tagInfo = TagInfo(name, children.toList().sort(), attributes, attributes.filter {it in suggestedNames} + (globalSuggestedAttributes.get(name) ?: emptyList()))

@@ -22,6 +22,8 @@ object Repository {
 
     val attributeFacades = ArrayList<AttributeFacade>()
     val attributesToFacadesMap = HashMap<String, List<AttributeFacade>>(4096)
+
+    val tagGroups = TreeMap<String, TagGroup>()
 }
 
 data class AttributeFacade(val name : String, val attributes : List<String> = emptyList())
@@ -70,5 +72,10 @@ val TagInfo.safeName : String
 
 val TagInfo.nameUpper : String
     get() = safeName.toUpperCase()
+
+data class TagGroup(
+        val name : String,
+        val tags : MutableList<String> = ArrayList()
+)
 
 private fun Any.toNameHash() = Integer.toHexString(hashCode())

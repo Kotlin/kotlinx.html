@@ -30,10 +30,10 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
 
         emptyLine()
 
-        tag.possibleChildren.forEach {
-            tagChildrenMethod(it)
-            emptyLine()
-        }
+//        tag.possibleChildren.forEach {
+//            tagChildrenMethod(it)
+//            emptyLine()
+//        }
     }
 
     emptyLine()
@@ -108,7 +108,7 @@ fun <O : Appendable> O.consumerBuilder(tag : TagInfo, blockOrContent : Boolean) 
 }
 
 fun <O : Appendable> O.htmlTagBuilderMethod(tag : TagInfo, blockOrContent : Boolean) {
-    append("    deprecated(\"you shouldn't use tag ${tag.name} here\")\n")
+//    append("    deprecated(\"you shouldn't use tag ${tag.name} here\")\n")
     append("    open ")
 
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent)

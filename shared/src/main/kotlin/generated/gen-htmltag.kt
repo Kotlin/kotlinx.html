@@ -12,368 +12,239 @@ public open class HTMLTag(override val tagName : String, override val consumer :
 
     override val attributes : DelegatingMap = DelegatingMap(initialAttributes, this) {consumer}
 
-    deprecated("you shouldn't use tag a here")
     open fun a(href : String? = null, target : String? = null, block : A.() -> Unit) : Unit = buildA(listOf("href" to href,"target" to target).toAttributesMap(), consumer, block)
 
-    deprecated("you shouldn't use tag abbr here")
     open fun abbr(block : ABBR.() -> Unit) : Unit = buildABBR(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag address here")
     open fun address(block : ADDRESS.() -> Unit) : Unit = buildADDRESS(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag area here")
     open fun area(alt : String? = null, content : String = "") : Unit = buildAREA(listOf("alt" to alt).toAttributesMap(), consumer, {+content})
-    deprecated("you shouldn't use tag area here")
     open fun area(alt : String? = null, block : AREA.() -> Unit) : Unit = buildAREA(listOf("alt" to alt).toAttributesMap(), consumer, block)
 
-    deprecated("you shouldn't use tag article here")
     open fun article(block : ARTICLE.() -> Unit) : Unit = buildARTICLE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag aside here")
     open fun aside(block : ASIDE.() -> Unit) : Unit = buildASIDE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag audio here")
     open fun audio(block : AUDIO.() -> Unit) : Unit = buildAUDIO(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag b here")
     open fun b(block : B.() -> Unit) : Unit = buildB(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag base here")
     open fun base(content : String = "") : Unit = buildBASE(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag base here")
     open fun base(block : BASE.() -> Unit) : Unit = buildBASE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag bdi here")
     open fun bdi(block : BDI.() -> Unit) : Unit = buildBDI(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag bdo here")
     open fun bdo(block : BDO.() -> Unit) : Unit = buildBDO(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag blockquote here")
     open fun blockQuote(block : BLOCKQUOTE.() -> Unit) : Unit = buildBLOCKQUOTE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag body here")
     open fun body(block : BODY.() -> Unit) : Unit = buildBODY(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag br here")
     open fun br(content : String = "") : Unit = buildBR(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag br here")
     open fun br(block : BR.() -> Unit) : Unit = buildBR(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag button here")
     open fun button(block : BUTTON.() -> Unit) : Unit = buildBUTTON(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag canvas here")
     open fun canvas(content : String = "") : Unit = buildCANVAS(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag canvas here")
     open fun canvas(block : CANVAS.() -> Unit) : Unit = buildCANVAS(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag caption here")
     open fun caption(block : CAPTION.() -> Unit) : Unit = buildCAPTION(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag cite here")
     open fun cite(block : CITE.() -> Unit) : Unit = buildCITE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag code here")
     open fun code(block : CODE.() -> Unit) : Unit = buildCODE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag col here")
     open fun col(content : String = "") : Unit = buildCOL(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag col here")
     open fun col(block : COL.() -> Unit) : Unit = buildCOL(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag colgroup here")
     open fun colGroup(block : COLGROUP.() -> Unit) : Unit = buildCOLGROUP(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag command here")
     open fun command(content : String = "") : Unit = buildCOMMAND(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag command here")
     open fun command(block : COMMAND.() -> Unit) : Unit = buildCOMMAND(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag datalist here")
     open fun dataList(block : DATALIST.() -> Unit) : Unit = buildDATALIST(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag dd here")
     open fun dd(block : DD.() -> Unit) : Unit = buildDD(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag del here")
     open fun del(block : DEL.() -> Unit) : Unit = buildDEL(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag details here")
     open fun details(block : DETAILS.() -> Unit) : Unit = buildDETAILS(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag dfn here")
     open fun dfn(block : DFN.() -> Unit) : Unit = buildDFN(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag dialog here")
     open fun dialog(block : DIALOG.() -> Unit) : Unit = buildDIALOG(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag div here")
     open fun div(classes : String? = null, block : DIV.() -> Unit) : Unit = buildDIV(listOf("class" to classes).toAttributesMap(), consumer, block)
 
-    deprecated("you shouldn't use tag dl here")
     open fun dl(block : DL.() -> Unit) : Unit = buildDL(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag dt here")
     open fun dt(block : DT.() -> Unit) : Unit = buildDT(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag em here")
     open fun em(block : EM.() -> Unit) : Unit = buildEM(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag embed here")
     open fun embed(content : String = "") : Unit = buildEMBED(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag embed here")
     open fun embed(block : EMBED.() -> Unit) : Unit = buildEMBED(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag fieldset here")
     open fun fieldSet(block : FIELDSET.() -> Unit) : Unit = buildFIELDSET(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag figure here")
     open fun figure(block : FIGURE.() -> Unit) : Unit = buildFIGURE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag footer here")
     open fun footer(block : FOOTER.() -> Unit) : Unit = buildFOOTER(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag form here")
     open fun form(action : String? = null, block : FORM.() -> Unit) : Unit = buildFORM(listOf("action" to action).toAttributesMap(), consumer, block)
 
-    deprecated("you shouldn't use tag h1 here")
     open fun h1(block : H1.() -> Unit) : Unit = buildH1(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag h2 here")
     open fun h2(block : H2.() -> Unit) : Unit = buildH2(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag h3 here")
     open fun h3(block : H3.() -> Unit) : Unit = buildH3(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag h4 here")
     open fun h4(block : H4.() -> Unit) : Unit = buildH4(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag h5 here")
     open fun h5(block : H5.() -> Unit) : Unit = buildH5(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag h6 here")
     open fun h6(block : H6.() -> Unit) : Unit = buildH6(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag head here")
     open fun head(block : HEAD.() -> Unit) : Unit = buildHEAD(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag header here")
     open fun header(block : HEADER.() -> Unit) : Unit = buildHEADER(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag hgroup here")
     open fun hGroup(block : HGROUP.() -> Unit) : Unit = buildHGROUP(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag hr here")
     open fun hr(content : String = "") : Unit = buildHR(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag hr here")
     open fun hr(block : HR.() -> Unit) : Unit = buildHR(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag html here")
     open fun html(block : HTML.() -> Unit) : Unit = buildHTML(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag i here")
     open fun i(block : I.() -> Unit) : Unit = buildI(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag iframe here")
     open fun iframe(content : String = "") : Unit = buildIFRAME(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag iframe here")
     open fun iframe(block : IFRAME.() -> Unit) : Unit = buildIFRAME(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag img here")
     open fun img(alt : String? = null, src : String? = null, content : String = "") : Unit = buildIMG(listOf("alt" to alt,"src" to src).toAttributesMap(), consumer, {+content})
-    deprecated("you shouldn't use tag img here")
     open fun img(alt : String? = null, src : String? = null, block : IMG.() -> Unit) : Unit = buildIMG(listOf("alt" to alt,"src" to src).toAttributesMap(), consumer, block)
 
-    deprecated("you shouldn't use tag input here")
     open fun input(alt : String? = null, content : String = "") : Unit = buildINPUT(listOf("alt" to alt).toAttributesMap(), consumer, {+content})
-    deprecated("you shouldn't use tag input here")
     open fun input(alt : String? = null, block : INPUT.() -> Unit) : Unit = buildINPUT(listOf("alt" to alt).toAttributesMap(), consumer, block)
 
-    deprecated("you shouldn't use tag ins here")
     open fun ins(block : INS.() -> Unit) : Unit = buildINS(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag kbd here")
     open fun kbd(block : KBD.() -> Unit) : Unit = buildKBD(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag keygen here")
     open fun keyGen(content : String = "") : Unit = buildKEYGEN(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag keygen here")
     open fun keyGen(block : KEYGEN.() -> Unit) : Unit = buildKEYGEN(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag label here")
     open fun label(block : LABEL.() -> Unit) : Unit = buildLABEL(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag legend here")
     open fun legEnd(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag li here")
     open fun li(block : LI.() -> Unit) : Unit = buildLI(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag link here")
     open fun link(content : String = "") : Unit = buildLINK(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag link here")
     open fun link(block : LINK.() -> Unit) : Unit = buildLINK(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag map here")
     open fun map(block : MAP.() -> Unit) : Unit = buildMAP(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag mark here")
     open fun mark(block : MARK.() -> Unit) : Unit = buildMARK(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag math here")
     open fun math(block : MATH.() -> Unit) : Unit = buildMATH(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag mathml here")
     open fun mathml(content : String = "") : Unit = buildMATHML(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag mathml here")
     open fun mathml(block : MATHML.() -> Unit) : Unit = buildMATHML(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag menu here")
     open fun menu(block : MENU.() -> Unit) : Unit = buildMENU(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag meta here")
     open fun meta(content : String = "") : Unit = buildMETA(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag meta here")
     open fun meta(block : META.() -> Unit) : Unit = buildMETA(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag meter here")
     open fun meter(block : METER.() -> Unit) : Unit = buildMETER(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag nav here")
     open fun nav(block : NAV.() -> Unit) : Unit = buildNAV(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag noscript here")
     open fun noScript(block : NOSCRIPT.() -> Unit) : Unit = buildNOSCRIPT(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag object here")
     open fun object_(block : OBJECT_.() -> Unit) : Unit = buildOBJECT_(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag ol here")
     open fun ol(block : OL.() -> Unit) : Unit = buildOL(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag optgroup here")
     open fun optGroup(block : OPTGROUP.() -> Unit) : Unit = buildOPTGROUP(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag option here")
     open fun option(content : String = "") : Unit = buildOPTION(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag option here")
     open fun option(block : OPTION.() -> Unit) : Unit = buildOPTION(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag output here")
     open fun output(block : OUTPUT.() -> Unit) : Unit = buildOUTPUT(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag p here")
     open fun p(block : P.() -> Unit) : Unit = buildP(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag param here")
     open fun param(content : String = "") : Unit = buildPARAM(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag param here")
     open fun param(block : PARAM.() -> Unit) : Unit = buildPARAM(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag pre here")
     open fun pre(block : PRE.() -> Unit) : Unit = buildPRE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag progress here")
     open fun progress(block : PROGRESS.() -> Unit) : Unit = buildPROGRESS(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag q here")
     open fun q(block : Q.() -> Unit) : Unit = buildQ(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag rp here")
     open fun rp(block : RP.() -> Unit) : Unit = buildRP(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag rt here")
     open fun rt(block : RT.() -> Unit) : Unit = buildRT(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag ruby here")
     open fun ruby(block : RUBY.() -> Unit) : Unit = buildRUBY(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag samp here")
     open fun samp(block : SAMP.() -> Unit) : Unit = buildSAMP(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag script here")
     open fun script(type : String? = null, src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to type,"src" to src).toAttributesMap(), consumer, {+content})
-    deprecated("you shouldn't use tag script here")
     open fun script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit) : Unit = buildSCRIPT(listOf("type" to type,"src" to src).toAttributesMap(), consumer, block)
 
-    deprecated("you shouldn't use tag section here")
     open fun section(block : SECTION.() -> Unit) : Unit = buildSECTION(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag select here")
     open fun select(block : SELECT.() -> Unit) : Unit = buildSELECT(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag small here")
     open fun small(block : SMALL.() -> Unit) : Unit = buildSMALL(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag source here")
     open fun source(content : String = "") : Unit = buildSOURCE(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag source here")
     open fun source(block : SOURCE.() -> Unit) : Unit = buildSOURCE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag span here")
     open fun span(block : SPAN.() -> Unit) : Unit = buildSPAN(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag strong here")
     open fun strong(block : STRONG.() -> Unit) : Unit = buildSTRONG(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag style here")
     open fun style(content : String = "") : Unit = buildSTYLE(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag style here")
     open fun style(block : STYLE.() -> Unit) : Unit = buildSTYLE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag sub here")
     open fun sub(block : SUB.() -> Unit) : Unit = buildSUB(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag sup here")
     open fun sup(block : SUP.() -> Unit) : Unit = buildSUP(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag svg here")
     open fun svg(content : String = "") : Unit = buildSVG(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag svg here")
     open fun svg(block : SVG.() -> Unit) : Unit = buildSVG(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag table here")
     open fun table(block : TABLE.() -> Unit) : Unit = buildTABLE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag tbody here")
     open fun tbody(block : TBODY.() -> Unit) : Unit = buildTBODY(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag td here")
     open fun td(block : TD.() -> Unit) : Unit = buildTD(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag textarea here")
     open fun textArea(rowS : RowS? = null, colS : ColS? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, {+content})
-    deprecated("you shouldn't use tag textarea here")
     open fun textArea(rowS : RowS? = null, colS : ColS? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, block)
 
-    deprecated("you shouldn't use tag tfoot here")
     open fun tfoot(block : TFOOT.() -> Unit) : Unit = buildTFOOT(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag th here")
     open fun th(block : TH.() -> Unit) : Unit = buildTH(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag thead here")
     open fun thead(block : THEAD.() -> Unit) : Unit = buildTHEAD(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag time here")
     open fun time(block : TIME.() -> Unit) : Unit = buildTIME(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag title here")
     open fun title(content : String = "") : Unit = buildTITLE(emptyMap(), consumer, {+content})
-    deprecated("you shouldn't use tag title here")
     open fun title(block : TITLE.() -> Unit) : Unit = buildTITLE(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag tr here")
     open fun tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag ul here")
     open fun ul(block : UL.() -> Unit) : Unit = buildUL(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag var here")
     open fun var_(block : VAR_.() -> Unit) : Unit = buildVAR_(emptyMap(), consumer, block)
 
-    deprecated("you shouldn't use tag video here")
     open fun video(block : VIDEO.() -> Unit) : Unit = buildVIDEO(emptyMap(), consumer, block)
 
 

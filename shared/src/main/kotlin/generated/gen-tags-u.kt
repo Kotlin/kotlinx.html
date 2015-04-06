@@ -10,8 +10,5 @@ import html4k.impl.*
 
 public class UL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ul", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
 
-    override
-    fun li(block : LI.() -> Unit) : Unit = super<HTMLTag>.li(block)
-
 }
 
