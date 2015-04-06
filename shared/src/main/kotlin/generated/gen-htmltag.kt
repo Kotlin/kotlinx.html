@@ -12,27 +12,6 @@ public open class HTMLTag(override val tagName : String, override val consumer :
 
     override val attributes : DelegatingMap = DelegatingMap(initialAttributes, this) {consumer}
 
-    var accessKey : String by attributeStringAccessKey
-    var classes : String by attributeStringClass
-    var contentEditable : Boolean by attributeBooleanContentEditable
-    var contextMenu : String by attributeStringContextMenu
-    var dataFolderName : String by attributeStringDataFolderName
-    var dataMsgId : String by attributeStringDataMsgId
-    var dir : Dir by attributeDirDirDirValues
-    var draggable : Draggable by attributeDraggableDraggableDraggableValues
-    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
-    var id : String by attributeString
-    var item : String by attributeString
-    var itemProp : String by attributeStringItemProp
-    var lang : String by attributeString
-    var role : String by attributeString
-    var runAt : RunAt by attributeRunAtRunAtRunAtValues
-    var spellCheck : Boolean by attributeBooleanSpellCheck
-    var style : String by attributeString
-    var subject : String by attributeString
-    var tabIndex : String by attributeString
-    var title : String by attributeString
-
     deprecated("you shouldn't use tag a here")
     open fun a(href : String? = null, target : String? = null, block : A.() -> Unit) : Unit = buildA(listOf("href" to href,"target" to target).toAttributesMap(), consumer, block)
 

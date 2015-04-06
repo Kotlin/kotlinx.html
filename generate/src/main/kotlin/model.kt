@@ -1,9 +1,6 @@
 package html4k.generate
 
-import java.util.HashMap
-import java.util.HashSet
-import java.util.TreeMap
-import java.util.TreeSet
+import java.util.*
 
 object Repository {
     val tags = TreeMap<String, TagInfo>()
@@ -22,7 +19,12 @@ object Repository {
             }
         }
     }) as MutableSet<AttributeRequest>
+
+    val attributeFacades = ArrayList<AttributeFacade>()
+    val attributesToFacadesMap = HashMap<String, List<AttributeFacade>>(4096)
 }
+
+data class AttributeFacade(val name : String, val attributes : List<String> = emptyList())
 
 data class AttributeEnumValue (
         val realName : String,
@@ -38,7 +40,7 @@ val AttributeRequest.isShared : Boolean
     get() = options.isEmpty()
 
 val AttributeRequest.delegatePropertyName : String
-    get() = "attribute${type}${options.map {it.asFieldPart.capitalize()}.join("")}"
+    get() = "attribute${type}${options.map {it.asFieldPart.capitalize()}.join("")}${toNameHash()}"
 
 data class AttributeInfo(
         val name : String,
@@ -53,6 +55,9 @@ val AttributeInfo.isEnum : Boolean
 val AttributeInfo.fieldName : String
     get() = if (safeAlias.isNotEmpty()) safeAlias else name
 
+val AttributeInfo.facadePropertyName : String
+    get() = "facadeProperty${fieldName.capitalize()}${toNameHash()}"
+
 data class TagInfo(
         val name : String,
         val possibleChildren : List<String> = listOf(),
@@ -65,3 +70,5 @@ val TagInfo.safeName : String
 
 val TagInfo.nameUpper : String
     get() = safeName.toUpperCase()
+
+private fun Any.toNameHash() = Integer.toHexString(hashCode())

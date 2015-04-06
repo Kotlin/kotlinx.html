@@ -117,6 +117,15 @@ fun fillRepository() {
 
         Repository.tags[name] = tagInfo
     }
+
+    val alreadyIncluded = HashSet<String>()
+    schema.getAttGroupDecls().values().forEach { attributeGroup ->
+        Repository.attributeFacades.add(AttributeFacade(attributeGroup.getName(), attributeGroup.getAttributeUses().map { it.getDecl().getName() }.filter { alreadyIncluded.add(it) }.sort()))
+    }
+
+    Repository.attributesToFacadesMap.putAll(
+        Repository.attributeFacades.flatMap { facade -> facade.attributes.map {it to facade} }.groupBy { it.first }.mapValues { it.getValue().map {it.second} }
+    )
 }
 
 private val xsdToType = mapOf(

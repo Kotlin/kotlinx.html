@@ -1,9 +1,12 @@
 package html4k.generate
 
 import java.util.ArrayList
+import java.util.HashSet
 import java.util.LinkedList
 
 fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) : O = with {
+    val parentTraits = tag.attributes.fold(HashSet<AttributeFacade>()) { traits, attribute -> traits.addAll(Repository.attributesToFacadesMap[attribute] ?: emptyList()); traits }.map {it.name.capitalize() + "Facade"}
+
     clazz(Clazz(
             name = tag.safeName.toUpperCase(),
             variables = listOf(
@@ -12,14 +15,16 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
             ),
             parents = listOf(
                     "HTMLTag(\"${tag.name}\", consumer, initialAttributes)"
-            )
+            ) + parentTraits
     )) {
         val lowerCasedNames = (tag.attributes + tag.suggestedAttributes).map {it.toLowerCase()}.distinct()
         val attributes = (tag.attributes + tag.suggestedAttributes).distinct().filter {it !in excludeAttributes}
 
         attributes.forEach {
             if (it[0].isLowerCase() || it.toLowerCase() !in lowerCasedNames) {
-                tagAttributeVar(Repository.attributes[it])
+                if (it !in Repository.attributesToFacadesMap) {
+                    tagAttributeVarDelegated(Repository.attributes[it])
+                }
             }
         }
 
@@ -61,16 +66,20 @@ fun <O : Appendable> O.tagChildrenMethod(children : String) {
     append("    ")
     function(tag.safeName, arguments, "Unit")
 
-    defineIs("super.${tag.safeName}(" + arguments.map {it.name}.join(", ") + ")")
+    defineIs("super<HTMLTag>.${tag.safeName}(" + arguments.map {it.name}.join(", ") + ")")
 }
 
-fun <O : Appendable> O.tagAttributeVar(attribute : AttributeInfo) {
+fun <O : Appendable> O.tagAttributeVarDelegated(attribute : AttributeInfo) {
+    delegateBy(tagAttributeVar(attribute).delegatePropertyName)
+}
+
+private fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): AttributeRequest {
     val options = LinkedList<Const<*>>()
 
     if (attribute.isEnum) {
         options.add(ReferenceConst(attribute.type.decapitalize() + "Values"))
     } else if (attribute.type == "Boolean" && attribute.trueFalse.isNotEmpty()) {
-        options.addAll(attribute.trueFalse.map {StringConst(it)})
+        options.addAll(attribute.trueFalse.map { StringConst(it) })
     }
 
     if (attribute.fieldName != attribute.name || options.isNotEmpty()) {
@@ -82,7 +91,7 @@ fun <O : Appendable> O.tagAttributeVar(attribute : AttributeInfo) {
 
     append("    ")
     variable(Var(attribute.fieldName, attribute.type, true))
-    delegateBy(attributeRequest.delegatePropertyName)
+    return attributeRequest
 }
 
 fun <O : Appendable> O.consumerBuilder(tag : TagInfo, blockOrContent : Boolean) {

@@ -14,7 +14,31 @@ fun main(args: Array<String>) {
     val todir = "shared/src/main/kotlin/generated"
     File(todir).mkdirs()
 
-    val commonAttributes = Repository.tags.values().fold(Repository.attributes.keySet()) { acc, e -> acc.intersect(e.attributes) }
+    FileOutputStream("$todir/gen-attr-traits.kt").writer().use {
+        it.with {
+            packg(packg)
+            emptyLine()
+            import("html4k.*")
+            import("html4k.impl.*")
+            emptyLine()
+
+            warning()
+            emptyLine()
+            emptyLine()
+
+            Repository.attributeFacades.forEach {
+                facade(it)
+                emptyLine()
+            }
+
+            emptyLine()
+            Repository.attributes.values().forEach {
+                if (it.name.toLowerCase() == it.name || it.name.toLowerCase() !in Repository.attributes) {
+                    facadeProperty(it)
+                }
+            }
+        }
+    }
 
     FileOutputStream("$todir/gen-htmltag.kt").writer().use {
         it.with {
@@ -44,12 +68,6 @@ fun main(args: Array<String>) {
                 append("    ")
                 variable(Var("attributes", "DelegatingMap", false, true))
                 defineIs("DelegatingMap(initialAttributes, this) {consumer}")
-                emptyLine()
-
-                commonAttributes.forEach {
-                    tagAttributeVar(Repository.attributes[it])
-                }
-
                 emptyLine()
 
                 Repository.tags.values().forEach {
@@ -109,7 +127,7 @@ fun main(args: Array<String>) {
                 emptyLine()
 
                 e.getValue().forEach {
-                    tagClass(it, commonAttributes)
+                    tagClass(it, emptySet())
                 }
             }
         }
