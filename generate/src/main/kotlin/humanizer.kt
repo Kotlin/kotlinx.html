@@ -5,6 +5,10 @@ import java.util.regex.Pattern
 
 
 fun String.humanize() : String {
+    if (this.isEmpty()) {
+        return "empty"
+    }
+
     val fixedAllUpper = if (all { it.isUpperCase() }) toLowerCase() else this
     val fixedFirstUpper = fixedAllUpper.decapitalize()
 

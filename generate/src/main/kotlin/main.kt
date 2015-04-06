@@ -148,4 +148,21 @@ fun main(args: Array<String>) {
             }
         }
     }
+
+    FileOutputStream("$todir/gen-attributes.kt").writer("UTF-8").use {
+        it.with {
+            packg(packg)
+            emptyLine()
+            import("html4k.*")
+            emptyLine()
+
+            warning()
+            emptyLine()
+            emptyLine()
+
+            Repository.attributeDelegateRequests.toList().forEach {
+                attribute(it)
+            }
+        }
+    }
 }

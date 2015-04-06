@@ -1,6 +1,7 @@
 package html4k.generate
 
 import java.util.ArrayList
+import java.util.LinkedList
 
 fun <O : Appendable> O.tagClass(tag : TagInfo) : O = with {
     clazz(Clazz(
@@ -63,16 +64,24 @@ fun <O : Appendable> O.tagChildrenMethod(children : String) {
 }
 
 fun <O : Appendable> O.tagAttributeVar(attribute : AttributeInfo) {
-    val attributeClass = when (attribute.type) {
-        "String" -> "StringAttribute(\"${attribute.name}\")"
-        "Boolean" -> "BooleanAttribute(\"${attribute.name}\")"
-//        "Ticker" -> "TickerAttribute" // TODO
-        else -> "EnumAttribute(\"${attribute.name}\", ${attribute.type.decapitalize()}Values)"
+    val options = LinkedList<Const<*>>()
+
+    if (attribute.isEnum) {
+        options.add(ReferenceConst(attribute.type.decapitalize() + "Values"))
+    } else if (attribute.type == "Boolean" && attribute.trueFalse.isNotEmpty()) {
+        options.addAll(attribute.trueFalse.map {StringConst(it)})
     }
+
+    if (attribute.fieldName != attribute.name || options.isNotEmpty()) {
+        options.add(0, StringConst(attribute.name))
+    }
+
+    val attributeRequest = AttributeRequest(attribute.type, options)
+    Repository.attributeDelegateRequests.add(attributeRequest)
 
     append("    ")
     variable(Var(attribute.fieldName, attribute.type, true))
-    delegateBy(attributeClass)
+    delegateBy(attributeRequest.delegatePropertyName)
 }
 
 fun <O : Appendable> O.consumerBuilder(tag : TagInfo, blockOrContent : Boolean) {

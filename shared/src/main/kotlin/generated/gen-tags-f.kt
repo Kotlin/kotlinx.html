@@ -9,82 +9,405 @@ import html4k.impl.*
 *******************************************************************************/
 
 public class FIELDSET(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("fieldset", consumer, initialAttributes) {
-    var onAbort : String by StringAttribute("onabort")
-    var contentEditable : Boolean by BooleanAttribute("contenteditable")
-    var onLoadedMetaData : String by StringAttribute("onloadedmetadata")
-    var onScroll : String by StringAttribute("onscroll")
-    var onSeeking : String by StringAttribute("onseeking")
-    var id : String by StringAttribute("id")
-    var onLoad : String by StringAttribute("onload")
-    var onDragStart : String by StringAttribute("ondragstart")
-    var onInput : String by StringAttribute("oninput")
-    var onTimeUpdate : String by StringAttribute("ontimeupdate")
-    var onShow : String by StringAttribute("onshow")
-    var onClick : String by StringAttribute("onclick")
-    var onFocus : String by StringAttribute("onfocus")
-    var contextMenu : String by StringAttribute("contextmenu")
-    var onStalled : String by StringAttribute("onstalled")
-    var onProgress : String by StringAttribute("onprogress")
-    var draggable : Draggable by EnumAttribute("draggable", draggableValues)
-    var item : String by StringAttribute("item")
-    var onVolumeChange : String by StringAttribute("onvolumechange")
-    var onCanPlay : String by StringAttribute("oncanplay")
-    var onContextMenu : String by StringAttribute("oncontextmenu")
-    var subject : String by StringAttribute("subject")
-    var classes : String by StringAttribute("class")
-    var runAt : RunAt by EnumAttribute("runat", runAtValues)
-    var onError : String by StringAttribute("onerror")
-    var onFormChange : String by StringAttribute("onformchange")
-    var onSeeked : String by StringAttribute("onseeked")
-    var onLoadedData : String by StringAttribute("onloadeddata")
-    var onDurationChange : String by StringAttribute("ondurationchange")
-    var onMouseOver : String by StringAttribute("onmouseover")
-    var onMouseWheel : String by StringAttribute("onmousewheel")
-    var onDrag : String by StringAttribute("ondrag")
-    var onDragLeave : String by StringAttribute("ondragleave")
-    var onPlaying : String by StringAttribute("onplaying")
-    var onFormInput : String by StringAttribute("onforminput")
-    var onKeyUp : String by StringAttribute("onkeyup")
-    var onRateChange : String by StringAttribute("onratechange")
-    var onKeyDown : String by StringAttribute("onkeydown")
-    var onMouseDown : String by StringAttribute("onmousedown")
-    var onChange : String by StringAttribute("onchange")
-    var onKeyPress : String by StringAttribute("onkeypress")
-    var itemProp : String by StringAttribute("itemprop")
-    var disabled : Boolean by BooleanAttribute("disabled")
-    var onDoubleClick : String by StringAttribute("ondblclick")
-    var onReadyStateChange : String by StringAttribute("onreadystatechange")
-    var onDragEnter : String by StringAttribute("ondragenter")
-    var hidden : Boolean by BooleanAttribute("hidden")
-    var lang : String by StringAttribute("lang")
-    var onWaiting : String by StringAttribute("onwaiting")
-    var onPause : String by StringAttribute("onpause")
-    var accessKey : String by StringAttribute("accesskey")
-    var style : String by StringAttribute("style")
-    var onEmptied : String by StringAttribute("onemptied")
-    var dir : Dir by EnumAttribute("dir", dirValues)
-    var onSelect : String by StringAttribute("onselect")
-    var onLoadStart : String by StringAttribute("onloadstart")
-    var onDragOver : String by StringAttribute("ondragover")
-    var onSuspend : String by StringAttribute("onsuspend")
-    var onMouseUp : String by StringAttribute("onmouseup")
-    var tabIndex : String by StringAttribute("tabIndex")
-    var role : String by StringAttribute("role")
-    var form : String by StringAttribute("form")
-    var onMouseMove : String by StringAttribute("onmousemove")
-    var onMouseOut : String by StringAttribute("onmouseout")
-    var onPlay : String by StringAttribute("onplay")
-    var onCanPlayThrough : String by StringAttribute("oncanplaythrough")
-    var onEnded : String by StringAttribute("onended")
-    var onBlur : String by StringAttribute("onblur")
-    var dataMsgId : String by StringAttribute("data-MsgId")
-    var onDrop : String by StringAttribute("ondrop")
-    var onInvalid : String by StringAttribute("oninvalid")
-    var spellCheck : Boolean by BooleanAttribute("spellcheck")
-    var title : String by StringAttribute("title")
-    var name : String by StringAttribute("name")
-    var dataFolderName : String by StringAttribute("data-FolderName")
-    var onSubmit : String by StringAttribute("onsubmit")
+    var onAbort : String by attributeStringOnAbort
+    var contentEditable : Boolean by attributeBooleanContentEditable
+    var onLoadedMetaData : String by attributeStringOnLoadedMetaData
+    var onScroll : String by attributeStringOnScroll
+    var onSeeking : String by attributeStringOnSeeking
+    var id : String by attributeString
+    var onLoad : String by attributeStringOnLoad
+    var onDragStart : String by attributeStringOnDragStart
+    var onInput : String by attributeStringOnInput
+    var onTimeUpdate : String by attributeStringOnTimeUpdate
+    var onShow : String by attributeStringOnShow
+    var onClick : String by attributeStringOnClick
+    var onFocus : String by attributeStringOnFocus
+    var contextMenu : String by attributeStringContextMenu
+    var onStalled : String by attributeStringOnStalled
+    var onProgress : String by attributeStringOnProgress
+    var draggable : Draggable by attributeDraggableDraggableDraggableValues
+    var item : String by attributeString
+    var onVolumeChange : String by attributeStringOnVolumeChange
+    var subject : String by attributeString
+    var onCanPlay : String by attributeStringOnCanPlay
+    var onContextMenu : String by attributeStringOnContextMenu
+    var classes : String by attributeStringClass
+    var runAt : RunAt by attributeRunAtRunAtRunAtValues
+    var onError : String by attributeStringOnError
+    var onFormChange : String by attributeStringOnFormChange
+    var onSeeked : String by attributeStringOnSeeked
+    var onLoadedData : String by attributeStringOnLoadedData
+    var onDurationChange : String by attributeStringOnDurationChange
+    var onMouseOver : String by attributeStringOnMouseOver
+    var onMouseWheel : String by attributeStringOnMouseWheel
+    var onDrag : String by attributeStringOnDrag
+    var onDragLeave : String by attributeStringOnDragLeave
+    var onPlaying : String by attributeStringOnPlaying
+    var onFormInput : String by attributeStringOnFormInput
+    var onKeyUp : String by attributeStringOnKeyUp
+    var onRateChange : String by attributeStringOnRateChange
+    var onKeyDown : String by attributeStringOnKeyDown
+    var onMouseDown : String by attributeStringOnMouseDown
+    var onChange : String by attributeStringOnChange
+    var onKeyPress : String by attributeStringOnKeyPress
+    var itemProp : String by attributeStringItemProp
+    var disabled : Boolean by attributeBooleanDisabledDisabledEmpty
+    var onDoubleClick : String by attributeStringOnDoubleClick
+    var onReadyStateChange : String by attributeStringOnReadyStateChange
+    var onDragEnter : String by attributeStringOnDragEnter
+    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
+    var lang : String by attributeString
+    var onWaiting : String by attributeStringOnWaiting
+    var accessKey : String by attributeStringAccessKey
+    var onPause : String by attributeStringOnPause
+    var style : String by attributeString
+    var onEmptied : String by attributeStringOnEmptied
+    var dir : Dir by attributeDirDirDirValues
+    var onSelect : String by attributeStringOnSelect
+    var onLoadStart : String by attributeStringOnLoadStart
+    var onDragOver : String by attributeStringOnDragOver
+    var onSuspend : String by attributeStringOnSuspend
+    var tabIndex : String by attributeString
+    var onMouseUp : String by attributeStringOnMouseUp
+    var role : String by attributeString
+    var form : String by attributeString
+    var onMouseMove : String by attributeStringOnMouseMove
+    var onMouseOut : String by attributeStringOnMouseOut
+    var onPlay : String by attributeStringOnPlay
+    var onCanPlayThrough : String by attributeStringOnCanPlayThrough
+    var onEnded : String by attributeStringOnEnded
+    var onBlur : String by attributeStringOnBlur
+    var dataMsgId : String by attributeStringDataMsgId
+    var onDrop : String by attributeStringOnDrop
+    var spellCheck : Boolean by attributeBooleanSpellCheck
+    var onInvalid : String by attributeStringOnInvalid
+    var title : String by attributeString
+    var name : String by attributeString
+    var dataFolderName : String by attributeStringDataFolderName
+    var onSubmit : String by attributeStringOnSubmit
+
+    override
+    fun a(href : String?, target : String?, block : A.() -> Unit) : Unit = super.a(href, target, block)
+
+    override
+    fun abbr(block : ABBR.() -> Unit) : Unit = super.abbr(block)
+
+    override
+    fun address(block : ADDRESS.() -> Unit) : Unit = super.address(block)
+
+    override
+    fun area(alt : String?, content : String) : Unit = super.area(alt, content)
+
+    override
+    fun article(block : ARTICLE.() -> Unit) : Unit = super.article(block)
+
+    override
+    fun aside(block : ASIDE.() -> Unit) : Unit = super.aside(block)
+
+    override
+    fun audio(block : AUDIO.() -> Unit) : Unit = super.audio(block)
+
+    override
+    fun b(block : B.() -> Unit) : Unit = super.b(block)
+
+    override
+    fun bdi(block : BDI.() -> Unit) : Unit = super.bdi(block)
+
+    override
+    fun bdo(block : BDO.() -> Unit) : Unit = super.bdo(block)
+
+    override
+    fun blockQuote(block : BLOCKQUOTE.() -> Unit) : Unit = super.blockQuote(block)
+
+    override
+    fun br(content : String) : Unit = super.br(content)
+
+    override
+    fun button(block : BUTTON.() -> Unit) : Unit = super.button(block)
+
+    override
+    fun canvas(content : String) : Unit = super.canvas(content)
+
+    override
+    fun cite(block : CITE.() -> Unit) : Unit = super.cite(block)
+
+    override
+    fun code(block : CODE.() -> Unit) : Unit = super.code(block)
+
+    override
+    fun command(content : String) : Unit = super.command(content)
+
+    override
+    fun dataList(block : DATALIST.() -> Unit) : Unit = super.dataList(block)
+
+    override
+    fun del(block : DEL.() -> Unit) : Unit = super.del(block)
+
+    override
+    fun details(block : DETAILS.() -> Unit) : Unit = super.details(block)
+
+    override
+    fun dfn(block : DFN.() -> Unit) : Unit = super.dfn(block)
+
+    override
+    fun dialog(block : DIALOG.() -> Unit) : Unit = super.dialog(block)
+
+    override
+    fun div(classes : String?, block : DIV.() -> Unit) : Unit = super.div(classes, block)
+
+    override
+    fun dl(block : DL.() -> Unit) : Unit = super.dl(block)
+
+    override
+    fun em(block : EM.() -> Unit) : Unit = super.em(block)
+
+    override
+    fun embed(content : String) : Unit = super.embed(content)
+
+    override
+    fun fieldSet(block : FIELDSET.() -> Unit) : Unit = super.fieldSet(block)
+
+    override
+    fun figure(block : FIGURE.() -> Unit) : Unit = super.figure(block)
+
+    override
+    fun footer(block : FOOTER.() -> Unit) : Unit = super.footer(block)
+
+    override
+    fun form(action : String?, block : FORM.() -> Unit) : Unit = super.form(action, block)
+
+    override
+    fun h1(block : H1.() -> Unit) : Unit = super.h1(block)
+
+    override
+    fun h2(block : H2.() -> Unit) : Unit = super.h2(block)
+
+    override
+    fun h3(block : H3.() -> Unit) : Unit = super.h3(block)
+
+    override
+    fun h4(block : H4.() -> Unit) : Unit = super.h4(block)
+
+    override
+    fun h5(block : H5.() -> Unit) : Unit = super.h5(block)
+
+    override
+    fun h6(block : H6.() -> Unit) : Unit = super.h6(block)
+
+    override
+    fun header(block : HEADER.() -> Unit) : Unit = super.header(block)
+
+    override
+    fun hGroup(block : HGROUP.() -> Unit) : Unit = super.hGroup(block)
+
+    override
+    fun hr(content : String) : Unit = super.hr(content)
+
+    override
+    fun i(block : I.() -> Unit) : Unit = super.i(block)
+
+    override
+    fun iframe(content : String) : Unit = super.iframe(content)
+
+    override
+    fun img(alt : String?, src : String?, content : String) : Unit = super.img(alt, src, content)
+
+    override
+    fun input(alt : String?, content : String) : Unit = super.input(alt, content)
+
+    override
+    fun ins(block : INS.() -> Unit) : Unit = super.ins(block)
+
+    override
+    fun kbd(block : KBD.() -> Unit) : Unit = super.kbd(block)
+
+    override
+    fun keyGen(content : String) : Unit = super.keyGen(content)
+
+    override
+    fun label(block : LABEL.() -> Unit) : Unit = super.label(block)
+
+    override
+    fun legEnd(block : LEGEND.() -> Unit) : Unit = super.legEnd(block)
+
+    override
+    fun link(content : String) : Unit = super.link(content)
+
+    override
+    fun map(block : MAP.() -> Unit) : Unit = super.map(block)
+
+    override
+    fun mark(block : MARK.() -> Unit) : Unit = super.mark(block)
+
+    override
+    fun math(block : MATH.() -> Unit) : Unit = super.math(block)
+
+    override
+    fun menu(block : MENU.() -> Unit) : Unit = super.menu(block)
+
+    override
+    fun meta(content : String) : Unit = super.meta(content)
+
+    override
+    fun meter(block : METER.() -> Unit) : Unit = super.meter(block)
+
+    override
+    fun nav(block : NAV.() -> Unit) : Unit = super.nav(block)
+
+    override
+    fun noScript(block : NOSCRIPT.() -> Unit) : Unit = super.noScript(block)
+
+    override
+    fun object_(block : OBJECT_.() -> Unit) : Unit = super.object_(block)
+
+    override
+    fun ol(block : OL.() -> Unit) : Unit = super.ol(block)
+
+    override
+    fun output(block : OUTPUT.() -> Unit) : Unit = super.output(block)
+
+    override
+    fun p(block : P.() -> Unit) : Unit = super.p(block)
+
+    override
+    fun pre(block : PRE.() -> Unit) : Unit = super.pre(block)
+
+    override
+    fun progress(block : PROGRESS.() -> Unit) : Unit = super.progress(block)
+
+    override
+    fun q(block : Q.() -> Unit) : Unit = super.q(block)
+
+    override
+    fun ruby(block : RUBY.() -> Unit) : Unit = super.ruby(block)
+
+    override
+    fun samp(block : SAMP.() -> Unit) : Unit = super.samp(block)
+
+    override
+    fun script(type : String?, src : String?, content : String) : Unit = super.script(type, src, content)
+
+    override
+    fun section(block : SECTION.() -> Unit) : Unit = super.section(block)
+
+    override
+    fun select(block : SELECT.() -> Unit) : Unit = super.select(block)
+
+    override
+    fun small(block : SMALL.() -> Unit) : Unit = super.small(block)
+
+    override
+    fun span(block : SPAN.() -> Unit) : Unit = super.span(block)
+
+    override
+    fun strong(block : STRONG.() -> Unit) : Unit = super.strong(block)
+
+    override
+    fun style(content : String) : Unit = super.style(content)
+
+    override
+    fun sub(block : SUB.() -> Unit) : Unit = super.sub(block)
+
+    override
+    fun sup(block : SUP.() -> Unit) : Unit = super.sup(block)
+
+    override
+    fun svg(content : String) : Unit = super.svg(content)
+
+    override
+    fun table(block : TABLE.() -> Unit) : Unit = super.table(block)
+
+    override
+    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
+
+    override
+    fun time(block : TIME.() -> Unit) : Unit = super.time(block)
+
+    override
+    fun ul(block : UL.() -> Unit) : Unit = super.ul(block)
+
+    override
+    fun var_(block : VAR_.() -> Unit) : Unit = super.var_(block)
+
+    override
+    fun video(block : VIDEO.() -> Unit) : Unit = super.video(block)
+
+}
+
+public class FIGURE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("figure", consumer, initialAttributes) {
+    var onAbort : String by attributeStringOnAbort
+    var contentEditable : Boolean by attributeBooleanContentEditable
+    var onLoadedMetaData : String by attributeStringOnLoadedMetaData
+    var onScroll : String by attributeStringOnScroll
+    var onSeeking : String by attributeStringOnSeeking
+    var id : String by attributeString
+    var onLoad : String by attributeStringOnLoad
+    var onDragStart : String by attributeStringOnDragStart
+    var onInput : String by attributeStringOnInput
+    var onTimeUpdate : String by attributeStringOnTimeUpdate
+    var onShow : String by attributeStringOnShow
+    var onClick : String by attributeStringOnClick
+    var onFocus : String by attributeStringOnFocus
+    var contextMenu : String by attributeStringContextMenu
+    var onStalled : String by attributeStringOnStalled
+    var onProgress : String by attributeStringOnProgress
+    var draggable : Draggable by attributeDraggableDraggableDraggableValues
+    var item : String by attributeString
+    var onVolumeChange : String by attributeStringOnVolumeChange
+    var subject : String by attributeString
+    var onCanPlay : String by attributeStringOnCanPlay
+    var onContextMenu : String by attributeStringOnContextMenu
+    var classes : String by attributeStringClass
+    var runAt : RunAt by attributeRunAtRunAtRunAtValues
+    var onError : String by attributeStringOnError
+    var onFormChange : String by attributeStringOnFormChange
+    var onSeeked : String by attributeStringOnSeeked
+    var onLoadedData : String by attributeStringOnLoadedData
+    var onDurationChange : String by attributeStringOnDurationChange
+    var onMouseOver : String by attributeStringOnMouseOver
+    var onMouseWheel : String by attributeStringOnMouseWheel
+    var onDrag : String by attributeStringOnDrag
+    var onDragLeave : String by attributeStringOnDragLeave
+    var onPlaying : String by attributeStringOnPlaying
+    var onFormInput : String by attributeStringOnFormInput
+    var onKeyUp : String by attributeStringOnKeyUp
+    var onRateChange : String by attributeStringOnRateChange
+    var onKeyDown : String by attributeStringOnKeyDown
+    var onMouseDown : String by attributeStringOnMouseDown
+    var onChange : String by attributeStringOnChange
+    var onKeyPress : String by attributeStringOnKeyPress
+    var itemProp : String by attributeStringItemProp
+    var onDoubleClick : String by attributeStringOnDoubleClick
+    var onReadyStateChange : String by attributeStringOnReadyStateChange
+    var onDragEnter : String by attributeStringOnDragEnter
+    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
+    var lang : String by attributeString
+    var onWaiting : String by attributeStringOnWaiting
+    var accessKey : String by attributeStringAccessKey
+    var onPause : String by attributeStringOnPause
+    var style : String by attributeString
+    var onEmptied : String by attributeStringOnEmptied
+    var dir : Dir by attributeDirDirDirValues
+    var onSelect : String by attributeStringOnSelect
+    var onLoadStart : String by attributeStringOnLoadStart
+    var onDragOver : String by attributeStringOnDragOver
+    var onSuspend : String by attributeStringOnSuspend
+    var tabIndex : String by attributeString
+    var onMouseUp : String by attributeStringOnMouseUp
+    var role : String by attributeString
+    var onMouseMove : String by attributeStringOnMouseMove
+    var onMouseOut : String by attributeStringOnMouseOut
+    var onPlay : String by attributeStringOnPlay
+    var onCanPlayThrough : String by attributeStringOnCanPlayThrough
+    var onEnded : String by attributeStringOnEnded
+    var onBlur : String by attributeStringOnBlur
+    var dataMsgId : String by attributeStringDataMsgId
+    var onDrop : String by attributeStringOnDrop
+    var spellCheck : Boolean by attributeBooleanSpellCheck
+    var onInvalid : String by attributeStringOnInvalid
+    var title : String by attributeString
+    var dataFolderName : String by attributeStringDataFolderName
+    var onSubmit : String by attributeStringOnSubmit
 
     override
     fun a(href : String?, target : String?, block : A.() -> Unit) : Unit = super.a(href, target, block)
@@ -335,79 +658,79 @@ public class FIELDSET(initialAttributes : Map<String, String>, override val cons
 }
 
 public class FOOTER(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("footer", consumer, initialAttributes) {
-    var onAbort : String by StringAttribute("onabort")
-    var contentEditable : Boolean by BooleanAttribute("contenteditable")
-    var onLoadedMetaData : String by StringAttribute("onloadedmetadata")
-    var onScroll : String by StringAttribute("onscroll")
-    var onSeeking : String by StringAttribute("onseeking")
-    var id : String by StringAttribute("id")
-    var onLoad : String by StringAttribute("onload")
-    var onDragStart : String by StringAttribute("ondragstart")
-    var onInput : String by StringAttribute("oninput")
-    var onTimeUpdate : String by StringAttribute("ontimeupdate")
-    var onShow : String by StringAttribute("onshow")
-    var onClick : String by StringAttribute("onclick")
-    var onFocus : String by StringAttribute("onfocus")
-    var contextMenu : String by StringAttribute("contextmenu")
-    var onStalled : String by StringAttribute("onstalled")
-    var onProgress : String by StringAttribute("onprogress")
-    var draggable : Draggable by EnumAttribute("draggable", draggableValues)
-    var item : String by StringAttribute("item")
-    var onVolumeChange : String by StringAttribute("onvolumechange")
-    var onCanPlay : String by StringAttribute("oncanplay")
-    var onContextMenu : String by StringAttribute("oncontextmenu")
-    var subject : String by StringAttribute("subject")
-    var classes : String by StringAttribute("class")
-    var runAt : RunAt by EnumAttribute("runat", runAtValues)
-    var onError : String by StringAttribute("onerror")
-    var onFormChange : String by StringAttribute("onformchange")
-    var onSeeked : String by StringAttribute("onseeked")
-    var onLoadedData : String by StringAttribute("onloadeddata")
-    var onDurationChange : String by StringAttribute("ondurationchange")
-    var onMouseOver : String by StringAttribute("onmouseover")
-    var onMouseWheel : String by StringAttribute("onmousewheel")
-    var onDrag : String by StringAttribute("ondrag")
-    var onDragLeave : String by StringAttribute("ondragleave")
-    var onPlaying : String by StringAttribute("onplaying")
-    var onFormInput : String by StringAttribute("onforminput")
-    var onKeyUp : String by StringAttribute("onkeyup")
-    var onRateChange : String by StringAttribute("onratechange")
-    var onKeyDown : String by StringAttribute("onkeydown")
-    var onMouseDown : String by StringAttribute("onmousedown")
-    var onChange : String by StringAttribute("onchange")
-    var onKeyPress : String by StringAttribute("onkeypress")
-    var itemProp : String by StringAttribute("itemprop")
-    var onDoubleClick : String by StringAttribute("ondblclick")
-    var onReadyStateChange : String by StringAttribute("onreadystatechange")
-    var onDragEnter : String by StringAttribute("ondragenter")
-    var hidden : Boolean by BooleanAttribute("hidden")
-    var lang : String by StringAttribute("lang")
-    var onWaiting : String by StringAttribute("onwaiting")
-    var onPause : String by StringAttribute("onpause")
-    var accessKey : String by StringAttribute("accesskey")
-    var style : String by StringAttribute("style")
-    var onEmptied : String by StringAttribute("onemptied")
-    var dir : Dir by EnumAttribute("dir", dirValues)
-    var onSelect : String by StringAttribute("onselect")
-    var onLoadStart : String by StringAttribute("onloadstart")
-    var onDragOver : String by StringAttribute("ondragover")
-    var onSuspend : String by StringAttribute("onsuspend")
-    var onMouseUp : String by StringAttribute("onmouseup")
-    var tabIndex : String by StringAttribute("tabIndex")
-    var role : String by StringAttribute("role")
-    var onMouseMove : String by StringAttribute("onmousemove")
-    var onMouseOut : String by StringAttribute("onmouseout")
-    var onPlay : String by StringAttribute("onplay")
-    var onCanPlayThrough : String by StringAttribute("oncanplaythrough")
-    var onEnded : String by StringAttribute("onended")
-    var onBlur : String by StringAttribute("onblur")
-    var dataMsgId : String by StringAttribute("data-MsgId")
-    var onDrop : String by StringAttribute("ondrop")
-    var onInvalid : String by StringAttribute("oninvalid")
-    var spellCheck : Boolean by BooleanAttribute("spellcheck")
-    var title : String by StringAttribute("title")
-    var dataFolderName : String by StringAttribute("data-FolderName")
-    var onSubmit : String by StringAttribute("onsubmit")
+    var onAbort : String by attributeStringOnAbort
+    var contentEditable : Boolean by attributeBooleanContentEditable
+    var onLoadedMetaData : String by attributeStringOnLoadedMetaData
+    var onScroll : String by attributeStringOnScroll
+    var onSeeking : String by attributeStringOnSeeking
+    var id : String by attributeString
+    var onLoad : String by attributeStringOnLoad
+    var onDragStart : String by attributeStringOnDragStart
+    var onInput : String by attributeStringOnInput
+    var onTimeUpdate : String by attributeStringOnTimeUpdate
+    var onShow : String by attributeStringOnShow
+    var onClick : String by attributeStringOnClick
+    var onFocus : String by attributeStringOnFocus
+    var contextMenu : String by attributeStringContextMenu
+    var onStalled : String by attributeStringOnStalled
+    var onProgress : String by attributeStringOnProgress
+    var draggable : Draggable by attributeDraggableDraggableDraggableValues
+    var item : String by attributeString
+    var onVolumeChange : String by attributeStringOnVolumeChange
+    var subject : String by attributeString
+    var onCanPlay : String by attributeStringOnCanPlay
+    var onContextMenu : String by attributeStringOnContextMenu
+    var classes : String by attributeStringClass
+    var runAt : RunAt by attributeRunAtRunAtRunAtValues
+    var onError : String by attributeStringOnError
+    var onFormChange : String by attributeStringOnFormChange
+    var onSeeked : String by attributeStringOnSeeked
+    var onLoadedData : String by attributeStringOnLoadedData
+    var onDurationChange : String by attributeStringOnDurationChange
+    var onMouseOver : String by attributeStringOnMouseOver
+    var onMouseWheel : String by attributeStringOnMouseWheel
+    var onDrag : String by attributeStringOnDrag
+    var onDragLeave : String by attributeStringOnDragLeave
+    var onPlaying : String by attributeStringOnPlaying
+    var onFormInput : String by attributeStringOnFormInput
+    var onKeyUp : String by attributeStringOnKeyUp
+    var onRateChange : String by attributeStringOnRateChange
+    var onKeyDown : String by attributeStringOnKeyDown
+    var onMouseDown : String by attributeStringOnMouseDown
+    var onChange : String by attributeStringOnChange
+    var onKeyPress : String by attributeStringOnKeyPress
+    var itemProp : String by attributeStringItemProp
+    var onDoubleClick : String by attributeStringOnDoubleClick
+    var onReadyStateChange : String by attributeStringOnReadyStateChange
+    var onDragEnter : String by attributeStringOnDragEnter
+    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
+    var lang : String by attributeString
+    var onWaiting : String by attributeStringOnWaiting
+    var accessKey : String by attributeStringAccessKey
+    var onPause : String by attributeStringOnPause
+    var style : String by attributeString
+    var onEmptied : String by attributeStringOnEmptied
+    var dir : Dir by attributeDirDirDirValues
+    var onSelect : String by attributeStringOnSelect
+    var onLoadStart : String by attributeStringOnLoadStart
+    var onDragOver : String by attributeStringOnDragOver
+    var onSuspend : String by attributeStringOnSuspend
+    var tabIndex : String by attributeString
+    var onMouseUp : String by attributeStringOnMouseUp
+    var role : String by attributeString
+    var onMouseMove : String by attributeStringOnMouseMove
+    var onMouseOut : String by attributeStringOnMouseOut
+    var onPlay : String by attributeStringOnPlay
+    var onCanPlayThrough : String by attributeStringOnCanPlayThrough
+    var onEnded : String by attributeStringOnEnded
+    var onBlur : String by attributeStringOnBlur
+    var dataMsgId : String by attributeStringDataMsgId
+    var onDrop : String by attributeStringOnDrop
+    var spellCheck : Boolean by attributeBooleanSpellCheck
+    var onInvalid : String by attributeStringOnInvalid
+    var title : String by attributeString
+    var dataFolderName : String by attributeStringDataFolderName
+    var onSubmit : String by attributeStringOnSubmit
 
     override
     fun a(href : String?, target : String?, block : A.() -> Unit) : Unit = super.a(href, target, block)
@@ -549,329 +872,6 @@ public class FOOTER(initialAttributes : Map<String, String>, override val consum
 
     override
     fun label(block : LABEL.() -> Unit) : Unit = super.label(block)
-
-    override
-    fun link(content : String) : Unit = super.link(content)
-
-    override
-    fun map(block : MAP.() -> Unit) : Unit = super.map(block)
-
-    override
-    fun mark(block : MARK.() -> Unit) : Unit = super.mark(block)
-
-    override
-    fun math(block : MATH.() -> Unit) : Unit = super.math(block)
-
-    override
-    fun menu(block : MENU.() -> Unit) : Unit = super.menu(block)
-
-    override
-    fun meta(content : String) : Unit = super.meta(content)
-
-    override
-    fun meter(block : METER.() -> Unit) : Unit = super.meter(block)
-
-    override
-    fun nav(block : NAV.() -> Unit) : Unit = super.nav(block)
-
-    override
-    fun noScript(block : NOSCRIPT.() -> Unit) : Unit = super.noScript(block)
-
-    override
-    fun object_(block : OBJECT_.() -> Unit) : Unit = super.object_(block)
-
-    override
-    fun ol(block : OL.() -> Unit) : Unit = super.ol(block)
-
-    override
-    fun output(block : OUTPUT.() -> Unit) : Unit = super.output(block)
-
-    override
-    fun p(block : P.() -> Unit) : Unit = super.p(block)
-
-    override
-    fun pre(block : PRE.() -> Unit) : Unit = super.pre(block)
-
-    override
-    fun progress(block : PROGRESS.() -> Unit) : Unit = super.progress(block)
-
-    override
-    fun q(block : Q.() -> Unit) : Unit = super.q(block)
-
-    override
-    fun ruby(block : RUBY.() -> Unit) : Unit = super.ruby(block)
-
-    override
-    fun samp(block : SAMP.() -> Unit) : Unit = super.samp(block)
-
-    override
-    fun script(type : String?, src : String?, content : String) : Unit = super.script(type, src, content)
-
-    override
-    fun section(block : SECTION.() -> Unit) : Unit = super.section(block)
-
-    override
-    fun select(block : SELECT.() -> Unit) : Unit = super.select(block)
-
-    override
-    fun small(block : SMALL.() -> Unit) : Unit = super.small(block)
-
-    override
-    fun span(block : SPAN.() -> Unit) : Unit = super.span(block)
-
-    override
-    fun strong(block : STRONG.() -> Unit) : Unit = super.strong(block)
-
-    override
-    fun style(content : String) : Unit = super.style(content)
-
-    override
-    fun sub(block : SUB.() -> Unit) : Unit = super.sub(block)
-
-    override
-    fun sup(block : SUP.() -> Unit) : Unit = super.sup(block)
-
-    override
-    fun svg(content : String) : Unit = super.svg(content)
-
-    override
-    fun table(block : TABLE.() -> Unit) : Unit = super.table(block)
-
-    override
-    fun textArea(rowS : RowS?, colS : ColS?, content : String) : Unit = super.textArea(rowS, colS, content)
-
-    override
-    fun time(block : TIME.() -> Unit) : Unit = super.time(block)
-
-    override
-    fun ul(block : UL.() -> Unit) : Unit = super.ul(block)
-
-    override
-    fun var_(block : VAR_.() -> Unit) : Unit = super.var_(block)
-
-    override
-    fun video(block : VIDEO.() -> Unit) : Unit = super.video(block)
-
-}
-
-public class FIGURE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("figure", consumer, initialAttributes) {
-    var onAbort : String by StringAttribute("onabort")
-    var contentEditable : Boolean by BooleanAttribute("contenteditable")
-    var onLoadedMetaData : String by StringAttribute("onloadedmetadata")
-    var onScroll : String by StringAttribute("onscroll")
-    var onSeeking : String by StringAttribute("onseeking")
-    var id : String by StringAttribute("id")
-    var onLoad : String by StringAttribute("onload")
-    var onDragStart : String by StringAttribute("ondragstart")
-    var onInput : String by StringAttribute("oninput")
-    var onTimeUpdate : String by StringAttribute("ontimeupdate")
-    var onShow : String by StringAttribute("onshow")
-    var onClick : String by StringAttribute("onclick")
-    var onFocus : String by StringAttribute("onfocus")
-    var contextMenu : String by StringAttribute("contextmenu")
-    var onStalled : String by StringAttribute("onstalled")
-    var onProgress : String by StringAttribute("onprogress")
-    var draggable : Draggable by EnumAttribute("draggable", draggableValues)
-    var item : String by StringAttribute("item")
-    var onVolumeChange : String by StringAttribute("onvolumechange")
-    var onCanPlay : String by StringAttribute("oncanplay")
-    var onContextMenu : String by StringAttribute("oncontextmenu")
-    var subject : String by StringAttribute("subject")
-    var classes : String by StringAttribute("class")
-    var runAt : RunAt by EnumAttribute("runat", runAtValues)
-    var onError : String by StringAttribute("onerror")
-    var onFormChange : String by StringAttribute("onformchange")
-    var onSeeked : String by StringAttribute("onseeked")
-    var onLoadedData : String by StringAttribute("onloadeddata")
-    var onDurationChange : String by StringAttribute("ondurationchange")
-    var onMouseOver : String by StringAttribute("onmouseover")
-    var onMouseWheel : String by StringAttribute("onmousewheel")
-    var onDrag : String by StringAttribute("ondrag")
-    var onDragLeave : String by StringAttribute("ondragleave")
-    var onPlaying : String by StringAttribute("onplaying")
-    var onFormInput : String by StringAttribute("onforminput")
-    var onKeyUp : String by StringAttribute("onkeyup")
-    var onRateChange : String by StringAttribute("onratechange")
-    var onKeyDown : String by StringAttribute("onkeydown")
-    var onMouseDown : String by StringAttribute("onmousedown")
-    var onChange : String by StringAttribute("onchange")
-    var onKeyPress : String by StringAttribute("onkeypress")
-    var itemProp : String by StringAttribute("itemprop")
-    var onDoubleClick : String by StringAttribute("ondblclick")
-    var onReadyStateChange : String by StringAttribute("onreadystatechange")
-    var onDragEnter : String by StringAttribute("ondragenter")
-    var hidden : Boolean by BooleanAttribute("hidden")
-    var lang : String by StringAttribute("lang")
-    var onWaiting : String by StringAttribute("onwaiting")
-    var onPause : String by StringAttribute("onpause")
-    var accessKey : String by StringAttribute("accesskey")
-    var style : String by StringAttribute("style")
-    var onEmptied : String by StringAttribute("onemptied")
-    var dir : Dir by EnumAttribute("dir", dirValues)
-    var onSelect : String by StringAttribute("onselect")
-    var onLoadStart : String by StringAttribute("onloadstart")
-    var onDragOver : String by StringAttribute("ondragover")
-    var onSuspend : String by StringAttribute("onsuspend")
-    var onMouseUp : String by StringAttribute("onmouseup")
-    var tabIndex : String by StringAttribute("tabIndex")
-    var role : String by StringAttribute("role")
-    var onMouseMove : String by StringAttribute("onmousemove")
-    var onMouseOut : String by StringAttribute("onmouseout")
-    var onPlay : String by StringAttribute("onplay")
-    var onCanPlayThrough : String by StringAttribute("oncanplaythrough")
-    var onEnded : String by StringAttribute("onended")
-    var onBlur : String by StringAttribute("onblur")
-    var dataMsgId : String by StringAttribute("data-MsgId")
-    var onDrop : String by StringAttribute("ondrop")
-    var onInvalid : String by StringAttribute("oninvalid")
-    var spellCheck : Boolean by BooleanAttribute("spellcheck")
-    var title : String by StringAttribute("title")
-    var dataFolderName : String by StringAttribute("data-FolderName")
-    var onSubmit : String by StringAttribute("onsubmit")
-
-    override
-    fun a(href : String?, target : String?, block : A.() -> Unit) : Unit = super.a(href, target, block)
-
-    override
-    fun abbr(block : ABBR.() -> Unit) : Unit = super.abbr(block)
-
-    override
-    fun address(block : ADDRESS.() -> Unit) : Unit = super.address(block)
-
-    override
-    fun area(alt : String?, content : String) : Unit = super.area(alt, content)
-
-    override
-    fun article(block : ARTICLE.() -> Unit) : Unit = super.article(block)
-
-    override
-    fun aside(block : ASIDE.() -> Unit) : Unit = super.aside(block)
-
-    override
-    fun audio(block : AUDIO.() -> Unit) : Unit = super.audio(block)
-
-    override
-    fun b(block : B.() -> Unit) : Unit = super.b(block)
-
-    override
-    fun bdi(block : BDI.() -> Unit) : Unit = super.bdi(block)
-
-    override
-    fun bdo(block : BDO.() -> Unit) : Unit = super.bdo(block)
-
-    override
-    fun blockQuote(block : BLOCKQUOTE.() -> Unit) : Unit = super.blockQuote(block)
-
-    override
-    fun br(content : String) : Unit = super.br(content)
-
-    override
-    fun button(block : BUTTON.() -> Unit) : Unit = super.button(block)
-
-    override
-    fun canvas(content : String) : Unit = super.canvas(content)
-
-    override
-    fun cite(block : CITE.() -> Unit) : Unit = super.cite(block)
-
-    override
-    fun code(block : CODE.() -> Unit) : Unit = super.code(block)
-
-    override
-    fun command(content : String) : Unit = super.command(content)
-
-    override
-    fun dataList(block : DATALIST.() -> Unit) : Unit = super.dataList(block)
-
-    override
-    fun del(block : DEL.() -> Unit) : Unit = super.del(block)
-
-    override
-    fun details(block : DETAILS.() -> Unit) : Unit = super.details(block)
-
-    override
-    fun dfn(block : DFN.() -> Unit) : Unit = super.dfn(block)
-
-    override
-    fun dialog(block : DIALOG.() -> Unit) : Unit = super.dialog(block)
-
-    override
-    fun div(classes : String?, block : DIV.() -> Unit) : Unit = super.div(classes, block)
-
-    override
-    fun dl(block : DL.() -> Unit) : Unit = super.dl(block)
-
-    override
-    fun em(block : EM.() -> Unit) : Unit = super.em(block)
-
-    override
-    fun embed(content : String) : Unit = super.embed(content)
-
-    override
-    fun fieldSet(block : FIELDSET.() -> Unit) : Unit = super.fieldSet(block)
-
-    override
-    fun figure(block : FIGURE.() -> Unit) : Unit = super.figure(block)
-
-    override
-    fun footer(block : FOOTER.() -> Unit) : Unit = super.footer(block)
-
-    override
-    fun form(action : String?, block : FORM.() -> Unit) : Unit = super.form(action, block)
-
-    override
-    fun h1(block : H1.() -> Unit) : Unit = super.h1(block)
-
-    override
-    fun h2(block : H2.() -> Unit) : Unit = super.h2(block)
-
-    override
-    fun h3(block : H3.() -> Unit) : Unit = super.h3(block)
-
-    override
-    fun h4(block : H4.() -> Unit) : Unit = super.h4(block)
-
-    override
-    fun h5(block : H5.() -> Unit) : Unit = super.h5(block)
-
-    override
-    fun h6(block : H6.() -> Unit) : Unit = super.h6(block)
-
-    override
-    fun header(block : HEADER.() -> Unit) : Unit = super.header(block)
-
-    override
-    fun hGroup(block : HGROUP.() -> Unit) : Unit = super.hGroup(block)
-
-    override
-    fun hr(content : String) : Unit = super.hr(content)
-
-    override
-    fun i(block : I.() -> Unit) : Unit = super.i(block)
-
-    override
-    fun iframe(content : String) : Unit = super.iframe(content)
-
-    override
-    fun img(alt : String?, src : String?, content : String) : Unit = super.img(alt, src, content)
-
-    override
-    fun input(alt : String?, content : String) : Unit = super.input(alt, content)
-
-    override
-    fun ins(block : INS.() -> Unit) : Unit = super.ins(block)
-
-    override
-    fun kbd(block : KBD.() -> Unit) : Unit = super.kbd(block)
-
-    override
-    fun keyGen(content : String) : Unit = super.keyGen(content)
-
-    override
-    fun label(block : LABEL.() -> Unit) : Unit = super.label(block)
-
-    override
-    fun legEnd(block : LEGEND.() -> Unit) : Unit = super.legEnd(block)
 
     override
     fun link(content : String) : Unit = super.link(content)
@@ -978,87 +978,87 @@ public class FIGURE(initialAttributes : Map<String, String>, override val consum
 }
 
 public class FORM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("form", consumer, initialAttributes) {
-    var autoComplete : Boolean by BooleanAttribute("autocomplete")
-    var onAbort : String by StringAttribute("onabort")
-    var contentEditable : Boolean by BooleanAttribute("contenteditable")
-    var onLoadedMetaData : String by StringAttribute("onloadedmetadata")
-    var onScroll : String by StringAttribute("onscroll")
-    var onSeeking : String by StringAttribute("onseeking")
-    var id : String by StringAttribute("id")
-    var onLoad : String by StringAttribute("onload")
-    var onDragStart : String by StringAttribute("ondragstart")
-    var onInput : String by StringAttribute("oninput")
-    var onTimeUpdate : String by StringAttribute("ontimeupdate")
-    var onShow : String by StringAttribute("onshow")
-    var onClick : String by StringAttribute("onclick")
-    var onFocus : String by StringAttribute("onfocus")
-    var contextMenu : String by StringAttribute("contextmenu")
-    var action : String by StringAttribute("action")
-    var onStalled : String by StringAttribute("onstalled")
-    var onProgress : String by StringAttribute("onprogress")
-    var draggable : Draggable by EnumAttribute("draggable", draggableValues)
-    var item : String by StringAttribute("item")
-    var onVolumeChange : String by StringAttribute("onvolumechange")
-    var onCanPlay : String by StringAttribute("oncanplay")
-    var onContextMenu : String by StringAttribute("oncontextmenu")
-    var subject : String by StringAttribute("subject")
-    var classes : String by StringAttribute("class")
-    var runAt : RunAt by EnumAttribute("runat", runAtValues)
-    var onError : String by StringAttribute("onerror")
-    var onFormChange : String by StringAttribute("onformchange")
-    var onSeeked : String by StringAttribute("onseeked")
-    var method : Method by EnumAttribute("method", methodValues)
-    var onLoadedData : String by StringAttribute("onloadeddata")
-    var onDurationChange : String by StringAttribute("ondurationchange")
-    var onMouseOver : String by StringAttribute("onmouseover")
-    var onMouseWheel : String by StringAttribute("onmousewheel")
-    var onDrag : String by StringAttribute("ondrag")
-    var onDragLeave : String by StringAttribute("ondragleave")
-    var onPlaying : String by StringAttribute("onplaying")
-    var onFormInput : String by StringAttribute("onforminput")
-    var onKeyUp : String by StringAttribute("onkeyup")
-    var acceptCharset : String by StringAttribute("accept-charset")
-    var onRateChange : String by StringAttribute("onratechange")
-    var onKeyDown : String by StringAttribute("onkeydown")
-    var onMouseDown : String by StringAttribute("onmousedown")
-    var onChange : String by StringAttribute("onchange")
-    var onKeyPress : String by StringAttribute("onkeypress")
-    var itemProp : String by StringAttribute("itemprop")
-    var onDoubleClick : String by StringAttribute("ondblclick")
-    var onReadyStateChange : String by StringAttribute("onreadystatechange")
-    var onDragEnter : String by StringAttribute("ondragenter")
-    var hidden : Boolean by BooleanAttribute("hidden")
-    var lang : String by StringAttribute("lang")
-    var onWaiting : String by StringAttribute("onwaiting")
-    var onPause : String by StringAttribute("onpause")
-    var accessKey : String by StringAttribute("accesskey")
-    var style : String by StringAttribute("style")
-    var onEmptied : String by StringAttribute("onemptied")
-    var dir : Dir by EnumAttribute("dir", dirValues)
-    var onSelect : String by StringAttribute("onselect")
-    var novalidate : Boolean by BooleanAttribute("novalidate")
-    var onLoadStart : String by StringAttribute("onloadstart")
-    var onDragOver : String by StringAttribute("ondragover")
-    var onSuspend : String by StringAttribute("onsuspend")
-    var onMouseUp : String by StringAttribute("onmouseup")
-    var tabIndex : String by StringAttribute("tabIndex")
-    var role : String by StringAttribute("role")
-    var target : String by StringAttribute("target")
-    var onMouseMove : String by StringAttribute("onmousemove")
-    var onMouseOut : String by StringAttribute("onmouseout")
-    var onPlay : String by StringAttribute("onplay")
-    var onCanPlayThrough : String by StringAttribute("oncanplaythrough")
-    var onEnded : String by StringAttribute("onended")
-    var onBlur : String by StringAttribute("onblur")
-    var dataMsgId : String by StringAttribute("data-MsgId")
-    var encType : EncType by EnumAttribute("enctype", encTypeValues)
-    var onDrop : String by StringAttribute("ondrop")
-    var onInvalid : String by StringAttribute("oninvalid")
-    var spellCheck : Boolean by BooleanAttribute("spellcheck")
-    var title : String by StringAttribute("title")
-    var name : String by StringAttribute("name")
-    var dataFolderName : String by StringAttribute("data-FolderName")
-    var onSubmit : String by StringAttribute("onsubmit")
+    var autoComplete : Boolean by attributeBooleanAutoCompleteOnOff
+    var onAbort : String by attributeStringOnAbort
+    var contentEditable : Boolean by attributeBooleanContentEditable
+    var onLoadedMetaData : String by attributeStringOnLoadedMetaData
+    var onScroll : String by attributeStringOnScroll
+    var onSeeking : String by attributeStringOnSeeking
+    var id : String by attributeString
+    var onLoad : String by attributeStringOnLoad
+    var onDragStart : String by attributeStringOnDragStart
+    var onInput : String by attributeStringOnInput
+    var onTimeUpdate : String by attributeStringOnTimeUpdate
+    var onShow : String by attributeStringOnShow
+    var onClick : String by attributeStringOnClick
+    var onFocus : String by attributeStringOnFocus
+    var contextMenu : String by attributeStringContextMenu
+    var action : String by attributeString
+    var onStalled : String by attributeStringOnStalled
+    var onProgress : String by attributeStringOnProgress
+    var draggable : Draggable by attributeDraggableDraggableDraggableValues
+    var item : String by attributeString
+    var onVolumeChange : String by attributeStringOnVolumeChange
+    var subject : String by attributeString
+    var onCanPlay : String by attributeStringOnCanPlay
+    var onContextMenu : String by attributeStringOnContextMenu
+    var classes : String by attributeStringClass
+    var runAt : RunAt by attributeRunAtRunAtRunAtValues
+    var onError : String by attributeStringOnError
+    var onFormChange : String by attributeStringOnFormChange
+    var onSeeked : String by attributeStringOnSeeked
+    var method : Method by attributeMethodMethodMethodValues
+    var onLoadedData : String by attributeStringOnLoadedData
+    var onDurationChange : String by attributeStringOnDurationChange
+    var onMouseOver : String by attributeStringOnMouseOver
+    var onMouseWheel : String by attributeStringOnMouseWheel
+    var onDrag : String by attributeStringOnDrag
+    var onDragLeave : String by attributeStringOnDragLeave
+    var onPlaying : String by attributeStringOnPlaying
+    var onFormInput : String by attributeStringOnFormInput
+    var onKeyUp : String by attributeStringOnKeyUp
+    var acceptCharset : String by attributeStringAcceptCharset
+    var onRateChange : String by attributeStringOnRateChange
+    var onKeyDown : String by attributeStringOnKeyDown
+    var onMouseDown : String by attributeStringOnMouseDown
+    var onChange : String by attributeStringOnChange
+    var onKeyPress : String by attributeStringOnKeyPress
+    var itemProp : String by attributeStringItemProp
+    var onDoubleClick : String by attributeStringOnDoubleClick
+    var onReadyStateChange : String by attributeStringOnReadyStateChange
+    var onDragEnter : String by attributeStringOnDragEnter
+    var hidden : Boolean by attributeBooleanHiddenHiddenEmpty
+    var lang : String by attributeString
+    var onWaiting : String by attributeStringOnWaiting
+    var accessKey : String by attributeStringAccessKey
+    var onPause : String by attributeStringOnPause
+    var style : String by attributeString
+    var onEmptied : String by attributeStringOnEmptied
+    var dir : Dir by attributeDirDirDirValues
+    var onSelect : String by attributeStringOnSelect
+    var novalidate : Boolean by attributeBooleanNovalidateNovalidateEmpty
+    var onLoadStart : String by attributeStringOnLoadStart
+    var onDragOver : String by attributeStringOnDragOver
+    var onSuspend : String by attributeStringOnSuspend
+    var tabIndex : String by attributeString
+    var onMouseUp : String by attributeStringOnMouseUp
+    var role : String by attributeString
+    var target : String by attributeString
+    var onMouseMove : String by attributeStringOnMouseMove
+    var onMouseOut : String by attributeStringOnMouseOut
+    var onPlay : String by attributeStringOnPlay
+    var onCanPlayThrough : String by attributeStringOnCanPlayThrough
+    var onEnded : String by attributeStringOnEnded
+    var onBlur : String by attributeStringOnBlur
+    var dataMsgId : String by attributeStringDataMsgId
+    var encType : EncType by attributeEncTypeEncTypeEncTypeValues
+    var onDrop : String by attributeStringOnDrop
+    var spellCheck : Boolean by attributeBooleanSpellCheck
+    var onInvalid : String by attributeStringOnInvalid
+    var title : String by attributeString
+    var name : String by attributeString
+    var dataFolderName : String by attributeStringDataFolderName
+    var onSubmit : String by attributeStringOnSubmit
 
     override
     fun a(href : String?, target : String?, block : A.() -> Unit) : Unit = super.a(href, target, block)

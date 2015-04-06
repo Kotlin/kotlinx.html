@@ -1,6 +1,25 @@
 package html4k.generate
 
+import html4k.generate.humanize.humanize
 import java.util.ArrayList
+
+trait Const<T>
+data class StringConst(val value : String) : Const<String>
+data class ReferenceConst(val propertyName : String) : Const<Any>
+
+val Const<*>.asFieldPart : String
+    get() = when (this) {
+        is StringConst -> value.humanize()
+        is ReferenceConst -> propertyName
+        else -> throw UnsupportedOperationException("Value $this of type ${javaClass.getName()} is not supported")
+    }
+
+val Const<*>.asValue : String
+    get() = when (this) {
+        is StringConst -> value.quote()
+        is ReferenceConst -> propertyName
+        else -> throw UnsupportedOperationException("Value $this of type ${javaClass.getName()} is not supported")
+    }
 
 fun <O : Appendable> O.packg(name : String) : O {
     append("package ")
@@ -28,6 +47,10 @@ fun <O : Appendable> O.warning() : O {
     append("/")
 
     return this
+}
+
+fun <O : Appendable> O.const(value : Const<*>) {
+    append(value.asValue)
 }
 
 data class Var(val name : String, val type : String, val mutable : Boolean = false, val override : Boolean = false, val forceOmitValVar : Boolean = false, val defaultValue : String = "")
@@ -125,6 +148,10 @@ fun <O : Appendable> O.clazz(clazz : Clazz, block : O.() -> Unit) : O {
 fun <O : Appendable> O.functionCall(name : String, arguments : List<String>) : O = with {
     append(name)
     arguments.joinTo(this, ", ", "(", ")")
+}
+
+fun <O : Appendable> O.functionCallConsts(name : String, arguments : List<Const<*>>) : O = with {
+    functionCall(name, arguments.map {it.asValue})
 }
 
 fun <O : Appendable> O.function(name : String, arguments : List<Var>, returnType : String, generics : List<String> = emptyList(), receiver : String = "") : O {
