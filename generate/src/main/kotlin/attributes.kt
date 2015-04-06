@@ -22,7 +22,7 @@ fun <O : Appendable> O.attribute(request : AttributeRequest) {
 fun <O : Appendable> O.facadeProperty(attribute : AttributeInfo) {
     variable(Var(attribute.facadePropertyName, "PropertyMetadata"))
     defineIs(StringBuilder {
-        functionCall("PropertyMetadataImpl", listOf(attribute.name.quote()))
+        functionCall("PropertyMetadataImpl", listOf(attribute.fieldName.quote()))
     })
 }
 
