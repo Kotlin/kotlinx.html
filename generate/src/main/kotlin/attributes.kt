@@ -19,13 +19,6 @@ fun <O : Appendable> O.attribute(request : AttributeRequest) {
     emptyLine()
 }
 
-fun <O : Appendable> O.facadeProperty(attribute : AttributeInfo) {
-    variable(Var(attribute.facadePropertyName, "PropertyMetadata"))
-    defineIs(StringBuilder {
-        functionCall("PropertyMetadataImpl", listOf(attribute.fieldName.quote()))
-    })
-}
-
 fun <O : Appendable> O.facade(facade : AttributeFacade) {
     clazz(Clazz(facade.name.capitalize() + "Facade", isTrait = true, parents = listOf("Tag"))) {
         facade.attributes.forEach { attributeName ->
@@ -36,13 +29,17 @@ fun <O : Appendable> O.facade(facade : AttributeFacade) {
                 getter() defineIs(StringBuilder {
                     append(request.delegatePropertyName)
                     append(".")
-                    functionCall("get", listOf("this", attribute.facadePropertyName))
+                    functionCall("get", listOf("this", StringBuilder {
+                        functionCall("PropertyMetadataImpl", listOf(attribute.fieldName.quote()))
+                    }))
                 })
                 append("    ")
                 setter {
                     append(request.delegatePropertyName)
                     append(".")
-                    functionCall("set", listOf("this", attribute.facadePropertyName, "newValue"))
+                    functionCall("set", listOf("this", StringBuilder {
+                        functionCall("PropertyMetadataImpl", listOf(attribute.fieldName.quote()))
+                    }, "newValue"))
                 }
 
                 emptyLine()

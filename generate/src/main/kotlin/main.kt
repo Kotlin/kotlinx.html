@@ -30,13 +30,6 @@ fun main(args: Array<String>) {
                 facade(it)
                 emptyLine()
             }
-
-            emptyLine()
-            Repository.attributes.values().forEach {
-                if (it.name.toLowerCase() == it.name || it.name.toLowerCase() !in Repository.attributes) {
-                    facadeProperty(it)
-                }
-            }
         }
     }
 

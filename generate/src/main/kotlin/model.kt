@@ -57,9 +57,6 @@ val AttributeInfo.isEnum : Boolean
 val AttributeInfo.fieldName : String
     get() = if (safeAlias.isNotEmpty()) safeAlias else name
 
-val AttributeInfo.facadePropertyName : String
-    get() = "facadeProperty${fieldName.capitalize()}${toNameHash()}"
-
 data class TagInfo(
         val name : String,
         val possibleChildren : List<String> = listOf(),

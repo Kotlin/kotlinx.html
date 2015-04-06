@@ -149,7 +149,7 @@ fun <O : Appendable> O.clazz(clazz : Clazz, block : O.() -> Unit) : O {
     return this
 }
 
-fun <O : Appendable> O.functionCall(name : String, arguments : List<String>) : O = with {
+fun <O : Appendable> O.functionCall(name : String, arguments : List<CharSequence>) : O = with {
     append(name)
     arguments.joinTo(this, ", ", "(", ")")
 }
