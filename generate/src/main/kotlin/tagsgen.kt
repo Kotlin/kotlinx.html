@@ -23,17 +23,12 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
         attributes.forEach {
             if (it[0].isLowerCase() || it.toLowerCase() !in lowerCasedNames) {
                 if (it !in Repository.attributesToFacadesMap) {
-                    tagAttributeVarDelegated(Repository.attributes[it])
+                    attributeProperty(it)
                 }
             }
         }
 
         emptyLine()
-
-//        tag.possibleChildren.forEach {
-//            tagChildrenMethod(it)
-//            emptyLine()
-//        }
     }
 
     emptyLine()
@@ -47,30 +42,6 @@ fun <O : Appendable> O.builderFunction(tag : TagInfo) : O = with {
     ), "Unit")
 
     defineIs("${tag.nameUpper}(attributes, consumer).visit(block)")
-}
-
-fun <O : Appendable> O.tagChildrenMethod(children : String) {
-    val tag = Repository.tags[children]!!
-
-    val arguments = ArrayList<Var>()
-
-    arguments addAll tag.suggestedAttributes.map { Var(Repository.attributes[it].fieldName, Repository.attributes[it].type + "?") }
-
-    if (tag.possibleChildren.isNotEmpty()) {
-        arguments.add(Var("block", "${tag.nameUpper}.() -> Unit"))
-    } else {
-        arguments.add(Var("content", "String"))
-    }
-
-    append("    override\n")
-    append("    ")
-    function(tag.safeName, arguments, "Unit")
-
-    defineIs("super<HTMLTag>.${tag.safeName}(" + arguments.map {it.name}.join(", ") + ")")
-}
-
-fun <O : Appendable> O.tagAttributeVarDelegated(attribute : AttributeInfo) {
-    delegateBy(tagAttributeVar(attribute).delegatePropertyName)
 }
 
 private fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): AttributeRequest {
@@ -108,7 +79,6 @@ fun <O : Appendable> O.consumerBuilder(tag : TagInfo, blockOrContent : Boolean) 
 }
 
 fun <O : Appendable> O.htmlTagBuilderMethod(tag : TagInfo, blockOrContent : Boolean) {
-//    append("    deprecated(\"you shouldn't use tag ${tag.name} here\")\n")
     append("    open ")
 
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent)

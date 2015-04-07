@@ -4,7 +4,7 @@ import java.util.ArrayList
 
 fun String.quote() = "\"$this\""
 
-fun <O : Appendable> O.attribute(request : AttributeRequest) {
+fun <O : Appendable> O.attributePseudoDelegate(request : AttributeRequest) {
     val classNamePrefix = when (request.type) {
         "String" -> "String"
         "Boolean" -> "Boolean"
@@ -19,30 +19,30 @@ fun <O : Appendable> O.attribute(request : AttributeRequest) {
     emptyLine()
 }
 
+fun <O : Appendable> O.attributeProperty(attributeName : String) {
+    val attribute = Repository.attributes[attributeName]
+    val request = tagAttributeVar(attribute)
+    append("\n    ")
+    getter() defineIs(StringBuilder {
+        append(request.delegatePropertyName)
+        append(".")
+        functionCall("get", listOf("this", attributeName.quote()))
+    })
+    append("    ")
+    setter {
+        append(request.delegatePropertyName)
+        append(".")
+        functionCall("set", listOf("this", attributeName.quote(), "newValue"))
+    }
+
+    emptyLine()
+}
+
 fun <O : Appendable> O.facade(facade : AttributeFacade) {
     clazz(Clazz(facade.name.capitalize() + "Facade", isTrait = true, parents = listOf("Tag"))) {
         facade.attributes.forEach { attributeName ->
             if (attributeName.toLowerCase() == attributeName || attributeName.toLowerCase() !in Repository.attributes) {
-                val attribute = Repository.attributes[attributeName]
-                val request = tagAttributeVar(attribute)
-                append("\n    ")
-                getter() defineIs(StringBuilder {
-                    append(request.delegatePropertyName)
-                    append(".")
-                    functionCall("get", listOf("this", StringBuilder {
-                        functionCall("PropertyMetadataImpl", listOf(attribute.fieldName.quote()))
-                    }))
-                })
-                append("    ")
-                setter {
-                    append(request.delegatePropertyName)
-                    append(".")
-                    functionCall("set", listOf("this", StringBuilder {
-                        functionCall("PropertyMetadataImpl", listOf(attribute.fieldName.quote()))
-                    }, "newValue"))
-                }
-
-                emptyLine()
+                attributeProperty(attributeName)
             }
         }
     }

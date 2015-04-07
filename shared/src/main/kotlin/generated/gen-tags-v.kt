@@ -13,14 +13,38 @@ public class VAR_(initialAttributes : Map<String, String>, override val consumer
 }
 
 public class VIDEO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("video", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var width : String by attributeStringf30f39f0
-    var src : String by attributeStringf30f39f0
-    var height : String by attributeStringf30f39f0
-    var autoPlay : Boolean by attributeBooleanAutoPlayAutoPlayEmptyf99350f7
-    var loop : Boolean by attributeBooleanLoopLoopEmpty402eacd7
-    var autoBuffer : Boolean by attributeBooleanAutoBufferAutoBufferEmpty69f15777
-    var poster : String by attributeStringf30f39f0
-    var controls : Boolean by attributeBooleanControlsControlsEmpty89def297
+    var width : String
+        get()  = attributeStringf30f39f0.get(this, "width")
+        set(newValue) {attributeStringf30f39f0.set(this, "width", newValue)}
+
+    var src : String
+        get()  = attributeStringf30f39f0.get(this, "src")
+        set(newValue) {attributeStringf30f39f0.set(this, "src", newValue)}
+
+    var height : String
+        get()  = attributeStringf30f39f0.get(this, "height")
+        set(newValue) {attributeStringf30f39f0.set(this, "height", newValue)}
+
+    var autoPlay : Boolean
+        get()  = attributeBooleanAutoPlayAutoPlayEmptyf99350f7.get(this, "autoplay")
+        set(newValue) {attributeBooleanAutoPlayAutoPlayEmptyf99350f7.set(this, "autoplay", newValue)}
+
+    var loop : Boolean
+        get()  = attributeBooleanLoopLoopEmpty402eacd7.get(this, "loop")
+        set(newValue) {attributeBooleanLoopLoopEmpty402eacd7.set(this, "loop", newValue)}
+
+    var autoBuffer : Boolean
+        get()  = attributeBooleanAutoBufferAutoBufferEmpty69f15777.get(this, "autobuffer")
+        set(newValue) {attributeBooleanAutoBufferAutoBufferEmpty69f15777.set(this, "autobuffer", newValue)}
+
+    var poster : String
+        get()  = attributeStringf30f39f0.get(this, "poster")
+        set(newValue) {attributeStringf30f39f0.set(this, "poster", newValue)}
+
+    var controls : Boolean
+        get()  = attributeBooleanControlsControlsEmpty89def297.get(this, "controls")
+        set(newValue) {attributeBooleanControlsControlsEmpty89def297.set(this, "controls", newValue)}
+
 
 }
 

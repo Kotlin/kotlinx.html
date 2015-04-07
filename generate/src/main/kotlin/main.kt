@@ -183,7 +183,7 @@ fun main(args: Array<String>) {
             emptyLine()
 
             Repository.attributeDelegateRequests.toList().forEach {
-                attribute(it)
+                attributePseudoDelegate(it)
             }
         }
     }

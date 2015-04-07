@@ -9,7 +9,10 @@ import html4k.impl.*
 *******************************************************************************/
 
 public class Q(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("q", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var cite : String by attributeStringf30f39f0
+    var cite : String
+        get()  = attributeStringf30f39f0.get(this, "cite")
+        set(newValue) {attributeStringf30f39f0.set(this, "cite", newValue)}
+
 
 }
 

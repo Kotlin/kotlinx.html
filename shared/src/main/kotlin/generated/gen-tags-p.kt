@@ -13,8 +13,14 @@ public class P(initialAttributes : Map<String, String>, override val consumer : 
 }
 
 public class PARAM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("param", consumer, initialAttributes), CoreAttributeGroupFacade {
-    var value : String by attributeStringf30f39f0
-    var name : String by attributeStringf30f39f0
+    var value : String
+        get()  = attributeStringf30f39f0.get(this, "value")
+        set(newValue) {attributeStringf30f39f0.set(this, "value", newValue)}
+
+    var name : String
+        get()  = attributeStringf30f39f0.get(this, "name")
+        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+
 
 }
 
@@ -23,8 +29,14 @@ public class PRE(initialAttributes : Map<String, String>, override val consumer 
 }
 
 public class PROGRESS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("progress", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var max : String by attributeStringf30f39f0
-    var value : String by attributeStringf30f39f0
+    var max : String
+        get()  = attributeStringf30f39f0.get(this, "max")
+        set(newValue) {attributeStringf30f39f0.set(this, "max", newValue)}
+
+    var value : String
+        get()  = attributeStringf30f39f0.get(this, "value")
+        set(newValue) {attributeStringf30f39f0.set(this, "value", newValue)}
+
 
 }
 

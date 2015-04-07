@@ -9,8 +9,14 @@ import html4k.impl.*
 *******************************************************************************/
 
 public class CANVAS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("canvas", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var width : String by attributeStringf30f39f0
-    var height : String by attributeStringf30f39f0
+    var width : String
+        get()  = attributeStringf30f39f0.get(this, "width")
+        set(newValue) {attributeStringf30f39f0.set(this, "width", newValue)}
+
+    var height : String
+        get()  = attributeStringf30f39f0.get(this, "height")
+        set(newValue) {attributeStringf30f39f0.set(this, "height", newValue)}
+
 
 }
 
@@ -27,22 +33,46 @@ public class CODE(initialAttributes : Map<String, String>, override val consumer
 }
 
 public class COL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("col", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var span : Span by attributeSpanSpanSpanValues55c75899
+    var span : Span
+        get()  = attributeSpanSpanSpanValues55c75899.get(this, "span")
+        set(newValue) {attributeSpanSpanSpanValues55c75899.set(this, "span", newValue)}
+
 
 }
 
 public class COLGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("colgroup", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var span : Span by attributeSpanSpanSpanValues55c75899
+    var span : Span
+        get()  = attributeSpanSpanSpanValues55c75899.get(this, "span")
+        set(newValue) {attributeSpanSpanSpanValues55c75899.set(this, "span", newValue)}
+
 
 }
 
 public class COMMAND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("command", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var icon : String by attributeStringf30f39f0
-    var type : String by attributeStringf30f39f0
-    var disabled : Boolean by attributeBooleanDisabledDisabledEmptyf8f91d7
-    var label : String by attributeStringf30f39f0
-    var checked : Boolean by attributeBooleanCheckedCheckedEmptyeed19877
-    var radioGroup : String by attributeStringRadioGroupf3606172
+    var icon : String
+        get()  = attributeStringf30f39f0.get(this, "icon")
+        set(newValue) {attributeStringf30f39f0.set(this, "icon", newValue)}
+
+    var type : String
+        get()  = attributeStringf30f39f0.get(this, "type")
+        set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
+
+    var disabled : Boolean
+        get()  = attributeBooleanDisabledDisabledEmptyf8f91d7.get(this, "disabled")
+        set(newValue) {attributeBooleanDisabledDisabledEmptyf8f91d7.set(this, "disabled", newValue)}
+
+    var label : String
+        get()  = attributeStringf30f39f0.get(this, "label")
+        set(newValue) {attributeStringf30f39f0.set(this, "label", newValue)}
+
+    var checked : Boolean
+        get()  = attributeBooleanCheckedCheckedEmptyeed19877.get(this, "checked")
+        set(newValue) {attributeBooleanCheckedCheckedEmptyeed19877.set(this, "checked", newValue)}
+
+    var radioGroup : String
+        get()  = attributeStringRadioGroupf3606172.get(this, "radiogroup")
+        set(newValue) {attributeStringRadioGroupf3606172.set(this, "radiogroup", newValue)}
+
 
 }
 

@@ -13,11 +13,26 @@ public class SAMP(initialAttributes : Map<String, String>, override val consumer
 }
 
 public class SCRIPT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("script", consumer, initialAttributes), CoreAttributeGroupFacade {
-    var charset : String by attributeStringf30f39f0
-    var type : String by attributeStringf30f39f0
-    var src : String by attributeStringf30f39f0
-    var defer : Boolean by attributeBooleanDeferDeferEmpty87e64b17
-    var async : Boolean by attributeBooleanAsyncAsyncEmptyfdd691d7
+    var charset : String
+        get()  = attributeStringf30f39f0.get(this, "charset")
+        set(newValue) {attributeStringf30f39f0.set(this, "charset", newValue)}
+
+    var type : String
+        get()  = attributeStringf30f39f0.get(this, "type")
+        set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
+
+    var src : String
+        get()  = attributeStringf30f39f0.get(this, "src")
+        set(newValue) {attributeStringf30f39f0.set(this, "src", newValue)}
+
+    var defer : Boolean
+        get()  = attributeBooleanDeferDeferEmpty87e64b17.get(this, "defer")
+        set(newValue) {attributeBooleanDeferDeferEmpty87e64b17.set(this, "defer", newValue)}
+
+    var async : Boolean
+        get()  = attributeBooleanAsyncAsyncEmptyfdd691d7.get(this, "async")
+        set(newValue) {attributeBooleanAsyncAsyncEmptyfdd691d7.set(this, "async", newValue)}
+
 
 }
 
@@ -26,12 +41,30 @@ public class SECTION(initialAttributes : Map<String, String>, override val consu
 }
 
 public class SELECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("select", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var autoFocus : Boolean by attributeBooleanAutoFocusAutoFocusEmptya5698437
-    var disabled : Boolean by attributeBooleanDisabledDisabledEmptyf8f91d7
-    var size : String by attributeStringf30f39f0
-    var multiple : Boolean by attributeBooleanMultipleMultipleEmpty7ef06f57
-    var form : String by attributeStringf30f39f0
-    var name : String by attributeStringf30f39f0
+    var autoFocus : Boolean
+        get()  = attributeBooleanAutoFocusAutoFocusEmptya5698437.get(this, "autofocus")
+        set(newValue) {attributeBooleanAutoFocusAutoFocusEmptya5698437.set(this, "autofocus", newValue)}
+
+    var disabled : Boolean
+        get()  = attributeBooleanDisabledDisabledEmptyf8f91d7.get(this, "disabled")
+        set(newValue) {attributeBooleanDisabledDisabledEmptyf8f91d7.set(this, "disabled", newValue)}
+
+    var size : String
+        get()  = attributeStringf30f39f0.get(this, "size")
+        set(newValue) {attributeStringf30f39f0.set(this, "size", newValue)}
+
+    var multiple : Boolean
+        get()  = attributeBooleanMultipleMultipleEmpty7ef06f57.get(this, "multiple")
+        set(newValue) {attributeBooleanMultipleMultipleEmpty7ef06f57.set(this, "multiple", newValue)}
+
+    var form : String
+        get()  = attributeStringf30f39f0.get(this, "form")
+        set(newValue) {attributeStringf30f39f0.set(this, "form", newValue)}
+
+    var name : String
+        get()  = attributeStringf30f39f0.get(this, "name")
+        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+
 
 }
 
@@ -40,9 +73,18 @@ public class SMALL(initialAttributes : Map<String, String>, override val consume
 }
 
 public class SOURCE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("source", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var src : String by attributeStringf30f39f0
-    var media : String by attributeStringf30f39f0
-    var type : String by attributeStringf30f39f0
+    var src : String
+        get()  = attributeStringf30f39f0.get(this, "src")
+        set(newValue) {attributeStringf30f39f0.set(this, "src", newValue)}
+
+    var media : String
+        get()  = attributeStringf30f39f0.get(this, "media")
+        set(newValue) {attributeStringf30f39f0.set(this, "media", newValue)}
+
+    var type : String
+        get()  = attributeStringf30f39f0.get(this, "type")
+        set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
+
 
 }
 
@@ -55,9 +97,18 @@ public class STRONG(initialAttributes : Map<String, String>, override val consum
 }
 
 public class STYLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("style", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var scoped : Boolean by attributeBooleanScopedScopedEmptyd10d9f57
-    var media : String by attributeStringf30f39f0
-    var type : String by attributeStringf30f39f0
+    var scoped : Boolean
+        get()  = attributeBooleanScopedScopedEmptyd10d9f57.get(this, "scoped")
+        set(newValue) {attributeBooleanScopedScopedEmptyd10d9f57.set(this, "scoped", newValue)}
+
+    var media : String
+        get()  = attributeStringf30f39f0.get(this, "media")
+        set(newValue) {attributeStringf30f39f0.set(this, "media", newValue)}
+
+    var type : String
+        get()  = attributeStringf30f39f0.get(this, "type")
+        set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
+
 
 }
 

@@ -9,12 +9,30 @@ import html4k.impl.*
 *******************************************************************************/
 
 public class A(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("a", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var ping : String by attributeStringf30f39f0
-    var hrefLang : String by attributeStringHrefLang67393da7
-    var href : String by attributeStringf30f39f0
-    var type : String by attributeStringf30f39f0
-    var rel : String by attributeStringf30f39f0
-    var target : String by attributeStringf30f39f0
+    var ping : String
+        get()  = attributeStringf30f39f0.get(this, "ping")
+        set(newValue) {attributeStringf30f39f0.set(this, "ping", newValue)}
+
+    var hrefLang : String
+        get()  = attributeStringHrefLang67393da7.get(this, "hreflang")
+        set(newValue) {attributeStringHrefLang67393da7.set(this, "hreflang", newValue)}
+
+    var href : String
+        get()  = attributeStringf30f39f0.get(this, "href")
+        set(newValue) {attributeStringf30f39f0.set(this, "href", newValue)}
+
+    var type : String
+        get()  = attributeStringf30f39f0.get(this, "type")
+        set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
+
+    var rel : String
+        get()  = attributeStringf30f39f0.get(this, "rel")
+        set(newValue) {attributeStringf30f39f0.set(this, "rel", newValue)}
+
+    var target : String
+        get()  = attributeStringf30f39f0.get(this, "target")
+        set(newValue) {attributeStringf30f39f0.set(this, "target", newValue)}
+
 
 }
 
@@ -27,15 +45,42 @@ public class ADDRESS(initialAttributes : Map<String, String>, override val consu
 }
 
 public class AREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("area", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var ping : String by attributeStringf30f39f0
-    var media : String by attributeStringf30f39f0
-    var coords : String by attributeStringf30f39f0
-    var hrefLang : String by attributeStringHrefLang67393da7
-    var href : String by attributeStringf30f39f0
-    var type : String by attributeStringf30f39f0
-    var alt : String by attributeStringf30f39f0
-    var rel : String by attributeStringf30f39f0
-    var target : String by attributeStringf30f39f0
+    var ping : String
+        get()  = attributeStringf30f39f0.get(this, "ping")
+        set(newValue) {attributeStringf30f39f0.set(this, "ping", newValue)}
+
+    var media : String
+        get()  = attributeStringf30f39f0.get(this, "media")
+        set(newValue) {attributeStringf30f39f0.set(this, "media", newValue)}
+
+    var coords : String
+        get()  = attributeStringf30f39f0.get(this, "coords")
+        set(newValue) {attributeStringf30f39f0.set(this, "coords", newValue)}
+
+    var hrefLang : String
+        get()  = attributeStringHrefLang67393da7.get(this, "hreflang")
+        set(newValue) {attributeStringHrefLang67393da7.set(this, "hreflang", newValue)}
+
+    var href : String
+        get()  = attributeStringf30f39f0.get(this, "href")
+        set(newValue) {attributeStringf30f39f0.set(this, "href", newValue)}
+
+    var type : String
+        get()  = attributeStringf30f39f0.get(this, "type")
+        set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
+
+    var alt : String
+        get()  = attributeStringf30f39f0.get(this, "alt")
+        set(newValue) {attributeStringf30f39f0.set(this, "alt", newValue)}
+
+    var rel : String
+        get()  = attributeStringf30f39f0.get(this, "rel")
+        set(newValue) {attributeStringf30f39f0.set(this, "rel", newValue)}
+
+    var target : String
+        get()  = attributeStringf30f39f0.get(this, "target")
+        set(newValue) {attributeStringf30f39f0.set(this, "target", newValue)}
+
 
 }
 
@@ -48,11 +93,26 @@ public class ASIDE(initialAttributes : Map<String, String>, override val consume
 }
 
 public class AUDIO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("audio", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var src : String by attributeStringf30f39f0
-    var autoPlay : Boolean by attributeBooleanAutoPlayAutoPlayEmptyf99350f7
-    var loop : Boolean by attributeBooleanLoopLoopEmpty402eacd7
-    var autoBuffer : Boolean by attributeBooleanAutoBufferAutoBufferEmpty69f15777
-    var controls : Boolean by attributeBooleanControlsControlsEmpty89def297
+    var src : String
+        get()  = attributeStringf30f39f0.get(this, "src")
+        set(newValue) {attributeStringf30f39f0.set(this, "src", newValue)}
+
+    var autoPlay : Boolean
+        get()  = attributeBooleanAutoPlayAutoPlayEmptyf99350f7.get(this, "autoplay")
+        set(newValue) {attributeBooleanAutoPlayAutoPlayEmptyf99350f7.set(this, "autoplay", newValue)}
+
+    var loop : Boolean
+        get()  = attributeBooleanLoopLoopEmpty402eacd7.get(this, "loop")
+        set(newValue) {attributeBooleanLoopLoopEmpty402eacd7.set(this, "loop", newValue)}
+
+    var autoBuffer : Boolean
+        get()  = attributeBooleanAutoBufferAutoBufferEmpty69f15777.get(this, "autobuffer")
+        set(newValue) {attributeBooleanAutoBufferAutoBufferEmpty69f15777.set(this, "autobuffer", newValue)}
+
+    var controls : Boolean
+        get()  = attributeBooleanControlsControlsEmpty89def297.get(this, "controls")
+        set(newValue) {attributeBooleanControlsControlsEmpty89def297.set(this, "controls", newValue)}
+
 
 }
 

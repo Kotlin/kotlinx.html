@@ -9,9 +9,18 @@ import html4k.impl.*
 *******************************************************************************/
 
 public class FIELDSET(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("fieldset", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var disabled : Boolean by attributeBooleanDisabledDisabledEmptyf8f91d7
-    var form : String by attributeStringf30f39f0
-    var name : String by attributeStringf30f39f0
+    var disabled : Boolean
+        get()  = attributeBooleanDisabledDisabledEmptyf8f91d7.get(this, "disabled")
+        set(newValue) {attributeBooleanDisabledDisabledEmptyf8f91d7.set(this, "disabled", newValue)}
+
+    var form : String
+        get()  = attributeStringf30f39f0.get(this, "form")
+        set(newValue) {attributeStringf30f39f0.set(this, "form", newValue)}
+
+    var name : String
+        get()  = attributeStringf30f39f0.get(this, "name")
+        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+
 
 }
 
@@ -24,14 +33,38 @@ public class FOOTER(initialAttributes : Map<String, String>, override val consum
 }
 
 public class FORM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("form", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var autoComplete : Boolean by attributeBooleanAutoCompleteOnOfffdc1e2af
-    var action : String by attributeStringf30f39f0
-    var method : Method by attributeMethodMethodMethodValues13ef9f82
-    var acceptCharset : String by attributeStringAcceptCharsetfa77ab95
-    var novalidate : Boolean by attributeBooleanNovalidateNovalidateEmptyfa499277
-    var target : String by attributeStringf30f39f0
-    var encType : EncType by attributeEncTypeEncTypeEncTypeValuesf142e80f
-    var name : String by attributeStringf30f39f0
+    var autoComplete : Boolean
+        get()  = attributeBooleanAutoCompleteOnOfffdc1e2af.get(this, "autocomplete")
+        set(newValue) {attributeBooleanAutoCompleteOnOfffdc1e2af.set(this, "autocomplete", newValue)}
+
+    var action : String
+        get()  = attributeStringf30f39f0.get(this, "action")
+        set(newValue) {attributeStringf30f39f0.set(this, "action", newValue)}
+
+    var method : Method
+        get()  = attributeMethodMethodMethodValues13ef9f82.get(this, "method")
+        set(newValue) {attributeMethodMethodMethodValues13ef9f82.set(this, "method", newValue)}
+
+    var acceptCharset : String
+        get()  = attributeStringAcceptCharsetfa77ab95.get(this, "accept-charset")
+        set(newValue) {attributeStringAcceptCharsetfa77ab95.set(this, "accept-charset", newValue)}
+
+    var novalidate : Boolean
+        get()  = attributeBooleanNovalidateNovalidateEmptyfa499277.get(this, "novalidate")
+        set(newValue) {attributeBooleanNovalidateNovalidateEmptyfa499277.set(this, "novalidate", newValue)}
+
+    var target : String
+        get()  = attributeStringf30f39f0.get(this, "target")
+        set(newValue) {attributeStringf30f39f0.set(this, "target", newValue)}
+
+    var encType : EncType
+        get()  = attributeEncTypeEncTypeEncTypeValuesf142e80f.get(this, "enctype")
+        set(newValue) {attributeEncTypeEncTypeEncTypeValuesf142e80f.set(this, "enctype", newValue)}
+
+    var name : String
+        get()  = attributeStringf30f39f0.get(this, "name")
+        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+
 
 }
 

@@ -13,60 +13,186 @@ public class I(initialAttributes : Map<String, String>, override val consumer : 
 }
 
 public class IFRAME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("iframe", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var width : String by attributeStringf30f39f0
-    var src : String by attributeStringf30f39f0
-    var height : String by attributeStringf30f39f0
-    var seamless : Boolean by attributeBooleanSeamlessSeamlessEmptyb9c73a77
-    var sandbox : Sandbox by attributeSandboxSandboxSandboxValues989672dc
-    var name : String by attributeStringf30f39f0
+    var width : String
+        get()  = attributeStringf30f39f0.get(this, "width")
+        set(newValue) {attributeStringf30f39f0.set(this, "width", newValue)}
+
+    var src : String
+        get()  = attributeStringf30f39f0.get(this, "src")
+        set(newValue) {attributeStringf30f39f0.set(this, "src", newValue)}
+
+    var height : String
+        get()  = attributeStringf30f39f0.get(this, "height")
+        set(newValue) {attributeStringf30f39f0.set(this, "height", newValue)}
+
+    var seamless : Boolean
+        get()  = attributeBooleanSeamlessSeamlessEmptyb9c73a77.get(this, "seamless")
+        set(newValue) {attributeBooleanSeamlessSeamlessEmptyb9c73a77.set(this, "seamless", newValue)}
+
+    var sandbox : Sandbox
+        get()  = attributeSandboxSandboxSandboxValues989672dc.get(this, "sandbox")
+        set(newValue) {attributeSandboxSandboxSandboxValues989672dc.set(this, "sandbox", newValue)}
+
+    var name : String
+        get()  = attributeStringf30f39f0.get(this, "name")
+        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+
 
 }
 
 public class IMG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("img", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var width : String by attributeStringf30f39f0
-    var ismap : Boolean by attributeBooleanIsmapIsmapEmptyb1fabb17
-    var src : String by attributeStringf30f39f0
-    var usemap : String by attributeStringf30f39f0
-    var height : String by attributeStringf30f39f0
-    var alt : String by attributeStringf30f39f0
+    var width : String
+        get()  = attributeStringf30f39f0.get(this, "width")
+        set(newValue) {attributeStringf30f39f0.set(this, "width", newValue)}
+
+    var ismap : Boolean
+        get()  = attributeBooleanIsmapIsmapEmptyb1fabb17.get(this, "ismap")
+        set(newValue) {attributeBooleanIsmapIsmapEmptyb1fabb17.set(this, "ismap", newValue)}
+
+    var src : String
+        get()  = attributeStringf30f39f0.get(this, "src")
+        set(newValue) {attributeStringf30f39f0.set(this, "src", newValue)}
+
+    var usemap : String
+        get()  = attributeStringf30f39f0.get(this, "usemap")
+        set(newValue) {attributeStringf30f39f0.set(this, "usemap", newValue)}
+
+    var height : String
+        get()  = attributeStringf30f39f0.get(this, "height")
+        set(newValue) {attributeStringf30f39f0.set(this, "height", newValue)}
+
+    var alt : String
+        get()  = attributeStringf30f39f0.get(this, "alt")
+        set(newValue) {attributeStringf30f39f0.set(this, "alt", newValue)}
+
 
 }
 
 public class INPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("input", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var autoComplete : Boolean by attributeBooleanAutoCompleteOnOfffdc1e2af
-    var formMethod : FormMethod by attributeFormMethodFormMethodFormMethodValues7a953fbe
-    var maxlength : String by attributeStringf30f39f0
-    var formNovalidate : Boolean by attributeBooleanFormNovalidateFormNovalidateEmpty2caba9f7
-    var readonly : Boolean by attributeBooleanReadonlyReadonlyEmpty4b8e3117
-    var height : String by attributeStringf30f39f0
-    var pattern : String by attributeStringf30f39f0
-    var value : String by attributeStringf30f39f0
-    var required : Boolean by attributeBooleanRequiredRequiredEmptyadf5f977
-    var formEncType : FormEncType by attributeFormEncTypeFormEncTypeFormEncTypeValues5f514f53
-    var alt : String by attributeStringf30f39f0
-    var formAction : String by attributeStringFormAction57b2208
-    var checked : Boolean by attributeBooleanCheckedCheckedEmptyeed19877
-    var multiple : Boolean by attributeBooleanMultipleMultipleEmpty7ef06f57
-    var placeholder : String by attributeStringf30f39f0
-    var form : String by attributeStringf30f39f0
-    var list : String by attributeStringf30f39f0
-    var formTarget : String by attributeStringFormTarget25ca1563
-    var width : String by attributeStringf30f39f0
-    var src : String by attributeStringf30f39f0
-    var min : String by attributeStringf30f39f0
-    var max : String by attributeStringf30f39f0
-    var accept : String by attributeStringf30f39f0
-    var type : String by attributeStringf30f39f0
-    var disabled : Boolean by attributeBooleanDisabledDisabledEmptyf8f91d7
-    var step : String by attributeStringf30f39f0
-    var size : String by attributeStringf30f39f0
-    var files : String by attributeStringf30f39f0
+    var autoComplete : Boolean
+        get()  = attributeBooleanAutoCompleteOnOfffdc1e2af.get(this, "autocomplete")
+        set(newValue) {attributeBooleanAutoCompleteOnOfffdc1e2af.set(this, "autocomplete", newValue)}
+
+    var formMethod : FormMethod
+        get()  = attributeFormMethodFormMethodFormMethodValues7a953fbe.get(this, "formmethod")
+        set(newValue) {attributeFormMethodFormMethodFormMethodValues7a953fbe.set(this, "formmethod", newValue)}
+
+    var maxlength : String
+        get()  = attributeStringf30f39f0.get(this, "maxlength")
+        set(newValue) {attributeStringf30f39f0.set(this, "maxlength", newValue)}
+
+    var formNovalidate : Boolean
+        get()  = attributeBooleanFormNovalidateFormNovalidateEmpty2caba9f7.get(this, "formnovalidate")
+        set(newValue) {attributeBooleanFormNovalidateFormNovalidateEmpty2caba9f7.set(this, "formnovalidate", newValue)}
+
+    var readonly : Boolean
+        get()  = attributeBooleanReadonlyReadonlyEmpty4b8e3117.get(this, "readonly")
+        set(newValue) {attributeBooleanReadonlyReadonlyEmpty4b8e3117.set(this, "readonly", newValue)}
+
+    var height : String
+        get()  = attributeStringf30f39f0.get(this, "height")
+        set(newValue) {attributeStringf30f39f0.set(this, "height", newValue)}
+
+    var pattern : String
+        get()  = attributeStringf30f39f0.get(this, "pattern")
+        set(newValue) {attributeStringf30f39f0.set(this, "pattern", newValue)}
+
+    var value : String
+        get()  = attributeStringf30f39f0.get(this, "value")
+        set(newValue) {attributeStringf30f39f0.set(this, "value", newValue)}
+
+    var required : Boolean
+        get()  = attributeBooleanRequiredRequiredEmptyadf5f977.get(this, "required")
+        set(newValue) {attributeBooleanRequiredRequiredEmptyadf5f977.set(this, "required", newValue)}
+
+    var formEncType : FormEncType
+        get()  = attributeFormEncTypeFormEncTypeFormEncTypeValues5f514f53.get(this, "formenctype")
+        set(newValue) {attributeFormEncTypeFormEncTypeFormEncTypeValues5f514f53.set(this, "formenctype", newValue)}
+
+    var alt : String
+        get()  = attributeStringf30f39f0.get(this, "alt")
+        set(newValue) {attributeStringf30f39f0.set(this, "alt", newValue)}
+
+    var formAction : String
+        get()  = attributeStringFormAction57b2208.get(this, "formaction")
+        set(newValue) {attributeStringFormAction57b2208.set(this, "formaction", newValue)}
+
+    var checked : Boolean
+        get()  = attributeBooleanCheckedCheckedEmptyeed19877.get(this, "checked")
+        set(newValue) {attributeBooleanCheckedCheckedEmptyeed19877.set(this, "checked", newValue)}
+
+    var multiple : Boolean
+        get()  = attributeBooleanMultipleMultipleEmpty7ef06f57.get(this, "multiple")
+        set(newValue) {attributeBooleanMultipleMultipleEmpty7ef06f57.set(this, "multiple", newValue)}
+
+    var placeholder : String
+        get()  = attributeStringf30f39f0.get(this, "placeholder")
+        set(newValue) {attributeStringf30f39f0.set(this, "placeholder", newValue)}
+
+    var form : String
+        get()  = attributeStringf30f39f0.get(this, "form")
+        set(newValue) {attributeStringf30f39f0.set(this, "form", newValue)}
+
+    var list : String
+        get()  = attributeStringf30f39f0.get(this, "list")
+        set(newValue) {attributeStringf30f39f0.set(this, "list", newValue)}
+
+    var formTarget : String
+        get()  = attributeStringFormTarget25ca1563.get(this, "formtarget")
+        set(newValue) {attributeStringFormTarget25ca1563.set(this, "formtarget", newValue)}
+
+    var width : String
+        get()  = attributeStringf30f39f0.get(this, "width")
+        set(newValue) {attributeStringf30f39f0.set(this, "width", newValue)}
+
+    var src : String
+        get()  = attributeStringf30f39f0.get(this, "src")
+        set(newValue) {attributeStringf30f39f0.set(this, "src", newValue)}
+
+    var min : String
+        get()  = attributeStringf30f39f0.get(this, "min")
+        set(newValue) {attributeStringf30f39f0.set(this, "min", newValue)}
+
+    var max : String
+        get()  = attributeStringf30f39f0.get(this, "max")
+        set(newValue) {attributeStringf30f39f0.set(this, "max", newValue)}
+
+    var accept : String
+        get()  = attributeStringf30f39f0.get(this, "accept")
+        set(newValue) {attributeStringf30f39f0.set(this, "accept", newValue)}
+
+    var type : String
+        get()  = attributeStringf30f39f0.get(this, "type")
+        set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
+
+    var disabled : Boolean
+        get()  = attributeBooleanDisabledDisabledEmptyf8f91d7.get(this, "disabled")
+        set(newValue) {attributeBooleanDisabledDisabledEmptyf8f91d7.set(this, "disabled", newValue)}
+
+    var step : String
+        get()  = attributeStringf30f39f0.get(this, "step")
+        set(newValue) {attributeStringf30f39f0.set(this, "step", newValue)}
+
+    var size : String
+        get()  = attributeStringf30f39f0.get(this, "size")
+        set(newValue) {attributeStringf30f39f0.set(this, "size", newValue)}
+
+    var files : String
+        get()  = attributeStringf30f39f0.get(this, "files")
+        set(newValue) {attributeStringf30f39f0.set(this, "files", newValue)}
+
 
 }
 
 public class INS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ins", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var dateTime : String by attributeStringDateTime5df8f589
-    var cite : String by attributeStringf30f39f0
+    var dateTime : String
+        get()  = attributeStringDateTime5df8f589.get(this, "datetime")
+        set(newValue) {attributeStringDateTime5df8f589.set(this, "datetime", newValue)}
+
+    var cite : String
+        get()  = attributeStringf30f39f0.get(this, "cite")
+        set(newValue) {attributeStringf30f39f0.set(this, "cite", newValue)}
+
 
 }
 

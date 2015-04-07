@@ -9,8 +9,14 @@ import html4k.impl.*
 *******************************************************************************/
 
 public class LABEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("label", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var for_ : String by attributeStringForf310c6d7
-    var form : String by attributeStringf30f39f0
+    var for_ : String
+        get()  = attributeStringForf310c6d7.get(this, "for")
+        set(newValue) {attributeStringForf310c6d7.set(this, "for", newValue)}
+
+    var form : String
+        get()  = attributeStringf30f39f0.get(this, "form")
+        set(newValue) {attributeStringf30f39f0.set(this, "form", newValue)}
+
 
 }
 
@@ -19,17 +25,38 @@ public class LEGEND(initialAttributes : Map<String, String>, override val consum
 }
 
 public class LI(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("li", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var value : String by attributeStringf30f39f0
+    var value : String
+        get()  = attributeStringf30f39f0.get(this, "value")
+        set(newValue) {attributeStringf30f39f0.set(this, "value", newValue)}
+
 
 }
 
 public class LINK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("link", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var media : String by attributeStringf30f39f0
-    var hrefLang : String by attributeStringHrefLang67393da7
-    var href : String by attributeStringf30f39f0
-    var type : String by attributeStringf30f39f0
-    var sizes : String by attributeStringf30f39f0
-    var rel : String by attributeStringf30f39f0
+    var media : String
+        get()  = attributeStringf30f39f0.get(this, "media")
+        set(newValue) {attributeStringf30f39f0.set(this, "media", newValue)}
+
+    var hrefLang : String
+        get()  = attributeStringHrefLang67393da7.get(this, "hreflang")
+        set(newValue) {attributeStringHrefLang67393da7.set(this, "hreflang", newValue)}
+
+    var href : String
+        get()  = attributeStringf30f39f0.get(this, "href")
+        set(newValue) {attributeStringf30f39f0.set(this, "href", newValue)}
+
+    var type : String
+        get()  = attributeStringf30f39f0.get(this, "type")
+        set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
+
+    var sizes : String
+        get()  = attributeStringf30f39f0.get(this, "sizes")
+        set(newValue) {attributeStringf30f39f0.set(this, "sizes", newValue)}
+
+    var rel : String
+        get()  = attributeStringf30f39f0.get(this, "rel")
+        set(newValue) {attributeStringf30f39f0.set(this, "rel", newValue)}
+
 
 }
 

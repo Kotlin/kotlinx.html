@@ -13,12 +13,30 @@ public class KBD(initialAttributes : Map<String, String>, override val consumer 
 }
 
 public class KEYGEN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("keygen", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
-    var challenge : String by attributeStringf30f39f0
-    var autoFocus : Boolean by attributeBooleanAutoFocusAutoFocusEmptya5698437
-    var keyType : KeyType by attributeKeyTypeKeyTypeKeyTypeValues8030c68a
-    var disabled : Boolean by attributeBooleanDisabledDisabledEmptyf8f91d7
-    var form : String by attributeStringf30f39f0
-    var name : String by attributeStringf30f39f0
+    var challenge : String
+        get()  = attributeStringf30f39f0.get(this, "challenge")
+        set(newValue) {attributeStringf30f39f0.set(this, "challenge", newValue)}
+
+    var autoFocus : Boolean
+        get()  = attributeBooleanAutoFocusAutoFocusEmptya5698437.get(this, "autofocus")
+        set(newValue) {attributeBooleanAutoFocusAutoFocusEmptya5698437.set(this, "autofocus", newValue)}
+
+    var keyType : KeyType
+        get()  = attributeKeyTypeKeyTypeKeyTypeValues8030c68a.get(this, "keytype")
+        set(newValue) {attributeKeyTypeKeyTypeKeyTypeValues8030c68a.set(this, "keytype", newValue)}
+
+    var disabled : Boolean
+        get()  = attributeBooleanDisabledDisabledEmptyf8f91d7.get(this, "disabled")
+        set(newValue) {attributeBooleanDisabledDisabledEmptyf8f91d7.set(this, "disabled", newValue)}
+
+    var form : String
+        get()  = attributeStringf30f39f0.get(this, "form")
+        set(newValue) {attributeStringf30f39f0.set(this, "form", newValue)}
+
+    var name : String
+        get()  = attributeStringf30f39f0.get(this, "name")
+        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+
 
 }
 
