@@ -23,11 +23,7 @@ object StringEncoder : AttributeEncoder<String> {
     override fun decode(attributeName: String, value: String): String = value
 }
 
-public class StringAttributeShared : Attribute<String>(StringEncoder) {
-}
-
-public class StringAttribute(val name : String) : Attribute<String>(StringEncoder) {
-}
+class StringAttribute : Attribute<String>(StringEncoder)
 
 //public class IntAttribute : Attribute<Int>() {
 //    override fun encode(desc: PropertyMetadata, value: Int): String = value.toString()
@@ -35,7 +31,7 @@ public class StringAttribute(val name : String) : Attribute<String>(StringEncode
 //}
 
 fun Boolean.booleanEncode() = toString()
-public class BooleanEncoder(val trueValue: String = "true", val falseValue: String = "false") : AttributeEncoder<Boolean> {
+class BooleanEncoder(val trueValue: String = "true", val falseValue: String = "false") : AttributeEncoder<Boolean> {
     override fun encode(attributeName: String, value : Boolean): String = if (value) trueValue else falseValue
     override fun decode(attributeName: String, value: String): Boolean = when (value) {
         trueValue -> true
@@ -44,20 +40,15 @@ public class BooleanEncoder(val trueValue: String = "true", val falseValue: Stri
     }
 }
 
-public class BooleanAttributeShared : Attribute<Boolean>(BooleanEncoder()) {
-}
-
-public class BooleanAttribute(val name : String, trueValue: String = "true", falseValue: String = "false") : Attribute<Boolean>(BooleanEncoder(trueValue, falseValue)) {
-}
+class BooleanAttribute(trueValue: String = "true", falseValue: String = "false") : Attribute<Boolean>(BooleanEncoder(trueValue, falseValue))
 
 //private fun Boolean.tickerEncode(desc: PropertyMetadata) : String = if (this) desc.name else ""
-//public class TickerAttribute(name : String) : Attribute<Boolean>(name) {
-//    override fun encode(desc: PropertyMetadata, value: Boolean) = value.tickerEncode(desc)
-//    override fun decode(desc: PropertyMetadata, value: String): Boolean = when (value) {
-//        desc.name -> true
-//        "" -> false
-//        else -> throw IllegalArgumentException("Unknown value $value for ${desc.name}")
-//    }
+//object TickerEncoder : AttributeEncoder<Boolean> {
+//    override fun encode(attributeName: String, value: Boolean): String = if (value) attributeName else ""
+//    override fun decode(attributeName: String, value: String): Boolean = value == attributeName
+//}
+//
+//public class TickerAttribute(name : String) : Attribute<Boolean>(TickerEncoder) {
 //}
 
 class EnumEncoder<T : AttributeEnum>(val valuesMap : Map<String, T>) : AttributeEncoder<T> {
@@ -66,5 +57,4 @@ class EnumEncoder<T : AttributeEnum>(val valuesMap : Map<String, T>) : Attribute
 }
 
 fun <T : AttributeEnum> T.enumEncode() : String = realValue
-public class EnumAttribute<T : AttributeEnum>(val name : String, val values : Map<String, T>) : Attribute<T>(EnumEncoder(values)) {
-}
+class EnumAttribute<T : AttributeEnum>(val values : Map<String, T>) : Attribute<T>(EnumEncoder(values))

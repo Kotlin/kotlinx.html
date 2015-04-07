@@ -26,24 +26,24 @@ public class VIDEO(initialAttributes : Map<String, String>, override val consume
         set(newValue) {attributeStringf30f39f0.set(this, "height", newValue)}
 
     var autoPlay : Boolean
-        get()  = attributeBooleanAutoPlayAutoPlayEmptyf99350f7.get(this, "autoplay")
-        set(newValue) {attributeBooleanAutoPlayAutoPlayEmptyf99350f7.set(this, "autoplay", newValue)}
+        get()  = attributeBooleanAutoPlayEmptydf5db3b6.get(this, "autoplay")
+        set(newValue) {attributeBooleanAutoPlayEmptydf5db3b6.set(this, "autoplay", newValue)}
 
     var loop : Boolean
-        get()  = attributeBooleanLoopLoopEmpty402eacd7.get(this, "loop")
-        set(newValue) {attributeBooleanLoopLoopEmpty402eacd7.set(this, "loop", newValue)}
+        get()  = attributeBooleanLoopEmpty81928e95.get(this, "loop")
+        set(newValue) {attributeBooleanLoopEmpty81928e95.set(this, "loop", newValue)}
 
     var autoBuffer : Boolean
-        get()  = attributeBooleanAutoBufferAutoBufferEmpty69f15777.get(this, "autobuffer")
-        set(newValue) {attributeBooleanAutoBufferAutoBufferEmpty69f15777.set(this, "autobuffer", newValue)}
+        get()  = attributeBooleanAutoBufferEmptyd2e0a3ea.get(this, "autobuffer")
+        set(newValue) {attributeBooleanAutoBufferEmptyd2e0a3ea.set(this, "autobuffer", newValue)}
 
     var poster : String
         get()  = attributeStringf30f39f0.get(this, "poster")
         set(newValue) {attributeStringf30f39f0.set(this, "poster", newValue)}
 
     var controls : Boolean
-        get()  = attributeBooleanControlsControlsEmpty89def297.get(this, "controls")
-        set(newValue) {attributeBooleanControlsControlsEmpty89def297.set(this, "controls", newValue)}
+        get()  = attributeBooleanControlsEmpty63e010c3.get(this, "controls")
+        set(newValue) {attributeBooleanControlsEmpty63e010c3.set(this, "controls", newValue)}
 
 
 }

@@ -10,7 +10,7 @@ fun <O : Appendable> O.attributePseudoDelegate(request : AttributeRequest) {
         "Boolean" -> "Boolean"
         else -> "Enum"
     }
-    val className = "${classNamePrefix}Attribute${if (request.isShared) "Shared" else ""}"
+    val className = "${classNamePrefix}Attribute"
 
     variable(Var(request.delegatePropertyName, "Attribute<${request.type}>"))
     defineIs(StringBuilder {

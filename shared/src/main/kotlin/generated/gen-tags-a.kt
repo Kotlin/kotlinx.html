@@ -14,8 +14,8 @@ public class A(initialAttributes : Map<String, String>, override val consumer : 
         set(newValue) {attributeStringf30f39f0.set(this, "ping", newValue)}
 
     var hrefLang : String
-        get()  = attributeStringHrefLang67393da7.get(this, "hreflang")
-        set(newValue) {attributeStringHrefLang67393da7.set(this, "hreflang", newValue)}
+        get()  = attributeStringf30f39f0.get(this, "hreflang")
+        set(newValue) {attributeStringf30f39f0.set(this, "hreflang", newValue)}
 
     var href : String
         get()  = attributeStringf30f39f0.get(this, "href")
@@ -58,8 +58,8 @@ public class AREA(initialAttributes : Map<String, String>, override val consumer
         set(newValue) {attributeStringf30f39f0.set(this, "coords", newValue)}
 
     var hrefLang : String
-        get()  = attributeStringHrefLang67393da7.get(this, "hreflang")
-        set(newValue) {attributeStringHrefLang67393da7.set(this, "hreflang", newValue)}
+        get()  = attributeStringf30f39f0.get(this, "hreflang")
+        set(newValue) {attributeStringf30f39f0.set(this, "hreflang", newValue)}
 
     var href : String
         get()  = attributeStringf30f39f0.get(this, "href")
@@ -98,20 +98,20 @@ public class AUDIO(initialAttributes : Map<String, String>, override val consume
         set(newValue) {attributeStringf30f39f0.set(this, "src", newValue)}
 
     var autoPlay : Boolean
-        get()  = attributeBooleanAutoPlayAutoPlayEmptyf99350f7.get(this, "autoplay")
-        set(newValue) {attributeBooleanAutoPlayAutoPlayEmptyf99350f7.set(this, "autoplay", newValue)}
+        get()  = attributeBooleanAutoPlayEmptydf5db3b6.get(this, "autoplay")
+        set(newValue) {attributeBooleanAutoPlayEmptydf5db3b6.set(this, "autoplay", newValue)}
 
     var loop : Boolean
-        get()  = attributeBooleanLoopLoopEmpty402eacd7.get(this, "loop")
-        set(newValue) {attributeBooleanLoopLoopEmpty402eacd7.set(this, "loop", newValue)}
+        get()  = attributeBooleanLoopEmpty81928e95.get(this, "loop")
+        set(newValue) {attributeBooleanLoopEmpty81928e95.set(this, "loop", newValue)}
 
     var autoBuffer : Boolean
-        get()  = attributeBooleanAutoBufferAutoBufferEmpty69f15777.get(this, "autobuffer")
-        set(newValue) {attributeBooleanAutoBufferAutoBufferEmpty69f15777.set(this, "autobuffer", newValue)}
+        get()  = attributeBooleanAutoBufferEmptyd2e0a3ea.get(this, "autobuffer")
+        set(newValue) {attributeBooleanAutoBufferEmptyd2e0a3ea.set(this, "autobuffer", newValue)}
 
     var controls : Boolean
-        get()  = attributeBooleanControlsControlsEmpty89def297.get(this, "controls")
-        set(newValue) {attributeBooleanControlsControlsEmpty89def297.set(this, "controls", newValue)}
+        get()  = attributeBooleanControlsEmpty63e010c3.get(this, "controls")
+        set(newValue) {attributeBooleanControlsEmpty63e010c3.set(this, "controls", newValue)}
 
 
 }

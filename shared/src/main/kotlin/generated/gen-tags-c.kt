@@ -34,16 +34,16 @@ public class CODE(initialAttributes : Map<String, String>, override val consumer
 
 public class COL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("col", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var span : Span
-        get()  = attributeSpanSpanSpanValues55c75899.get(this, "span")
-        set(newValue) {attributeSpanSpanSpanValues55c75899.set(this, "span", newValue)}
+        get()  = attributeSpanSpanValues4f3e6301.get(this, "span")
+        set(newValue) {attributeSpanSpanValues4f3e6301.set(this, "span", newValue)}
 
 
 }
 
 public class COLGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("colgroup", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var span : Span
-        get()  = attributeSpanSpanSpanValues55c75899.get(this, "span")
-        set(newValue) {attributeSpanSpanSpanValues55c75899.set(this, "span", newValue)}
+        get()  = attributeSpanSpanValues4f3e6301.get(this, "span")
+        set(newValue) {attributeSpanSpanValues4f3e6301.set(this, "span", newValue)}
 
 
 }
@@ -58,20 +58,20 @@ public class COMMAND(initialAttributes : Map<String, String>, override val consu
         set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBooleanDisabledDisabledEmptyf8f91d7.get(this, "disabled")
-        set(newValue) {attributeBooleanDisabledDisabledEmptyf8f91d7.set(this, "disabled", newValue)}
+        get()  = attributeBooleanDisabledEmpty700d95bd.get(this, "disabled")
+        set(newValue) {attributeBooleanDisabledEmpty700d95bd.set(this, "disabled", newValue)}
 
     var label : String
         get()  = attributeStringf30f39f0.get(this, "label")
         set(newValue) {attributeStringf30f39f0.set(this, "label", newValue)}
 
     var checked : Boolean
-        get()  = attributeBooleanCheckedCheckedEmptyeed19877.get(this, "checked")
-        set(newValue) {attributeBooleanCheckedCheckedEmptyeed19877.set(this, "checked", newValue)}
+        get()  = attributeBooleanCheckedEmptyd707a5f2.get(this, "checked")
+        set(newValue) {attributeBooleanCheckedEmptyd707a5f2.set(this, "checked", newValue)}
 
     var radioGroup : String
-        get()  = attributeStringRadioGroupf3606172.get(this, "radiogroup")
-        set(newValue) {attributeStringRadioGroupf3606172.set(this, "radiogroup", newValue)}
+        get()  = attributeStringf30f39f0.get(this, "radiogroup")
+        set(newValue) {attributeStringf30f39f0.set(this, "radiogroup", newValue)}
 
 
 }

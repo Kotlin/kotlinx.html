@@ -26,8 +26,8 @@ public class OBJECT_(initialAttributes : Map<String, String>, override val consu
         set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
 
     var classId : String
-        get()  = attributeStringClassId25f072a1.get(this, "classid")
-        set(newValue) {attributeStringClassId25f072a1.set(this, "classid", newValue)}
+        get()  = attributeStringf30f39f0.get(this, "classid")
+        set(newValue) {attributeStringf30f39f0.set(this, "classid", newValue)}
 
     var data : String
         get()  = attributeStringf30f39f0.get(this, "data")
@@ -46,8 +46,8 @@ public class OBJECT_(initialAttributes : Map<String, String>, override val consu
 
 public class OL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ol", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var reversed : Boolean
-        get()  = attributeBooleanReversedReversedEmpty6412c117.get(this, "reversed")
-        set(newValue) {attributeBooleanReversedReversedEmpty6412c117.set(this, "reversed", newValue)}
+        get()  = attributeBooleanReversedEmpty92b1af37.get(this, "reversed")
+        set(newValue) {attributeBooleanReversedEmpty92b1af37.set(this, "reversed", newValue)}
 
     var start : String
         get()  = attributeStringf30f39f0.get(this, "start")
@@ -58,8 +58,8 @@ public class OL(initialAttributes : Map<String, String>, override val consumer :
 
 public class OPTGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("optgroup", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var disabled : Boolean
-        get()  = attributeBooleanDisabledDisabledEmptyf8f91d7.get(this, "disabled")
-        set(newValue) {attributeBooleanDisabledDisabledEmptyf8f91d7.set(this, "disabled", newValue)}
+        get()  = attributeBooleanDisabledEmpty700d95bd.get(this, "disabled")
+        set(newValue) {attributeBooleanDisabledEmpty700d95bd.set(this, "disabled", newValue)}
 
     var label : String
         get()  = attributeStringf30f39f0.get(this, "label")
@@ -74,24 +74,24 @@ public class OPTION(initialAttributes : Map<String, String>, override val consum
         set(newValue) {attributeStringf30f39f0.set(this, "value", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBooleanDisabledDisabledEmptyf8f91d7.get(this, "disabled")
-        set(newValue) {attributeBooleanDisabledDisabledEmptyf8f91d7.set(this, "disabled", newValue)}
+        get()  = attributeBooleanDisabledEmpty700d95bd.get(this, "disabled")
+        set(newValue) {attributeBooleanDisabledEmpty700d95bd.set(this, "disabled", newValue)}
 
     var label : String
         get()  = attributeStringf30f39f0.get(this, "label")
         set(newValue) {attributeStringf30f39f0.set(this, "label", newValue)}
 
     var selected : Boolean
-        get()  = attributeBooleanSelectedSelectedEmptyb27909f7.get(this, "selected")
-        set(newValue) {attributeBooleanSelectedSelectedEmptyb27909f7.set(this, "selected", newValue)}
+        get()  = attributeBooleanSelectedEmpty1524e17e.get(this, "selected")
+        set(newValue) {attributeBooleanSelectedEmpty1524e17e.set(this, "selected", newValue)}
 
 
 }
 
 public class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("output", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var for_ : String
-        get()  = attributeStringForf310c6d7.get(this, "for")
-        set(newValue) {attributeStringForf310c6d7.set(this, "for", newValue)}
+        get()  = attributeStringf30f39f0.get(this, "for")
+        set(newValue) {attributeStringf30f39f0.set(this, "for", newValue)}
 
     var form : String
         get()  = attributeStringf30f39f0.get(this, "form")

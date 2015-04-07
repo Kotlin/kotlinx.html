@@ -54,8 +54,8 @@ public class META(initialAttributes : Map<String, String>, override val consumer
         set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
 
     var httpEquiv : String
-        get()  = attributeStringHttpEquive93838bf.get(this, "http-equiv")
-        set(newValue) {attributeStringHttpEquive93838bf.set(this, "http-equiv", newValue)}
+        get()  = attributeStringf30f39f0.get(this, "http-equiv")
+        set(newValue) {attributeStringf30f39f0.set(this, "http-equiv", newValue)}
 
 
 }

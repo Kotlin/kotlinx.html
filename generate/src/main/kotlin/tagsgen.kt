@@ -53,10 +53,6 @@ private fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): Attrib
         options.addAll(attribute.trueFalse.map { StringConst(it) })
     }
 
-    if (attribute.fieldName != attribute.name || options.isNotEmpty()) {
-        options.add(0, StringConst(attribute.name))
-    }
-
     val attributeRequest = AttributeRequest(attribute.type, options)
     Repository.attributeDelegateRequests.add(attributeRequest)
 

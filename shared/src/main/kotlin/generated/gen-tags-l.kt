@@ -10,8 +10,8 @@ import html4k.impl.*
 
 public class LABEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("label", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var for_ : String
-        get()  = attributeStringForf310c6d7.get(this, "for")
-        set(newValue) {attributeStringForf310c6d7.set(this, "for", newValue)}
+        get()  = attributeStringf30f39f0.get(this, "for")
+        set(newValue) {attributeStringf30f39f0.set(this, "for", newValue)}
 
     var form : String
         get()  = attributeStringf30f39f0.get(this, "form")
@@ -38,8 +38,8 @@ public class LINK(initialAttributes : Map<String, String>, override val consumer
         set(newValue) {attributeStringf30f39f0.set(this, "media", newValue)}
 
     var hrefLang : String
-        get()  = attributeStringHrefLang67393da7.get(this, "hreflang")
-        set(newValue) {attributeStringHrefLang67393da7.set(this, "hreflang", newValue)}
+        get()  = attributeStringf30f39f0.get(this, "hreflang")
+        set(newValue) {attributeStringf30f39f0.set(this, "hreflang", newValue)}
 
     var href : String
         get()  = attributeStringf30f39f0.get(this, "href")

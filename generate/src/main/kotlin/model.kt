@@ -38,9 +38,6 @@ data class AttributeRequest(
     val options : List<Const<*>> = emptyList()
 )
 
-val AttributeRequest.isShared : Boolean
-    get() = options.isEmpty()
-
 val AttributeRequest.delegatePropertyName : String
     get() = "attribute${type}${options.map {it.asFieldPart.capitalize()}.join("")}${toNameHash()}"
 

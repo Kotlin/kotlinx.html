@@ -26,12 +26,12 @@ public class IFRAME(initialAttributes : Map<String, String>, override val consum
         set(newValue) {attributeStringf30f39f0.set(this, "height", newValue)}
 
     var seamless : Boolean
-        get()  = attributeBooleanSeamlessSeamlessEmptyb9c73a77.get(this, "seamless")
-        set(newValue) {attributeBooleanSeamlessSeamlessEmptyb9c73a77.set(this, "seamless", newValue)}
+        get()  = attributeBooleanSeamlessEmptydd5f5302.get(this, "seamless")
+        set(newValue) {attributeBooleanSeamlessEmptydd5f5302.set(this, "seamless", newValue)}
 
     var sandbox : Sandbox
-        get()  = attributeSandboxSandboxSandboxValues989672dc.get(this, "sandbox")
-        set(newValue) {attributeSandboxSandboxSandboxValues989672dc.set(this, "sandbox", newValue)}
+        get()  = attributeSandboxSandboxValues21ce5521.get(this, "sandbox")
+        set(newValue) {attributeSandboxSandboxValues21ce5521.set(this, "sandbox", newValue)}
 
     var name : String
         get()  = attributeStringf30f39f0.get(this, "name")
@@ -46,8 +46,8 @@ public class IMG(initialAttributes : Map<String, String>, override val consumer 
         set(newValue) {attributeStringf30f39f0.set(this, "width", newValue)}
 
     var ismap : Boolean
-        get()  = attributeBooleanIsmapIsmapEmptyb1fabb17.get(this, "ismap")
-        set(newValue) {attributeBooleanIsmapIsmapEmptyb1fabb17.set(this, "ismap", newValue)}
+        get()  = attributeBooleanIsmapEmpty3520ef07.get(this, "ismap")
+        set(newValue) {attributeBooleanIsmapEmpty3520ef07.set(this, "ismap", newValue)}
 
     var src : String
         get()  = attributeStringf30f39f0.get(this, "src")
@@ -70,24 +70,24 @@ public class IMG(initialAttributes : Map<String, String>, override val consumer 
 
 public class INPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("input", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var autoComplete : Boolean
-        get()  = attributeBooleanAutoCompleteOnOfffdc1e2af.get(this, "autocomplete")
-        set(newValue) {attributeBooleanAutoCompleteOnOfffdc1e2af.set(this, "autocomplete", newValue)}
+        get()  = attributeBooleanOnOff7b6fdc29.get(this, "autocomplete")
+        set(newValue) {attributeBooleanOnOff7b6fdc29.set(this, "autocomplete", newValue)}
 
     var formMethod : FormMethod
-        get()  = attributeFormMethodFormMethodFormMethodValues7a953fbe.get(this, "formmethod")
-        set(newValue) {attributeFormMethodFormMethodFormMethodValues7a953fbe.set(this, "formmethod", newValue)}
+        get()  = attributeFormMethodFormMethodValuesc1502221.get(this, "formmethod")
+        set(newValue) {attributeFormMethodFormMethodValuesc1502221.set(this, "formmethod", newValue)}
 
     var maxlength : String
         get()  = attributeStringf30f39f0.get(this, "maxlength")
         set(newValue) {attributeStringf30f39f0.set(this, "maxlength", newValue)}
 
     var formNovalidate : Boolean
-        get()  = attributeBooleanFormNovalidateFormNovalidateEmpty2caba9f7.get(this, "formnovalidate")
-        set(newValue) {attributeBooleanFormNovalidateFormNovalidateEmpty2caba9f7.set(this, "formnovalidate", newValue)}
+        get()  = attributeBooleanFormNovalidateEmpty58f6767e.get(this, "formnovalidate")
+        set(newValue) {attributeBooleanFormNovalidateEmpty58f6767e.set(this, "formnovalidate", newValue)}
 
     var readonly : Boolean
-        get()  = attributeBooleanReadonlyReadonlyEmpty4b8e3117.get(this, "readonly")
-        set(newValue) {attributeBooleanReadonlyReadonlyEmpty4b8e3117.set(this, "readonly", newValue)}
+        get()  = attributeBooleanReadonlyEmpty39ed8ab7.get(this, "readonly")
+        set(newValue) {attributeBooleanReadonlyEmpty39ed8ab7.set(this, "readonly", newValue)}
 
     var height : String
         get()  = attributeStringf30f39f0.get(this, "height")
@@ -102,28 +102,28 @@ public class INPUT(initialAttributes : Map<String, String>, override val consume
         set(newValue) {attributeStringf30f39f0.set(this, "value", newValue)}
 
     var required : Boolean
-        get()  = attributeBooleanRequiredRequiredEmptyadf5f977.get(this, "required")
-        set(newValue) {attributeBooleanRequiredRequiredEmptyadf5f977.set(this, "required", newValue)}
+        get()  = attributeBooleanRequiredEmptya500c8fa.get(this, "required")
+        set(newValue) {attributeBooleanRequiredEmptya500c8fa.set(this, "required", newValue)}
 
     var formEncType : FormEncType
-        get()  = attributeFormEncTypeFormEncTypeFormEncTypeValues5f514f53.get(this, "formenctype")
-        set(newValue) {attributeFormEncTypeFormEncTypeFormEncTypeValues5f514f53.set(this, "formenctype", newValue)}
+        get()  = attributeFormEncTypeFormEncTypeValues6f38fb81.get(this, "formenctype")
+        set(newValue) {attributeFormEncTypeFormEncTypeValues6f38fb81.set(this, "formenctype", newValue)}
 
     var alt : String
         get()  = attributeStringf30f39f0.get(this, "alt")
         set(newValue) {attributeStringf30f39f0.set(this, "alt", newValue)}
 
     var formAction : String
-        get()  = attributeStringFormAction57b2208.get(this, "formaction")
-        set(newValue) {attributeStringFormAction57b2208.set(this, "formaction", newValue)}
+        get()  = attributeStringf30f39f0.get(this, "formaction")
+        set(newValue) {attributeStringf30f39f0.set(this, "formaction", newValue)}
 
     var checked : Boolean
-        get()  = attributeBooleanCheckedCheckedEmptyeed19877.get(this, "checked")
-        set(newValue) {attributeBooleanCheckedCheckedEmptyeed19877.set(this, "checked", newValue)}
+        get()  = attributeBooleanCheckedEmptyd707a5f2.get(this, "checked")
+        set(newValue) {attributeBooleanCheckedEmptyd707a5f2.set(this, "checked", newValue)}
 
     var multiple : Boolean
-        get()  = attributeBooleanMultipleMultipleEmpty7ef06f57.get(this, "multiple")
-        set(newValue) {attributeBooleanMultipleMultipleEmpty7ef06f57.set(this, "multiple", newValue)}
+        get()  = attributeBooleanMultipleEmpty33889ca9.get(this, "multiple")
+        set(newValue) {attributeBooleanMultipleEmpty33889ca9.set(this, "multiple", newValue)}
 
     var placeholder : String
         get()  = attributeStringf30f39f0.get(this, "placeholder")
@@ -138,8 +138,8 @@ public class INPUT(initialAttributes : Map<String, String>, override val consume
         set(newValue) {attributeStringf30f39f0.set(this, "list", newValue)}
 
     var formTarget : String
-        get()  = attributeStringFormTarget25ca1563.get(this, "formtarget")
-        set(newValue) {attributeStringFormTarget25ca1563.set(this, "formtarget", newValue)}
+        get()  = attributeStringf30f39f0.get(this, "formtarget")
+        set(newValue) {attributeStringf30f39f0.set(this, "formtarget", newValue)}
 
     var width : String
         get()  = attributeStringf30f39f0.get(this, "width")
@@ -166,8 +166,8 @@ public class INPUT(initialAttributes : Map<String, String>, override val consume
         set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBooleanDisabledDisabledEmptyf8f91d7.get(this, "disabled")
-        set(newValue) {attributeBooleanDisabledDisabledEmptyf8f91d7.set(this, "disabled", newValue)}
+        get()  = attributeBooleanDisabledEmpty700d95bd.get(this, "disabled")
+        set(newValue) {attributeBooleanDisabledEmpty700d95bd.set(this, "disabled", newValue)}
 
     var step : String
         get()  = attributeStringf30f39f0.get(this, "step")
@@ -186,8 +186,8 @@ public class INPUT(initialAttributes : Map<String, String>, override val consume
 
 public class INS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ins", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var dateTime : String
-        get()  = attributeStringDateTime5df8f589.get(this, "datetime")
-        set(newValue) {attributeStringDateTime5df8f589.set(this, "datetime", newValue)}
+        get()  = attributeStringf30f39f0.get(this, "datetime")
+        set(newValue) {attributeStringf30f39f0.set(this, "datetime", newValue)}
 
     var cite : String
         get()  = attributeStringf30f39f0.get(this, "cite")

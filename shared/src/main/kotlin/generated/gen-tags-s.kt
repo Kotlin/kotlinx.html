@@ -26,12 +26,12 @@ public class SCRIPT(initialAttributes : Map<String, String>, override val consum
         set(newValue) {attributeStringf30f39f0.set(this, "src", newValue)}
 
     var defer : Boolean
-        get()  = attributeBooleanDeferDeferEmpty87e64b17.get(this, "defer")
-        set(newValue) {attributeBooleanDeferDeferEmpty87e64b17.set(this, "defer", newValue)}
+        get()  = attributeBooleanDeferEmpty2bd04b87.get(this, "defer")
+        set(newValue) {attributeBooleanDeferEmpty2bd04b87.set(this, "defer", newValue)}
 
     var async : Boolean
-        get()  = attributeBooleanAsyncAsyncEmptyfdd691d7.get(this, "async")
-        set(newValue) {attributeBooleanAsyncAsyncEmptyfdd691d7.set(this, "async", newValue)}
+        get()  = attributeBooleanAsyncEmpty277fcdbd.get(this, "async")
+        set(newValue) {attributeBooleanAsyncEmpty277fcdbd.set(this, "async", newValue)}
 
 
 }
@@ -42,20 +42,20 @@ public class SECTION(initialAttributes : Map<String, String>, override val consu
 
 public class SELECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("select", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var autoFocus : Boolean
-        get()  = attributeBooleanAutoFocusAutoFocusEmptya5698437.get(this, "autofocus")
-        set(newValue) {attributeBooleanAutoFocusAutoFocusEmptya5698437.set(this, "autofocus", newValue)}
+        get()  = attributeBooleanAutoFocusEmpty84bc6550.get(this, "autofocus")
+        set(newValue) {attributeBooleanAutoFocusEmpty84bc6550.set(this, "autofocus", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBooleanDisabledDisabledEmptyf8f91d7.get(this, "disabled")
-        set(newValue) {attributeBooleanDisabledDisabledEmptyf8f91d7.set(this, "disabled", newValue)}
+        get()  = attributeBooleanDisabledEmpty700d95bd.get(this, "disabled")
+        set(newValue) {attributeBooleanDisabledEmpty700d95bd.set(this, "disabled", newValue)}
 
     var size : String
         get()  = attributeStringf30f39f0.get(this, "size")
         set(newValue) {attributeStringf30f39f0.set(this, "size", newValue)}
 
     var multiple : Boolean
-        get()  = attributeBooleanMultipleMultipleEmpty7ef06f57.get(this, "multiple")
-        set(newValue) {attributeBooleanMultipleMultipleEmpty7ef06f57.set(this, "multiple", newValue)}
+        get()  = attributeBooleanMultipleEmpty33889ca9.get(this, "multiple")
+        set(newValue) {attributeBooleanMultipleEmpty33889ca9.set(this, "multiple", newValue)}
 
     var form : String
         get()  = attributeStringf30f39f0.get(this, "form")
@@ -98,8 +98,8 @@ public class STRONG(initialAttributes : Map<String, String>, override val consum
 
 public class STYLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("style", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var scoped : Boolean
-        get()  = attributeBooleanScopedScopedEmptyd10d9f57.get(this, "scoped")
-        set(newValue) {attributeBooleanScopedScopedEmptyd10d9f57.set(this, "scoped", newValue)}
+        get()  = attributeBooleanScopedEmptyee198629.get(this, "scoped")
+        set(newValue) {attributeBooleanScopedEmptyee198629.set(this, "scoped", newValue)}
 
     var media : String
         get()  = attributeStringf30f39f0.get(this, "media")
