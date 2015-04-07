@@ -14,36 +14,36 @@ public class VAR_(initialAttributes : Map<String, String>, override val consumer
 
 public class VIDEO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("video", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var width : String
-        get()  = attributeStringf30f39f0.get(this, "width")
-        set(newValue) {attributeStringf30f39f0.set(this, "width", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "width")
+        set(newValue) {attributeStringf320f1e5.set(this, "width", newValue)}
 
     var src : String
-        get()  = attributeStringf30f39f0.get(this, "src")
-        set(newValue) {attributeStringf30f39f0.set(this, "src", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "src")
+        set(newValue) {attributeStringf320f1e5.set(this, "src", newValue)}
 
     var height : String
-        get()  = attributeStringf30f39f0.get(this, "height")
-        set(newValue) {attributeStringf30f39f0.set(this, "height", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "height")
+        set(newValue) {attributeStringf320f1e5.set(this, "height", newValue)}
 
     var autoPlay : Boolean
-        get()  = attributeBooleanAutoPlayEmptydf5db3b6.get(this, "autoplay")
-        set(newValue) {attributeBooleanAutoPlayEmptydf5db3b6.set(this, "autoplay", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "autoplay")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "autoplay", newValue)}
 
     var loop : Boolean
-        get()  = attributeBooleanLoopEmpty81928e95.get(this, "loop")
-        set(newValue) {attributeBooleanLoopEmpty81928e95.set(this, "loop", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "loop")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "loop", newValue)}
 
     var autoBuffer : Boolean
-        get()  = attributeBooleanAutoBufferEmptyd2e0a3ea.get(this, "autobuffer")
-        set(newValue) {attributeBooleanAutoBufferEmptyd2e0a3ea.set(this, "autobuffer", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "autobuffer")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "autobuffer", newValue)}
 
     var poster : String
-        get()  = attributeStringf30f39f0.get(this, "poster")
-        set(newValue) {attributeStringf30f39f0.set(this, "poster", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "poster")
+        set(newValue) {attributeStringf320f1e5.set(this, "poster", newValue)}
 
     var controls : Boolean
-        get()  = attributeBooleanControlsEmpty63e010c3.get(this, "controls")
-        set(newValue) {attributeBooleanControlsEmpty63e010c3.set(this, "controls", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "controls")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "controls", newValue)}
 
 
 }

@@ -33,23 +33,37 @@ data class AttributeEnumValue (
         val fieldName : String
 )
 
+enum class AttributeType(val classPrefix : String, val typeName : String) {
+    STRING : AttributeType("String", "String")
+    BOOLEAN : AttributeType("Boolean", "Boolean")
+    TICKER : AttributeType("Ticker", "Boolean")
+    ENUM : AttributeType("Enum", "???")
+}
+
+trait HasType {
+    val type : AttributeType
+    val enumTypeName : String
+}
+
 data class AttributeRequest(
-    val type : String,
+    override val type : AttributeType,
+    override val enumTypeName : String,
     val options : List<Const<*>> = emptyList()
-)
+) : HasType
 
 val AttributeRequest.delegatePropertyName : String
-    get() = "attribute${type}${options.map {it.asFieldPart.capitalize()}.join("")}${toNameHash()}"
+    get() = "attribute${typeName}${options.map {it.asFieldPart.capitalize()}.join("")}${toNameHash()}"
 
 data class AttributeInfo(
         val name : String,
-        val type : String = "String",
+        override val type : AttributeType,
         val safeAlias : String,
-        val trueFalse : List<String> = listOf()
-)
+        val trueFalse : List<String> = listOf(),
+        override val enumTypeName : String = ""
+) : HasType
 
-val AttributeInfo.isEnum : Boolean
-    get() = type !in listOf("String", "Boolean")
+val HasType.typeName : String
+    get() = if (type == AttributeType.ENUM) enumTypeName else type.typeName
 
 val AttributeInfo.fieldName : String
     get() = if (safeAlias.isNotEmpty()) safeAlias else name

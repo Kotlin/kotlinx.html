@@ -5,14 +5,10 @@ import java.util.ArrayList
 fun String.quote() = "\"$this\""
 
 fun <O : Appendable> O.attributePseudoDelegate(request : AttributeRequest) {
-    val classNamePrefix = when (request.type) {
-        "String" -> "String"
-        "Boolean" -> "Boolean"
-        else -> "Enum"
-    }
+    val classNamePrefix = request.type.classPrefix
     val className = "${classNamePrefix}Attribute"
 
-    variable(Var(request.delegatePropertyName, "Attribute<${request.type}>"))
+    variable(Var(request.delegatePropertyName, "Attribute<${request.typeName}>"))
     defineIs(StringBuilder {
         functionCallConsts(className, request.options)
     })

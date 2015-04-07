@@ -10,8 +10,8 @@ import html4k.impl.*
 
 public class TABLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("table", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var summary : String
-        get()  = attributeStringf30f39f0.get(this, "summary")
-        set(newValue) {attributeStringf30f39f0.set(this, "summary", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "summary")
+        set(newValue) {attributeStringf320f1e5.set(this, "summary", newValue)}
 
 
 }
@@ -22,64 +22,64 @@ public class TBODY(initialAttributes : Map<String, String>, override val consume
 
 public class TD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("td", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var rowSpan : RowSpan
-        get()  = attributeRowSpanRowSpanValues89c3b301.get(this, "rowspan")
-        set(newValue) {attributeRowSpanRowSpanValues89c3b301.set(this, "rowspan", newValue)}
+        get()  = attributeRowSpanRowSpanValues7f2532dd.get(this, "rowspan")
+        set(newValue) {attributeRowSpanRowSpanValues7f2532dd.set(this, "rowspan", newValue)}
 
     var headers : String
-        get()  = attributeStringf30f39f0.get(this, "headers")
-        set(newValue) {attributeStringf30f39f0.set(this, "headers", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "headers")
+        set(newValue) {attributeStringf320f1e5.set(this, "headers", newValue)}
 
     var colSpan : ColSpan
-        get()  = attributeColSpanColSpanValues14bb341.get(this, "colspan")
-        set(newValue) {attributeColSpanColSpanValues14bb341.set(this, "colspan", newValue)}
+        get()  = attributeColSpanColSpanValuesf6ad331d.get(this, "colspan")
+        set(newValue) {attributeColSpanColSpanValuesf6ad331d.set(this, "colspan", newValue)}
 
 
 }
 
 public class TEXTAREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("textarea", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var maxlength : String
-        get()  = attributeStringf30f39f0.get(this, "maxlength")
-        set(newValue) {attributeStringf30f39f0.set(this, "maxlength", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "maxlength")
+        set(newValue) {attributeStringf320f1e5.set(this, "maxlength", newValue)}
 
     var readonly : Boolean
-        get()  = attributeBooleanReadonlyEmpty39ed8ab7.get(this, "readonly")
-        set(newValue) {attributeBooleanReadonlyEmpty39ed8ab7.set(this, "readonly", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "readonly")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "readonly", newValue)}
 
     var wrap : Wrap
-        get()  = attributeWrapWrapValuesb2f2c301.get(this, "wrap")
-        set(newValue) {attributeWrapWrapValuesb2f2c301.set(this, "wrap", newValue)}
+        get()  = attributeWrapWrapValuesa85442dd.get(this, "wrap")
+        set(newValue) {attributeWrapWrapValuesa85442dd.set(this, "wrap", newValue)}
 
     var rowS : RowS
-        get()  = attributeRowSRowSValues1fb3e1a1.get(this, "rows")
-        set(newValue) {attributeRowSRowSValues1fb3e1a1.set(this, "rows", newValue)}
+        get()  = attributeRowSRowSValues1515617d.get(this, "rows")
+        set(newValue) {attributeRowSRowSValues1515617d.set(this, "rows", newValue)}
 
     var autoFocus : Boolean
-        get()  = attributeBooleanAutoFocusEmpty84bc6550.get(this, "autofocus")
-        set(newValue) {attributeBooleanAutoFocusEmpty84bc6550.set(this, "autofocus", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "autofocus")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "autofocus", newValue)}
 
     var required : Boolean
-        get()  = attributeBooleanRequiredEmptya500c8fa.get(this, "required")
-        set(newValue) {attributeBooleanRequiredEmptya500c8fa.set(this, "required", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "required")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "required", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBooleanDisabledEmpty700d95bd.get(this, "disabled")
-        set(newValue) {attributeBooleanDisabledEmpty700d95bd.set(this, "disabled", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "disabled")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "disabled", newValue)}
 
     var colS : ColS
-        get()  = attributeColSColSValues57e5c961.get(this, "cols")
-        set(newValue) {attributeColSColSValues57e5c961.set(this, "cols", newValue)}
+        get()  = attributeColSColSValues4d47493d.get(this, "cols")
+        set(newValue) {attributeColSColSValues4d47493d.set(this, "cols", newValue)}
 
     var placeholder : String
-        get()  = attributeStringf30f39f0.get(this, "placeholder")
-        set(newValue) {attributeStringf30f39f0.set(this, "placeholder", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "placeholder")
+        set(newValue) {attributeStringf320f1e5.set(this, "placeholder", newValue)}
 
     var form : String
-        get()  = attributeStringf30f39f0.get(this, "form")
-        set(newValue) {attributeStringf30f39f0.set(this, "form", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "form")
+        set(newValue) {attributeStringf320f1e5.set(this, "form", newValue)}
 
     var name : String
-        get()  = attributeStringf30f39f0.get(this, "name")
-        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "name")
+        set(newValue) {attributeStringf320f1e5.set(this, "name", newValue)}
 
 
 }
@@ -90,20 +90,20 @@ public class TFOOT(initialAttributes : Map<String, String>, override val consume
 
 public class TH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("th", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var scope : Scope
-        get()  = attributeScopeScopeValues21bc3101.get(this, "scope")
-        set(newValue) {attributeScopeScopeValues21bc3101.set(this, "scope", newValue)}
+        get()  = attributeScopeScopeValues171db0dd.get(this, "scope")
+        set(newValue) {attributeScopeScopeValues171db0dd.set(this, "scope", newValue)}
 
     var rowSpan : RowSpan
-        get()  = attributeRowSpanRowSpanValues89c3b301.get(this, "rowspan")
-        set(newValue) {attributeRowSpanRowSpanValues89c3b301.set(this, "rowspan", newValue)}
+        get()  = attributeRowSpanRowSpanValues7f2532dd.get(this, "rowspan")
+        set(newValue) {attributeRowSpanRowSpanValues7f2532dd.set(this, "rowspan", newValue)}
 
     var headers : String
-        get()  = attributeStringf30f39f0.get(this, "headers")
-        set(newValue) {attributeStringf30f39f0.set(this, "headers", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "headers")
+        set(newValue) {attributeStringf320f1e5.set(this, "headers", newValue)}
 
     var colSpan : ColSpan
-        get()  = attributeColSpanColSpanValues14bb341.get(this, "colspan")
-        set(newValue) {attributeColSpanColSpanValues14bb341.set(this, "colspan", newValue)}
+        get()  = attributeColSpanColSpanValuesf6ad331d.get(this, "colspan")
+        set(newValue) {attributeColSpanColSpanValuesf6ad331d.set(this, "colspan", newValue)}
 
 
 }
@@ -114,8 +114,8 @@ public class THEAD(initialAttributes : Map<String, String>, override val consume
 
 public class TIME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("time", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var dateTime : String
-        get()  = attributeStringf30f39f0.get(this, "datetime")
-        set(newValue) {attributeStringf30f39f0.set(this, "datetime", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "datetime")
+        set(newValue) {attributeStringf320f1e5.set(this, "datetime", newValue)}
 
 
 }

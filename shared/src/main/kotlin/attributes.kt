@@ -42,14 +42,13 @@ class BooleanEncoder(val trueValue: String = "true", val falseValue: String = "f
 
 class BooleanAttribute(trueValue: String = "true", falseValue: String = "false") : Attribute<Boolean>(BooleanEncoder(trueValue, falseValue))
 
-//private fun Boolean.tickerEncode(desc: PropertyMetadata) : String = if (this) desc.name else ""
-//object TickerEncoder : AttributeEncoder<Boolean> {
-//    override fun encode(attributeName: String, value: Boolean): String = if (value) attributeName else ""
-//    override fun decode(attributeName: String, value: String): Boolean = value == attributeName
-//}
-//
-//public class TickerAttribute(name : String) : Attribute<Boolean>(TickerEncoder) {
-//}
+private fun Boolean.tickerEncode(attributeName: String) : String = if (this) attributeName else ""
+object TickerEncoder : AttributeEncoder<Boolean> {
+    override fun encode(attributeName: String, value: Boolean): String = value.tickerEncode(attributeName)
+    override fun decode(attributeName: String, value: String): Boolean = value == attributeName
+}
+
+public class TickerAttribute : Attribute<Boolean>(TickerEncoder)
 
 class EnumEncoder<T : AttributeEnum>(val valuesMap : Map<String, T>) : AttributeEncoder<T> {
     override fun encode(attributeName: String, value: T): String = value.realValue

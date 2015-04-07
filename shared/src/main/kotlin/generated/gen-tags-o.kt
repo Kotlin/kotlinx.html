@@ -10,96 +10,96 @@ import html4k.impl.*
 
 public class OBJECT_(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("object", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var width : String
-        get()  = attributeStringf30f39f0.get(this, "width")
-        set(newValue) {attributeStringf30f39f0.set(this, "width", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "width")
+        set(newValue) {attributeStringf320f1e5.set(this, "width", newValue)}
 
     var usemap : String
-        get()  = attributeStringf30f39f0.get(this, "usemap")
-        set(newValue) {attributeStringf30f39f0.set(this, "usemap", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "usemap")
+        set(newValue) {attributeStringf320f1e5.set(this, "usemap", newValue)}
 
     var height : String
-        get()  = attributeStringf30f39f0.get(this, "height")
-        set(newValue) {attributeStringf30f39f0.set(this, "height", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "height")
+        set(newValue) {attributeStringf320f1e5.set(this, "height", newValue)}
 
     var type : String
-        get()  = attributeStringf30f39f0.get(this, "type")
-        set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "type")
+        set(newValue) {attributeStringf320f1e5.set(this, "type", newValue)}
 
     var classId : String
-        get()  = attributeStringf30f39f0.get(this, "classid")
-        set(newValue) {attributeStringf30f39f0.set(this, "classid", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "classid")
+        set(newValue) {attributeStringf320f1e5.set(this, "classid", newValue)}
 
     var data : String
-        get()  = attributeStringf30f39f0.get(this, "data")
-        set(newValue) {attributeStringf30f39f0.set(this, "data", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "data")
+        set(newValue) {attributeStringf320f1e5.set(this, "data", newValue)}
 
     var form : String
-        get()  = attributeStringf30f39f0.get(this, "form")
-        set(newValue) {attributeStringf30f39f0.set(this, "form", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "form")
+        set(newValue) {attributeStringf320f1e5.set(this, "form", newValue)}
 
     var name : String
-        get()  = attributeStringf30f39f0.get(this, "name")
-        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "name")
+        set(newValue) {attributeStringf320f1e5.set(this, "name", newValue)}
 
 
 }
 
 public class OL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ol", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var reversed : Boolean
-        get()  = attributeBooleanReversedEmpty92b1af37.get(this, "reversed")
-        set(newValue) {attributeBooleanReversedEmpty92b1af37.set(this, "reversed", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "reversed")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "reversed", newValue)}
 
     var start : String
-        get()  = attributeStringf30f39f0.get(this, "start")
-        set(newValue) {attributeStringf30f39f0.set(this, "start", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "start")
+        set(newValue) {attributeStringf320f1e5.set(this, "start", newValue)}
 
 
 }
 
 public class OPTGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("optgroup", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var disabled : Boolean
-        get()  = attributeBooleanDisabledEmpty700d95bd.get(this, "disabled")
-        set(newValue) {attributeBooleanDisabledEmpty700d95bd.set(this, "disabled", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "disabled")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "disabled", newValue)}
 
     var label : String
-        get()  = attributeStringf30f39f0.get(this, "label")
-        set(newValue) {attributeStringf30f39f0.set(this, "label", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "label")
+        set(newValue) {attributeStringf320f1e5.set(this, "label", newValue)}
 
 
 }
 
 public class OPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("option", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var value : String
-        get()  = attributeStringf30f39f0.get(this, "value")
-        set(newValue) {attributeStringf30f39f0.set(this, "value", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "value")
+        set(newValue) {attributeStringf320f1e5.set(this, "value", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBooleanDisabledEmpty700d95bd.get(this, "disabled")
-        set(newValue) {attributeBooleanDisabledEmpty700d95bd.set(this, "disabled", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "disabled")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "disabled", newValue)}
 
     var label : String
-        get()  = attributeStringf30f39f0.get(this, "label")
-        set(newValue) {attributeStringf30f39f0.set(this, "label", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "label")
+        set(newValue) {attributeStringf320f1e5.set(this, "label", newValue)}
 
     var selected : Boolean
-        get()  = attributeBooleanSelectedEmpty1524e17e.get(this, "selected")
-        set(newValue) {attributeBooleanSelectedEmpty1524e17e.set(this, "selected", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "selected")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "selected", newValue)}
 
 
 }
 
 public class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("output", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var for_ : String
-        get()  = attributeStringf30f39f0.get(this, "for")
-        set(newValue) {attributeStringf30f39f0.set(this, "for", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "for")
+        set(newValue) {attributeStringf320f1e5.set(this, "for", newValue)}
 
     var form : String
-        get()  = attributeStringf30f39f0.get(this, "form")
-        set(newValue) {attributeStringf30f39f0.set(this, "form", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "form")
+        set(newValue) {attributeStringf320f1e5.set(this, "form", newValue)}
 
     var name : String
-        get()  = attributeStringf30f39f0.get(this, "name")
-        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "name")
+        set(newValue) {attributeStringf320f1e5.set(this, "name", newValue)}
 
 
 }

@@ -14,12 +14,12 @@ public class B(initialAttributes : Map<String, String>, override val consumer : 
 
 public class BASE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("base", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var href : String
-        get()  = attributeStringf30f39f0.get(this, "href")
-        set(newValue) {attributeStringf30f39f0.set(this, "href", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "href")
+        set(newValue) {attributeStringf320f1e5.set(this, "href", newValue)}
 
     var target : String
-        get()  = attributeStringf30f39f0.get(this, "target")
-        set(newValue) {attributeStringf30f39f0.set(this, "target", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "target")
+        set(newValue) {attributeStringf320f1e5.set(this, "target", newValue)}
 
 
 }
@@ -34,64 +34,64 @@ public class BDO(initialAttributes : Map<String, String>, override val consumer 
 
 public class BLOCKQUOTE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("blockquote", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var cite : String
-        get()  = attributeStringf30f39f0.get(this, "cite")
-        set(newValue) {attributeStringf30f39f0.set(this, "cite", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "cite")
+        set(newValue) {attributeStringf320f1e5.set(this, "cite", newValue)}
 
 
 }
 
 public class BODY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("body", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var onResize : String
-        get()  = attributeStringf30f39f0.get(this, "onresize")
-        set(newValue) {attributeStringf30f39f0.set(this, "onresize", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onresize")
+        set(newValue) {attributeStringf320f1e5.set(this, "onresize", newValue)}
 
     var onPopstate : String
-        get()  = attributeStringf30f39f0.get(this, "onpopstate")
-        set(newValue) {attributeStringf30f39f0.set(this, "onpopstate", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onpopstate")
+        set(newValue) {attributeStringf320f1e5.set(this, "onpopstate", newValue)}
 
     var onBeforeprint : String
-        get()  = attributeStringf30f39f0.get(this, "onbeforeprint")
-        set(newValue) {attributeStringf30f39f0.set(this, "onbeforeprint", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onbeforeprint")
+        set(newValue) {attributeStringf320f1e5.set(this, "onbeforeprint", newValue)}
 
     var onHashChange : String
-        get()  = attributeStringf30f39f0.get(this, "onhashchange")
-        set(newValue) {attributeStringf30f39f0.set(this, "onhashchange", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onhashchange")
+        set(newValue) {attributeStringf320f1e5.set(this, "onhashchange", newValue)}
 
     var onBeforeunLoad : String
-        get()  = attributeStringf30f39f0.get(this, "onbeforeunload")
-        set(newValue) {attributeStringf30f39f0.set(this, "onbeforeunload", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onbeforeunload")
+        set(newValue) {attributeStringf320f1e5.set(this, "onbeforeunload", newValue)}
 
     var onUndo : String
-        get()  = attributeStringf30f39f0.get(this, "onundo")
-        set(newValue) {attributeStringf30f39f0.set(this, "onundo", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onundo")
+        set(newValue) {attributeStringf320f1e5.set(this, "onundo", newValue)}
 
     var onOffline : String
-        get()  = attributeStringf30f39f0.get(this, "onoffline")
-        set(newValue) {attributeStringf30f39f0.set(this, "onoffline", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onoffline")
+        set(newValue) {attributeStringf320f1e5.set(this, "onoffline", newValue)}
 
     var onUnLoad : String
-        get()  = attributeStringf30f39f0.get(this, "onunload")
-        set(newValue) {attributeStringf30f39f0.set(this, "onunload", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onunload")
+        set(newValue) {attributeStringf320f1e5.set(this, "onunload", newValue)}
 
     var onStorage : String
-        get()  = attributeStringf30f39f0.get(this, "onstorage")
-        set(newValue) {attributeStringf30f39f0.set(this, "onstorage", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onstorage")
+        set(newValue) {attributeStringf320f1e5.set(this, "onstorage", newValue)}
 
     var onRedo : String
-        get()  = attributeStringf30f39f0.get(this, "onredo")
-        set(newValue) {attributeStringf30f39f0.set(this, "onredo", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onredo")
+        set(newValue) {attributeStringf320f1e5.set(this, "onredo", newValue)}
 
     var onMessage : String
-        get()  = attributeStringf30f39f0.get(this, "onmessage")
-        set(newValue) {attributeStringf30f39f0.set(this, "onmessage", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onmessage")
+        set(newValue) {attributeStringf320f1e5.set(this, "onmessage", newValue)}
 
     var onAfterprint : String
-        get()  = attributeStringf30f39f0.get(this, "onafterprint")
-        set(newValue) {attributeStringf30f39f0.set(this, "onafterprint", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "onafterprint")
+        set(newValue) {attributeStringf320f1e5.set(this, "onafterprint", newValue)}
 
     var onOnline : String
-        get()  = attributeStringf30f39f0.get(this, "ononline")
-        set(newValue) {attributeStringf30f39f0.set(this, "ononline", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "ononline")
+        set(newValue) {attributeStringf320f1e5.set(this, "ononline", newValue)}
 
 
 }
@@ -102,48 +102,48 @@ public class BR(initialAttributes : Map<String, String>, override val consumer :
 
 public class BUTTON(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("button", consumer, initialAttributes), AServerAttributeGroupFacade, CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade, ButtonServerAttributeGroupFacade {
     var formMethod : FormMethod
-        get()  = attributeFormMethodFormMethodValuesc1502221.get(this, "formmethod")
-        set(newValue) {attributeFormMethodFormMethodValuesc1502221.set(this, "formmethod", newValue)}
+        get()  = attributeFormMethodFormMethodValuesb6b1a1fd.get(this, "formmethod")
+        set(newValue) {attributeFormMethodFormMethodValuesb6b1a1fd.set(this, "formmethod", newValue)}
 
     var formNovalidate : Boolean
-        get()  = attributeBooleanFormNovalidateEmpty58f6767e.get(this, "formnovalidate")
-        set(newValue) {attributeBooleanFormNovalidateEmpty58f6767e.set(this, "formnovalidate", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "formnovalidate")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "formnovalidate", newValue)}
 
     var autoFocus : Boolean
-        get()  = attributeBooleanAutoFocusEmpty84bc6550.get(this, "autofocus")
-        set(newValue) {attributeBooleanAutoFocusEmpty84bc6550.set(this, "autofocus", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "autofocus")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "autofocus", newValue)}
 
     var value : String
-        get()  = attributeStringf30f39f0.get(this, "value")
-        set(newValue) {attributeStringf30f39f0.set(this, "value", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "value")
+        set(newValue) {attributeStringf320f1e5.set(this, "value", newValue)}
 
     var formEncType : FormEncType
-        get()  = attributeFormEncTypeFormEncTypeValues6f38fb81.get(this, "formenctype")
-        set(newValue) {attributeFormEncTypeFormEncTypeValues6f38fb81.set(this, "formenctype", newValue)}
+        get()  = attributeFormEncTypeFormEncTypeValues649a7b5d.get(this, "formenctype")
+        set(newValue) {attributeFormEncTypeFormEncTypeValues649a7b5d.set(this, "formenctype", newValue)}
 
     var formAction : String
-        get()  = attributeStringf30f39f0.get(this, "formaction")
-        set(newValue) {attributeStringf30f39f0.set(this, "formaction", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "formaction")
+        set(newValue) {attributeStringf320f1e5.set(this, "formaction", newValue)}
 
     var form : String
-        get()  = attributeStringf30f39f0.get(this, "form")
-        set(newValue) {attributeStringf30f39f0.set(this, "form", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "form")
+        set(newValue) {attributeStringf320f1e5.set(this, "form", newValue)}
 
     var name : String
-        get()  = attributeStringf30f39f0.get(this, "name")
-        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "name")
+        set(newValue) {attributeStringf320f1e5.set(this, "name", newValue)}
 
     var formTarget : String
-        get()  = attributeStringf30f39f0.get(this, "formtarget")
-        set(newValue) {attributeStringf30f39f0.set(this, "formtarget", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "formtarget")
+        set(newValue) {attributeStringf320f1e5.set(this, "formtarget", newValue)}
 
     var type : String
-        get()  = attributeStringf30f39f0.get(this, "type")
-        set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "type")
+        set(newValue) {attributeStringf320f1e5.set(this, "type", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBooleanDisabledEmpty700d95bd.get(this, "disabled")
-        set(newValue) {attributeBooleanDisabledEmpty700d95bd.set(this, "disabled", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "disabled")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "disabled", newValue)}
 
 
 }

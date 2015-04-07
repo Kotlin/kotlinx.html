@@ -50,8 +50,8 @@ public class HR(initialAttributes : Map<String, String>, override val consumer :
 
 public class HTML(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("html", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var manifest : String
-        get()  = attributeStringf30f39f0.get(this, "manifest")
-        set(newValue) {attributeStringf30f39f0.set(this, "manifest", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "manifest")
+        set(newValue) {attributeStringf320f1e5.set(this, "manifest", newValue)}
 
 
 }

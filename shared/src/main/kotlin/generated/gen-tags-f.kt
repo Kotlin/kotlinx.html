@@ -10,16 +10,16 @@ import html4k.impl.*
 
 public class FIELDSET(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("fieldset", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var disabled : Boolean
-        get()  = attributeBooleanDisabledEmpty700d95bd.get(this, "disabled")
-        set(newValue) {attributeBooleanDisabledEmpty700d95bd.set(this, "disabled", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "disabled")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "disabled", newValue)}
 
     var form : String
-        get()  = attributeStringf30f39f0.get(this, "form")
-        set(newValue) {attributeStringf30f39f0.set(this, "form", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "form")
+        set(newValue) {attributeStringf320f1e5.set(this, "form", newValue)}
 
     var name : String
-        get()  = attributeStringf30f39f0.get(this, "name")
-        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "name")
+        set(newValue) {attributeStringf320f1e5.set(this, "name", newValue)}
 
 
 }
@@ -34,36 +34,36 @@ public class FOOTER(initialAttributes : Map<String, String>, override val consum
 
 public class FORM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("form", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var autoComplete : Boolean
-        get()  = attributeBooleanOnOff7b6fdc29.get(this, "autocomplete")
-        set(newValue) {attributeBooleanOnOff7b6fdc29.set(this, "autocomplete", newValue)}
+        get()  = attributeBooleanOnOff9ca5e2.get(this, "autocomplete")
+        set(newValue) {attributeBooleanOnOff9ca5e2.set(this, "autocomplete", newValue)}
 
     var action : String
-        get()  = attributeStringf30f39f0.get(this, "action")
-        set(newValue) {attributeStringf30f39f0.set(this, "action", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "action")
+        set(newValue) {attributeStringf320f1e5.set(this, "action", newValue)}
 
     var method : Method
-        get()  = attributeMethodMethodValuesdafb50a1.get(this, "method")
-        set(newValue) {attributeMethodMethodValuesdafb50a1.set(this, "method", newValue)}
+        get()  = attributeMethodMethodValuesd05cd07d.get(this, "method")
+        set(newValue) {attributeMethodMethodValuesd05cd07d.set(this, "method", newValue)}
 
     var acceptCharset : String
-        get()  = attributeStringf30f39f0.get(this, "accept-charset")
-        set(newValue) {attributeStringf30f39f0.set(this, "accept-charset", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "accept-charset")
+        set(newValue) {attributeStringf320f1e5.set(this, "accept-charset", newValue)}
 
     var novalidate : Boolean
-        get()  = attributeBooleanNovalidateEmpty1f6365c2.get(this, "novalidate")
-        set(newValue) {attributeBooleanNovalidateEmpty1f6365c2.set(this, "novalidate", newValue)}
+        get()  = attributeBooleanbf9581c0.get(this, "novalidate")
+        set(newValue) {attributeBooleanbf9581c0.set(this, "novalidate", newValue)}
 
     var target : String
-        get()  = attributeStringf30f39f0.get(this, "target")
-        set(newValue) {attributeStringf30f39f0.set(this, "target", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "target")
+        set(newValue) {attributeStringf320f1e5.set(this, "target", newValue)}
 
     var encType : EncType
-        get()  = attributeEncTypeEncTypeValues8af39d01.get(this, "enctype")
-        set(newValue) {attributeEncTypeEncTypeValues8af39d01.set(this, "enctype", newValue)}
+        get()  = attributeEncTypeEncTypeValues80551cdd.get(this, "enctype")
+        set(newValue) {attributeEncTypeEncTypeValues80551cdd.set(this, "enctype", newValue)}
 
     var name : String
-        get()  = attributeStringf30f39f0.get(this, "name")
-        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "name")
+        set(newValue) {attributeStringf320f1e5.set(this, "name", newValue)}
 
 
 }

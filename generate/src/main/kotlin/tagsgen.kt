@@ -47,17 +47,17 @@ fun <O : Appendable> O.builderFunction(tag : TagInfo) : O = with {
 private fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): AttributeRequest {
     val options = LinkedList<Const<*>>()
 
-    if (attribute.isEnum) {
-        options.add(ReferenceConst(attribute.type.decapitalize() + "Values"))
-    } else if (attribute.type == "Boolean" && attribute.trueFalse.isNotEmpty()) {
+    if (attribute.type == AttributeType.ENUM) {
+        options.add(ReferenceConst(attribute.enumTypeName.decapitalize() + "Values"))
+    } else if (attribute.type == AttributeType.BOOLEAN && attribute.trueFalse.isNotEmpty()) {
         options.addAll(attribute.trueFalse.map { StringConst(it) })
     }
 
-    val attributeRequest = AttributeRequest(attribute.type, options)
+    val attributeRequest = AttributeRequest(attribute.type, attribute.enumTypeName, options)
     Repository.attributeDelegateRequests.add(attributeRequest)
 
     append("    ")
-    variable(Var(attribute.fieldName, attribute.type, true))
+    variable(Var(attribute.fieldName, attribute.typeName, true))
     return attributeRequest
 }
 
@@ -100,12 +100,13 @@ private fun buildSuggestedAttributesArgument(tag: TagInfo) : String =
     } else {
         tag.suggestedAttributes.map {
             val name = Repository.attributes[it].fieldName
-            val type = Repository.attributes[it].type
 
-            val encoded = when (type) {
-                "String" -> "$name"
-                "Boolean" -> "$name?.booleanEncode()"
-                else -> "$name?.enumEncode()"
+            val encoded = when (Repository.attributes[it].type) {
+                AttributeType.STRING -> "$name"
+                AttributeType.BOOLEAN -> "$name?.booleanEncode()"
+                AttributeType.ENUM -> "$name?.enumEncode()"
+                AttributeType.TICKER -> "$name?.tickerEncode(${it.quote()})"
+                else -> throw UnsupportedOperationException()
             }
 
             "\"$it\" to $encoded"
@@ -117,7 +118,7 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean =
 
     tag.suggestedAttributes.forEach {
         val attributeInfo = Repository.attributes[it]
-        arguments.add(Var(attributeInfo.fieldName, attributeInfo.type + "?", defaultValue = "null"))
+        arguments.add(Var(attributeInfo.fieldName, attributeInfo.typeName + "?", defaultValue = "null"))
     }
 
     if (blockOrContent) {

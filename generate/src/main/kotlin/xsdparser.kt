@@ -46,27 +46,27 @@ fun handleAttributeDeclaration(attributeDeclaration : XSAttributeDecl) {
             Repository.attributeEnums[safeName.capitalize()] = enumEntries.toAttributeValues()
         }
 
-        attributeInfo = AttributeInfo(name, "String", safeName)
+        attributeInfo = AttributeInfo(name, AttributeType.STRING, safeName)
     } else if (type.isPrimitive()) {
-        attributeInfo = AttributeInfo(name, xsdToType[type.getPrimitiveType().getName()] ?: "String", safeName)
+        attributeInfo = AttributeInfo(name, xsdToType[type.getPrimitiveType().getName()] ?: AttributeType.STRING, safeName)
     } else if (type.isRestriction()) {
         val restriction = type.asRestriction()
         val enumEntries = restriction.getDeclaredFacets().filter { it.getName() == "enumeration" }.map { it.getValue().value }
 
         if (enumEntries.size() == 1 && enumEntries.single() == name) {
             // probably ticker
-            attributeInfo = AttributeInfo(name, "Boolean", safeName, trueFalse = listOf(name, ""))
+            attributeInfo = AttributeInfo(name, AttributeType.TICKER, safeName)
         } else if (enumEntries.size() == 2 && enumEntries.sort() == listOf("off", "on")) {
-            attributeInfo = AttributeInfo(name, "Boolean", safeName, trueFalse = listOf("on", "off"))
+            attributeInfo = AttributeInfo(name, AttributeType.BOOLEAN, safeName, trueFalse = listOf("on", "off"))
         } else {
             val enumTypeName = safeName.capitalize()
             Repository.attributeEnums[enumTypeName] = enumEntries.toAttributeValues()
             Repository.strictEnums.add(enumTypeName)
 
-            attributeInfo = AttributeInfo(name, enumTypeName, safeName)
+            attributeInfo = AttributeInfo(name, AttributeType.ENUM, safeName, enumTypeName = enumTypeName)
         }
     } else {
-        attributeInfo = AttributeInfo(name, "String", safeName)
+        attributeInfo = AttributeInfo(name, AttributeType.STRING, safeName)
     }
 
     Repository.attributes[name] = attributeInfo
@@ -142,7 +142,7 @@ fun fillRepository() {
 }
 
 private val xsdToType = mapOf(
-        "boolean" to "Boolean",
-        "string" to "String",
-        "anyURI" to "String" // TODO links
+        "boolean" to AttributeType.BOOLEAN,
+        "string" to AttributeType.STRING,
+        "anyURI" to AttributeType.STRING // TODO links
 )

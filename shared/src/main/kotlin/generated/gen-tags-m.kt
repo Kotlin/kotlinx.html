@@ -10,8 +10,8 @@ import html4k.impl.*
 
 public class MAP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("map", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var name : String
-        get()  = attributeStringf30f39f0.get(this, "name")
-        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "name")
+        set(newValue) {attributeStringf320f1e5.set(this, "name", newValue)}
 
 
 }
@@ -30,60 +30,60 @@ public class MATHML(initialAttributes : Map<String, String>, override val consum
 
 public class MENU(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("menu", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var type : String
-        get()  = attributeStringf30f39f0.get(this, "type")
-        set(newValue) {attributeStringf30f39f0.set(this, "type", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "type")
+        set(newValue) {attributeStringf320f1e5.set(this, "type", newValue)}
 
     var label : String
-        get()  = attributeStringf30f39f0.get(this, "label")
-        set(newValue) {attributeStringf30f39f0.set(this, "label", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "label")
+        set(newValue) {attributeStringf320f1e5.set(this, "label", newValue)}
 
 
 }
 
 public class META(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meta", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var charset : String
-        get()  = attributeStringf30f39f0.get(this, "charset")
-        set(newValue) {attributeStringf30f39f0.set(this, "charset", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "charset")
+        set(newValue) {attributeStringf320f1e5.set(this, "charset", newValue)}
 
     var content : String
-        get()  = attributeStringf30f39f0.get(this, "content")
-        set(newValue) {attributeStringf30f39f0.set(this, "content", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "content")
+        set(newValue) {attributeStringf320f1e5.set(this, "content", newValue)}
 
     var name : String
-        get()  = attributeStringf30f39f0.get(this, "name")
-        set(newValue) {attributeStringf30f39f0.set(this, "name", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "name")
+        set(newValue) {attributeStringf320f1e5.set(this, "name", newValue)}
 
     var httpEquiv : String
-        get()  = attributeStringf30f39f0.get(this, "http-equiv")
-        set(newValue) {attributeStringf30f39f0.set(this, "http-equiv", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "http-equiv")
+        set(newValue) {attributeStringf320f1e5.set(this, "http-equiv", newValue)}
 
 
 }
 
 public class METER(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meter", consumer, initialAttributes), CommonEventsGroupFacade, CoreAttributeGroupFacade, CoreServerAttributeGroupFacade {
     var min : String
-        get()  = attributeStringf30f39f0.get(this, "min")
-        set(newValue) {attributeStringf30f39f0.set(this, "min", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "min")
+        set(newValue) {attributeStringf320f1e5.set(this, "min", newValue)}
 
     var max : String
-        get()  = attributeStringf30f39f0.get(this, "max")
-        set(newValue) {attributeStringf30f39f0.set(this, "max", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "max")
+        set(newValue) {attributeStringf320f1e5.set(this, "max", newValue)}
 
     var value : String
-        get()  = attributeStringf30f39f0.get(this, "value")
-        set(newValue) {attributeStringf30f39f0.set(this, "value", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "value")
+        set(newValue) {attributeStringf320f1e5.set(this, "value", newValue)}
 
     var low : String
-        get()  = attributeStringf30f39f0.get(this, "low")
-        set(newValue) {attributeStringf30f39f0.set(this, "low", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "low")
+        set(newValue) {attributeStringf320f1e5.set(this, "low", newValue)}
 
     var high : String
-        get()  = attributeStringf30f39f0.get(this, "high")
-        set(newValue) {attributeStringf30f39f0.set(this, "high", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "high")
+        set(newValue) {attributeStringf320f1e5.set(this, "high", newValue)}
 
     var optimum : String
-        get()  = attributeStringf30f39f0.get(this, "optimum")
-        set(newValue) {attributeStringf30f39f0.set(this, "optimum", newValue)}
+        get()  = attributeStringf320f1e5.get(this, "optimum")
+        set(newValue) {attributeStringf320f1e5.set(this, "optimum", newValue)}
 
 
 }
