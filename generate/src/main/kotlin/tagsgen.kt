@@ -90,11 +90,34 @@ fun <O : Appendable> O.htmlTagBuilderMethod(tag : TagInfo, blockOrContent : Bool
     defineIs("build${tag.nameUpper}" + delegateArguments.join(", ", "(", ")"))
 }
 
-private fun buildSuggestedAttributesArgument(tag: TagInfo) : String =
+fun <O : Appendable> O.htmlTagEnumBuilderMethod(tag : TagInfo, blockOrContent : Boolean, enumAttribute : AttributeInfo) {
+    require(enumAttribute.type == AttributeType.ENUM)
+    require(enumAttribute.enumValues.isNotEmpty())
+
+    val arguments = tagBuilderFunctionArguments(tag, blockOrContent).filter {it.name != enumAttribute.fieldName}
+
+    enumAttribute.enumValues.forEach { enumValue ->
+        val delegateArguments = ArrayList<String>()
+
+        delegateArguments.add(buildSuggestedAttributesArgument(tag, mapOf(enumAttribute.fieldName to enumAttribute.typeName + "." + enumValue.fieldName + ".realValue")))
+
+        delegateArguments.add("consumer")
+        if (blockOrContent) {
+            delegateArguments.add("block")
+        } else {
+            delegateArguments.add("{+content}")
+        }
+
+        function(enumValue.fieldName + tag.safeName.capitalize(), arguments, "Unit")
+        defineIs("build${tag.nameUpper}" + delegateArguments.join(", ", "(", ")"))
+    }
+}
+
+private fun buildSuggestedAttributesArgument(tag: TagInfo, predefinedValues : Map<String, String> = emptyMap()) : String =
     tag.mergeAttributes().filter {it.name in tag.suggestedAttributes}.map { attribute ->
         val name = attribute.fieldName
 
-        val encoded = when (attribute.type) {
+        val encoded = if (name in predefinedValues) predefinedValues[name] else when (attribute.type) {
             AttributeType.STRING -> "$name"
             AttributeType.BOOLEAN -> "$name?.booleanEncode()"
             AttributeType.ENUM -> "$name?.enumEncode()"

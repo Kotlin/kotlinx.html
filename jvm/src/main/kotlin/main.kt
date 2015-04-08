@@ -37,9 +37,12 @@ fun main(args : Array<String>) {
 		body {
 			td {}
 			form("/someurl") {
-				input(InputType.checkBox, "cb1") {
-					disabled = true
+				checkBoxInput("cb1") {
 					+"var1"
+				}
+				input(InputType.checkBox, "cb2") {
+					disabled = true
+					+"var2"
 				}
 
 				buildMe2()

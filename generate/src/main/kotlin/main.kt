@@ -64,10 +64,20 @@ fun main(args: Array<String>) {
                 emptyLine()
 
                 Repository.tags.values().forEach {
-                    if (it.possibleChildren.isEmpty()) {
+                    val probablyContentOnly = it.possibleChildren.isEmpty()
+                    htmlTagBuilderMethod(it, true)
+                    if (probablyContentOnly) {
                         htmlTagBuilderMethod(it, false)
                     }
-                    htmlTagBuilderMethod(it, true)
+
+                    val someEnumAttribute = it.attributes.filter { it.type == AttributeType.ENUM && it.enumValues.isNotEmpty() }.maxBy { it.enumValues.size() } // ??
+                    if (someEnumAttribute != null) {
+                        htmlTagEnumBuilderMethod(it, true, someEnumAttribute)
+                        if (probablyContentOnly) {
+                            htmlTagEnumBuilderMethod(it, false, someEnumAttribute)
+                        }
+                    }
+
                     emptyLine()
                 }
 
