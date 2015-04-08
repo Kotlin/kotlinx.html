@@ -124,8 +124,8 @@ fun iframe(block : IFRAME.() -> Unit) : Unit = buildIFRAME(emptyMap(), consumer,
 fun img(alt : String? = null, src : String? = null, content : String = "") : Unit = buildIMG(listOf("alt" to alt,"src" to src).toAttributesMap(), consumer, {+content})
 fun img(alt : String? = null, src : String? = null, block : IMG.() -> Unit) : Unit = buildIMG(listOf("alt" to alt,"src" to src).toAttributesMap(), consumer, block)
 
-fun input(content : String = "") : Unit = buildINPUT(emptyMap(), consumer, {+content})
-fun input(block : INPUT.() -> Unit) : Unit = buildINPUT(emptyMap(), consumer, block)
+fun input(type : InputType? = null, name : String? = null, content : String = "") : Unit = buildINPUT(listOf("type" to type?.enumEncode(),"name" to name).toAttributesMap(), consumer, {+content})
+fun input(type : InputType? = null, name : String? = null, block : INPUT.() -> Unit) : Unit = buildINPUT(listOf("type" to type?.enumEncode(),"name" to name).toAttributesMap(), consumer, block)
 
 fun ins(block : INS.() -> Unit) : Unit = buildINS(emptyMap(), consumer, block)
 

@@ -8,7 +8,9 @@ val globalSuggestedAttributes = listOf(
         "img" to "src",
         "script" to "type",
         "script" to "src",
-        "div" to "class"
+        "div" to "class",
+        "input" to "type",
+        "input" to "name"
 ).groupBy { it.first }.mapValues { it.getValue().map {it.second} }
 
 val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",

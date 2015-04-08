@@ -181,6 +181,10 @@ public class INPUT(initialAttributes : Map<String, String>, override val consume
         get()  = attributeString29bd7c40.get(this, "value")
         set(newValue) {attributeString29bd7c40.set(this, "value", newValue)}
 
+    var name : String
+        get()  = attributeString29bd7c40.get(this, "name")
+        set(newValue) {attributeString29bd7c40.set(this, "name", newValue)}
+
 
 }
 

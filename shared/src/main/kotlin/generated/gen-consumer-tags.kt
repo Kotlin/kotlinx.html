@@ -119,8 +119,8 @@ public fun <T, C : TagConsumer<T>> C.iframe(block : IFRAME.() -> Unit) : T = bui
 public fun <T, C : TagConsumer<T>> C.img(alt : String? = null, src : String? = null, content : String = "") : T = build(listOf("alt" to alt,"src" to src).toAttributesMap(), ::buildIMG, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.img(alt : String? = null, src : String? = null, block : IMG.() -> Unit) : T = build(listOf("alt" to alt,"src" to src).toAttributesMap(), ::buildIMG, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.input(content : String = "") : T = build(emptyMap(), ::buildINPUT, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.input(block : INPUT.() -> Unit) : T = build(emptyMap(), ::buildINPUT, block).finalize()
+public fun <T, C : TagConsumer<T>> C.input(type : InputType? = null, name : String? = null, content : String = "") : T = build(listOf("type" to type?.enumEncode(),"name" to name).toAttributesMap(), ::buildINPUT, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.input(type : InputType? = null, name : String? = null, block : INPUT.() -> Unit) : T = build(listOf("type" to type?.enumEncode(),"name" to name).toAttributesMap(), ::buildINPUT, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.ins(block : INS.() -> Unit) : T = build(emptyMap(), ::buildINS, block).finalize()
 

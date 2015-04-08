@@ -34,7 +34,8 @@ fun main(args : Array<String>) {
 			form("/someurl") {
 				input {
 					type = InputType.checkBox
-					attributes["name"] = "cb1"
+					name = "cb1"
+
 					disabled = true
 					+"var1"
 				}

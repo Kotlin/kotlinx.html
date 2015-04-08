@@ -1373,6 +1373,7 @@
             <xsd:attribute name="width"/>
             <xsd:attribute name="files"/>
             <xsd:attribute name="value"/>
+            <xsd:attribute name="name"/>
         </xsd:complexType>
     </xsd:element>
 
