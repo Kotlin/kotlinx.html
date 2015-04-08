@@ -165,6 +165,7 @@ fun main(args: Array<String>) {
             emptyLine()
             import("html4k.*")
             import("kotlin.js.dom.html.*")
+            import("kotlin.js.dom.html5.*")
             emptyLine()
 
             warning()

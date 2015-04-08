@@ -92,4 +92,7 @@ HTMLTableCellElement
 HTMLFrameSetElement
 HTMLFrameElement
 HTMLIFrameElement
+HTMLCanvasElement
 """.split("\\s+").toSet()
+
+val replacements = listOf("img" to "image", "h\\d" to "heading", "p" to "paragraph", "a" to "anchor", "blockquote" to "quote", "td" to "TableCell", "tr" to "TableRow", "th" to "TableCol")

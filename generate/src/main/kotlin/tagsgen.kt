@@ -1,7 +1,6 @@
 package html4k.generate
 
 import java.util.ArrayList
-import java.util.HashSet
 import java.util.LinkedList
 
 fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) : O = with {
@@ -61,8 +60,10 @@ private fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): Attrib
 
 fun probeType(htmlClassName : String) : Boolean = htmlClassName in knownTagClasses
 
-fun getTagResultClass(tag : TagInfo) =
-        listOf(tag.safeName.capitalize(), tag.safeName.toUpperCase())
+fun tagCandidates(tag : TagInfo) = (listOf(tag.safeName) + replacements.map { tag.safeName.replaceAll(it.first, it.second) }).flatMap { listOf(it.capitalize(), it.toUpperCase()) }
+
+fun getTagResultClass(tag: TagInfo) =
+        tagCandidates(tag)
                 .map { "HTML${it}Element" }
                 .firstOrNull { probeType(it) } ?: "HTMLElement"
 
