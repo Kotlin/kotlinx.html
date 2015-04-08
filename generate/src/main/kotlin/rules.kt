@@ -34,3 +34,62 @@ val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
 
 val excludeAttributes = listOf("lang$").map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
 fun isAtrributeExcluded(name : String) = excludeAttributes.any { it.matcher(name).find() }
+
+val knownTagClasses = """
+        HTMLCollection
+HTMLOptionsCollection
+HTMLDocument
+HTMLElement
+HTMLHtmlElement
+HTMLHeadElement
+HTMLLinkElement
+HTMLTitleElement
+HTMLMetaElement
+HTMLBaseElement
+HTMLIsIndexElement
+HTMLStyleElement
+HTMLBodyElement
+HTMLFormElement
+HTMLSelectElement
+HTMLOptGroupElement
+HTMLOptionElement
+HTMLInputElement
+HTMLTextAreaElement
+HTMLButtonElement
+HTMLLabelElement
+HTMLFieldSetElement
+HTMLLegendElement
+HTMLUListElement
+HTMLOListElement
+HTMLDListElement
+HTMLDirectoryElement
+HTMLMenuElement
+HTMLLIElement
+HTMLDivElement
+HTMLParagraphElement
+HTMLHeadingElement
+HTMLQuoteElement
+HTMLPreElement
+HTMLBRElement
+HTMLBaseFontElement
+HTMLFontElement
+HTMLHRElement
+HTMLModElement
+HTMLAnchorElement
+HTMLImageElement
+HTMLObjectElement
+HTMLParamElement
+HTMLAppletElement
+HTMLMapElement
+HTMLAreaElement
+HTMLScriptElement
+HTMLTableElement
+HTMLTableCaptionElement
+HTMLTableColElement
+HTMLTableSectionElement
+HTMLTableRowElement
+HTMLTableCellElement
+HTMLFrameSetElement
+HTMLFrameElement
+HTMLIFrameElement
+""".split("\\s+").toSet()

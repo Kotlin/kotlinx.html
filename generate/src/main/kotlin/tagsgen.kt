@@ -59,7 +59,35 @@ private fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): Attrib
     return attributeRequest
 }
 
-fun <O : Appendable> O.consumerBuilder(tag : TagInfo, blockOrContent : Boolean) {
+fun probeType(htmlClassName : String) : Boolean = htmlClassName in knownTagClasses
+
+fun getTagResultClass(tag : TagInfo) =
+        listOf(tag.safeName.capitalize(), tag.safeName.toUpperCase())
+                .map { "HTML${it}Element" }
+                .firstOrNull { probeType(it) } ?: "HTMLElement"
+
+fun <O : Appendable> O.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
+    val resultType = getTagResultClass(tag)
+
+    append("public ")
+    function(tag.safeName, tagBuilderFunctionArguments(tag, blockOrContent), resultType, receiver = "TagConsumer<HTMLElement>")
+    defineIs(StringBuilder {
+        functionCall("build", listOf(
+                buildSuggestedAttributesArgument(tag),
+                "::build${tag.nameUpper}",
+                if (blockOrContent) "block" else "{+content}"
+        ))
+        append(".")
+        functionCall("finalize", emptyList())
+
+        if (resultType != "HTMLElement") {
+            append(" as ")
+            append(resultType)
+        }
+    })
+}
+
+fun <O : Appendable> O.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
     append("public ")
     function(tag.safeName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
     defineIs(StringBuilder {

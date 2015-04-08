@@ -12,7 +12,9 @@ fun main(args: Array<String>) {
 
     val packg = "html4k"
     val todir = "shared/src/main/kotlin/generated"
+    val jsdir = "js/src/main/kotlin/generated"
     File(todir).mkdirs()
+    File(jsdir).mkdirs()
 
     FileOutputStream("$todir/gen-attr-traits.kt").writer().use {
         it.with {
@@ -149,9 +151,31 @@ fun main(args: Array<String>) {
 
             Repository.tags.values().forEach {
                 if (it.possibleChildren.isEmpty()) {
-                    consumerBuilder(it, false)
+                    consumerBuilderShared(it, false)
                 }
-                consumerBuilder(it, true)
+                consumerBuilderShared(it, true)
+                emptyLine()
+            }
+        }
+    }
+
+    FileOutputStream("$jsdir/gen-consumer-tags.kt").writer("UTF-8").use {
+        it.with {
+            packg(packg + ".js")
+            emptyLine()
+            import("html4k.*")
+            import("kotlin.js.dom.html.*")
+            emptyLine()
+
+            warning()
+            emptyLine()
+            emptyLine()
+
+            Repository.tags.values().forEach {
+                if (it.possibleChildren.isEmpty()) {
+                    consumerBuilderJS(it, false)
+                }
+                consumerBuilderJS(it, true)
                 emptyLine()
             }
         }
