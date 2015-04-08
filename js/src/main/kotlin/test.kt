@@ -3,6 +3,7 @@ package test
 import html4k.*
 import html4k.dom.buildAndAppendChild
 import html4k.dom.buildHTML
+import html4k.stream.appendHTML
 import kotlin.js.dom.html.HTMLElement
 import kotlin.js.dom.html.document
 import kotlin.js.dom.html.window
@@ -12,9 +13,9 @@ fun onReady() {
         div("bold") {
             div {
                 a("http://kotlinlang.org") {
+                    target = Target.blank
                     +"Kotlin site"
                     div {
-
                     }
                 }
                 p {
@@ -30,6 +31,8 @@ fun onReady() {
         div.buildAndAppendChild {
             div {
                 +"added it"
+            }
+            div {
             }
         }
     }, 10000L)

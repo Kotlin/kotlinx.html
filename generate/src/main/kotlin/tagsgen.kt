@@ -75,8 +75,6 @@ fun <O : Appendable> O.consumerBuilder(tag : TagInfo, blockOrContent : Boolean) 
 }
 
 fun <O : Appendable> O.htmlTagBuilderMethod(tag : TagInfo, blockOrContent : Boolean) {
-    append("    open ")
-
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent)
 
     val delegateArguments = ArrayList<String>()

@@ -11,23 +11,15 @@ import org.w3c.dom.Element
 import java.io.PrintStream
 import kotlin.dom.first
 
-fun <T> TagConsumer<T>.buildMe() =
-	html {
-		body {
-			a {
-				+"wfwe"
-			}
-			div("block deprecated") {
-				a(href = "http://kotlinlang.org") {
-					target = Target.blank
-					attributes["custom"] = "custom"
-					+"test me"
+fun <T> TagConsumer<T>.buildMe() = html { buildMe2() }
+fun HTMLTag.buildMe2() =
+				div("block deprecated") {
+					a(href = "http://kotlinlang.org") {
+						target = Target.blank
+						attributes["custom"] = "custom"
+						+"test me"
+					}
 				}
-			}
-			div("alive") {
-			}
-		}
-	}
 
 fun main(args : Array<String>) {
 	System.out.appendHTML().buildMe().println()
@@ -35,6 +27,27 @@ fun main(args : Array<String>) {
 	System.out.appendHTML().filter { if (it.tagName == "div") DROP else PASS }.buildMe().println()
 
 	System.out.appendHTML().filter { if (it.tagName == "div" && it.attributes["class"]?.contains("deprecated") ?: false) SKIP else PASS }.buildMe().append("\n")
+
+	System.out.appendHTML().html {
+		body {
+			td {}
+			form("/someurl") {
+				input {
+					type = "checkbox"
+					attributes["name"] = "cb1"
+					disabled = true
+					+"var1"
+				}
+
+				buildMe2()
+
+				input {
+					type = "submit"
+					+"Go"
+				}
+			}
+		}
+	}.println()
 
 	System.out.appendHTML().measureTime().html {
 		head {
@@ -68,6 +81,14 @@ fun main(args : Array<String>) {
 	}
 
 	System.out.println(document.serialize())
+
+//	document {
+//
+//		this@document.buildAndAppendChild {
+//			div {
+//			}
+//		}
+//	}
 
 	println(document {
 		appendChild(

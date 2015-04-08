@@ -8,6 +8,7 @@ fun <O : Appendable> O.attributePseudoDelegate(request : AttributeRequest) {
     val classNamePrefix = request.type.classPrefix
     val className = "${classNamePrefix}Attribute"
 
+    append("private ")
     variable(Var(request.delegatePropertyName, "Attribute<${request.typeName}>"))
     defineIs(StringBuilder {
         functionCallConsts(className, request.options)

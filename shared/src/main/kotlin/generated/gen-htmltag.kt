@@ -12,240 +12,240 @@ public open class HTMLTag(override val tagName : String, override val consumer :
 
     override val attributes : DelegatingMap = DelegatingMap(initialAttributes, this) {consumer}
 
-    open fun a(href : String? = null, target : String? = null, block : A.() -> Unit) : Unit = buildA(listOf("href" to href,"target" to target).toAttributesMap(), consumer, block)
+fun a(href : String? = null, target : String? = null, block : A.() -> Unit) : Unit = buildA(listOf("href" to href,"target" to target).toAttributesMap(), consumer, block)
 
-    open fun abbr(block : ABBR.() -> Unit) : Unit = buildABBR(emptyMap(), consumer, block)
+fun abbr(block : ABBR.() -> Unit) : Unit = buildABBR(emptyMap(), consumer, block)
 
-    open fun address(block : ADDRESS.() -> Unit) : Unit = buildADDRESS(emptyMap(), consumer, block)
+fun address(block : ADDRESS.() -> Unit) : Unit = buildADDRESS(emptyMap(), consumer, block)
 
-    open fun area(alt : String? = null, content : String = "") : Unit = buildAREA(listOf("alt" to alt).toAttributesMap(), consumer, {+content})
-    open fun area(alt : String? = null, block : AREA.() -> Unit) : Unit = buildAREA(listOf("alt" to alt).toAttributesMap(), consumer, block)
+fun area(alt : String? = null, content : String = "") : Unit = buildAREA(listOf("alt" to alt).toAttributesMap(), consumer, {+content})
+fun area(alt : String? = null, block : AREA.() -> Unit) : Unit = buildAREA(listOf("alt" to alt).toAttributesMap(), consumer, block)
 
-    open fun article(block : ARTICLE.() -> Unit) : Unit = buildARTICLE(emptyMap(), consumer, block)
+fun article(block : ARTICLE.() -> Unit) : Unit = buildARTICLE(emptyMap(), consumer, block)
 
-    open fun aside(block : ASIDE.() -> Unit) : Unit = buildASIDE(emptyMap(), consumer, block)
+fun aside(block : ASIDE.() -> Unit) : Unit = buildASIDE(emptyMap(), consumer, block)
 
-    open fun audio(block : AUDIO.() -> Unit) : Unit = buildAUDIO(emptyMap(), consumer, block)
+fun audio(block : AUDIO.() -> Unit) : Unit = buildAUDIO(emptyMap(), consumer, block)
 
-    open fun b(block : B.() -> Unit) : Unit = buildB(emptyMap(), consumer, block)
+fun b(block : B.() -> Unit) : Unit = buildB(emptyMap(), consumer, block)
 
-    open fun base(content : String = "") : Unit = buildBASE(emptyMap(), consumer, {+content})
-    open fun base(block : BASE.() -> Unit) : Unit = buildBASE(emptyMap(), consumer, block)
+fun base(content : String = "") : Unit = buildBASE(emptyMap(), consumer, {+content})
+fun base(block : BASE.() -> Unit) : Unit = buildBASE(emptyMap(), consumer, block)
 
-    open fun bdi(block : BDI.() -> Unit) : Unit = buildBDI(emptyMap(), consumer, block)
+fun bdi(block : BDI.() -> Unit) : Unit = buildBDI(emptyMap(), consumer, block)
 
-    open fun bdo(block : BDO.() -> Unit) : Unit = buildBDO(emptyMap(), consumer, block)
+fun bdo(block : BDO.() -> Unit) : Unit = buildBDO(emptyMap(), consumer, block)
 
-    open fun blockQuote(block : BLOCKQUOTE.() -> Unit) : Unit = buildBLOCKQUOTE(emptyMap(), consumer, block)
+fun blockQuote(block : BLOCKQUOTE.() -> Unit) : Unit = buildBLOCKQUOTE(emptyMap(), consumer, block)
 
-    open fun body(block : BODY.() -> Unit) : Unit = buildBODY(emptyMap(), consumer, block)
+fun body(block : BODY.() -> Unit) : Unit = buildBODY(emptyMap(), consumer, block)
 
-    open fun br(content : String = "") : Unit = buildBR(emptyMap(), consumer, {+content})
-    open fun br(block : BR.() -> Unit) : Unit = buildBR(emptyMap(), consumer, block)
+fun br(content : String = "") : Unit = buildBR(emptyMap(), consumer, {+content})
+fun br(block : BR.() -> Unit) : Unit = buildBR(emptyMap(), consumer, block)
 
-    open fun button(block : BUTTON.() -> Unit) : Unit = buildBUTTON(emptyMap(), consumer, block)
+fun button(block : BUTTON.() -> Unit) : Unit = buildBUTTON(emptyMap(), consumer, block)
 
-    open fun canvas(content : String = "") : Unit = buildCANVAS(emptyMap(), consumer, {+content})
-    open fun canvas(block : CANVAS.() -> Unit) : Unit = buildCANVAS(emptyMap(), consumer, block)
+fun canvas(content : String = "") : Unit = buildCANVAS(emptyMap(), consumer, {+content})
+fun canvas(block : CANVAS.() -> Unit) : Unit = buildCANVAS(emptyMap(), consumer, block)
 
-    open fun caption(block : CAPTION.() -> Unit) : Unit = buildCAPTION(emptyMap(), consumer, block)
+fun caption(block : CAPTION.() -> Unit) : Unit = buildCAPTION(emptyMap(), consumer, block)
 
-    open fun cite(block : CITE.() -> Unit) : Unit = buildCITE(emptyMap(), consumer, block)
+fun cite(block : CITE.() -> Unit) : Unit = buildCITE(emptyMap(), consumer, block)
 
-    open fun code(block : CODE.() -> Unit) : Unit = buildCODE(emptyMap(), consumer, block)
+fun code(block : CODE.() -> Unit) : Unit = buildCODE(emptyMap(), consumer, block)
 
-    open fun col(content : String = "") : Unit = buildCOL(emptyMap(), consumer, {+content})
-    open fun col(block : COL.() -> Unit) : Unit = buildCOL(emptyMap(), consumer, block)
+fun col(content : String = "") : Unit = buildCOL(emptyMap(), consumer, {+content})
+fun col(block : COL.() -> Unit) : Unit = buildCOL(emptyMap(), consumer, block)
 
-    open fun colGroup(block : COLGROUP.() -> Unit) : Unit = buildCOLGROUP(emptyMap(), consumer, block)
+fun colGroup(block : COLGROUP.() -> Unit) : Unit = buildCOLGROUP(emptyMap(), consumer, block)
 
-    open fun command(content : String = "") : Unit = buildCOMMAND(emptyMap(), consumer, {+content})
-    open fun command(block : COMMAND.() -> Unit) : Unit = buildCOMMAND(emptyMap(), consumer, block)
+fun command(content : String = "") : Unit = buildCOMMAND(emptyMap(), consumer, {+content})
+fun command(block : COMMAND.() -> Unit) : Unit = buildCOMMAND(emptyMap(), consumer, block)
 
-    open fun dataList(block : DATALIST.() -> Unit) : Unit = buildDATALIST(emptyMap(), consumer, block)
+fun dataList(block : DATALIST.() -> Unit) : Unit = buildDATALIST(emptyMap(), consumer, block)
 
-    open fun dd(block : DD.() -> Unit) : Unit = buildDD(emptyMap(), consumer, block)
+fun dd(block : DD.() -> Unit) : Unit = buildDD(emptyMap(), consumer, block)
 
-    open fun del(block : DEL.() -> Unit) : Unit = buildDEL(emptyMap(), consumer, block)
+fun del(block : DEL.() -> Unit) : Unit = buildDEL(emptyMap(), consumer, block)
 
-    open fun details(block : DETAILS.() -> Unit) : Unit = buildDETAILS(emptyMap(), consumer, block)
+fun details(block : DETAILS.() -> Unit) : Unit = buildDETAILS(emptyMap(), consumer, block)
 
-    open fun dfn(block : DFN.() -> Unit) : Unit = buildDFN(emptyMap(), consumer, block)
+fun dfn(block : DFN.() -> Unit) : Unit = buildDFN(emptyMap(), consumer, block)
 
-    open fun dialog(block : DIALOG.() -> Unit) : Unit = buildDIALOG(emptyMap(), consumer, block)
+fun dialog(block : DIALOG.() -> Unit) : Unit = buildDIALOG(emptyMap(), consumer, block)
 
-    open fun div(classes : String? = null, block : DIV.() -> Unit) : Unit = buildDIV(listOf("class" to classes).toAttributesMap(), consumer, block)
+fun div(classes : String? = null, block : DIV.() -> Unit) : Unit = buildDIV(listOf("class" to classes).toAttributesMap(), consumer, block)
 
-    open fun dl(block : DL.() -> Unit) : Unit = buildDL(emptyMap(), consumer, block)
+fun dl(block : DL.() -> Unit) : Unit = buildDL(emptyMap(), consumer, block)
 
-    open fun dt(block : DT.() -> Unit) : Unit = buildDT(emptyMap(), consumer, block)
+fun dt(block : DT.() -> Unit) : Unit = buildDT(emptyMap(), consumer, block)
 
-    open fun em(block : EM.() -> Unit) : Unit = buildEM(emptyMap(), consumer, block)
+fun em(block : EM.() -> Unit) : Unit = buildEM(emptyMap(), consumer, block)
 
-    open fun embed(content : String = "") : Unit = buildEMBED(emptyMap(), consumer, {+content})
-    open fun embed(block : EMBED.() -> Unit) : Unit = buildEMBED(emptyMap(), consumer, block)
+fun embed(content : String = "") : Unit = buildEMBED(emptyMap(), consumer, {+content})
+fun embed(block : EMBED.() -> Unit) : Unit = buildEMBED(emptyMap(), consumer, block)
 
-    open fun fieldSet(block : FIELDSET.() -> Unit) : Unit = buildFIELDSET(emptyMap(), consumer, block)
+fun fieldSet(block : FIELDSET.() -> Unit) : Unit = buildFIELDSET(emptyMap(), consumer, block)
 
-    open fun figure(block : FIGURE.() -> Unit) : Unit = buildFIGURE(emptyMap(), consumer, block)
+fun figure(block : FIGURE.() -> Unit) : Unit = buildFIGURE(emptyMap(), consumer, block)
 
-    open fun footer(block : FOOTER.() -> Unit) : Unit = buildFOOTER(emptyMap(), consumer, block)
+fun footer(block : FOOTER.() -> Unit) : Unit = buildFOOTER(emptyMap(), consumer, block)
 
-    open fun form(action : String? = null, block : FORM.() -> Unit) : Unit = buildFORM(listOf("action" to action).toAttributesMap(), consumer, block)
+fun form(action : String? = null, block : FORM.() -> Unit) : Unit = buildFORM(listOf("action" to action).toAttributesMap(), consumer, block)
 
-    open fun h1(block : H1.() -> Unit) : Unit = buildH1(emptyMap(), consumer, block)
+fun h1(block : H1.() -> Unit) : Unit = buildH1(emptyMap(), consumer, block)
 
-    open fun h2(block : H2.() -> Unit) : Unit = buildH2(emptyMap(), consumer, block)
+fun h2(block : H2.() -> Unit) : Unit = buildH2(emptyMap(), consumer, block)
 
-    open fun h3(block : H3.() -> Unit) : Unit = buildH3(emptyMap(), consumer, block)
+fun h3(block : H3.() -> Unit) : Unit = buildH3(emptyMap(), consumer, block)
 
-    open fun h4(block : H4.() -> Unit) : Unit = buildH4(emptyMap(), consumer, block)
+fun h4(block : H4.() -> Unit) : Unit = buildH4(emptyMap(), consumer, block)
 
-    open fun h5(block : H5.() -> Unit) : Unit = buildH5(emptyMap(), consumer, block)
+fun h5(block : H5.() -> Unit) : Unit = buildH5(emptyMap(), consumer, block)
 
-    open fun h6(block : H6.() -> Unit) : Unit = buildH6(emptyMap(), consumer, block)
+fun h6(block : H6.() -> Unit) : Unit = buildH6(emptyMap(), consumer, block)
 
-    open fun head(block : HEAD.() -> Unit) : Unit = buildHEAD(emptyMap(), consumer, block)
+fun head(block : HEAD.() -> Unit) : Unit = buildHEAD(emptyMap(), consumer, block)
 
-    open fun header(block : HEADER.() -> Unit) : Unit = buildHEADER(emptyMap(), consumer, block)
+fun header(block : HEADER.() -> Unit) : Unit = buildHEADER(emptyMap(), consumer, block)
 
-    open fun hGroup(block : HGROUP.() -> Unit) : Unit = buildHGROUP(emptyMap(), consumer, block)
+fun hGroup(block : HGROUP.() -> Unit) : Unit = buildHGROUP(emptyMap(), consumer, block)
 
-    open fun hr(content : String = "") : Unit = buildHR(emptyMap(), consumer, {+content})
-    open fun hr(block : HR.() -> Unit) : Unit = buildHR(emptyMap(), consumer, block)
+fun hr(content : String = "") : Unit = buildHR(emptyMap(), consumer, {+content})
+fun hr(block : HR.() -> Unit) : Unit = buildHR(emptyMap(), consumer, block)
 
-    open fun html(block : HTML.() -> Unit) : Unit = buildHTML(emptyMap(), consumer, block)
+fun html(block : HTML.() -> Unit) : Unit = buildHTML(emptyMap(), consumer, block)
 
-    open fun i(block : I.() -> Unit) : Unit = buildI(emptyMap(), consumer, block)
+fun i(block : I.() -> Unit) : Unit = buildI(emptyMap(), consumer, block)
 
-    open fun iframe(content : String = "") : Unit = buildIFRAME(emptyMap(), consumer, {+content})
-    open fun iframe(block : IFRAME.() -> Unit) : Unit = buildIFRAME(emptyMap(), consumer, block)
+fun iframe(content : String = "") : Unit = buildIFRAME(emptyMap(), consumer, {+content})
+fun iframe(block : IFRAME.() -> Unit) : Unit = buildIFRAME(emptyMap(), consumer, block)
 
-    open fun img(alt : String? = null, src : String? = null, content : String = "") : Unit = buildIMG(listOf("alt" to alt,"src" to src).toAttributesMap(), consumer, {+content})
-    open fun img(alt : String? = null, src : String? = null, block : IMG.() -> Unit) : Unit = buildIMG(listOf("alt" to alt,"src" to src).toAttributesMap(), consumer, block)
+fun img(alt : String? = null, src : String? = null, content : String = "") : Unit = buildIMG(listOf("alt" to alt,"src" to src).toAttributesMap(), consumer, {+content})
+fun img(alt : String? = null, src : String? = null, block : IMG.() -> Unit) : Unit = buildIMG(listOf("alt" to alt,"src" to src).toAttributesMap(), consumer, block)
 
-    open fun input(alt : String? = null, content : String = "") : Unit = buildINPUT(listOf("alt" to alt).toAttributesMap(), consumer, {+content})
-    open fun input(alt : String? = null, block : INPUT.() -> Unit) : Unit = buildINPUT(listOf("alt" to alt).toAttributesMap(), consumer, block)
+fun input(alt : String? = null, content : String = "") : Unit = buildINPUT(listOf("alt" to alt).toAttributesMap(), consumer, {+content})
+fun input(alt : String? = null, block : INPUT.() -> Unit) : Unit = buildINPUT(listOf("alt" to alt).toAttributesMap(), consumer, block)
 
-    open fun ins(block : INS.() -> Unit) : Unit = buildINS(emptyMap(), consumer, block)
+fun ins(block : INS.() -> Unit) : Unit = buildINS(emptyMap(), consumer, block)
 
-    open fun kbd(block : KBD.() -> Unit) : Unit = buildKBD(emptyMap(), consumer, block)
+fun kbd(block : KBD.() -> Unit) : Unit = buildKBD(emptyMap(), consumer, block)
 
-    open fun keyGen(content : String = "") : Unit = buildKEYGEN(emptyMap(), consumer, {+content})
-    open fun keyGen(block : KEYGEN.() -> Unit) : Unit = buildKEYGEN(emptyMap(), consumer, block)
+fun keyGen(content : String = "") : Unit = buildKEYGEN(emptyMap(), consumer, {+content})
+fun keyGen(block : KEYGEN.() -> Unit) : Unit = buildKEYGEN(emptyMap(), consumer, block)
 
-    open fun label(block : LABEL.() -> Unit) : Unit = buildLABEL(emptyMap(), consumer, block)
+fun label(block : LABEL.() -> Unit) : Unit = buildLABEL(emptyMap(), consumer, block)
 
-    open fun legEnd(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap(), consumer, block)
+fun legEnd(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap(), consumer, block)
 
-    open fun li(block : LI.() -> Unit) : Unit = buildLI(emptyMap(), consumer, block)
+fun li(block : LI.() -> Unit) : Unit = buildLI(emptyMap(), consumer, block)
 
-    open fun link(content : String = "") : Unit = buildLINK(emptyMap(), consumer, {+content})
-    open fun link(block : LINK.() -> Unit) : Unit = buildLINK(emptyMap(), consumer, block)
+fun link(content : String = "") : Unit = buildLINK(emptyMap(), consumer, {+content})
+fun link(block : LINK.() -> Unit) : Unit = buildLINK(emptyMap(), consumer, block)
 
-    open fun map(block : MAP.() -> Unit) : Unit = buildMAP(emptyMap(), consumer, block)
+fun map(block : MAP.() -> Unit) : Unit = buildMAP(emptyMap(), consumer, block)
 
-    open fun mark(block : MARK.() -> Unit) : Unit = buildMARK(emptyMap(), consumer, block)
+fun mark(block : MARK.() -> Unit) : Unit = buildMARK(emptyMap(), consumer, block)
 
-    open fun math(block : MATH.() -> Unit) : Unit = buildMATH(emptyMap(), consumer, block)
+fun math(block : MATH.() -> Unit) : Unit = buildMATH(emptyMap(), consumer, block)
 
-    open fun mathml(content : String = "") : Unit = buildMATHML(emptyMap(), consumer, {+content})
-    open fun mathml(block : MATHML.() -> Unit) : Unit = buildMATHML(emptyMap(), consumer, block)
+fun mathml(content : String = "") : Unit = buildMATHML(emptyMap(), consumer, {+content})
+fun mathml(block : MATHML.() -> Unit) : Unit = buildMATHML(emptyMap(), consumer, block)
 
-    open fun menu(block : MENU.() -> Unit) : Unit = buildMENU(emptyMap(), consumer, block)
+fun menu(block : MENU.() -> Unit) : Unit = buildMENU(emptyMap(), consumer, block)
 
-    open fun meta(content : String = "") : Unit = buildMETA(emptyMap(), consumer, {+content})
-    open fun meta(block : META.() -> Unit) : Unit = buildMETA(emptyMap(), consumer, block)
+fun meta(content : String = "") : Unit = buildMETA(emptyMap(), consumer, {+content})
+fun meta(block : META.() -> Unit) : Unit = buildMETA(emptyMap(), consumer, block)
 
-    open fun meter(block : METER.() -> Unit) : Unit = buildMETER(emptyMap(), consumer, block)
+fun meter(block : METER.() -> Unit) : Unit = buildMETER(emptyMap(), consumer, block)
 
-    open fun nav(block : NAV.() -> Unit) : Unit = buildNAV(emptyMap(), consumer, block)
+fun nav(block : NAV.() -> Unit) : Unit = buildNAV(emptyMap(), consumer, block)
 
-    open fun noScript(block : NOSCRIPT.() -> Unit) : Unit = buildNOSCRIPT(emptyMap(), consumer, block)
+fun noScript(block : NOSCRIPT.() -> Unit) : Unit = buildNOSCRIPT(emptyMap(), consumer, block)
 
-    open fun object_(block : OBJECT_.() -> Unit) : Unit = buildOBJECT_(emptyMap(), consumer, block)
+fun object_(block : OBJECT_.() -> Unit) : Unit = buildOBJECT_(emptyMap(), consumer, block)
 
-    open fun ol(block : OL.() -> Unit) : Unit = buildOL(emptyMap(), consumer, block)
+fun ol(block : OL.() -> Unit) : Unit = buildOL(emptyMap(), consumer, block)
 
-    open fun optGroup(block : OPTGROUP.() -> Unit) : Unit = buildOPTGROUP(emptyMap(), consumer, block)
+fun optGroup(block : OPTGROUP.() -> Unit) : Unit = buildOPTGROUP(emptyMap(), consumer, block)
 
-    open fun option(content : String = "") : Unit = buildOPTION(emptyMap(), consumer, {+content})
-    open fun option(block : OPTION.() -> Unit) : Unit = buildOPTION(emptyMap(), consumer, block)
+fun option(content : String = "") : Unit = buildOPTION(emptyMap(), consumer, {+content})
+fun option(block : OPTION.() -> Unit) : Unit = buildOPTION(emptyMap(), consumer, block)
 
-    open fun output(block : OUTPUT.() -> Unit) : Unit = buildOUTPUT(emptyMap(), consumer, block)
+fun output(block : OUTPUT.() -> Unit) : Unit = buildOUTPUT(emptyMap(), consumer, block)
 
-    open fun p(block : P.() -> Unit) : Unit = buildP(emptyMap(), consumer, block)
+fun p(block : P.() -> Unit) : Unit = buildP(emptyMap(), consumer, block)
 
-    open fun param(content : String = "") : Unit = buildPARAM(emptyMap(), consumer, {+content})
-    open fun param(block : PARAM.() -> Unit) : Unit = buildPARAM(emptyMap(), consumer, block)
+fun param(content : String = "") : Unit = buildPARAM(emptyMap(), consumer, {+content})
+fun param(block : PARAM.() -> Unit) : Unit = buildPARAM(emptyMap(), consumer, block)
 
-    open fun pre(block : PRE.() -> Unit) : Unit = buildPRE(emptyMap(), consumer, block)
+fun pre(block : PRE.() -> Unit) : Unit = buildPRE(emptyMap(), consumer, block)
 
-    open fun progress(block : PROGRESS.() -> Unit) : Unit = buildPROGRESS(emptyMap(), consumer, block)
+fun progress(block : PROGRESS.() -> Unit) : Unit = buildPROGRESS(emptyMap(), consumer, block)
 
-    open fun q(block : Q.() -> Unit) : Unit = buildQ(emptyMap(), consumer, block)
+fun q(block : Q.() -> Unit) : Unit = buildQ(emptyMap(), consumer, block)
 
-    open fun rp(block : RP.() -> Unit) : Unit = buildRP(emptyMap(), consumer, block)
+fun rp(block : RP.() -> Unit) : Unit = buildRP(emptyMap(), consumer, block)
 
-    open fun rt(block : RT.() -> Unit) : Unit = buildRT(emptyMap(), consumer, block)
+fun rt(block : RT.() -> Unit) : Unit = buildRT(emptyMap(), consumer, block)
 
-    open fun ruby(block : RUBY.() -> Unit) : Unit = buildRUBY(emptyMap(), consumer, block)
+fun ruby(block : RUBY.() -> Unit) : Unit = buildRUBY(emptyMap(), consumer, block)
 
-    open fun samp(block : SAMP.() -> Unit) : Unit = buildSAMP(emptyMap(), consumer, block)
+fun samp(block : SAMP.() -> Unit) : Unit = buildSAMP(emptyMap(), consumer, block)
 
-    open fun script(type : String? = null, src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to type,"src" to src).toAttributesMap(), consumer, {+content})
-    open fun script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit) : Unit = buildSCRIPT(listOf("type" to type,"src" to src).toAttributesMap(), consumer, block)
+fun script(type : String? = null, src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to type,"src" to src).toAttributesMap(), consumer, {+content})
+fun script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit) : Unit = buildSCRIPT(listOf("type" to type,"src" to src).toAttributesMap(), consumer, block)
 
-    open fun section(block : SECTION.() -> Unit) : Unit = buildSECTION(emptyMap(), consumer, block)
+fun section(block : SECTION.() -> Unit) : Unit = buildSECTION(emptyMap(), consumer, block)
 
-    open fun select(block : SELECT.() -> Unit) : Unit = buildSELECT(emptyMap(), consumer, block)
+fun select(block : SELECT.() -> Unit) : Unit = buildSELECT(emptyMap(), consumer, block)
 
-    open fun small(block : SMALL.() -> Unit) : Unit = buildSMALL(emptyMap(), consumer, block)
+fun small(block : SMALL.() -> Unit) : Unit = buildSMALL(emptyMap(), consumer, block)
 
-    open fun source(content : String = "") : Unit = buildSOURCE(emptyMap(), consumer, {+content})
-    open fun source(block : SOURCE.() -> Unit) : Unit = buildSOURCE(emptyMap(), consumer, block)
+fun source(content : String = "") : Unit = buildSOURCE(emptyMap(), consumer, {+content})
+fun source(block : SOURCE.() -> Unit) : Unit = buildSOURCE(emptyMap(), consumer, block)
 
-    open fun span(block : SPAN.() -> Unit) : Unit = buildSPAN(emptyMap(), consumer, block)
+fun span(block : SPAN.() -> Unit) : Unit = buildSPAN(emptyMap(), consumer, block)
 
-    open fun strong(block : STRONG.() -> Unit) : Unit = buildSTRONG(emptyMap(), consumer, block)
+fun strong(block : STRONG.() -> Unit) : Unit = buildSTRONG(emptyMap(), consumer, block)
 
-    open fun style(content : String = "") : Unit = buildSTYLE(emptyMap(), consumer, {+content})
-    open fun style(block : STYLE.() -> Unit) : Unit = buildSTYLE(emptyMap(), consumer, block)
+fun style(content : String = "") : Unit = buildSTYLE(emptyMap(), consumer, {+content})
+fun style(block : STYLE.() -> Unit) : Unit = buildSTYLE(emptyMap(), consumer, block)
 
-    open fun sub(block : SUB.() -> Unit) : Unit = buildSUB(emptyMap(), consumer, block)
+fun sub(block : SUB.() -> Unit) : Unit = buildSUB(emptyMap(), consumer, block)
 
-    open fun sup(block : SUP.() -> Unit) : Unit = buildSUP(emptyMap(), consumer, block)
+fun sup(block : SUP.() -> Unit) : Unit = buildSUP(emptyMap(), consumer, block)
 
-    open fun svg(content : String = "") : Unit = buildSVG(emptyMap(), consumer, {+content})
-    open fun svg(block : SVG.() -> Unit) : Unit = buildSVG(emptyMap(), consumer, block)
+fun svg(content : String = "") : Unit = buildSVG(emptyMap(), consumer, {+content})
+fun svg(block : SVG.() -> Unit) : Unit = buildSVG(emptyMap(), consumer, block)
 
-    open fun table(block : TABLE.() -> Unit) : Unit = buildTABLE(emptyMap(), consumer, block)
+fun table(block : TABLE.() -> Unit) : Unit = buildTABLE(emptyMap(), consumer, block)
 
-    open fun tbody(block : TBODY.() -> Unit) : Unit = buildTBODY(emptyMap(), consumer, block)
+fun tbody(block : TBODY.() -> Unit) : Unit = buildTBODY(emptyMap(), consumer, block)
 
-    open fun td(block : TD.() -> Unit) : Unit = buildTD(emptyMap(), consumer, block)
+fun td(block : TD.() -> Unit) : Unit = buildTD(emptyMap(), consumer, block)
 
-    open fun textArea(rowS : RowS? = null, colS : ColS? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, {+content})
-    open fun textArea(rowS : RowS? = null, colS : ColS? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, block)
+fun textArea(rowS : RowS? = null, colS : ColS? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, {+content})
+fun textArea(rowS : RowS? = null, colS : ColS? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, block)
 
-    open fun tfoot(block : TFOOT.() -> Unit) : Unit = buildTFOOT(emptyMap(), consumer, block)
+fun tfoot(block : TFOOT.() -> Unit) : Unit = buildTFOOT(emptyMap(), consumer, block)
 
-    open fun th(block : TH.() -> Unit) : Unit = buildTH(emptyMap(), consumer, block)
+fun th(block : TH.() -> Unit) : Unit = buildTH(emptyMap(), consumer, block)
 
-    open fun thead(block : THEAD.() -> Unit) : Unit = buildTHEAD(emptyMap(), consumer, block)
+fun thead(block : THEAD.() -> Unit) : Unit = buildTHEAD(emptyMap(), consumer, block)
 
-    open fun time(block : TIME.() -> Unit) : Unit = buildTIME(emptyMap(), consumer, block)
+fun time(block : TIME.() -> Unit) : Unit = buildTIME(emptyMap(), consumer, block)
 
-    open fun title(content : String = "") : Unit = buildTITLE(emptyMap(), consumer, {+content})
-    open fun title(block : TITLE.() -> Unit) : Unit = buildTITLE(emptyMap(), consumer, block)
+fun title(content : String = "") : Unit = buildTITLE(emptyMap(), consumer, {+content})
+fun title(block : TITLE.() -> Unit) : Unit = buildTITLE(emptyMap(), consumer, block)
 
-    open fun tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap(), consumer, block)
+fun tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap(), consumer, block)
 
-    open fun ul(block : UL.() -> Unit) : Unit = buildUL(emptyMap(), consumer, block)
+fun ul(block : UL.() -> Unit) : Unit = buildUL(emptyMap(), consumer, block)
 
-    open fun var_(block : VAR_.() -> Unit) : Unit = buildVAR_(emptyMap(), consumer, block)
+fun var_(block : VAR_.() -> Unit) : Unit = buildVAR_(emptyMap(), consumer, block)
 
-    open fun video(block : VIDEO.() -> Unit) : Unit = buildVIDEO(emptyMap(), consumer, block)
+fun video(block : VIDEO.() -> Unit) : Unit = buildVIDEO(emptyMap(), consumer, block)
 
 
     fun Entities.plus() {
