@@ -23,7 +23,7 @@ private fun String.replaceMistakesAndUglyWords() : String =
 
 
 private fun String.replaceHyphensToCamelCase() : String =
-        this.split("[.:_\\-]")
+        this.split("[.:_\\-<>]")
                 .mapIndexed { i, s ->
                     if (i == 0) s
                     else s.capitalize()

@@ -13,6 +13,13 @@ val globalSuggestedAttributes = listOf(
         "input" to "name"
 ).groupBy { it.first }.mapValues { it.getValue().map {it.second} }
 
+val specialTypes = listOf(
+        "*.class" to AttributeType.STRING_SET
+).groupBy { it.first }.mapValues { it.getValue().single().second }
+
+fun specialTypeFor(tagName : String, attributeName : String) : AttributeType? =
+        specialTypes[tagName + "." + attributeName] ?: specialTypes["*." + attributeName]
+
 val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
         "^on", "encoded?", "form", "type",
         "run", "href", "drag(gable)?",

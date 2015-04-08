@@ -99,7 +99,7 @@ private fun buildSuggestedAttributesArgument(tag: TagInfo) : String =
             AttributeType.BOOLEAN -> "$name?.booleanEncode()"
             AttributeType.ENUM -> "$name?.enumEncode()"
             AttributeType.TICKER -> "$name?.tickerEncode(${attribute.name.quote()})"
-            else -> throw UnsupportedOperationException()
+            AttributeType.STRING_SET -> "$name?.stringSetEncode()"
         }
 
         "${attribute.name.quote()} to $encoded"

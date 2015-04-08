@@ -14,20 +14,20 @@ public class EM(initialAttributes : Map<String, String>, override val consumer :
 
 public class EMBED(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("embed", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var src : String
-        get()  = attributeString29bd7c40.get(this, "src")
-        set(newValue) {attributeString29bd7c40.set(this, "src", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "src")
+        set(newValue) {attributeString_ffbab22b.set(this, "src", newValue)}
 
     var height : String
-        get()  = attributeString29bd7c40.get(this, "height")
-        set(newValue) {attributeString29bd7c40.set(this, "height", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "height")
+        set(newValue) {attributeString_ffbab22b.set(this, "height", newValue)}
 
     var width : String
-        get()  = attributeString29bd7c40.get(this, "width")
-        set(newValue) {attributeString29bd7c40.set(this, "width", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "width")
+        set(newValue) {attributeString_ffbab22b.set(this, "width", newValue)}
 
     var type : String
-        get()  = attributeString29bd7c40.get(this, "type")
-        set(newValue) {attributeString29bd7c40.set(this, "type", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "type")
+        set(newValue) {attributeString_ffbab22b.set(this, "type", newValue)}
 
 
 }

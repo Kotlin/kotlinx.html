@@ -76,6 +76,10 @@ fun flattenGroups(root : XSAttGroupDecl, result : MutableList<XSAttGroupDecl> = 
     return result
 }
 
+fun AttributeInfo.handleSpecialType(tagName : String = "") : AttributeInfo = specialTypeFor(tagName, this.name)?.let { type ->
+    this.copy(type = type)
+} ?: this
+
 fun fillRepository() {
     val parser = XSOMParser()
     parser.parse(SCHEME_URL)
@@ -91,7 +95,7 @@ fun fillRepository() {
                 requiredNames add attributeDeclaration.getName()
             }
 
-            handleAttributeDeclaration("", attributeDeclaration)
+            handleAttributeDeclaration("", attributeDeclaration).handleSpecialType()
         }.filter { it.name !in alreadyIncluded }.filter { !it.name.startsWith("On") }
 
         val name = attributeGroup.getName()
@@ -121,7 +125,7 @@ fun fillRepository() {
                     suggestedNames add it.getDecl().getName()
                 }
 
-                handleAttributeDeclaration(name.humanize(), it.getDecl())
+                handleAttributeDeclaration(name.humanize(), it.getDecl()).handleSpecialType(name)
             }
 
             val children = HashSet<String>()

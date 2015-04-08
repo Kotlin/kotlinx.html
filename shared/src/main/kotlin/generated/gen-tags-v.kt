@@ -14,36 +14,36 @@ public class VAR_(initialAttributes : Map<String, String>, override val consumer
 
 public class VIDEO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("video", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var src : String
-        get()  = attributeString29bd7c40.get(this, "src")
-        set(newValue) {attributeString29bd7c40.set(this, "src", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "src")
+        set(newValue) {attributeString_ffbab22b.set(this, "src", newValue)}
 
     var autoBuffer : Boolean
-        get()  = attributeBooleanffbab22b.get(this, "autobuffer")
-        set(newValue) {attributeBooleanffbab22b.set(this, "autobuffer", newValue)}
+        get()  = attributeBoolean_e08d580a.get(this, "autobuffer")
+        set(newValue) {attributeBoolean_e08d580a.set(this, "autobuffer", newValue)}
 
     var autoPlay : Boolean
-        get()  = attributeBooleanffbab22b.get(this, "autoplay")
-        set(newValue) {attributeBooleanffbab22b.set(this, "autoplay", newValue)}
+        get()  = attributeBoolean_e08d580a.get(this, "autoplay")
+        set(newValue) {attributeBoolean_e08d580a.set(this, "autoplay", newValue)}
 
     var loop : Boolean
-        get()  = attributeBooleanffbab22b.get(this, "loop")
-        set(newValue) {attributeBooleanffbab22b.set(this, "loop", newValue)}
+        get()  = attributeBoolean_e08d580a.get(this, "loop")
+        set(newValue) {attributeBoolean_e08d580a.set(this, "loop", newValue)}
 
     var controls : Boolean
-        get()  = attributeBooleanffbab22b.get(this, "controls")
-        set(newValue) {attributeBooleanffbab22b.set(this, "controls", newValue)}
+        get()  = attributeBoolean_e08d580a.get(this, "controls")
+        set(newValue) {attributeBoolean_e08d580a.set(this, "controls", newValue)}
 
     var width : String
-        get()  = attributeString29bd7c40.get(this, "width")
-        set(newValue) {attributeString29bd7c40.set(this, "width", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "width")
+        set(newValue) {attributeString_ffbab22b.set(this, "width", newValue)}
 
     var height : String
-        get()  = attributeString29bd7c40.get(this, "height")
-        set(newValue) {attributeString29bd7c40.set(this, "height", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "height")
+        set(newValue) {attributeString_ffbab22b.set(this, "height", newValue)}
 
     var poster : String
-        get()  = attributeString29bd7c40.get(this, "poster")
-        set(newValue) {attributeString29bd7c40.set(this, "poster", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "poster")
+        set(newValue) {attributeString_ffbab22b.set(this, "poster", newValue)}
 
 
 }

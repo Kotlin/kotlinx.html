@@ -74,7 +74,7 @@ fun dfn(block : DFN.() -> Unit) : Unit = buildDFN(emptyMap(), consumer, block)
 
 fun dialog(block : DIALOG.() -> Unit) : Unit = buildDIALOG(emptyMap(), consumer, block)
 
-fun div(classes : String? = null, block : DIV.() -> Unit) : Unit = buildDIV(listOf("class" to classes).toAttributesMap(), consumer, block)
+fun div(classes : Set<String>? = null, block : DIV.() -> Unit) : Unit = buildDIV(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 fun dl(block : DL.() -> Unit) : Unit = buildDL(emptyMap(), consumer, block)
 

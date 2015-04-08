@@ -69,7 +69,7 @@ public fun <T, C : TagConsumer<T>> C.dfn(block : DFN.() -> Unit) : T = build(emp
 
 public fun <T, C : TagConsumer<T>> C.dialog(block : DIALOG.() -> Unit) : T = build(emptyMap(), ::buildDIALOG, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.div(classes : String? = null, block : DIV.() -> Unit) : T = build(listOf("class" to classes).toAttributesMap(), ::buildDIV, block).finalize()
+public fun <T, C : TagConsumer<T>> C.div(classes : Set<String>? = null, block : DIV.() -> Unit) : T = build(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), ::buildDIV, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.dl(block : DL.() -> Unit) : T = build(emptyMap(), ::buildDL, block).finalize()
 

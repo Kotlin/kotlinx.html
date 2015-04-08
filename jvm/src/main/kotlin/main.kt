@@ -13,7 +13,7 @@ import kotlin.dom.first
 
 fun <T> TagConsumer<T>.buildMe() = html { buildMe2() }
 fun HTMLTag.buildMe2() =
-				div("block deprecated") {
+				div(setOf("block", "deprecated")) {
 					a(href = "http://kotlinlang.org") {
 						target = ATarget.blank
 						attributes["custom"] = "custom"

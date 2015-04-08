@@ -1,5 +1,6 @@
 package html4k.generate
 
+import html4k.generate.humanize.humanize
 import java.util.ArrayList
 import java.util.TreeMap
 import java.util.TreeSet
@@ -37,6 +38,7 @@ data class AttributeEnumValue (
 
 enum class AttributeType(val classPrefix : String, val typeName : String) {
     STRING : AttributeType("String", "String")
+    STRING_SET : AttributeType("StringSet", "Set<String>")
     BOOLEAN : AttributeType("Boolean", "Boolean")
     TICKER : AttributeType("Ticker", "Boolean")
     ENUM : AttributeType("Enum", "???")
@@ -54,7 +56,7 @@ data class AttributeRequest(
 ) : HasType
 
 val AttributeRequest.delegatePropertyName : String
-    get() = "attribute${typeName}${options.map {it.asFieldPart.capitalize()}.join("")}${toNameHash()}"
+    get() = "attribute${typeName.humanize().capitalize()}${options.map {it.asFieldPart.humanize().capitalize()}.join("")}_${toNameHash()}"
 
 data class AttributeInfo(
         val name : String,

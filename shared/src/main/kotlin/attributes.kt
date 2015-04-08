@@ -30,7 +30,7 @@ class StringAttribute : Attribute<String>(StringEncoder)
 //    override fun decode(desc: PropertyMetadata, value: String): Int = value.toInt()
 //}
 
-fun Boolean.booleanEncode() = toString()
+private fun Boolean.booleanEncode() = toString()
 class BooleanEncoder(val trueValue: String = "true", val falseValue: String = "false") : AttributeEncoder<Boolean> {
     override fun encode(attributeName: String, value : Boolean): String = if (value) trueValue else falseValue
     override fun decode(attributeName: String, value: String): Boolean = when (value) {
@@ -55,5 +55,12 @@ class EnumEncoder<T : AttributeEnum>(val valuesMap : Map<String, T>) : Attribute
     override fun decode(attributeName: String, value: String): T = valuesMap[value] ?: throw IllegalArgumentException("Unknown value $value for $attributeName")
 }
 
-fun <T : AttributeEnum> T.enumEncode() : String = realValue
+private fun <T : AttributeEnum> T.enumEncode() : String = realValue
 class EnumAttribute<T : AttributeEnum>(val values : Map<String, T>) : Attribute<T>(EnumEncoder(values))
+
+private fun Set<String>.stringSetEncode() = this.join(" ")
+object StringSetEncoder : AttributeEncoder<Set<String>> {
+    override fun encode(attributeName: String, value: Set<String>): String = value.join(" ")
+    override fun decode(attributeName: String, value: String): Set<String> = value.split("\\s+").toSet()
+}
+class StringSetAttribute : Attribute<Set<String>>(StringSetEncoder)

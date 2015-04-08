@@ -10,12 +10,12 @@ import html4k.impl.*
 
 public class LABEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("label", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var form : String
-        get()  = attributeString29bd7c40.get(this, "form")
-        set(newValue) {attributeString29bd7c40.set(this, "form", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "form")
+        set(newValue) {attributeString_ffbab22b.set(this, "form", newValue)}
 
     var for_ : String
-        get()  = attributeString29bd7c40.get(this, "for")
-        set(newValue) {attributeString29bd7c40.set(this, "for", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "for")
+        set(newValue) {attributeString_ffbab22b.set(this, "for", newValue)}
 
 
 }
@@ -26,32 +26,32 @@ public class LEGEND(initialAttributes : Map<String, String>, override val consum
 
 public class LI(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("li", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var value : String
-        get()  = attributeString29bd7c40.get(this, "value")
-        set(newValue) {attributeString29bd7c40.set(this, "value", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "value")
+        set(newValue) {attributeString_ffbab22b.set(this, "value", newValue)}
 
 
 }
 
 public class LINK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("link", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var href : String
-        get()  = attributeString29bd7c40.get(this, "href")
-        set(newValue) {attributeString29bd7c40.set(this, "href", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "href")
+        set(newValue) {attributeString_ffbab22b.set(this, "href", newValue)}
 
     var rel : String
-        get()  = attributeString74c4d201.get(this, "rel")
-        set(newValue) {attributeString74c4d201.set(this, "rel", newValue)}
+        get()  = attributeString_4ac207ec.get(this, "rel")
+        set(newValue) {attributeString_4ac207ec.set(this, "rel", newValue)}
 
     var media : String
-        get()  = attributeStringc7bc1d96.get(this, "media")
-        set(newValue) {attributeStringc7bc1d96.set(this, "media", newValue)}
+        get()  = attributeString_9db95381.get(this, "media")
+        set(newValue) {attributeString_9db95381.set(this, "media", newValue)}
 
     var type : String
-        get()  = attributeString3fc6404c.get(this, "type")
-        set(newValue) {attributeString3fc6404c.set(this, "type", newValue)}
+        get()  = attributeString_15c37637.get(this, "type")
+        set(newValue) {attributeString_15c37637.set(this, "type", newValue)}
 
     var sizes : String
-        get()  = attributeString29bd7c40.get(this, "sizes")
-        set(newValue) {attributeString29bd7c40.set(this, "sizes", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "sizes")
+        set(newValue) {attributeString_ffbab22b.set(this, "sizes", newValue)}
 
 
 }

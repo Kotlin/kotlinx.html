@@ -10,355 +10,355 @@ import html4k.impl.*
 
 public trait ButtonServerAttributeGroupFacade : Tag {
     var causesValidation : Boolean
-        get()  = attributeBoolean3885cee6.get(this, "CausesValidation")
-        set(newValue) {attributeBoolean3885cee6.set(this, "CausesValidation", newValue)}
+        get()  = attributeBoolean_2b330bad.get(this, "CausesValidation")
+        set(newValue) {attributeBoolean_2b330bad.set(this, "CausesValidation", newValue)}
 
     var validationGroup : String
-        get()  = attributeString29bd7c40.get(this, "ValidationGroup")
-        set(newValue) {attributeString29bd7c40.set(this, "ValidationGroup", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "ValidationGroup")
+        set(newValue) {attributeString_ffbab22b.set(this, "ValidationGroup", newValue)}
 
 }
 
 public trait CommonEventsGroupFacade : Tag {
     var onAbort : String
-        get()  = attributeString29bd7c40.get(this, "onabort")
-        set(newValue) {attributeString29bd7c40.set(this, "onabort", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onabort")
+        set(newValue) {attributeString_ffbab22b.set(this, "onabort", newValue)}
 
     var onBlur : String
-        get()  = attributeString29bd7c40.get(this, "onblur")
-        set(newValue) {attributeString29bd7c40.set(this, "onblur", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onblur")
+        set(newValue) {attributeString_ffbab22b.set(this, "onblur", newValue)}
 
     var onCanPlay : String
-        get()  = attributeString29bd7c40.get(this, "oncanplay")
-        set(newValue) {attributeString29bd7c40.set(this, "oncanplay", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "oncanplay")
+        set(newValue) {attributeString_ffbab22b.set(this, "oncanplay", newValue)}
 
     var onCanPlayThrough : String
-        get()  = attributeString29bd7c40.get(this, "oncanplaythrough")
-        set(newValue) {attributeString29bd7c40.set(this, "oncanplaythrough", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "oncanplaythrough")
+        set(newValue) {attributeString_ffbab22b.set(this, "oncanplaythrough", newValue)}
 
     var onChange : String
-        get()  = attributeString29bd7c40.get(this, "onchange")
-        set(newValue) {attributeString29bd7c40.set(this, "onchange", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onchange")
+        set(newValue) {attributeString_ffbab22b.set(this, "onchange", newValue)}
 
     var onClick : String
-        get()  = attributeString29bd7c40.get(this, "onclick")
-        set(newValue) {attributeString29bd7c40.set(this, "onclick", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onclick")
+        set(newValue) {attributeString_ffbab22b.set(this, "onclick", newValue)}
 
     var onContextMenu : String
-        get()  = attributeString29bd7c40.get(this, "oncontextmenu")
-        set(newValue) {attributeString29bd7c40.set(this, "oncontextmenu", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "oncontextmenu")
+        set(newValue) {attributeString_ffbab22b.set(this, "oncontextmenu", newValue)}
 
     var onDoubleClick : String
-        get()  = attributeString29bd7c40.get(this, "ondblclick")
-        set(newValue) {attributeString29bd7c40.set(this, "ondblclick", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "ondblclick")
+        set(newValue) {attributeString_ffbab22b.set(this, "ondblclick", newValue)}
 
     var onDrag : String
-        get()  = attributeString29bd7c40.get(this, "ondrag")
-        set(newValue) {attributeString29bd7c40.set(this, "ondrag", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "ondrag")
+        set(newValue) {attributeString_ffbab22b.set(this, "ondrag", newValue)}
 
     var onDragEnter : String
-        get()  = attributeString29bd7c40.get(this, "ondragenter")
-        set(newValue) {attributeString29bd7c40.set(this, "ondragenter", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "ondragenter")
+        set(newValue) {attributeString_ffbab22b.set(this, "ondragenter", newValue)}
 
     var onDragLeave : String
-        get()  = attributeString29bd7c40.get(this, "ondragleave")
-        set(newValue) {attributeString29bd7c40.set(this, "ondragleave", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "ondragleave")
+        set(newValue) {attributeString_ffbab22b.set(this, "ondragleave", newValue)}
 
     var onDragOver : String
-        get()  = attributeString29bd7c40.get(this, "ondragover")
-        set(newValue) {attributeString29bd7c40.set(this, "ondragover", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "ondragover")
+        set(newValue) {attributeString_ffbab22b.set(this, "ondragover", newValue)}
 
     var onDragStart : String
-        get()  = attributeString29bd7c40.get(this, "ondragstart")
-        set(newValue) {attributeString29bd7c40.set(this, "ondragstart", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "ondragstart")
+        set(newValue) {attributeString_ffbab22b.set(this, "ondragstart", newValue)}
 
     var onDrop : String
-        get()  = attributeString29bd7c40.get(this, "ondrop")
-        set(newValue) {attributeString29bd7c40.set(this, "ondrop", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "ondrop")
+        set(newValue) {attributeString_ffbab22b.set(this, "ondrop", newValue)}
 
     var onDurationChange : String
-        get()  = attributeString29bd7c40.get(this, "ondurationchange")
-        set(newValue) {attributeString29bd7c40.set(this, "ondurationchange", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "ondurationchange")
+        set(newValue) {attributeString_ffbab22b.set(this, "ondurationchange", newValue)}
 
     var onEmptied : String
-        get()  = attributeString29bd7c40.get(this, "onemptied")
-        set(newValue) {attributeString29bd7c40.set(this, "onemptied", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onemptied")
+        set(newValue) {attributeString_ffbab22b.set(this, "onemptied", newValue)}
 
     var onEnded : String
-        get()  = attributeString29bd7c40.get(this, "onended")
-        set(newValue) {attributeString29bd7c40.set(this, "onended", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onended")
+        set(newValue) {attributeString_ffbab22b.set(this, "onended", newValue)}
 
     var onError : String
-        get()  = attributeString29bd7c40.get(this, "onerror")
-        set(newValue) {attributeString29bd7c40.set(this, "onerror", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onerror")
+        set(newValue) {attributeString_ffbab22b.set(this, "onerror", newValue)}
 
     var onFocus : String
-        get()  = attributeString29bd7c40.get(this, "onfocus")
-        set(newValue) {attributeString29bd7c40.set(this, "onfocus", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onfocus")
+        set(newValue) {attributeString_ffbab22b.set(this, "onfocus", newValue)}
 
     var onFormChange : String
-        get()  = attributeString29bd7c40.get(this, "onformchange")
-        set(newValue) {attributeString29bd7c40.set(this, "onformchange", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onformchange")
+        set(newValue) {attributeString_ffbab22b.set(this, "onformchange", newValue)}
 
     var onFormInput : String
-        get()  = attributeString29bd7c40.get(this, "onforminput")
-        set(newValue) {attributeString29bd7c40.set(this, "onforminput", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onforminput")
+        set(newValue) {attributeString_ffbab22b.set(this, "onforminput", newValue)}
 
     var onInput : String
-        get()  = attributeString29bd7c40.get(this, "oninput")
-        set(newValue) {attributeString29bd7c40.set(this, "oninput", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "oninput")
+        set(newValue) {attributeString_ffbab22b.set(this, "oninput", newValue)}
 
     var onInvalid : String
-        get()  = attributeString29bd7c40.get(this, "oninvalid")
-        set(newValue) {attributeString29bd7c40.set(this, "oninvalid", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "oninvalid")
+        set(newValue) {attributeString_ffbab22b.set(this, "oninvalid", newValue)}
 
     var onKeyDown : String
-        get()  = attributeString29bd7c40.get(this, "onkeydown")
-        set(newValue) {attributeString29bd7c40.set(this, "onkeydown", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onkeydown")
+        set(newValue) {attributeString_ffbab22b.set(this, "onkeydown", newValue)}
 
     var onKeyPress : String
-        get()  = attributeString29bd7c40.get(this, "onkeypress")
-        set(newValue) {attributeString29bd7c40.set(this, "onkeypress", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onkeypress")
+        set(newValue) {attributeString_ffbab22b.set(this, "onkeypress", newValue)}
 
     var onKeyUp : String
-        get()  = attributeString29bd7c40.get(this, "onkeyup")
-        set(newValue) {attributeString29bd7c40.set(this, "onkeyup", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onkeyup")
+        set(newValue) {attributeString_ffbab22b.set(this, "onkeyup", newValue)}
 
     var onLoad : String
-        get()  = attributeString29bd7c40.get(this, "onload")
-        set(newValue) {attributeString29bd7c40.set(this, "onload", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onload")
+        set(newValue) {attributeString_ffbab22b.set(this, "onload", newValue)}
 
     var onLoadedData : String
-        get()  = attributeString29bd7c40.get(this, "onloadeddata")
-        set(newValue) {attributeString29bd7c40.set(this, "onloadeddata", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onloadeddata")
+        set(newValue) {attributeString_ffbab22b.set(this, "onloadeddata", newValue)}
 
     var onLoadedMetaData : String
-        get()  = attributeString29bd7c40.get(this, "onloadedmetadata")
-        set(newValue) {attributeString29bd7c40.set(this, "onloadedmetadata", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onloadedmetadata")
+        set(newValue) {attributeString_ffbab22b.set(this, "onloadedmetadata", newValue)}
 
     var onLoadStart : String
-        get()  = attributeString29bd7c40.get(this, "onloadstart")
-        set(newValue) {attributeString29bd7c40.set(this, "onloadstart", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onloadstart")
+        set(newValue) {attributeString_ffbab22b.set(this, "onloadstart", newValue)}
 
     var onMouseDown : String
-        get()  = attributeString29bd7c40.get(this, "onmousedown")
-        set(newValue) {attributeString29bd7c40.set(this, "onmousedown", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onmousedown")
+        set(newValue) {attributeString_ffbab22b.set(this, "onmousedown", newValue)}
 
     var onMouseMove : String
-        get()  = attributeString29bd7c40.get(this, "onmousemove")
-        set(newValue) {attributeString29bd7c40.set(this, "onmousemove", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onmousemove")
+        set(newValue) {attributeString_ffbab22b.set(this, "onmousemove", newValue)}
 
     var onMouseOut : String
-        get()  = attributeString29bd7c40.get(this, "onmouseout")
-        set(newValue) {attributeString29bd7c40.set(this, "onmouseout", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onmouseout")
+        set(newValue) {attributeString_ffbab22b.set(this, "onmouseout", newValue)}
 
     var onMouseOver : String
-        get()  = attributeString29bd7c40.get(this, "onmouseover")
-        set(newValue) {attributeString29bd7c40.set(this, "onmouseover", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onmouseover")
+        set(newValue) {attributeString_ffbab22b.set(this, "onmouseover", newValue)}
 
     var onMouseUp : String
-        get()  = attributeString29bd7c40.get(this, "onmouseup")
-        set(newValue) {attributeString29bd7c40.set(this, "onmouseup", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onmouseup")
+        set(newValue) {attributeString_ffbab22b.set(this, "onmouseup", newValue)}
 
     var onMouseWheel : String
-        get()  = attributeString29bd7c40.get(this, "onmousewheel")
-        set(newValue) {attributeString29bd7c40.set(this, "onmousewheel", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onmousewheel")
+        set(newValue) {attributeString_ffbab22b.set(this, "onmousewheel", newValue)}
 
     var onPause : String
-        get()  = attributeString29bd7c40.get(this, "onpause")
-        set(newValue) {attributeString29bd7c40.set(this, "onpause", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onpause")
+        set(newValue) {attributeString_ffbab22b.set(this, "onpause", newValue)}
 
     var onPlay : String
-        get()  = attributeString29bd7c40.get(this, "onplay")
-        set(newValue) {attributeString29bd7c40.set(this, "onplay", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onplay")
+        set(newValue) {attributeString_ffbab22b.set(this, "onplay", newValue)}
 
     var onPlaying : String
-        get()  = attributeString29bd7c40.get(this, "onplaying")
-        set(newValue) {attributeString29bd7c40.set(this, "onplaying", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onplaying")
+        set(newValue) {attributeString_ffbab22b.set(this, "onplaying", newValue)}
 
     var onProgress : String
-        get()  = attributeString29bd7c40.get(this, "onprogress")
-        set(newValue) {attributeString29bd7c40.set(this, "onprogress", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onprogress")
+        set(newValue) {attributeString_ffbab22b.set(this, "onprogress", newValue)}
 
     var onRateChange : String
-        get()  = attributeString29bd7c40.get(this, "onratechange")
-        set(newValue) {attributeString29bd7c40.set(this, "onratechange", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onratechange")
+        set(newValue) {attributeString_ffbab22b.set(this, "onratechange", newValue)}
 
     var onReadyStateChange : String
-        get()  = attributeString29bd7c40.get(this, "onreadystatechange")
-        set(newValue) {attributeString29bd7c40.set(this, "onreadystatechange", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onreadystatechange")
+        set(newValue) {attributeString_ffbab22b.set(this, "onreadystatechange", newValue)}
 
     var onScroll : String
-        get()  = attributeString29bd7c40.get(this, "onscroll")
-        set(newValue) {attributeString29bd7c40.set(this, "onscroll", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onscroll")
+        set(newValue) {attributeString_ffbab22b.set(this, "onscroll", newValue)}
 
     var onSeeked : String
-        get()  = attributeString29bd7c40.get(this, "onseeked")
-        set(newValue) {attributeString29bd7c40.set(this, "onseeked", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onseeked")
+        set(newValue) {attributeString_ffbab22b.set(this, "onseeked", newValue)}
 
     var onSeeking : String
-        get()  = attributeString29bd7c40.get(this, "onseeking")
-        set(newValue) {attributeString29bd7c40.set(this, "onseeking", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onseeking")
+        set(newValue) {attributeString_ffbab22b.set(this, "onseeking", newValue)}
 
     var onSelect : String
-        get()  = attributeString29bd7c40.get(this, "onselect")
-        set(newValue) {attributeString29bd7c40.set(this, "onselect", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onselect")
+        set(newValue) {attributeString_ffbab22b.set(this, "onselect", newValue)}
 
     var onShow : String
-        get()  = attributeString29bd7c40.get(this, "onshow")
-        set(newValue) {attributeString29bd7c40.set(this, "onshow", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onshow")
+        set(newValue) {attributeString_ffbab22b.set(this, "onshow", newValue)}
 
     var onStalled : String
-        get()  = attributeString29bd7c40.get(this, "onstalled")
-        set(newValue) {attributeString29bd7c40.set(this, "onstalled", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onstalled")
+        set(newValue) {attributeString_ffbab22b.set(this, "onstalled", newValue)}
 
     var onSubmit : String
-        get()  = attributeString29bd7c40.get(this, "onsubmit")
-        set(newValue) {attributeString29bd7c40.set(this, "onsubmit", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onsubmit")
+        set(newValue) {attributeString_ffbab22b.set(this, "onsubmit", newValue)}
 
     var onSuspend : String
-        get()  = attributeString29bd7c40.get(this, "onsuspend")
-        set(newValue) {attributeString29bd7c40.set(this, "onsuspend", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onsuspend")
+        set(newValue) {attributeString_ffbab22b.set(this, "onsuspend", newValue)}
 
     var onTimeUpdate : String
-        get()  = attributeString29bd7c40.get(this, "ontimeupdate")
-        set(newValue) {attributeString29bd7c40.set(this, "ontimeupdate", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "ontimeupdate")
+        set(newValue) {attributeString_ffbab22b.set(this, "ontimeupdate", newValue)}
 
     var onVolumeChange : String
-        get()  = attributeString29bd7c40.get(this, "onvolumechange")
-        set(newValue) {attributeString29bd7c40.set(this, "onvolumechange", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onvolumechange")
+        set(newValue) {attributeString_ffbab22b.set(this, "onvolumechange", newValue)}
 
     var onWaiting : String
-        get()  = attributeString29bd7c40.get(this, "onwaiting")
-        set(newValue) {attributeString29bd7c40.set(this, "onwaiting", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "onwaiting")
+        set(newValue) {attributeString_ffbab22b.set(this, "onwaiting", newValue)}
 
 }
 
 public trait CoreAttributeGroupFacade : Tag {
     var runAt : RunAt
-        get()  = attributeRunAtRunAtValues575df66d.get(this, "runat")
-        set(newValue) {attributeRunAtRunAtValues575df66d.set(this, "runat", newValue)}
+        get()  = attributeRunAtRunAtValues_ad35ae66.get(this, "runat")
+        set(newValue) {attributeRunAtRunAtValues_ad35ae66.set(this, "runat", newValue)}
 
     var accessKey : String
-        get()  = attributeString29bd7c40.get(this, "accesskey")
-        set(newValue) {attributeString29bd7c40.set(this, "accesskey", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "accesskey")
+        set(newValue) {attributeString_ffbab22b.set(this, "accesskey", newValue)}
 
-    var classes : String
-        get()  = attributeString29bd7c40.get(this, "class")
-        set(newValue) {attributeString29bd7c40.set(this, "class", newValue)}
+    var classes : Set<String>
+        get()  = attributeSetString_7a765ba6.get(this, "class")
+        set(newValue) {attributeSetString_7a765ba6.set(this, "class", newValue)}
 
     var contentEditable : Boolean
-        get()  = attributeBoolean3885cee6.get(this, "contenteditable")
-        set(newValue) {attributeBoolean3885cee6.set(this, "contenteditable", newValue)}
+        get()  = attributeBoolean_2b330bad.get(this, "contenteditable")
+        set(newValue) {attributeBoolean_2b330bad.set(this, "contenteditable", newValue)}
 
     var contextMenu : String
-        get()  = attributeString29bd7c40.get(this, "contextmenu")
-        set(newValue) {attributeString29bd7c40.set(this, "contextmenu", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "contextmenu")
+        set(newValue) {attributeString_ffbab22b.set(this, "contextmenu", newValue)}
 
     var dataFolderName : String
-        get()  = attributeString29bd7c40.get(this, "data-FolderName")
-        set(newValue) {attributeString29bd7c40.set(this, "data-FolderName", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "data-FolderName")
+        set(newValue) {attributeString_ffbab22b.set(this, "data-FolderName", newValue)}
 
     var dataMsgId : String
-        get()  = attributeString29bd7c40.get(this, "data-MsgId")
-        set(newValue) {attributeString29bd7c40.set(this, "data-MsgId", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "data-MsgId")
+        set(newValue) {attributeString_ffbab22b.set(this, "data-MsgId", newValue)}
 
     var dir : Dir
-        get()  = attributeDirDirValuesd83b3d0d.get(this, "dir")
-        set(newValue) {attributeDirDirValuesd83b3d0d.set(this, "dir", newValue)}
+        get()  = attributeDirDirValues_2e12f506.get(this, "dir")
+        set(newValue) {attributeDirDirValues_2e12f506.set(this, "dir", newValue)}
 
     var draggable : Draggable
-        get()  = attributeDraggableDraggableValues1a2c050d.get(this, "draggable")
-        set(newValue) {attributeDraggableDraggableValues1a2c050d.set(this, "draggable", newValue)}
+        get()  = attributeDraggableDraggableValues_7003bd06.get(this, "draggable")
+        set(newValue) {attributeDraggableDraggableValues_7003bd06.set(this, "draggable", newValue)}
 
     var id : String
-        get()  = attributeString29bd7c40.get(this, "id")
-        set(newValue) {attributeString29bd7c40.set(this, "id", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "id")
+        set(newValue) {attributeString_ffbab22b.set(this, "id", newValue)}
 
     var item : String
-        get()  = attributeString29bd7c40.get(this, "item")
-        set(newValue) {attributeString29bd7c40.set(this, "item", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "item")
+        set(newValue) {attributeString_ffbab22b.set(this, "item", newValue)}
 
     var hidden : Boolean
-        get()  = attributeBooleanffbab22b.get(this, "hidden")
-        set(newValue) {attributeBooleanffbab22b.set(this, "hidden", newValue)}
+        get()  = attributeBoolean_e08d580a.get(this, "hidden")
+        set(newValue) {attributeBoolean_e08d580a.set(this, "hidden", newValue)}
 
     var itemProp : String
-        get()  = attributeString29bd7c40.get(this, "itemprop")
-        set(newValue) {attributeString29bd7c40.set(this, "itemprop", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "itemprop")
+        set(newValue) {attributeString_ffbab22b.set(this, "itemprop", newValue)}
 
     var role : String
-        get()  = attributeString29bd7c40.get(this, "role")
-        set(newValue) {attributeString29bd7c40.set(this, "role", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "role")
+        set(newValue) {attributeString_ffbab22b.set(this, "role", newValue)}
 
     var spellCheck : Boolean
-        get()  = attributeBoolean3885cee6.get(this, "spellcheck")
-        set(newValue) {attributeBoolean3885cee6.set(this, "spellcheck", newValue)}
+        get()  = attributeBoolean_2b330bad.get(this, "spellcheck")
+        set(newValue) {attributeBoolean_2b330bad.set(this, "spellcheck", newValue)}
 
     var style : String
-        get()  = attributeString29bd7c40.get(this, "style")
-        set(newValue) {attributeString29bd7c40.set(this, "style", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "style")
+        set(newValue) {attributeString_ffbab22b.set(this, "style", newValue)}
 
     var subject : String
-        get()  = attributeString29bd7c40.get(this, "subject")
-        set(newValue) {attributeString29bd7c40.set(this, "subject", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "subject")
+        set(newValue) {attributeString_ffbab22b.set(this, "subject", newValue)}
 
     var tabIndex : String
-        get()  = attributeString29bd7c40.get(this, "tabIndex")
-        set(newValue) {attributeString29bd7c40.set(this, "tabIndex", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "tabIndex")
+        set(newValue) {attributeString_ffbab22b.set(this, "tabIndex", newValue)}
 
     var title : String
-        get()  = attributeString29bd7c40.get(this, "title")
-        set(newValue) {attributeString29bd7c40.set(this, "title", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "title")
+        set(newValue) {attributeString_ffbab22b.set(this, "title", newValue)}
 
 }
 
 public trait CoreServerAttributeGroupFacade : Tag {
     var enableTheming : Boolean
-        get()  = attributeBoolean3885cee6.get(this, "EnableTheming")
-        set(newValue) {attributeBoolean3885cee6.set(this, "EnableTheming", newValue)}
+        get()  = attributeBoolean_2b330bad.get(this, "EnableTheming")
+        set(newValue) {attributeBoolean_2b330bad.set(this, "EnableTheming", newValue)}
 
     var enableViewState : Boolean
-        get()  = attributeBoolean3885cee6.get(this, "EnableViewState")
-        set(newValue) {attributeBoolean3885cee6.set(this, "EnableViewState", newValue)}
+        get()  = attributeBoolean_2b330bad.get(this, "EnableViewState")
+        set(newValue) {attributeBoolean_2b330bad.set(this, "EnableViewState", newValue)}
 
     var skinID : String
-        get()  = attributeString29bd7c40.get(this, "SkinID")
-        set(newValue) {attributeString29bd7c40.set(this, "SkinID", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "SkinID")
+        set(newValue) {attributeString_ffbab22b.set(this, "SkinID", newValue)}
 
     var visible : Boolean
-        get()  = attributeBoolean3885cee6.get(this, "Visible")
-        set(newValue) {attributeBoolean3885cee6.set(this, "Visible", newValue)}
+        get()  = attributeBoolean_2b330bad.get(this, "Visible")
+        set(newValue) {attributeBoolean_2b330bad.set(this, "Visible", newValue)}
 
 }
 
 public trait FormServerAttributeGroupFacade : Tag {
     var defaultButton : String
-        get()  = attributeString29bd7c40.get(this, "DefaultButton")
-        set(newValue) {attributeString29bd7c40.set(this, "DefaultButton", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "DefaultButton")
+        set(newValue) {attributeString_ffbab22b.set(this, "DefaultButton", newValue)}
 
     var defaultFocus : String
-        get()  = attributeString29bd7c40.get(this, "DefaultFocus")
-        set(newValue) {attributeString29bd7c40.set(this, "DefaultFocus", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "DefaultFocus")
+        set(newValue) {attributeString_ffbab22b.set(this, "DefaultFocus", newValue)}
 
     var submitDisabledControls : Boolean
-        get()  = attributeBoolean3885cee6.get(this, "SubmitDisabledControls")
-        set(newValue) {attributeBoolean3885cee6.set(this, "SubmitDisabledControls", newValue)}
+        get()  = attributeBoolean_2b330bad.get(this, "SubmitDisabledControls")
+        set(newValue) {attributeBoolean_2b330bad.set(this, "SubmitDisabledControls", newValue)}
 
 }
 
 public trait SelectServerAttributeGroupFacade : Tag {
     var dataSourceID : String
-        get()  = attributeString29bd7c40.get(this, "DataSourceID")
-        set(newValue) {attributeString29bd7c40.set(this, "DataSourceID", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "DataSourceID")
+        set(newValue) {attributeString_ffbab22b.set(this, "DataSourceID", newValue)}
 
     var dataTextField : String
-        get()  = attributeString29bd7c40.get(this, "DataTextField")
-        set(newValue) {attributeString29bd7c40.set(this, "DataTextField", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "DataTextField")
+        set(newValue) {attributeString_ffbab22b.set(this, "DataTextField", newValue)}
 
     var dataValueField : String
-        get()  = attributeString29bd7c40.get(this, "DataValueField")
-        set(newValue) {attributeString29bd7c40.set(this, "DataValueField", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "DataValueField")
+        set(newValue) {attributeString_ffbab22b.set(this, "DataValueField", newValue)}
 
 }
 

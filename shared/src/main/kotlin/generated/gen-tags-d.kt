@@ -18,20 +18,20 @@ public class DD(initialAttributes : Map<String, String>, override val consumer :
 
 public class DEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("del", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var cite : String
-        get()  = attributeString29bd7c40.get(this, "cite")
-        set(newValue) {attributeString29bd7c40.set(this, "cite", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "cite")
+        set(newValue) {attributeString_ffbab22b.set(this, "cite", newValue)}
 
     var dateTime : String
-        get()  = attributeString29bd7c40.get(this, "datetime")
-        set(newValue) {attributeString29bd7c40.set(this, "datetime", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "datetime")
+        set(newValue) {attributeString_ffbab22b.set(this, "datetime", newValue)}
 
 
 }
 
 public class DETAILS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("details", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var open : Boolean
-        get()  = attributeBooleanffbab22b.get(this, "open")
-        set(newValue) {attributeBooleanffbab22b.set(this, "open", newValue)}
+        get()  = attributeBoolean_e08d580a.get(this, "open")
+        set(newValue) {attributeBoolean_e08d580a.set(this, "open", newValue)}
 
 
 }

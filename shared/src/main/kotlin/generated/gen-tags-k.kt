@@ -14,28 +14,28 @@ public class KBD(initialAttributes : Map<String, String>, override val consumer 
 
 public class KEYGEN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("keygen", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var autoFocus : Boolean
-        get()  = attributeBooleanffbab22b.get(this, "autofocus")
-        set(newValue) {attributeBooleanffbab22b.set(this, "autofocus", newValue)}
+        get()  = attributeBoolean_e08d580a.get(this, "autofocus")
+        set(newValue) {attributeBoolean_e08d580a.set(this, "autofocus", newValue)}
 
     var challenge : String
-        get()  = attributeString29bd7c40.get(this, "challenge")
-        set(newValue) {attributeString29bd7c40.set(this, "challenge", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "challenge")
+        set(newValue) {attributeString_ffbab22b.set(this, "challenge", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBooleanffbab22b.get(this, "disabled")
-        set(newValue) {attributeBooleanffbab22b.set(this, "disabled", newValue)}
+        get()  = attributeBoolean_e08d580a.get(this, "disabled")
+        set(newValue) {attributeBoolean_e08d580a.set(this, "disabled", newValue)}
 
     var form : String
-        get()  = attributeString29bd7c40.get(this, "form")
-        set(newValue) {attributeString29bd7c40.set(this, "form", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "form")
+        set(newValue) {attributeString_ffbab22b.set(this, "form", newValue)}
 
     var keyType : KeyGenKeyType
-        get()  = attributeKeyGenKeyTypeKeyGenKeyTypeValuesbaccec2d.get(this, "keytype")
-        set(newValue) {attributeKeyGenKeyTypeKeyGenKeyTypeValuesbaccec2d.set(this, "keytype", newValue)}
+        get()  = attributeKeyGenKeyTypeKeyGenKeyTypeValues_10a4a426.get(this, "keytype")
+        set(newValue) {attributeKeyGenKeyTypeKeyGenKeyTypeValues_10a4a426.set(this, "keytype", newValue)}
 
     var name : String
-        get()  = attributeString29bd7c40.get(this, "name")
-        set(newValue) {attributeString29bd7c40.set(this, "name", newValue)}
+        get()  = attributeString_ffbab22b.get(this, "name")
+        set(newValue) {attributeString_ffbab22b.set(this, "name", newValue)}
 
 
 }
