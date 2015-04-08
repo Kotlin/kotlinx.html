@@ -30,6 +30,10 @@ fun main(args : Array<String>) {
 	System.out.appendHTML().filter { if (it.tagName == "div" && "deprecated" in (it as DIV).classes) SKIP else PASS }.buildMe().append("\n")
 
 	System.out.appendHTML().html {
+		head {
+			title("test")
+			link { rel = LinkRel.stylesheet; href = "/styles.css" }
+		}
 		body {
 			td {}
 			form("/someurl") {
