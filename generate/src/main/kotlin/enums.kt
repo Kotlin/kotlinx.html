@@ -19,35 +19,37 @@ fun List<String>.toAttributeValues() : List<AttributeEnumValue> =
         .replaceAllIfStartsWithUnderscore()
         .map {it.escapeUnsafeValues()}
 
-fun <O : Appendable> O.enumObject(name : String) {
+fun <O : Appendable> O.enumObject(attribute : AttributeInfo) {
+    val name = attribute.enumTypeName
 
     clazz(Clazz(name, isObject = true)) {
-        Repository.attributeEnums[name].forEach {
+        attribute.enumValues.forEach {
             append("    ")
             variable(Var(it.fieldName, "String", false, defaultValue = "\"${it.realName}\""))
             emptyLine()
         }
 
         append("    ")
-        variable(Var("values", "List<String>", defaultValue = Repository.attributeEnums[name].map {"\"${it.fieldName}\""}.join(",", "listOf(", ")")))
+        variable(Var("values", "List<String>", defaultValue = attribute.enumValues.map {"\"${it.fieldName}\""}.join(",", "listOf(", ")")))
         emptyLine()
     }
 
     emptyLine()
 }
 
-fun <O : Appendable> O.enum(name : String) {
-    append("enum ")
-
+fun <O : Appendable> O.enum(attribute : AttributeInfo) {
+    val name = attribute.enumTypeName
     val realValue = Var("realValue", "String", false, true)
+
+    append("enum ")
     clazz(Clazz(name, variables = listOf(realValue), parents = listOf("AttributeEnum"))) {
-        Repository.attributeEnums[name].forEach {
+        attribute.enumValues.forEach {
             append("    ")
             enumEntry(it.fieldName, name, listOf("\"${it.realName}\""))
         }
     }
 
     emptyLine()
-    variable(Var(name.decapitalize() + "Values", "Map<String, $name>", false, defaultValue = "${name}.values().toMap { it.realValue }"))
+    variable(Var(name.decapitalize() + "Values", "Map<String, $name>", false, defaultValue = "$name.values().toMap { it.realValue }"))
     emptyLine()
 }

@@ -16,8 +16,8 @@ fun <O : Appendable> O.attributePseudoDelegate(request : AttributeRequest) {
     emptyLine()
 }
 
-fun <O : Appendable> O.attributeProperty(attributeName : String) {
-    val attribute = Repository.attributes[attributeName]
+fun <O : Appendable> O.attributeProperty(attribute : AttributeInfo) {
+    val attributeName = attribute.name
     val request = tagAttributeVar(attribute)
     append("\n    ")
     getter() defineIs(StringBuilder {
@@ -37,9 +37,9 @@ fun <O : Appendable> O.attributeProperty(attributeName : String) {
 
 fun <O : Appendable> O.facade(facade : AttributeFacade) {
     clazz(Clazz(facade.name.capitalize() + "Facade", isTrait = true, parents = listOf("Tag"))) {
-        facade.attributes.forEach { attributeName ->
-            if (attributeName.toLowerCase() == attributeName || attributeName.toLowerCase() !in Repository.attributes) {
-                attributeProperty(attributeName)
+        facade.attributes.filter {!isAtrributeExcluded(it.name)}.forEach { attribute ->
+            if (attribute.name.isLowerCase() || attribute.name.toLowerCase() !in facade.attributeNames) {
+                attributeProperty(attribute)
             }
         }
     }

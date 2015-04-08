@@ -119,8 +119,8 @@ public fun <T, C : TagConsumer<T>> C.iframe(block : IFRAME.() -> Unit) : T = bui
 public fun <T, C : TagConsumer<T>> C.img(alt : String? = null, src : String? = null, content : String = "") : T = build(listOf("alt" to alt,"src" to src).toAttributesMap(), ::buildIMG, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.img(alt : String? = null, src : String? = null, block : IMG.() -> Unit) : T = build(listOf("alt" to alt,"src" to src).toAttributesMap(), ::buildIMG, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.input(alt : String? = null, content : String = "") : T = build(listOf("alt" to alt).toAttributesMap(), ::buildINPUT, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.input(alt : String? = null, block : INPUT.() -> Unit) : T = build(listOf("alt" to alt).toAttributesMap(), ::buildINPUT, block).finalize()
+public fun <T, C : TagConsumer<T>> C.input(content : String = "") : T = build(emptyMap(), ::buildINPUT, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.input(block : INPUT.() -> Unit) : T = build(emptyMap(), ::buildINPUT, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.ins(block : INS.() -> Unit) : T = build(emptyMap(), ::buildINS, block).finalize()
 
@@ -138,7 +138,7 @@ public fun <T, C : TagConsumer<T>> C.li(block : LI.() -> Unit) : T = build(empty
 public fun <T, C : TagConsumer<T>> C.link(content : String = "") : T = build(emptyMap(), ::buildLINK, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.link(block : LINK.() -> Unit) : T = build(emptyMap(), ::buildLINK, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.map(block : MAP.() -> Unit) : T = build(emptyMap(), ::buildMAP, block).finalize()
+public fun <T, C : TagConsumer<T>> C.map(name : String? = null, block : MAP.() -> Unit) : T = build(listOf("name" to name).toAttributesMap(), ::buildMAP, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.mark(block : MARK.() -> Unit) : T = build(emptyMap(), ::buildMARK, block).finalize()
 
@@ -162,7 +162,7 @@ public fun <T, C : TagConsumer<T>> C.object_(block : OBJECT_.() -> Unit) : T = b
 
 public fun <T, C : TagConsumer<T>> C.ol(block : OL.() -> Unit) : T = build(emptyMap(), ::buildOL, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.optGroup(block : OPTGROUP.() -> Unit) : T = build(emptyMap(), ::buildOPTGROUP, block).finalize()
+public fun <T, C : TagConsumer<T>> C.optGroup(label : String? = null, block : OPTGROUP.() -> Unit) : T = build(listOf("label" to label).toAttributesMap(), ::buildOPTGROUP, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.option(content : String = "") : T = build(emptyMap(), ::buildOPTION, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.option(block : OPTION.() -> Unit) : T = build(emptyMap(), ::buildOPTION, block).finalize()
@@ -171,8 +171,8 @@ public fun <T, C : TagConsumer<T>> C.output(block : OUTPUT.() -> Unit) : T = bui
 
 public fun <T, C : TagConsumer<T>> C.p(block : P.() -> Unit) : T = build(emptyMap(), ::buildP, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.param(content : String = "") : T = build(emptyMap(), ::buildPARAM, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.param(block : PARAM.() -> Unit) : T = build(emptyMap(), ::buildPARAM, block).finalize()
+public fun <T, C : TagConsumer<T>> C.param(name : String? = null, value : String? = null, content : String = "") : T = build(listOf("name" to name,"value" to value).toAttributesMap(), ::buildPARAM, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.param(name : String? = null, value : String? = null, block : PARAM.() -> Unit) : T = build(listOf("name" to name,"value" to value).toAttributesMap(), ::buildPARAM, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.pre(block : PRE.() -> Unit) : T = build(emptyMap(), ::buildPRE, block).finalize()
 
@@ -188,8 +188,8 @@ public fun <T, C : TagConsumer<T>> C.ruby(block : RUBY.() -> Unit) : T = build(e
 
 public fun <T, C : TagConsumer<T>> C.samp(block : SAMP.() -> Unit) : T = build(emptyMap(), ::buildSAMP, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, content : String = "") : T = build(listOf("type" to type,"src" to src).toAttributesMap(), ::buildSCRIPT, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit) : T = build(listOf("type" to type,"src" to src).toAttributesMap(), ::buildSCRIPT, block).finalize()
+public fun <T, C : TagConsumer<T>> C.script(type : ScriptType? = null, src : String? = null, content : String = "") : T = build(listOf("type" to type?.enumEncode(),"src" to src).toAttributesMap(), ::buildSCRIPT, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.script(type : ScriptType? = null, src : String? = null, block : SCRIPT.() -> Unit) : T = build(listOf("type" to type?.enumEncode(),"src" to src).toAttributesMap(), ::buildSCRIPT, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.section(block : SECTION.() -> Unit) : T = build(emptyMap(), ::buildSECTION, block).finalize()
 
@@ -220,8 +220,8 @@ public fun <T, C : TagConsumer<T>> C.tbody(block : TBODY.() -> Unit) : T = build
 
 public fun <T, C : TagConsumer<T>> C.td(block : TD.() -> Unit) : T = build(emptyMap(), ::buildTD, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.textArea(rowS : RowS? = null, colS : ColS? = null, content : String = "") : T = build(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.textArea(rowS : RowS? = null, colS : ColS? = null, block : TEXTAREA.() -> Unit) : T = build(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, block).finalize()
+public fun <T, C : TagConsumer<T>> C.textArea(rows : String? = null, cols : String? = null, content : String = "") : T = build(listOf("rows" to rows,"cols" to cols).toAttributesMap(), ::buildTEXTAREA, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.textArea(rows : String? = null, cols : String? = null, block : TEXTAREA.() -> Unit) : T = build(listOf("rows" to rows,"cols" to cols).toAttributesMap(), ::buildTEXTAREA, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.tfoot(block : TFOOT.() -> Unit) : T = build(emptyMap(), ::buildTFOOT, block).finalize()
 

@@ -124,8 +124,8 @@ fun iframe(block : IFRAME.() -> Unit) : Unit = buildIFRAME(emptyMap(), consumer,
 fun img(alt : String? = null, src : String? = null, content : String = "") : Unit = buildIMG(listOf("alt" to alt,"src" to src).toAttributesMap(), consumer, {+content})
 fun img(alt : String? = null, src : String? = null, block : IMG.() -> Unit) : Unit = buildIMG(listOf("alt" to alt,"src" to src).toAttributesMap(), consumer, block)
 
-fun input(alt : String? = null, content : String = "") : Unit = buildINPUT(listOf("alt" to alt).toAttributesMap(), consumer, {+content})
-fun input(alt : String? = null, block : INPUT.() -> Unit) : Unit = buildINPUT(listOf("alt" to alt).toAttributesMap(), consumer, block)
+fun input(content : String = "") : Unit = buildINPUT(emptyMap(), consumer, {+content})
+fun input(block : INPUT.() -> Unit) : Unit = buildINPUT(emptyMap(), consumer, block)
 
 fun ins(block : INS.() -> Unit) : Unit = buildINS(emptyMap(), consumer, block)
 
@@ -143,7 +143,7 @@ fun li(block : LI.() -> Unit) : Unit = buildLI(emptyMap(), consumer, block)
 fun link(content : String = "") : Unit = buildLINK(emptyMap(), consumer, {+content})
 fun link(block : LINK.() -> Unit) : Unit = buildLINK(emptyMap(), consumer, block)
 
-fun map(block : MAP.() -> Unit) : Unit = buildMAP(emptyMap(), consumer, block)
+fun map(name : String? = null, block : MAP.() -> Unit) : Unit = buildMAP(listOf("name" to name).toAttributesMap(), consumer, block)
 
 fun mark(block : MARK.() -> Unit) : Unit = buildMARK(emptyMap(), consumer, block)
 
@@ -167,7 +167,7 @@ fun object_(block : OBJECT_.() -> Unit) : Unit = buildOBJECT_(emptyMap(), consum
 
 fun ol(block : OL.() -> Unit) : Unit = buildOL(emptyMap(), consumer, block)
 
-fun optGroup(block : OPTGROUP.() -> Unit) : Unit = buildOPTGROUP(emptyMap(), consumer, block)
+fun optGroup(label : String? = null, block : OPTGROUP.() -> Unit) : Unit = buildOPTGROUP(listOf("label" to label).toAttributesMap(), consumer, block)
 
 fun option(content : String = "") : Unit = buildOPTION(emptyMap(), consumer, {+content})
 fun option(block : OPTION.() -> Unit) : Unit = buildOPTION(emptyMap(), consumer, block)
@@ -176,8 +176,8 @@ fun output(block : OUTPUT.() -> Unit) : Unit = buildOUTPUT(emptyMap(), consumer,
 
 fun p(block : P.() -> Unit) : Unit = buildP(emptyMap(), consumer, block)
 
-fun param(content : String = "") : Unit = buildPARAM(emptyMap(), consumer, {+content})
-fun param(block : PARAM.() -> Unit) : Unit = buildPARAM(emptyMap(), consumer, block)
+fun param(name : String? = null, value : String? = null, content : String = "") : Unit = buildPARAM(listOf("name" to name,"value" to value).toAttributesMap(), consumer, {+content})
+fun param(name : String? = null, value : String? = null, block : PARAM.() -> Unit) : Unit = buildPARAM(listOf("name" to name,"value" to value).toAttributesMap(), consumer, block)
 
 fun pre(block : PRE.() -> Unit) : Unit = buildPRE(emptyMap(), consumer, block)
 
@@ -193,8 +193,8 @@ fun ruby(block : RUBY.() -> Unit) : Unit = buildRUBY(emptyMap(), consumer, block
 
 fun samp(block : SAMP.() -> Unit) : Unit = buildSAMP(emptyMap(), consumer, block)
 
-fun script(type : String? = null, src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to type,"src" to src).toAttributesMap(), consumer, {+content})
-fun script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit) : Unit = buildSCRIPT(listOf("type" to type,"src" to src).toAttributesMap(), consumer, block)
+fun script(type : ScriptType? = null, src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to type?.enumEncode(),"src" to src).toAttributesMap(), consumer, {+content})
+fun script(type : ScriptType? = null, src : String? = null, block : SCRIPT.() -> Unit) : Unit = buildSCRIPT(listOf("type" to type?.enumEncode(),"src" to src).toAttributesMap(), consumer, block)
 
 fun section(block : SECTION.() -> Unit) : Unit = buildSECTION(emptyMap(), consumer, block)
 
@@ -225,8 +225,8 @@ fun tbody(block : TBODY.() -> Unit) : Unit = buildTBODY(emptyMap(), consumer, bl
 
 fun td(block : TD.() -> Unit) : Unit = buildTD(emptyMap(), consumer, block)
 
-fun textArea(rowS : RowS? = null, colS : ColS? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, {+content})
-fun textArea(rowS : RowS? = null, colS : ColS? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rowS?.enumEncode(),"cols" to colS?.enumEncode()).toAttributesMap(), consumer, block)
+fun textArea(rows : String? = null, cols : String? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols).toAttributesMap(), consumer, {+content})
+fun textArea(rows : String? = null, cols : String? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols).toAttributesMap(), consumer, block)
 
 fun tfoot(block : TFOOT.() -> Unit) : Unit = buildTFOOT(emptyMap(), consumer, block)
 

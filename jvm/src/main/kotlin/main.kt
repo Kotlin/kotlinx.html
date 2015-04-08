@@ -15,7 +15,7 @@ fun <T> TagConsumer<T>.buildMe() = html { buildMe2() }
 fun HTMLTag.buildMe2() =
 				div("block deprecated") {
 					a(href = "http://kotlinlang.org") {
-						target = Target.blank
+						target = ATarget.blank
 						attributes["custom"] = "custom"
 						+"test me"
 					}
@@ -33,7 +33,7 @@ fun main(args : Array<String>) {
 			td {}
 			form("/someurl") {
 				input {
-					type = "checkbox"
+					type = InputType.checkBox
 					attributes["name"] = "cb1"
 					disabled = true
 					+"var1"
@@ -42,7 +42,7 @@ fun main(args : Array<String>) {
 				buildMe2()
 
 				input {
-					type = "submit"
+					type = InputType.submit
 					+"Go"
 				}
 			}
@@ -71,7 +71,7 @@ fun main(args : Array<String>) {
 			body {
 				div {
 					a("http://kotlinlang.org") {
-						target = Target.blank
+						target = ATarget.blank
 						+"me here"
 					}
 				}

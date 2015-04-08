@@ -1254,7 +1254,7 @@
         </xsd:complexType>
     </xsd:element>
 
-        <xsd:element name="input">
+    <xsd:element name="input">
         <xsd:complexType>
             <xsd:attributeGroup ref="commonAttributeGroup"/>
             <xsd:attribute name="type">

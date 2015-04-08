@@ -18,9 +18,10 @@ val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
         "start(ed)?", "end(ed)?", "stop", "key", "load(ed)?", "check(ed)?",
         "time", "ready", "content", "changed?",
         "click", "play(ing)?", "context",
-        "row", "col", "group(ed)?", "auto",
+        "rows?", "cols?", "group(ed)?", "auto",
         "list", "field", "data", "block", "script",
         "item", "area"
 ).map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
 
 val excludeAttributes = listOf("lang$").map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
+fun isAtrributeExcluded(name : String) = excludeAttributes.any { it.matcher(name).find() }

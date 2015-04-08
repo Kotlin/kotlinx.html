@@ -26,7 +26,7 @@ fun main(args: Array<String>) {
             emptyLine()
             emptyLine()
 
-            Repository.attributeFacades.forEach {
+            Repository.attributeFacades.values().forEach {
                 facade(it)
                 emptyLine()
             }
@@ -158,15 +158,24 @@ fun main(args: Array<String>) {
             emptyLine()
             emptyLine()
 
-            Repository.attributeEnums.keySet().forEach { e ->
-                if (excludeAttributes.any { it.matcher(e).find() }) {
-                    // ignore
-                } else if (e in Repository.strictEnums) {
-                    enum(e)
+            fun genEnumAttribute(attribute : AttributeInfo) {
+                if (attribute.type == AttributeType.ENUM) {
+                    enum(attribute)
                 } else {
-                    enumObject(e)
+                    enumObject(attribute)
                 }
-                emptyLine()
+            }
+
+            Repository.attributeFacades.values().forEach { facade ->
+                facade.attributes.filter {it.enumValues.isNotEmpty()}.filter {!isAtrributeExcluded(it.name)}.forEach { attribute ->
+                    genEnumAttribute(attribute)
+                }
+            }
+
+            Repository.tags.values().forEach { tag ->
+                tag.attributes.filter {it.enumValues.isNotEmpty()}.filter { !isAtrributeExcluded(it.name) }.forEach { attribute ->
+                    genEnumAttribute(attribute)
+                }
             }
         }
     }

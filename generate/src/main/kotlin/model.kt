@@ -1,32 +1,34 @@
 package html4k.generate
 
-import java.util.*
+import java.util.ArrayList
+import java.util.TreeMap
+import java.util.TreeSet
 
 object Repository {
     val tags = TreeMap<String, TagInfo>()
-    val attributes = TreeMap<String, AttributeInfo>()
-    val attributeEnums = TreeMap<String, List<AttributeEnumValue>>()
-    val strictEnums = TreeSet<String>()
 
     [suppress("UNCHECKED_CAST")]
     val attributeDelegateRequests = TreeSet<AttributeRequest> ({a, b ->
         a.type.compareTo(b.type).let { typeComparison ->
             if (typeComparison != 0) typeComparison
-            else a.options.size().compareTo(b.options.size()).let { sizeComparison ->
-                if (sizeComparison != 0) sizeComparison
-                else if (a.options.isEmpty()) 0
-                else a.options.indices.map { a.options[it].asValue.compareTo(b.options[it].asValue) }.firstOrNull() { it != 0 } ?: 0
+            else a.enumTypeName.compareTo(b.enumTypeName).let { enumTypeComparison ->
+                if (enumTypeComparison != 0) enumTypeComparison
+                else a.options.size().compareTo(b.options.size()).let { sizeComparison ->
+                    if (sizeComparison != 0) sizeComparison
+                    else if (a.options.isEmpty()) 0
+                    else a.options.indices.map { a.options[it].asValue.compareTo(b.options[it].asValue) }.firstOrNull() { it != 0 } ?: 0
+                }
             }
         }
     }) as MutableSet<AttributeRequest>
 
-    val attributeFacades = ArrayList<AttributeFacade>()
-    val attributesToFacadesMap = HashMap<String, List<AttributeFacade>>(4096)
-
+    val attributeFacades = TreeMap<String, AttributeFacade>()
     val tagGroups = TreeMap<String, TagGroup>()
 }
 
-data class AttributeFacade(val name : String, val attributes : List<String> = emptyList())
+data class AttributeFacade(val name : String, val attributes : List<AttributeInfo>, val required : Set<String>) {
+    val attributeNames = attributes.map {it.name}.toSet()
+}
 
 data class AttributeEnumValue (
         val realName : String,
@@ -59,7 +61,9 @@ data class AttributeInfo(
         override val type : AttributeType,
         val safeAlias : String,
         val trueFalse : List<String> = listOf(),
-        override val enumTypeName : String = ""
+        override val enumTypeName : String = "",
+        val required : Boolean = false,
+        val enumValues : List<AttributeEnumValue> = emptyList()
 ) : HasType
 
 val HasType.typeName : String
@@ -68,12 +72,17 @@ val HasType.typeName : String
 val AttributeInfo.fieldName : String
     get() = if (safeAlias.isNotEmpty()) safeAlias else name
 
+fun String.isLowerCase() = this.toLowerCase() == this
+
 data class TagInfo(
         val name : String,
-        val possibleChildren : List<String> = listOf(),
-        val attributes : List<String> = listOf(),
-        val suggestedAttributes : List<String> = listOf()
+        val possibleChildren : List<String>,
+        val attributeGroups : List<AttributeFacade>,
+        val attributes : List<AttributeInfo>,
+        val suggestedAttributes : Set<String>
 )
+
+fun TagInfo.mergeAttributes() = attributes + attributeGroups.flatMap { it.attributes }
 
 val TagInfo.safeName : String
     get() = name.escapeUnsafeValues()

@@ -13,7 +13,7 @@ fun onReady() {
         div("bold") {
             div {
                 a("http://kotlinlang.org") {
-                    target = Target.blank
+                    target = ATarget.blank
                     +"Kotlin site"
                     div {
                     }

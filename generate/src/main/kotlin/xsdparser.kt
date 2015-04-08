@@ -1,12 +1,14 @@
 package html4k.generate
 
+import com.sun.xml.xsom.XSAttGroupDecl
 import com.sun.xml.xsom.XSAttributeDecl
-import com.sun.xml.xsom.XSDeclaration
-import com.sun.xml.xsom.XSParticle
+import com.sun.xml.xsom.XSComplexType
 import com.sun.xml.xsom.XSTerm
 import com.sun.xml.xsom.parser.XSOMParser
+import html4k.generate.humanize.humanize
 import java.util.ArrayList
 import java.util.HashSet
+import java.util.TreeSet
 
 val SCHEME_URL = "generate/src/main/resources/html_5.xsd"
 val HTML_NAMESPACE = "html-5"
@@ -28,12 +30,11 @@ private fun flattenTerm(term : XSTerm, result : MutableCollection<String>, visit
     }
 }
 
-fun handleAttributeDeclaration(attributeDeclaration : XSAttributeDecl) {
+fun handleAttributeDeclaration(prefix : String, attributeDeclaration : XSAttributeDecl) : AttributeInfo {
     val name = attributeDeclaration.getName()
     val type = attributeDeclaration.getType()
 
     val safeName = attributeNamesMap[name] ?: name.escapeUnsafeValues()
-    val attributeInfo: AttributeInfo
     if (type.isUnion()) {
         val enumEntries = type.asUnion()
                 .filter {it.isRestriction()}
@@ -42,68 +43,85 @@ fun handleAttributeDeclaration(attributeDeclaration : XSAttributeDecl) {
                 .filter { it.getName() == "enumeration" }
                 .map {it.getValue().value}
 
-        if (enumEntries.isNotEmpty()) {
-            Repository.attributeEnums[safeName.capitalize()] = enumEntries.toAttributeValues()
-        }
-
-        attributeInfo = AttributeInfo(name, AttributeType.STRING, safeName)
-    } else if (type.isPrimitive()) {
-        attributeInfo = AttributeInfo(name, xsdToType[type.getPrimitiveType().getName()] ?: AttributeType.STRING, safeName)
+        return AttributeInfo(name, AttributeType.STRING, safeName, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
+    } else if (type.isPrimitive() || type.getName() in setOf("integer", "string", "boolean", "decimal")) {
+        return AttributeInfo(name, xsdToType[type.getPrimitiveType().getName()] ?: AttributeType.STRING, safeName)
     } else if (type.isRestriction()) {
         val restriction = type.asRestriction()
-        val enumEntries = restriction.getDeclaredFacets().filter { it.getName() == "enumeration" }.map { it.getValue().value }
+        val enumEntries = restriction.getDeclaredFacets()
+                .filter { it.getName() == "enumeration" }
+                .map { it.getValue().value }
 
         if (enumEntries.size() == 1 && enumEntries.single() == name) {
             // probably ticker
-            attributeInfo = AttributeInfo(name, AttributeType.TICKER, safeName)
+            return AttributeInfo(name, AttributeType.TICKER, safeName)
         } else if (enumEntries.size() == 2 && enumEntries.sort() == listOf("off", "on")) {
-            attributeInfo = AttributeInfo(name, AttributeType.BOOLEAN, safeName, trueFalse = listOf("on", "off"))
+            return AttributeInfo(name, AttributeType.BOOLEAN, safeName, trueFalse = listOf("on", "off"))
+        } else if (enumEntries.isEmpty()) {
+            return AttributeInfo(name, AttributeType.STRING, safeName)
         } else {
-            val enumTypeName = safeName.capitalize()
-            Repository.attributeEnums[enumTypeName] = enumEntries.toAttributeValues()
-            Repository.strictEnums.add(enumTypeName)
-
-            attributeInfo = AttributeInfo(name, AttributeType.ENUM, safeName, enumTypeName = enumTypeName)
+            return AttributeInfo(name, AttributeType.ENUM, safeName, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
         }
     } else {
-        attributeInfo = AttributeInfo(name, AttributeType.STRING, safeName)
+        return AttributeInfo(name, AttributeType.STRING, safeName)
+    }
+}
+
+fun flattenGroups(root : XSAttGroupDecl, result : MutableList<XSAttGroupDecl> = ArrayList()) : List<XSAttGroupDecl> {
+    result.add(root)
+    root.getAttGroups()?.forEach {
+        flattenGroups(it, result)
     }
 
-    Repository.attributes[name] = attributeInfo
+    return result
 }
 
 fun fillRepository() {
     val parser = XSOMParser()
     parser.parse(SCHEME_URL)
     val schema = parser.getResult().getSchema(HTML_NAMESPACE)
-    val suggestedNames = HashSet<String>(1024)
+
+    [suppress("UNCHECKED_CAST")]
+    val alreadyIncluded = TreeSet<String>() {a, b -> a.compareToIgnoreCase(b)} as MutableSet<String>
     schema.getAttGroupDecls().values().forEach { attributeGroup ->
-        attributeGroup.getAttributeUses().forEach { attributeUse ->
+        val requiredNames = HashSet<String>()
+        val facadeAttributes = attributeGroup.getAttributeUses().map { attributeUse ->
             val attributeDeclaration = attributeUse.getDecl()
             if (attributeUse.isRequired()) {
-                suggestedNames add attributeDeclaration.getName()
+                requiredNames add attributeDeclaration.getName()
             }
 
-            handleAttributeDeclaration(attributeDeclaration)
+            handleAttributeDeclaration("", attributeDeclaration)
+        }.filter { it.name !in alreadyIncluded }.filter { !it.name.startsWith("On") }
+
+        val name = attributeGroup.getName()
+
+        if (facadeAttributes.isNotEmpty()) {
+            Repository.attributeFacades[name] = AttributeFacade(name, facadeAttributes, requiredNames)
+            alreadyIncluded.addAll(facadeAttributes.map { it.name })
         }
     }
 
     schema.getElementDecls().values().forEach { elementDeclaration ->
         val name = elementDeclaration.getName()
         val type = elementDeclaration.getType()
+        val suggestedNames = HashSet<String>()
+        globalSuggestedAttributes.get(name)?.let {
+            suggestedNames.addAll(it)
+        }
 
         val tagInfo : TagInfo
         if (type.isComplexType()) {
             val complex = type.asComplexType()
-            val attributeUses = complex.getAttributeUses()
-            val attributes = attributeUses.map {it.getDecl().getName()}
+            val groupDeclarations = complex.getAttGroups().flatMap { flattenGroups(it) }.distinct().toList()
+            val attributeGroups = groupDeclarations.map {Repository.attributeFacades[it.getName()]}.filterNotNull()
 
-            attributeUses.filter { it.getDecl().getName() !in Repository.attributes }.forEach {
+            val attributes = complex.getDeclaredAttributeUses().map {
                 if (it.isRequired()) {
                     suggestedNames add it.getDecl().getName()
                 }
 
-                handleAttributeDeclaration(it.getDecl())
+                handleAttributeDeclaration(name.humanize(), it.getDecl())
             }
 
             val children = HashSet<String>()
@@ -122,23 +140,13 @@ fun fillRepository() {
                 Repository.tagGroups[it].tags.add(name)
             }
 
-            tagInfo = TagInfo(name, children.toList().sort(), attributes, attributes.filter {it in suggestedNames} + (globalSuggestedAttributes.get(name) ?: emptyList()))
+            tagInfo = TagInfo(name, children.toList().sort(), attributeGroups, attributes, suggestedNames)
         } else {
             throw UnsupportedOperationException()
         }
 
         Repository.tags[name] = tagInfo
     }
-
-    val alreadyIncluded = HashSet<String>()
-    schema.getAttGroupDecls().values().forEach { attributeGroup ->
-        Repository.attributeFacades.add(AttributeFacade(attributeGroup.getName(), attributeGroup.getAttributeUses().map { it.getDecl().getName() }.filter { alreadyIncluded.add(it) }.sort()))
-    }
-    Repository.attributeFacades.removeAll(Repository.attributeFacades.filter {it.attributes.isEmpty()})
-
-    Repository.attributesToFacadesMap.putAll(
-        Repository.attributeFacades.flatMap { facade -> facade.attributes.map {it to facade} }.groupBy { it.first }.mapValues { it.getValue().map {it.second} }
-    )
 }
 
 private val xsdToType = mapOf(

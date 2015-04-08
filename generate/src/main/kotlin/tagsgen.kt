@@ -5,7 +5,7 @@ import java.util.HashSet
 import java.util.LinkedList
 
 fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) : O = with {
-    val parentTraits = tag.attributes.fold(HashSet<AttributeFacade>()) { traits, attribute -> traits.addAll(Repository.attributesToFacadesMap[attribute] ?: emptyList()); traits }.map {it.name.capitalize() + "Facade"}
+    val parentTraits = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
 
     clazz(Clazz(
             name = tag.safeName.toUpperCase(),
@@ -17,14 +17,12 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
                     "HTMLTag(\"${tag.name}\", consumer, initialAttributes)"
             ) + parentTraits
     )) {
-        val lowerCasedNames = (tag.attributes + tag.suggestedAttributes).map {it.toLowerCase()}.distinct()
-        val attributes = (tag.attributes + tag.suggestedAttributes).distinct().filter {it !in excludeAttributes}
+        val lowerCasedNames = tag.attributes.map {it.name.toLowerCase()}.toSet()
+        val attributes = tag.attributes.filter {it.name !in excludeAttributes}
 
-        attributes.forEach {
-            if (it[0].isLowerCase() || it.toLowerCase() !in lowerCasedNames) {
-                if (it !in Repository.attributesToFacadesMap) {
-                    attributeProperty(it)
-                }
+        attributes.filter {!isAtrributeExcluded(it.name) }.forEach { attribute ->
+            if (attribute.name[0].isLowerCase() || attribute.name.toLowerCase() !in lowerCasedNames) {
+                attributeProperty(attribute)
             }
         }
 
@@ -93,30 +91,27 @@ fun <O : Appendable> O.htmlTagBuilderMethod(tag : TagInfo, blockOrContent : Bool
 }
 
 private fun buildSuggestedAttributesArgument(tag: TagInfo) : String =
-    if (tag.suggestedAttributes.isEmpty()) {
-        "emptyMap()"
-    } else {
-        tag.suggestedAttributes.map {
-            val name = Repository.attributes[it].fieldName
+    tag.mergeAttributes().filter {it.name in tag.suggestedAttributes}.map { attribute ->
+        val name = attribute.fieldName
 
-            val encoded = when (Repository.attributes[it].type) {
-                AttributeType.STRING -> "$name"
-                AttributeType.BOOLEAN -> "$name?.booleanEncode()"
-                AttributeType.ENUM -> "$name?.enumEncode()"
-                AttributeType.TICKER -> "$name?.tickerEncode(${it.quote()})"
-                else -> throw UnsupportedOperationException()
-            }
+        val encoded = when (attribute.type) {
+            AttributeType.STRING -> "$name"
+            AttributeType.BOOLEAN -> "$name?.booleanEncode()"
+            AttributeType.ENUM -> "$name?.enumEncode()"
+            AttributeType.TICKER -> "$name?.tickerEncode(${attribute.name.quote()})"
+            else -> throw UnsupportedOperationException()
+        }
 
-            "\"$it\" to $encoded"
-        }.join(",", "listOf(", ").toAttributesMap()")
+        "${attribute.name.quote()} to $encoded"
+    }.let { attributeArgs ->
+        if (attributeArgs.isEmpty()) "emptyMap()" else attributeArgs.join(",", "listOf(", ").toAttributesMap()")
     }
 
 private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean = tag.possibleChildren.isNotEmpty()) : ArrayList<Var> {
     val arguments = ArrayList<Var>()
 
-    tag.suggestedAttributes.forEach {
-        val attributeInfo = Repository.attributes[it]
-        arguments.add(Var(attributeInfo.fieldName, attributeInfo.typeName + "?", defaultValue = "null"))
+    tag.mergeAttributes().filter {it.name in tag.suggestedAttributes}.forEach { attribute ->
+        arguments.add(Var(attribute.fieldName, attribute.typeName + "?", defaultValue = "null"))
     }
 
     if (blockOrContent) {
