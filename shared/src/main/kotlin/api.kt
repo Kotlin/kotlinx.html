@@ -1,5 +1,7 @@
 package html4k
 
+import java.util.LinkedHashSet
+
 public trait TagConsumer<R> {
     fun onTagStart(tag : Tag)
     fun onTagAttributeChange(tag : Tag, attribute : String, value : String)
@@ -20,6 +22,8 @@ public trait Tag {
 trait AttributeEnum {
     val realValue : String
 }
+
+fun <T> Set<T>.plus(value : T) = with(LinkedHashSet(this)) { add(value); this }
 
 inline fun <T : Tag> T.visit(block : T.() -> Unit) {
     consumer.onTagStart(this)

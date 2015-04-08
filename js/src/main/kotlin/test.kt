@@ -11,8 +11,6 @@ import kotlin.js.dom.html.HTMLElement
 import kotlin.js.dom.html.document
 import kotlin.js.dom.html.window
 
-fun <T> Set<T>.plus(value : T) = with(LinkedHashSet(this)) { add(value); this }
-
 fun onReady() {
     val div = document.buildHTML().div {
         div(setOf("bold")) {
