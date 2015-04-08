@@ -3,15 +3,19 @@ package html4k.dom
 import html4k.Entities
 import html4k.Tag
 import html4k.TagConsumer
+import html4k.consumers.onFinalize
+import html4k.consumers.onFinalizeMap
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import java.io.StringWriter
 import java.io.Writer
+import java.util.ArrayList
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.transform.*
 import javax.xml.transform.dom.DOMSource
 import javax.xml.transform.stream.StreamResult
+import kotlin.dom.createDocument
 import kotlin.dom.writeXmlString
 
 class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
@@ -73,15 +77,17 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
         path.last().appendChild(document.createCDATASection(content.toString()))
     }
 
-    override fun finalize() = path.last()
+    override fun finalize() = path.last().let { path.clear(); it }
 }
 
-public fun Document.buildHTML() : TagConsumer<Element> = HTMLDOMBuilder(this)
-public inline fun Node.buildAndAppendChild(block : TagConsumer<Element>.() -> Element) : Element =
-    getOwnerDocument().buildHTML().block().let { element ->
-        appendChild(element)
-        element
-    }
+public fun Document.createHTMLTree() : TagConsumer<Element> = HTMLDOMBuilder(this)
+public fun Node.append(block : TagConsumer<Element>.() -> Unit) : List<Element> = ArrayList<Element>().let { result ->
+    getOwnerDocument().createHTMLTree().onFinalize { appendChild(it); result.add(it) }.block()
+
+    result
+}
+
+public fun createHTMLDocument() : TagConsumer<Document> = createDocument().let { document -> HTMLDOMBuilder(document).onFinalizeMap { document.appendChild(it); document } }
 
 public inline fun document(block : Document.() -> Unit) : Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
     document.block()

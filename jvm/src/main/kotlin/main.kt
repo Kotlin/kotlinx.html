@@ -70,7 +70,7 @@ fun main(args : Array<String>) {
 	}
 
 	val document = document {
-		val html = buildHTML().html {
+		val html = createHTMLTree().html {
 			body {
 				div {
 					a("http://kotlinlang.org") {
@@ -85,17 +85,17 @@ fun main(args : Array<String>) {
 
 	System.out.println(document.serialize())
 
-//	document {
-//
-//		this@document.buildAndAppendChild {
-//			div {
-//			}
-//		}
-//	}
+	println(createHTMLDocument().html {
+		body {
+			div {
+				+"test"
+			}
+		}
+	}.serialize())
 
 	println(document {
 		appendChild(
-			buildHTML().filter { if (it.tagName == "div") SKIP else PASS  }.html {
+			createHTMLTree().filter { if (it.tagName == "div") SKIP else PASS  }.html {
 				body {
 					div {
 						a { +"link1" }
@@ -106,10 +106,13 @@ fun main(args : Array<String>) {
 		)
 	}.serialize())
 
-	document.getElementsByTagName("div").item(0).buildAndAppendChild {
-		div {
-			+"aaa"
+	document.getElementsByTagName("div").item(0).append {
+		p { +"para1" }
+		p { +"para2" }
+		for (i in 3..10) {
+			p { +"para$i"}
 		}
+		Unit
 	}
 
 	System.out.println(document.serialize())

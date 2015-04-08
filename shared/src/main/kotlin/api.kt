@@ -2,7 +2,7 @@ package html4k
 
 import java.util.LinkedHashSet
 
-public trait TagConsumer<R> {
+public trait TagConsumer<out R> {
     fun onTagStart(tag : Tag)
     fun onTagAttributeChange(tag : Tag, attribute : String, value : String)
     fun onTagEnd(tag : Tag)

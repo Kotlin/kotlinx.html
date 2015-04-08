@@ -1,7 +1,10 @@
 package html4k.dom
 
 import html4k.*
+import html4k.consumers.onFinalize
+import html4k.consumers.onFinalizeMap
 import org.w3c.dom.Node
+import java.util.ArrayList
 import kotlin.dom.first
 import kotlin.dom.toList
 import kotlin.js.dom.html.*
@@ -71,7 +74,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
         path.last().appendChild(document.createCDATASection(content.toString()))
     }
 
-    override fun finalize(): R = path.last().asR()
+    override fun finalize(): R = path.last().asR().let { path.clear(); it }
 
     [suppress("UNCHECKED_CAST")]
     private fun HTMLElement.asR() = this as R
@@ -79,9 +82,10 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
 }
 
 
-public fun HTMLDocument.buildHTML() : TagConsumer<HTMLElement> = JSDOMBuilder(this)
-public inline fun Node.buildAndAppendChild(block : TagConsumer<HTMLElement>.() -> HTMLElement) : HTMLElement =
-        (ownerDocument as HTMLDocument).buildHTML().block().let { element ->
-            appendChild(element)
-            element
+public fun HTMLDocument.createTree() : TagConsumer<HTMLElement> = JSDOMBuilder(this)
+public fun Node.append(block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> =
+        ArrayList<HTMLElement>().let { result ->
+            (ownerDocument as HTMLDocument).createTree().onFinalize { result.add(it); appendChild(it) }.block()
+
+            result
         }
