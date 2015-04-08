@@ -23,7 +23,7 @@ trait AttributeEnum {
     val realValue : String
 }
 
-fun <T> Set<T>.plus(value : T) = with(LinkedHashSet(this)) { add(value); this }
+public fun <T> Set<T>.plus(value : T) : Set<T> = with(LinkedHashSet(this)) { add(value); this }
 
 inline fun <T : Tag> T.visit(block : T.() -> Unit) {
     consumer.onTagStart(this)
