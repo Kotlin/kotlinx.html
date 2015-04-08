@@ -47,9 +47,7 @@ fun main(args : Array<String>) {
 
 				buildMe2()
 
-				input(InputType.submit) {
-					+"Go"
-				}
+				submitInput(content = "Go!")
 			}
 		}
 	}.println()
