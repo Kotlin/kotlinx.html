@@ -26,24 +26,21 @@ fun main(args : Array<String>) {
 	System.out.appendHTML().filter { if (it.tagName == "div") SKIP else PASS }.buildMe().println()
 	System.out.appendHTML().filter { if (it.tagName == "div") DROP else PASS }.buildMe().println()
 
-	System.out.appendHTML().filter { if (it.tagName == "div" && it.attributes["class"]?.contains("deprecated") ?: false) SKIP else PASS }.buildMe().append("\n")
+	println("deprecated:")
+	System.out.appendHTML().filter { if (it.tagName == "div" && "deprecated" in (it as DIV).classes) SKIP else PASS }.buildMe().append("\n")
 
 	System.out.appendHTML().html {
 		body {
 			td {}
 			form("/someurl") {
-				input {
-					type = InputType.checkBox
-					name = "cb1"
-
+				input(InputType.checkBox, "cb1") {
 					disabled = true
 					+"var1"
 				}
 
 				buildMe2()
 
-				input {
-					type = InputType.submit
+				input(InputType.submit) {
 					+"Go"
 				}
 			}
