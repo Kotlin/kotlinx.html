@@ -10,8 +10,8 @@ import html4k.impl.*
 
 public class Q(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("q", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var cite : String
-        get()  = attributeString_ffbab22b.get(this, "cite")
-        set(newValue) {attributeString_ffbab22b.set(this, "cite", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "cite")
+        set(newValue) {attributeString_38b4cae2.set(this, "cite", newValue)}
 
 
 }

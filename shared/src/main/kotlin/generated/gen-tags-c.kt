@@ -10,12 +10,12 @@ import html4k.impl.*
 
 public class CANVAS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("canvas", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var width : String
-        get()  = attributeString_ffbab22b.get(this, "width")
-        set(newValue) {attributeString_ffbab22b.set(this, "width", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "width")
+        set(newValue) {attributeString_38b4cae2.set(this, "width", newValue)}
 
     var height : String
-        get()  = attributeString_ffbab22b.get(this, "height")
-        set(newValue) {attributeString_ffbab22b.set(this, "height", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "height")
+        set(newValue) {attributeString_38b4cae2.set(this, "height", newValue)}
 
 
 }
@@ -34,44 +34,44 @@ public class CODE(initialAttributes : Map<String, String>, override val consumer
 
 public class COL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("col", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var span : String
-        get()  = attributeString_ffbab22b.get(this, "span")
-        set(newValue) {attributeString_ffbab22b.set(this, "span", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "span")
+        set(newValue) {attributeString_38b4cae2.set(this, "span", newValue)}
 
 
 }
 
 public class COLGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("colgroup", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var span : String
-        get()  = attributeString_ffbab22b.get(this, "span")
-        set(newValue) {attributeString_ffbab22b.set(this, "span", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "span")
+        set(newValue) {attributeString_38b4cae2.set(this, "span", newValue)}
 
 
 }
 
 public class COMMAND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("command", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var type : CommandType
-        get()  = attributeCommandTypeCommandTypeValues_6a081606.get(this, "type")
-        set(newValue) {attributeCommandTypeCommandTypeValues_6a081606.set(this, "type", newValue)}
+        get()  = attributeCommandTypeCommandTypeValues_fc4fccf3.get(this, "type")
+        set(newValue) {attributeCommandTypeCommandTypeValues_fc4fccf3.set(this, "type", newValue)}
 
     var label : String
-        get()  = attributeString_ffbab22b.get(this, "label")
-        set(newValue) {attributeString_ffbab22b.set(this, "label", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "label")
+        set(newValue) {attributeString_38b4cae2.set(this, "label", newValue)}
 
     var icon : String
-        get()  = attributeString_ffbab22b.get(this, "icon")
-        set(newValue) {attributeString_ffbab22b.set(this, "icon", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "icon")
+        set(newValue) {attributeString_38b4cae2.set(this, "icon", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "disabled")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "disabled", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "disabled")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "disabled", newValue)}
 
     var checked : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "checked")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "checked", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "checked")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "checked", newValue)}
 
     var radioGroup : String
-        get()  = attributeString_ffbab22b.get(this, "radiogroup")
-        set(newValue) {attributeString_ffbab22b.set(this, "radiogroup", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "radiogroup")
+        set(newValue) {attributeString_38b4cae2.set(this, "radiogroup", newValue)}
 
 
 }

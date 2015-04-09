@@ -10,8 +10,8 @@ import html4k.impl.*
 
 public class TABLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("table", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var summary : String
-        get()  = attributeString_ffbab22b.get(this, "summary")
-        set(newValue) {attributeString_ffbab22b.set(this, "summary", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "summary")
+        set(newValue) {attributeString_38b4cae2.set(this, "summary", newValue)}
 
 
 }
@@ -22,64 +22,64 @@ public class TBODY(initialAttributes : Map<String, String>, override val consume
 
 public class TD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("td", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var headers : String
-        get()  = attributeString_ffbab22b.get(this, "headers")
-        set(newValue) {attributeString_ffbab22b.set(this, "headers", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "headers")
+        set(newValue) {attributeString_38b4cae2.set(this, "headers", newValue)}
 
-    var rowSPan : String
-        get()  = attributeString_ffbab22b.get(this, "rowspan")
-        set(newValue) {attributeString_ffbab22b.set(this, "rowspan", newValue)}
+    var rowSpan : String
+        get()  = attributeString_38b4cae2.get(this, "rowspan")
+        set(newValue) {attributeString_38b4cae2.set(this, "rowspan", newValue)}
 
-    var colSPan : String
-        get()  = attributeString_ffbab22b.get(this, "colspan")
-        set(newValue) {attributeString_ffbab22b.set(this, "colspan", newValue)}
+    var colSpan : String
+        get()  = attributeString_38b4cae2.get(this, "colspan")
+        set(newValue) {attributeString_38b4cae2.set(this, "colspan", newValue)}
 
 
 }
 
 public class TEXTAREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("textarea", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var autoFocus : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "autofocus")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "autofocus", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "autofocus")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "autofocus", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "disabled")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "disabled", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "disabled")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "disabled", newValue)}
 
     var form : String
-        get()  = attributeString_ffbab22b.get(this, "form")
-        set(newValue) {attributeString_ffbab22b.set(this, "form", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "form")
+        set(newValue) {attributeString_38b4cae2.set(this, "form", newValue)}
 
-    var maxlength : String
-        get()  = attributeString_ffbab22b.get(this, "maxlength")
-        set(newValue) {attributeString_ffbab22b.set(this, "maxlength", newValue)}
+    var maxLength : String
+        get()  = attributeString_38b4cae2.get(this, "maxlength")
+        set(newValue) {attributeString_38b4cae2.set(this, "maxlength", newValue)}
 
     var name : String
-        get()  = attributeString_ffbab22b.get(this, "name")
-        set(newValue) {attributeString_ffbab22b.set(this, "name", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "name")
+        set(newValue) {attributeString_38b4cae2.set(this, "name", newValue)}
 
     var placeholder : String
-        get()  = attributeString_ffbab22b.get(this, "placeholder")
-        set(newValue) {attributeString_ffbab22b.set(this, "placeholder", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "placeholder")
+        set(newValue) {attributeString_38b4cae2.set(this, "placeholder", newValue)}
 
     var readonly : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "readonly")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "readonly", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "readonly")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "readonly", newValue)}
 
     var required : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "required")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "required", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "required")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "required", newValue)}
 
     var rows : String
-        get()  = attributeString_ffbab22b.get(this, "rows")
-        set(newValue) {attributeString_ffbab22b.set(this, "rows", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "rows")
+        set(newValue) {attributeString_38b4cae2.set(this, "rows", newValue)}
 
     var cols : String
-        get()  = attributeString_ffbab22b.get(this, "cols")
-        set(newValue) {attributeString_ffbab22b.set(this, "cols", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "cols")
+        set(newValue) {attributeString_38b4cae2.set(this, "cols", newValue)}
 
     var wrap : TextAreaWrap
-        get()  = attributeTextAreaWrapTextAreaWrapValues_3bb2b266.get(this, "wrap")
-        set(newValue) {attributeTextAreaWrapTextAreaWrapValues_3bb2b266.set(this, "wrap", newValue)}
+        get()  = attributeTextAreaWrapTextAreaWrapValues_cdfa6953.get(this, "wrap")
+        set(newValue) {attributeTextAreaWrapTextAreaWrapValues_cdfa6953.set(this, "wrap", newValue)}
 
 
 }
@@ -90,20 +90,20 @@ public class TFOOT(initialAttributes : Map<String, String>, override val consume
 
 public class TH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("th", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var headers : String
-        get()  = attributeString_ffbab22b.get(this, "headers")
-        set(newValue) {attributeString_ffbab22b.set(this, "headers", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "headers")
+        set(newValue) {attributeString_38b4cae2.set(this, "headers", newValue)}
 
-    var rowSPan : String
-        get()  = attributeString_ffbab22b.get(this, "rowspan")
-        set(newValue) {attributeString_ffbab22b.set(this, "rowspan", newValue)}
+    var rowSpan : String
+        get()  = attributeString_38b4cae2.get(this, "rowspan")
+        set(newValue) {attributeString_38b4cae2.set(this, "rowspan", newValue)}
 
-    var colSPan : String
-        get()  = attributeString_ffbab22b.get(this, "colspan")
-        set(newValue) {attributeString_ffbab22b.set(this, "colspan", newValue)}
+    var colSpan : String
+        get()  = attributeString_38b4cae2.get(this, "colspan")
+        set(newValue) {attributeString_38b4cae2.set(this, "colspan", newValue)}
 
     var scope : ThScope
-        get()  = attributeThScopeThScopeValues_cd258926.get(this, "scope")
-        set(newValue) {attributeThScopeThScopeValues_cd258926.set(this, "scope", newValue)}
+        get()  = attributeThScopeThScopeValues_5f6d4013.get(this, "scope")
+        set(newValue) {attributeThScopeThScopeValues_5f6d4013.set(this, "scope", newValue)}
 
 
 }
@@ -114,8 +114,8 @@ public class THEAD(initialAttributes : Map<String, String>, override val consume
 
 public class TIME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("time", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var dateTime : String
-        get()  = attributeString_ffbab22b.get(this, "datetime")
-        set(newValue) {attributeString_ffbab22b.set(this, "datetime", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "datetime")
+        set(newValue) {attributeString_38b4cae2.set(this, "datetime", newValue)}
 
 
 }

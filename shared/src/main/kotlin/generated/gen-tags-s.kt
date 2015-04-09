@@ -14,24 +14,24 @@ public class SAMP(initialAttributes : Map<String, String>, override val consumer
 
 public class SCRIPT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("script", consumer, initialAttributes), CoreAttributeGroupFacade {
     var charset : String
-        get()  = attributeString_ffbab22b.get(this, "charset")
-        set(newValue) {attributeString_ffbab22b.set(this, "charset", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "charset")
+        set(newValue) {attributeString_38b4cae2.set(this, "charset", newValue)}
 
     var type : ScriptType
-        get()  = attributeScriptTypeScriptTypeValues_494179c6.get(this, "type")
-        set(newValue) {attributeScriptTypeScriptTypeValues_494179c6.set(this, "type", newValue)}
+        get()  = attributeScriptTypeScriptTypeValues_db8930b3.get(this, "type")
+        set(newValue) {attributeScriptTypeScriptTypeValues_db8930b3.set(this, "type", newValue)}
 
     var src : String
-        get()  = attributeString_ffbab22b.get(this, "src")
-        set(newValue) {attributeString_ffbab22b.set(this, "src", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "src")
+        set(newValue) {attributeString_38b4cae2.set(this, "src", newValue)}
 
     var defer : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "defer")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "defer", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "defer")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "defer", newValue)}
 
     var async : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "async")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "async", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "async")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "async", newValue)}
 
 
 }
@@ -42,28 +42,28 @@ public class SECTION(initialAttributes : Map<String, String>, override val consu
 
 public class SELECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("select", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var autoFocus : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "autofocus")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "autofocus", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "autofocus")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "autofocus", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "disabled")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "disabled", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "disabled")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "disabled", newValue)}
 
     var form : String
-        get()  = attributeString_ffbab22b.get(this, "form")
-        set(newValue) {attributeString_ffbab22b.set(this, "form", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "form")
+        set(newValue) {attributeString_38b4cae2.set(this, "form", newValue)}
 
     var multiple : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "multiple")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "multiple", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "multiple")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "multiple", newValue)}
 
     var name : String
-        get()  = attributeString_ffbab22b.get(this, "name")
-        set(newValue) {attributeString_ffbab22b.set(this, "name", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "name")
+        set(newValue) {attributeString_38b4cae2.set(this, "name", newValue)}
 
     var size : String
-        get()  = attributeString_ffbab22b.get(this, "size")
-        set(newValue) {attributeString_ffbab22b.set(this, "size", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "size")
+        set(newValue) {attributeString_38b4cae2.set(this, "size", newValue)}
 
 
 }
@@ -74,16 +74,16 @@ public class SMALL(initialAttributes : Map<String, String>, override val consume
 
 public class SOURCE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("source", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var src : String
-        get()  = attributeString_ffbab22b.get(this, "src")
-        set(newValue) {attributeString_ffbab22b.set(this, "src", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "src")
+        set(newValue) {attributeString_38b4cae2.set(this, "src", newValue)}
 
     var type : String
-        get()  = attributeString_ffbab22b.get(this, "type")
-        set(newValue) {attributeString_ffbab22b.set(this, "type", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "type")
+        set(newValue) {attributeString_38b4cae2.set(this, "type", newValue)}
 
     var media : String
-        get()  = attributeString_ffbab22b.get(this, "media")
-        set(newValue) {attributeString_ffbab22b.set(this, "media", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "media")
+        set(newValue) {attributeString_38b4cae2.set(this, "media", newValue)}
 
 
 }
@@ -98,16 +98,16 @@ public class STRONG(initialAttributes : Map<String, String>, override val consum
 
 public class STYLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("style", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var type : String
-        get()  = attributeString_7e4dbf20.get(this, "type")
-        set(newValue) {attributeString_7e4dbf20.set(this, "type", newValue)}
+        get()  = attributeString_b747d7d7.get(this, "type")
+        set(newValue) {attributeString_b747d7d7.set(this, "type", newValue)}
 
     var media : String
-        get()  = attributeString_467827b8.get(this, "media")
-        set(newValue) {attributeString_467827b8.set(this, "media", newValue)}
+        get()  = attributeString_7f72406f.get(this, "media")
+        set(newValue) {attributeString_7f72406f.set(this, "media", newValue)}
 
     var scoped : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "scoped")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "scoped", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "scoped")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "scoped", newValue)}
 
 
 }

@@ -14,188 +14,188 @@ public class I(initialAttributes : Map<String, String>, override val consumer : 
 
 public class IFRAME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("iframe", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var name : String
-        get()  = attributeString_63d9c49c.get(this, "name")
-        set(newValue) {attributeString_63d9c49c.set(this, "name", newValue)}
+        get()  = attributeString_9cd3dd53.get(this, "name")
+        set(newValue) {attributeString_9cd3dd53.set(this, "name", newValue)}
 
     var src : String
-        get()  = attributeString_ffbab22b.get(this, "src")
-        set(newValue) {attributeString_ffbab22b.set(this, "src", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "src")
+        set(newValue) {attributeString_38b4cae2.set(this, "src", newValue)}
 
     var height : String
-        get()  = attributeString_ffbab22b.get(this, "height")
-        set(newValue) {attributeString_ffbab22b.set(this, "height", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "height")
+        set(newValue) {attributeString_38b4cae2.set(this, "height", newValue)}
 
     var width : String
-        get()  = attributeString_ffbab22b.get(this, "width")
-        set(newValue) {attributeString_ffbab22b.set(this, "width", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "width")
+        set(newValue) {attributeString_38b4cae2.set(this, "width", newValue)}
 
     var sandbox : IframeSandbox
-        get()  = attributeIframeSandboxIframeSandboxValues_ccc9b46.get(this, "sandbox")
-        set(newValue) {attributeIframeSandboxIframeSandboxValues_ccc9b46.set(this, "sandbox", newValue)}
+        get()  = attributeIframeSandboxIframeSandboxValues_9f145233.get(this, "sandbox")
+        set(newValue) {attributeIframeSandboxIframeSandboxValues_9f145233.set(this, "sandbox", newValue)}
 
     var seamless : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "seamless")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "seamless", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "seamless")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "seamless", newValue)}
 
 
 }
 
 public class IMG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("img", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var alt : String
-        get()  = attributeString_ffbab22b.get(this, "alt")
-        set(newValue) {attributeString_ffbab22b.set(this, "alt", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "alt")
+        set(newValue) {attributeString_38b4cae2.set(this, "alt", newValue)}
 
     var src : String
-        get()  = attributeString_ffbab22b.get(this, "src")
-        set(newValue) {attributeString_ffbab22b.set(this, "src", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "src")
+        set(newValue) {attributeString_38b4cae2.set(this, "src", newValue)}
 
     var height : String
-        get()  = attributeString_ffbab22b.get(this, "height")
-        set(newValue) {attributeString_ffbab22b.set(this, "height", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "height")
+        set(newValue) {attributeString_38b4cae2.set(this, "height", newValue)}
 
     var width : String
-        get()  = attributeString_ffbab22b.get(this, "width")
-        set(newValue) {attributeString_ffbab22b.set(this, "width", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "width")
+        set(newValue) {attributeString_38b4cae2.set(this, "width", newValue)}
 
     var usemap : String
-        get()  = attributeString_ffbab22b.get(this, "usemap")
-        set(newValue) {attributeString_ffbab22b.set(this, "usemap", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "usemap")
+        set(newValue) {attributeString_38b4cae2.set(this, "usemap", newValue)}
 
     var ismap : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "ismap")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "ismap", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "ismap")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "ismap", newValue)}
 
 
 }
 
 public class INPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("input", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var type : InputType
-        get()  = attributeInputTypeInputTypeValues_ad6fc2a6.get(this, "type")
-        set(newValue) {attributeInputTypeInputTypeValues_ad6fc2a6.set(this, "type", newValue)}
+        get()  = attributeInputTypeInputTypeValues_3fb77993.get(this, "type")
+        set(newValue) {attributeInputTypeInputTypeValues_3fb77993.set(this, "type", newValue)}
 
     var accept : String
-        get()  = attributeString_ffbab22b.get(this, "accept")
-        set(newValue) {attributeString_ffbab22b.set(this, "accept", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "accept")
+        set(newValue) {attributeString_38b4cae2.set(this, "accept", newValue)}
 
     var alt : String
-        get()  = attributeString_ffbab22b.get(this, "alt")
-        set(newValue) {attributeString_ffbab22b.set(this, "alt", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "alt")
+        set(newValue) {attributeString_38b4cae2.set(this, "alt", newValue)}
 
     var autoComplete : Boolean
-        get()  = attributeBooleanOnOff_2b366add.get(this, "autocomplete")
-        set(newValue) {attributeBooleanOnOff_2b366add.set(this, "autocomplete", newValue)}
+        get()  = attributeBooleanOnOff_b35b94ef.get(this, "autocomplete")
+        set(newValue) {attributeBooleanOnOff_b35b94ef.set(this, "autocomplete", newValue)}
 
     var checked : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "checked")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "checked", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "checked")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "checked", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "disabled")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "disabled", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "disabled")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "disabled", newValue)}
 
     var form : String
-        get()  = attributeString_ffbab22b.get(this, "form")
-        set(newValue) {attributeString_ffbab22b.set(this, "form", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "form")
+        set(newValue) {attributeString_38b4cae2.set(this, "form", newValue)}
 
     var formAction : String
-        get()  = attributeString_ffbab22b.get(this, "formaction")
-        set(newValue) {attributeString_ffbab22b.set(this, "formaction", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "formaction")
+        set(newValue) {attributeString_38b4cae2.set(this, "formaction", newValue)}
 
     var formEncType : InputFormEncType
-        get()  = attributeInputFormEncTypeInputFormEncTypeValues_643a2d26.get(this, "formenctype")
-        set(newValue) {attributeInputFormEncTypeInputFormEncTypeValues_643a2d26.set(this, "formenctype", newValue)}
+        get()  = attributeInputFormEncTypeInputFormEncTypeValues_f681e413.get(this, "formenctype")
+        set(newValue) {attributeInputFormEncTypeInputFormEncTypeValues_f681e413.set(this, "formenctype", newValue)}
 
     var formMethod : InputFormMethod
-        get()  = attributeInputFormMethodInputFormMethodValues_5edeb7c6.get(this, "formmethod")
-        set(newValue) {attributeInputFormMethodInputFormMethodValues_5edeb7c6.set(this, "formmethod", newValue)}
+        get()  = attributeInputFormMethodInputFormMethodValues_f1266eb3.get(this, "formmethod")
+        set(newValue) {attributeInputFormMethodInputFormMethodValues_f1266eb3.set(this, "formmethod", newValue)}
 
     var formNovalidate : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "formnovalidate")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "formnovalidate", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "formnovalidate")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "formnovalidate", newValue)}
 
     var formTarget : String
-        get()  = attributeString_29468b4c.get(this, "formtarget")
-        set(newValue) {attributeString_29468b4c.set(this, "formtarget", newValue)}
+        get()  = attributeString_6240a403.get(this, "formtarget")
+        set(newValue) {attributeString_6240a403.set(this, "formtarget", newValue)}
 
     var height : String
-        get()  = attributeString_ffbab22b.get(this, "height")
-        set(newValue) {attributeString_ffbab22b.set(this, "height", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "height")
+        set(newValue) {attributeString_38b4cae2.set(this, "height", newValue)}
 
     var list : String
-        get()  = attributeString_ffbab22b.get(this, "list")
-        set(newValue) {attributeString_ffbab22b.set(this, "list", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "list")
+        set(newValue) {attributeString_38b4cae2.set(this, "list", newValue)}
 
     var max : String
-        get()  = attributeString_ffbab22b.get(this, "max")
-        set(newValue) {attributeString_ffbab22b.set(this, "max", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "max")
+        set(newValue) {attributeString_38b4cae2.set(this, "max", newValue)}
 
-    var maxlength : String
-        get()  = attributeString_ffbab22b.get(this, "maxlength")
-        set(newValue) {attributeString_ffbab22b.set(this, "maxlength", newValue)}
+    var maxLength : String
+        get()  = attributeString_38b4cae2.get(this, "maxlength")
+        set(newValue) {attributeString_38b4cae2.set(this, "maxlength", newValue)}
 
     var min : String
-        get()  = attributeString_ffbab22b.get(this, "min")
-        set(newValue) {attributeString_ffbab22b.set(this, "min", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "min")
+        set(newValue) {attributeString_38b4cae2.set(this, "min", newValue)}
 
     var multiple : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "multiple")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "multiple", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "multiple")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "multiple", newValue)}
 
     var pattern : String
-        get()  = attributeString_ffbab22b.get(this, "pattern")
-        set(newValue) {attributeString_ffbab22b.set(this, "pattern", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "pattern")
+        set(newValue) {attributeString_38b4cae2.set(this, "pattern", newValue)}
 
     var placeholder : String
-        get()  = attributeString_ffbab22b.get(this, "placeholder")
-        set(newValue) {attributeString_ffbab22b.set(this, "placeholder", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "placeholder")
+        set(newValue) {attributeString_38b4cae2.set(this, "placeholder", newValue)}
 
     var readonly : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "readonly")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "readonly", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "readonly")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "readonly", newValue)}
 
     var required : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "required")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "required", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "required")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "required", newValue)}
 
     var size : String
-        get()  = attributeString_ffbab22b.get(this, "size")
-        set(newValue) {attributeString_ffbab22b.set(this, "size", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "size")
+        set(newValue) {attributeString_38b4cae2.set(this, "size", newValue)}
 
     var src : String
-        get()  = attributeString_ffbab22b.get(this, "src")
-        set(newValue) {attributeString_ffbab22b.set(this, "src", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "src")
+        set(newValue) {attributeString_38b4cae2.set(this, "src", newValue)}
 
     var step : String
-        get()  = attributeString_ffbab22b.get(this, "step")
-        set(newValue) {attributeString_ffbab22b.set(this, "step", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "step")
+        set(newValue) {attributeString_38b4cae2.set(this, "step", newValue)}
 
     var width : String
-        get()  = attributeString_ffbab22b.get(this, "width")
-        set(newValue) {attributeString_ffbab22b.set(this, "width", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "width")
+        set(newValue) {attributeString_38b4cae2.set(this, "width", newValue)}
 
     var files : String
-        get()  = attributeString_ffbab22b.get(this, "files")
-        set(newValue) {attributeString_ffbab22b.set(this, "files", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "files")
+        set(newValue) {attributeString_38b4cae2.set(this, "files", newValue)}
 
     var value : String
-        get()  = attributeString_ffbab22b.get(this, "value")
-        set(newValue) {attributeString_ffbab22b.set(this, "value", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "value")
+        set(newValue) {attributeString_38b4cae2.set(this, "value", newValue)}
 
     var name : String
-        get()  = attributeString_ffbab22b.get(this, "name")
-        set(newValue) {attributeString_ffbab22b.set(this, "name", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "name")
+        set(newValue) {attributeString_38b4cae2.set(this, "name", newValue)}
 
 
 }
 
 public class INS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ins", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var cite : String
-        get()  = attributeString_ffbab22b.get(this, "cite")
-        set(newValue) {attributeString_ffbab22b.set(this, "cite", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "cite")
+        set(newValue) {attributeString_38b4cae2.set(this, "cite", newValue)}
 
     var dateTime : String
-        get()  = attributeString_ffbab22b.get(this, "datetime")
-        set(newValue) {attributeString_ffbab22b.set(this, "datetime", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "datetime")
+        set(newValue) {attributeString_38b4cae2.set(this, "datetime", newValue)}
 
 
 }

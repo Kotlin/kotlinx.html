@@ -10,24 +10,24 @@ import html4k.impl.*
 
 public class A(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("a", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var href : String
-        get()  = attributeString_ffbab22b.get(this, "href")
-        set(newValue) {attributeString_ffbab22b.set(this, "href", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "href")
+        set(newValue) {attributeString_38b4cae2.set(this, "href", newValue)}
 
     var target : String
-        get()  = attributeString_676f6f39.get(this, "target")
-        set(newValue) {attributeString_676f6f39.set(this, "target", newValue)}
+        get()  = attributeString_a06987f0.get(this, "target")
+        set(newValue) {attributeString_a06987f0.set(this, "target", newValue)}
 
     var ping : String
-        get()  = attributeString_ffbab22b.get(this, "ping")
-        set(newValue) {attributeString_ffbab22b.set(this, "ping", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "ping")
+        set(newValue) {attributeString_38b4cae2.set(this, "ping", newValue)}
 
     var rel : String
-        get()  = attributeString_3757893.get(this, "rel")
-        set(newValue) {attributeString_3757893.set(this, "rel", newValue)}
+        get()  = attributeString_3c6f914a.get(this, "rel")
+        set(newValue) {attributeString_3c6f914a.set(this, "rel", newValue)}
 
     var type : String
-        get()  = attributeString_737e1a70.get(this, "type")
-        set(newValue) {attributeString_737e1a70.set(this, "type", newValue)}
+        get()  = attributeString_ac783327.get(this, "type")
+        set(newValue) {attributeString_ac783327.set(this, "type", newValue)}
 
 
 }
@@ -42,36 +42,36 @@ public class ADDRESS(initialAttributes : Map<String, String>, override val consu
 
 public class AREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("area", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var coords : String
-        get()  = attributeString_ffbab22b.get(this, "coords")
-        set(newValue) {attributeString_ffbab22b.set(this, "coords", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "coords")
+        set(newValue) {attributeString_38b4cae2.set(this, "coords", newValue)}
 
     var href : String
-        get()  = attributeString_ffbab22b.get(this, "href")
-        set(newValue) {attributeString_ffbab22b.set(this, "href", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "href")
+        set(newValue) {attributeString_38b4cae2.set(this, "href", newValue)}
 
     var alt : String
-        get()  = attributeString_ffbab22b.get(this, "alt")
-        set(newValue) {attributeString_ffbab22b.set(this, "alt", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "alt")
+        set(newValue) {attributeString_38b4cae2.set(this, "alt", newValue)}
 
     var target : String
-        get()  = attributeString_795a994d.get(this, "target")
-        set(newValue) {attributeString_795a994d.set(this, "target", newValue)}
+        get()  = attributeString_b254b204.get(this, "target")
+        set(newValue) {attributeString_b254b204.set(this, "target", newValue)}
 
     var media : String
-        get()  = attributeString_ffbab22b.get(this, "media")
-        set(newValue) {attributeString_ffbab22b.set(this, "media", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "media")
+        set(newValue) {attributeString_38b4cae2.set(this, "media", newValue)}
 
     var rel : String
-        get()  = attributeString_a044a6ff.get(this, "rel")
-        set(newValue) {attributeString_a044a6ff.set(this, "rel", newValue)}
+        get()  = attributeString_d93ebfb6.get(this, "rel")
+        set(newValue) {attributeString_d93ebfb6.set(this, "rel", newValue)}
 
     var ping : String
-        get()  = attributeString_ffbab22b.get(this, "ping")
-        set(newValue) {attributeString_ffbab22b.set(this, "ping", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "ping")
+        set(newValue) {attributeString_38b4cae2.set(this, "ping", newValue)}
 
     var type : String
-        get()  = attributeString_ffbab22b.get(this, "type")
-        set(newValue) {attributeString_ffbab22b.set(this, "type", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "type")
+        set(newValue) {attributeString_38b4cae2.set(this, "type", newValue)}
 
 
 }
@@ -86,24 +86,24 @@ public class ASIDE(initialAttributes : Map<String, String>, override val consume
 
 public class AUDIO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("audio", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var src : String
-        get()  = attributeString_ffbab22b.get(this, "src")
-        set(newValue) {attributeString_ffbab22b.set(this, "src", newValue)}
+        get()  = attributeString_38b4cae2.get(this, "src")
+        set(newValue) {attributeString_38b4cae2.set(this, "src", newValue)}
 
     var autoBuffer : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "autobuffer")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "autobuffer", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "autobuffer")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "autobuffer", newValue)}
 
     var autoPlay : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "autoplay")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "autoplay", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "autoplay")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "autoplay", newValue)}
 
     var loop : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "loop")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "loop", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "loop")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "loop", newValue)}
 
     var controls : Boolean
-        get()  = attributeBoolean_e08d580a.get(this, "controls")
-        set(newValue) {attributeBoolean_e08d580a.set(this, "controls", newValue)}
+        get()  = attributeBoolean_e6822d2.get(this, "controls")
+        set(newValue) {attributeBoolean_e6822d2.set(this, "controls", newValue)}
 
 
 }
