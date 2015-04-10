@@ -20,6 +20,7 @@ import kotlin.dom.writeXmlString
 
 class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     private val path = arrayListOf<Element>()
+    private var lastLeaved : Element? = null
 
     override fun onTagStart(tag: Tag) {
         val element = document.createElement(tag.tagName)
@@ -28,9 +29,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
             element.setAttribute(it.getKey(), it.getValue())
         }
 
-        if (path.isEmpty()) {
-            path.add(element)
-        } else {
+        if (path.isNotEmpty()) {
             path.last().appendChild(element)
         }
 
@@ -50,7 +49,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
             throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
 
-        path.remove(path.lastIndex)
+        lastLeaved = path.remove(path.lastIndex)
     }
 
     override fun onTagContent(content: CharSequence) {
@@ -77,7 +76,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
         path.last().appendChild(document.createCDATASection(content.toString()))
     }
 
-    override fun finalize() = path.last().let { path.clear(); it }
+    override fun finalize() = lastLeaved ?: throw IllegalStateException("No tags were emitted")
 }
 
 public fun Document.createHTMLTree() : TagConsumer<Element> = HTMLDOMBuilder(this)

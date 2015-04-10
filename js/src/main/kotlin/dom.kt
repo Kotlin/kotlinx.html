@@ -11,6 +11,7 @@ import kotlin.js.dom.html.*
 
 class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R> {
     private val path = arrayListOf<HTMLElement>()
+    private var lastLeaved : HTMLElement? = null
 
     override fun onTagStart(tag: Tag) {
         val element = document.createElement(tag.tagName) as HTMLElement
@@ -19,9 +20,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
             element.setAttribute(it.getKey(), it.getValue())
         }
 
-        if (path.isEmpty()) {
-            path.add(element)
-        } else {
+        if (path.isNotEmpty()) {
             path.last().appendChild(element)
         }
 
@@ -41,7 +40,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
             throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
 
-        path.remove(path.lastIndex)
+        lastLeaved = path.remove(path.lastIndex)
     }
 
     override fun onTagContent(content: CharSequence) {
@@ -74,7 +73,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
         path.last().appendChild(document.createCDATASection(content.toString()))
     }
 
-    override fun finalize(): R = path.last().asR().let { path.clear(); it }
+    override fun finalize(): R = lastLeaved?.asR() ?: throw IllegalStateException("We can't finalize as there was no tags")
 
     [suppress("UNCHECKED_CAST")]
     private fun HTMLElement.asR() = this as R
