@@ -81,12 +81,12 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
 
 public fun Document.createHTMLTree() : TagConsumer<Element> = HTMLDOMBuilder(this)
 public fun Node.append(block : TagConsumer<Element>.() -> Unit) : List<Element> = ArrayList<Element>().let { result ->
-    getOwnerDocument().createHTMLTree().onFinalize { appendChild(it); result.add(it) }.block()
+    getOwnerDocument().createHTMLTree().onFinalize { it, partial -> if (!partial) {appendChild(it); result.add(it)} }.block()
 
     result
 }
 
-public fun createHTMLDocument() : TagConsumer<Document> = createDocument().let { document -> HTMLDOMBuilder(document).onFinalizeMap { document.appendChild(it); document } }
+public fun createHTMLDocument() : TagConsumer<Document> = createDocument().let { document -> HTMLDOMBuilder(document).onFinalizeMap { it, partial -> if (!partial) {document.appendChild(it)}; document } }
 
 public inline fun document(block : Document.() -> Unit) : Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
     document.block()

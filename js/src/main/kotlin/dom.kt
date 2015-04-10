@@ -84,7 +84,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
 public fun HTMLDocument.createTree() : TagConsumer<HTMLElement> = JSDOMBuilder(this)
 public fun Node.append(block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> =
         ArrayList<HTMLElement>().let { result ->
-            (ownerDocument as HTMLDocument).createTree().onFinalize { result.add(it); appendChild(it) }.block()
+            (ownerDocument as HTMLDocument).createTree().onFinalize { it, partial -> if (!partial) {result.add(it); appendChild(it) } }.block()
 
             result
         }
