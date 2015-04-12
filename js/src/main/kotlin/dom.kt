@@ -65,14 +65,6 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
 //        pathLast().innerHTML += entity.text
     }
 
-    override fun onCDATA(content: CharSequence) {
-        if (path.isEmpty()) {
-            throw IllegalStateException("No current DOM node")
-        }
-
-        path.last().appendChild(document.createCDATASection(content.toString()))
-    }
-
     override fun finalize(): R = lastLeaved?.asR() ?: throw IllegalStateException("We can't finalize as there was no tags")
 
     [suppress("UNCHECKED_CAST")]

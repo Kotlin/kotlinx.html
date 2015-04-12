@@ -92,7 +92,7 @@ fun main(args: Array<String>) {
 
                 function(receiver = "String", name = "plus") block {
                     receiverDot("consumer")
-                    functionCall("onTagContentEntity", listOf("this"))
+                    functionCall("onTagContent", listOf("this"))
                 }
             }
         }

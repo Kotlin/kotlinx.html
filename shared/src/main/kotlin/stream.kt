@@ -38,22 +38,11 @@ class HTMLStreamBuilder<O : Appendable>(val out : O) : TagConsumer<O> {
     }
 
     override fun onTagContent(content: CharSequence) {
-        out.escapeAppend(content) // TODO escape
+        out.escapeAppend(content)
     }
 
     override fun onTagContentEntity(entity: Entities) {
         out.append(entity.text)
-    }
-
-    override fun onCDATA(content: CharSequence) {
-        val s = content.toString()
-        if (s.contains("]]>")) {
-            throw IllegalArgumentException("CDATA content shouldn't have reserved characters ]]>")
-        }
-
-        out.append("<![CDATA[")
-        out.append(content)
-        out.append("]]>")
     }
 
     override fun finalize(): O = out

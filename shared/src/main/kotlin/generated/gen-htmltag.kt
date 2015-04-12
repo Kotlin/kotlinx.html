@@ -362,5 +362,5 @@ fun video(block : VIDEO.() -> Unit) : Unit = buildVIDEO(emptyMap(), consumer, bl
 fun Entities.plus() : Unit{
 consumer.onTagContentEntity(this)}
 fun String.plus() : Unit{
-consumer.onTagContentEntity(this)}
+consumer.onTagContent(this)}
 }

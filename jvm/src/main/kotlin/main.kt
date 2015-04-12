@@ -61,7 +61,6 @@ fun main(args : Array<String>) {
 				+"<<<special chars & entities goes here>>>"
 			}
 			div {
-				CDATA("Here is my content")
 			}
 		}
 	}.let {

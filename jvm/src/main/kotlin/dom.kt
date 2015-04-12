@@ -68,14 +68,6 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
         path.last().appendChild(document.createEntityReference(entity.name()))
     }
 
-    override fun onCDATA(content: CharSequence) {
-        if (path.isEmpty()) {
-            throw IllegalStateException("No current DOM node")
-        }
-
-        path.last().appendChild(document.createCDATASection(content.toString()))
-    }
-
     override fun finalize() = lastLeaved ?: throw IllegalStateException("No tags were emitted")
 }
 
