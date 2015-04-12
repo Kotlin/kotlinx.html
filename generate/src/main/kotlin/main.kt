@@ -62,7 +62,9 @@ fun main(args: Array<String>) {
                 emptyLine()
                 append("    ")
                 variable(Var("attributes", "DelegatingMap", false, true))
-                defineIs("DelegatingMap(initialAttributes, this) {consumer}")
+                defineIs(StringBuilder {
+                    functionCall("DelegatingMap", listOf("initialAttributes", "this")) blockShort { append("consumer") }
+                })
                 emptyLine()
 
                 Repository.tags.values().forEach {

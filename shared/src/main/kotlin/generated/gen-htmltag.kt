@@ -10,7 +10,8 @@ import html4k.impl.*
 
 public open class HTMLTag(override val tagName : String, override val consumer : TagConsumer<*>, val initialAttributes : Map<String, String>) : Tag {
 
-    override val attributes : DelegatingMap = DelegatingMap(initialAttributes, this) {consumer}
+    override val attributes : DelegatingMap = DelegatingMap(initialAttributes, this){ consumer }
+
 
 fun a(href : String? = null, target : String? = null, block : A.() -> Unit) : Unit = buildA(listOf("href" to href,"target" to target).toAttributesMap(), consumer, block)
 

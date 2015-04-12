@@ -192,6 +192,12 @@ fun <O : Appendable> O.receiverDot(receiver : String) {
     append('.')
 }
 
+fun <O : Appendable> O.blockShort(block : O.() -> Unit) : O = with {
+    append("{ ")
+    block()
+    append(" }\n")
+}
+
 fun <O : Appendable> O.block(block : O.() -> Unit) : O {
     append("{\n")
     block()
