@@ -4,8 +4,6 @@ Probably need to be imported to kotlinx.html
 
 Provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript
 
-**Work is in progress yet so most tags and attributes are missing yet and need to be generated from HTML schema**
-
 # Stream
 You can build HTML directly to Writer (JVM only) or Appendable (both JVM and JS)
 
@@ -14,7 +12,7 @@ System.out.appendHTML().html {
 	body {
 		div {
 			a("http://kotlinlang.org") {
-				target = Targets._blank
+				target = ATarget.blank
 				+"Main site"
 			}
 		}
@@ -39,7 +37,7 @@ See example at JavaScript
 
 ```kotlin
 window.setInterval({
-    document.getElementById("container").buildAndAppendChild {
+    document.getElementById("container").append {
         div {
             +"added it"
         }
@@ -55,7 +53,7 @@ Here is example that filters HTML that way so all div will be omited but content
 ```kotlin
 println(document {
 		appendChild(
-			buildHTML().filter { if (it.name == "div") SKIP else PASS  }.html {
+			createTree().filter { if (it.name == "div") SKIP else PASS  }.html {
 				body {
 					div {
 						a { +"link1" }
