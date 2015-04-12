@@ -33,4 +33,11 @@
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray</id>
+            <url>https://api.bintray.com/maven/cy6ergn0m/maven/html4k</url>
+        </repository>
+    </distributionManagement>
 </project>
