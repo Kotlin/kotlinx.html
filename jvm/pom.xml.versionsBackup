@@ -5,11 +5,11 @@
     <parent>
         <artifactId>kotlinx.html</artifactId>
         <groupId>org.jetbrains.kotlin</groupId>
-        <version>0.2.0</version>
+        <version>0.2.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>generate</artifactId>
+    <artifactId>kotlinx.html.jvm</artifactId>
 
     <dependencies>
         <dependency>
@@ -18,9 +18,16 @@
             <version>${kotlin.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.sun.xsom</groupId>
-            <artifactId>xsom</artifactId>
-            <version>20140925</version>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlinx.html.shared</artifactId>
+            <version>0.2.0-SNAPSHOT</version>
+
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jetbrains.kotlin</groupId>
+                    <artifactId>kotlin-js-library</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
@@ -45,6 +52,18 @@
                         <phase>test-compile</phase>
                         <goals>
                             <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>
