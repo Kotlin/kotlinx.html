@@ -158,7 +158,7 @@ fun <O : Appendable> O.functionCallConsts(name : String, arguments : List<Const<
     functionCall(name, arguments.map {it.asValue})
 }
 
-fun <O : Appendable> O.function(name : String, arguments : List<Var>, returnType : String, generics : List<String> = emptyList(), receiver : String = "") : O {
+fun <O : Appendable> O.function(name : String, arguments : List<Var> = emptyList(), returnType : String = "Unit", generics : List<String> = emptyList(), receiver : String = "") : O {
     append("fun ")
 
     if (generics.isNotEmpty()) {
@@ -166,8 +166,7 @@ fun <O : Appendable> O.function(name : String, arguments : List<Var>, returnType
     }
 
     if (receiver.isNotEmpty()) {
-        append(receiver)
-        append(".")
+        receiverDot(receiver)
     }
 
     append(name)
@@ -186,6 +185,11 @@ fun <O : Appendable> O.function(name : String, arguments : List<Var>, returnType
     }
 
     return this
+}
+
+fun <O : Appendable> O.receiverDot(receiver : String) {
+    append(receiver)
+    append('.')
 }
 
 fun <O : Appendable> O.block(block : O.() -> Unit) : O {

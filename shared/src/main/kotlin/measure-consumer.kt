@@ -28,10 +28,6 @@ private class MeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<
         downstream.onTagContentEntity(entity)
     }
 
-    override fun onCDATA(content: CharSequence) {
-        downstream.onCDATA(content)
-    }
-
     override fun finalize(): Pair<R, Long> = Pair(downstream.finalize(), Date().getTime().toLong() - start.getTime())
 }
 

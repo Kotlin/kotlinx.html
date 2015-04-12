@@ -33,11 +33,6 @@ class DelayedConsumer<T>(val downstream : TagConsumer<T>) : TagConsumer<T> {
         downstream.onTagContentEntity(entity)
     }
 
-    override fun onCDATA(content: CharSequence) {
-        processDelayedTag()
-        downstream.onCDATA(content)
-    }
-
     override fun finalize(): T {
         processDelayedTag()
         return downstream.finalize()

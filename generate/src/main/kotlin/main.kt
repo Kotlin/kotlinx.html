@@ -83,19 +83,15 @@ fun main(args: Array<String>) {
                     emptyLine()
                 }
 
-                append("""
-    fun Entities.plus() {
-        consumer.onTagContentEntity(this)
-    }
+                function(receiver = "Entities", name = "plus") block {
+                    receiverDot("consumer")
+                    functionCall("onTagContentEntity", listOf("this"))
+                }
 
-    fun String.plus() {
-        consumer.onTagContent(this)
-    }
-
-    fun CDATA(s : CharSequence) {
-        consumer.onCDATA(s)
-    }
-            """)
+                function(receiver = "String", name = "plus") block {
+                    receiverDot("consumer")
+                    functionCall("onTagContentEntity", listOf("this"))
+                }
             }
         }
     }

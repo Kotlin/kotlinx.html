@@ -358,16 +358,8 @@ fun var_(block : VAR_.() -> Unit) : Unit = buildVAR_(emptyMap(), consumer, block
 
 fun video(block : VIDEO.() -> Unit) : Unit = buildVIDEO(emptyMap(), consumer, block)
 
-
-    fun Entities.plus() {
-        consumer.onTagContentEntity(this)
-    }
-
-    fun String.plus() {
-        consumer.onTagContent(this)
-    }
-
-    fun CDATA(s : CharSequence) {
-        consumer.onCDATA(s)
-    }
-            }
+fun Entities.plus() : Unit{
+consumer.onTagContentEntity(this)}
+fun String.plus() : Unit{
+consumer.onTagContentEntity(this)}
+}

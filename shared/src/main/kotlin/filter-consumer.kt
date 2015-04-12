@@ -63,12 +63,6 @@ private class FilterTagConsumer<T>(val downstream : TagConsumer<T>, val predicat
         }
     }
 
-    override fun onCDATA(content: CharSequence) {
-        if (canPassCurrentLevel()) {
-            downstream.onCDATA(content)
-        }
-    }
-
     private fun canPassCurrentLevel() = dropLevel == null && currentLevel !in skippedLevels
 
     override fun finalize(): T = downstream.finalize()

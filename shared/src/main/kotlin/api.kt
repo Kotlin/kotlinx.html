@@ -8,7 +8,6 @@ public trait TagConsumer<out R> {
     fun onTagEnd(tag : Tag)
     fun onTagContent(content : CharSequence)
     fun onTagContentEntity(entity : Entities)
-    fun onCDATA(content : CharSequence)
     fun finalize() : R
 }
 

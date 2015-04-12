@@ -23,7 +23,7 @@ object StringEncoder : AttributeEncoder<String> {
     override fun decode(attributeName: String, value: String): String = value
 }
 
-class StringAttribute : Attribute<String>(StringEncoder)
+data class StringAttribute : Attribute<String>(StringEncoder)
 
 //public class IntAttribute : Attribute<Int>() {
 //    override fun encode(desc: PropertyMetadata, value: Int): String = value.toString()
@@ -40,7 +40,7 @@ class BooleanEncoder(val trueValue: String = "true", val falseValue: String = "f
     }
 }
 
-class BooleanAttribute(trueValue: String = "true", falseValue: String = "false") : Attribute<Boolean>(BooleanEncoder(trueValue, falseValue))
+data class BooleanAttribute(trueValue: String = "true", falseValue: String = "false") : Attribute<Boolean>(BooleanEncoder(trueValue, falseValue))
 
 fun Boolean.tickerEncode(attributeName: String) : String = if (this) attributeName else ""
 object TickerEncoder : AttributeEncoder<Boolean> {
@@ -48,7 +48,7 @@ object TickerEncoder : AttributeEncoder<Boolean> {
     override fun decode(attributeName: String, value: String): Boolean = value == attributeName
 }
 
-public class TickerAttribute : Attribute<Boolean>(TickerEncoder)
+public data class TickerAttribute : Attribute<Boolean>(TickerEncoder)
 
 class EnumEncoder<T : AttributeEnum>(val valuesMap : Map<String, T>) : AttributeEncoder<T> {
     override fun encode(attributeName: String, value: T): String = value.realValue
@@ -56,11 +56,11 @@ class EnumEncoder<T : AttributeEnum>(val valuesMap : Map<String, T>) : Attribute
 }
 
 fun <T : AttributeEnum> T.enumEncode() : String = realValue
-class EnumAttribute<T : AttributeEnum>(val values : Map<String, T>) : Attribute<T>(EnumEncoder(values))
+data class EnumAttribute<T : AttributeEnum>(val values : Map<String, T>) : Attribute<T>(EnumEncoder(values))
 
 fun Set<String>.stringSetEncode() = this.join(" ")
 object StringSetEncoder : AttributeEncoder<Set<String>> {
     override fun encode(attributeName: String, value: Set<String>): String = value.join(" ")
     override fun decode(attributeName: String, value: String): Set<String> = value.split("\\s+").toSet()
 }
-class StringSetAttribute : Attribute<Set<String>>(StringSetEncoder)
+data class StringSetAttribute : Attribute<Set<String>>(StringSetEncoder)
