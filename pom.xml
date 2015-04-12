@@ -13,6 +13,7 @@
         <module>jvm</module>
         <module>js</module>
         <module>generate</module>
+        <module>assembly</module>
     </modules>
 
     <properties>
