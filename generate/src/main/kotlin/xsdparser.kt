@@ -106,6 +106,17 @@ fun fillRepository() {
         }
     }
 
+    schema.getModelGroupDecls().values().forEach { modelGroupDeclaration ->
+        val name = modelGroupDeclaration.getName()
+        val children = modelGroupDeclaration.getModelGroup()
+                .getChildren()
+                .map {it.getTerm()}
+                .filter {it.isElementDecl()}
+                .map {it.asElementDecl().getName()}
+
+        Repository.tagGroups[name] = TagGroup(name, children)
+    }
+
     schema.getElementDecls().values().forEach { elementDeclaration ->
         val name = elementDeclaration.getName()
         val type = elementDeclaration.getType()
@@ -130,21 +141,16 @@ fun fillRepository() {
 
             val children = HashSet<String>()
             val modelGroupNames = HashSet<String>()
-            complex.getContentType().asParticle()?.let { particle ->
-                flattenTerm(particle.getTerm(), children, modelGroupNames)
+            val contentTerm = complex.getContentType()?.asParticle()?.getTerm()
+            val directChildren = ArrayList<String>()
+            if (contentTerm != null) {
+                flattenTerm(contentTerm, children, modelGroupNames)
+                if (contentTerm.isModelGroup()) {
+                    directChildren.addAll(contentTerm.asModelGroup().getChildren().map {it.getTerm()}.filter {it.isElementDecl()}.map {it.asElementDecl().getName()})
+                }
             }
 
-            val split = modelGroupNames.groupBy { it in Repository.tagGroups }
-            split[false]?.forEach {
-                val tagGroup = TagGroup(it)
-                tagGroup.tags.add(name)
-                Repository.tagGroups[it] = tagGroup
-            }
-            split[true]?.forEach {
-                Repository.tagGroups[it].tags.add(name)
-            }
-
-            tagInfo = TagInfo(name, children.toList().sort(), attributeGroups, attributes, suggestedNames)
+            tagInfo = TagInfo(name, children.toList().sort(), directChildren, attributeGroups, attributes, suggestedNames, modelGroupNames.sort().toList())
         } else {
             throw UnsupportedOperationException()
         }

@@ -11,8 +11,8 @@ import org.w3c.dom.Element
 import java.io.PrintStream
 import kotlin.dom.first
 
-fun <T> TagConsumer<T>.buildMe() = html { buildMe2() }
-fun HTMLTag.buildMe2() =
+fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }
+fun FlowContent.buildMe2() =
 				div(setOf("block", "deprecated")) {
 					a(href = "http://kotlinlang.org") {
 						target = ATarget.blank
@@ -35,7 +35,6 @@ fun main(args : Array<String>) {
 			link { rel = LinkRel.stylesheet; href = "/styles.css" }
 		}
 		body {
-			td {}
 			form("/someurl") {
 				checkBoxInput("cb1") {
 					+"var1"
@@ -100,6 +99,15 @@ fun main(args : Array<String>) {
 						a { +"link1" }
 					}
 					a { +"link2" }
+					table {
+						tbody {
+							tr {
+								td {
+                                    +"cell"
+								}
+							}
+						}
+					}
 				}
 			}
 		)

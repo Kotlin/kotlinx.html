@@ -1,5 +1,6 @@
 package html4k.generate
 
+import html4k.generate.humanize.humanize
 import org.jetbrains
 import java.io.File
 import java.io.FileOutputStream
@@ -66,24 +67,6 @@ fun main(args: Array<String>) {
                     functionCall("DelegatingMap", listOf("initialAttributes", "this")) blockShort { append("consumer") }
                 })
                 emptyLine()
-
-                Repository.tags.values().forEach {
-                    val probablyContentOnly = it.possibleChildren.isEmpty()
-                    htmlTagBuilderMethod(it, true)
-                    if (probablyContentOnly) {
-                        htmlTagBuilderMethod(it, false)
-                    }
-
-                    val someEnumAttribute = it.attributes.filter { it.type == AttributeType.ENUM && it.enumValues.isNotEmpty() }.maxBy { it.enumValues.size() } // ??
-                    if (someEnumAttribute != null) {
-                        htmlTagEnumBuilderMethod(it, true, someEnumAttribute)
-                        if (probablyContentOnly) {
-                            htmlTagEnumBuilderMethod(it, false, someEnumAttribute)
-                        }
-                    }
-
-                    emptyLine()
-                }
 
                 function(receiver = "Entities", name = "plus") block {
                     receiverDot("consumer")
@@ -226,6 +209,33 @@ fun main(args: Array<String>) {
 
             Repository.attributeDelegateRequests.toList().forEach {
                 attributePseudoDelegate(it)
+            }
+        }
+    }
+
+    FileOutputStream("$todir/gen-tag-groups.kt").writer("UTF-8").use {
+        it.with {
+            packg(packg)
+            emptyLine()
+            import("html4k.*")
+            emptyLine()
+
+            warning()
+            emptyLine()
+            emptyLine()
+
+            Repository.tagGroups.values().forEach { group ->
+                val groupName = group.name.escapeUnsafeValues()
+                clazz(Clazz(name = groupName.capitalize(), parents = listOf("Tag"), isPublic = true, isTrait = true)) {
+                }
+                emptyLine()
+            }
+
+            Repository.tagGroups.values().forEach { group ->
+                val receiver = group.name.escapeUnsafeValues().capitalize()
+                group.tags.forEach {
+                    htmlTagBuilders(receiver, Repository.tags[it])
+                }
             }
         }
     }

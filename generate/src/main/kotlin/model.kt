@@ -79,9 +79,11 @@ fun String.isLowerCase() = this.toLowerCase() == this
 data class TagInfo(
         val name : String,
         val possibleChildren : List<String>,
+        val directChildren : List<String>,
         val attributeGroups : List<AttributeFacade>,
         val attributes : List<AttributeInfo>,
-        val suggestedAttributes : Set<String>
+        val suggestedAttributes : Set<String>,
+        val tagGroupNames: List<String>
 )
 
 fun TagInfo.mergeAttributes() = attributes + attributeGroups.flatMap { it.attributes }
@@ -94,7 +96,7 @@ val TagInfo.nameUpper : String
 
 data class TagGroup(
         val name : String,
-        val tags : MutableList<String> = ArrayList()
+        val tags : List<String>
 )
 
 private fun Any.toNameHash() = Integer.toHexString(hashCode())

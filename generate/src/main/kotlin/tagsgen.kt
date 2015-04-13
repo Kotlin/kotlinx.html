@@ -4,7 +4,8 @@ import java.util.ArrayList
 import java.util.LinkedList
 
 fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) : O = with {
-    val parentTraits = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
+    val parentAttributeTraits = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
+    val parentElementTraits = tag.tagGroupNames.map {it.escapeUnsafeValues().capitalize()}
 
     clazz(Clazz(
             name = tag.safeName.toUpperCase(),
@@ -14,7 +15,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
             ),
             parents = listOf(
                     "HTMLTag(\"${tag.name}\", consumer, initialAttributes)"
-            ) + parentTraits
+            ) + parentAttributeTraits + parentElementTraits
     )) {
         val lowerCasedNames = tag.attributes.map {it.name.toLowerCase()}.toSet()
         val attributes = tag.attributes.filter {it.name !in excludeAttributes}
@@ -26,6 +27,10 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
         }
 
         emptyLine()
+    }
+
+    tag.directChildren.map {Repository.tags[it]}.forEach { children ->
+        htmlTagBuilders(tag.safeName.toUpperCase(), children)
     }
 
     emptyLine()
@@ -101,7 +106,7 @@ fun <O : Appendable> O.consumerBuilderShared(tag : TagInfo, blockOrContent : Boo
     })
 }
 
-fun <O : Appendable> O.htmlTagBuilderMethod(tag : TagInfo, blockOrContent : Boolean) {
+fun <O : Appendable> O.htmlTagBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean) {
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent)
 
     val delegateArguments = ArrayList<String>()
@@ -115,11 +120,11 @@ fun <O : Appendable> O.htmlTagBuilderMethod(tag : TagInfo, blockOrContent : Bool
         delegateArguments.add("{+content}")
     }
 
-    function(tag.safeName, arguments, "Unit")
+    function(tag.safeName, arguments, "Unit", receiver = receiver)
     defineIs("build${tag.nameUpper}" + delegateArguments.join(", ", "(", ")"))
 }
 
-fun <O : Appendable> O.htmlTagEnumBuilderMethod(tag : TagInfo, blockOrContent : Boolean, enumAttribute : AttributeInfo) {
+fun <O : Appendable> O.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean, enumAttribute : AttributeInfo, indent : Int) {
     require(enumAttribute.type == AttributeType.ENUM)
     require(enumAttribute.enumValues.isNotEmpty())
 
@@ -137,8 +142,15 @@ fun <O : Appendable> O.htmlTagEnumBuilderMethod(tag : TagInfo, blockOrContent : 
             delegateArguments.add("{+content}")
         }
 
-        function(enumValue.fieldName + tag.safeName.capitalize(), arguments, "Unit")
+        indent(indent)
+        function(enumValue.fieldName + tag.safeName.capitalize(), arguments, "Unit", receiver = receiver)
         defineIs("build${tag.nameUpper}" + delegateArguments.join(", ", "(", ")"))
+    }
+}
+
+fun <O : Appendable> O.indent(stops : Int = 1) {
+    for (i in stops.indices) {
+        append("    ")
     }
 }
 
