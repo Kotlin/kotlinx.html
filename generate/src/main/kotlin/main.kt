@@ -239,4 +239,39 @@ fun main(args: Array<String>) {
             }
         }
     }
+
+    FileOutputStream("$todir/gen-entities.kt").writer("UTF-8").use {
+        it.with {
+            packg(packg)
+            emptyLine()
+            import("html4k.*")
+            emptyLine()
+
+            warning()
+            emptyLine()
+            emptyLine()
+
+            append("enum ")
+            clazz(Clazz(name = "Entities")) {
+                File("generate/src/main/resources/entities.txt").readLines().filter {it.isNotEmpty()}.forEach { ent ->
+                    indent()
+                    append(ent)
+                    emptyLine()
+                }
+
+                append(";")
+                appendln()
+
+                variable(Var(name = "text", type = "String", defaultValue = StringBuilder {
+                    append("&".quote())
+                    append(" + ")
+                    receiverDot("this")
+                    functionCall("toString", emptyList())
+                    append(" + ")
+                    append(";".quote())
+                }.toString()))
+                appendln()
+            }
+        }
+    }
 }
