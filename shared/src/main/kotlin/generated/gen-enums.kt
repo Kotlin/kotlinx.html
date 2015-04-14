@@ -180,14 +180,14 @@ public object IframeName {
 enum public class IframeSandbox(override val realValue : String) : AttributeEnum {
     allowSameOrigin : IframeSandbox("allow-same-origin")
     allowFormS : IframeSandbox("allow-forms")
-    allowScriptS : IframeSandbox("allow-scripts")
+    allowScripts : IframeSandbox("allow-scripts")
 }
 
 val iframeSandboxValues : Map<String, IframeSandbox> = IframeSandbox.values().toMap { it.realValue }
 enum public class InputType(override val realValue : String) : AttributeEnum {
     button : InputType("button")
     checkBox : InputType("checkbox")
-    colOr : InputType("color")
+    color : InputType("color")
     date : InputType("date")
     dateTime : InputType("datetime")
     dateTimeLocal : InputType("datetime-local")

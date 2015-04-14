@@ -108,6 +108,13 @@ fun main(args : Array<String>) {
 							}
 						}
 					}
+
+                    input(InputType.colOr) {
+
+                    }
+                    button {
+
+                    }
 				}
 			}
 		)
