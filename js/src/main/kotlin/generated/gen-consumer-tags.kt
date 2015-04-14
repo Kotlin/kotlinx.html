@@ -15,8 +15,8 @@ public fun TagConsumer<HTMLElement>.abbr(block : ABBR.() -> Unit) : HTMLElement 
 
 public fun TagConsumer<HTMLElement>.address(block : ADDRESS.() -> Unit) : HTMLElement = build(emptyMap(), ::buildADDRESS, block).finalize()
 
-public fun TagConsumer<HTMLElement>.area(alt : String? = null, content : String = "") : HTMLAreaElement = build(listOf("alt" to alt).toAttributesMap(), ::buildAREA, {+content}).finalize() as HTMLAreaElement
-public fun TagConsumer<HTMLElement>.area(alt : String? = null, block : AREA.() -> Unit) : HTMLAreaElement = build(listOf("alt" to alt).toAttributesMap(), ::buildAREA, block).finalize() as HTMLAreaElement
+public fun TagConsumer<HTMLElement>.area(shape : AreaShape? = null, alt : String? = null, content : String = "") : HTMLAreaElement = build(listOf("Shape" to shape?.enumEncode(),"alt" to alt).toAttributesMap(), ::buildAREA, {+content}).finalize() as HTMLAreaElement
+public fun TagConsumer<HTMLElement>.area(shape : AreaShape? = null, alt : String? = null, block : AREA.() -> Unit) : HTMLAreaElement = build(listOf("Shape" to shape?.enumEncode(),"alt" to alt).toAttributesMap(), ::buildAREA, block).finalize() as HTMLAreaElement
 
 public fun TagConsumer<HTMLElement>.article(block : ARTICLE.() -> Unit) : HTMLElement = build(emptyMap(), ::buildARTICLE, block).finalize()
 
@@ -40,7 +40,7 @@ public fun TagConsumer<HTMLElement>.body(block : BODY.() -> Unit) : HTMLBodyElem
 public fun TagConsumer<HTMLElement>.br(content : String = "") : HTMLBRElement = build(emptyMap(), ::buildBR, {+content}).finalize() as HTMLBRElement
 public fun TagConsumer<HTMLElement>.br(block : BR.() -> Unit) : HTMLBRElement = build(emptyMap(), ::buildBR, block).finalize() as HTMLBRElement
 
-public fun TagConsumer<HTMLElement>.button(block : BUTTON.() -> Unit) : HTMLButtonElement = build(emptyMap(), ::buildBUTTON, block).finalize() as HTMLButtonElement
+public fun TagConsumer<HTMLElement>.button(formEncType : ButtonFormEncType? = null, formMethod : ButtonFormMethod? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : HTMLButtonElement = build(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"type" to type?.enumEncode()).toAttributesMap(), ::buildBUTTON, block).finalize() as HTMLButtonElement
 
 public fun TagConsumer<HTMLElement>.canvas(content : String = "") : HTMLCanvasElement = build(emptyMap(), ::buildCANVAS, {+content}).finalize() as HTMLCanvasElement
 public fun TagConsumer<HTMLElement>.canvas(block : CANVAS.() -> Unit) : HTMLCanvasElement = build(emptyMap(), ::buildCANVAS, block).finalize() as HTMLCanvasElement
@@ -56,8 +56,8 @@ public fun TagConsumer<HTMLElement>.col(block : COL.() -> Unit) : HTMLElement = 
 
 public fun TagConsumer<HTMLElement>.colGroup(block : COLGROUP.() -> Unit) : HTMLElement = build(emptyMap(), ::buildCOLGROUP, block).finalize()
 
-public fun TagConsumer<HTMLElement>.command(content : String = "") : HTMLElement = build(emptyMap(), ::buildCOMMAND, {+content}).finalize()
-public fun TagConsumer<HTMLElement>.command(block : COMMAND.() -> Unit) : HTMLElement = build(emptyMap(), ::buildCOMMAND, block).finalize()
+public fun TagConsumer<HTMLElement>.command(type : CommandType? = null, content : String = "") : HTMLElement = build(listOf("type" to type?.enumEncode()).toAttributesMap(), ::buildCOMMAND, {+content}).finalize()
+public fun TagConsumer<HTMLElement>.command(type : CommandType? = null, block : COMMAND.() -> Unit) : HTMLElement = build(listOf("type" to type?.enumEncode()).toAttributesMap(), ::buildCOMMAND, block).finalize()
 
 public fun TagConsumer<HTMLElement>.dataList(block : DATALIST.() -> Unit) : HTMLElement = build(emptyMap(), ::buildDATALIST, block).finalize()
 
@@ -88,7 +88,7 @@ public fun TagConsumer<HTMLElement>.figure(block : FIGURE.() -> Unit) : HTMLElem
 
 public fun TagConsumer<HTMLElement>.footer(block : FOOTER.() -> Unit) : HTMLElement = build(emptyMap(), ::buildFOOTER, block).finalize()
 
-public fun TagConsumer<HTMLElement>.form(action : String? = null, block : FORM.() -> Unit) : HTMLFormElement = build(listOf("action" to action).toAttributesMap(), ::buildFORM, block).finalize() as HTMLFormElement
+public fun TagConsumer<HTMLElement>.form(action : String? = null, encType : FormEncType? = null, method : FormMethod? = null, block : FORM.() -> Unit) : HTMLFormElement = build(listOf("action" to action,"enctype" to encType?.enumEncode(),"method" to method?.enumEncode()).toAttributesMap(), ::buildFORM, block).finalize() as HTMLFormElement
 
 public fun TagConsumer<HTMLElement>.h1(block : H1.() -> Unit) : HTMLHeadingElement = build(emptyMap(), ::buildH1, block).finalize() as HTMLHeadingElement
 
@@ -115,21 +115,21 @@ public fun TagConsumer<HTMLElement>.html(block : HTML.() -> Unit) : HTMLHtmlElem
 
 public fun TagConsumer<HTMLElement>.i(block : I.() -> Unit) : HTMLElement = build(emptyMap(), ::buildI, block).finalize()
 
-public fun TagConsumer<HTMLElement>.iframe(content : String = "") : HTMLElement = build(emptyMap(), ::buildIFRAME, {+content}).finalize()
-public fun TagConsumer<HTMLElement>.iframe(block : IFRAME.() -> Unit) : HTMLElement = build(emptyMap(), ::buildIFRAME, block).finalize()
+public fun TagConsumer<HTMLElement>.iframe(sandbox : IframeSandbox? = null, content : String = "") : HTMLElement = build(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), ::buildIFRAME, {+content}).finalize()
+public fun TagConsumer<HTMLElement>.iframe(sandbox : IframeSandbox? = null, block : IFRAME.() -> Unit) : HTMLElement = build(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), ::buildIFRAME, block).finalize()
 
 public fun TagConsumer<HTMLElement>.img(alt : String? = null, src : String? = null, content : String = "") : HTMLImageElement = build(listOf("alt" to alt,"src" to src).toAttributesMap(), ::buildIMG, {+content}).finalize() as HTMLImageElement
 public fun TagConsumer<HTMLElement>.img(alt : String? = null, src : String? = null, block : IMG.() -> Unit) : HTMLImageElement = build(listOf("alt" to alt,"src" to src).toAttributesMap(), ::buildIMG, block).finalize() as HTMLImageElement
 
-public fun TagConsumer<HTMLElement>.input(type : InputType? = null, name : String? = null, content : String = "") : HTMLInputElement = build(listOf("type" to type?.enumEncode(),"name" to name).toAttributesMap(), ::buildINPUT, {+content}).finalize() as HTMLInputElement
-public fun TagConsumer<HTMLElement>.input(type : InputType? = null, name : String? = null, block : INPUT.() -> Unit) : HTMLInputElement = build(listOf("type" to type?.enumEncode(),"name" to name).toAttributesMap(), ::buildINPUT, block).finalize() as HTMLInputElement
+public fun TagConsumer<HTMLElement>.input(type : InputType? = null, formEncType : InputFormEncType? = null, formMethod : InputFormMethod? = null, name : String? = null, content : String = "") : HTMLInputElement = build(listOf("type" to type?.enumEncode(),"formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"name" to name).toAttributesMap(), ::buildINPUT, {+content}).finalize() as HTMLInputElement
+public fun TagConsumer<HTMLElement>.input(type : InputType? = null, formEncType : InputFormEncType? = null, formMethod : InputFormMethod? = null, name : String? = null, block : INPUT.() -> Unit) : HTMLInputElement = build(listOf("type" to type?.enumEncode(),"formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"name" to name).toAttributesMap(), ::buildINPUT, block).finalize() as HTMLInputElement
 
 public fun TagConsumer<HTMLElement>.ins(block : INS.() -> Unit) : HTMLElement = build(emptyMap(), ::buildINS, block).finalize()
 
 public fun TagConsumer<HTMLElement>.kbd(block : KBD.() -> Unit) : HTMLElement = build(emptyMap(), ::buildKBD, block).finalize()
 
-public fun TagConsumer<HTMLElement>.keyGen(content : String = "") : HTMLElement = build(emptyMap(), ::buildKEYGEN, {+content}).finalize()
-public fun TagConsumer<HTMLElement>.keyGen(block : KEYGEN.() -> Unit) : HTMLElement = build(emptyMap(), ::buildKEYGEN, block).finalize()
+public fun TagConsumer<HTMLElement>.keyGen(keyType : KeyGenKeyType? = null, content : String = "") : HTMLElement = build(listOf("keytype" to keyType?.enumEncode()).toAttributesMap(), ::buildKEYGEN, {+content}).finalize()
+public fun TagConsumer<HTMLElement>.keyGen(keyType : KeyGenKeyType? = null, block : KEYGEN.() -> Unit) : HTMLElement = build(listOf("keytype" to keyType?.enumEncode()).toAttributesMap(), ::buildKEYGEN, block).finalize()
 
 public fun TagConsumer<HTMLElement>.label(block : LABEL.() -> Unit) : HTMLLabelElement = build(emptyMap(), ::buildLABEL, block).finalize() as HTMLLabelElement
 
@@ -149,7 +149,7 @@ public fun TagConsumer<HTMLElement>.math(block : MATH.() -> Unit) : HTMLElement 
 public fun TagConsumer<HTMLElement>.mathml(content : String = "") : HTMLElement = build(emptyMap(), ::buildMATHML, {+content}).finalize()
 public fun TagConsumer<HTMLElement>.mathml(block : MATHML.() -> Unit) : HTMLElement = build(emptyMap(), ::buildMATHML, block).finalize()
 
-public fun TagConsumer<HTMLElement>.menu(block : MENU.() -> Unit) : HTMLMenuElement = build(emptyMap(), ::buildMENU, block).finalize() as HTMLMenuElement
+public fun TagConsumer<HTMLElement>.menu(type : MenuType? = null, block : MENU.() -> Unit) : HTMLMenuElement = build(listOf("type" to type?.enumEncode()).toAttributesMap(), ::buildMENU, block).finalize() as HTMLMenuElement
 
 public fun TagConsumer<HTMLElement>.meta(content : String = "") : HTMLMetaElement = build(emptyMap(), ::buildMETA, {+content}).finalize() as HTMLMetaElement
 public fun TagConsumer<HTMLElement>.meta(block : META.() -> Unit) : HTMLMetaElement = build(emptyMap(), ::buildMETA, block).finalize() as HTMLMetaElement
@@ -222,12 +222,12 @@ public fun TagConsumer<HTMLElement>.tbody(block : TBODY.() -> Unit) : HTMLElemen
 
 public fun TagConsumer<HTMLElement>.td(block : TD.() -> Unit) : HTMLTableCellElement = build(emptyMap(), ::buildTD, block).finalize() as HTMLTableCellElement
 
-public fun TagConsumer<HTMLElement>.textArea(rows : String? = null, cols : String? = null, content : String = "") : HTMLTextAreaElement = build(listOf("rows" to rows,"cols" to cols).toAttributesMap(), ::buildTEXTAREA, {+content}).finalize() as HTMLTextAreaElement
-public fun TagConsumer<HTMLElement>.textArea(rows : String? = null, cols : String? = null, block : TEXTAREA.() -> Unit) : HTMLTextAreaElement = build(listOf("rows" to rows,"cols" to cols).toAttributesMap(), ::buildTEXTAREA, block).finalize() as HTMLTextAreaElement
+public fun TagConsumer<HTMLElement>.textArea(rows : String? = null, cols : String? = null, wrap : TextAreaWrap? = null, content : String = "") : HTMLTextAreaElement = build(listOf("rows" to rows,"cols" to cols,"wrap" to wrap?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, {+content}).finalize() as HTMLTextAreaElement
+public fun TagConsumer<HTMLElement>.textArea(rows : String? = null, cols : String? = null, wrap : TextAreaWrap? = null, block : TEXTAREA.() -> Unit) : HTMLTextAreaElement = build(listOf("rows" to rows,"cols" to cols,"wrap" to wrap?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, block).finalize() as HTMLTextAreaElement
 
 public fun TagConsumer<HTMLElement>.tfoot(block : TFOOT.() -> Unit) : HTMLElement = build(emptyMap(), ::buildTFOOT, block).finalize()
 
-public fun TagConsumer<HTMLElement>.th(block : TH.() -> Unit) : HTMLTableColElement = build(emptyMap(), ::buildTH, block).finalize() as HTMLTableColElement
+public fun TagConsumer<HTMLElement>.th(scope : ThScope? = null, block : TH.() -> Unit) : HTMLTableColElement = build(listOf("scope" to scope?.enumEncode()).toAttributesMap(), ::buildTH, block).finalize() as HTMLTableColElement
 
 public fun TagConsumer<HTMLElement>.thead(block : THEAD.() -> Unit) : HTMLElement = build(emptyMap(), ::buildTHEAD, block).finalize()
 

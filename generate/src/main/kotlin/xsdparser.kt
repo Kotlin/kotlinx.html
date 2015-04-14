@@ -150,6 +150,8 @@ fun fillRepository() {
                 }
             }
 
+            suggestedNames.addAll(attributes.filter {it.type == AttributeType.ENUM}.map {it.name})
+
             tagInfo = TagInfo(name, children.toList().sort(), directChildren, attributeGroups, attributes, suggestedNames, modelGroupNames.sort().toList())
         } else {
             throw UnsupportedOperationException()

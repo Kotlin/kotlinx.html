@@ -13,8 +13,8 @@ public fun <T, C : TagConsumer<T>> C.abbr(block : ABBR.() -> Unit) : T = build(e
 
 public fun <T, C : TagConsumer<T>> C.address(block : ADDRESS.() -> Unit) : T = build(emptyMap(), ::buildADDRESS, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.area(alt : String? = null, content : String = "") : T = build(listOf("alt" to alt).toAttributesMap(), ::buildAREA, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.area(alt : String? = null, block : AREA.() -> Unit) : T = build(listOf("alt" to alt).toAttributesMap(), ::buildAREA, block).finalize()
+public fun <T, C : TagConsumer<T>> C.area(shape : AreaShape? = null, alt : String? = null, content : String = "") : T = build(listOf("Shape" to shape?.enumEncode(),"alt" to alt).toAttributesMap(), ::buildAREA, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.area(shape : AreaShape? = null, alt : String? = null, block : AREA.() -> Unit) : T = build(listOf("Shape" to shape?.enumEncode(),"alt" to alt).toAttributesMap(), ::buildAREA, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.article(block : ARTICLE.() -> Unit) : T = build(emptyMap(), ::buildARTICLE, block).finalize()
 
@@ -38,7 +38,7 @@ public fun <T, C : TagConsumer<T>> C.body(block : BODY.() -> Unit) : T = build(e
 public fun <T, C : TagConsumer<T>> C.br(content : String = "") : T = build(emptyMap(), ::buildBR, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.br(block : BR.() -> Unit) : T = build(emptyMap(), ::buildBR, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.button(block : BUTTON.() -> Unit) : T = build(emptyMap(), ::buildBUTTON, block).finalize()
+public fun <T, C : TagConsumer<T>> C.button(formEncType : ButtonFormEncType? = null, formMethod : ButtonFormMethod? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : T = build(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"type" to type?.enumEncode()).toAttributesMap(), ::buildBUTTON, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.canvas(content : String = "") : T = build(emptyMap(), ::buildCANVAS, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.canvas(block : CANVAS.() -> Unit) : T = build(emptyMap(), ::buildCANVAS, block).finalize()
@@ -54,8 +54,8 @@ public fun <T, C : TagConsumer<T>> C.col(block : COL.() -> Unit) : T = build(emp
 
 public fun <T, C : TagConsumer<T>> C.colGroup(block : COLGROUP.() -> Unit) : T = build(emptyMap(), ::buildCOLGROUP, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.command(content : String = "") : T = build(emptyMap(), ::buildCOMMAND, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.command(block : COMMAND.() -> Unit) : T = build(emptyMap(), ::buildCOMMAND, block).finalize()
+public fun <T, C : TagConsumer<T>> C.command(type : CommandType? = null, content : String = "") : T = build(listOf("type" to type?.enumEncode()).toAttributesMap(), ::buildCOMMAND, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.command(type : CommandType? = null, block : COMMAND.() -> Unit) : T = build(listOf("type" to type?.enumEncode()).toAttributesMap(), ::buildCOMMAND, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.dataList(block : DATALIST.() -> Unit) : T = build(emptyMap(), ::buildDATALIST, block).finalize()
 
@@ -86,7 +86,7 @@ public fun <T, C : TagConsumer<T>> C.figure(block : FIGURE.() -> Unit) : T = bui
 
 public fun <T, C : TagConsumer<T>> C.footer(block : FOOTER.() -> Unit) : T = build(emptyMap(), ::buildFOOTER, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.form(action : String? = null, block : FORM.() -> Unit) : T = build(listOf("action" to action).toAttributesMap(), ::buildFORM, block).finalize()
+public fun <T, C : TagConsumer<T>> C.form(action : String? = null, encType : FormEncType? = null, method : FormMethod? = null, block : FORM.() -> Unit) : T = build(listOf("action" to action,"enctype" to encType?.enumEncode(),"method" to method?.enumEncode()).toAttributesMap(), ::buildFORM, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.h1(block : H1.() -> Unit) : T = build(emptyMap(), ::buildH1, block).finalize()
 
@@ -113,21 +113,21 @@ public fun <T, C : TagConsumer<T>> C.html(block : HTML.() -> Unit) : T = build(e
 
 public fun <T, C : TagConsumer<T>> C.i(block : I.() -> Unit) : T = build(emptyMap(), ::buildI, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.iframe(content : String = "") : T = build(emptyMap(), ::buildIFRAME, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.iframe(block : IFRAME.() -> Unit) : T = build(emptyMap(), ::buildIFRAME, block).finalize()
+public fun <T, C : TagConsumer<T>> C.iframe(sandbox : IframeSandbox? = null, content : String = "") : T = build(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), ::buildIFRAME, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.iframe(sandbox : IframeSandbox? = null, block : IFRAME.() -> Unit) : T = build(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), ::buildIFRAME, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.img(alt : String? = null, src : String? = null, content : String = "") : T = build(listOf("alt" to alt,"src" to src).toAttributesMap(), ::buildIMG, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.img(alt : String? = null, src : String? = null, block : IMG.() -> Unit) : T = build(listOf("alt" to alt,"src" to src).toAttributesMap(), ::buildIMG, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.input(type : InputType? = null, name : String? = null, content : String = "") : T = build(listOf("type" to type?.enumEncode(),"name" to name).toAttributesMap(), ::buildINPUT, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.input(type : InputType? = null, name : String? = null, block : INPUT.() -> Unit) : T = build(listOf("type" to type?.enumEncode(),"name" to name).toAttributesMap(), ::buildINPUT, block).finalize()
+public fun <T, C : TagConsumer<T>> C.input(type : InputType? = null, formEncType : InputFormEncType? = null, formMethod : InputFormMethod? = null, name : String? = null, content : String = "") : T = build(listOf("type" to type?.enumEncode(),"formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"name" to name).toAttributesMap(), ::buildINPUT, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.input(type : InputType? = null, formEncType : InputFormEncType? = null, formMethod : InputFormMethod? = null, name : String? = null, block : INPUT.() -> Unit) : T = build(listOf("type" to type?.enumEncode(),"formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"name" to name).toAttributesMap(), ::buildINPUT, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.ins(block : INS.() -> Unit) : T = build(emptyMap(), ::buildINS, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.kbd(block : KBD.() -> Unit) : T = build(emptyMap(), ::buildKBD, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.keyGen(content : String = "") : T = build(emptyMap(), ::buildKEYGEN, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.keyGen(block : KEYGEN.() -> Unit) : T = build(emptyMap(), ::buildKEYGEN, block).finalize()
+public fun <T, C : TagConsumer<T>> C.keyGen(keyType : KeyGenKeyType? = null, content : String = "") : T = build(listOf("keytype" to keyType?.enumEncode()).toAttributesMap(), ::buildKEYGEN, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.keyGen(keyType : KeyGenKeyType? = null, block : KEYGEN.() -> Unit) : T = build(listOf("keytype" to keyType?.enumEncode()).toAttributesMap(), ::buildKEYGEN, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.label(block : LABEL.() -> Unit) : T = build(emptyMap(), ::buildLABEL, block).finalize()
 
@@ -147,7 +147,7 @@ public fun <T, C : TagConsumer<T>> C.math(block : MATH.() -> Unit) : T = build(e
 public fun <T, C : TagConsumer<T>> C.mathml(content : String = "") : T = build(emptyMap(), ::buildMATHML, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.mathml(block : MATHML.() -> Unit) : T = build(emptyMap(), ::buildMATHML, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.menu(block : MENU.() -> Unit) : T = build(emptyMap(), ::buildMENU, block).finalize()
+public fun <T, C : TagConsumer<T>> C.menu(type : MenuType? = null, block : MENU.() -> Unit) : T = build(listOf("type" to type?.enumEncode()).toAttributesMap(), ::buildMENU, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.meta(content : String = "") : T = build(emptyMap(), ::buildMETA, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.meta(block : META.() -> Unit) : T = build(emptyMap(), ::buildMETA, block).finalize()
@@ -220,12 +220,12 @@ public fun <T, C : TagConsumer<T>> C.tbody(block : TBODY.() -> Unit) : T = build
 
 public fun <T, C : TagConsumer<T>> C.td(block : TD.() -> Unit) : T = build(emptyMap(), ::buildTD, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.textArea(rows : String? = null, cols : String? = null, content : String = "") : T = build(listOf("rows" to rows,"cols" to cols).toAttributesMap(), ::buildTEXTAREA, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.textArea(rows : String? = null, cols : String? = null, block : TEXTAREA.() -> Unit) : T = build(listOf("rows" to rows,"cols" to cols).toAttributesMap(), ::buildTEXTAREA, block).finalize()
+public fun <T, C : TagConsumer<T>> C.textArea(rows : String? = null, cols : String? = null, wrap : TextAreaWrap? = null, content : String = "") : T = build(listOf("rows" to rows,"cols" to cols,"wrap" to wrap?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.textArea(rows : String? = null, cols : String? = null, wrap : TextAreaWrap? = null, block : TEXTAREA.() -> Unit) : T = build(listOf("rows" to rows,"cols" to cols,"wrap" to wrap?.enumEncode()).toAttributesMap(), ::buildTEXTAREA, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.tfoot(block : TFOOT.() -> Unit) : T = build(emptyMap(), ::buildTFOOT, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.th(block : TH.() -> Unit) : T = build(emptyMap(), ::buildTH, block).finalize()
+public fun <T, C : TagConsumer<T>> C.th(scope : ThScope? = null, block : TH.() -> Unit) : T = build(listOf("scope" to scope?.enumEncode()).toAttributesMap(), ::buildTH, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.thead(block : THEAD.() -> Unit) : T = build(emptyMap(), ::buildTHEAD, block).finalize()
 

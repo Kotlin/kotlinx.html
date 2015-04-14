@@ -145,11 +145,11 @@ public class TITLE(initialAttributes : Map<String, String>, override val consume
 public class TR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("tr", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
 
 }
-fun TR.th(block : TH.() -> Unit) : Unit = buildTH(emptyMap(), consumer, block)
-fun TR.colTh(block : TH.() -> Unit) : Unit = buildTH(emptyMap(), consumer, block)
-fun TR.colGroupTh(block : TH.() -> Unit) : Unit = buildTH(emptyMap(), consumer, block)
-fun TR.rowTh(block : TH.() -> Unit) : Unit = buildTH(emptyMap(), consumer, block)
-fun TR.rowGroupTh(block : TH.() -> Unit) : Unit = buildTH(emptyMap(), consumer, block)
+fun TR.th(scope : ThScope? = null, block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to scope?.enumEncode()).toAttributesMap(), consumer, block)
+fun TR.colTh(block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.col.realValue).toAttributesMap(), consumer, block)
+fun TR.colGroupTh(block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.colGroup.realValue).toAttributesMap(), consumer, block)
+fun TR.rowTh(block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.row.realValue).toAttributesMap(), consumer, block)
+fun TR.rowGroupTh(block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.rowGroup.realValue).toAttributesMap(), consumer, block)
 
 fun TR.td(block : TD.() -> Unit) : Unit = buildTD(emptyMap(), consumer, block)
 

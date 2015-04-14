@@ -36,10 +36,10 @@ fun main(args : Array<String>) {
 		}
 		body {
 			form("/someurl") {
-				checkBoxInput("cb1") {
+				checkBoxInput(name = "cb1") {
 					+"var1"
 				}
-				input(InputType.checkBox, "cb2") {
+				input(type = InputType.checkBox, name = "cb2") {
 					disabled = true
 					+"var2"
 				}
@@ -112,8 +112,7 @@ fun main(args : Array<String>) {
                     input(InputType.color) {
 
                     }
-                    button {
-
+                    button(type = ButtonType.submit) {
                     }
 				}
 			}
