@@ -6,7 +6,7 @@ import html4k.consumers.delayed
 
 class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) : TagConsumer<O> {
     private var level = 0
-    private var ln = false
+    private var ln = true
 
     override fun onTagStart(tag: Tag) {
         indent()
