@@ -7,6 +7,5 @@ import kotlin.properties.Delegates
 enum class Entities {
     nbsp lt gt
 
-    val x by Delegates.lazy {  }
     val text = "&" + this.toString() + ";"
 }

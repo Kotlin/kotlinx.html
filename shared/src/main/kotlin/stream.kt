@@ -4,9 +4,14 @@ import html4k.*
 import html4k.Entities.*
 import html4k.consumers.delayed
 
-class HTMLStreamBuilder<O : Appendable>(val out : O) : TagConsumer<O> {
+class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) : TagConsumer<O> {
+    private var level = 0
+    private var ln = false
 
     override fun onTagStart(tag: Tag) {
+        indent()
+        level++
+
         out.append("<")
         out.append(tag.tagName)
 
@@ -32,9 +37,15 @@ class HTMLStreamBuilder<O : Appendable>(val out : O) : TagConsumer<O> {
     }
 
     override fun onTagEnd(tag: Tag) {
+        level--
+        if (prettyPrint && ln) {
+            indent()
+        }
         out.append("</")
         out.append(tag.tagName)
         out.append(">")
+
+        appenln()
     }
 
     override fun onTagContent(content: CharSequence) {
@@ -46,9 +57,28 @@ class HTMLStreamBuilder<O : Appendable>(val out : O) : TagConsumer<O> {
     }
 
     override fun finalize(): O = out
+
+    private fun appenln() {
+        if (prettyPrint && !ln) {
+            out.append("\n")
+            ln = true
+        }
+    }
+
+    private fun indent() {
+        if (prettyPrint) {
+            if (!ln) {
+                out.append("\n")
+            }
+            for (l in level.indices) {
+                out.append("  ")
+            }
+            ln = false
+        }
+    }
 }
 
-public fun <O : Appendable> O.appendHTML() : TagConsumer<O> = HTMLStreamBuilder(this).delayed()
+public fun <O : Appendable> O.appendHTML(prettyPrint : Boolean = true) : TagConsumer<O> = HTMLStreamBuilder(this, prettyPrint).delayed()
 
 private val escapeMap = mapOf(
         '<' to "&lt;",
