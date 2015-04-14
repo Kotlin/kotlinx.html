@@ -109,7 +109,7 @@ fun main(args : Array<String>) {
 						}
 					}
 
-                    input(InputType.colOr) {
+                    input(InputType.color) {
 
                     }
                     button {
