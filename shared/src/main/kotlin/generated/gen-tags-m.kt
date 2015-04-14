@@ -15,6 +15,12 @@ public class MAP(initialAttributes : Map<String, String>, override val consumer 
 
 
 }
+public val MAP.asFlowContent : FlowContent
+    get()  = this
+
+public val MAP.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 public class MARK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("mark", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, PhrasingContent {
 

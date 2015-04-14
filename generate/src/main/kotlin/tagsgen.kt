@@ -1,5 +1,6 @@
 package html4k.generate
 
+import html4k.generate.humanize.humanize
 import java.util.ArrayList
 import java.util.LinkedList
 
@@ -31,6 +32,20 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
 
     tag.directChildren.map {Repository.tags[it]}.forEach { children ->
         htmlTagBuilders(tag.safeName.toUpperCase(), children)
+    }
+
+    if (parentElementTraits.size() > 1) {
+        val commons = tag.tagGroupNames.map {Repository.tagGroups[it].tags.toSet()}.reduce { a, b -> a.intersect(b) }
+        if (commons.isNotEmpty()) {
+            parentElementTraits.forEach { group ->
+                append("public ")
+                variable(Var(name = "as" + group.escapeUnsafeValues().capitalize(), type = group.escapeUnsafeValues().capitalize()), receiver = tag.safeName.toUpperCase())
+                appendln()
+                getter()
+                defineIs("this")
+                emptyLine()
+            }
+        }
     }
 
     emptyLine()

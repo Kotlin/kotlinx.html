@@ -56,7 +56,7 @@ fun <O : Appendable> O.const(value : Const<*>) {
 data class Var(val name : String, val type : String, val mutable : Boolean = false, val override : Boolean = false, val forceOmitValVar : Boolean = false, val defaultValue : String = "")
 data class Clazz(val name: String, val parameters: List<String> = listOf(), val variables: List<Var> = listOf(), val parents: List<String> = listOf(), val isPublic: Boolean = true, val isAbstract: Boolean = false, val isOpen: Boolean = false, val isObject: Boolean = false, val isTrait : Boolean = false)
 
-fun <O : Appendable> O.variable(variable : Var, omitValVar : Boolean = false) : O {
+fun <O : Appendable> O.variable(variable : Var, omitValVar : Boolean = false, receiver : String = "") : O {
     if (!omitValVar && !variable.forceOmitValVar) {
         if (variable.override) {
             append("override ")
@@ -64,6 +64,9 @@ fun <O : Appendable> O.variable(variable : Var, omitValVar : Boolean = false) : 
         append(if (variable.mutable) "var " else "val ")
     }
 
+    if (receiver.isNotEmpty()) {
+        receiverDot(receiver)
+    }
     append(variable.name)
     append(" : ")
     append(variable.type)

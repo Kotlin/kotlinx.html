@@ -23,6 +23,12 @@ public class LABEL(initialAttributes : Map<String, String>, override val consume
 public class LEGEND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("legend", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, FlowContent, PhrasingContent {
 
 }
+public val LEGEND.asFlowContent : FlowContent
+    get()  = this
+
+public val LEGEND.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 public class LI(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("li", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, FlowContent {
     var value : String
