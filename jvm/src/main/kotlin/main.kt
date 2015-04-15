@@ -112,6 +112,7 @@ fun main(args : Array<String>) {
 					p {
 						p {
 							map {
+								classes += "a"
                                 asFlowContent.a ("") {
                                 }
                             }
