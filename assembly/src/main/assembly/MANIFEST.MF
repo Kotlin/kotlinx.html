@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Kotlin-JS-Module-Name: kotlinx.html.js.assembly
+Implementation-Version: 0.2.1-SNAPSHOT
+Specification-Title: ???
+Created-By: Apache Maven 3.2.5

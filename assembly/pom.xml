@@ -30,20 +30,33 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
+                        <id>jvm-and-webjar</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/jvm.xml</descriptor>
+                                <descriptor>src/main/assembly/webjar.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>js-only</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptor>src/main/assembly/js.xml</descriptor>
+                            <archive>
+                                <manifestFile>src/main/assembly/MANIFEST.MF</manifestFile>
+                            </archive>
+                        </configuration>
                     </execution>
                 </executions>
                 <version>2.5.3</version>
-                <configuration>
-                    <descriptors>
-                        <descriptor>src/main/assembly/jvm.xml</descriptor>
-                        <descriptor>src/main/assembly/js.xml</descriptor>
-                        <descriptor>src/main/assembly/webjar.xml</descriptor>
-                    </descriptors>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>

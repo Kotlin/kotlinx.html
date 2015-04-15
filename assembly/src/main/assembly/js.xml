@@ -3,7 +3,7 @@
           xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
     <id>js</id>
     <formats>
-        <format>zip</format>
+        <format>jar</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
 
@@ -11,10 +11,22 @@
         <dependencySet>
             <outputDirectory>/</outputDirectory>
             <fileMode>777</fileMode>
+            <unpack>true</unpack>
+
             <includes>
                 <include>org.jetbrains.kotlin:kotlinx.html.shared</include>
                 <include>org.jetbrains.kotlin:kotlinx.html.js</include>
             </includes>
+
+            <unpackOptions>
+                <includes>
+                    <include>**/*.js</include>
+                </includes>
+                <excludes>
+                    <exclude>META-INF</exclude>
+                    <exclude>META-INF/**</exclude>
+                </excludes>
+            </unpackOptions>
         </dependencySet>
     </dependencySets>
 </assembly>
