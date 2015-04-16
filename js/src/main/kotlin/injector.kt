@@ -1,6 +1,7 @@
 package html4k.injector
 
 import html4k.*
+import html4k.dom.append
 import html4k.dom.createTree
 import kotlin.js.dom.html.*
 import kotlin.properties.Delegates
@@ -76,4 +77,8 @@ class InjectorConsumer<T>(val downstream : TagConsumer<HTMLElement>, val bean : 
 }
 
 public fun <T> TagConsumer<HTMLElement>.inject(bean : T, rules : List<Pair<InjectCapture, KMutableMemberProperty<T, out HTMLElement>>>) : TagConsumer<HTMLElement> = InjectorConsumer(this, bean, rules)
+public fun <T> HTMLElement.appendAndInject(bean : T, rules : List<Pair<InjectCapture, KMutableMemberProperty<T, out HTMLElement>>>, block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> = append {
+    InjectorConsumer(this@append, bean, rules).block()
+    Unit
+}
 
