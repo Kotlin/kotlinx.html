@@ -38,7 +38,7 @@ class InjectorConsumer<T>(val downstream : TagConsumer<HTMLElement>, val bean : 
     private val tagNamesMap = rules
             .filter { it.first is InjectByTagName }
             .map { it.first as InjectByTagName to it.second }
-            .groupBy { it.first.tagName }
+            .groupBy { it.first.tagName.toLowerCase() }
             .mapValues { it.getValue().map {it.second} }
 
     private val rootCaptures = rules.filter { it.first == InjectRoot }.map { it.second }
@@ -56,7 +56,7 @@ class InjectorConsumer<T>(val downstream : TagConsumer<HTMLElement>, val bean : 
         }
 
         if (tagNamesMap.isNotEmpty()) {
-            tagNamesMap[node.tagName]?.forEach { field ->
+            tagNamesMap[node.tagName.toLowerCase()]?.forEach { field ->
                 node.injectToUnsafe(bean, field)
             }
         }
