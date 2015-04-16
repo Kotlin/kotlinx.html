@@ -4,6 +4,32 @@ Probably need to be imported to kotlinx.html
 
 Provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript
 
+
+# DOM
+You can build DOM tree at JVM and JS naturally
+See example at JavaScript
+
+```kotlin
+window.setInterval({
+    val myDiv = document.create.div {
+        classes += "panel"
+        
+        p { 
+            +"Here is "
+            a("http://kotlinlang.org") { +"official Kotlin site" } 
+        }
+    }
+
+    document.getElementById("container").appendChild(myDiv)
+
+    document.getElementById("container").append {
+        div {
+            +"added it"
+        }
+    }
+}, 1000L)
+```
+
 # Stream
 You can build HTML directly to Writer (JVM only) or Appendable (both JVM and JS)
 
@@ -29,20 +55,6 @@ StringBuilder {
         }
     }
 }
-```
-
-# DOM
-You can build DOM tree at JVM and JS naturally
-See example at JavaScript
-
-```kotlin
-window.setInterval({
-    document.getElementById("container").append {
-        div {
-            +"added it"
-        }
-    }
-}, 1000L)
 ```
 
 # Interceptors
