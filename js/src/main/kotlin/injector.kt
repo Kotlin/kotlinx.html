@@ -20,6 +20,7 @@ private fun <F : Any, T : Any> F.injectToUnsafe(bean : T, field : KMutableMember
 
 public trait InjectCapture
 public class InjectByClassName(val className : String) : InjectCapture
+public class InjectByTagName(val tagName : String) : InjectCapture
 public object InjectRoot : InjectCapture
 public trait CustomCapture : InjectCapture {
     fun apply(element : HTMLElement) : Boolean
@@ -33,6 +34,12 @@ class InjectorConsumer<T>(val downstream : TagConsumer<HTMLElement>, val bean : 
             .groupBy { it.first.className }
             .mapValues { it.getValue().map {it.second} }
 
+    private val tagNamesMap = rules
+            .filter { it.first is InjectByTagName }
+            .map { it.first as InjectByTagName to it.second }
+            .groupBy { it.first.tagName }
+            .mapValues { it.getValue().map {it.second} }
+
     private val rootCaptures = rules.filter { it.first == InjectRoot }.map { it.second }
     private val customCaptures = rules.filter {it.first is CustomCapture}.map {it.first as CustomCapture to it.second}
 
@@ -43,6 +50,12 @@ class InjectorConsumer<T>(val downstream : TagConsumer<HTMLElement>, val bean : 
 
         if (classesMap.isNotEmpty()) {
             node.splitClasses().flatMap { classesMap[it] ?: emptyList() }.forEach { field ->
+                node.injectToUnsafe(bean, field)
+            }
+        }
+
+        if (tagNamesMap.isNotEmpty()) {
+            tagNamesMap[node.tagName]?.forEach { field ->
                 node.injectToUnsafe(bean, field)
             }
         }
