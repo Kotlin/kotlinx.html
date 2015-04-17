@@ -16,7 +16,8 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
             ),
             parents = listOf(
                     "HTMLTag(\"${tag.name}\", consumer, initialAttributes)"
-            ) + parentAttributeTraits + parentElementTraits
+            ) + parentAttributeTraits + parentElementTraits,
+            isOpen = true
     )) {
         val lowerCasedNames = tag.attributes.map {it.name.toLowerCase()}.toSet()
         val attributes = tag.attributes.filter {it.name !in excludeAttributes}

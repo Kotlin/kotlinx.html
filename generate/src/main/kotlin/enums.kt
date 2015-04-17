@@ -30,6 +30,7 @@ fun <O : Appendable> O.enumObject(attribute : AttributeInfo) {
         }
 
         append("    ")
+        append("private ")
         variable(Var("values", "List<String>", defaultValue = attribute.enumValues.map {"\"${it.fieldName}\""}.join(",", "listOf(", ")")))
         emptyLine()
     }
@@ -50,6 +51,7 @@ fun <O : Appendable> O.enum(attribute : AttributeInfo) {
     }
 
     emptyLine()
+    append("private ")
     variable(Var(name.decapitalize() + "Values", "Map<String, $name>", false, defaultValue = "$name.values().toMap { it.realValue }"))
     emptyLine()
 }
