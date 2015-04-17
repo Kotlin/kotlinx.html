@@ -262,14 +262,17 @@ fun main(args: Array<String>) {
                 append(";")
                 appendln()
 
-                variable(Var(name = "text", type = "String", defaultValue = StringBuilder {
+                variable(Var(name = "text", type = "String"))
+                appendln()
+                getter()
+                defineIs(StringBuilder {
                     append("&".quote())
                     append(" + ")
                     receiverDot("this")
                     functionCall("toString", emptyList())
                     append(" + ")
                     append(";".quote())
-                }.toString()))
+                })
                 appendln()
             }
         }

@@ -110,5 +110,7 @@ enum public class Entities {
     thorn
     yuml
 ;
-val text : String = "&" + this.toString() + ";"
+val text : String
+    get()  = "&" + this.toString() + ";"
+
 }
