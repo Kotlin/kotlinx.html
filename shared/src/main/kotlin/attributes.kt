@@ -61,6 +61,6 @@ data class EnumAttribute<T : AttributeEnum>(val values : Map<String, T>) : Attri
 fun Set<String>.stringSetEncode() = this.join(" ")
 object StringSetEncoder : AttributeEncoder<Set<String>> {
     override fun encode(attributeName: String, value: Set<String>): String = value.join(" ")
-    override fun decode(attributeName: String, value: String): Set<String> = value.split("\\s+").toSet()
+    override fun decode(attributeName: String, value: String): Set<String> = value.split("\\s+").filterNot {it.isEmpty()}.toSet()
 }
 data class StringSetAttribute : Attribute<Set<String>>(StringSetEncoder)
