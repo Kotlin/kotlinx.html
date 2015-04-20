@@ -5,13 +5,14 @@ import kotlin.properties.ReadWriteProperty
 trait AttributeEncoder<T> {
     fun encode(attributeName: String, value : T) : String
     fun decode(attributeName: String, value : String) : T
+    fun empty(attributeName: String, tag: Tag) : T = throw IllegalStateException("Attribute $attributeName is not yet defined for tag ${tag.tagName}")
 }
 
 private abstract class Attribute<T>(val encoder : AttributeEncoder<T>) {
     fun get(thisRef: Tag, attributeName: String) : T =
             thisRef.attributes[attributeName]?.let {
                 encoder.decode(attributeName, it)
-            } ?: throw IllegalStateException("Attribute $attributeName is not yet defined for tag ${thisRef.tagName}")
+            } ?: encoder.empty(attributeName, thisRef)
 
     fun set(thisRef: Tag, attributeName: String, value : T) {
         thisRef.attributes[attributeName] = encoder.encode(attributeName, value)
@@ -62,5 +63,6 @@ fun Set<String>.stringSetEncode() = this.join(" ")
 object StringSetEncoder : AttributeEncoder<Set<String>> {
     override fun encode(attributeName: String, value: Set<String>): String = value.join(" ")
     override fun decode(attributeName: String, value: String): Set<String> = value.split("\\s+").filterNot {it.isEmpty()}.toSet()
+    override fun empty(attributeName: String, tag: Tag) = emptySet<String>()
 }
 data class StringSetAttribute : Attribute<Set<String>>(StringSetEncoder)
