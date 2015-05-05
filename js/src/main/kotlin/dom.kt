@@ -1,6 +1,7 @@
 package html4k.dom
 
 import html4k.*
+import html4k.js.*
 import html4k.consumers.onFinalize
 import html4k.consumers.onFinalizeMap
 import org.w3c.dom.Node
@@ -83,3 +84,6 @@ public fun Node.append(block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLE
 
             result
         }
+
+public val HTMLElement.append : TagConsumer<HTMLElement>
+    get() = (ownerDocument as HTMLDocument).createTree().onFinalize { element, partial -> if (!partial) { this@append.appendChild(element) } }
