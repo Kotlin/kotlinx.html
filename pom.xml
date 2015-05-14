@@ -7,7 +7,7 @@
     <groupId>org.jetbrains.kotlin</groupId>
     <artifactId>kotlinx.html</artifactId>
     <packaging>pom</packaging>
-    <version>0.3.1-SNAPSHOT</version>
+    <version>0.3.1</version>
     <modules>
         <module>shared</module>
         <module>jvm</module>
