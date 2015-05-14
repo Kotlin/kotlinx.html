@@ -11,13 +11,13 @@ val globalSuggestedAttributes = listOf(
         "div" to "class",
         "input" to "type",
         "input" to "name"
-).groupBy { it.first }.mapValues { it.getValue().map {it.second} }
+).groupBy { it.first }.mapValues { it.getValue().map { it.second } }
 
 val specialTypes = listOf(
         "*.class" to AttributeType.STRING_SET
 ).groupBy { it.first }.mapValues { it.getValue().single().second }
 
-fun specialTypeFor(tagName : String, attributeName : String) : AttributeType? =
+fun specialTypeFor(tagName: String, attributeName: String): AttributeType? =
         specialTypes[tagName + "." + attributeName] ?: specialTypes["*." + attributeName]
 
 val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
@@ -33,66 +33,234 @@ val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
 ).map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
 
 val excludeAttributes = listOf("lang$").map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
-fun isAtrributeExcluded(name : String) = excludeAttributes.any { it.matcher(name).find() }
+fun isAtrributeExcluded(name: String) = excludeAttributes.any { it.matcher(name).find() }
 
 val knownTagClasses = """
-        HTMLCollection
-HTMLOptionsCollection
-HTMLDocument
 HTMLElement
+HTMLUnknownElement
 HTMLHtmlElement
 HTMLHeadElement
-HTMLLinkElement
 HTMLTitleElement
-HTMLMetaElement
 HTMLBaseElement
-HTMLIsIndexElement
+HTMLLinkElement
+HTMLMetaElement
 HTMLStyleElement
 HTMLBodyElement
-HTMLFormElement
-HTMLSelectElement
-HTMLOptGroupElement
-HTMLOptionElement
-HTMLInputElement
-HTMLTextAreaElement
-HTMLButtonElement
-HTMLLabelElement
-HTMLFieldSetElement
-HTMLLegendElement
-HTMLUListElement
-HTMLOListElement
-HTMLDListElement
-HTMLDirectoryElement
-HTMLMenuElement
-HTMLLIElement
-HTMLDivElement
-HTMLParagraphElement
 HTMLHeadingElement
-HTMLQuoteElement
-HTMLPreElement
-HTMLBRElement
-HTMLBaseFontElement
-HTMLFontElement
+HTMLParagraphElement
 HTMLHRElement
-HTMLModElement
+HTMLPreElement
+HTMLQuoteElement
+HTMLOListElement
+HTMLUListElement
+HTMLLIElement
+HTMLDListElement
+HTMLDivElement
 HTMLAnchorElement
-HTMLImageElement
+HTMLDataElement
+HTMLTimeElement
+HTMLSpanElement
+HTMLBRElement
+HTMLModElement
+HTMLIFrameElement
+HTMLEmbedElement
 HTMLObjectElement
 HTMLParamElement
-HTMLAppletElement
+HTMLVideoElement
+HTMLAudioElement
+HTMLSourceElement
+HTMLTrackElement
+HTMLMediaElement
 HTMLMapElement
 HTMLAreaElement
-HTMLScriptElement
 HTMLTableElement
 HTMLTableCaptionElement
 HTMLTableColElement
 HTMLTableSectionElement
 HTMLTableRowElement
+HTMLTableDataCellElement
+HTMLTableHeaderCellElement
 HTMLTableCellElement
+HTMLFormElement
+HTMLLabelElement
+HTMLInputElement
+HTMLButtonElement
+HTMLSelectElement
+HTMLDataListElement
+HTMLOptGroupElement
+HTMLOptionElement
+HTMLTextAreaElement
+HTMLKeygenElement
+HTMLOutputElement
+HTMLProgressElement
+HTMLMeterElement
+HTMLFieldSetElement
+HTMLLegendElement
+HTMLDetailsElement
+HTMLMenuElement
+HTMLMenuItemElement
+HTMLDialogElement
+HTMLScriptElement
+HTMLTemplateElement
+HTMLCanvasElement
+HTMLAppletElement
+HTMLMarqueeElement
 HTMLFrameSetElement
 HTMLFrameElement
+HTMLAnchorElement
+HTMLAreaElement
+HTMLBodyElement
+HTMLBRElement
+HTMLTableCaptionElement
+HTMLTableColElement
+HTMLDirectoryElement
+HTMLDivElement
+HTMLDListElement
+HTMLEmbedElement
+HTMLFontElement
+HTMLHeadingElement
+HTMLHRElement
+HTMLHtmlElement
 HTMLIFrameElement
+HTMLImageElement
+HTMLInputElement
+HTMLLegendElement
+HTMLLIElement
+HTMLLinkElement
+HTMLMenuElement
+HTMLMetaElement
+HTMLObjectElement
+HTMLOListElement
+HTMLParagraphElement
+HTMLParamElement
+HTMLPreElement
+HTMLScriptElement
+HTMLTableElement
+HTMLTableSectionElement
+HTMLTableCellElement
+HTMLTableDataCellElement
+HTMLTableRowElement
+HTMLUListElement
+HTMLElement
+HTMLUnknownElement
+HTMLHtmlElement
+HTMLHeadElement
+HTMLTitleElement
+HTMLBaseElement
+HTMLLinkElement
+HTMLMetaElement
+HTMLStyleElement
+HTMLBodyElement
+HTMLHeadingElement
+HTMLParagraphElement
+HTMLHRElement
+HTMLPreElement
+HTMLQuoteElement
+HTMLOListElement
+HTMLUListElement
+HTMLLIElement
+HTMLDListElement
+HTMLDivElement
+HTMLAnchorElement
+HTMLDataElement
+HTMLTimeElement
+HTMLSpanElement
+HTMLBRElement
+HTMLModElement
+HTMLPictureElement
+HTMLSourceElement
+HTMLImageElement
+HTMLIFrameElement
+HTMLEmbedElement
+HTMLObjectElement
+HTMLParamElement
+HTMLVideoElement
+HTMLAudioElement
+HTMLSourceElement
+HTMLTrackElement
+HTMLMediaElement
+HTMLMapElement
+HTMLAreaElement
+HTMLTableElement
+HTMLTableCaptionElement
+HTMLTableColElement
+HTMLTableSectionElement
+HTMLTableRowElement
+HTMLTableDataCellElement
+HTMLTableHeaderCellElement
+HTMLTableCellElement
+HTMLFormElement
+HTMLLabelElement
+HTMLInputElement
+HTMLButtonElement
+HTMLSelectElement
+HTMLDataListElement
+HTMLOptGroupElement
+HTMLOptionElement
+HTMLTextAreaElement
+HTMLKeygenElement
+HTMLOutputElement
+HTMLProgressElement
+HTMLMeterElement
+HTMLFieldSetElement
+HTMLLegendElement
+HTMLDetailsElement
+HTMLMenuElement
+HTMLMenuItemElement
+HTMLDialogElement
+HTMLScriptElement
+HTMLTemplateElement
 HTMLCanvasElement
-""".split("\\s+").toSet()
+HTMLAppletElement
+HTMLMarqueeElement
+HTMLFrameSetElement
+HTMLFrameElement
+HTMLAnchorElement
+HTMLAreaElement
+HTMLBodyElement
+HTMLBRElement
+HTMLTableCaptionElement
+HTMLTableColElement
+HTMLDirectoryElement
+HTMLDivElement
+HTMLDListElement
+HTMLEmbedElement
+HTMLFontElement
+HTMLHeadingElement
+HTMLHRElement
+HTMLHtmlElement
+HTMLIFrameElement
+HTMLImageElement
+HTMLInputElement
+HTMLLegendElement
+HTMLLIElement
+HTMLLinkElement
+HTMLMenuElement
+HTMLMetaElement
+HTMLObjectElement
+HTMLOListElement
+HTMLParagraphElement
+HTMLParamElement
+HTMLPreElement
+HTMLScriptElement
+HTMLTableElement
+HTMLTableSectionElement
+HTMLTableCellElement
+HTMLTableDataCellElement
+HTMLTableRowElement
+HTMLUListElement
+""".split("\\s+".toRegex()).toSet()
 
-val replacements = listOf("img" to "image", "h\\d" to "heading", "p" to "paragraph", "a" to "anchor", "blockquote" to "quote", "td" to "TableCell", "tr" to "TableRow", "th" to "TableCol")
+val replacements = listOf(
+        "img" to "image",
+        "h\\d" to "heading",
+        "p" to "paragraph",
+        "a" to "anchor",
+        "blockquote" to "quote",
+        "td" to "TableCell",
+        "tr" to "TableRow",
+        "th" to "TableCol",
+        "thead" to "TableSection",
+        "tbody" to "TableSection",
+        "tfoot" to "TableSection"
+)

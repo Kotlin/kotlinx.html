@@ -81,7 +81,7 @@ private fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): Attrib
 
 fun probeType(htmlClassName : String) : Boolean = htmlClassName in knownTagClasses
 
-fun tagCandidates(tag : TagInfo) = (listOf(tag.safeName) + replacements.map { tag.safeName.replaceAll(it.first, it.second) }).flatMap { listOf(it.capitalize(), it.toUpperCase()) }
+fun tagCandidates(tag : TagInfo) = (listOf(tag.safeName) + replacements.map { tag.safeName.replace(it.first.toRegex(), it.second) }).flatMap { listOf(it.capitalize(), it.toUpperCase()) }.distinct()
 
 fun getTagResultClass(tag: TagInfo) =
         tagCandidates(tag)
@@ -165,7 +165,7 @@ fun <O : Appendable> O.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo
 }
 
 fun <O : Appendable> O.indent(stops : Int = 1) {
-    for (i in stops.indices) {
+    for (i in 0..stops - 1) {
         append("    ")
     }
 }
