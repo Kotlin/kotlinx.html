@@ -8,6 +8,7 @@ import html4k.consumers.onFinalizeMap
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
+import org.w3c.dom.events.Event
 import java.io.StringWriter
 import java.io.Writer
 import java.util.ArrayList
@@ -42,6 +43,10 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
         }
 
         path.last().setAttribute(attribute, value)
+    }
+
+    override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {
+        throw UnsupportedOperationException("You can't assign lamba event handler on JVM")
     }
 
     override fun onTagEnd(tag: Tag) {

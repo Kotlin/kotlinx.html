@@ -3,6 +3,7 @@ package html4k.consumers
 import html4k.Entities
 import html4k.Tag
 import html4k.TagConsumer
+import org.w3c.dom.events.Event
 
 class DelayedConsumer<T>(val downstream : TagConsumer<T>) : TagConsumer<T> {
     private var delayed : Tag? = null
@@ -13,6 +14,12 @@ class DelayedConsumer<T>(val downstream : TagConsumer<T>) : TagConsumer<T> {
     }
 
     override fun onTagAttributeChange(tag : Tag, attribute: String, value: String) {
+        if (delayed == null || delayed != tag) {
+            throw IllegalStateException("You can't change tag attribute because it was already passed to the downstream")
+        }
+    }
+
+    override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {
         if (delayed == null || delayed != tag) {
             throw IllegalStateException("You can't change tag attribute because it was already passed to the downstream")
         }

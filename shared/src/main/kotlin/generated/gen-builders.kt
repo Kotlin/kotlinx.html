@@ -1,4 +1,4 @@
-package html4k
+package html4k.impl
 
 import html4k.*
 import html4k.impl.*

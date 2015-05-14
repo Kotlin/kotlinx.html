@@ -2,6 +2,7 @@ package html4k
 
 import html4k.*
 import html4k.impl.*
+import html4k.attributes.*
 
 /*******************************************************************************
     DO NOT EDIT
@@ -10,16 +11,16 @@ import html4k.impl.*
 
 public open class FIELDSET(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("fieldset", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, FlowContent {
     var disabled : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "disabled")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "disabled", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "disabled")
+        set(newValue) {attributeBoolean_262196e6.set(this, "disabled", newValue)}
 
     var form : String
-        get()  = attributeString_38b4cae2.get(this, "form")
-        set(newValue) {attributeString_38b4cae2.set(this, "form", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "form")
+        set(newValue) {attributeString_5f39f85b.set(this, "form", newValue)}
 
     var name : String
-        get()  = attributeString_38b4cae2.get(this, "name")
-        set(newValue) {attributeString_38b4cae2.set(this, "name", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "name")
+        set(newValue) {attributeString_5f39f85b.set(this, "name", newValue)}
 
 
 }
@@ -38,36 +39,36 @@ public open class FOOTER(initialAttributes : Map<String, String>, override val c
 
 public open class FORM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("form", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, FlowContent {
     var acceptCharset : String
-        get()  = attributeString_38b4cae2.get(this, "accept-charset")
-        set(newValue) {attributeString_38b4cae2.set(this, "accept-charset", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "accept-charset")
+        set(newValue) {attributeString_5f39f85b.set(this, "accept-charset", newValue)}
 
     var action : String
-        get()  = attributeString_38b4cae2.get(this, "action")
-        set(newValue) {attributeString_38b4cae2.set(this, "action", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "action")
+        set(newValue) {attributeString_5f39f85b.set(this, "action", newValue)}
 
     var autoComplete : Boolean
-        get()  = attributeBooleanOnOff_b35b94ef.get(this, "autocomplete")
-        set(newValue) {attributeBooleanOnOff_b35b94ef.set(this, "autocomplete", newValue)}
+        get()  = attributeBooleanOnOff_ea5ce816.get(this, "autocomplete")
+        set(newValue) {attributeBooleanOnOff_ea5ce816.set(this, "autocomplete", newValue)}
 
     var encType : FormEncType
-        get()  = attributeFormEncTypeFormEncTypeValues_828b7613.get(this, "enctype")
-        set(newValue) {attributeFormEncTypeFormEncTypeValues_828b7613.set(this, "enctype", newValue)}
+        get()  = attributeFormEncTypeFormEncTypeValues_3ce6d66a.get(this, "enctype")
+        set(newValue) {attributeFormEncTypeFormEncTypeValues_3ce6d66a.set(this, "enctype", newValue)}
 
     var method : FormMethod
-        get()  = attributeFormMethodFormMethodValues_d4a29cb3.get(this, "method")
-        set(newValue) {attributeFormMethodFormMethodValues_d4a29cb3.set(this, "method", newValue)}
+        get()  = attributeFormMethodFormMethodValues_8efdfd0a.get(this, "method")
+        set(newValue) {attributeFormMethodFormMethodValues_8efdfd0a.set(this, "method", newValue)}
 
     var name : String
-        get()  = attributeString_38b4cae2.get(this, "name")
-        set(newValue) {attributeString_38b4cae2.set(this, "name", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "name")
+        set(newValue) {attributeString_5f39f85b.set(this, "name", newValue)}
 
     var novalidate : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "novalidate")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "novalidate", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "novalidate")
+        set(newValue) {attributeBoolean_262196e6.set(this, "novalidate", newValue)}
 
     var target : String
-        get()  = attributeString_23f799ed.get(this, "target")
-        set(newValue) {attributeString_23f799ed.set(this, "target", newValue)}
+        get()  = attributeString_4a7cc766.get(this, "target")
+        set(newValue) {attributeString_4a7cc766.set(this, "target", newValue)}
 
 
 }

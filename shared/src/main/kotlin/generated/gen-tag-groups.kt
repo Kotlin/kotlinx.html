@@ -1,6 +1,8 @@
 package html4k
 
 import html4k.*
+import html4k.impl.*
+import html4k.attributes.*
 
 /*******************************************************************************
     DO NOT EDIT

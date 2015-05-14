@@ -3,6 +3,7 @@ package html4k.consumers
 import html4k.Entities
 import html4k.Tag
 import html4k.TagConsumer
+import org.w3c.dom.events.Event
 import java.util.Date
 
 private class MeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<Pair<R, Long>> {
@@ -14,6 +15,10 @@ private class MeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<
 
     override fun onTagAttributeChange(tag: Tag, attribute: String, value: String) {
         downstream.onTagAttributeChange(tag, attribute, value)
+    }
+
+    override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {
+        downstream.onTagEvent(tag, event, value)
     }
 
     override fun onTagEnd(tag: Tag) {

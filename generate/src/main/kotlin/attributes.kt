@@ -44,3 +44,27 @@ fun <O : Appendable> O.facade(facade : AttributeFacade) {
         }
     }
 }
+
+fun <O: Appendable> O.eventProperty(parent : String, attribute : AttributeInfo) {
+    append("public ")
+    variable(receiver = parent, variable = Var(
+            name = attribute.fieldName + "Function",
+            type = "(Event) -> Unit",
+            mutable = true
+    ))
+    emptyLine()
+
+    getter() defineIs(StringBuilder {
+        append("throw ")
+        functionCall("UnsupportedOperationException", listOf("You can't read variable ${attribute.fieldName}".quote()))
+    })
+    setter {
+        append("EventAttribute.")
+        functionCall("set", listOf(
+                "this",
+                attribute.name.quote(),
+                "newValue"
+        ))
+    }
+    emptyLine()
+}

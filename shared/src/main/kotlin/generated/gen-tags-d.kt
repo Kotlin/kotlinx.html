@@ -2,6 +2,7 @@ package html4k
 
 import html4k.*
 import html4k.impl.*
+import html4k.attributes.*
 
 /*******************************************************************************
     DO NOT EDIT
@@ -21,20 +22,20 @@ public open class DD(initialAttributes : Map<String, String>, override val consu
 
 public open class DEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("del", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, PhrasingContent {
     var cite : String
-        get()  = attributeString_38b4cae2.get(this, "cite")
-        set(newValue) {attributeString_38b4cae2.set(this, "cite", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "cite")
+        set(newValue) {attributeString_5f39f85b.set(this, "cite", newValue)}
 
     var dateTime : String
-        get()  = attributeString_38b4cae2.get(this, "datetime")
-        set(newValue) {attributeString_38b4cae2.set(this, "datetime", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "datetime")
+        set(newValue) {attributeString_5f39f85b.set(this, "datetime", newValue)}
 
 
 }
 
 public open class DETAILS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("details", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, FlowContent {
     var open : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "open")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "open", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "open")
+        set(newValue) {attributeBoolean_262196e6.set(this, "open", newValue)}
 
 
 }

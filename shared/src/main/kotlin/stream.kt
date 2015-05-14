@@ -3,6 +3,7 @@ package html4k.stream
 import html4k.*
 import html4k.Entities.*
 import html4k.consumers.delayed
+import org.w3c.dom.events.Event
 
 class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) : TagConsumer<O> {
     private var level = 0
@@ -34,6 +35,10 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
 
     override fun onTagAttributeChange(tag : Tag, attribute: String, value: String) {
         throw UnsupportedOperationException("tag attribute can't be changed as it was already written to the stream. Use with DelayedConsumer to be able to modify attributes")
+    }
+
+    override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {
+        throw UnsupportedOperationException("you can't assign lambda event handler when building text")
     }
 
     override fun onTagEnd(tag: Tag) {
@@ -70,7 +75,7 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
             if (!ln) {
                 out.append("\n")
             }
-            for (l in level.indices) {
+            for (l in 0..level - 1) {
                 out.append("  ")
             }
             ln = false
@@ -100,7 +105,7 @@ private fun String.isValidXmlAttributeName() =
 
 private fun Appendable.escapeAppend(s : CharSequence) {
     var lastIndex = 0
-    for (idx in s.length().indices) {
+    for (idx in 0 .. s.length() - 1) {
         val ch = s[idx]
         val escape = escapeMap[ch]
         if (escape != null) {

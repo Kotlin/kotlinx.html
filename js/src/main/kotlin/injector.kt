@@ -3,7 +3,7 @@ package html4k.injector
 import html4k.*
 import html4k.dom.append
 import html4k.dom.createTree
-import kotlin.js.dom.html.*
+import org.w3c.dom.*
 import kotlin.properties.Delegates
 import kotlin.reflect.KMutableMemberProperty
 
@@ -14,7 +14,7 @@ fun <F : Any, T : Any> F.injectTo(bean : T, field : KMutableMemberProperty<T, in
 }
 
 private fun <F : Any, T : Any> F.injectToUnsafe(bean : T, field : KMutableMemberProperty<T, out F>) {
-    [suppress("UNCHECKED_CAST")]
+    @suppress("UNCHECKED_CAST")
     val unsafe = field as KMutableMemberProperty<T, F>
     injectTo(bean, unsafe)
 }

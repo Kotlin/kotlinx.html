@@ -4,13 +4,17 @@ import html4k.*
 import html4k.js.*
 import html4k.consumers.onFinalize
 import html4k.consumers.onFinalizeMap
-import org.w3c.dom.Node
+import org.w3c.dom.*
+import org.w3c.dom.events.Event
 import java.util.ArrayList
+import kotlin.dom.asList
 import kotlin.dom.first
-import kotlin.dom.toList
-import kotlin.js.dom.html.*
 
-class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R> {
+native
+nativeSetter
+private fun HTMLElement.setEvent(name : String, callback : (Event) -> Unit) : Unit
+
+class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
     private val path = arrayListOf<HTMLElement>()
     private var lastLeaved : HTMLElement? = null
 
@@ -34,6 +38,14 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
         }
 
         path.last().setAttribute(attribute, value)
+    }
+
+    override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {
+        if (path.isEmpty()) {
+            throw IllegalStateException("No current tag")
+        }
+
+        path.last().setEvent(event, value)
     }
 
     override fun onTagEnd(tag: Tag) {
@@ -60,7 +72,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
         // stupid hack as browsers doesn't support createEntityReference
         val s = document.createElement("span") as HTMLElement
         s.innerHTML = entity.text
-        path.last().appendChild(s.childNodes.toList().filter { it.nodeType == Node.TEXT_NODE }.first())
+        path.last().appendChild(s.childNodes.asList().filter { it.nodeType == Node.TEXT_NODE }.first())
 
         // other solution would be
 //        pathLast().innerHTML += entity.text
@@ -68,22 +80,22 @@ class JSDOMBuilder<R : HTMLElement>(val document : HTMLDocument) : TagConsumer<R
 
     override fun finalize(): R = lastLeaved?.asR() ?: throw IllegalStateException("We can't finalize as there was no tags")
 
-    [suppress("UNCHECKED_CAST")]
+    @suppress("UNCHECKED_CAST")
     private fun HTMLElement.asR() = this as R
 
 }
 
 
-public fun HTMLDocument.createTree() : TagConsumer<HTMLElement> = JSDOMBuilder(this)
-public val HTMLDocument.create : TagConsumer<HTMLElement>
+public fun Document.createTree() : TagConsumer<HTMLElement> = JSDOMBuilder(this)
+public val Document.create : TagConsumer<HTMLElement>
     get() = JSDOMBuilder(this)
 
 public fun Node.append(block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> =
         ArrayList<HTMLElement>().let { result ->
-            (ownerDocument as HTMLDocument).createTree().onFinalize { it, partial -> if (!partial) {result.add(it); appendChild(it) } }.block()
+            ownerDocument!!.createTree().onFinalize { it, partial -> if (!partial) {result.add(it); appendChild(it) } }.block()
 
             result
         }
 
 public val HTMLElement.append : TagConsumer<HTMLElement>
-    get() = (ownerDocument as HTMLDocument).createTree().onFinalize { element, partial -> if (!partial) { this@append.appendChild(element) } }
+    get() = ownerDocument!!.createTree().onFinalize { element, partial -> if (!partial) { this@append.appendChild(element) } }

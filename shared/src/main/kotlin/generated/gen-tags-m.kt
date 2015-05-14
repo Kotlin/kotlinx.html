@@ -2,6 +2,7 @@ package html4k
 
 import html4k.*
 import html4k.impl.*
+import html4k.attributes.*
 
 /*******************************************************************************
     DO NOT EDIT
@@ -10,8 +11,8 @@ import html4k.impl.*
 
 public open class MAP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("map", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, FlowContent, PhrasingContent {
     var name : String
-        get()  = attributeString_38b4cae2.get(this, "name")
-        set(newValue) {attributeString_38b4cae2.set(this, "name", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "name")
+        set(newValue) {attributeString_5f39f85b.set(this, "name", newValue)}
 
 
 }
@@ -36,12 +37,12 @@ public open class MATHML(initialAttributes : Map<String, String>, override val c
 
 public open class MENU(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("menu", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, FlowContent {
     var type : MenuType
-        get()  = attributeMenuTypeMenuTypeValues_f53bbc33.get(this, "type")
-        set(newValue) {attributeMenuTypeMenuTypeValues_f53bbc33.set(this, "type", newValue)}
+        get()  = attributeMenuTypeMenuTypeValues_af971c8a.get(this, "type")
+        set(newValue) {attributeMenuTypeMenuTypeValues_af971c8a.set(this, "type", newValue)}
 
     var label : String
-        get()  = attributeString_38b4cae2.get(this, "label")
-        set(newValue) {attributeString_38b4cae2.set(this, "label", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "label")
+        set(newValue) {attributeString_5f39f85b.set(this, "label", newValue)}
 
 
 }
@@ -50,48 +51,48 @@ fun MENU.li(block : LI.() -> Unit) : Unit = buildLI(emptyMap(), consumer, block)
 
 public open class META(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meta", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var httpEquiv : String
-        get()  = attributeString_bfdc9419.get(this, "http-equiv")
-        set(newValue) {attributeString_bfdc9419.set(this, "http-equiv", newValue)}
+        get()  = attributeString_e661c192.get(this, "http-equiv")
+        set(newValue) {attributeString_e661c192.set(this, "http-equiv", newValue)}
 
     var name : String
-        get()  = attributeString_38b4cae2.get(this, "name")
-        set(newValue) {attributeString_38b4cae2.set(this, "name", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "name")
+        set(newValue) {attributeString_5f39f85b.set(this, "name", newValue)}
 
     var content : String
-        get()  = attributeString_38b4cae2.get(this, "content")
-        set(newValue) {attributeString_38b4cae2.set(this, "content", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "content")
+        set(newValue) {attributeString_5f39f85b.set(this, "content", newValue)}
 
     var charset : String
-        get()  = attributeString_38b4cae2.get(this, "charset")
-        set(newValue) {attributeString_38b4cae2.set(this, "charset", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "charset")
+        set(newValue) {attributeString_5f39f85b.set(this, "charset", newValue)}
 
 
 }
 
 public open class METER(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meter", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, PhrasingContent {
     var value : String
-        get()  = attributeString_38b4cae2.get(this, "value")
-        set(newValue) {attributeString_38b4cae2.set(this, "value", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "value")
+        set(newValue) {attributeString_5f39f85b.set(this, "value", newValue)}
 
     var min : String
-        get()  = attributeString_38b4cae2.get(this, "min")
-        set(newValue) {attributeString_38b4cae2.set(this, "min", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "min")
+        set(newValue) {attributeString_5f39f85b.set(this, "min", newValue)}
 
     var max : String
-        get()  = attributeString_38b4cae2.get(this, "max")
-        set(newValue) {attributeString_38b4cae2.set(this, "max", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "max")
+        set(newValue) {attributeString_5f39f85b.set(this, "max", newValue)}
 
     var low : String
-        get()  = attributeString_38b4cae2.get(this, "low")
-        set(newValue) {attributeString_38b4cae2.set(this, "low", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "low")
+        set(newValue) {attributeString_5f39f85b.set(this, "low", newValue)}
 
     var high : String
-        get()  = attributeString_38b4cae2.get(this, "high")
-        set(newValue) {attributeString_38b4cae2.set(this, "high", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "high")
+        set(newValue) {attributeString_5f39f85b.set(this, "high", newValue)}
 
     var optimum : String
-        get()  = attributeString_38b4cae2.get(this, "optimum")
-        set(newValue) {attributeString_38b4cae2.set(this, "optimum", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "optimum")
+        set(newValue) {attributeString_5f39f85b.set(this, "optimum", newValue)}
 
 
 }

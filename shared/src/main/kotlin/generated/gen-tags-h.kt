@@ -2,6 +2,7 @@ package html4k
 
 import html4k.*
 import html4k.impl.*
+import html4k.attributes.*
 
 /*******************************************************************************
     DO NOT EDIT
@@ -62,8 +63,8 @@ public open class HR(initialAttributes : Map<String, String>, override val consu
 
 public open class HTML(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("html", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var manifest : String
-        get()  = attributeString_38b4cae2.get(this, "manifest")
-        set(newValue) {attributeString_38b4cae2.set(this, "manifest", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "manifest")
+        set(newValue) {attributeString_5f39f85b.set(this, "manifest", newValue)}
 
 
 }

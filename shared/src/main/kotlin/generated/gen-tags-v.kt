@@ -2,6 +2,7 @@ package html4k
 
 import html4k.*
 import html4k.impl.*
+import html4k.attributes.*
 
 /*******************************************************************************
     DO NOT EDIT
@@ -14,36 +15,36 @@ public open class VAR_(initialAttributes : Map<String, String>, override val con
 
 public open class VIDEO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("video", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var src : String
-        get()  = attributeString_38b4cae2.get(this, "src")
-        set(newValue) {attributeString_38b4cae2.set(this, "src", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "src")
+        set(newValue) {attributeString_5f39f85b.set(this, "src", newValue)}
 
     var autoBuffer : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "autobuffer")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "autobuffer", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "autobuffer")
+        set(newValue) {attributeBoolean_262196e6.set(this, "autobuffer", newValue)}
 
     var autoPlay : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "autoplay")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "autoplay", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "autoplay")
+        set(newValue) {attributeBoolean_262196e6.set(this, "autoplay", newValue)}
 
     var loop : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "loop")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "loop", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "loop")
+        set(newValue) {attributeBoolean_262196e6.set(this, "loop", newValue)}
 
     var controls : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "controls")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "controls", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "controls")
+        set(newValue) {attributeBoolean_262196e6.set(this, "controls", newValue)}
 
     var width : String
-        get()  = attributeString_38b4cae2.get(this, "width")
-        set(newValue) {attributeString_38b4cae2.set(this, "width", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "width")
+        set(newValue) {attributeString_5f39f85b.set(this, "width", newValue)}
 
     var height : String
-        get()  = attributeString_38b4cae2.get(this, "height")
-        set(newValue) {attributeString_38b4cae2.set(this, "height", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "height")
+        set(newValue) {attributeString_5f39f85b.set(this, "height", newValue)}
 
     var poster : String
-        get()  = attributeString_38b4cae2.get(this, "poster")
-        set(newValue) {attributeString_38b4cae2.set(this, "poster", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "poster")
+        set(newValue) {attributeString_5f39f85b.set(this, "poster", newValue)}
 
 
 }

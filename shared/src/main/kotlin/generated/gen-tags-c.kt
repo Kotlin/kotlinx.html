@@ -2,6 +2,7 @@ package html4k
 
 import html4k.*
 import html4k.impl.*
+import html4k.attributes.*
 
 /*******************************************************************************
     DO NOT EDIT
@@ -10,12 +11,12 @@ import html4k.impl.*
 
 public open class CANVAS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("canvas", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var width : String
-        get()  = attributeString_38b4cae2.get(this, "width")
-        set(newValue) {attributeString_38b4cae2.set(this, "width", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "width")
+        set(newValue) {attributeString_5f39f85b.set(this, "width", newValue)}
 
     var height : String
-        get()  = attributeString_38b4cae2.get(this, "height")
-        set(newValue) {attributeString_38b4cae2.set(this, "height", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "height")
+        set(newValue) {attributeString_5f39f85b.set(this, "height", newValue)}
 
 
 }
@@ -34,16 +35,16 @@ public open class CODE(initialAttributes : Map<String, String>, override val con
 
 public open class COL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("col", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var span : String
-        get()  = attributeString_38b4cae2.get(this, "span")
-        set(newValue) {attributeString_38b4cae2.set(this, "span", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "span")
+        set(newValue) {attributeString_5f39f85b.set(this, "span", newValue)}
 
 
 }
 
 public open class COLGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("colgroup", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var span : String
-        get()  = attributeString_38b4cae2.get(this, "span")
-        set(newValue) {attributeString_38b4cae2.set(this, "span", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "span")
+        set(newValue) {attributeString_5f39f85b.set(this, "span", newValue)}
 
 
 }
@@ -53,28 +54,28 @@ fun COLGROUP.col(content : String = "") : Unit = buildCOL(emptyMap(), consumer, 
 
 public open class COMMAND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("command", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var type : CommandType
-        get()  = attributeCommandTypeCommandTypeValues_fc4fccf3.get(this, "type")
-        set(newValue) {attributeCommandTypeCommandTypeValues_fc4fccf3.set(this, "type", newValue)}
+        get()  = attributeCommandTypeCommandTypeValues_b6ab2d4a.get(this, "type")
+        set(newValue) {attributeCommandTypeCommandTypeValues_b6ab2d4a.set(this, "type", newValue)}
 
     var label : String
-        get()  = attributeString_38b4cae2.get(this, "label")
-        set(newValue) {attributeString_38b4cae2.set(this, "label", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "label")
+        set(newValue) {attributeString_5f39f85b.set(this, "label", newValue)}
 
     var icon : String
-        get()  = attributeString_38b4cae2.get(this, "icon")
-        set(newValue) {attributeString_38b4cae2.set(this, "icon", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "icon")
+        set(newValue) {attributeString_5f39f85b.set(this, "icon", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "disabled")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "disabled", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "disabled")
+        set(newValue) {attributeBoolean_262196e6.set(this, "disabled", newValue)}
 
     var checked : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "checked")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "checked", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "checked")
+        set(newValue) {attributeBoolean_262196e6.set(this, "checked", newValue)}
 
     var radioGroup : String
-        get()  = attributeString_38b4cae2.get(this, "radiogroup")
-        set(newValue) {attributeString_38b4cae2.set(this, "radiogroup", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "radiogroup")
+        set(newValue) {attributeString_5f39f85b.set(this, "radiogroup", newValue)}
 
 
 }

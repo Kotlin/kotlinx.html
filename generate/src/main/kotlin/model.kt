@@ -8,7 +8,7 @@ import java.util.TreeSet
 object Repository {
     val tags = TreeMap<String, TagInfo>()
 
-    [suppress("UNCHECKED_CAST")]
+    @suppress("UNCHECKED_CAST")
     val attributeDelegateRequests = TreeSet<AttributeRequest> ({a, b ->
         a.type.compareTo(b.type).let { typeComparison ->
             if (typeComparison != 0) typeComparison
@@ -72,7 +72,7 @@ val HasType.typeName : String
     get() = if (type == AttributeType.ENUM) enumTypeName else type.typeName
 
 val AttributeInfo.fieldName : String
-    get() = if (safeAlias.isNotEmpty()) safeAlias else name
+    get() = if (safeAlias.isEmpty()) name else safeAlias
 
 fun String.isLowerCase() = this.toLowerCase() == this
 

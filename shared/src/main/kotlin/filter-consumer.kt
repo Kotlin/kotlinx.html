@@ -3,6 +3,7 @@ package html4k.consumers
 import html4k.Entities
 import html4k.Tag
 import html4k.TagConsumer
+import org.w3c.dom.events.Event
 import java.util.HashSet
 
 object PredicateResults {
@@ -35,6 +36,10 @@ private class FilterTagConsumer<T>(val downstream : TagConsumer<T>, val predicat
     }
 
     override fun onTagAttributeChange(tag: Tag, attribute: String, value: String) {
+        throw UnsupportedOperationException("this filter doesn't support attribute change")
+    }
+
+    override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {
         throw UnsupportedOperationException("this filter doesn't support attribute change")
     }
 

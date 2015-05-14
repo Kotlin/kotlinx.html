@@ -2,6 +2,7 @@ package html4k
 
 import html4k.*
 import html4k.impl.*
+import html4k.attributes.*
 
 /*******************************************************************************
     DO NOT EDIT
@@ -14,28 +15,28 @@ public open class KBD(initialAttributes : Map<String, String>, override val cons
 
 public open class KEYGEN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("keygen", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var autoFocus : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "autofocus")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "autofocus", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "autofocus")
+        set(newValue) {attributeBoolean_262196e6.set(this, "autofocus", newValue)}
 
     var challenge : String
-        get()  = attributeString_38b4cae2.get(this, "challenge")
-        set(newValue) {attributeString_38b4cae2.set(this, "challenge", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "challenge")
+        set(newValue) {attributeString_5f39f85b.set(this, "challenge", newValue)}
 
     var disabled : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "disabled")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "disabled", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "disabled")
+        set(newValue) {attributeBoolean_262196e6.set(this, "disabled", newValue)}
 
     var form : String
-        get()  = attributeString_38b4cae2.get(this, "form")
-        set(newValue) {attributeString_38b4cae2.set(this, "form", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "form")
+        set(newValue) {attributeString_5f39f85b.set(this, "form", newValue)}
 
     var keyType : KeyGenKeyType
-        get()  = attributeKeyGenKeyTypeKeyGenKeyTypeValues_a2ec5b13.get(this, "keytype")
-        set(newValue) {attributeKeyGenKeyTypeKeyGenKeyTypeValues_a2ec5b13.set(this, "keytype", newValue)}
+        get()  = attributeKeyGenKeyTypeKeyGenKeyTypeValues_5d47bb6a.get(this, "keytype")
+        set(newValue) {attributeKeyGenKeyTypeKeyGenKeyTypeValues_5d47bb6a.set(this, "keytype", newValue)}
 
     var name : String
-        get()  = attributeString_38b4cae2.get(this, "name")
-        set(newValue) {attributeString_38b4cae2.set(this, "name", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "name")
+        set(newValue) {attributeString_5f39f85b.set(this, "name", newValue)}
 
 
 }

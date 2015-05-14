@@ -2,6 +2,7 @@ package html4k
 
 import html4k.*
 import html4k.impl.*
+import html4k.attributes.*
 
 /*******************************************************************************
     DO NOT EDIT
@@ -14,12 +15,12 @@ public open class P(initialAttributes : Map<String, String>, override val consum
 
 public open class PARAM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("param", consumer, initialAttributes), CoreAttributeGroupFacade {
     var name : String
-        get()  = attributeString_38b4cae2.get(this, "name")
-        set(newValue) {attributeString_38b4cae2.set(this, "name", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "name")
+        set(newValue) {attributeString_5f39f85b.set(this, "name", newValue)}
 
     var value : String
-        get()  = attributeString_38b4cae2.get(this, "value")
-        set(newValue) {attributeString_38b4cae2.set(this, "value", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "value")
+        set(newValue) {attributeString_5f39f85b.set(this, "value", newValue)}
 
 
 }
@@ -30,12 +31,12 @@ public open class PRE(initialAttributes : Map<String, String>, override val cons
 
 public open class PROGRESS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("progress", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, PhrasingContent {
     var value : String
-        get()  = attributeString_38b4cae2.get(this, "value")
-        set(newValue) {attributeString_38b4cae2.set(this, "value", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "value")
+        set(newValue) {attributeString_5f39f85b.set(this, "value", newValue)}
 
     var max : String
-        get()  = attributeString_38b4cae2.get(this, "max")
-        set(newValue) {attributeString_38b4cae2.set(this, "max", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "max")
+        set(newValue) {attributeString_5f39f85b.set(this, "max", newValue)}
 
 
 }

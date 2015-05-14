@@ -83,7 +83,7 @@ fun main(args: Array<String>) {
 
     FileOutputStream("$todir/gen-builders.kt").writer().use {
         it.with {
-            packg(packg)
+            packg(packg + ".impl")
             emptyLine()
             import("html4k.*")
             import("html4k.impl.*")
@@ -106,6 +106,7 @@ fun main(args: Array<String>) {
                 emptyLine()
                 import("html4k.*")
                 import("html4k.impl.*")
+                import("html4k.attributes.*")
                 emptyLine()
 
                 warning()
@@ -124,6 +125,8 @@ fun main(args: Array<String>) {
             packg(packg)
             emptyLine()
             import("html4k.*")
+            import("html4k.impl.*")
+            import("html4k.attributes.*")
             emptyLine()
 
             warning()
@@ -145,8 +148,9 @@ fun main(args: Array<String>) {
             packg(packg + ".js")
             emptyLine()
             import("html4k.*")
-            import("kotlin.js.dom.html.*")
-            import("kotlin.js.dom.html5.*")
+            import("html4k.impl.*")
+            import("html4k.attributes.*")
+            import("org.w3c.dom.*")
             emptyLine()
 
             warning()
@@ -159,6 +163,28 @@ fun main(args: Array<String>) {
                 }
                 consumerBuilderJS(it, true)
                 emptyLine()
+            }
+        }
+    }
+
+    FileOutputStream("$jsdir/gen-event-attrs.kt").writer("UTF-8").use {
+        it.with {
+            packg(packg + ".js")
+            emptyLine()
+            import("html4k.*")
+            import("html4k.attributes.*")
+            import("html4k.dom.*")
+            import("org.w3c.dom.events.*")
+            emptyLine()
+
+            warning()
+            emptyLine()
+            emptyLine()
+
+            Repository.attributeFacades.filter { it.value.attributeNames.any { it.startsWith("on") } }.forEach { facade ->
+                facade.value.attributes.filter { it.name.startsWith("on") }.forEach {
+                    eventProperty(facade.value.name.capitalize() + "Facade", it)
+                }
             }
         }
     }
@@ -201,6 +227,7 @@ fun main(args: Array<String>) {
             packg(packg)
             emptyLine()
             import("html4k.*")
+            import("html4k.attributes.*")
             emptyLine()
 
             warning()
@@ -218,6 +245,8 @@ fun main(args: Array<String>) {
             packg(packg)
             emptyLine()
             import("html4k.*")
+            import("html4k.impl.*")
+            import("html4k.attributes.*")
             emptyLine()
 
             warning()

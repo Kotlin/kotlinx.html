@@ -3,6 +3,7 @@ package html4k.consumers
 import html4k.Entities
 import html4k.Tag
 import html4k.TagConsumer
+import org.w3c.dom.events.Event
 
 class FinalizeConsumer<F, T>(val downstream : TagConsumer<F>, val block : (F, Boolean) -> T) : TagConsumer<T> {
     private var level = 0
@@ -17,6 +18,7 @@ class FinalizeConsumer<F, T>(val downstream : TagConsumer<F>, val block : (F, Bo
     }
 
     override fun onTagAttributeChange(tag: Tag, attribute: String, value: String) = downstream.onTagAttributeChange(tag, attribute, value)
+    override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) = downstream.onTagEvent(tag, event, value)
     override fun onTagContent(content: CharSequence) = downstream.onTagContent(content)
     override fun onTagContentEntity(entity: Entities) = downstream.onTagContentEntity(entity)
 

@@ -1,10 +1,12 @@
 package html4k
 
+import org.w3c.dom.events.Event
 import java.util.LinkedHashSet
 
 public trait TagConsumer<out R> {
     fun onTagStart(tag : Tag)
     fun onTagAttributeChange(tag : Tag, attribute : String, value : String)
+    fun onTagEvent(tag : Tag, event : String, value : (Event) -> Unit)
     fun onTagEnd(tag : Tag)
     fun onTagContent(content : CharSequence)
     fun onTagContentEntity(entity : Entities)

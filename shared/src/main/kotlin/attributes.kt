@@ -1,5 +1,6 @@
-package html4k
+package html4k.attributes
 
+import html4k.*
 import kotlin.properties.ReadWriteProperty
 
 trait AttributeEncoder<T> {
@@ -8,7 +9,7 @@ trait AttributeEncoder<T> {
     fun empty(attributeName: String, tag: Tag) : T = throw IllegalStateException("Attribute $attributeName is not yet defined for tag ${tag.tagName}")
 }
 
-private abstract class Attribute<T>(val encoder : AttributeEncoder<T>) {
+abstract class Attribute<T>(val encoder : AttributeEncoder<T>) {
     fun get(thisRef: Tag, attributeName: String) : T =
             thisRef.attributes[attributeName]?.let {
                 encoder.decode(attributeName, it)

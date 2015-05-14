@@ -2,6 +2,7 @@ package html4k
 
 import html4k.*
 import html4k.impl.*
+import html4k.attributes.*
 
 /*******************************************************************************
     DO NOT EDIT
@@ -10,36 +11,36 @@ import html4k.impl.*
 
 public open class OBJECT_(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("object", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var data : String
-        get()  = attributeString_38b4cae2.get(this, "data")
-        set(newValue) {attributeString_38b4cae2.set(this, "data", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "data")
+        set(newValue) {attributeString_5f39f85b.set(this, "data", newValue)}
 
     var type : String
-        get()  = attributeString_38b4cae2.get(this, "type")
-        set(newValue) {attributeString_38b4cae2.set(this, "type", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "type")
+        set(newValue) {attributeString_5f39f85b.set(this, "type", newValue)}
 
     var height : String
-        get()  = attributeString_38b4cae2.get(this, "height")
-        set(newValue) {attributeString_38b4cae2.set(this, "height", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "height")
+        set(newValue) {attributeString_5f39f85b.set(this, "height", newValue)}
 
     var width : String
-        get()  = attributeString_38b4cae2.get(this, "width")
-        set(newValue) {attributeString_38b4cae2.set(this, "width", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "width")
+        set(newValue) {attributeString_5f39f85b.set(this, "width", newValue)}
 
     var usemap : String
-        get()  = attributeString_38b4cae2.get(this, "usemap")
-        set(newValue) {attributeString_38b4cae2.set(this, "usemap", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "usemap")
+        set(newValue) {attributeString_5f39f85b.set(this, "usemap", newValue)}
 
     var name : String
-        get()  = attributeString_4f05e598.get(this, "name")
-        set(newValue) {attributeString_4f05e598.set(this, "name", newValue)}
+        get()  = attributeString_758b1311.get(this, "name")
+        set(newValue) {attributeString_758b1311.set(this, "name", newValue)}
 
     var form : String
-        get()  = attributeString_38b4cae2.get(this, "form")
-        set(newValue) {attributeString_38b4cae2.set(this, "form", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "form")
+        set(newValue) {attributeString_5f39f85b.set(this, "form", newValue)}
 
     var classId : String
-        get()  = attributeString_38b4cae2.get(this, "classid")
-        set(newValue) {attributeString_38b4cae2.set(this, "classid", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "classid")
+        set(newValue) {attributeString_5f39f85b.set(this, "classid", newValue)}
 
 
 }
@@ -49,12 +50,12 @@ fun OBJECT_.param(name : String? = null, value : String? = null, content : Strin
 
 public open class OL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ol", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var start : String
-        get()  = attributeString_38b4cae2.get(this, "start")
-        set(newValue) {attributeString_38b4cae2.set(this, "start", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "start")
+        set(newValue) {attributeString_5f39f85b.set(this, "start", newValue)}
 
     var reversed : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "reversed")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "reversed", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "reversed")
+        set(newValue) {attributeBoolean_262196e6.set(this, "reversed", newValue)}
 
 
 }
@@ -63,12 +64,12 @@ fun OL.li(block : LI.() -> Unit) : Unit = buildLI(emptyMap(), consumer, block)
 
 public open class OPTGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("optgroup", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var disabled : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "disabled")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "disabled", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "disabled")
+        set(newValue) {attributeBoolean_262196e6.set(this, "disabled", newValue)}
 
     var label : String
-        get()  = attributeString_38b4cae2.get(this, "label")
-        set(newValue) {attributeString_38b4cae2.set(this, "label", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "label")
+        set(newValue) {attributeString_5f39f85b.set(this, "label", newValue)}
 
 
 }
@@ -78,36 +79,36 @@ fun OPTGROUP.option(content : String = "") : Unit = buildOPTION(emptyMap(), cons
 
 public open class OPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("option", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var disabled : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "disabled")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "disabled", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "disabled")
+        set(newValue) {attributeBoolean_262196e6.set(this, "disabled", newValue)}
 
     var selected : Boolean
-        get()  = attributeBoolean_e6822d2.get(this, "selected")
-        set(newValue) {attributeBoolean_e6822d2.set(this, "selected", newValue)}
+        get()  = attributeBoolean_262196e6.get(this, "selected")
+        set(newValue) {attributeBoolean_262196e6.set(this, "selected", newValue)}
 
     var label : String
-        get()  = attributeString_38b4cae2.get(this, "label")
-        set(newValue) {attributeString_38b4cae2.set(this, "label", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "label")
+        set(newValue) {attributeString_5f39f85b.set(this, "label", newValue)}
 
     var value : String
-        get()  = attributeString_38b4cae2.get(this, "value")
-        set(newValue) {attributeString_38b4cae2.set(this, "value", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "value")
+        set(newValue) {attributeString_5f39f85b.set(this, "value", newValue)}
 
 
 }
 
 public open class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("output", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade, PhrasingContent {
     var for_ : String
-        get()  = attributeString_38b4cae2.get(this, "for")
-        set(newValue) {attributeString_38b4cae2.set(this, "for", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "for")
+        set(newValue) {attributeString_5f39f85b.set(this, "for", newValue)}
 
     var form : String
-        get()  = attributeString_38b4cae2.get(this, "form")
-        set(newValue) {attributeString_38b4cae2.set(this, "form", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "form")
+        set(newValue) {attributeString_5f39f85b.set(this, "form", newValue)}
 
     var name : String
-        get()  = attributeString_38b4cae2.get(this, "name")
-        set(newValue) {attributeString_38b4cae2.set(this, "name", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "name")
+        set(newValue) {attributeString_5f39f85b.set(this, "name", newValue)}
 
 
 }

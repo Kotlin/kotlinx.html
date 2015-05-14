@@ -2,6 +2,7 @@ package html4k
 
 import html4k.*
 import html4k.impl.*
+import html4k.attributes.*
 
 /*******************************************************************************
     DO NOT EDIT
@@ -14,20 +15,20 @@ public open class EM(initialAttributes : Map<String, String>, override val consu
 
 public open class EMBED(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("embed", consumer, initialAttributes), CommonEventsGroupFacade, CoreServerAttributeGroupFacade, CoreAttributeGroupFacade {
     var src : String
-        get()  = attributeString_38b4cae2.get(this, "src")
-        set(newValue) {attributeString_38b4cae2.set(this, "src", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "src")
+        set(newValue) {attributeString_5f39f85b.set(this, "src", newValue)}
 
     var height : String
-        get()  = attributeString_38b4cae2.get(this, "height")
-        set(newValue) {attributeString_38b4cae2.set(this, "height", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "height")
+        set(newValue) {attributeString_5f39f85b.set(this, "height", newValue)}
 
     var width : String
-        get()  = attributeString_38b4cae2.get(this, "width")
-        set(newValue) {attributeString_38b4cae2.set(this, "width", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "width")
+        set(newValue) {attributeString_5f39f85b.set(this, "width", newValue)}
 
     var type : String
-        get()  = attributeString_38b4cae2.get(this, "type")
-        set(newValue) {attributeString_38b4cae2.set(this, "type", newValue)}
+        get()  = attributeString_5f39f85b.get(this, "type")
+        set(newValue) {attributeString_5f39f85b.set(this, "type", newValue)}
 
 
 }
