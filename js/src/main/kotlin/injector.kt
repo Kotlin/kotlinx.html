@@ -7,8 +7,6 @@ import org.w3c.dom.*
 import kotlin.properties.Delegates
 import kotlin.reflect.KMutableMemberProperty
 
-private fun HTMLElement.splitClasses() : List<String> = className.split("\\s+").filter { !it.isEmpty() }
-
 fun <F : Any, T : Any> F.injectTo(bean : T, field : KMutableMemberProperty<T, in F>) {
     field.set(bean, this)
 }
@@ -50,7 +48,7 @@ class InjectorConsumer<T>(val downstream : TagConsumer<HTMLElement>, val bean : 
         val node = downstream.finalize()
 
         if (classesMap.isNotEmpty()) {
-            node.splitClasses().flatMap { classesMap[it] ?: emptyList() }.forEach { field ->
+            node.classList.asList().flatMap { classesMap[it] ?: emptyList() }.forEach { field ->
                 node.injectToUnsafe(bean, field)
             }
         }
