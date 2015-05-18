@@ -4,6 +4,7 @@ Probably need to be imported to kotlinx.html
 
 Provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript
 
+[ ![Download](https://api.bintray.com/packages/cy6ergn0m/maven/html4k/images/download.svg) ](https://bintray.com/cy6ergn0m/maven/html4k/_latestVersion)
 
 # DOM
 You can build DOM tree at JVM and JS naturally
