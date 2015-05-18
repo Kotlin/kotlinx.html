@@ -3,7 +3,7 @@ package html4k.attributes
 import html4k.*
 import kotlin.properties.ReadWriteProperty
 
-trait AttributeEncoder<T> {
+interface AttributeEncoder<T> {
     fun encode(attributeName: String, value : T) : String
     fun decode(attributeName: String, value : String) : T
     fun empty(attributeName: String, tag: Tag) : T = throw IllegalStateException("Attribute $attributeName is not yet defined for tag ${tag.tagName}")
@@ -63,7 +63,7 @@ data class EnumAttribute<T : AttributeEnum>(val values : Map<String, T>) : Attri
 fun Set<String>.stringSetEncode() = this.join(" ")
 object StringSetEncoder : AttributeEncoder<Set<String>> {
     override fun encode(attributeName: String, value: Set<String>): String = value.join(" ")
-    override fun decode(attributeName: String, value: String): Set<String> = value.split("\\s+").filterNot {it.isEmpty()}.toSet()
+    override fun decode(attributeName: String, value: String): Set<String> = value.split("\\s+".toRegex()).filterNot {it.isEmpty()}.toSet()
     override fun empty(attributeName: String, tag: Tag) = emptySet<String>()
 }
 data class StringSetAttribute : Attribute<Set<String>>(StringSetEncoder)

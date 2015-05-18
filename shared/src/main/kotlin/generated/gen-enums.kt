@@ -8,20 +8,20 @@ import html4k.*
 *******************************************************************************/
 
 enum public class RunAt(override val realValue : String) : AttributeEnum {
-    server : RunAt("server")
+    server("server")
 }
 
 private val runAtValues : Map<String, RunAt> = RunAt.values().toMap { it.realValue }
 enum public class Dir(override val realValue : String) : AttributeEnum {
-    ltr : Dir("ltr")
-    rtl : Dir("rtl")
+    ltr("ltr")
+,    rtl("rtl")
 }
 
 private val dirValues : Map<String, Dir> = Dir.values().toMap { it.realValue }
 enum public class Draggable(override val realValue : String) : AttributeEnum {
-    true_ : Draggable("true")
-    false_ : Draggable("false")
-    auto : Draggable("auto")
+    true_("true")
+,    false_("false")
+,    auto("auto")
 }
 
 private val draggableValues : Map<String, Draggable> = Draggable.values().toMap { it.realValue }
@@ -67,10 +67,10 @@ public object AType {
 }
 
 enum public class AreaShape(override val realValue : String) : AttributeEnum {
-    rect : AreaShape("rect")
-    circle : AreaShape("circle")
-    poly : AreaShape("poly")
-    default : AreaShape("default")
+    rect("rect")
+,    circle("circle")
+,    poly("poly")
+,    default("default")
 }
 
 private val areaShapeValues : Map<String, AreaShape> = AreaShape.values().toMap { it.realValue }
@@ -110,17 +110,17 @@ public object BaseTarget {
 }
 
 enum public class ButtonFormEncType(override val realValue : String) : AttributeEnum {
-    multipartFormData : ButtonFormEncType("multipart/form-data")
-    applicationXWwwFormUrlEncoded : ButtonFormEncType("application/x-www-form-urlencoded")
-    textPlain : ButtonFormEncType("text/plain")
+    multipartFormData("multipart/form-data")
+,    applicationXWwwFormUrlEncoded("application/x-www-form-urlencoded")
+,    textPlain("text/plain")
 }
 
 private val buttonFormEncTypeValues : Map<String, ButtonFormEncType> = ButtonFormEncType.values().toMap { it.realValue }
 enum public class ButtonFormMethod(override val realValue : String) : AttributeEnum {
-    get : ButtonFormMethod("get")
-    post : ButtonFormMethod("post")
-    put : ButtonFormMethod("put")
-    delete : ButtonFormMethod("delete")
+    get("get")
+,    post("post")
+,    put("put")
+,    delete("delete")
 }
 
 private val buttonFormMethodValues : Map<String, ButtonFormMethod> = ButtonFormMethod.values().toMap { it.realValue }
@@ -133,31 +133,31 @@ public object ButtonFormTarget {
 }
 
 enum public class ButtonType(override val realValue : String) : AttributeEnum {
-    button : ButtonType("button")
-    reset : ButtonType("reset")
-    submit : ButtonType("submit")
+    button("button")
+,    reset("reset")
+,    submit("submit")
 }
 
 private val buttonTypeValues : Map<String, ButtonType> = ButtonType.values().toMap { it.realValue }
 enum public class CommandType(override val realValue : String) : AttributeEnum {
-    command : CommandType("command")
-    checkBox : CommandType("checkbox")
-    radio : CommandType("radio")
+    command("command")
+,    checkBox("checkbox")
+,    radio("radio")
 }
 
 private val commandTypeValues : Map<String, CommandType> = CommandType.values().toMap { it.realValue }
 enum public class FormEncType(override val realValue : String) : AttributeEnum {
-    multipartFormData : FormEncType("multipart/form-data")
-    applicationXWwwFormUrlEncoded : FormEncType("application/x-www-form-urlencoded")
-    textPlain : FormEncType("text/plain")
+    multipartFormData("multipart/form-data")
+,    applicationXWwwFormUrlEncoded("application/x-www-form-urlencoded")
+,    textPlain("text/plain")
 }
 
 private val formEncTypeValues : Map<String, FormEncType> = FormEncType.values().toMap { it.realValue }
 enum public class FormMethod(override val realValue : String) : AttributeEnum {
-    get : FormMethod("get")
-    post : FormMethod("post")
-    put : FormMethod("put")
-    delete : FormMethod("delete")
+    get("get")
+,    post("post")
+,    put("put")
+,    delete("delete")
 }
 
 private val formMethodValues : Map<String, FormMethod> = FormMethod.values().toMap { it.realValue }
@@ -178,51 +178,51 @@ public object IframeName {
 }
 
 enum public class IframeSandbox(override val realValue : String) : AttributeEnum {
-    allowSameOrigin : IframeSandbox("allow-same-origin")
-    allowFormS : IframeSandbox("allow-forms")
-    allowScripts : IframeSandbox("allow-scripts")
+    allowSameOrigin("allow-same-origin")
+,    allowFormS("allow-forms")
+,    allowScripts("allow-scripts")
 }
 
 private val iframeSandboxValues : Map<String, IframeSandbox> = IframeSandbox.values().toMap { it.realValue }
 enum public class InputType(override val realValue : String) : AttributeEnum {
-    button : InputType("button")
-    checkBox : InputType("checkbox")
-    color : InputType("color")
-    date : InputType("date")
-    dateTime : InputType("datetime")
-    dateTimeLocal : InputType("datetime-local")
-    email : InputType("email")
-    file : InputType("file")
-    hidden : InputType("hidden")
-    image : InputType("image")
-    month : InputType("month")
-    number : InputType("number")
-    password : InputType("password")
-    radio : InputType("radio")
-    range : InputType("range")
-    reset : InputType("reset")
-    search : InputType("search")
-    submit : InputType("submit")
-    text : InputType("text")
-    tel : InputType("tel")
-    time : InputType("time")
-    url : InputType("url")
-    week : InputType("week")
+    button("button")
+,    checkBox("checkbox")
+,    color("color")
+,    date("date")
+,    dateTime("datetime")
+,    dateTimeLocal("datetime-local")
+,    email("email")
+,    file("file")
+,    hidden("hidden")
+,    image("image")
+,    month("month")
+,    number("number")
+,    password("password")
+,    radio("radio")
+,    range("range")
+,    reset("reset")
+,    search("search")
+,    submit("submit")
+,    text("text")
+,    tel("tel")
+,    time("time")
+,    url("url")
+,    week("week")
 }
 
 private val inputTypeValues : Map<String, InputType> = InputType.values().toMap { it.realValue }
 enum public class InputFormEncType(override val realValue : String) : AttributeEnum {
-    multipartFormData : InputFormEncType("multipart/form-data")
-    applicationXWwwFormUrlEncoded : InputFormEncType("application/x-www-form-urlencoded")
-    textPlain : InputFormEncType("text/plain")
+    multipartFormData("multipart/form-data")
+,    applicationXWwwFormUrlEncoded("application/x-www-form-urlencoded")
+,    textPlain("text/plain")
 }
 
 private val inputFormEncTypeValues : Map<String, InputFormEncType> = InputFormEncType.values().toMap { it.realValue }
 enum public class InputFormMethod(override val realValue : String) : AttributeEnum {
-    get : InputFormMethod("get")
-    post : InputFormMethod("post")
-    put : InputFormMethod("put")
-    delete : InputFormMethod("delete")
+    get("get")
+,    post("post")
+,    put("put")
+,    delete("delete")
 }
 
 private val inputFormMethodValues : Map<String, InputFormMethod> = InputFormMethod.values().toMap { it.realValue }
@@ -235,7 +235,7 @@ public object InputFormTarget {
 }
 
 enum public class KeyGenKeyType(override val realValue : String) : AttributeEnum {
-    rsa : KeyGenKeyType("rsa")
+    rsa("rsa")
 }
 
 private val keyGenKeyTypeValues : Map<String, KeyGenKeyType> = KeyGenKeyType.values().toMap { it.realValue }
@@ -286,9 +286,9 @@ public object LinkType {
 }
 
 enum public class MenuType(override val realValue : String) : AttributeEnum {
-    context : MenuType("context")
-    toolbar : MenuType("toolbar")
-    list : MenuType("list")
+    context("context")
+,    toolbar("toolbar")
+,    list("list")
 }
 
 private val menuTypeValues : Map<String, MenuType> = MenuType.values().toMap { it.realValue }
@@ -309,18 +309,18 @@ public object ObjectName {
 }
 
 enum public class ScriptType(override val realValue : String) : AttributeEnum {
-    textEcmaScript : ScriptType("text/ecmascript")
-    textJavaScript : ScriptType("text/javascript")
-    textJavaScript10 : ScriptType("text/javascript1.0")
-    textJavaScript11 : ScriptType("text/javascript1.1")
-    textJavaScript12 : ScriptType("text/javascript1.2")
-    textJavaScript13 : ScriptType("text/javascript1.3")
-    textJavaScript14 : ScriptType("text/javascript1.4")
-    textJavaScript15 : ScriptType("text/javascript1.5")
-    textJScript : ScriptType("text/jscript")
-    textXJavaScript : ScriptType("text/x-javascript")
-    textXEcmaScript : ScriptType("text/x-ecmascript")
-    textVbScript : ScriptType("text/vbscript")
+    textEcmaScript("text/ecmascript")
+,    textJavaScript("text/javascript")
+,    textJavaScript10("text/javascript1.0")
+,    textJavaScript11("text/javascript1.1")
+,    textJavaScript12("text/javascript1.2")
+,    textJavaScript13("text/javascript1.3")
+,    textJavaScript14("text/javascript1.4")
+,    textJavaScript15("text/javascript1.5")
+,    textJScript("text/jscript")
+,    textXJavaScript("text/x-javascript")
+,    textXEcmaScript("text/x-ecmascript")
+,    textVbScript("text/vbscript")
 }
 
 private val scriptTypeValues : Map<String, ScriptType> = ScriptType.values().toMap { it.realValue }
@@ -343,16 +343,16 @@ public object StyleMedia {
 }
 
 enum public class TextAreaWrap(override val realValue : String) : AttributeEnum {
-    hard : TextAreaWrap("hard")
-    soft : TextAreaWrap("soft")
+    hard("hard")
+,    soft("soft")
 }
 
 private val textAreaWrapValues : Map<String, TextAreaWrap> = TextAreaWrap.values().toMap { it.realValue }
 enum public class ThScope(override val realValue : String) : AttributeEnum {
-    col : ThScope("col")
-    colGroup : ThScope("colgroup")
-    row : ThScope("row")
-    rowGroup : ThScope("rowgroup")
+    col("col")
+,    colGroup("colgroup")
+,    row("row")
+,    rowGroup("rowgroup")
 }
 
 private val thScopeValues : Map<String, ThScope> = ThScope.values().toMap { it.realValue }

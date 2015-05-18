@@ -17,11 +17,11 @@ private fun <F : Any, T : Any> F.injectToUnsafe(bean : T, field : KMutableMember
     injectTo(bean, unsafe)
 }
 
-public trait InjectCapture
+public interface InjectCapture
 public class InjectByClassName(val className : String) : InjectCapture
 public class InjectByTagName(val tagName : String) : InjectCapture
 public object InjectRoot : InjectCapture
-public trait CustomCapture : InjectCapture {
+public interface CustomCapture : InjectCapture {
     fun apply(element : HTMLElement) : Boolean
 }
 

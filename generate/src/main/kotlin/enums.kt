@@ -10,7 +10,7 @@ val reservedNames = setOf("class", "val", "var", "object", "true", "false", "as"
 
 fun String.replaceIfReserved() = if (this in reservedNames) this + "_" else this
 
-fun String.escapeUnsafeValues() : String = replaceAll("[^\\w\\d_]", "_").humanize().replaceIfReserved()
+fun String.escapeUnsafeValues() : String = replace("[^\\w\\d_]".toRegex(), "_").humanize().replaceIfReserved()
 
 private fun AttributeEnumValue.escapeUnsafeValues() : AttributeEnumValue = copy(fieldName = fieldName.escapeUnsafeValues())
 
@@ -44,9 +44,12 @@ fun <O : Appendable> O.enum(attribute : AttributeInfo) {
 
     append("enum ")
     clazz(Clazz(name, variables = listOf(realValue), parents = listOf("AttributeEnum"))) {
-        attribute.enumValues.forEach {
+        attribute.enumValues.forEachIndexed { idx, it ->
+            if (idx > 0) {
+                append(",")
+            }
             append("    ")
-            enumEntry(it.fieldName, name, listOf("\"${it.realName}\""))
+            enumEntry(it.fieldName, listOf("\"${it.realName}\""))
         }
     }
 

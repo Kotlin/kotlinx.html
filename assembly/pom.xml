@@ -40,7 +40,6 @@
                                 <descriptor>src/main/assembly/jvm.xml</descriptor>
                                 <descriptor>src/main/assembly/webjar.xml</descriptor>
                             </descriptors>
-                            <finalName>html4k</finalName>
                         </configuration>
                     </execution>
                     <execution>
@@ -54,10 +53,12 @@
                             <archive>
                                 <manifestFile>src/main/assembly/MANIFEST.MF</manifestFile>
                             </archive>
-                            <finalName>html4k</finalName>
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <finalName>html4k-${project.version}</finalName>
+                </configuration>
                 <version>2.5.3</version>
             </plugin>
             <plugin>

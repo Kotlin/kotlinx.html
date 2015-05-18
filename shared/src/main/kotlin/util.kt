@@ -15,7 +15,7 @@ public fun HEAD.styleLink(url : String) : Unit = link {
 public var CoreAttributeGroupFacade.c : String
     get() = classes.join(" ")
     set(newValue) {
-        classes = newValue.split("\\s+").filter {it.isNotEmpty()}.toSet()
+        classes = newValue.split("\\s+".toRegex()).filter {it.isNotEmpty()}.toSet()
     }
 
 public val Tag.br : Unit

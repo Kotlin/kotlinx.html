@@ -37,14 +37,14 @@ data class AttributeEnumValue (
 )
 
 enum class AttributeType(val classPrefix : String, val typeName : String) {
-    STRING : AttributeType("String", "String")
-    STRING_SET : AttributeType("StringSet", "Set<String>")
-    BOOLEAN : AttributeType("Boolean", "Boolean")
-    TICKER : AttributeType("Ticker", "Boolean")
-    ENUM : AttributeType("Enum", "???")
+    STRING("String", "String"),
+    STRING_SET("StringSet", "Set<String>"),
+    BOOLEAN("Boolean", "Boolean"),
+    TICKER("Ticker", "Boolean"),
+    ENUM("Enum", "???")
 }
 
-trait HasType {
+interface HasType {
     val type : AttributeType
     val enumTypeName : String
 }

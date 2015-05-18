@@ -3,7 +3,7 @@ package html4k
 import org.w3c.dom.events.Event
 import java.util.LinkedHashSet
 
-public trait TagConsumer<out R> {
+public interface TagConsumer<out R> {
     fun onTagStart(tag : Tag)
     fun onTagAttributeChange(tag : Tag, attribute : String, value : String)
     fun onTagEvent(tag : Tag, event : String, value : (Event) -> Unit)
@@ -13,14 +13,14 @@ public trait TagConsumer<out R> {
     fun finalize() : R
 }
 
-public trait Tag {
+public interface Tag {
     val tagName: String
     val consumer: TagConsumer<*>
 
     val attributes : MutableMap<String, String>
 }
 
-trait AttributeEnum {
+interface AttributeEnum {
     val realValue : String
 }
 

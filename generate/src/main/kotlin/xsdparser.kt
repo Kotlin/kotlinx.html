@@ -86,7 +86,7 @@ fun fillRepository() {
     val schema = parser.getResult().getSchema(HTML_NAMESPACE)
 
     @suppress("UNCHECKED_CAST")
-    val alreadyIncluded = TreeSet<String>() {a, b -> a.compareToIgnoreCase(b)} as MutableSet<String>
+    val alreadyIncluded = TreeSet<String>() {a, b -> a.compareTo(b, true)} as MutableSet<String>
     schema.getAttGroupDecls().values().forEach { attributeGroup ->
         val requiredNames = HashSet<String>()
         val facadeAttributes = attributeGroup.getAttributeUses().map { attributeUse ->

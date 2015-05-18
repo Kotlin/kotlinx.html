@@ -282,7 +282,10 @@ fun main(args: Array<String>) {
 
             append("enum ")
             clazz(Clazz(name = "Entities")) {
-                File("generate/src/main/resources/entities.txt").readLines().filter {it.isNotEmpty()}.forEach { ent ->
+                File("generate/src/main/resources/entities.txt").readLines().filter {it.isNotEmpty()}.forEachIndexed { idx, ent ->
+                    if (idx > 0) {
+                        append(",")
+                    }
                     indent()
                     append(ent)
                     emptyLine()

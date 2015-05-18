@@ -13,8 +13,8 @@ object PredicateResults {
 }
 
 enum class PredicateResult {
-    PASS
-    SKIP
+    PASS,
+    SKIP,
     DROP
 }
 

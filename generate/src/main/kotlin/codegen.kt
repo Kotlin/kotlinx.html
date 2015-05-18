@@ -3,7 +3,7 @@ package html4k.generate
 import html4k.generate.humanize.humanize
 import java.util.ArrayList
 
-trait Const<T>
+interface Const<T>
 data class StringConst(val value : String) : Const<String>
 data class ReferenceConst(val propertyName : String) : Const<Any>
 
@@ -79,11 +79,11 @@ fun <O : Appendable> O.variable(variable : Var, omitValVar : Boolean = false, re
     return this
 }
 
-fun <O : Appendable> O.enumEntry(name : String, className : String, arguments : List<String>) {
+fun <O : Appendable> O.enumEntry(name: String, arguments: List<String>) {
     append(name)
-    append(" : ")
-    append(className)
-    arguments.joinTo(this, ", ", "(", ")\n")
+    if (arguments.isNotEmpty()) {
+        arguments.joinTo(this, ", ", "(", ")\n")
+    }
 }
 
 fun <O : Appendable> O.delegateBy(expression : String) : O {
@@ -121,7 +121,7 @@ fun <O : Appendable> O.clazz(clazz : Clazz, block : O.() -> Unit) : O {
 
     tokens.add(when {
         clazz.isObject -> "object"
-        clazz.isTrait -> "trait"
+        clazz.isTrait -> "interface"
         else -> "class"
     })
     tokens.add(clazz.name)
