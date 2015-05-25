@@ -276,6 +276,13 @@ class TestStreaming {
             attributes["bad'char"] = "test"
         }
     }
+
+    test(expected = IllegalArgumentException::class)
+    fun `bad chars 'equals' in attribute name`() {
+        StringBuilder().appendHTML().div {
+            attributes["bad=char"] = "test"
+        }
+    }
 }
 
 fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }
