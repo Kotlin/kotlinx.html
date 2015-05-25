@@ -16,6 +16,21 @@
         <module>assembly</module>
     </modules>
 
+    <scm>
+        <connection>https://github.com/cy6erGn0m/html4k</connection>
+        <url>git@github.com:cy6erGn0m/html4k.git</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Sergey Mashkov</name>
+            <organization>JetBrains s.r.o.</organization>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <properties>
         <!--<kotlin.version>0.11.91.4</kotlin.version>-->
         <kotlin.version>0.1-SNAPSHOT</kotlin.version>
