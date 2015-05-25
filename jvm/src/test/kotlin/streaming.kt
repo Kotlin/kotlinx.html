@@ -215,9 +215,9 @@ class TestStreaming {
 
     test fun `test form with button`() {
         assertEquals("<form action=\"/someurl\">" +
-        "<input type=\"checkbox\" name=\"cb1\">var1</input>" +
-        "<input type=\"checkbox\" name=\"cb2\" disabled=\"disabled\">var2</input>" +
-        "<input type=\"submit\">Go!</input>" +
+                "<input type=\"checkbox\" name=\"cb1\">var1</input>" +
+                "<input type=\"checkbox\" name=\"cb2\" disabled=\"disabled\">var2</input>" +
+                "<input type=\"submit\">Go!</input>" +
                 "</form>",
                 StringBuilder().appendHTML(false).form("/someurl") {
                     checkBoxInput(name = "cb1") {
@@ -257,6 +257,24 @@ class TestStreaming {
         }
 
         assertEquals(expected.toString(), rs.first.toString())
+    }
+
+    test fun `escape bad chars`() {
+        assertEquals("<div id=\"bad&quot;\" custom=\"bad&amp;&quot;\">" +
+                "content&lt;script&gt;" +
+                "</div>",
+                StringBuilder().appendHTML(false).div {
+                    id = "bad\""
+                    attributes["custom"] = "bad&\""
+                    +"content<script>"
+                }.toString())
+    }
+
+    test(expected = IllegalArgumentException::class)
+    fun `bad chars in attribute name`() {
+        StringBuilder().appendHTML().div {
+            attributes["bad'char"] = "test"
+        }
     }
 }
 
