@@ -105,4 +105,57 @@ class TestStreaming {
 
         assertEquals("<html><body><p>[pre.p]<a>[pre.p.pre.a]</a></p></body></html>", sw.toString())
     }
+
+    test fun `we should be able to handle many requests`() {
+        for (i in 1..1000000) {
+            NullAppendable.appendHTML().html {
+                body {
+                    h1 {
+                        +"kotlin"
+                    }
+                    p {
+                        +"Here we are"
+                    }
+                    div {
+                        classes = setOf("root")
+
+                        div {
+                            classes = setOf("menu")
+
+                            ul {
+                                li { +"item1" }
+                                li { +"item2" }
+                                li { +"item3" }
+                            }
+                        }
+                        div {
+                            classes = setOf("content")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    test fun `we should be able to make extension functions with DSL`() {
+        assertEquals("<html><body><div class=\"block deprecated\"><a href=\"http://kotlinlang.org\" target=\"_blank\" custom=\"custom\">test me</a></div></body></html>", StringBuilder().appendHTML(false).buildMe().toString())
+    }
+}
+
+fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }
+fun FlowContent.buildMe2() =
+        div(setOf("block", "deprecated")) {
+            a(href = "http://kotlinlang.org") {
+                target = ATarget.blank
+                attributes["custom"] = "custom"
+                +"test me"
+            }
+        }
+
+object NullAppendable: Appendable {
+    override fun append(csq: CharSequence?): Appendable = this
+
+    override fun append(csq: CharSequence?, start: Int, end: Int): Appendable = this
+
+    override fun append(c: Char): Appendable = this
 }
