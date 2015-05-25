@@ -15,7 +15,6 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-js-library</artifactId>
-            <version>${kotlin.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -36,7 +35,6 @@
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <groupId>org.jetbrains.kotlin</groupId>
-                <version>${kotlin.version}</version>
 
                 <executions>
                     <execution>
@@ -47,7 +45,6 @@
                         </goals>
                         <configuration>
                             <outputFile>${project.build.outputDirectory}/${project.artifactId}.js</outputFile>
-                            <metaFile>${project.build.outputDirectory}/${project.artifactId}.meta.js</metaFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -61,7 +58,6 @@
                     <classesDirectory>${project.build.outputDirectory}</classesDirectory>
                     <includes>
                         <include>**/*.js</include>
-                        <include>**/*.kt</include>
                     </includes>
                     <archive>
                         <forced/>
@@ -70,8 +66,6 @@
 
                             <Implementation-Vendor>JetBrains s.r.o.</Implementation-Vendor>
                             <Implementation-Version>${project.version}</Implementation-Version>
-                            <Specification-Title>???</Specification-Title>
-                            <Kotlin-JS-Module-Name>${project.artifactId}</Kotlin-JS-Module-Name>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -88,36 +82,10 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <filters>
-                        <filter>
-                            <artifact>*:*</artifact>
-                            <excludes>
-                                <exclude>**/*.class</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
-                    <artifactSet>
-                        <includes>
-                            <include>org.jetbrains.kotlin:kotlinx.html.shared</include>
-                            <include>org.jetbrains.kotlin:kotlinx.html.js</include>
-                        </includes>
-                    </artifactSet>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin> -->
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kdoc-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 </project>

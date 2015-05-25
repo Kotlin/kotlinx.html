@@ -81,7 +81,7 @@ private fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): Attrib
 
 fun probeType(htmlClassName : String) : Boolean = htmlClassName in knownTagClasses
 
-fun tagCandidates(tag : TagInfo) = (listOf(tag.safeName) + replacements.map { tag.safeName.replace(it.first.toRegex(), it.second) }).flatMap { listOf(it.capitalize(), it.toUpperCase()) }.distinct()
+private fun tagCandidates(tag : TagInfo) = (listOf(tag.safeName) + replacements.map { tag.safeName.replace(it.first.toRegex(), it.second) }).flatMap { listOf(it.capitalize(), it.toUpperCase()) }.distinct()
 
 fun getTagResultClass(tag: TagInfo) =
         tagCandidates(tag)

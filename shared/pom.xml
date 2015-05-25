@@ -17,9 +17,8 @@
                 <artifactId>maven-resources-plugin</artifactId>
             </plugin>
             <plugin>
-                <artifactId>kotlin-maven-plugin</artifactId>
                 <groupId>org.jetbrains.kotlin</groupId>
-                <version>${kotlin.version}</version>
+                <artifactId>kotlin-maven-plugin</artifactId>
 
                 <executions>
                     <execution>
@@ -46,28 +45,13 @@
                         </goals>
                         <configuration>
                             <outputFile>${project.build.outputDirectory}/${project.artifactId}.js</outputFile>
-                            <metaFile>${project.build.outputDirectory}/${project.artifactId}.meta.js</metaFile>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kdoc-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -78,7 +62,6 @@
                     <classesDirectory>${project.build.outputDirectory}</classesDirectory>
                     <includes>
                         <include>**/*.js</include>
-                        <include>**/*.kt</include>
                         <include>**/*.class</include>
                     </includes>
                     <archive>
@@ -88,8 +71,6 @@
 
                             <Implementation-Vendor>JetBrains s.r.o.</Implementation-Vendor>
                             <Implementation-Version>${project.version}</Implementation-Version>
-                            <Specification-Title>???</Specification-Title>
-                            <Kotlin-JS-Module-Name>${project.artifactId}</Kotlin-JS-Module-Name>
                         </manifestEntries>
                     </archive>
                 </configuration>
