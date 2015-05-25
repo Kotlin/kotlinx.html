@@ -169,6 +169,14 @@ class TestStreaming {
         assertNotEquals(order1, order2)
     }
 
+    test fun `multiple attributes and custom attribute present`() {
+        assertEquals("<div id=\"d1\" custom=\"c1\" class=\"c1 c2\"></div>", StringBuilder().appendHTML(false).div {
+            id = "d1"
+            attributes["custom"] = "c1"
+            classes = linkedSetOf("c1", "c2")
+        }.toString())
+    }
+
     test fun `test tags order`() {
         assertEquals("<div><p><span></span></p></div>", StringBuilder().appendHTML(false).div { p { span {} } }.toString())
     }
