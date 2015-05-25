@@ -5,18 +5,13 @@ import html4k.TagConsumer
 import java.util.HashMap
 
 class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val consumer : () -> TagConsumer<*>) : MutableMap<String, String> {
-    private val backing = hashMapOf<String, String>().let { it.putAll(initialValues); it }
+    private val backing = linkedMapOf<String, String>().let { it.putAll(initialValues); it }
 
     override fun size(): Int = backing.size()
     override fun isEmpty(): Boolean = backing.isEmpty()
     override fun containsKey(key: Any?): Boolean = backing.containsKey(key)
     override fun containsValue(value: Any?): Boolean = backing.containsValue(value)
     override fun get(key: Any?): String? = backing[key]
-
-    deprecated("aa")
-    fun putDirect(key : String, value : String) {
-        backing[key] = value
-    }
 
     override fun put(key: String, value: String): String? {
         val old = backing.put(key, value)
