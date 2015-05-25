@@ -17,8 +17,8 @@
     </modules>
 
     <scm>
-        <connection>https://github.com/cy6erGn0m/html4k</connection>
-        <url>git@github.com:cy6erGn0m/html4k.git</url>
+        <connection>scm:git:ssh://git@github.com:cy6erGn0m/html4k.git</connection>
+        <url>https://github.com/cy6erGn0m/html4k</url>
     </scm>
 
     <developers>
