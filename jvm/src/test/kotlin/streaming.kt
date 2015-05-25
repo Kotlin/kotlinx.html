@@ -6,6 +6,7 @@ import html4k.consumers.trace
 import html4k.stream.appendHTML
 import java.io.StringWriter
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 import org.junit.Test as test
 
@@ -139,6 +140,37 @@ class TestStreaming {
 
     test fun `we should be able to make extension functions with DSL`() {
         assertEquals("<html><body><div class=\"block deprecated\"><a href=\"http://kotlinlang.org\" target=\"_blank\" custom=\"custom\">test me</a></div></body></html>", StringBuilder().appendHTML(false).buildMe().toString())
+    }
+
+    test fun `empty tag should have attributes`() {
+        assertEquals("<div id=\"d\"></div>", StringBuilder().appendHTML(false).div { id = "d" }.toString())
+        assertEquals("<div id=\"d\"><div id=\"d2\"></div></div>", StringBuilder().appendHTML(false).div { id = "d"; div { id = "d2" } }.toString())
+    }
+
+    test fun `test attributes order`() {
+        val order1 = StringBuilder().appendHTML(false).html {
+            body {
+                div {
+                    id = "main"
+                    classes = setOf("yellow")
+                }
+            }
+        }.toString()
+
+        val order2 = StringBuilder().appendHTML(false).html {
+            body {
+                div {
+                    classes = setOf("yellow")
+                    id = "main"
+                }
+            }
+        }.toString()
+
+        assertNotEquals(order1, order2)
+    }
+
+    test fun `test tags order`() {
+        assertEquals("<div><p><span></span></p></div>", StringBuilder().appendHTML(false).div { p { span {} } }.toString())
     }
 }
 
