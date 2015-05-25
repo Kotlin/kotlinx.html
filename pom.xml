@@ -16,8 +16,9 @@
         <module>assembly</module>
     </modules>
 
+    <url>https://github.com/cy6erGn0m/html4k</url>
     <scm>
-        <connection>scm:git:ssh://git@github.com:cy6erGn0m/html4k.git</connection>
+        <connection>scm:git:git@github.com:cy6erGn0m/html4k.git</connection>
         <url>https://github.com/cy6erGn0m/html4k</url>
     </scm>
 
