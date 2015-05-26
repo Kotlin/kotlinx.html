@@ -33,6 +33,7 @@
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <groupId>org.jetbrains.kotlin</groupId>
+                <version>${kotlin.version}</version>
 
                 <executions>
                     <execution>
@@ -43,6 +44,17 @@
                         </goals>
                         <configuration>
                             <outputFile>${project.build.outputDirectory}/${project.artifactId}.js</outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>compile-js-tests</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-js</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>${project.basedir}/target/jsjs/${project.artifactId}-tests.js</outputFile>
+                            <metaInfo>true</metaInfo>
                         </configuration>
                     </execution>
                 </executions>
@@ -83,6 +95,68 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kdoc-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <phase>test-compile</phase>
+                        <configuration>
+                            <includeScope>test</includeScope>
+                            <excludeArtifactIds>kotlinx.html.shared</excludeArtifactIds>
+                            <includeTypes>jar</includeTypes>
+                            <outputDirectory>${project.basedir}/target/jsjs</outputDirectory>
+                            <includes>*.js</includes>
+                            <excludes>*.meta.js</excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>0.0.23</version>
+
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <!-- Optional configuration which provides for running any npm command -->
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>javascript tests</id>
+                        <goals>
+                            <goal>karma</goal>
+                        </goals>
+                        <configuration>
+                            <karmaConfPath>${project.basedir}/src/test/karma/karma.conf.js</karmaConfPath>
+                        </configuration>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <nodeVersion>v0.12.3</nodeVersion>
+                    <npmVersion>2.10.0</npmVersion>
+
+                    <workingDirectory>${project.basedir}/src/test/karma</workingDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
