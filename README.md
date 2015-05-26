@@ -6,6 +6,8 @@ Provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript
 
 [ ![Download](https://api.bintray.com/packages/cy6ergn0m/maven/html4k/images/download.svg) ](https://bintray.com/cy6ergn0m/maven/html4k/_latestVersion)
 
+Build status: [ ![status](http://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Kotlin_KotlinX_Html4k)/statusIcon)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=Kotlin_KotlinX_Html4k&branch_Kotlin_KotlinX=%3Cdefault%3E&tab=buildTypeStatusDiv&guest=1)
+
 # DOM
 You can build DOM tree at JVM and JS naturally
 See example at JavaScript
