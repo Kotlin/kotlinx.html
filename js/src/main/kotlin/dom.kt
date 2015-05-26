@@ -33,19 +33,19 @@ class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
     }
 
     override fun onTagAttributeChange(tag: Tag, attribute: String, value: String) {
-        if (path.isEmpty()) {
-            throw IllegalStateException("No current tag")
+        when {
+            path.isEmpty() -> throw IllegalStateException("No current tag")
+            path.last().tagName.toLowerCase() != tag.tagName.toLowerCase() -> throw IllegalStateException("Wrong current tag")
+            else -> path.last().setAttribute(attribute, value)
         }
-
-        path.last().setAttribute(attribute, value)
     }
 
     override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {
-        if (path.isEmpty()) {
-            throw IllegalStateException("No current tag")
+        when {
+            path.isEmpty() -> throw IllegalStateException("No current tag")
+            path.last().tagName.toLowerCase() != tag.tagName.toLowerCase() -> throw IllegalStateException("Wrong current tag")
+            else -> path.last().setEvent(event, value)
         }
-
-        path.last().setEvent(event, value)
     }
 
     override fun onTagEnd(tag: Tag) {
