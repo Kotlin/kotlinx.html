@@ -55,6 +55,7 @@
                         <configuration>
                             <outputFile>${project.basedir}/target/jsjs/${project.artifactId}-tests.js</outputFile>
                             <metaInfo>true</metaInfo>
+                            <sourceMap>true</sourceMap>
                         </configuration>
                     </execution>
                 </executions>

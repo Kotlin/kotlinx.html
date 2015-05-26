@@ -3,3 +3,6 @@
 target
 *~
 *.versionsBackup
+**/karma/node_modules
+**/karma/node
+**/karma/etc

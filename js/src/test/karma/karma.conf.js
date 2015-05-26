@@ -39,6 +39,9 @@ module.exports = function (config) {
             junitReporter: {
                 outputFile: '../../../target/reports/test-results.xml',
                 suite: ''
+            },
+            preprocessors: {
+                '**/*.js': ['sourcemap']
             }
         }
     )
