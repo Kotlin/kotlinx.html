@@ -1,13 +1,12 @@
 package html4k.tests
 
-import html4k.Entities
+import html4k.*
 import html4k.consumers.trace
 import html4k.dom.append
+import html4k.dom.create
 import html4k.js.div
 import html4k.js.onClickFunction
 import html4k.js.span
-import html4k.p
-import html4k.span
 import org.w3c.dom.events.Event
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLSpanElement
@@ -71,8 +70,7 @@ class DomTreeImplTest {
     }
 
     test fun appendMultipleNodes() {
-        val wrapper = document.createElement("div")
-        document.body!!.appendChild(wrapper)
+        val wrapper = wrapper()
 
         val nodes = wrapper.append {
             div {
@@ -92,7 +90,7 @@ class DomTreeImplTest {
     }
 
     test fun appendEntity() {
-        val wrapper = document.createElement("div") as HTMLDivElement
+        val wrapper = wrapper()
         wrapper.append.span {
             +Entities.nbsp
         }
@@ -114,10 +112,50 @@ class DomTreeImplTest {
         } catch (expected: Throwable) {
             assertTrue(true)
         }
-//        document.getElementsByTagName("div").asList().forEach {
-//            assertEquals("d1", it.id)
-//        }
     }
-    
+
+    test fun buildBiggerPage() {
+        val wrapper = wrapper()
+
+        wrapper.append {
+            h1 {
+                +"kotlin"
+            }
+            p {
+                +"Here we are"
+            }
+            div {
+                classes = setOf("root")
+
+                div {
+                    classes = setOf("menu")
+
+                    ul {
+                        li { +"item1" }
+                        li { +"item2" }
+                        li { +"item3" }
+                    }
+                }
+                div {
+                    classes = setOf("content")
+                }
+            }
+        }
+
+        assertEquals("<h1>kotlin</h1>" +
+                "<p>Here we are</p>" +
+                "<div class=\"root\">" +
+                "<div class=\"menu\">" +
+                "<ul>" +
+                "<li>item1</li>" +
+                "<li>item2</li>" +
+                "<li>item3</li>" +
+                "</ul>" +
+                "</div>" +
+                "<div class=\"content\"></div>" +
+                "</div>", wrapper.innerHTML)
+    }
+
+    private fun wrapper() = document.body!!.append.div {}
     private fun <T> uninitialized(): T = null as T 
 }
