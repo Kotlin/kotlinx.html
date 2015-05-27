@@ -101,7 +101,7 @@ private fun String.isValidXmlAttributeName() =
         !this.toLowerCase().startsWith("xml")
                 && this.isNotEmpty()
                 && (this[0]._isLetter() || this[0] == '_')
-                && this.all { it._isLetter() || it._isDigit() || "._:".indexOf(it) != -1 }
+                && this.all { it._isLetter() || it._isDigit() || it in "._:-" }
 
 private fun Appendable.escapeAppend(s : CharSequence) {
     var lastIndex = 0
