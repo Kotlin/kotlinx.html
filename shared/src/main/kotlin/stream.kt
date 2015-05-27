@@ -5,12 +5,98 @@ import html4k.Entities.*
 import html4k.consumers.delayed
 import org.w3c.dom.events.Event
 
+private val emptyTags = """area
+base
+basefont
+bgsound
+br
+col
+command
+device
+embed
+frame
+hr
+img
+input
+keygen
+link
+menuitem
+meta
+param
+source
+track
+wbr""".lines().toSet()
+
+private val inlineTags = """a
+abbr
+acronym
+area
+b
+base
+basefont
+bdi
+bdo
+bgsound
+big
+br
+button
+cite
+code
+command
+data
+datalist
+device
+dfn
+em
+embed
+font
+i
+iframe
+img
+input
+kbd
+keygen
+label
+legend
+map
+mark
+menuitem
+meter
+object
+optgroup
+option
+output
+param
+progress
+q
+rp
+rt
+ruby
+samp
+select
+small
+source
+span
+strong
+sub
+summary
+sup
+textarea
+time
+track
+tt
+u
+var
+wbr""".lines().toSet()
+
 class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) : TagConsumer<O> {
     private var level = 0
     private var ln = true
 
     override fun onTagStart(tag: Tag) {
-        indent()
+        if (tag.tagName !in inlineTags) {
+            indent()
+        }
         level++
 
         out.append("<")
@@ -43,14 +129,19 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
 
     override fun onTagEnd(tag: Tag) {
         level--
-        if (prettyPrint && ln) {
+        if (ln) {
             indent()
         }
-        out.append("</")
-        out.append(tag.tagName)
-        out.append(">")
 
-        appenln()
+        if (tag.tagName !in emptyTags) {
+            out.append("</")
+            out.append(tag.tagName)
+            out.append(">")
+        }
+
+        if (prettyPrint && tag.tagName !in inlineTags) {
+            appenln()
+        }
     }
 
     override fun onTagContent(content: CharSequence) {

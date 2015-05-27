@@ -185,7 +185,7 @@ class TestStreaming {
     }
 
     test fun `test generated enum could be used`() {
-        assertEquals("<link rel=\"Stylesheet\" href=\"/path\"></link>", StringBuilder().appendHTML(false).link {
+        assertEquals("<link rel=\"Stylesheet\" href=\"/path\">", StringBuilder().appendHTML(false).link {
             rel = LinkRel.stylesheet
             href = "/path"
         }.toString())
@@ -215,9 +215,9 @@ class TestStreaming {
 
     test fun `test form with button`() {
         assertEquals("<form action=\"/someurl\">" +
-                "<input type=\"checkbox\" name=\"cb1\">var1</input>" +
-                "<input type=\"checkbox\" name=\"cb2\" disabled=\"disabled\">var2</input>" +
-                "<input type=\"submit\">Go!</input>" +
+                "<input type=\"checkbox\" name=\"cb1\">var1" +
+                "<input type=\"checkbox\" name=\"cb2\" disabled=\"disabled\">var2" +
+                "<input type=\"submit\" value=\"Go!\">" +
                 "</form>",
                 StringBuilder().appendHTML(false).form("/someurl") {
                     checkBoxInput(name = "cb1") {
@@ -228,7 +228,9 @@ class TestStreaming {
                         +"var2"
                     }
 
-                    submitInput(content = "Go!")
+                    submitInput {
+                        value = "Go!"
+                    }
                 }.toString())
     }
 
@@ -282,6 +284,41 @@ class TestStreaming {
         StringBuilder().appendHTML().div {
             attributes["bad=char"] = "test"
         }
+    }
+
+    test fun `we should print empty tags with no close tag`() {
+        assertEquals("<img src=\"my.jpg\">", StringBuilder().appendHTML(false).img(src = "my.jpg").toString())
+    }
+
+    test fun `pretty print should take into account inline tags`() {
+        val text = StringBuilder {
+            appendHTML().div {
+                +"content"
+                span {
+                    +"y"
+                }
+            }
+        }.toString()
+
+        assertEquals("<div>content<span>y</span></div>", text.trim())
+    }
+
+    test fun `pretty print should work`() {
+        assertEquals("<div>\n" +
+                "  <div>content</div>\n" +
+                "  <div>\n" +
+                "    <div></div>\n" +
+                "  </div>\n" +
+                "</div>",
+                StringBuilder().appendHTML(true).div {
+                    div {
+                        +"content"
+                    }
+                    div {
+                        div {
+                        }
+                    }
+                }.toString().trim())
     }
 }
 
