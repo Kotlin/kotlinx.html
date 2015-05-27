@@ -54,7 +54,9 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
             throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
 
-        lastLeaved = path.remove(path.lastIndex)
+        val element = path.remove(path.lastIndex)
+        element.setIdAttributeName()
+        lastLeaved = element
     }
 
     override fun onTagContent(content: CharSequence) {
@@ -74,6 +76,12 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun finalize() = lastLeaved ?: throw IllegalStateException("No tags were emitted")
+
+    private fun Element.setIdAttributeName() {
+        if (hasAttribute("id")) {
+            setIdAttribute("id", true)
+        }
+    }
 }
 
 public fun Document.createHTMLTree() : TagConsumer<Element> = HTMLDOMBuilder(this)
@@ -105,10 +113,9 @@ public fun Writer.write(element: Element, prettyPrint : Boolean = true) : Writer
     if (prettyPrint) {
         transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-        transformer.transform(DOMSource(element), StreamResult(this))
     }
 
+    transformer.transform(DOMSource(element), StreamResult(this))
     return this
 }
 
