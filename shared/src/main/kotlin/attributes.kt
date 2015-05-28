@@ -10,12 +10,12 @@ interface AttributeEncoder<T> {
 }
 
 abstract class Attribute<T>(val encoder : AttributeEncoder<T>) {
-    fun get(thisRef: Tag, attributeName: String) : T =
+    open fun get(thisRef: Tag, attributeName: String) : T =
             thisRef.attributes[attributeName]?.let {
                 encoder.decode(attributeName, it)
             } ?: encoder.empty(attributeName, thisRef)
 
-    fun set(thisRef: Tag, attributeName: String, value : T) {
+    open fun set(thisRef: Tag, attributeName: String, value : T) {
         thisRef.attributes[attributeName] = encoder.encode(attributeName, value)
     }
 }
@@ -50,7 +50,15 @@ object TickerEncoder : AttributeEncoder<Boolean> {
     override fun decode(attributeName: String, value: String): Boolean = value == attributeName
 }
 
-public data class TickerAttribute : Attribute<Boolean>(TickerEncoder)
+public data class TickerAttribute : Attribute<Boolean>(TickerEncoder) {
+    override fun set(thisRef: Tag, attributeName: String, value: Boolean) {
+        if (value) {
+            thisRef.attributes[attributeName] = attributeName
+        } else {
+            thisRef.attributes.remove(attributeName)
+        }
+    }
+}
 
 class EnumEncoder<T : AttributeEnum>(val valuesMap : Map<String, T>) : AttributeEncoder<T> {
     override fun encode(attributeName: String, value: T): String = value.realValue

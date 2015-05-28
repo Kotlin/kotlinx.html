@@ -5,7 +5,7 @@ import java.util.LinkedHashSet
 
 public interface TagConsumer<out R> {
     fun onTagStart(tag : Tag)
-    fun onTagAttributeChange(tag : Tag, attribute : String, value : String)
+    fun onTagAttributeChange(tag : Tag, attribute : String, value : String?)
     fun onTagEvent(tag : Tag, event : String, value : (Event) -> Unit)
     fun onTagEnd(tag : Tag)
     fun onTagContent(content : CharSequence)

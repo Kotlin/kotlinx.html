@@ -25,7 +25,7 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
     override fun remove(key: Any?): String? =
         backing.remove(key)?.let { removed ->
             if (key is String) {
-                consumer().onTagAttributeChange(tag, key, "") // TODO it should be onTagAttributeRemove
+                consumer().onTagAttributeChange(tag, key, null)
             }
 
             removed
@@ -42,7 +42,7 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
     }
 
     override fun clear() {
-        backing.forEach { consumer().onTagAttributeChange(tag, it.getKey(), "") } // TODO it should be onTagAttributeRemove
+        backing.forEach { consumer().onTagAttributeChange(tag, it.getKey(), null) }
         backing.clear()
     }
 

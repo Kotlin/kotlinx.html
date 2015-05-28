@@ -35,7 +35,7 @@ private class FilterTagConsumer<T>(val downstream : TagConsumer<T>, val predicat
         }
     }
 
-    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String) {
+    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
         throw UnsupportedOperationException("this filter doesn't support attribute change")
     }
 

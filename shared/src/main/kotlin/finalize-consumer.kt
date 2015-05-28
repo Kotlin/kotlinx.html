@@ -17,7 +17,7 @@ class FinalizeConsumer<F, T>(val downstream : TagConsumer<F>, val block : (F, Bo
         level --
     }
 
-    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String) = downstream.onTagAttributeChange(tag, attribute, value)
+    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) = downstream.onTagAttributeChange(tag, attribute, value)
     override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) = downstream.onTagEvent(tag, event, value)
     override fun onTagContent(content: CharSequence) = downstream.onTagContent(content)
     override fun onTagContentEntity(entity: Entities) = downstream.onTagContentEntity(entity)

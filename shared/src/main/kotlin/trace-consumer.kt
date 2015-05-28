@@ -23,7 +23,7 @@ class TraceConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<R> by down
         println("[$id] close ${tag.tagName} path: ${path.join(" > ")}")
     }
 
-    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String) {
+    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
         downstream.onTagAttributeChange(tag, attribute, value)
 
         println("[$id]     ${tag.tagName}.${attribute} changed to ${value}")

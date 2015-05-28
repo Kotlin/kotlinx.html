@@ -5,6 +5,7 @@ import html4k.consumers.filter
 import html4k.consumers.measureTime
 import html4k.consumers.trace
 import html4k.stream.appendHTML
+import html4k.stream.createHTML
 import java.io.StringWriter
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -319,6 +320,19 @@ class TestStreaming {
                         }
                     }
                 }.toString().trim())
+    }
+
+    test fun `ticker attribute modification should work properly`() {
+        assertEquals("<input type=\"checkbox\" checked=\"checked\">", createHTML(false).input {
+            type = InputType.checkBox
+            checked = true
+        })
+
+        assertEquals("<input type=\"checkbox\">", createHTML(false).input {
+            type = InputType.checkBox
+            checked = true
+            checked = false
+        })
     }
 }
 

@@ -32,11 +32,17 @@ class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
         path.add(element)
     }
 
-    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String) {
+    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
         when {
             path.isEmpty() -> throw IllegalStateException("No current tag")
             path.last().tagName.toLowerCase() != tag.tagName.toLowerCase() -> throw IllegalStateException("Wrong current tag")
-            else -> path.last().setAttribute(attribute, value)
+            else -> path.last().let { node ->
+                if (value == null) {
+                    node.removeAttribute(attribute)
+                } else {
+                    node.setAttribute(attribute, value)
+                }
+            }
         }
     }
 

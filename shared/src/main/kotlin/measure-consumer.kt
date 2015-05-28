@@ -13,7 +13,7 @@ private class MeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<
         downstream.onTagStart(tag)
     }
 
-    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String) {
+    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
         downstream.onTagAttributeChange(tag, attribute, value)
     }
 

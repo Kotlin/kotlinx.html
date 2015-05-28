@@ -3,6 +3,7 @@ package html4k.stream
 import html4k.*
 import html4k.Entities.*
 import html4k.consumers.delayed
+import html4k.consumers.onFinalizeMap
 import org.w3c.dom.events.Event
 
 private val emptyTags = """area
@@ -119,7 +120,7 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
         out.append(">")
     }
 
-    override fun onTagAttributeChange(tag : Tag, attribute: String, value: String) {
+    override fun onTagAttributeChange(tag : Tag, attribute: String, value: String?) {
         throw UnsupportedOperationException("tag attribute can't be changed as it was already written to the stream. Use with DelayedConsumer to be able to modify attributes")
     }
 
@@ -174,6 +175,8 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
     }
 }
 
+private val AVERAGE_PAGE_SIZE = 32768
+public fun createHTML(prettyPrint: Boolean = true): TagConsumer<String> = HTMLStreamBuilder(StringBuilder(AVERAGE_PAGE_SIZE), prettyPrint).onFinalizeMap { sb, last -> sb.toString() }.delayed()
 public fun <O : Appendable> O.appendHTML(prettyPrint : Boolean = true) : TagConsumer<O> = HTMLStreamBuilder(this, prettyPrint).delayed()
 
 private val escapeMap = mapOf(

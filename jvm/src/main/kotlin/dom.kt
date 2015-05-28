@@ -37,12 +37,18 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
         path.add(element)
     }
 
-    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String) {
+    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
         if (path.isEmpty()) {
             throw IllegalStateException("No current tag")
         }
 
-        path.last().setAttribute(attribute, value)
+        path.last().let { node ->
+            if (value == null) {
+                node.removeAttribute(attribute)
+            } else {
+                node.setAttribute(attribute, value)
+            }
+        }
     }
 
     override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {

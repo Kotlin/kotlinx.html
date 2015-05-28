@@ -13,7 +13,7 @@ class DelayedConsumer<T>(val downstream : TagConsumer<T>) : TagConsumer<T> {
         delayed = tag
     }
 
-    override fun onTagAttributeChange(tag : Tag, attribute: String, value: String) {
+    override fun onTagAttributeChange(tag : Tag, attribute: String, value: String?) {
         if (delayed == null || delayed != tag) {
             throw IllegalStateException("You can't change tag attribute because it was already passed to the downstream")
         }
