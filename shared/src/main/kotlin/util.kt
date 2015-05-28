@@ -12,12 +12,6 @@ public fun HEAD.styleLink(url : String) : Unit = link {
     href = url
 }
 
-public var CoreAttributeGroupFacade.c : String
-    get() = classes.join(" ")
-    set(newValue) {
-        classes = newValue.split("\\s+".toRegex()).filter {it.isNotEmpty()}.toSet()
-    }
-
 public val Tag.br : Unit
     get() {
         val tag = BR(emptyMap(), consumer)

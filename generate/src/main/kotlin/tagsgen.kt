@@ -71,7 +71,7 @@ private fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): Attrib
         options.addAll(attribute.trueFalse.map { StringConst(it) })
     }
 
-    val attributeRequest = AttributeRequest(attribute.type, attribute.enumTypeName, options)
+    val attributeRequest = AttributeRequest(attribute.type, if (attribute.type == AttributeType.ENUM) attribute.enumTypeName else "", options)
     Repository.attributeDelegateRequests.add(attributeRequest)
 
     append("    ")

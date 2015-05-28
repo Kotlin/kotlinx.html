@@ -56,7 +56,7 @@ data class AttributeRequest(
 ) : HasType
 
 val AttributeRequest.delegatePropertyName : String
-    get() = "attribute${typeName.humanize().capitalize()}${options.map {it.asFieldPart.humanize().capitalize()}.join("")}_${toNameHash()}"
+    get() = "attribute${typeName.humanize().capitalize()}${type.classPrefix}${options.map {it.asFieldPart.humanize().capitalize()}.join("")}"
 
 data class AttributeInfo(
         val name : String,
