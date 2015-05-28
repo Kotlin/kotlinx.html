@@ -39,6 +39,6 @@ class TestDOMTrees {
                 "    <div>content<span>yo</span>\n" +
                 "    </div>\n" +
                 "  </body>\n" +
-                "</html>", tree.serialize(true).trim())
+                "</html>", tree.serialize(true).trim().replace("\r\n", "\n"))
     }
 }
