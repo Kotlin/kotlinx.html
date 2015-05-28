@@ -30,7 +30,8 @@ public object ATarget {
     val parent : String = "_parent"
     val self : String = "_self"
     val top : String = "_top"
-    private val values : List<String> = listOf("blank","parent","self","top")
+
+    val values : List<String> = listOf("blank", "parent", "self", "top")
 }
 
 public object ARel {
@@ -49,7 +50,8 @@ public object ARel {
     val start : String = "Start"
     val stylesheet : String = "Stylesheet"
     val subsection : String = "Subsection"
-    private val values : List<String> = listOf("alternate","appEndIx","bookmark","chapter","contentS","copyright","glossary","help","index","next","prev","section","start","stylesheet","subsection")
+
+    val values : List<String> = listOf("alternate", "appEndIx", "bookmark", "chapter", "contentS", "copyright", "glossary", "help", "index", "next", "prev", "section", "start", "stylesheet", "subsection")
 }
 
 public object AType {
@@ -63,7 +65,8 @@ public object AType {
     val textXComponent : String = "text/x-component"
     val textXHtmlInsertion : String = "text/x-html-insertion"
     val textXml : String = "text/xml"
-    private val values : List<String> = listOf("textAsp","textAsa","textCss","textHtml","textJavaScript","textPlain","textScriptLet","textXComponent","textXHtmlInsertion","textXml")
+
+    val values : List<String> = listOf("textAsp", "textAsa", "textCss", "textHtml", "textJavaScript", "textPlain", "textScriptLet", "textXComponent", "textXHtmlInsertion", "textXml")
 }
 
 enum public class AreaShape(override val realValue : String) : AttributeEnum {
@@ -79,7 +82,8 @@ public object AreaTarget {
     val parent : String = "_parent"
     val self : String = "_self"
     val top : String = "_top"
-    private val values : List<String> = listOf("blank","parent","self","top")
+
+    val values : List<String> = listOf("blank", "parent", "self", "top")
 }
 
 public object AreaRel {
@@ -98,7 +102,8 @@ public object AreaRel {
     val start : String = "Start"
     val stylesheet : String = "Stylesheet"
     val subsection : String = "Subsection"
-    private val values : List<String> = listOf("alternate","appEndIx","bookmark","chapter","contentS","copyright","glossary","help","index","next","prev","section","start","stylesheet","subsection")
+
+    val values : List<String> = listOf("alternate", "appEndIx", "bookmark", "chapter", "contentS", "copyright", "glossary", "help", "index", "next", "prev", "section", "start", "stylesheet", "subsection")
 }
 
 public object BaseTarget {
@@ -106,7 +111,8 @@ public object BaseTarget {
     val parent : String = "_parent"
     val self : String = "_self"
     val top : String = "_top"
-    private val values : List<String> = listOf("blank","parent","self","top")
+
+    val values : List<String> = listOf("blank", "parent", "self", "top")
 }
 
 enum public class ButtonFormEncType(override val realValue : String) : AttributeEnum {
@@ -129,7 +135,8 @@ public object ButtonFormTarget {
     val parent : String = "_parent"
     val self : String = "_self"
     val top : String = "_top"
-    private val values : List<String> = listOf("blank","parent","self","top")
+
+    val values : List<String> = listOf("blank", "parent", "self", "top")
 }
 
 enum public class ButtonType(override val realValue : String) : AttributeEnum {
@@ -166,7 +173,8 @@ public object FormTarget {
     val parent : String = "_parent"
     val self : String = "_self"
     val top : String = "_top"
-    private val values : List<String> = listOf("blank","parent","self","top")
+
+    val values : List<String> = listOf("blank", "parent", "self", "top")
 }
 
 public object IframeName {
@@ -174,7 +182,8 @@ public object IframeName {
     val parent : String = "_parent"
     val self : String = "_self"
     val top : String = "_top"
-    private val values : List<String> = listOf("blank","parent","self","top")
+
+    val values : List<String> = listOf("blank", "parent", "self", "top")
 }
 
 enum public class IframeSandbox(override val realValue : String) : AttributeEnum {
@@ -231,7 +240,8 @@ public object InputFormTarget {
     val parent : String = "_parent"
     val self : String = "_self"
     val top : String = "_top"
-    private val values : List<String> = listOf("blank","parent","self","top")
+
+    val values : List<String> = listOf("blank", "parent", "self", "top")
 }
 
 enum public class KeyGenKeyType(override val realValue : String) : AttributeEnum {
@@ -255,7 +265,8 @@ public object LinkRel {
     val start : String = "Start"
     val stylesheet : String = "Stylesheet"
     val subsection : String = "Subsection"
-    private val values : List<String> = listOf("alternate","appEndIx","bookmark","chapter","contentS","copyright","glossary","help","index","next","prev","section","start","stylesheet","subsection")
+
+    val values : List<String> = listOf("alternate", "appEndIx", "bookmark", "chapter", "contentS", "copyright", "glossary", "help", "index", "next", "prev", "section", "start", "stylesheet", "subsection")
 }
 
 public object LinkMedia {
@@ -268,7 +279,8 @@ public object LinkMedia {
     val braille : String = "braille"
     val aural : String = "aural"
     val all : String = "all"
-    private val values : List<String> = listOf("screen","print","tty","tv","projection","handheld","braille","aural","all")
+
+    val values : List<String> = listOf("screen", "print", "tty", "tv", "projection", "handheld", "braille", "aural", "all")
 }
 
 public object LinkType {
@@ -282,7 +294,8 @@ public object LinkType {
     val textXComponent : String = "text/x-component"
     val textXHtmlInsertion : String = "text/x-html-insertion"
     val textXml : String = "text/xml"
-    private val values : List<String> = listOf("textAsp","textAsa","textCss","textHtml","textJavaScript","textPlain","textScriptLet","textXComponent","textXHtmlInsertion","textXml")
+
+    val values : List<String> = listOf("textAsp", "textAsa", "textCss", "textHtml", "textJavaScript", "textPlain", "textScriptLet", "textXComponent", "textXHtmlInsertion", "textXml")
 }
 
 enum public class MenuType(override val realValue : String) : AttributeEnum {
@@ -297,7 +310,8 @@ public object MetaHttpEquiv {
     val contentType : String = "content-type"
     val defaultStyle : String = "default-style"
     val refresh : String = "refresh"
-    private val values : List<String> = listOf("contentLanguage","contentType","defaultStyle","refresh")
+
+    val values : List<String> = listOf("contentLanguage", "contentType", "defaultStyle", "refresh")
 }
 
 public object ObjectName {
@@ -305,7 +319,8 @@ public object ObjectName {
     val parent : String = "_parent"
     val self : String = "_self"
     val top : String = "_top"
-    private val values : List<String> = listOf("blank","parent","self","top")
+
+    val values : List<String> = listOf("blank", "parent", "self", "top")
 }
 
 enum public class ScriptType(override val realValue : String) : AttributeEnum {
@@ -326,7 +341,8 @@ enum public class ScriptType(override val realValue : String) : AttributeEnum {
 private val scriptTypeValues : Map<String, ScriptType> = ScriptType.values().toMap { it.realValue }
 public object StyleType {
     val textCss : String = "text/css"
-    private val values : List<String> = listOf("textCss")
+
+    val values : List<String> = listOf("textCss")
 }
 
 public object StyleMedia {
@@ -339,7 +355,8 @@ public object StyleMedia {
     val braille : String = "braille"
     val aural : String = "aural"
     val all : String = "all"
-    private val values : List<String> = listOf("screen","print","tty","tv","projection","handheld","braille","aural","all")
+
+    val values : List<String> = listOf("screen", "print", "tty", "tv", "projection", "handheld", "braille", "aural", "all")
 }
 
 enum public class TextAreaWrap(override val realValue : String) : AttributeEnum {

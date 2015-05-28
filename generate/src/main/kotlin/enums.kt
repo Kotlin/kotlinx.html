@@ -29,8 +29,9 @@ fun <O : Appendable> O.enumObject(attribute : AttributeInfo) {
             emptyLine()
         }
 
+        emptyLine()
         append("    ")
-        append("private ")
+//        append("private ")
         variable(Var("values", "List<String>", defaultValue = attribute.enumValues.map {"\"${it.fieldName}\""}.join(", ", "listOf(", ")")))
         emptyLine()
     }
