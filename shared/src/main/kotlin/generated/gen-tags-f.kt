@@ -24,13 +24,13 @@ public open class FIELDSET(initialAttributes : Map<String, String>, override val
 
 
 }
-fun FIELDSET.legEnd(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap(), consumer, block)
+fun FIELDSET.legEnd(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap, consumer, block)
 
 
 public open class FIGURE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("figure", consumer, initialAttributes), CommonAttributeGroupFacade, FlowContent {
 
 }
-fun FIGURE.legEnd(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap(), consumer, block)
+fun FIGURE.legEnd(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap, consumer, block)
 
 
 public open class FOOTER(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("footer", consumer, initialAttributes), CommonAttributeGroupFacade, FlowContent {

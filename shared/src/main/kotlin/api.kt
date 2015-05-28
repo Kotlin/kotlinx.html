@@ -38,3 +38,4 @@ fun <T, C : TagConsumer<T>, TAG : Tag> C.build(attributes : Map<String, String>,
 }
 
 fun Map<*, *>.isNotEmpty() : Boolean = !isEmpty()
+private val emptyMap: Map<String, String> = emptyMap()

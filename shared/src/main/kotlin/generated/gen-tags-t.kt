@@ -16,23 +16,23 @@ public open class TABLE(initialAttributes : Map<String, String>, override val co
 
 
 }
-fun TABLE.caption(block : CAPTION.() -> Unit) : Unit = buildCAPTION(emptyMap(), consumer, block)
+fun TABLE.caption(block : CAPTION.() -> Unit) : Unit = buildCAPTION(emptyMap, consumer, block)
 
-fun TABLE.colGroup(block : COLGROUP.() -> Unit) : Unit = buildCOLGROUP(emptyMap(), consumer, block)
+fun TABLE.colGroup(block : COLGROUP.() -> Unit) : Unit = buildCOLGROUP(emptyMap, consumer, block)
 
-fun TABLE.thead(block : THEAD.() -> Unit) : Unit = buildTHEAD(emptyMap(), consumer, block)
+fun TABLE.thead(block : THEAD.() -> Unit) : Unit = buildTHEAD(emptyMap, consumer, block)
 
-fun TABLE.tfoot(block : TFOOT.() -> Unit) : Unit = buildTFOOT(emptyMap(), consumer, block)
+fun TABLE.tfoot(block : TFOOT.() -> Unit) : Unit = buildTFOOT(emptyMap, consumer, block)
 
-fun TABLE.tbody(block : TBODY.() -> Unit) : Unit = buildTBODY(emptyMap(), consumer, block)
+fun TABLE.tbody(block : TBODY.() -> Unit) : Unit = buildTBODY(emptyMap, consumer, block)
 
-fun TABLE.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap(), consumer, block)
+fun TABLE.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap, consumer, block)
 
 
 public open class TBODY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("tbody", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun TBODY.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap(), consumer, block)
+fun TBODY.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap, consumer, block)
 
 
 public open class TD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("td", consumer, initialAttributes), CommonAttributeGroupFacade, FlowContent {
@@ -102,7 +102,7 @@ public open class TEXTAREA(initialAttributes : Map<String, String>, override val
 public open class TFOOT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("tfoot", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun TFOOT.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap(), consumer, block)
+fun TFOOT.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap, consumer, block)
 
 
 public open class TH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("th", consumer, initialAttributes), CommonAttributeGroupFacade, PhrasingContent {
@@ -128,7 +128,7 @@ public open class TH(initialAttributes : Map<String, String>, override val consu
 public open class THEAD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("thead", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun THEAD.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap(), consumer, block)
+fun THEAD.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap, consumer, block)
 
 
 public open class TIME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("time", consumer, initialAttributes), CommonAttributeGroupFacade, PhrasingContent {
@@ -152,6 +152,6 @@ fun TR.colGroupTh(block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThSc
 fun TR.rowTh(block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.row.realValue).toAttributesMap(), consumer, block)
 fun TR.rowGroupTh(block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.rowGroup.realValue).toAttributesMap(), consumer, block)
 
-fun TR.td(block : TD.() -> Unit) : Unit = buildTD(emptyMap(), consumer, block)
+fun TR.td(block : TD.() -> Unit) : Unit = buildTD(emptyMap, consumer, block)
 
 

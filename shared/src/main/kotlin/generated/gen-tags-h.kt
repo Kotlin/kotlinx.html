@@ -44,17 +44,17 @@ public open class HEADER(initialAttributes : Map<String, String>, override val c
 public open class HGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hgroup", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun HGROUP.h1(block : H1.() -> Unit) : Unit = buildH1(emptyMap(), consumer, block)
+fun HGROUP.h1(block : H1.() -> Unit) : Unit = buildH1(emptyMap, consumer, block)
 
-fun HGROUP.h2(block : H2.() -> Unit) : Unit = buildH2(emptyMap(), consumer, block)
+fun HGROUP.h2(block : H2.() -> Unit) : Unit = buildH2(emptyMap, consumer, block)
 
-fun HGROUP.h3(block : H3.() -> Unit) : Unit = buildH3(emptyMap(), consumer, block)
+fun HGROUP.h3(block : H3.() -> Unit) : Unit = buildH3(emptyMap, consumer, block)
 
-fun HGROUP.h4(block : H4.() -> Unit) : Unit = buildH4(emptyMap(), consumer, block)
+fun HGROUP.h4(block : H4.() -> Unit) : Unit = buildH4(emptyMap, consumer, block)
 
-fun HGROUP.h5(block : H5.() -> Unit) : Unit = buildH5(emptyMap(), consumer, block)
+fun HGROUP.h5(block : H5.() -> Unit) : Unit = buildH5(emptyMap, consumer, block)
 
-fun HGROUP.h6(block : H6.() -> Unit) : Unit = buildH6(emptyMap(), consumer, block)
+fun HGROUP.h6(block : H6.() -> Unit) : Unit = buildH6(emptyMap, consumer, block)
 
 
 public open class HR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hr", consumer, initialAttributes), CommonAttributeGroupFacade {
@@ -68,8 +68,8 @@ public open class HTML(initialAttributes : Map<String, String>, override val con
 
 
 }
-fun HTML.body(block : BODY.() -> Unit) : Unit = buildBODY(emptyMap(), consumer, block)
+fun HTML.body(block : BODY.() -> Unit) : Unit = buildBODY(emptyMap, consumer, block)
 
-fun HTML.head(block : HEAD.() -> Unit) : Unit = buildHEAD(emptyMap(), consumer, block)
+fun HTML.head(block : HEAD.() -> Unit) : Unit = buildHEAD(emptyMap, consumer, block)
 
 

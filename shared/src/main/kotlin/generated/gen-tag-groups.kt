@@ -29,7 +29,7 @@ public interface SectioningContent : Tag {
 
 fun FlowContent.a(href : String? = null, target : String? = null, block : A.() -> Unit) : Unit = buildA(listOf("href" to href,"target" to target).toAttributesMap(), consumer, block)
 
-fun FlowContent.abbr(block : ABBR.() -> Unit) : Unit = buildABBR(emptyMap(), consumer, block)
+fun FlowContent.abbr(block : ABBR.() -> Unit) : Unit = buildABBR(emptyMap, consumer, block)
 
 fun FlowContent.area(shape : AreaShape? = null, alt : String? = null, block : AREA.() -> Unit) : Unit = buildAREA(listOf("Shape" to shape?.enumEncode(),"alt" to alt).toAttributesMap(), consumer, block)
 fun FlowContent.area(shape : AreaShape? = null, alt : String? = null, content : String = "") : Unit = buildAREA(listOf("Shape" to shape?.enumEncode(),"alt" to alt).toAttributesMap(), consumer, {+content})
@@ -42,24 +42,24 @@ fun FlowContent.circleArea(alt : String? = null, content : String = "") : Unit =
 fun FlowContent.polyArea(alt : String? = null, content : String = "") : Unit = buildAREA(listOf("Shape" to AreaShape.poly.realValue,"alt" to alt).toAttributesMap(), consumer, {+content})
 fun FlowContent.defaultArea(alt : String? = null, content : String = "") : Unit = buildAREA(listOf("Shape" to AreaShape.default.realValue,"alt" to alt).toAttributesMap(), consumer, {+content})
 
-fun FlowContent.address(block : ADDRESS.() -> Unit) : Unit = buildADDRESS(emptyMap(), consumer, block)
+fun FlowContent.address(block : ADDRESS.() -> Unit) : Unit = buildADDRESS(emptyMap, consumer, block)
 
-fun FlowContent.article(block : ARTICLE.() -> Unit) : Unit = buildARTICLE(emptyMap(), consumer, block)
+fun FlowContent.article(block : ARTICLE.() -> Unit) : Unit = buildARTICLE(emptyMap, consumer, block)
 
-fun FlowContent.aside(block : ASIDE.() -> Unit) : Unit = buildASIDE(emptyMap(), consumer, block)
+fun FlowContent.aside(block : ASIDE.() -> Unit) : Unit = buildASIDE(emptyMap, consumer, block)
 
-fun FlowContent.audio(block : AUDIO.() -> Unit) : Unit = buildAUDIO(emptyMap(), consumer, block)
+fun FlowContent.audio(block : AUDIO.() -> Unit) : Unit = buildAUDIO(emptyMap, consumer, block)
 
-fun FlowContent.b(block : B.() -> Unit) : Unit = buildB(emptyMap(), consumer, block)
+fun FlowContent.b(block : B.() -> Unit) : Unit = buildB(emptyMap, consumer, block)
 
-fun FlowContent.bdi(block : BDI.() -> Unit) : Unit = buildBDI(emptyMap(), consumer, block)
+fun FlowContent.bdi(block : BDI.() -> Unit) : Unit = buildBDI(emptyMap, consumer, block)
 
-fun FlowContent.blockQuote(block : BLOCKQUOTE.() -> Unit) : Unit = buildBLOCKQUOTE(emptyMap(), consumer, block)
+fun FlowContent.blockQuote(block : BLOCKQUOTE.() -> Unit) : Unit = buildBLOCKQUOTE(emptyMap, consumer, block)
 
-fun FlowContent.bdo(block : BDO.() -> Unit) : Unit = buildBDO(emptyMap(), consumer, block)
+fun FlowContent.bdo(block : BDO.() -> Unit) : Unit = buildBDO(emptyMap, consumer, block)
 
-fun FlowContent.br(block : BR.() -> Unit) : Unit = buildBR(emptyMap(), consumer, block)
-fun FlowContent.br(content : String = "") : Unit = buildBR(emptyMap(), consumer, {+content})
+fun FlowContent.br(block : BR.() -> Unit) : Unit = buildBR(emptyMap, consumer, block)
+fun FlowContent.br(content : String = "") : Unit = buildBR(emptyMap, consumer, {+content})
 
 fun FlowContent.button(formEncType : ButtonFormEncType? = null, formMethod : ButtonFormMethod? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 fun FlowContent.getButton(formEncType : ButtonFormEncType? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to ButtonFormMethod.get.realValue,"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
@@ -67,12 +67,12 @@ fun FlowContent.postButton(formEncType : ButtonFormEncType? = null, type : Butto
 fun FlowContent.putButton(formEncType : ButtonFormEncType? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to ButtonFormMethod.put.realValue,"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 fun FlowContent.deleteButton(formEncType : ButtonFormEncType? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to ButtonFormMethod.delete.realValue,"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 
-fun FlowContent.canvas(block : CANVAS.() -> Unit) : Unit = buildCANVAS(emptyMap(), consumer, block)
-fun FlowContent.canvas(content : String = "") : Unit = buildCANVAS(emptyMap(), consumer, {+content})
+fun FlowContent.canvas(block : CANVAS.() -> Unit) : Unit = buildCANVAS(emptyMap, consumer, block)
+fun FlowContent.canvas(content : String = "") : Unit = buildCANVAS(emptyMap, consumer, {+content})
 
-fun FlowContent.cite(block : CITE.() -> Unit) : Unit = buildCITE(emptyMap(), consumer, block)
+fun FlowContent.cite(block : CITE.() -> Unit) : Unit = buildCITE(emptyMap, consumer, block)
 
-fun FlowContent.code(block : CODE.() -> Unit) : Unit = buildCODE(emptyMap(), consumer, block)
+fun FlowContent.code(block : CODE.() -> Unit) : Unit = buildCODE(emptyMap, consumer, block)
 
 fun FlowContent.command(type : CommandType? = null, block : COMMAND.() -> Unit) : Unit = buildCOMMAND(listOf("type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 fun FlowContent.command(type : CommandType? = null, content : String = "") : Unit = buildCOMMAND(listOf("type" to type?.enumEncode()).toAttributesMap(), consumer, {+content})
@@ -83,30 +83,30 @@ fun FlowContent.commandCommand(content : String = "") : Unit = buildCOMMAND(list
 fun FlowContent.checkBoxCommand(content : String = "") : Unit = buildCOMMAND(listOf("type" to CommandType.checkBox.realValue).toAttributesMap(), consumer, {+content})
 fun FlowContent.radioCommand(content : String = "") : Unit = buildCOMMAND(listOf("type" to CommandType.radio.realValue).toAttributesMap(), consumer, {+content})
 
-fun FlowContent.dataList(block : DATALIST.() -> Unit) : Unit = buildDATALIST(emptyMap(), consumer, block)
+fun FlowContent.dataList(block : DATALIST.() -> Unit) : Unit = buildDATALIST(emptyMap, consumer, block)
 
-fun FlowContent.del(block : DEL.() -> Unit) : Unit = buildDEL(emptyMap(), consumer, block)
+fun FlowContent.del(block : DEL.() -> Unit) : Unit = buildDEL(emptyMap, consumer, block)
 
-fun FlowContent.details(block : DETAILS.() -> Unit) : Unit = buildDETAILS(emptyMap(), consumer, block)
+fun FlowContent.details(block : DETAILS.() -> Unit) : Unit = buildDETAILS(emptyMap, consumer, block)
 
-fun FlowContent.dfn(block : DFN.() -> Unit) : Unit = buildDFN(emptyMap(), consumer, block)
+fun FlowContent.dfn(block : DFN.() -> Unit) : Unit = buildDFN(emptyMap, consumer, block)
 
-fun FlowContent.dialog(block : DIALOG.() -> Unit) : Unit = buildDIALOG(emptyMap(), consumer, block)
+fun FlowContent.dialog(block : DIALOG.() -> Unit) : Unit = buildDIALOG(emptyMap, consumer, block)
 
 fun FlowContent.div(classes : Set<String>? = null, block : DIV.() -> Unit) : Unit = buildDIV(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun FlowContent.dl(block : DL.() -> Unit) : Unit = buildDL(emptyMap(), consumer, block)
+fun FlowContent.dl(block : DL.() -> Unit) : Unit = buildDL(emptyMap, consumer, block)
 
-fun FlowContent.em(block : EM.() -> Unit) : Unit = buildEM(emptyMap(), consumer, block)
+fun FlowContent.em(block : EM.() -> Unit) : Unit = buildEM(emptyMap, consumer, block)
 
-fun FlowContent.embed(block : EMBED.() -> Unit) : Unit = buildEMBED(emptyMap(), consumer, block)
-fun FlowContent.embed(content : String = "") : Unit = buildEMBED(emptyMap(), consumer, {+content})
+fun FlowContent.embed(block : EMBED.() -> Unit) : Unit = buildEMBED(emptyMap, consumer, block)
+fun FlowContent.embed(content : String = "") : Unit = buildEMBED(emptyMap, consumer, {+content})
 
-fun FlowContent.fieldSet(block : FIELDSET.() -> Unit) : Unit = buildFIELDSET(emptyMap(), consumer, block)
+fun FlowContent.fieldSet(block : FIELDSET.() -> Unit) : Unit = buildFIELDSET(emptyMap, consumer, block)
 
-fun FlowContent.figure(block : FIGURE.() -> Unit) : Unit = buildFIGURE(emptyMap(), consumer, block)
+fun FlowContent.figure(block : FIGURE.() -> Unit) : Unit = buildFIGURE(emptyMap, consumer, block)
 
-fun FlowContent.footer(block : FOOTER.() -> Unit) : Unit = buildFOOTER(emptyMap(), consumer, block)
+fun FlowContent.footer(block : FOOTER.() -> Unit) : Unit = buildFOOTER(emptyMap, consumer, block)
 
 fun FlowContent.form(action : String? = null, encType : FormEncType? = null, method : FormMethod? = null, block : FORM.() -> Unit) : Unit = buildFORM(listOf("action" to action,"enctype" to encType?.enumEncode(),"method" to method?.enumEncode()).toAttributesMap(), consumer, block)
 fun FlowContent.getForm(action : String? = null, encType : FormEncType? = null, block : FORM.() -> Unit) : Unit = buildFORM(listOf("action" to action,"enctype" to encType?.enumEncode(),"method" to FormMethod.get.realValue).toAttributesMap(), consumer, block)
@@ -114,24 +114,24 @@ fun FlowContent.postForm(action : String? = null, encType : FormEncType? = null,
 fun FlowContent.putForm(action : String? = null, encType : FormEncType? = null, block : FORM.() -> Unit) : Unit = buildFORM(listOf("action" to action,"enctype" to encType?.enumEncode(),"method" to FormMethod.put.realValue).toAttributesMap(), consumer, block)
 fun FlowContent.deleteForm(action : String? = null, encType : FormEncType? = null, block : FORM.() -> Unit) : Unit = buildFORM(listOf("action" to action,"enctype" to encType?.enumEncode(),"method" to FormMethod.delete.realValue).toAttributesMap(), consumer, block)
 
-fun FlowContent.h1(block : H1.() -> Unit) : Unit = buildH1(emptyMap(), consumer, block)
+fun FlowContent.h1(block : H1.() -> Unit) : Unit = buildH1(emptyMap, consumer, block)
 
-fun FlowContent.h2(block : H2.() -> Unit) : Unit = buildH2(emptyMap(), consumer, block)
+fun FlowContent.h2(block : H2.() -> Unit) : Unit = buildH2(emptyMap, consumer, block)
 
-fun FlowContent.h3(block : H3.() -> Unit) : Unit = buildH3(emptyMap(), consumer, block)
+fun FlowContent.h3(block : H3.() -> Unit) : Unit = buildH3(emptyMap, consumer, block)
 
-fun FlowContent.h4(block : H4.() -> Unit) : Unit = buildH4(emptyMap(), consumer, block)
+fun FlowContent.h4(block : H4.() -> Unit) : Unit = buildH4(emptyMap, consumer, block)
 
-fun FlowContent.h5(block : H5.() -> Unit) : Unit = buildH5(emptyMap(), consumer, block)
+fun FlowContent.h5(block : H5.() -> Unit) : Unit = buildH5(emptyMap, consumer, block)
 
-fun FlowContent.h6(block : H6.() -> Unit) : Unit = buildH6(emptyMap(), consumer, block)
+fun FlowContent.h6(block : H6.() -> Unit) : Unit = buildH6(emptyMap, consumer, block)
 
-fun FlowContent.header(block : HEADER.() -> Unit) : Unit = buildHEADER(emptyMap(), consumer, block)
+fun FlowContent.header(block : HEADER.() -> Unit) : Unit = buildHEADER(emptyMap, consumer, block)
 
-fun FlowContent.hGroup(block : HGROUP.() -> Unit) : Unit = buildHGROUP(emptyMap(), consumer, block)
+fun FlowContent.hGroup(block : HGROUP.() -> Unit) : Unit = buildHGROUP(emptyMap, consumer, block)
 
-fun FlowContent.hr(block : HR.() -> Unit) : Unit = buildHR(emptyMap(), consumer, block)
-fun FlowContent.hr(content : String = "") : Unit = buildHR(emptyMap(), consumer, {+content})
+fun FlowContent.hr(block : HR.() -> Unit) : Unit = buildHR(emptyMap, consumer, block)
+fun FlowContent.hr(content : String = "") : Unit = buildHR(emptyMap, consumer, {+content})
 
 fun FlowContent.i(classes : Set<String>? = null, block : I.() -> Unit) : Unit = buildI(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
@@ -196,57 +196,57 @@ fun FlowContent.timeInput(formEncType : InputFormEncType? = null, formMethod : I
 fun FlowContent.urlInput(formEncType : InputFormEncType? = null, formMethod : InputFormMethod? = null, name : String? = null, content : String = "") : Unit = buildINPUT(listOf("type" to InputType.url.realValue,"formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"name" to name).toAttributesMap(), consumer, {+content})
 fun FlowContent.weekInput(formEncType : InputFormEncType? = null, formMethod : InputFormMethod? = null, name : String? = null, content : String = "") : Unit = buildINPUT(listOf("type" to InputType.week.realValue,"formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"name" to name).toAttributesMap(), consumer, {+content})
 
-fun FlowContent.ins(block : INS.() -> Unit) : Unit = buildINS(emptyMap(), consumer, block)
+fun FlowContent.ins(block : INS.() -> Unit) : Unit = buildINS(emptyMap, consumer, block)
 
-fun FlowContent.kbd(block : KBD.() -> Unit) : Unit = buildKBD(emptyMap(), consumer, block)
+fun FlowContent.kbd(block : KBD.() -> Unit) : Unit = buildKBD(emptyMap, consumer, block)
 
 fun FlowContent.keyGen(keyType : KeyGenKeyType? = null, block : KEYGEN.() -> Unit) : Unit = buildKEYGEN(listOf("keytype" to keyType?.enumEncode()).toAttributesMap(), consumer, block)
 fun FlowContent.keyGen(keyType : KeyGenKeyType? = null, content : String = "") : Unit = buildKEYGEN(listOf("keytype" to keyType?.enumEncode()).toAttributesMap(), consumer, {+content})
 fun FlowContent.rsaKeyGen(block : KEYGEN.() -> Unit) : Unit = buildKEYGEN(listOf("keytype" to KeyGenKeyType.rsa.realValue).toAttributesMap(), consumer, block)
 fun FlowContent.rsaKeyGen(content : String = "") : Unit = buildKEYGEN(listOf("keytype" to KeyGenKeyType.rsa.realValue).toAttributesMap(), consumer, {+content})
 
-fun FlowContent.label(block : LABEL.() -> Unit) : Unit = buildLABEL(emptyMap(), consumer, block)
+fun FlowContent.label(block : LABEL.() -> Unit) : Unit = buildLABEL(emptyMap, consumer, block)
 
-fun FlowContent.link(block : LINK.() -> Unit) : Unit = buildLINK(emptyMap(), consumer, block)
-fun FlowContent.link(content : String = "") : Unit = buildLINK(emptyMap(), consumer, {+content})
+fun FlowContent.link(block : LINK.() -> Unit) : Unit = buildLINK(emptyMap, consumer, block)
+fun FlowContent.link(content : String = "") : Unit = buildLINK(emptyMap, consumer, {+content})
 
 fun FlowContent.map(name : String? = null, block : MAP.() -> Unit) : Unit = buildMAP(listOf("name" to name).toAttributesMap(), consumer, block)
 
-fun FlowContent.mark(block : MARK.() -> Unit) : Unit = buildMARK(emptyMap(), consumer, block)
+fun FlowContent.mark(block : MARK.() -> Unit) : Unit = buildMARK(emptyMap, consumer, block)
 
-fun FlowContent.math(block : MATH.() -> Unit) : Unit = buildMATH(emptyMap(), consumer, block)
+fun FlowContent.math(block : MATH.() -> Unit) : Unit = buildMATH(emptyMap, consumer, block)
 
 fun FlowContent.menu(type : MenuType? = null, block : MENU.() -> Unit) : Unit = buildMENU(listOf("type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 fun FlowContent.contextMenu(block : MENU.() -> Unit) : Unit = buildMENU(listOf("type" to MenuType.context.realValue).toAttributesMap(), consumer, block)
 fun FlowContent.toolbarMenu(block : MENU.() -> Unit) : Unit = buildMENU(listOf("type" to MenuType.toolbar.realValue).toAttributesMap(), consumer, block)
 fun FlowContent.listMenu(block : MENU.() -> Unit) : Unit = buildMENU(listOf("type" to MenuType.list.realValue).toAttributesMap(), consumer, block)
 
-fun FlowContent.meta(block : META.() -> Unit) : Unit = buildMETA(emptyMap(), consumer, block)
-fun FlowContent.meta(content : String = "") : Unit = buildMETA(emptyMap(), consumer, {+content})
+fun FlowContent.meta(block : META.() -> Unit) : Unit = buildMETA(emptyMap, consumer, block)
+fun FlowContent.meta(content : String = "") : Unit = buildMETA(emptyMap, consumer, {+content})
 
-fun FlowContent.meter(block : METER.() -> Unit) : Unit = buildMETER(emptyMap(), consumer, block)
+fun FlowContent.meter(block : METER.() -> Unit) : Unit = buildMETER(emptyMap, consumer, block)
 
-fun FlowContent.nav(block : NAV.() -> Unit) : Unit = buildNAV(emptyMap(), consumer, block)
+fun FlowContent.nav(block : NAV.() -> Unit) : Unit = buildNAV(emptyMap, consumer, block)
 
-fun FlowContent.noScript(block : NOSCRIPT.() -> Unit) : Unit = buildNOSCRIPT(emptyMap(), consumer, block)
+fun FlowContent.noScript(block : NOSCRIPT.() -> Unit) : Unit = buildNOSCRIPT(emptyMap, consumer, block)
 
-fun FlowContent.ol(block : OL.() -> Unit) : Unit = buildOL(emptyMap(), consumer, block)
+fun FlowContent.ol(block : OL.() -> Unit) : Unit = buildOL(emptyMap, consumer, block)
 
-fun FlowContent.object_(block : OBJECT_.() -> Unit) : Unit = buildOBJECT_(emptyMap(), consumer, block)
+fun FlowContent.object_(block : OBJECT_.() -> Unit) : Unit = buildOBJECT_(emptyMap, consumer, block)
 
-fun FlowContent.output(block : OUTPUT.() -> Unit) : Unit = buildOUTPUT(emptyMap(), consumer, block)
+fun FlowContent.output(block : OUTPUT.() -> Unit) : Unit = buildOUTPUT(emptyMap, consumer, block)
 
-fun FlowContent.p(block : P.() -> Unit) : Unit = buildP(emptyMap(), consumer, block)
+fun FlowContent.p(block : P.() -> Unit) : Unit = buildP(emptyMap, consumer, block)
 
-fun FlowContent.pre(block : PRE.() -> Unit) : Unit = buildPRE(emptyMap(), consumer, block)
+fun FlowContent.pre(block : PRE.() -> Unit) : Unit = buildPRE(emptyMap, consumer, block)
 
-fun FlowContent.progress(block : PROGRESS.() -> Unit) : Unit = buildPROGRESS(emptyMap(), consumer, block)
+fun FlowContent.progress(block : PROGRESS.() -> Unit) : Unit = buildPROGRESS(emptyMap, consumer, block)
 
-fun FlowContent.q(block : Q.() -> Unit) : Unit = buildQ(emptyMap(), consumer, block)
+fun FlowContent.q(block : Q.() -> Unit) : Unit = buildQ(emptyMap, consumer, block)
 
-fun FlowContent.ruby(block : RUBY.() -> Unit) : Unit = buildRUBY(emptyMap(), consumer, block)
+fun FlowContent.ruby(block : RUBY.() -> Unit) : Unit = buildRUBY(emptyMap, consumer, block)
 
-fun FlowContent.samp(block : SAMP.() -> Unit) : Unit = buildSAMP(emptyMap(), consumer, block)
+fun FlowContent.samp(block : SAMP.() -> Unit) : Unit = buildSAMP(emptyMap, consumer, block)
 
 fun FlowContent.script(type : ScriptType? = null, src : String? = null, block : SCRIPT.() -> Unit) : Unit = buildSCRIPT(listOf("type" to type?.enumEncode(),"src" to src).toAttributesMap(), consumer, block)
 fun FlowContent.script(type : ScriptType? = null, src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to type?.enumEncode(),"src" to src).toAttributesMap(), consumer, {+content})
@@ -275,27 +275,27 @@ fun FlowContent.textXJavaScriptScript(src : String? = null, content : String = "
 fun FlowContent.textXEcmaScriptScript(src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to ScriptType.textXEcmaScript.realValue,"src" to src).toAttributesMap(), consumer, {+content})
 fun FlowContent.textVbScriptScript(src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to ScriptType.textVbScript.realValue,"src" to src).toAttributesMap(), consumer, {+content})
 
-fun FlowContent.section(block : SECTION.() -> Unit) : Unit = buildSECTION(emptyMap(), consumer, block)
+fun FlowContent.section(block : SECTION.() -> Unit) : Unit = buildSECTION(emptyMap, consumer, block)
 
-fun FlowContent.select(block : SELECT.() -> Unit) : Unit = buildSELECT(emptyMap(), consumer, block)
+fun FlowContent.select(block : SELECT.() -> Unit) : Unit = buildSELECT(emptyMap, consumer, block)
 
-fun FlowContent.small(block : SMALL.() -> Unit) : Unit = buildSMALL(emptyMap(), consumer, block)
+fun FlowContent.small(block : SMALL.() -> Unit) : Unit = buildSMALL(emptyMap, consumer, block)
 
 fun FlowContent.span(classes : Set<String>? = null, block : SPAN.() -> Unit) : Unit = buildSPAN(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun FlowContent.strong(block : STRONG.() -> Unit) : Unit = buildSTRONG(emptyMap(), consumer, block)
+fun FlowContent.strong(block : STRONG.() -> Unit) : Unit = buildSTRONG(emptyMap, consumer, block)
 
-fun FlowContent.style(block : STYLE.() -> Unit) : Unit = buildSTYLE(emptyMap(), consumer, block)
-fun FlowContent.style(content : String = "") : Unit = buildSTYLE(emptyMap(), consumer, {+content})
+fun FlowContent.style(block : STYLE.() -> Unit) : Unit = buildSTYLE(emptyMap, consumer, block)
+fun FlowContent.style(content : String = "") : Unit = buildSTYLE(emptyMap, consumer, {+content})
 
-fun FlowContent.sub(block : SUB.() -> Unit) : Unit = buildSUB(emptyMap(), consumer, block)
+fun FlowContent.sub(block : SUB.() -> Unit) : Unit = buildSUB(emptyMap, consumer, block)
 
-fun FlowContent.sup(block : SUP.() -> Unit) : Unit = buildSUP(emptyMap(), consumer, block)
+fun FlowContent.sup(block : SUP.() -> Unit) : Unit = buildSUP(emptyMap, consumer, block)
 
-fun FlowContent.svg(block : SVG.() -> Unit) : Unit = buildSVG(emptyMap(), consumer, block)
-fun FlowContent.svg(content : String = "") : Unit = buildSVG(emptyMap(), consumer, {+content})
+fun FlowContent.svg(block : SVG.() -> Unit) : Unit = buildSVG(emptyMap, consumer, block)
+fun FlowContent.svg(content : String = "") : Unit = buildSVG(emptyMap, consumer, {+content})
 
-fun FlowContent.table(block : TABLE.() -> Unit) : Unit = buildTABLE(emptyMap(), consumer, block)
+fun FlowContent.table(block : TABLE.() -> Unit) : Unit = buildTABLE(emptyMap, consumer, block)
 
 fun FlowContent.textArea(rows : String? = null, cols : String? = null, wrap : TextAreaWrap? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to wrap?.enumEncode()).toAttributesMap(), consumer, block)
 fun FlowContent.textArea(rows : String? = null, cols : String? = null, wrap : TextAreaWrap? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to wrap?.enumEncode()).toAttributesMap(), consumer, {+content})
@@ -304,31 +304,31 @@ fun FlowContent.softTextArea(rows : String? = null, cols : String? = null, block
 fun FlowContent.hardTextArea(rows : String? = null, cols : String? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to TextAreaWrap.hard.realValue).toAttributesMap(), consumer, {+content})
 fun FlowContent.softTextArea(rows : String? = null, cols : String? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to TextAreaWrap.soft.realValue).toAttributesMap(), consumer, {+content})
 
-fun FlowContent.time(block : TIME.() -> Unit) : Unit = buildTIME(emptyMap(), consumer, block)
+fun FlowContent.time(block : TIME.() -> Unit) : Unit = buildTIME(emptyMap, consumer, block)
 
-fun FlowContent.ul(block : UL.() -> Unit) : Unit = buildUL(emptyMap(), consumer, block)
+fun FlowContent.ul(block : UL.() -> Unit) : Unit = buildUL(emptyMap, consumer, block)
 
-fun FlowContent.var_(block : VAR_.() -> Unit) : Unit = buildVAR_(emptyMap(), consumer, block)
+fun FlowContent.var_(block : VAR_.() -> Unit) : Unit = buildVAR_(emptyMap, consumer, block)
 
-fun FlowContent.video(block : VIDEO.() -> Unit) : Unit = buildVIDEO(emptyMap(), consumer, block)
+fun FlowContent.video(block : VIDEO.() -> Unit) : Unit = buildVIDEO(emptyMap, consumer, block)
 
-fun HeadingContent.h1(block : H1.() -> Unit) : Unit = buildH1(emptyMap(), consumer, block)
+fun HeadingContent.h1(block : H1.() -> Unit) : Unit = buildH1(emptyMap, consumer, block)
 
-fun HeadingContent.h2(block : H2.() -> Unit) : Unit = buildH2(emptyMap(), consumer, block)
+fun HeadingContent.h2(block : H2.() -> Unit) : Unit = buildH2(emptyMap, consumer, block)
 
-fun HeadingContent.h3(block : H3.() -> Unit) : Unit = buildH3(emptyMap(), consumer, block)
+fun HeadingContent.h3(block : H3.() -> Unit) : Unit = buildH3(emptyMap, consumer, block)
 
-fun HeadingContent.h4(block : H4.() -> Unit) : Unit = buildH4(emptyMap(), consumer, block)
+fun HeadingContent.h4(block : H4.() -> Unit) : Unit = buildH4(emptyMap, consumer, block)
 
-fun HeadingContent.h5(block : H5.() -> Unit) : Unit = buildH5(emptyMap(), consumer, block)
+fun HeadingContent.h5(block : H5.() -> Unit) : Unit = buildH5(emptyMap, consumer, block)
 
-fun HeadingContent.h6(block : H6.() -> Unit) : Unit = buildH6(emptyMap(), consumer, block)
+fun HeadingContent.h6(block : H6.() -> Unit) : Unit = buildH6(emptyMap, consumer, block)
 
-fun HeadingContent.hGroup(block : HGROUP.() -> Unit) : Unit = buildHGROUP(emptyMap(), consumer, block)
+fun HeadingContent.hGroup(block : HGROUP.() -> Unit) : Unit = buildHGROUP(emptyMap, consumer, block)
 
 fun InteractiveContent.a(href : String? = null, target : String? = null, block : A.() -> Unit) : Unit = buildA(listOf("href" to href,"target" to target).toAttributesMap(), consumer, block)
 
-fun InteractiveContent.audio(block : AUDIO.() -> Unit) : Unit = buildAUDIO(emptyMap(), consumer, block)
+fun InteractiveContent.audio(block : AUDIO.() -> Unit) : Unit = buildAUDIO(emptyMap, consumer, block)
 
 fun InteractiveContent.button(formEncType : ButtonFormEncType? = null, formMethod : ButtonFormMethod? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 fun InteractiveContent.getButton(formEncType : ButtonFormEncType? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to ButtonFormMethod.get.realValue,"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
@@ -336,10 +336,10 @@ fun InteractiveContent.postButton(formEncType : ButtonFormEncType? = null, type 
 fun InteractiveContent.putButton(formEncType : ButtonFormEncType? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to ButtonFormMethod.put.realValue,"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 fun InteractiveContent.deleteButton(formEncType : ButtonFormEncType? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to ButtonFormMethod.delete.realValue,"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 
-fun InteractiveContent.details(block : DETAILS.() -> Unit) : Unit = buildDETAILS(emptyMap(), consumer, block)
+fun InteractiveContent.details(block : DETAILS.() -> Unit) : Unit = buildDETAILS(emptyMap, consumer, block)
 
-fun InteractiveContent.embed(block : EMBED.() -> Unit) : Unit = buildEMBED(emptyMap(), consumer, block)
-fun InteractiveContent.embed(content : String = "") : Unit = buildEMBED(emptyMap(), consumer, {+content})
+fun InteractiveContent.embed(block : EMBED.() -> Unit) : Unit = buildEMBED(emptyMap, consumer, block)
+fun InteractiveContent.embed(content : String = "") : Unit = buildEMBED(emptyMap, consumer, {+content})
 
 fun InteractiveContent.iframe(sandbox : IframeSandbox? = null, block : IFRAME.() -> Unit) : Unit = buildIFRAME(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), consumer, block)
 fun InteractiveContent.iframe(sandbox : IframeSandbox? = null, content : String = "") : Unit = buildIFRAME(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), consumer, {+content})
@@ -407,16 +407,16 @@ fun InteractiveContent.keyGen(keyType : KeyGenKeyType? = null, content : String 
 fun InteractiveContent.rsaKeyGen(block : KEYGEN.() -> Unit) : Unit = buildKEYGEN(listOf("keytype" to KeyGenKeyType.rsa.realValue).toAttributesMap(), consumer, block)
 fun InteractiveContent.rsaKeyGen(content : String = "") : Unit = buildKEYGEN(listOf("keytype" to KeyGenKeyType.rsa.realValue).toAttributesMap(), consumer, {+content})
 
-fun InteractiveContent.label(block : LABEL.() -> Unit) : Unit = buildLABEL(emptyMap(), consumer, block)
+fun InteractiveContent.label(block : LABEL.() -> Unit) : Unit = buildLABEL(emptyMap, consumer, block)
 
 fun InteractiveContent.menu(type : MenuType? = null, block : MENU.() -> Unit) : Unit = buildMENU(listOf("type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 fun InteractiveContent.contextMenu(block : MENU.() -> Unit) : Unit = buildMENU(listOf("type" to MenuType.context.realValue).toAttributesMap(), consumer, block)
 fun InteractiveContent.toolbarMenu(block : MENU.() -> Unit) : Unit = buildMENU(listOf("type" to MenuType.toolbar.realValue).toAttributesMap(), consumer, block)
 fun InteractiveContent.listMenu(block : MENU.() -> Unit) : Unit = buildMENU(listOf("type" to MenuType.list.realValue).toAttributesMap(), consumer, block)
 
-fun InteractiveContent.object_(block : OBJECT_.() -> Unit) : Unit = buildOBJECT_(emptyMap(), consumer, block)
+fun InteractiveContent.object_(block : OBJECT_.() -> Unit) : Unit = buildOBJECT_(emptyMap, consumer, block)
 
-fun InteractiveContent.select(block : SELECT.() -> Unit) : Unit = buildSELECT(emptyMap(), consumer, block)
+fun InteractiveContent.select(block : SELECT.() -> Unit) : Unit = buildSELECT(emptyMap, consumer, block)
 
 fun InteractiveContent.textArea(rows : String? = null, cols : String? = null, wrap : TextAreaWrap? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to wrap?.enumEncode()).toAttributesMap(), consumer, block)
 fun InteractiveContent.textArea(rows : String? = null, cols : String? = null, wrap : TextAreaWrap? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to wrap?.enumEncode()).toAttributesMap(), consumer, {+content})
@@ -425,10 +425,10 @@ fun InteractiveContent.softTextArea(rows : String? = null, cols : String? = null
 fun InteractiveContent.hardTextArea(rows : String? = null, cols : String? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to TextAreaWrap.hard.realValue).toAttributesMap(), consumer, {+content})
 fun InteractiveContent.softTextArea(rows : String? = null, cols : String? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to TextAreaWrap.soft.realValue).toAttributesMap(), consumer, {+content})
 
-fun InteractiveContent.video(block : VIDEO.() -> Unit) : Unit = buildVIDEO(emptyMap(), consumer, block)
+fun InteractiveContent.video(block : VIDEO.() -> Unit) : Unit = buildVIDEO(emptyMap, consumer, block)
 
-fun MetaDataContent.base(block : BASE.() -> Unit) : Unit = buildBASE(emptyMap(), consumer, block)
-fun MetaDataContent.base(content : String = "") : Unit = buildBASE(emptyMap(), consumer, {+content})
+fun MetaDataContent.base(block : BASE.() -> Unit) : Unit = buildBASE(emptyMap, consumer, block)
+fun MetaDataContent.base(content : String = "") : Unit = buildBASE(emptyMap, consumer, {+content})
 
 fun MetaDataContent.command(type : CommandType? = null, block : COMMAND.() -> Unit) : Unit = buildCOMMAND(listOf("type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 fun MetaDataContent.command(type : CommandType? = null, content : String = "") : Unit = buildCOMMAND(listOf("type" to type?.enumEncode()).toAttributesMap(), consumer, {+content})
@@ -439,13 +439,13 @@ fun MetaDataContent.commandCommand(content : String = "") : Unit = buildCOMMAND(
 fun MetaDataContent.checkBoxCommand(content : String = "") : Unit = buildCOMMAND(listOf("type" to CommandType.checkBox.realValue).toAttributesMap(), consumer, {+content})
 fun MetaDataContent.radioCommand(content : String = "") : Unit = buildCOMMAND(listOf("type" to CommandType.radio.realValue).toAttributesMap(), consumer, {+content})
 
-fun MetaDataContent.link(block : LINK.() -> Unit) : Unit = buildLINK(emptyMap(), consumer, block)
-fun MetaDataContent.link(content : String = "") : Unit = buildLINK(emptyMap(), consumer, {+content})
+fun MetaDataContent.link(block : LINK.() -> Unit) : Unit = buildLINK(emptyMap, consumer, block)
+fun MetaDataContent.link(content : String = "") : Unit = buildLINK(emptyMap, consumer, {+content})
 
-fun MetaDataContent.meta(block : META.() -> Unit) : Unit = buildMETA(emptyMap(), consumer, block)
-fun MetaDataContent.meta(content : String = "") : Unit = buildMETA(emptyMap(), consumer, {+content})
+fun MetaDataContent.meta(block : META.() -> Unit) : Unit = buildMETA(emptyMap, consumer, block)
+fun MetaDataContent.meta(content : String = "") : Unit = buildMETA(emptyMap, consumer, {+content})
 
-fun MetaDataContent.noScript(block : NOSCRIPT.() -> Unit) : Unit = buildNOSCRIPT(emptyMap(), consumer, block)
+fun MetaDataContent.noScript(block : NOSCRIPT.() -> Unit) : Unit = buildNOSCRIPT(emptyMap, consumer, block)
 
 fun MetaDataContent.script(type : ScriptType? = null, src : String? = null, block : SCRIPT.() -> Unit) : Unit = buildSCRIPT(listOf("type" to type?.enumEncode(),"src" to src).toAttributesMap(), consumer, block)
 fun MetaDataContent.script(type : ScriptType? = null, src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to type?.enumEncode(),"src" to src).toAttributesMap(), consumer, {+content})
@@ -474,15 +474,15 @@ fun MetaDataContent.textXJavaScriptScript(src : String? = null, content : String
 fun MetaDataContent.textXEcmaScriptScript(src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to ScriptType.textXEcmaScript.realValue,"src" to src).toAttributesMap(), consumer, {+content})
 fun MetaDataContent.textVbScriptScript(src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to ScriptType.textVbScript.realValue,"src" to src).toAttributesMap(), consumer, {+content})
 
-fun MetaDataContent.style(block : STYLE.() -> Unit) : Unit = buildSTYLE(emptyMap(), consumer, block)
-fun MetaDataContent.style(content : String = "") : Unit = buildSTYLE(emptyMap(), consumer, {+content})
+fun MetaDataContent.style(block : STYLE.() -> Unit) : Unit = buildSTYLE(emptyMap, consumer, block)
+fun MetaDataContent.style(content : String = "") : Unit = buildSTYLE(emptyMap, consumer, {+content})
 
-fun MetaDataContent.title(block : TITLE.() -> Unit) : Unit = buildTITLE(emptyMap(), consumer, block)
-fun MetaDataContent.title(content : String = "") : Unit = buildTITLE(emptyMap(), consumer, {+content})
+fun MetaDataContent.title(block : TITLE.() -> Unit) : Unit = buildTITLE(emptyMap, consumer, block)
+fun MetaDataContent.title(content : String = "") : Unit = buildTITLE(emptyMap, consumer, {+content})
 
 fun PhrasingContent.a(href : String? = null, target : String? = null, block : A.() -> Unit) : Unit = buildA(listOf("href" to href,"target" to target).toAttributesMap(), consumer, block)
 
-fun PhrasingContent.abbr(block : ABBR.() -> Unit) : Unit = buildABBR(emptyMap(), consumer, block)
+fun PhrasingContent.abbr(block : ABBR.() -> Unit) : Unit = buildABBR(emptyMap, consumer, block)
 
 fun PhrasingContent.area(shape : AreaShape? = null, alt : String? = null, block : AREA.() -> Unit) : Unit = buildAREA(listOf("Shape" to shape?.enumEncode(),"alt" to alt).toAttributesMap(), consumer, block)
 fun PhrasingContent.area(shape : AreaShape? = null, alt : String? = null, content : String = "") : Unit = buildAREA(listOf("Shape" to shape?.enumEncode(),"alt" to alt).toAttributesMap(), consumer, {+content})
@@ -495,16 +495,16 @@ fun PhrasingContent.circleArea(alt : String? = null, content : String = "") : Un
 fun PhrasingContent.polyArea(alt : String? = null, content : String = "") : Unit = buildAREA(listOf("Shape" to AreaShape.poly.realValue,"alt" to alt).toAttributesMap(), consumer, {+content})
 fun PhrasingContent.defaultArea(alt : String? = null, content : String = "") : Unit = buildAREA(listOf("Shape" to AreaShape.default.realValue,"alt" to alt).toAttributesMap(), consumer, {+content})
 
-fun PhrasingContent.audio(block : AUDIO.() -> Unit) : Unit = buildAUDIO(emptyMap(), consumer, block)
+fun PhrasingContent.audio(block : AUDIO.() -> Unit) : Unit = buildAUDIO(emptyMap, consumer, block)
 
-fun PhrasingContent.b(block : B.() -> Unit) : Unit = buildB(emptyMap(), consumer, block)
+fun PhrasingContent.b(block : B.() -> Unit) : Unit = buildB(emptyMap, consumer, block)
 
-fun PhrasingContent.bdi(block : BDI.() -> Unit) : Unit = buildBDI(emptyMap(), consumer, block)
+fun PhrasingContent.bdi(block : BDI.() -> Unit) : Unit = buildBDI(emptyMap, consumer, block)
 
-fun PhrasingContent.bdo(block : BDO.() -> Unit) : Unit = buildBDO(emptyMap(), consumer, block)
+fun PhrasingContent.bdo(block : BDO.() -> Unit) : Unit = buildBDO(emptyMap, consumer, block)
 
-fun PhrasingContent.br(block : BR.() -> Unit) : Unit = buildBR(emptyMap(), consumer, block)
-fun PhrasingContent.br(content : String = "") : Unit = buildBR(emptyMap(), consumer, {+content})
+fun PhrasingContent.br(block : BR.() -> Unit) : Unit = buildBR(emptyMap, consumer, block)
+fun PhrasingContent.br(content : String = "") : Unit = buildBR(emptyMap, consumer, {+content})
 
 fun PhrasingContent.button(formEncType : ButtonFormEncType? = null, formMethod : ButtonFormMethod? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 fun PhrasingContent.getButton(formEncType : ButtonFormEncType? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to ButtonFormMethod.get.realValue,"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
@@ -512,12 +512,12 @@ fun PhrasingContent.postButton(formEncType : ButtonFormEncType? = null, type : B
 fun PhrasingContent.putButton(formEncType : ButtonFormEncType? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to ButtonFormMethod.put.realValue,"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 fun PhrasingContent.deleteButton(formEncType : ButtonFormEncType? = null, type : ButtonType? = null, block : BUTTON.() -> Unit) : Unit = buildBUTTON(listOf("formenctype" to formEncType?.enumEncode(),"formmethod" to ButtonFormMethod.delete.realValue,"type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 
-fun PhrasingContent.canvas(block : CANVAS.() -> Unit) : Unit = buildCANVAS(emptyMap(), consumer, block)
-fun PhrasingContent.canvas(content : String = "") : Unit = buildCANVAS(emptyMap(), consumer, {+content})
+fun PhrasingContent.canvas(block : CANVAS.() -> Unit) : Unit = buildCANVAS(emptyMap, consumer, block)
+fun PhrasingContent.canvas(content : String = "") : Unit = buildCANVAS(emptyMap, consumer, {+content})
 
-fun PhrasingContent.cite(block : CITE.() -> Unit) : Unit = buildCITE(emptyMap(), consumer, block)
+fun PhrasingContent.cite(block : CITE.() -> Unit) : Unit = buildCITE(emptyMap, consumer, block)
 
-fun PhrasingContent.code(block : CODE.() -> Unit) : Unit = buildCODE(emptyMap(), consumer, block)
+fun PhrasingContent.code(block : CODE.() -> Unit) : Unit = buildCODE(emptyMap, consumer, block)
 
 fun PhrasingContent.command(type : CommandType? = null, block : COMMAND.() -> Unit) : Unit = buildCOMMAND(listOf("type" to type?.enumEncode()).toAttributesMap(), consumer, block)
 fun PhrasingContent.command(type : CommandType? = null, content : String = "") : Unit = buildCOMMAND(listOf("type" to type?.enumEncode()).toAttributesMap(), consumer, {+content})
@@ -528,16 +528,16 @@ fun PhrasingContent.commandCommand(content : String = "") : Unit = buildCOMMAND(
 fun PhrasingContent.checkBoxCommand(content : String = "") : Unit = buildCOMMAND(listOf("type" to CommandType.checkBox.realValue).toAttributesMap(), consumer, {+content})
 fun PhrasingContent.radioCommand(content : String = "") : Unit = buildCOMMAND(listOf("type" to CommandType.radio.realValue).toAttributesMap(), consumer, {+content})
 
-fun PhrasingContent.dataList(block : DATALIST.() -> Unit) : Unit = buildDATALIST(emptyMap(), consumer, block)
+fun PhrasingContent.dataList(block : DATALIST.() -> Unit) : Unit = buildDATALIST(emptyMap, consumer, block)
 
-fun PhrasingContent.del(block : DEL.() -> Unit) : Unit = buildDEL(emptyMap(), consumer, block)
+fun PhrasingContent.del(block : DEL.() -> Unit) : Unit = buildDEL(emptyMap, consumer, block)
 
-fun PhrasingContent.dfn(block : DFN.() -> Unit) : Unit = buildDFN(emptyMap(), consumer, block)
+fun PhrasingContent.dfn(block : DFN.() -> Unit) : Unit = buildDFN(emptyMap, consumer, block)
 
-fun PhrasingContent.em(block : EM.() -> Unit) : Unit = buildEM(emptyMap(), consumer, block)
+fun PhrasingContent.em(block : EM.() -> Unit) : Unit = buildEM(emptyMap, consumer, block)
 
-fun PhrasingContent.embed(block : EMBED.() -> Unit) : Unit = buildEMBED(emptyMap(), consumer, block)
-fun PhrasingContent.embed(content : String = "") : Unit = buildEMBED(emptyMap(), consumer, {+content})
+fun PhrasingContent.embed(block : EMBED.() -> Unit) : Unit = buildEMBED(emptyMap, consumer, block)
+fun PhrasingContent.embed(content : String = "") : Unit = buildEMBED(emptyMap, consumer, {+content})
 
 fun PhrasingContent.i(classes : Set<String>? = null, block : I.() -> Unit) : Unit = buildI(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
@@ -602,44 +602,44 @@ fun PhrasingContent.timeInput(formEncType : InputFormEncType? = null, formMethod
 fun PhrasingContent.urlInput(formEncType : InputFormEncType? = null, formMethod : InputFormMethod? = null, name : String? = null, content : String = "") : Unit = buildINPUT(listOf("type" to InputType.url.realValue,"formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"name" to name).toAttributesMap(), consumer, {+content})
 fun PhrasingContent.weekInput(formEncType : InputFormEncType? = null, formMethod : InputFormMethod? = null, name : String? = null, content : String = "") : Unit = buildINPUT(listOf("type" to InputType.week.realValue,"formenctype" to formEncType?.enumEncode(),"formmethod" to formMethod?.enumEncode(),"name" to name).toAttributesMap(), consumer, {+content})
 
-fun PhrasingContent.ins(block : INS.() -> Unit) : Unit = buildINS(emptyMap(), consumer, block)
+fun PhrasingContent.ins(block : INS.() -> Unit) : Unit = buildINS(emptyMap, consumer, block)
 
-fun PhrasingContent.kbd(block : KBD.() -> Unit) : Unit = buildKBD(emptyMap(), consumer, block)
+fun PhrasingContent.kbd(block : KBD.() -> Unit) : Unit = buildKBD(emptyMap, consumer, block)
 
 fun PhrasingContent.keyGen(keyType : KeyGenKeyType? = null, block : KEYGEN.() -> Unit) : Unit = buildKEYGEN(listOf("keytype" to keyType?.enumEncode()).toAttributesMap(), consumer, block)
 fun PhrasingContent.keyGen(keyType : KeyGenKeyType? = null, content : String = "") : Unit = buildKEYGEN(listOf("keytype" to keyType?.enumEncode()).toAttributesMap(), consumer, {+content})
 fun PhrasingContent.rsaKeyGen(block : KEYGEN.() -> Unit) : Unit = buildKEYGEN(listOf("keytype" to KeyGenKeyType.rsa.realValue).toAttributesMap(), consumer, block)
 fun PhrasingContent.rsaKeyGen(content : String = "") : Unit = buildKEYGEN(listOf("keytype" to KeyGenKeyType.rsa.realValue).toAttributesMap(), consumer, {+content})
 
-fun PhrasingContent.label(block : LABEL.() -> Unit) : Unit = buildLABEL(emptyMap(), consumer, block)
+fun PhrasingContent.label(block : LABEL.() -> Unit) : Unit = buildLABEL(emptyMap, consumer, block)
 
-fun PhrasingContent.link(block : LINK.() -> Unit) : Unit = buildLINK(emptyMap(), consumer, block)
-fun PhrasingContent.link(content : String = "") : Unit = buildLINK(emptyMap(), consumer, {+content})
+fun PhrasingContent.link(block : LINK.() -> Unit) : Unit = buildLINK(emptyMap, consumer, block)
+fun PhrasingContent.link(content : String = "") : Unit = buildLINK(emptyMap, consumer, {+content})
 
 fun PhrasingContent.map(name : String? = null, block : MAP.() -> Unit) : Unit = buildMAP(listOf("name" to name).toAttributesMap(), consumer, block)
 
-fun PhrasingContent.mark(block : MARK.() -> Unit) : Unit = buildMARK(emptyMap(), consumer, block)
+fun PhrasingContent.mark(block : MARK.() -> Unit) : Unit = buildMARK(emptyMap, consumer, block)
 
-fun PhrasingContent.math(block : MATH.() -> Unit) : Unit = buildMATH(emptyMap(), consumer, block)
+fun PhrasingContent.math(block : MATH.() -> Unit) : Unit = buildMATH(emptyMap, consumer, block)
 
-fun PhrasingContent.meta(block : META.() -> Unit) : Unit = buildMETA(emptyMap(), consumer, block)
-fun PhrasingContent.meta(content : String = "") : Unit = buildMETA(emptyMap(), consumer, {+content})
+fun PhrasingContent.meta(block : META.() -> Unit) : Unit = buildMETA(emptyMap, consumer, block)
+fun PhrasingContent.meta(content : String = "") : Unit = buildMETA(emptyMap, consumer, {+content})
 
-fun PhrasingContent.meter(block : METER.() -> Unit) : Unit = buildMETER(emptyMap(), consumer, block)
+fun PhrasingContent.meter(block : METER.() -> Unit) : Unit = buildMETER(emptyMap, consumer, block)
 
-fun PhrasingContent.noScript(block : NOSCRIPT.() -> Unit) : Unit = buildNOSCRIPT(emptyMap(), consumer, block)
+fun PhrasingContent.noScript(block : NOSCRIPT.() -> Unit) : Unit = buildNOSCRIPT(emptyMap, consumer, block)
 
-fun PhrasingContent.object_(block : OBJECT_.() -> Unit) : Unit = buildOBJECT_(emptyMap(), consumer, block)
+fun PhrasingContent.object_(block : OBJECT_.() -> Unit) : Unit = buildOBJECT_(emptyMap, consumer, block)
 
-fun PhrasingContent.output(block : OUTPUT.() -> Unit) : Unit = buildOUTPUT(emptyMap(), consumer, block)
+fun PhrasingContent.output(block : OUTPUT.() -> Unit) : Unit = buildOUTPUT(emptyMap, consumer, block)
 
-fun PhrasingContent.progress(block : PROGRESS.() -> Unit) : Unit = buildPROGRESS(emptyMap(), consumer, block)
+fun PhrasingContent.progress(block : PROGRESS.() -> Unit) : Unit = buildPROGRESS(emptyMap, consumer, block)
 
-fun PhrasingContent.q(block : Q.() -> Unit) : Unit = buildQ(emptyMap(), consumer, block)
+fun PhrasingContent.q(block : Q.() -> Unit) : Unit = buildQ(emptyMap, consumer, block)
 
-fun PhrasingContent.ruby(block : RUBY.() -> Unit) : Unit = buildRUBY(emptyMap(), consumer, block)
+fun PhrasingContent.ruby(block : RUBY.() -> Unit) : Unit = buildRUBY(emptyMap, consumer, block)
 
-fun PhrasingContent.samp(block : SAMP.() -> Unit) : Unit = buildSAMP(emptyMap(), consumer, block)
+fun PhrasingContent.samp(block : SAMP.() -> Unit) : Unit = buildSAMP(emptyMap, consumer, block)
 
 fun PhrasingContent.script(type : ScriptType? = null, src : String? = null, block : SCRIPT.() -> Unit) : Unit = buildSCRIPT(listOf("type" to type?.enumEncode(),"src" to src).toAttributesMap(), consumer, block)
 fun PhrasingContent.script(type : ScriptType? = null, src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to type?.enumEncode(),"src" to src).toAttributesMap(), consumer, {+content})
@@ -668,20 +668,20 @@ fun PhrasingContent.textXJavaScriptScript(src : String? = null, content : String
 fun PhrasingContent.textXEcmaScriptScript(src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to ScriptType.textXEcmaScript.realValue,"src" to src).toAttributesMap(), consumer, {+content})
 fun PhrasingContent.textVbScriptScript(src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to ScriptType.textVbScript.realValue,"src" to src).toAttributesMap(), consumer, {+content})
 
-fun PhrasingContent.select(block : SELECT.() -> Unit) : Unit = buildSELECT(emptyMap(), consumer, block)
+fun PhrasingContent.select(block : SELECT.() -> Unit) : Unit = buildSELECT(emptyMap, consumer, block)
 
-fun PhrasingContent.small(block : SMALL.() -> Unit) : Unit = buildSMALL(emptyMap(), consumer, block)
+fun PhrasingContent.small(block : SMALL.() -> Unit) : Unit = buildSMALL(emptyMap, consumer, block)
 
 fun PhrasingContent.span(classes : Set<String>? = null, block : SPAN.() -> Unit) : Unit = buildSPAN(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun PhrasingContent.strong(block : STRONG.() -> Unit) : Unit = buildSTRONG(emptyMap(), consumer, block)
+fun PhrasingContent.strong(block : STRONG.() -> Unit) : Unit = buildSTRONG(emptyMap, consumer, block)
 
-fun PhrasingContent.sub(block : SUB.() -> Unit) : Unit = buildSUB(emptyMap(), consumer, block)
+fun PhrasingContent.sub(block : SUB.() -> Unit) : Unit = buildSUB(emptyMap, consumer, block)
 
-fun PhrasingContent.sup(block : SUP.() -> Unit) : Unit = buildSUP(emptyMap(), consumer, block)
+fun PhrasingContent.sup(block : SUP.() -> Unit) : Unit = buildSUP(emptyMap, consumer, block)
 
-fun PhrasingContent.svg(block : SVG.() -> Unit) : Unit = buildSVG(emptyMap(), consumer, block)
-fun PhrasingContent.svg(content : String = "") : Unit = buildSVG(emptyMap(), consumer, {+content})
+fun PhrasingContent.svg(block : SVG.() -> Unit) : Unit = buildSVG(emptyMap, consumer, block)
+fun PhrasingContent.svg(content : String = "") : Unit = buildSVG(emptyMap, consumer, {+content})
 
 fun PhrasingContent.textArea(rows : String? = null, cols : String? = null, wrap : TextAreaWrap? = null, block : TEXTAREA.() -> Unit) : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to wrap?.enumEncode()).toAttributesMap(), consumer, block)
 fun PhrasingContent.textArea(rows : String? = null, cols : String? = null, wrap : TextAreaWrap? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to wrap?.enumEncode()).toAttributesMap(), consumer, {+content})
@@ -690,17 +690,17 @@ fun PhrasingContent.softTextArea(rows : String? = null, cols : String? = null, b
 fun PhrasingContent.hardTextArea(rows : String? = null, cols : String? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to TextAreaWrap.hard.realValue).toAttributesMap(), consumer, {+content})
 fun PhrasingContent.softTextArea(rows : String? = null, cols : String? = null, content : String = "") : Unit = buildTEXTAREA(listOf("rows" to rows,"cols" to cols,"wrap" to TextAreaWrap.soft.realValue).toAttributesMap(), consumer, {+content})
 
-fun PhrasingContent.time(block : TIME.() -> Unit) : Unit = buildTIME(emptyMap(), consumer, block)
+fun PhrasingContent.time(block : TIME.() -> Unit) : Unit = buildTIME(emptyMap, consumer, block)
 
-fun PhrasingContent.var_(block : VAR_.() -> Unit) : Unit = buildVAR_(emptyMap(), consumer, block)
+fun PhrasingContent.var_(block : VAR_.() -> Unit) : Unit = buildVAR_(emptyMap, consumer, block)
 
-fun PhrasingContent.video(block : VIDEO.() -> Unit) : Unit = buildVIDEO(emptyMap(), consumer, block)
+fun PhrasingContent.video(block : VIDEO.() -> Unit) : Unit = buildVIDEO(emptyMap, consumer, block)
 
-fun SectioningContent.article(block : ARTICLE.() -> Unit) : Unit = buildARTICLE(emptyMap(), consumer, block)
+fun SectioningContent.article(block : ARTICLE.() -> Unit) : Unit = buildARTICLE(emptyMap, consumer, block)
 
-fun SectioningContent.aside(block : ASIDE.() -> Unit) : Unit = buildASIDE(emptyMap(), consumer, block)
+fun SectioningContent.aside(block : ASIDE.() -> Unit) : Unit = buildASIDE(emptyMap, consumer, block)
 
-fun SectioningContent.nav(block : NAV.() -> Unit) : Unit = buildNAV(emptyMap(), consumer, block)
+fun SectioningContent.nav(block : NAV.() -> Unit) : Unit = buildNAV(emptyMap, consumer, block)
 
-fun SectioningContent.section(block : SECTION.() -> Unit) : Unit = buildSECTION(emptyMap(), consumer, block)
+fun SectioningContent.section(block : SECTION.() -> Unit) : Unit = buildSECTION(emptyMap, consumer, block)
 

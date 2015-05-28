@@ -48,7 +48,7 @@ public open class VIDEO(initialAttributes : Map<String, String>, override val co
 
 
 }
-fun VIDEO.source(block : SOURCE.() -> Unit) : Unit = buildSOURCE(emptyMap(), consumer, block)
-fun VIDEO.source(content : String = "") : Unit = buildSOURCE(emptyMap(), consumer, {+content})
+fun VIDEO.source(block : SOURCE.() -> Unit) : Unit = buildSOURCE(emptyMap, consumer, block)
+fun VIDEO.source(content : String = "") : Unit = buildSOURCE(emptyMap, consumer, {+content})
 
 

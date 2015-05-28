@@ -9,98 +9,6 @@ import html4k.impl.*
 *******************************************************************************/
 
 public interface CommonAttributeGroupFacade : Tag {
-    var runAt : RunAt
-        get()  = attributeRunAtEnumRunAtValues.get(this, "runat")
-        set(newValue) {attributeRunAtEnumRunAtValues.set(this, "runat", newValue)}
-
-    var accessKey : String
-        get()  = attributeStringString.get(this, "accesskey")
-        set(newValue) {attributeStringString.set(this, "accesskey", newValue)}
-
-    var classes : Set<String>
-        get()  = attributeSetStringStringSet.get(this, "class")
-        set(newValue) {attributeSetStringStringSet.set(this, "class", newValue)}
-
-    var contentEditable : Boolean
-        get()  = attributeBooleanBoolean.get(this, "contenteditable")
-        set(newValue) {attributeBooleanBoolean.set(this, "contenteditable", newValue)}
-
-    var contextMenu : String
-        get()  = attributeStringString.get(this, "contextmenu")
-        set(newValue) {attributeStringString.set(this, "contextmenu", newValue)}
-
-    var dataFolderName : String
-        get()  = attributeStringString.get(this, "data-FolderName")
-        set(newValue) {attributeStringString.set(this, "data-FolderName", newValue)}
-
-    var dataMsgId : String
-        get()  = attributeStringString.get(this, "data-MsgId")
-        set(newValue) {attributeStringString.set(this, "data-MsgId", newValue)}
-
-    var dir : Dir
-        get()  = attributeDirEnumDirValues.get(this, "dir")
-        set(newValue) {attributeDirEnumDirValues.set(this, "dir", newValue)}
-
-    var draggable : Draggable
-        get()  = attributeDraggableEnumDraggableValues.get(this, "draggable")
-        set(newValue) {attributeDraggableEnumDraggableValues.set(this, "draggable", newValue)}
-
-    var id : String
-        get()  = attributeStringString.get(this, "id")
-        set(newValue) {attributeStringString.set(this, "id", newValue)}
-
-    var item : String
-        get()  = attributeStringString.get(this, "item")
-        set(newValue) {attributeStringString.set(this, "item", newValue)}
-
-    var hidden : Boolean
-        get()  = attributeBooleanTicker.get(this, "hidden")
-        set(newValue) {attributeBooleanTicker.set(this, "hidden", newValue)}
-
-    var itemProp : String
-        get()  = attributeStringString.get(this, "itemprop")
-        set(newValue) {attributeStringString.set(this, "itemprop", newValue)}
-
-    var role : String
-        get()  = attributeStringString.get(this, "role")
-        set(newValue) {attributeStringString.set(this, "role", newValue)}
-
-    var spellCheck : Boolean
-        get()  = attributeBooleanBoolean.get(this, "spellcheck")
-        set(newValue) {attributeBooleanBoolean.set(this, "spellcheck", newValue)}
-
-    var style : String
-        get()  = attributeStringString.get(this, "style")
-        set(newValue) {attributeStringString.set(this, "style", newValue)}
-
-    var subject : String
-        get()  = attributeStringString.get(this, "subject")
-        set(newValue) {attributeStringString.set(this, "subject", newValue)}
-
-    var tabIndex : String
-        get()  = attributeStringString.get(this, "tabIndex")
-        set(newValue) {attributeStringString.set(this, "tabIndex", newValue)}
-
-    var title : String
-        get()  = attributeStringString.get(this, "title")
-        set(newValue) {attributeStringString.set(this, "title", newValue)}
-
-    var enableTheming : Boolean
-        get()  = attributeBooleanBoolean.get(this, "EnableTheming")
-        set(newValue) {attributeBooleanBoolean.set(this, "EnableTheming", newValue)}
-
-    var enableViewState : Boolean
-        get()  = attributeBooleanBoolean.get(this, "EnableViewState")
-        set(newValue) {attributeBooleanBoolean.set(this, "EnableViewState", newValue)}
-
-    var skinID : String
-        get()  = attributeStringString.get(this, "SkinID")
-        set(newValue) {attributeStringString.set(this, "SkinID", newValue)}
-
-    var visible : Boolean
-        get()  = attributeBooleanBoolean.get(this, "Visible")
-        set(newValue) {attributeBooleanBoolean.set(this, "Visible", newValue)}
-
     var onAbort : String
         get()  = attributeStringString.get(this, "onabort")
         set(newValue) {attributeStringString.set(this, "onabort", newValue)}
@@ -312,6 +220,98 @@ public interface CommonAttributeGroupFacade : Tag {
     var onWaiting : String
         get()  = attributeStringString.get(this, "onwaiting")
         set(newValue) {attributeStringString.set(this, "onwaiting", newValue)}
+
+    var runAt : RunAt
+        get()  = attributeRunAtEnumRunAtValues.get(this, "runat")
+        set(newValue) {attributeRunAtEnumRunAtValues.set(this, "runat", newValue)}
+
+    var accessKey : String
+        get()  = attributeStringString.get(this, "accesskey")
+        set(newValue) {attributeStringString.set(this, "accesskey", newValue)}
+
+    var classes : Set<String>
+        get()  = attributeSetStringStringSet.get(this, "class")
+        set(newValue) {attributeSetStringStringSet.set(this, "class", newValue)}
+
+    var contentEditable : Boolean
+        get()  = attributeBooleanBoolean.get(this, "contenteditable")
+        set(newValue) {attributeBooleanBoolean.set(this, "contenteditable", newValue)}
+
+    var contextMenu : String
+        get()  = attributeStringString.get(this, "contextmenu")
+        set(newValue) {attributeStringString.set(this, "contextmenu", newValue)}
+
+    var dataFolderName : String
+        get()  = attributeStringString.get(this, "data-FolderName")
+        set(newValue) {attributeStringString.set(this, "data-FolderName", newValue)}
+
+    var dataMsgId : String
+        get()  = attributeStringString.get(this, "data-MsgId")
+        set(newValue) {attributeStringString.set(this, "data-MsgId", newValue)}
+
+    var dir : Dir
+        get()  = attributeDirEnumDirValues.get(this, "dir")
+        set(newValue) {attributeDirEnumDirValues.set(this, "dir", newValue)}
+
+    var draggable : Draggable
+        get()  = attributeDraggableEnumDraggableValues.get(this, "draggable")
+        set(newValue) {attributeDraggableEnumDraggableValues.set(this, "draggable", newValue)}
+
+    var id : String
+        get()  = attributeStringString.get(this, "id")
+        set(newValue) {attributeStringString.set(this, "id", newValue)}
+
+    var item : String
+        get()  = attributeStringString.get(this, "item")
+        set(newValue) {attributeStringString.set(this, "item", newValue)}
+
+    var hidden : Boolean
+        get()  = attributeBooleanTicker.get(this, "hidden")
+        set(newValue) {attributeBooleanTicker.set(this, "hidden", newValue)}
+
+    var itemProp : String
+        get()  = attributeStringString.get(this, "itemprop")
+        set(newValue) {attributeStringString.set(this, "itemprop", newValue)}
+
+    var role : String
+        get()  = attributeStringString.get(this, "role")
+        set(newValue) {attributeStringString.set(this, "role", newValue)}
+
+    var spellCheck : Boolean
+        get()  = attributeBooleanBoolean.get(this, "spellcheck")
+        set(newValue) {attributeBooleanBoolean.set(this, "spellcheck", newValue)}
+
+    var style : String
+        get()  = attributeStringString.get(this, "style")
+        set(newValue) {attributeStringString.set(this, "style", newValue)}
+
+    var subject : String
+        get()  = attributeStringString.get(this, "subject")
+        set(newValue) {attributeStringString.set(this, "subject", newValue)}
+
+    var tabIndex : String
+        get()  = attributeStringString.get(this, "tabIndex")
+        set(newValue) {attributeStringString.set(this, "tabIndex", newValue)}
+
+    var title : String
+        get()  = attributeStringString.get(this, "title")
+        set(newValue) {attributeStringString.set(this, "title", newValue)}
+
+    var enableTheming : Boolean
+        get()  = attributeBooleanBoolean.get(this, "EnableTheming")
+        set(newValue) {attributeBooleanBoolean.set(this, "EnableTheming", newValue)}
+
+    var enableViewState : Boolean
+        get()  = attributeBooleanBoolean.get(this, "EnableViewState")
+        set(newValue) {attributeBooleanBoolean.set(this, "EnableViewState", newValue)}
+
+    var skinID : String
+        get()  = attributeStringString.get(this, "SkinID")
+        set(newValue) {attributeStringString.set(this, "SkinID", newValue)}
+
+    var visible : Boolean
+        get()  = attributeBooleanBoolean.get(this, "Visible")
+        set(newValue) {attributeBooleanBoolean.set(this, "Visible", newValue)}
 
 }
 

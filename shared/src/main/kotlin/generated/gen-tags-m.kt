@@ -46,7 +46,7 @@ public open class MENU(initialAttributes : Map<String, String>, override val con
 
 
 }
-fun MENU.li(block : LI.() -> Unit) : Unit = buildLI(emptyMap(), consumer, block)
+fun MENU.li(block : LI.() -> Unit) : Unit = buildLI(emptyMap, consumer, block)
 
 
 public open class META(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meta", consumer, initialAttributes), CommonAttributeGroupFacade {

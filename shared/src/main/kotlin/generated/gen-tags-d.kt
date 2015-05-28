@@ -12,8 +12,8 @@ import html4k.attributes.*
 public open class DATALIST(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("datalist", consumer, initialAttributes), CommonAttributeGroupFacade, PhrasingContent {
 
 }
-fun DATALIST.option(block : OPTION.() -> Unit) : Unit = buildOPTION(emptyMap(), consumer, block)
-fun DATALIST.option(content : String = "") : Unit = buildOPTION(emptyMap(), consumer, {+content})
+fun DATALIST.option(block : OPTION.() -> Unit) : Unit = buildOPTION(emptyMap, consumer, block)
+fun DATALIST.option(content : String = "") : Unit = buildOPTION(emptyMap, consumer, {+content})
 
 
 public open class DD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dd", consumer, initialAttributes), CommonAttributeGroupFacade, FlowContent {
@@ -39,7 +39,7 @@ public open class DETAILS(initialAttributes : Map<String, String>, override val 
 
 
 }
-fun DETAILS.legEnd(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap(), consumer, block)
+fun DETAILS.legEnd(block : LEGEND.() -> Unit) : Unit = buildLEGEND(emptyMap, consumer, block)
 
 
 public open class DFN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dfn", consumer, initialAttributes), CommonAttributeGroupFacade, PhrasingContent {
@@ -57,9 +57,9 @@ public open class DIV(initialAttributes : Map<String, String>, override val cons
 public open class DL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dl", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun DL.dd(block : DD.() -> Unit) : Unit = buildDD(emptyMap(), consumer, block)
+fun DL.dd(block : DD.() -> Unit) : Unit = buildDD(emptyMap, consumer, block)
 
-fun DL.dt(block : DT.() -> Unit) : Unit = buildDT(emptyMap(), consumer, block)
+fun DL.dt(block : DT.() -> Unit) : Unit = buildDT(emptyMap, consumer, block)
 
 
 public open class DT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dt", consumer, initialAttributes), CommonAttributeGroupFacade, PhrasingContent {

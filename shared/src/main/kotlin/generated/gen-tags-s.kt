@@ -68,8 +68,8 @@ public open class SELECT(initialAttributes : Map<String, String>, override val c
 
 
 }
-fun SELECT.option(block : OPTION.() -> Unit) : Unit = buildOPTION(emptyMap(), consumer, block)
-fun SELECT.option(content : String = "") : Unit = buildOPTION(emptyMap(), consumer, {+content})
+fun SELECT.option(block : OPTION.() -> Unit) : Unit = buildOPTION(emptyMap, consumer, block)
+fun SELECT.option(content : String = "") : Unit = buildOPTION(emptyMap, consumer, {+content})
 
 fun SELECT.optGroup(label : String? = null, block : OPTGROUP.() -> Unit) : Unit = buildOPTGROUP(listOf("label" to label).toAttributesMap(), consumer, block)
 

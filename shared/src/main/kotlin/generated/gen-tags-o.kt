@@ -59,7 +59,7 @@ public open class OL(initialAttributes : Map<String, String>, override val consu
 
 
 }
-fun OL.li(block : LI.() -> Unit) : Unit = buildLI(emptyMap(), consumer, block)
+fun OL.li(block : LI.() -> Unit) : Unit = buildLI(emptyMap, consumer, block)
 
 
 public open class OPTGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("optgroup", consumer, initialAttributes), CommonAttributeGroupFacade {
@@ -73,8 +73,8 @@ public open class OPTGROUP(initialAttributes : Map<String, String>, override val
 
 
 }
-fun OPTGROUP.option(block : OPTION.() -> Unit) : Unit = buildOPTION(emptyMap(), consumer, block)
-fun OPTGROUP.option(content : String = "") : Unit = buildOPTION(emptyMap(), consumer, {+content})
+fun OPTGROUP.option(block : OPTION.() -> Unit) : Unit = buildOPTION(emptyMap, consumer, block)
+fun OPTGROUP.option(content : String = "") : Unit = buildOPTION(emptyMap, consumer, {+content})
 
 
 public open class OPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("option", consumer, initialAttributes), CommonAttributeGroupFacade {

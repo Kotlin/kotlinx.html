@@ -20,8 +20,8 @@ public open class RT(initialAttributes : Map<String, String>, override val consu
 public open class RUBY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ruby", consumer, initialAttributes), CommonAttributeGroupFacade, PhrasingContent {
 
 }
-fun RUBY.rt(block : RT.() -> Unit) : Unit = buildRT(emptyMap(), consumer, block)
+fun RUBY.rt(block : RT.() -> Unit) : Unit = buildRT(emptyMap, consumer, block)
 
-fun RUBY.rp(block : RP.() -> Unit) : Unit = buildRP(emptyMap(), consumer, block)
+fun RUBY.rp(block : RP.() -> Unit) : Unit = buildRP(emptyMap, consumer, block)
 
 

@@ -48,8 +48,8 @@ public open class COLGROUP(initialAttributes : Map<String, String>, override val
 
 
 }
-fun COLGROUP.col(block : COL.() -> Unit) : Unit = buildCOL(emptyMap(), consumer, block)
-fun COLGROUP.col(content : String = "") : Unit = buildCOL(emptyMap(), consumer, {+content})
+fun COLGROUP.col(block : COL.() -> Unit) : Unit = buildCOL(emptyMap, consumer, block)
+fun COLGROUP.col(content : String = "") : Unit = buildCOL(emptyMap, consumer, {+content})
 
 
 public open class COMMAND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("command", consumer, initialAttributes), CommonAttributeGroupFacade {
