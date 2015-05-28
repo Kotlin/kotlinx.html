@@ -114,7 +114,7 @@ public fun TagConsumer<HTMLElement>.hr(block : HR.() -> Unit) : HTMLHRElement = 
 
 public fun TagConsumer<HTMLElement>.html(block : HTML.() -> Unit) : HTMLHtmlElement = build(emptyMap(), ::buildHTML, block).finalize() as HTMLHtmlElement
 
-public fun TagConsumer<HTMLElement>.i(block : I.() -> Unit) : HTMLElement = build(emptyMap(), ::buildI, block).finalize()
+public fun TagConsumer<HTMLElement>.i(classes : Set<String>? = null, block : I.() -> Unit) : HTMLElement = build(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), ::buildI, block).finalize()
 
 public fun TagConsumer<HTMLElement>.iframe(sandbox : IframeSandbox? = null, content : String = "") : HTMLElement = build(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), ::buildIFRAME, {+content}).finalize()
 public fun TagConsumer<HTMLElement>.iframe(sandbox : IframeSandbox? = null, block : IFRAME.() -> Unit) : HTMLElement = build(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), ::buildIFRAME, block).finalize()
@@ -203,7 +203,7 @@ public fun TagConsumer<HTMLElement>.small(block : SMALL.() -> Unit) : HTMLElemen
 public fun TagConsumer<HTMLElement>.source(content : String = "") : HTMLSourceElement = build(emptyMap(), ::buildSOURCE, {+content}).finalize() as HTMLSourceElement
 public fun TagConsumer<HTMLElement>.source(block : SOURCE.() -> Unit) : HTMLSourceElement = build(emptyMap(), ::buildSOURCE, block).finalize() as HTMLSourceElement
 
-public fun TagConsumer<HTMLElement>.span(block : SPAN.() -> Unit) : HTMLSpanElement = build(emptyMap(), ::buildSPAN, block).finalize() as HTMLSpanElement
+public fun TagConsumer<HTMLElement>.span(classes : Set<String>? = null, block : SPAN.() -> Unit) : HTMLSpanElement = build(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), ::buildSPAN, block).finalize() as HTMLSpanElement
 
 public fun TagConsumer<HTMLElement>.strong(block : STRONG.() -> Unit) : HTMLElement = build(emptyMap(), ::buildSTRONG, block).finalize()
 

@@ -113,7 +113,7 @@ public fun <T, C : TagConsumer<T>> C.hr(block : HR.() -> Unit) : T = build(empty
 
 public fun <T, C : TagConsumer<T>> C.html(block : HTML.() -> Unit) : T = build(emptyMap(), ::buildHTML, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.i(block : I.() -> Unit) : T = build(emptyMap(), ::buildI, block).finalize()
+public fun <T, C : TagConsumer<T>> C.i(classes : Set<String>? = null, block : I.() -> Unit) : T = build(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), ::buildI, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.iframe(sandbox : IframeSandbox? = null, content : String = "") : T = build(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), ::buildIFRAME, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.iframe(sandbox : IframeSandbox? = null, block : IFRAME.() -> Unit) : T = build(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), ::buildIFRAME, block).finalize()
@@ -202,7 +202,7 @@ public fun <T, C : TagConsumer<T>> C.small(block : SMALL.() -> Unit) : T = build
 public fun <T, C : TagConsumer<T>> C.source(content : String = "") : T = build(emptyMap(), ::buildSOURCE, {+content}).finalize()
 public fun <T, C : TagConsumer<T>> C.source(block : SOURCE.() -> Unit) : T = build(emptyMap(), ::buildSOURCE, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.span(block : SPAN.() -> Unit) : T = build(emptyMap(), ::buildSPAN, block).finalize()
+public fun <T, C : TagConsumer<T>> C.span(classes : Set<String>? = null, block : SPAN.() -> Unit) : T = build(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), ::buildSPAN, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.strong(block : STRONG.() -> Unit) : T = build(emptyMap(), ::buildSTRONG, block).finalize()
 

@@ -133,7 +133,7 @@ fun FlowContent.hGroup(block : HGROUP.() -> Unit) : Unit = buildHGROUP(emptyMap(
 fun FlowContent.hr(block : HR.() -> Unit) : Unit = buildHR(emptyMap(), consumer, block)
 fun FlowContent.hr(content : String = "") : Unit = buildHR(emptyMap(), consumer, {+content})
 
-fun FlowContent.i(block : I.() -> Unit) : Unit = buildI(emptyMap(), consumer, block)
+fun FlowContent.i(classes : Set<String>? = null, block : I.() -> Unit) : Unit = buildI(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 fun FlowContent.iframe(sandbox : IframeSandbox? = null, block : IFRAME.() -> Unit) : Unit = buildIFRAME(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), consumer, block)
 fun FlowContent.iframe(sandbox : IframeSandbox? = null, content : String = "") : Unit = buildIFRAME(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), consumer, {+content})
@@ -281,7 +281,7 @@ fun FlowContent.select(block : SELECT.() -> Unit) : Unit = buildSELECT(emptyMap(
 
 fun FlowContent.small(block : SMALL.() -> Unit) : Unit = buildSMALL(emptyMap(), consumer, block)
 
-fun FlowContent.span(block : SPAN.() -> Unit) : Unit = buildSPAN(emptyMap(), consumer, block)
+fun FlowContent.span(classes : Set<String>? = null, block : SPAN.() -> Unit) : Unit = buildSPAN(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 fun FlowContent.strong(block : STRONG.() -> Unit) : Unit = buildSTRONG(emptyMap(), consumer, block)
 
@@ -539,7 +539,7 @@ fun PhrasingContent.em(block : EM.() -> Unit) : Unit = buildEM(emptyMap(), consu
 fun PhrasingContent.embed(block : EMBED.() -> Unit) : Unit = buildEMBED(emptyMap(), consumer, block)
 fun PhrasingContent.embed(content : String = "") : Unit = buildEMBED(emptyMap(), consumer, {+content})
 
-fun PhrasingContent.i(block : I.() -> Unit) : Unit = buildI(emptyMap(), consumer, block)
+fun PhrasingContent.i(classes : Set<String>? = null, block : I.() -> Unit) : Unit = buildI(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 fun PhrasingContent.iframe(sandbox : IframeSandbox? = null, block : IFRAME.() -> Unit) : Unit = buildIFRAME(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), consumer, block)
 fun PhrasingContent.iframe(sandbox : IframeSandbox? = null, content : String = "") : Unit = buildIFRAME(listOf("sandbox" to sandbox?.enumEncode()).toAttributesMap(), consumer, {+content})
@@ -672,7 +672,7 @@ fun PhrasingContent.select(block : SELECT.() -> Unit) : Unit = buildSELECT(empty
 
 fun PhrasingContent.small(block : SMALL.() -> Unit) : Unit = buildSMALL(emptyMap(), consumer, block)
 
-fun PhrasingContent.span(block : SPAN.() -> Unit) : Unit = buildSPAN(emptyMap(), consumer, block)
+fun PhrasingContent.span(classes : Set<String>? = null, block : SPAN.() -> Unit) : Unit = buildSPAN(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 fun PhrasingContent.strong(block : STRONG.() -> Unit) : Unit = buildSTRONG(emptyMap(), consumer, block)
 

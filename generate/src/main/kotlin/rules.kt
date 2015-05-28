@@ -9,6 +9,8 @@ val globalSuggestedAttributes = listOf(
         "script" to "type",
         "script" to "src",
         "div" to "class",
+        "span" to "class",
+        "i" to "class",
         "input" to "type",
         "input" to "name"
 ).groupBy { it.first }.mapValues { it.getValue().map { it.second } }
