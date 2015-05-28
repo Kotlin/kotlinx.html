@@ -3,7 +3,7 @@
     <parent>
         <artifactId>kotlinx.html</artifactId>
         <groupId>org.jetbrains.kotlin</groupId>
-        <version>0.3.7</version>
+        <version>0.3.8-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlinx.html.shared</artifactId>
-            <version>0.3.7</version>
+            <version>0.3.8-SNAPSHOT</version>
 
             <exclusions>
                 <exclusion>
