@@ -15,33 +15,33 @@ val HTML_NAMESPACE = "html-5"
 
 private val attributeNamesMap = mapOf("class" to "classes")
 
-private fun flattenTerm(term : XSTerm, result : MutableCollection<String>, visitedModelNames : MutableSet<String>) {
+private fun flattenTerm(term: XSTerm, result: MutableCollection<String>, visitedModelNames: MutableSet<String>) {
     if (term.isElementDecl()) {
         result.add(term.asElementDecl().getName())
     } else if (term.isModelGroupDecl()) {
         visitedModelNames.add(term.asModelGroupDecl().getName())
-        term.asModelGroupDecl().getModelGroup().toList().map {it.getTerm()}.forEach {
+        term.asModelGroupDecl().getModelGroup().toList().map { it.getTerm() }.forEach {
             flattenTerm(it, result, visitedModelNames)
         }
     } else if (term.isModelGroup()) {
-        term.asModelGroup().toList().map {it.getTerm()}.forEach {
+        term.asModelGroup().toList().map { it.getTerm() }.forEach {
             flattenTerm(it, result, visitedModelNames)
         }
     }
 }
 
-fun handleAttributeDeclaration(prefix : String, attributeDeclaration : XSAttributeDecl) : AttributeInfo {
+fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttributeDecl): AttributeInfo {
     val name = attributeDeclaration.getName()
     val type = attributeDeclaration.getType()
 
     val safeName = attributeNamesMap[name] ?: name.escapeUnsafeValues()
     if (type.isUnion()) {
         val enumEntries = type.asUnion()
-                .filter {it.isRestriction()}
-                .map {it.asRestriction()}
+                .filter { it.isRestriction() }
+                .map { it.asRestriction() }
                 .flatMap { it.getDeclaredFacets() ?: emptyList() }
                 .filter { it.getName() == "enumeration" }
-                .map {it.getValue().value}
+                .map { it.getValue().value }
 
         return AttributeInfo(name, AttributeType.STRING, safeName, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
     } else if (type.isPrimitive() || type.getName() in setOf("integer", "string", "boolean", "decimal")) {
@@ -67,7 +67,7 @@ fun handleAttributeDeclaration(prefix : String, attributeDeclaration : XSAttribu
     }
 }
 
-fun flattenGroups(root : XSAttGroupDecl, result : MutableList<XSAttGroupDecl> = ArrayList()) : List<XSAttGroupDecl> {
+fun flattenGroups(root: XSAttGroupDecl, result: MutableList<XSAttGroupDecl> = ArrayList()): List<XSAttGroupDecl> {
     result.add(root)
     root.getAttGroups()?.forEach {
         flattenGroups(it, result)
@@ -76,7 +76,7 @@ fun flattenGroups(root : XSAttGroupDecl, result : MutableList<XSAttGroupDecl> = 
     return result
 }
 
-fun AttributeInfo.handleSpecialType(tagName : String = "") : AttributeInfo = specialTypeFor(tagName, this.name)?.let { type ->
+fun AttributeInfo.handleSpecialType(tagName: String = ""): AttributeInfo = specialTypeFor(tagName, this.name)?.let { type ->
     this.copy(type = type)
 } ?: this
 
@@ -86,7 +86,7 @@ fun fillRepository() {
     val schema = parser.getResult().getSchema(HTML_NAMESPACE)
 
     @suppress("UNCHECKED_CAST")
-    val alreadyIncluded = TreeSet<String>() {a, b -> a.compareTo(b, true)} as MutableSet<String>
+    val alreadyIncluded = TreeSet<String>() { a, b -> a.compareTo(b, true) } as MutableSet<String>
     schema.getAttGroupDecls().values().forEach { attributeGroup ->
         val requiredNames = HashSet<String>()
         val facadeAttributes = attributeGroup.getAttributeUses().map { attributeUse ->
@@ -96,7 +96,10 @@ fun fillRepository() {
             }
 
             handleAttributeDeclaration("", attributeDeclaration).handleSpecialType()
-        }.filter { it.name !in alreadyIncluded }.filter { !it.name.startsWith("On") }
+        }
+                .filter { it.name !in alreadyIncluded }
+                .filter { !it.name.startsWith("On") }
+                .sortBy { it.name }
 
         val name = attributeGroup.getName()
 
@@ -110,9 +113,9 @@ fun fillRepository() {
         val name = modelGroupDeclaration.getName()
         val children = modelGroupDeclaration.getModelGroup()
                 .getChildren()
-                .map {it.getTerm()}
-                .filter {it.isElementDecl()}
-                .map {it.asElementDecl().getName()}
+                .map { it.getTerm() }
+                .filter { it.isElementDecl() }
+                .map { it.asElementDecl().getName() }
 
         Repository.tagGroups[name] = TagGroup(name, children)
     }
@@ -125,11 +128,11 @@ fun fillRepository() {
             suggestedNames.addAll(it)
         }
 
-        val tagInfo : TagInfo
+        val tagInfo: TagInfo
         if (type.isComplexType()) {
             val complex = type.asComplexType()
             val groupDeclarations = complex.getAttGroups().flatMap { flattenGroups(it) }.distinct().toList()
-            val attributeGroups = groupDeclarations.map {Repository.attributeFacades[it.getName()]}.filterNotNull()
+            val attributeGroups = groupDeclarations.map { Repository.attributeFacades[it.getName()] }.filterNotNull()
 
             val attributes = complex.getDeclaredAttributeUses().map {
                 if (it.isRequired()) {
@@ -146,11 +149,13 @@ fun fillRepository() {
             if (contentTerm != null) {
                 flattenTerm(contentTerm, children, modelGroupNames)
                 if (contentTerm.isModelGroup()) {
-                    directChildren.addAll(contentTerm.asModelGroup().getChildren().map {it.getTerm()}.filter {it.isElementDecl()}.map {it.asElementDecl().getName()})
+                    directChildren.addAll(contentTerm.asModelGroup().getChildren().map { it.getTerm() }.filter { it.isElementDecl() }.map { it.asElementDecl().getName() })
                 }
             }
 
-            suggestedNames.addAll(attributes.filter {it.type == AttributeType.ENUM}.map {it.name})
+            suggestedNames.addAll(attributes.filter { it.type == AttributeType.ENUM }.map { it.name })
+            suggestedNames.addAll(attributes.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
+            suggestedNames.addAll(attributeGroups.flatMap { it.attributes }.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
 
             tagInfo = TagInfo(name, children.toList().sort(), directChildren, attributeGroups, attributes, suggestedNames, modelGroupNames.sort().toList())
         } else {

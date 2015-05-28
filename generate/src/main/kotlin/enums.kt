@@ -31,7 +31,7 @@ fun <O : Appendable> O.enumObject(attribute : AttributeInfo) {
 
         append("    ")
         append("private ")
-        variable(Var("values", "List<String>", defaultValue = attribute.enumValues.map {"\"${it.fieldName}\""}.join(",", "listOf(", ")")))
+        variable(Var("values", "List<String>", defaultValue = attribute.enumValues.map {"\"${it.fieldName}\""}.join(", ", "listOf(", ")")))
         emptyLine()
     }
 
@@ -45,11 +45,14 @@ fun <O : Appendable> O.enum(attribute : AttributeInfo) {
     append("enum ")
     clazz(Clazz(name, variables = listOf(realValue), parents = listOf("AttributeEnum"))) {
         attribute.enumValues.forEachIndexed { idx, it ->
-            if (idx > 0) {
-                append(",")
-            }
             append("    ")
             enumEntry(it.fieldName, listOf("\"${it.realName}\""))
+
+            if (idx != attribute.enumValues.lastIndex) {
+                append(",")
+            }
+
+            appendln()
         }
     }
 

@@ -44,17 +44,17 @@ public open class HEADER(initialAttributes : Map<String, String>, override val c
 public open class HGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hgroup", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun HGROUP.h1(block : H1.() -> Unit) : Unit = buildH1(emptyMap, consumer, block)
+fun HGROUP.h1(classes : Set<String>? = null, block : H1.() -> Unit) : Unit = buildH1(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun HGROUP.h2(block : H2.() -> Unit) : Unit = buildH2(emptyMap, consumer, block)
+fun HGROUP.h2(classes : Set<String>? = null, block : H2.() -> Unit) : Unit = buildH2(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun HGROUP.h3(block : H3.() -> Unit) : Unit = buildH3(emptyMap, consumer, block)
+fun HGROUP.h3(classes : Set<String>? = null, block : H3.() -> Unit) : Unit = buildH3(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun HGROUP.h4(block : H4.() -> Unit) : Unit = buildH4(emptyMap, consumer, block)
+fun HGROUP.h4(classes : Set<String>? = null, block : H4.() -> Unit) : Unit = buildH4(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun HGROUP.h5(block : H5.() -> Unit) : Unit = buildH5(emptyMap, consumer, block)
+fun HGROUP.h5(classes : Set<String>? = null, block : H5.() -> Unit) : Unit = buildH5(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun HGROUP.h6(block : H6.() -> Unit) : Unit = buildH6(emptyMap, consumer, block)
+fun HGROUP.h6(classes : Set<String>? = null, block : H6.() -> Unit) : Unit = buildH6(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 
 public open class HR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hr", consumer, initialAttributes), CommonAttributeGroupFacade {
@@ -68,8 +68,8 @@ public open class HTML(initialAttributes : Map<String, String>, override val con
 
 
 }
-fun HTML.body(block : BODY.() -> Unit) : Unit = buildBODY(emptyMap, consumer, block)
+fun HTML.body(classes : Set<String>? = null, block : BODY.() -> Unit) : Unit = buildBODY(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun HTML.head(block : HEAD.() -> Unit) : Unit = buildHEAD(emptyMap, consumer, block)
+fun HTML.head(classes : Set<String>? = null, block : HEAD.() -> Unit) : Unit = buildHEAD(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 

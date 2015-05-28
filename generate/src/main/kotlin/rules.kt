@@ -15,6 +15,8 @@ val globalSuggestedAttributes = listOf(
         "input" to "name"
 ).groupBy { it.first }.mapValues { it.getValue().map { it.second } }
 
+val globalSuggestedAttributeNames = setOf("class")
+
 val specialTypes = listOf(
         "*.class" to AttributeType.STRING_SET
 ).groupBy { it.first }.mapValues { it.getValue().single().second }
@@ -34,8 +36,8 @@ val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
         "item", "area", "length", "colors?"
 ).map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
 
-val excludeAttributes = listOf("lang$").map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
-fun isAtrributeExcluded(name: String) = excludeAttributes.any { it.matcher(name).find() }
+val excludeAttributes = listOf("lang$", "^item$").map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
+fun isAttributeExcluded(name: String) = excludeAttributes.any { it.matcher(name).find() }
 
 val knownTagClasses = """
 HTMLElement

@@ -108,7 +108,7 @@ public open class AUDIO(initialAttributes : Map<String, String>, override val co
 
 
 }
-fun AUDIO.source(block : SOURCE.() -> Unit) : Unit = buildSOURCE(emptyMap, consumer, block)
-fun AUDIO.source(content : String = "") : Unit = buildSOURCE(emptyMap, consumer, {+content})
+fun AUDIO.source(classes : Set<String>? = null, block : SOURCE.() -> Unit) : Unit = buildSOURCE(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun AUDIO.source(classes : Set<String>? = null, content : String = "") : Unit = buildSOURCE(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, {+content})
 
 

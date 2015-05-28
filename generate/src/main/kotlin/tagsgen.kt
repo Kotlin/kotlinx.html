@@ -22,7 +22,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
         val lowerCasedNames = tag.attributes.map {it.name.toLowerCase()}.toSet()
         val attributes = tag.attributes.filter {it.name !in excludeAttributes}
 
-        attributes.filter {!isAtrributeExcluded(it.name) }.forEach { attribute ->
+        attributes.filter {!isAttributeExcluded(it.name) }.forEach { attribute ->
             if (attribute.name[0].isLowerCase() || attribute.name.toLowerCase() !in lowerCasedNames) {
                 attributeProperty(attribute)
             }

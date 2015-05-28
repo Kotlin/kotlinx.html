@@ -200,7 +200,7 @@ fun main(args: Array<String>) {
             emptyLine()
             emptyLine()
 
-            fun genEnumAttribute(attribute : AttributeInfo) {
+            fun genEnumAttribute(attribute: AttributeInfo) {
                 if (attribute.type == AttributeType.ENUM) {
                     enum(attribute)
                 } else {
@@ -209,13 +209,13 @@ fun main(args: Array<String>) {
             }
 
             Repository.attributeFacades.values().forEach { facade ->
-                facade.attributes.filter {it.enumValues.isNotEmpty()}.filter {!isAtrributeExcluded(it.name)}.forEach { attribute ->
+                facade.attributes.filter { it.enumValues.isNotEmpty() }.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
                     genEnumAttribute(attribute)
                 }
             }
 
             Repository.tags.values().forEach { tag ->
-                tag.attributes.filter {it.enumValues.isNotEmpty()}.filter { !isAtrributeExcluded(it.name) }.forEach { attribute ->
+                tag.attributes.filter { it.enumValues.isNotEmpty() }.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
                     genEnumAttribute(attribute)
                 }
             }
@@ -282,7 +282,7 @@ fun main(args: Array<String>) {
 
             append("enum ")
             clazz(Clazz(name = "Entities")) {
-                File("generate/src/main/resources/entities.txt").readLines().filter {it.isNotEmpty()}.forEachIndexed { idx, ent ->
+                File("generate/src/main/resources/entities.txt").readLines().filter { it.isNotEmpty() }.forEachIndexed { idx, ent ->
                     if (idx > 0) {
                         append(",")
                     }

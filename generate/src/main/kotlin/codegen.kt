@@ -82,7 +82,7 @@ fun <O : Appendable> O.variable(variable : Var, omitValVar : Boolean = false, re
 fun <O : Appendable> O.enumEntry(name: String, arguments: List<String>) {
     append(name)
     if (arguments.isNotEmpty()) {
-        arguments.joinTo(this, ", ", "(", ")\n")
+        arguments.joinTo(this, ", ", "(", ")")
     }
 }
 

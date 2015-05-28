@@ -16,23 +16,23 @@ public open class TABLE(initialAttributes : Map<String, String>, override val co
 
 
 }
-fun TABLE.caption(block : CAPTION.() -> Unit) : Unit = buildCAPTION(emptyMap, consumer, block)
+fun TABLE.caption(classes : Set<String>? = null, block : CAPTION.() -> Unit) : Unit = buildCAPTION(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun TABLE.colGroup(block : COLGROUP.() -> Unit) : Unit = buildCOLGROUP(emptyMap, consumer, block)
+fun TABLE.colGroup(classes : Set<String>? = null, block : COLGROUP.() -> Unit) : Unit = buildCOLGROUP(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun TABLE.thead(block : THEAD.() -> Unit) : Unit = buildTHEAD(emptyMap, consumer, block)
+fun TABLE.thead(classes : Set<String>? = null, block : THEAD.() -> Unit) : Unit = buildTHEAD(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun TABLE.tfoot(block : TFOOT.() -> Unit) : Unit = buildTFOOT(emptyMap, consumer, block)
+fun TABLE.tfoot(classes : Set<String>? = null, block : TFOOT.() -> Unit) : Unit = buildTFOOT(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun TABLE.tbody(block : TBODY.() -> Unit) : Unit = buildTBODY(emptyMap, consumer, block)
+fun TABLE.tbody(classes : Set<String>? = null, block : TBODY.() -> Unit) : Unit = buildTBODY(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun TABLE.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap, consumer, block)
+fun TABLE.tr(classes : Set<String>? = null, block : TR.() -> Unit) : Unit = buildTR(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 
 public open class TBODY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("tbody", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun TBODY.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap, consumer, block)
+fun TBODY.tr(classes : Set<String>? = null, block : TR.() -> Unit) : Unit = buildTR(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 
 public open class TD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("td", consumer, initialAttributes), CommonAttributeGroupFacade, FlowContent {
@@ -102,7 +102,7 @@ public open class TEXTAREA(initialAttributes : Map<String, String>, override val
 public open class TFOOT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("tfoot", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun TFOOT.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap, consumer, block)
+fun TFOOT.tr(classes : Set<String>? = null, block : TR.() -> Unit) : Unit = buildTR(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 
 public open class TH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("th", consumer, initialAttributes), CommonAttributeGroupFacade, PhrasingContent {
@@ -128,7 +128,7 @@ public open class TH(initialAttributes : Map<String, String>, override val consu
 public open class THEAD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("thead", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun THEAD.tr(block : TR.() -> Unit) : Unit = buildTR(emptyMap, consumer, block)
+fun THEAD.tr(classes : Set<String>? = null, block : TR.() -> Unit) : Unit = buildTR(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 
 public open class TIME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("time", consumer, initialAttributes), CommonAttributeGroupFacade, PhrasingContent {
@@ -146,12 +146,12 @@ public open class TITLE(initialAttributes : Map<String, String>, override val co
 public open class TR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("tr", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun TR.th(scope : ThScope? = null, block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to scope?.enumEncode()).toAttributesMap(), consumer, block)
-fun TR.colTh(block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.col.realValue).toAttributesMap(), consumer, block)
-fun TR.colGroupTh(block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.colGroup.realValue).toAttributesMap(), consumer, block)
-fun TR.rowTh(block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.row.realValue).toAttributesMap(), consumer, block)
-fun TR.rowGroupTh(block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.rowGroup.realValue).toAttributesMap(), consumer, block)
+fun TR.th(scope : ThScope? = null, classes : Set<String>? = null, block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to scope?.enumEncode(),"class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun TR.colTh(classes : Set<String>? = null, block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.col.realValue,"class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun TR.colGroupTh(classes : Set<String>? = null, block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.colGroup.realValue,"class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun TR.rowTh(classes : Set<String>? = null, block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.row.realValue,"class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun TR.rowGroupTh(classes : Set<String>? = null, block : TH.() -> Unit) : Unit = buildTH(listOf("scope" to ThScope.rowGroup.realValue,"class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun TR.td(block : TD.() -> Unit) : Unit = buildTD(emptyMap, consumer, block)
+fun TR.td(classes : Set<String>? = null, block : TD.() -> Unit) : Unit = buildTD(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 
