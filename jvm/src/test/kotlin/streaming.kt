@@ -338,7 +338,7 @@ class TestStreaming {
 
 fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }
 fun FlowContent.buildMe2() =
-        div(setOf("block", "deprecated")) {
+        div("block deprecated") {
             a(href = "http://kotlinlang.org") {
                 target = ATarget.blank
                 attributes["custom"] = "custom"
