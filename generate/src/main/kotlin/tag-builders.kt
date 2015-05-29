@@ -1,7 +1,29 @@
 package html4k.generate
 
+val emptyTags = """area
+base
+basefont
+bgsound
+br
+col
+command
+device
+embed
+frame
+hr
+img
+input
+keygen
+link
+menuitem
+meta
+param
+source
+track
+wbr""".lines().toSet()
+
 fun <O : Appendable> O.htmlTagBuilders(receiver : String, tag : TagInfo) {
-    val probablyContentOnly = tag.possibleChildren.isEmpty()
+    val probablyContentOnly = tag.possibleChildren.isEmpty() && tag.name.toLowerCase() !in emptyTags
     htmlTagBuilderMethod(receiver, tag, true)
     if (probablyContentOnly) {
         htmlTagBuilderMethod(receiver, tag, false)

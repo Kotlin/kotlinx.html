@@ -48,8 +48,7 @@ public open class COLGROUP(initialAttributes : Map<String, String>, override val
 
 
 }
-fun COLGROUP.col(classes : String? = null, block : COL.() -> Unit) : Unit = buildCOL(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
-fun COLGROUP.col(classes : String? = null, content : String = "") : Unit = buildCOL(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, {+content})
+fun COLGROUP.col(classes : String? = null, block : COL.() -> Unit = {}) : Unit = buildCOL(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 
 public open class COMMAND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("command", consumer, initialAttributes), CommonAttributeGroupFacade {

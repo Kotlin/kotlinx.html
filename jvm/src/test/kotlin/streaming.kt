@@ -334,6 +334,20 @@ class TestStreaming {
             checked = false
         })
     }
+
+    test fun `meta tag should have name and content suggested attributes`() {
+        assertEquals("<meta name=\"name\" content=\"content\">", createHTML(false).meta("name", "content"))
+        assertEquals("<head><meta name=\"name\" content=\"content\"></head>", createHTML(false).head {
+            meta("name", "content")
+        })
+    }
+
+    test fun `we should be able to create div with no body`() {
+        assertEquals("<div></div>", createHTML(false).div())
+        assertEquals("<div><div></div></div>", createHTML(false).div {
+            div()
+        })
+    }
 }
 
 fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }

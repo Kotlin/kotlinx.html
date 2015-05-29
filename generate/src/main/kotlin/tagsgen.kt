@@ -88,6 +88,12 @@ fun getTagResultClass(tag: TagInfo) =
                 .map { "HTML${it}Element" }
                 .firstOrNull { probeType(it) } ?: "HTMLElement"
 
+fun contentArgumentValue(tag : TagInfo, blockOrContent : Boolean) = when {
+    tag.name.toLowerCase() in emptyTags -> "block"
+    blockOrContent -> "block"
+    else -> "{+content}"
+}
+
 fun <O : Appendable> O.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
     val resultType = getTagResultClass(tag)
 
@@ -97,7 +103,7 @@ fun <O : Appendable> O.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean
         functionCall("build", listOf(
                 buildSuggestedAttributesArgument(tag),
                 "::build${tag.nameUpper}",
-                if (blockOrContent) "block" else "{+content}"
+                contentArgumentValue(tag, blockOrContent)
         ))
         append(".")
         functionCall("finalize", emptyList())
@@ -116,7 +122,7 @@ fun <O : Appendable> O.consumerBuilderShared(tag : TagInfo, blockOrContent : Boo
         functionCall("build", listOf(
                 buildSuggestedAttributesArgument(tag),
                 "::build${tag.nameUpper}",
-                if (blockOrContent) "block" else "{+content}"
+                contentArgumentValue(tag, blockOrContent)
         ))
         append(".finalize()")
     })
@@ -130,11 +136,7 @@ fun <O : Appendable> O.htmlTagBuilderMethod(receiver : String, tag : TagInfo, bl
     delegateArguments.add(buildSuggestedAttributesArgument(tag))
 
     delegateArguments.add("consumer")
-    if (blockOrContent) {
-        delegateArguments.add("block")
-    } else {
-        delegateArguments.add("{+content}")
-    }
+    delegateArguments.add(contentArgumentValue(tag, blockOrContent))
 
     function(tag.safeName, arguments, "Unit", receiver = receiver)
     defineIs("build${tag.nameUpper}" + delegateArguments.join(", ", "(", ")"))
@@ -152,11 +154,8 @@ fun <O : Appendable> O.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo
         delegateArguments.add(buildSuggestedAttributesArgument(tag, mapOf(enumAttribute.fieldName to enumAttribute.typeName + "." + enumValue.fieldName + ".realValue")))
 
         delegateArguments.add("consumer")
-        if (blockOrContent) {
-            delegateArguments.add("block")
-        } else {
-            delegateArguments.add("{+content}")
-        }
+
+        delegateArguments.add(contentArgumentValue(tag, blockOrContent))
 
         indent(indent)
         function(enumValue.fieldName + tag.safeName.capitalize(), arguments, "Unit", receiver = receiver)
@@ -198,10 +197,11 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean =
         arguments.add(Var(attribute.fieldName, type + "?", defaultValue = "null"))
     }
 
-    if (blockOrContent) {
-        arguments.add(Var("block", "${tag.nameUpper}.() -> Unit"))
-    } else {
-        arguments.add(Var("content", "String", defaultValue = "\"\""))
+    when {
+        tag.name.toLowerCase() in emptyTags -> arguments.add(Var("block", "${tag.nameUpper}.() -> Unit", defaultValue = "{}"))
+        blockOrContent -> arguments.add(Var("block", "${tag.nameUpper}.() -> Unit", defaultValue = "{}"))
+        else -> arguments.add(Var("content", "String", defaultValue = "\"\""))
     }
+
     return arguments
 }

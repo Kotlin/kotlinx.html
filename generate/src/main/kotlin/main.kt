@@ -134,7 +134,7 @@ fun main(args: Array<String>) {
             emptyLine()
 
             Repository.tags.values().forEach {
-                if (it.possibleChildren.isEmpty()) {
+                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags) {
                     consumerBuilderShared(it, false)
                 }
                 consumerBuilderShared(it, true)
@@ -158,7 +158,7 @@ fun main(args: Array<String>) {
             emptyLine()
 
             Repository.tags.values().forEach {
-                if (it.possibleChildren.isEmpty()) {
+                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags) {
                     consumerBuilderJS(it, false)
                 }
                 consumerBuilderJS(it, true)

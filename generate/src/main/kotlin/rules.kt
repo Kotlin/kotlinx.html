@@ -10,6 +10,8 @@ val globalSuggestedAttributes = listOf(
         "script" to "src",
         "div" to "class",
         "span" to "class",
+        "meta" to "name",
+        "meta" to "content",
         "i" to "class",
         "input" to "type",
         "input" to "name"
