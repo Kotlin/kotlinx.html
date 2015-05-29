@@ -56,7 +56,9 @@ class DomTreeImplTest {
 				clicked = true
             }
         }
-        
+        document.create.div("a b c ") {
+            a("http://kotlinlang.org") { +"official Kotlin site" }
+        }
         document.getElementsByTagName("div").asList().forEach {
         	if (it is HTMLElement) {
         		val clickHandler = it.onclick
@@ -67,6 +69,29 @@ class DomTreeImplTest {
         }
         
         assertTrue(clicked)
+    }
+
+    test fun testAtMainPage() {
+        val containerCreated = document.body!!.append.div {
+            id = "container"
+        }
+
+        val myDiv = document.create.div("panel") {
+            p {
+                +"Here is "
+                a("http://kotlinlang.org") { +"official Kotlin site" }
+            }
+        }
+
+        val container = document.getElementById("container")
+        if (container == null) {
+            fail("container not found")
+            return
+        }
+
+        container.appendChild(myDiv)
+
+        assertEquals("<div class=\"panel\"><p>Here is <a href=\"http://kotlinlang.org\">official Kotlin site</a></p></div>", container.innerHTML)
     }
 
     test fun appendMultipleNodes() {
