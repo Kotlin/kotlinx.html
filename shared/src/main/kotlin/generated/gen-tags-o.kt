@@ -59,7 +59,7 @@ public open class OL(initialAttributes : Map<String, String>, override val consu
 
 
 }
-fun OL.li(classes : Set<String>? = null, block : LI.() -> Unit) : Unit = buildLI(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun OL.li(classes : String? = null, block : LI.() -> Unit) : Unit = buildLI(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 
 public open class OPTGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("optgroup", consumer, initialAttributes), CommonAttributeGroupFacade {
@@ -73,8 +73,8 @@ public open class OPTGROUP(initialAttributes : Map<String, String>, override val
 
 
 }
-fun OPTGROUP.option(classes : Set<String>? = null, block : OPTION.() -> Unit) : Unit = buildOPTION(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
-fun OPTGROUP.option(classes : Set<String>? = null, content : String = "") : Unit = buildOPTION(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, {+content})
+fun OPTGROUP.option(classes : String? = null, block : OPTION.() -> Unit) : Unit = buildOPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun OPTGROUP.option(classes : String? = null, content : String = "") : Unit = buildOPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, {+content})
 
 
 public open class OPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("option", consumer, initialAttributes), CommonAttributeGroupFacade {

@@ -68,10 +68,11 @@ class EnumEncoder<T : AttributeEnum>(val valuesMap : Map<String, T>) : Attribute
 fun <T : AttributeEnum> T.enumEncode() : String = realValue
 data class EnumAttribute<T : AttributeEnum>(val values : Map<String, T>) : Attribute<T>(EnumEncoder(values))
 
-fun Set<String>.stringSetEncode() = this.join(" ")
+fun stringSetDecode(value: String?): Set<String>? = value?.split("\\s+".toRegex())?.filterNot {it.isEmpty()}?.toSet()
+fun Set<String>.stringSetEncode() = join(" ")
 object StringSetEncoder : AttributeEncoder<Set<String>> {
     override fun encode(attributeName: String, value: Set<String>): String = value.join(" ")
-    override fun decode(attributeName: String, value: String): Set<String> = value.split("\\s+".toRegex()).filterNot {it.isEmpty()}.toSet()
+    override fun decode(attributeName: String, value: String): Set<String> = stringSetDecode(value)!!
     override fun empty(attributeName: String, tag: Tag) = emptySet<String>()
 }
 data class StringSetAttribute : Attribute<Set<String>>(StringSetEncoder)

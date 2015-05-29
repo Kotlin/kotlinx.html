@@ -179,7 +179,7 @@ private fun buildSuggestedAttributesArgument(tag: TagInfo, predefinedValues : Ma
             AttributeType.BOOLEAN -> "$name?.booleanEncode()"
             AttributeType.ENUM -> "$name?.enumEncode()"
             AttributeType.TICKER -> "$name?.tickerEncode(${attribute.name.quote()})"
-            AttributeType.STRING_SET -> "$name?.stringSetEncode()"
+            AttributeType.STRING_SET -> "stringSetDecode($name)?.stringSetEncode()"
         }
 
         "${attribute.name.quote()} to $encoded"
@@ -191,7 +191,11 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean =
     val arguments = ArrayList<Var>()
 
     tag.mergeAttributes().filter {it.name in tag.suggestedAttributes}.forEach { attribute ->
-        arguments.add(Var(attribute.fieldName, attribute.typeName + "?", defaultValue = "null"))
+        val type = when (attribute.type) {
+            AttributeType.STRING_SET -> "String"
+            else -> attribute.typeName
+        }
+        arguments.add(Var(attribute.fieldName, type + "?", defaultValue = "null"))
     }
 
     if (blockOrContent) {

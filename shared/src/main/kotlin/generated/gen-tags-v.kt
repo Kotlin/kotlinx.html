@@ -48,7 +48,7 @@ public open class VIDEO(initialAttributes : Map<String, String>, override val co
 
 
 }
-fun VIDEO.source(classes : Set<String>? = null, block : SOURCE.() -> Unit) : Unit = buildSOURCE(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
-fun VIDEO.source(classes : Set<String>? = null, content : String = "") : Unit = buildSOURCE(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, {+content})
+fun VIDEO.source(classes : String? = null, block : SOURCE.() -> Unit) : Unit = buildSOURCE(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun VIDEO.source(classes : String? = null, content : String = "") : Unit = buildSOURCE(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, {+content})
 
 

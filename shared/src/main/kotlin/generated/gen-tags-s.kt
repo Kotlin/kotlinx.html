@@ -68,10 +68,10 @@ public open class SELECT(initialAttributes : Map<String, String>, override val c
 
 
 }
-fun SELECT.option(classes : Set<String>? = null, block : OPTION.() -> Unit) : Unit = buildOPTION(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
-fun SELECT.option(classes : Set<String>? = null, content : String = "") : Unit = buildOPTION(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, {+content})
+fun SELECT.option(classes : String? = null, block : OPTION.() -> Unit) : Unit = buildOPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun SELECT.option(classes : String? = null, content : String = "") : Unit = buildOPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, {+content})
 
-fun SELECT.optGroup(label : String? = null, classes : Set<String>? = null, block : OPTGROUP.() -> Unit) : Unit = buildOPTGROUP(listOf("label" to label,"class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun SELECT.optGroup(label : String? = null, classes : String? = null, block : OPTGROUP.() -> Unit) : Unit = buildOPTGROUP(listOf("label" to label,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 
 public open class SMALL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("small", consumer, initialAttributes), CommonAttributeGroupFacade, PhrasingContent {

@@ -12,6 +12,6 @@ import html4k.attributes.*
 public open class UL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ul", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun UL.li(classes : Set<String>? = null, block : LI.() -> Unit) : Unit = buildLI(listOf("class" to classes?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun UL.li(classes : String? = null, block : LI.() -> Unit) : Unit = buildLI(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
 
