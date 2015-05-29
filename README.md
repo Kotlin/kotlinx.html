@@ -14,18 +14,16 @@ See example at JavaScript
 
 ```kotlin
 window.setInterval({
-    val myDiv = document.create.div {
-        classes += "panel"
-        
+    val myDiv = document.create.div("panel") {
         p { 
             +"Here is "
             a("http://kotlinlang.org") { +"official Kotlin site" } 
         }
     }
 
-    document.getElementById("container").appendChild(myDiv)
+    document.getElementById("container")!!.appendChild(myDiv)
 
-    document.getElementById("container").append {
+    document.getElementById("container")!!.append {
         div {
             +"added it"
         }
@@ -52,6 +50,7 @@ System.out.appendHTML().html {
 Same for StringBuilder
 ```kotlin
 StringBuilder {
+    appendln("<!DOCTYPE html>")
     appendHTML().html {
         body {
             a("http://kotlinlang.org") { +"link" }
