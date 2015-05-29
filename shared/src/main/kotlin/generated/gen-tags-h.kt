@@ -70,6 +70,6 @@ public open class HTML(initialAttributes : Map<String, String>, override val con
 }
 fun HTML.body(classes : String? = null, block : BODY.() -> Unit = {}) : Unit = buildBODY(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun HTML.head(classes : String? = null, block : HEAD.() -> Unit = {}) : Unit = buildHEAD(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun HTML.head(block : HEAD.() -> Unit = {}) : Unit = buildHEAD(emptyMap, consumer, block)
 
 

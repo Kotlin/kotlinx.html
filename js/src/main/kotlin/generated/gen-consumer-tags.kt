@@ -97,7 +97,7 @@ public fun TagConsumer<HTMLElement>.h5(classes : String? = null, block : H5.() -
 
 public fun TagConsumer<HTMLElement>.h6(classes : String? = null, block : H6.() -> Unit = {}) : HTMLHeadingElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildH6, block).finalize() as HTMLHeadingElement
 
-public fun TagConsumer<HTMLElement>.head(classes : String? = null, block : HEAD.() -> Unit = {}) : HTMLHeadElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildHEAD, block).finalize() as HTMLHeadElement
+public fun TagConsumer<HTMLElement>.head(block : HEAD.() -> Unit = {}) : HTMLHeadElement = build(emptyMap, ::buildHEAD, block).finalize() as HTMLHeadElement
 
 public fun TagConsumer<HTMLElement>.header(classes : String? = null, block : HEADER.() -> Unit = {}) : HTMLElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildHEADER, block).finalize()
 
@@ -105,7 +105,7 @@ public fun TagConsumer<HTMLElement>.hGroup(classes : String? = null, block : HGR
 
 public fun TagConsumer<HTMLElement>.hr(classes : String? = null, block : HR.() -> Unit = {}) : HTMLHRElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildHR, block).finalize() as HTMLHRElement
 
-public fun TagConsumer<HTMLElement>.html(classes : String? = null, block : HTML.() -> Unit = {}) : HTMLHtmlElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildHTML, block).finalize() as HTMLHtmlElement
+public fun TagConsumer<HTMLElement>.html(block : HTML.() -> Unit = {}) : HTMLHtmlElement = build(emptyMap, ::buildHTML, block).finalize() as HTMLHtmlElement
 
 public fun TagConsumer<HTMLElement>.i(classes : String? = null, block : I.() -> Unit = {}) : HTMLElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildI, block).finalize()
 
@@ -128,7 +128,7 @@ public fun TagConsumer<HTMLElement>.legEnd(classes : String? = null, block : LEG
 
 public fun TagConsumer<HTMLElement>.li(classes : String? = null, block : LI.() -> Unit = {}) : HTMLLIElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildLI, block).finalize() as HTMLLIElement
 
-public fun TagConsumer<HTMLElement>.link(classes : String? = null, block : LINK.() -> Unit = {}) : HTMLLinkElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildLINK, block).finalize() as HTMLLinkElement
+public fun TagConsumer<HTMLElement>.link(block : LINK.() -> Unit = {}) : HTMLLinkElement = build(emptyMap, ::buildLINK, block).finalize() as HTMLLinkElement
 
 public fun TagConsumer<HTMLElement>.map(name : String? = null, classes : String? = null, block : MAP.() -> Unit = {}) : HTMLMapElement = build(listOf("name" to name,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildMAP, block).finalize() as HTMLMapElement
 
@@ -141,7 +141,7 @@ public fun TagConsumer<HTMLElement>.mathml(classes : String? = null, block : MAT
 
 public fun TagConsumer<HTMLElement>.menu(type : MenuType? = null, classes : String? = null, block : MENU.() -> Unit = {}) : HTMLMenuElement = build(listOf("type" to type?.enumEncode(),"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildMENU, block).finalize() as HTMLMenuElement
 
-public fun TagConsumer<HTMLElement>.meta(name : String? = null, content : String? = null, classes : String? = null, block : META.() -> Unit = {}) : HTMLMetaElement = build(listOf("name" to name,"content" to content,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildMETA, block).finalize() as HTMLMetaElement
+public fun TagConsumer<HTMLElement>.meta(name : String? = null, content : String? = null, block : META.() -> Unit = {}) : HTMLMetaElement = build(listOf("name" to name,"content" to content).toAttributesMap(), ::buildMETA, block).finalize() as HTMLMetaElement
 
 public fun TagConsumer<HTMLElement>.meter(classes : String? = null, block : METER.() -> Unit = {}) : HTMLMeterElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildMETER, block).finalize() as HTMLMeterElement
 
@@ -193,8 +193,8 @@ public fun TagConsumer<HTMLElement>.span(classes : String? = null, block : SPAN.
 
 public fun TagConsumer<HTMLElement>.strong(classes : String? = null, block : STRONG.() -> Unit = {}) : HTMLElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSTRONG, block).finalize()
 
-public fun TagConsumer<HTMLElement>.style(classes : String? = null, content : String = "") : HTMLStyleElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSTYLE, {+content}).finalize() as HTMLStyleElement
-public fun TagConsumer<HTMLElement>.style(classes : String? = null, block : STYLE.() -> Unit = {}) : HTMLStyleElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSTYLE, block).finalize() as HTMLStyleElement
+public fun TagConsumer<HTMLElement>.style(content : String = "") : HTMLStyleElement = build(emptyMap, ::buildSTYLE, {+content}).finalize() as HTMLStyleElement
+public fun TagConsumer<HTMLElement>.style(block : STYLE.() -> Unit = {}) : HTMLStyleElement = build(emptyMap, ::buildSTYLE, block).finalize() as HTMLStyleElement
 
 public fun TagConsumer<HTMLElement>.sub(classes : String? = null, block : SUB.() -> Unit = {}) : HTMLElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSUB, block).finalize()
 
@@ -220,8 +220,8 @@ public fun TagConsumer<HTMLElement>.thead(classes : String? = null, block : THEA
 
 public fun TagConsumer<HTMLElement>.time(classes : String? = null, block : TIME.() -> Unit = {}) : HTMLTimeElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildTIME, block).finalize() as HTMLTimeElement
 
-public fun TagConsumer<HTMLElement>.title(classes : String? = null, content : String = "") : HTMLTitleElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildTITLE, {+content}).finalize() as HTMLTitleElement
-public fun TagConsumer<HTMLElement>.title(classes : String? = null, block : TITLE.() -> Unit = {}) : HTMLTitleElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildTITLE, block).finalize() as HTMLTitleElement
+public fun TagConsumer<HTMLElement>.title(content : String = "") : HTMLTitleElement = build(emptyMap, ::buildTITLE, {+content}).finalize() as HTMLTitleElement
+public fun TagConsumer<HTMLElement>.title(block : TITLE.() -> Unit = {}) : HTMLTitleElement = build(emptyMap, ::buildTITLE, block).finalize() as HTMLTitleElement
 
 public fun TagConsumer<HTMLElement>.tr(classes : String? = null, block : TR.() -> Unit = {}) : HTMLTableRowElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildTR, block).finalize() as HTMLTableRowElement
 

@@ -125,8 +125,9 @@ fun fillRepository() {
         val type = elementDeclaration.getType()
         val suggestedNames = HashSet<String>()
         globalSuggestedAttributes.get(name)?.let {
-            suggestedNames.addAll(it)
+            suggestedNames.addAll(it.filter { !it.startsWith("-") })
         }
+        val excluded = globalSuggestedAttributes.get(name)?.filter { it.startsWith("-") }?.map { it.removePrefix("-") } ?: emptyList()
 
         val tagInfo: TagInfo
         if (type.isComplexType()) {
@@ -156,6 +157,7 @@ fun fillRepository() {
             suggestedNames.addAll(attributes.filter { it.type == AttributeType.ENUM }.map { it.name })
             suggestedNames.addAll(attributes.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
             suggestedNames.addAll(attributeGroups.flatMap { it.attributes }.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
+            suggestedNames.removeAll(excluded)
 
             tagInfo = TagInfo(name, children.toList().sort(), directChildren, attributeGroups, attributes, suggestedNames, modelGroupNames.sort().toList())
         } else {

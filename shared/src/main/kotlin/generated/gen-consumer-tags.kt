@@ -96,7 +96,7 @@ public fun <T, C : TagConsumer<T>> C.h5(classes : String? = null, block : H5.() 
 
 public fun <T, C : TagConsumer<T>> C.h6(classes : String? = null, block : H6.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildH6, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.head(classes : String? = null, block : HEAD.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildHEAD, block).finalize()
+public fun <T, C : TagConsumer<T>> C.head(block : HEAD.() -> Unit = {}) : T = build(emptyMap, ::buildHEAD, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.header(classes : String? = null, block : HEADER.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildHEADER, block).finalize()
 
@@ -104,7 +104,7 @@ public fun <T, C : TagConsumer<T>> C.hGroup(classes : String? = null, block : HG
 
 public fun <T, C : TagConsumer<T>> C.hr(classes : String? = null, block : HR.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildHR, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.html(classes : String? = null, block : HTML.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildHTML, block).finalize()
+public fun <T, C : TagConsumer<T>> C.html(block : HTML.() -> Unit = {}) : T = build(emptyMap, ::buildHTML, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.i(classes : String? = null, block : I.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildI, block).finalize()
 
@@ -127,7 +127,7 @@ public fun <T, C : TagConsumer<T>> C.legEnd(classes : String? = null, block : LE
 
 public fun <T, C : TagConsumer<T>> C.li(classes : String? = null, block : LI.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildLI, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.link(classes : String? = null, block : LINK.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildLINK, block).finalize()
+public fun <T, C : TagConsumer<T>> C.link(block : LINK.() -> Unit = {}) : T = build(emptyMap, ::buildLINK, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.map(name : String? = null, classes : String? = null, block : MAP.() -> Unit = {}) : T = build(listOf("name" to name,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildMAP, block).finalize()
 
@@ -140,7 +140,7 @@ public fun <T, C : TagConsumer<T>> C.mathml(classes : String? = null, block : MA
 
 public fun <T, C : TagConsumer<T>> C.menu(type : MenuType? = null, classes : String? = null, block : MENU.() -> Unit = {}) : T = build(listOf("type" to type?.enumEncode(),"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildMENU, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.meta(name : String? = null, content : String? = null, classes : String? = null, block : META.() -> Unit = {}) : T = build(listOf("name" to name,"content" to content,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildMETA, block).finalize()
+public fun <T, C : TagConsumer<T>> C.meta(name : String? = null, content : String? = null, block : META.() -> Unit = {}) : T = build(listOf("name" to name,"content" to content).toAttributesMap(), ::buildMETA, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.meter(classes : String? = null, block : METER.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildMETER, block).finalize()
 
@@ -192,8 +192,8 @@ public fun <T, C : TagConsumer<T>> C.span(classes : String? = null, block : SPAN
 
 public fun <T, C : TagConsumer<T>> C.strong(classes : String? = null, block : STRONG.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSTRONG, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.style(classes : String? = null, content : String = "") : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSTYLE, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.style(classes : String? = null, block : STYLE.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSTYLE, block).finalize()
+public fun <T, C : TagConsumer<T>> C.style(content : String = "") : T = build(emptyMap, ::buildSTYLE, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.style(block : STYLE.() -> Unit = {}) : T = build(emptyMap, ::buildSTYLE, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.sub(classes : String? = null, block : SUB.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSUB, block).finalize()
 
@@ -219,8 +219,8 @@ public fun <T, C : TagConsumer<T>> C.thead(classes : String? = null, block : THE
 
 public fun <T, C : TagConsumer<T>> C.time(classes : String? = null, block : TIME.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildTIME, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.title(classes : String? = null, content : String = "") : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildTITLE, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.title(classes : String? = null, block : TITLE.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildTITLE, block).finalize()
+public fun <T, C : TagConsumer<T>> C.title(content : String = "") : T = build(emptyMap, ::buildTITLE, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.title(block : TITLE.() -> Unit = {}) : T = build(emptyMap, ::buildTITLE, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.tr(classes : String? = null, block : TR.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildTR, block).finalize()
 

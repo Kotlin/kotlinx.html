@@ -14,7 +14,14 @@ val globalSuggestedAttributes = listOf(
         "meta" to "content",
         "i" to "class",
         "input" to "type",
-        "input" to "name"
+        "input" to "name",
+        "head" to "-class",
+        "html" to "-class",
+        "link" to "-class",
+        "script" to "-class",
+        "style" to "-class",
+        "meta" to "-class",
+        "title" to "-class"
 ).groupBy { it.first }.mapValues { it.getValue().map { it.second } }
 
 val globalSuggestedAttributeNames = setOf("class")
