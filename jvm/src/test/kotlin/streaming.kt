@@ -348,6 +348,20 @@ class TestStreaming {
             div()
         })
     }
+
+    test fun `meta tag example`() {
+        createHTML(true).html {
+            head {
+                meta {
+                    charset = "utf-8"
+                }
+                meta("viewport", "device-width, initial-scale=1.0")
+                link(LinkRel.stylesheet, "/main.css")
+            }
+            body {
+            }
+        }
+    }
 }
 
 fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }

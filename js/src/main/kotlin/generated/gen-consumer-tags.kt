@@ -128,7 +128,7 @@ public fun TagConsumer<HTMLElement>.legEnd(classes : String? = null, block : LEG
 
 public fun TagConsumer<HTMLElement>.li(classes : String? = null, block : LI.() -> Unit = {}) : HTMLLIElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildLI, block).finalize() as HTMLLIElement
 
-public fun TagConsumer<HTMLElement>.link(block : LINK.() -> Unit = {}) : HTMLLinkElement = build(emptyMap, ::buildLINK, block).finalize() as HTMLLinkElement
+public fun TagConsumer<HTMLElement>.link(href : String? = null, rel : String? = null, block : LINK.() -> Unit = {}) : HTMLLinkElement = build(listOf("href" to href,"rel" to rel).toAttributesMap(), ::buildLINK, block).finalize() as HTMLLinkElement
 
 public fun TagConsumer<HTMLElement>.map(name : String? = null, classes : String? = null, block : MAP.() -> Unit = {}) : HTMLMapElement = build(listOf("name" to name,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildMAP, block).finalize() as HTMLMapElement
 
@@ -193,8 +193,8 @@ public fun TagConsumer<HTMLElement>.span(classes : String? = null, block : SPAN.
 
 public fun TagConsumer<HTMLElement>.strong(classes : String? = null, block : STRONG.() -> Unit = {}) : HTMLElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSTRONG, block).finalize()
 
-public fun TagConsumer<HTMLElement>.style(content : String = "") : HTMLStyleElement = build(emptyMap, ::buildSTYLE, {+content}).finalize() as HTMLStyleElement
-public fun TagConsumer<HTMLElement>.style(block : STYLE.() -> Unit = {}) : HTMLStyleElement = build(emptyMap, ::buildSTYLE, block).finalize() as HTMLStyleElement
+public fun TagConsumer<HTMLElement>.style(type : String? = null, content : String = "") : HTMLStyleElement = build(listOf("type" to type).toAttributesMap(), ::buildSTYLE, {+content}).finalize() as HTMLStyleElement
+public fun TagConsumer<HTMLElement>.style(type : String? = null, block : STYLE.() -> Unit = {}) : HTMLStyleElement = build(listOf("type" to type).toAttributesMap(), ::buildSTYLE, block).finalize() as HTMLStyleElement
 
 public fun TagConsumer<HTMLElement>.sub(classes : String? = null, block : SUB.() -> Unit = {}) : HTMLElement = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSUB, block).finalize()
 

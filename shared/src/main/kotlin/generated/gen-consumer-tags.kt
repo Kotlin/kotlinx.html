@@ -127,7 +127,7 @@ public fun <T, C : TagConsumer<T>> C.legEnd(classes : String? = null, block : LE
 
 public fun <T, C : TagConsumer<T>> C.li(classes : String? = null, block : LI.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildLI, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.link(block : LINK.() -> Unit = {}) : T = build(emptyMap, ::buildLINK, block).finalize()
+public fun <T, C : TagConsumer<T>> C.link(href : String? = null, rel : String? = null, block : LINK.() -> Unit = {}) : T = build(listOf("href" to href,"rel" to rel).toAttributesMap(), ::buildLINK, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.map(name : String? = null, classes : String? = null, block : MAP.() -> Unit = {}) : T = build(listOf("name" to name,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildMAP, block).finalize()
 
@@ -192,8 +192,8 @@ public fun <T, C : TagConsumer<T>> C.span(classes : String? = null, block : SPAN
 
 public fun <T, C : TagConsumer<T>> C.strong(classes : String? = null, block : STRONG.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSTRONG, block).finalize()
 
-public fun <T, C : TagConsumer<T>> C.style(content : String = "") : T = build(emptyMap, ::buildSTYLE, {+content}).finalize()
-public fun <T, C : TagConsumer<T>> C.style(block : STYLE.() -> Unit = {}) : T = build(emptyMap, ::buildSTYLE, block).finalize()
+public fun <T, C : TagConsumer<T>> C.style(type : String? = null, content : String = "") : T = build(listOf("type" to type).toAttributesMap(), ::buildSTYLE, {+content}).finalize()
+public fun <T, C : TagConsumer<T>> C.style(type : String? = null, block : STYLE.() -> Unit = {}) : T = build(listOf("type" to type).toAttributesMap(), ::buildSTYLE, block).finalize()
 
 public fun <T, C : TagConsumer<T>> C.sub(classes : String? = null, block : SUB.() -> Unit = {}) : T = build(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), ::buildSUB, block).finalize()
 

@@ -143,7 +143,6 @@ fun <O : Appendable> O.htmlTagBuilderMethod(receiver : String, tag : TagInfo, bl
 }
 
 fun <O : Appendable> O.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean, enumAttribute : AttributeInfo, indent : Int) {
-    require(enumAttribute.type == AttributeType.ENUM)
     require(enumAttribute.enumValues.isNotEmpty())
 
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent).filter {it.name != enumAttribute.fieldName}

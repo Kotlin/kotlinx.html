@@ -168,7 +168,7 @@ fun FlowContent.rsaKeyGen(classes : String? = null, block : KEYGEN.() -> Unit = 
 
 fun FlowContent.label(classes : String? = null, block : LABEL.() -> Unit = {}) : Unit = buildLABEL(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun FlowContent.link(block : LINK.() -> Unit = {}) : Unit = buildLINK(emptyMap, consumer, block)
+fun FlowContent.link(href : String? = null, rel : String? = null, block : LINK.() -> Unit = {}) : Unit = buildLINK(listOf("href" to href,"rel" to rel).toAttributesMap(), consumer, block)
 
 fun FlowContent.map(name : String? = null, classes : String? = null, block : MAP.() -> Unit = {}) : Unit = buildMAP(listOf("name" to name,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
@@ -244,8 +244,8 @@ fun FlowContent.span(classes : String? = null, block : SPAN.() -> Unit = {}) : U
 
 fun FlowContent.strong(classes : String? = null, block : STRONG.() -> Unit = {}) : Unit = buildSTRONG(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun FlowContent.style(block : STYLE.() -> Unit = {}) : Unit = buildSTYLE(emptyMap, consumer, block)
-fun FlowContent.style(content : String = "") : Unit = buildSTYLE(emptyMap, consumer, {+content})
+fun FlowContent.style(type : String? = null, block : STYLE.() -> Unit = {}) : Unit = buildSTYLE(listOf("type" to type).toAttributesMap(), consumer, block)
+fun FlowContent.style(type : String? = null, content : String = "") : Unit = buildSTYLE(listOf("type" to type).toAttributesMap(), consumer, {+content})
 
 fun FlowContent.sub(classes : String? = null, block : SUB.() -> Unit = {}) : Unit = buildSUB(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
@@ -365,7 +365,7 @@ fun MetaDataContent.commandCommand(classes : String? = null, block : COMMAND.() 
 fun MetaDataContent.checkBoxCommand(classes : String? = null, block : COMMAND.() -> Unit = {}) : Unit = buildCOMMAND(listOf("type" to CommandType.checkBox.realValue,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 fun MetaDataContent.radioCommand(classes : String? = null, block : COMMAND.() -> Unit = {}) : Unit = buildCOMMAND(listOf("type" to CommandType.radio.realValue,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun MetaDataContent.link(block : LINK.() -> Unit = {}) : Unit = buildLINK(emptyMap, consumer, block)
+fun MetaDataContent.link(href : String? = null, rel : String? = null, block : LINK.() -> Unit = {}) : Unit = buildLINK(listOf("href" to href,"rel" to rel).toAttributesMap(), consumer, block)
 
 fun MetaDataContent.meta(name : String? = null, content : String? = null, block : META.() -> Unit = {}) : Unit = buildMETA(listOf("name" to name,"content" to content).toAttributesMap(), consumer, block)
 
@@ -398,8 +398,8 @@ fun MetaDataContent.textXJavaScriptScript(src : String? = null, content : String
 fun MetaDataContent.textXEcmaScriptScript(src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to ScriptType.textXEcmaScript.realValue,"src" to src).toAttributesMap(), consumer, {+content})
 fun MetaDataContent.textVbScriptScript(src : String? = null, content : String = "") : Unit = buildSCRIPT(listOf("type" to ScriptType.textVbScript.realValue,"src" to src).toAttributesMap(), consumer, {+content})
 
-fun MetaDataContent.style(block : STYLE.() -> Unit = {}) : Unit = buildSTYLE(emptyMap, consumer, block)
-fun MetaDataContent.style(content : String = "") : Unit = buildSTYLE(emptyMap, consumer, {+content})
+fun MetaDataContent.style(type : String? = null, block : STYLE.() -> Unit = {}) : Unit = buildSTYLE(listOf("type" to type).toAttributesMap(), consumer, block)
+fun MetaDataContent.style(type : String? = null, content : String = "") : Unit = buildSTYLE(listOf("type" to type).toAttributesMap(), consumer, {+content})
 
 fun MetaDataContent.title(block : TITLE.() -> Unit = {}) : Unit = buildTITLE(emptyMap, consumer, block)
 fun MetaDataContent.title(content : String = "") : Unit = buildTITLE(emptyMap, consumer, {+content})
@@ -499,7 +499,7 @@ fun PhrasingContent.rsaKeyGen(classes : String? = null, block : KEYGEN.() -> Uni
 
 fun PhrasingContent.label(classes : String? = null, block : LABEL.() -> Unit = {}) : Unit = buildLABEL(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
-fun PhrasingContent.link(block : LINK.() -> Unit = {}) : Unit = buildLINK(emptyMap, consumer, block)
+fun PhrasingContent.link(href : String? = null, rel : String? = null, block : LINK.() -> Unit = {}) : Unit = buildLINK(listOf("href" to href,"rel" to rel).toAttributesMap(), consumer, block)
 
 fun PhrasingContent.map(name : String? = null, classes : String? = null, block : MAP.() -> Unit = {}) : Unit = buildMAP(listOf("name" to name,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
 
