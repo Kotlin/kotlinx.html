@@ -52,16 +52,6 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
     emptyLine()
 }
 
-fun <O : Appendable> O.builderFunction(tag : TagInfo) : O = with {
-    function("build${tag.nameUpper}", listOf(
-            Var("attributes", "Map<String, String>"),
-            Var("consumer", "TagConsumer<*>"),
-            Var("block", "${tag.nameUpper}.() -> Unit")
-    ), "Unit")
-
-    defineIs("${tag.nameUpper}(attributes, consumer).visit(block)")
-}
-
 private fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): AttributeRequest {
     val options = LinkedList<Const<*>>()
 
@@ -100,13 +90,15 @@ fun <O : Appendable> O.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean
     append("public ")
     function(tag.safeName, tagBuilderFunctionArguments(tag, blockOrContent), resultType, receiver = "TagConsumer<HTMLElement>")
     defineIs(StringBuilder {
-        functionCall("build", listOf(
+        functionCall(tag.nameUpper, listOf(
                 buildSuggestedAttributesArgument(tag),
-                "::build${tag.nameUpper}",
-                contentArgumentValue(tag, blockOrContent)
+                "this"
         ))
         append(".")
-        functionCall("finalize", emptyList())
+        functionCall("visitAndFinalize", listOf(
+                "this",
+                contentArgumentValue(tag, blockOrContent)
+        ))
 
         if (resultType != "HTMLElement") {
             append(" as ")
@@ -119,27 +111,30 @@ fun <O : Appendable> O.consumerBuilderShared(tag : TagInfo, blockOrContent : Boo
     append("public ")
     function(tag.safeName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
     defineIs(StringBuilder {
-        functionCall("build", listOf(
+        functionCall(tag.nameUpper, listOf(
                 buildSuggestedAttributesArgument(tag),
-                "::build${tag.nameUpper}",
+                "this"
+        ))
+        append(".")
+        functionCall("visitAndFinalize", listOf(
+                "this",
                 contentArgumentValue(tag, blockOrContent)
         ))
-        append(".finalize()")
     })
 }
 
 fun <O : Appendable> O.htmlTagBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean) {
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent)
 
-    val delegateArguments = ArrayList<String>()
-
-    delegateArguments.add(buildSuggestedAttributesArgument(tag))
-
-    delegateArguments.add("consumer")
-    delegateArguments.add(contentArgumentValue(tag, blockOrContent))
-
     function(tag.safeName, arguments, "Unit", receiver = receiver)
-    defineIs("build${tag.nameUpper}" + delegateArguments.join(", ", "(", ")"))
+    defineIs(StringBuilder {
+        functionCall(tag.nameUpper, listOf(
+                buildSuggestedAttributesArgument(tag),
+                "consumer"
+        ))
+        append(".")
+        functionCall("visit", listOf(contentArgumentValue(tag, blockOrContent)))
+    })
 }
 
 fun <O : Appendable> O.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean, enumAttribute : AttributeInfo, indent : Int) {
@@ -148,17 +143,16 @@ fun <O : Appendable> O.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent).filter {it.name != enumAttribute.fieldName}
 
     enumAttribute.enumValues.forEach { enumValue ->
-        val delegateArguments = ArrayList<String>()
-
-        delegateArguments.add(buildSuggestedAttributesArgument(tag, mapOf(enumAttribute.fieldName to enumAttribute.typeName + "." + enumValue.fieldName + ".realValue")))
-
-        delegateArguments.add("consumer")
-
-        delegateArguments.add(contentArgumentValue(tag, blockOrContent))
-
         indent(indent)
         function(enumValue.fieldName + tag.safeName.capitalize(), arguments, "Unit", receiver = receiver)
-        defineIs("build${tag.nameUpper}" + delegateArguments.join(", ", "(", ")"))
+        defineIs(StringBuilder {
+            functionCall(tag.nameUpper, listOf(
+                    buildSuggestedAttributesArgument(tag, mapOf(enumAttribute.fieldName to enumAttribute.typeName + "." + enumValue.fieldName + ".realValue")),
+                    "consumer"
+            ))
+            append(".")
+            functionCall("visit", listOf(contentArgumentValue(tag, blockOrContent)))
+        })
     }
 }
 

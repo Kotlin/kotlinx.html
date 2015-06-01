@@ -24,20 +24,20 @@ interface AttributeEnum {
     val realValue: String
 }
 
-inline fun <T : Tag> T.visit(block: T.() -> Unit) {
+fun <T : Tag> T.visit(block: T.() -> Unit) {
     consumer.onTagStart(this)
     this.block()
     consumer.onTagEnd(this)
 }
 
-fun Iterable<Pair<String, String?>>.toAttributesMap(): Map<String, String> = filter { it.second != null }.map { it.first to it.second!! }.toMap()
-
-fun <T, C : TagConsumer<T>, TAG : Tag> C.build(attributes: Map<String, String>, builder: (Map<String, String>, TagConsumer<T>, TAG.() -> Unit) -> Unit, block: TAG.() -> Unit): C {
-    builder(attributes, this, block)
-    return this
+fun <T: Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit): R {
+    require(this.consumer === consumer)
+    visit(block)
+    return consumer.finalize()
 }
 
-fun Map<*, *>.isNotEmpty(): Boolean = !isEmpty()
+fun Iterable<Pair<String, String?>>.toAttributesMap(): Map<String, String> = filter { it.second != null }.map { it.first to it.second!! }.toMap()
+
 private val emptyMap: Map<String, String> = emptyMap()
 private val String.realValue: String
     get() = this

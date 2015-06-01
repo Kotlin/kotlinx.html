@@ -81,24 +81,6 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("$todir/gen-builders.kt").writer().use {
-        it.with {
-            packg(packg + ".impl")
-            emptyLine()
-            import("html4k.*")
-            import("html4k.impl.*")
-            emptyLine()
-
-            warning()
-            emptyLine()
-            emptyLine()
-
-            Repository.tags.values().forEach {
-                builderFunction(it)
-            }
-        }
-    }
-
     Repository.tags.values().groupBy { it.name[0] }.entrySet().forEach { e ->
         FileOutputStream("$todir/gen-tags-${e.getKey()}.kt").writer("UTF-8").use {
             it.with {

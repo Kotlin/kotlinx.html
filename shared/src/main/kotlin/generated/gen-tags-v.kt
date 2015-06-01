@@ -48,6 +48,6 @@ public open class VIDEO(initialAttributes : Map<String, String>, override val co
 
 
 }
-fun VIDEO.source(classes : String? = null, block : SOURCE.() -> Unit = {}) : Unit = buildSOURCE(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun VIDEO.source(classes : String? = null, block : SOURCE.() -> Unit = {}) : Unit = SOURCE(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
 

@@ -44,7 +44,7 @@ public open class OBJECT_(initialAttributes : Map<String, String>, override val 
 
 
 }
-fun OBJECT_.param(name : String? = null, value : String? = null, block : PARAM.() -> Unit = {}) : Unit = buildPARAM(listOf("name" to name,"value" to value).toAttributesMap(), consumer, block)
+fun OBJECT_.param(name : String? = null, value : String? = null, block : PARAM.() -> Unit = {}) : Unit = PARAM(listOf("name" to name,"value" to value).toAttributesMap(), consumer).visit(block)
 
 
 public open class OL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ol", consumer, initialAttributes), CommonAttributeGroupFacade {
@@ -58,7 +58,7 @@ public open class OL(initialAttributes : Map<String, String>, override val consu
 
 
 }
-fun OL.li(classes : String? = null, block : LI.() -> Unit = {}) : Unit = buildLI(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
+fun OL.li(classes : String? = null, block : LI.() -> Unit = {}) : Unit = LI(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
 
 public open class OPTGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("optgroup", consumer, initialAttributes), CommonAttributeGroupFacade {
@@ -72,8 +72,8 @@ public open class OPTGROUP(initialAttributes : Map<String, String>, override val
 
 
 }
-fun OPTGROUP.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = buildOPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, block)
-fun OPTGROUP.option(classes : String? = null, content : String = "") : Unit = buildOPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer, {+content})
+fun OPTGROUP.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun OPTGROUP.option(classes : String? = null, content : String = "") : Unit = OPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit({+content})
 
 
 public open class OPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("option", consumer, initialAttributes), CommonAttributeGroupFacade {
