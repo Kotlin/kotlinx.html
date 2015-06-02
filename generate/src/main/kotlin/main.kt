@@ -140,7 +140,7 @@ fun main(args: Array<String>) {
             emptyLine()
 
             Repository.tags.values().forEach {
-                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags) {
+                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && it.name.toLowerCase() !in shouldHaveNoContent) {
                     consumerBuilderJS(it, false)
                 }
                 consumerBuilderJS(it, true)

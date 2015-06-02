@@ -179,7 +179,7 @@ private fun buildSuggestedAttributesArgument(tag: TagInfo, predefinedValues : Ma
         if (attributeArgs.isEmpty()) "emptyMap" else attributeArgs.join(",", "listOf(", ").toAttributesMap()")
     }
 
-private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean = tag.possibleChildren.isNotEmpty()) : ArrayList<Var> {
+private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) : ArrayList<Var> {
     val arguments = ArrayList<Var>()
 
     tag.mergeAttributes().filter {it.name in tag.suggestedAttributes}.forEach { attribute ->
