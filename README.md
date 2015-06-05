@@ -2,11 +2,109 @@
 This is just temporary workspace to HTML builders
 Probably need to be imported to kotlinx.html
 
-Provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript
+A html4k library provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript
 
 [ ![Download](https://api.bintray.com/packages/cy6ergn0m/maven/html4k/images/download.svg) ](https://bintray.com/cy6ergn0m/maven/html4k/_latestVersion)
 
 Build status: [ ![status](http://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Kotlin_KotlinX_Html4k)/statusIcon)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=Kotlin_KotlinX_Html4k&branch_Kotlin_KotlinX=%3Cdefault%3E&tab=buildTypeStatusDiv&guest=1)
+
+# Get started
+
+There are three bundles available: 
+- zip with two JVM jars
+- jar with JavaScripts and meta-data (required for Kotlin compiler)
+- webjar with JavaScripts (without meta-data)
+
+you can grab them at [releases](https://github.com/cy6erGn0m/html4k/releases) tab and include to your project. Use first
+for server-side and second for client-side
+
+# Maven
+
+To get it work with maven you need to add custom repository
+
+```xml
+		<repository>
+            <id>bintray-cy6ergn0m-maven</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/cy6ergn0m/maven</url>
+        </repository>
+```
+
+For server-side development you can add the following dependency:
+
+```xml
+		<dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlinx.html.jvm</artifactId>
+            <version>${html4k.version}</version>
+        </dependency>
+```
+
+For client-side (JavaScript) you need this one:
+
+```xml
+		<dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlinx.html.js</artifactId>
+            <version>${html4k.version}</version>
+        </dependency>
+```
+
+If you are building web application with war plugin you can use overlays to pack JavaScripts from webjar like this:
+
+```xml
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <dependentWarExcludes>META-INF/*,META-INF/**/*,*meta.js,**/*class</dependentWarExcludes>
+                    <webXml>src/main/resources/web.xml</webXml>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp</directory>
+                        </resource>
+                    </webResources>
+                    <overlays>
+                        <overlay>
+                            <groupId>org.jetbrains.kotlin</groupId>
+                            <artifactId>kotlin-js-library</artifactId>
+                            <type>jar</type>
+                            <includes>
+                                <include>kotlin.js</include>
+                            </includes>
+                            <targetPath>js/</targetPath>
+                        </overlay>
+                        <overlay>
+                            <groupId>org.jetbrains.kotlin</groupId>
+                            <artifactId>kotlinx.html.assembly</artifactId>
+                            <classifier>webjar</classifier>
+                            <type>jar</type>
+                            <targetPath>js/</targetPath>
+                        </overlay>
+                    </overlays>
+                </configuration>
+            </plugin>
+```
+
+# Gradle
+
+You have to add repository before:
+```groovy
+repositories {
+    maven {
+        url "http://dl.bintray.com/cy6ergn0m/maven"
+    }
+}
+
+dependencies {
+    // include for server side
+	compile "org.jetbrains.kotlin:kotlinx.html.jvm:${html4k.version}"
+	
+	// include for client-side
+	compileClient "org.jetbrains.kotlin:kotlinx.html.js:${html4k.version}"
+}
+```
 
 # DOM
 You can build DOM tree at JVM and JS naturally
