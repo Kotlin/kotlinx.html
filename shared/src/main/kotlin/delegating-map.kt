@@ -1,7 +1,7 @@
-package html4k.impl
+package kotlinx.html.impl
 
-import html4k.Tag
-import html4k.TagConsumer
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
 import java.util.HashMap
 
 class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val consumer : () -> TagConsumer<*>) : MutableMap<String, String> {

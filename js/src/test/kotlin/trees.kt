@@ -1,12 +1,12 @@
-package html4k.tests
+package kotlinx.html.tests
 
-import html4k.*
-import html4k.consumers.trace
-import html4k.dom.append
-import html4k.dom.create
-import html4k.js.div
-import html4k.js.onClickFunction
-import html4k.js.span
+import kotlinx.html.*
+import kotlinx.html.consumers.trace
+import kotlinx.html.dom.append
+import kotlinx.html.dom.create
+import kotlinx.html.js.div
+import kotlinx.html.js.onClickFunction
+import kotlinx.html.js.span
 import org.w3c.dom.events.Event
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLSpanElement

@@ -1,8 +1,8 @@
-package html4k.consumers
+package kotlinx.html.consumers
 
-import html4k.Entities
-import html4k.Tag
-import html4k.TagConsumer
+import kotlinx.html.Entities
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
 import org.w3c.dom.events.Event
 import java.util.HashSet
 

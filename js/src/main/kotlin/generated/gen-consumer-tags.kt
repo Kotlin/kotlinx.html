@@ -1,8 +1,8 @@
-package html4k.js
+package kotlinx.html.js
 
-import html4k.*
-import html4k.impl.*
-import html4k.attributes.*
+import kotlinx.html.*
+import kotlinx.html.impl.*
+import kotlinx.html.attributes.*
 import org.w3c.dom.*
 
 /*******************************************************************************

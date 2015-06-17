@@ -1,4 +1,4 @@
-package html4k
+package kotlinx.html
 
 import java.util.LinkedHashSet
 

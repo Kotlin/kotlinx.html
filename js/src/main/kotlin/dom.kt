@@ -1,9 +1,9 @@
-package html4k.dom
+package kotlinx.html.dom
 
-import html4k.*
-import html4k.js.*
-import html4k.consumers.onFinalize
-import html4k.consumers.onFinalizeMap
+import kotlinx.html.*
+import kotlinx.html.js.*
+import kotlinx.html.consumers.onFinalize
+import kotlinx.html.consumers.onFinalizeMap
 import org.w3c.dom.*
 import org.w3c.dom.events.Event
 import java.util.ArrayList

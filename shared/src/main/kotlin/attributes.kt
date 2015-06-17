@@ -1,6 +1,6 @@
-package html4k.attributes
+package kotlinx.html.attributes
 
-import html4k.*
+import kotlinx.html.*
 import kotlin.properties.ReadWriteProperty
 
 interface AttributeEncoder<T> {

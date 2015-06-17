@@ -1,8 +1,8 @@
-package html4k.injector
+package kotlinx.html.injector
 
-import html4k.*
-import html4k.dom.append
-import html4k.dom.createTree
+import kotlinx.html.*
+import kotlinx.html.dom.append
+import kotlinx.html.dom.createTree
 import org.w3c.dom.*
 import kotlin.properties.Delegates
 import kotlin.reflect.KMutableMemberProperty

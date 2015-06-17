@@ -1,6 +1,6 @@
-package html4k.generate.humanize
+package kotlinx.html.generate.humanize
 
-import html4k.generate.wellKnownWords
+import kotlinx.html.generate.wellKnownWords
 import java.util.ArrayList
 import java.util.HashSet
 import java.util.regex.MatchResult

@@ -1,12 +1,12 @@
-package html4k.tests
+package kotlinx.html.tests
 
-import html4k.dom.create
-import html4k.injector.InjectByClassName
-import html4k.injector.InjectByTagName
-import html4k.injector.inject
-import html4k.injector.injectTo
-import html4k.js.div
-import html4k.p
+import kotlinx.html.dom.create
+import kotlinx.html.injector.InjectByClassName
+import kotlinx.html.injector.InjectByTagName
+import kotlinx.html.injector.inject
+import kotlinx.html.injector.injectTo
+import kotlinx.html.js.div
+import kotlinx.html.p
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLParagraphElement

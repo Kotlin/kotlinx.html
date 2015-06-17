@@ -1,4 +1,4 @@
-package html4k.generate
+package kotlinx.html.generate
 
 import java.util.regex.Pattern
 

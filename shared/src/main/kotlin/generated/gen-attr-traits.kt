@@ -1,7 +1,7 @@
-package html4k
+package kotlinx.html
 
-import html4k.*
-import html4k.impl.*
+import kotlinx.html.*
+import kotlinx.html.impl.*
 
 /*******************************************************************************
     DO NOT EDIT

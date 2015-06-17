@@ -1,11 +1,11 @@
-package html4k.tests
+package kotlinx.html.tests
 
-import html4k.*
-import html4k.consumers.filter
-import html4k.consumers.measureTime
-import html4k.consumers.trace
-import html4k.stream.appendHTML
-import html4k.stream.createHTML
+import kotlinx.html.*
+import kotlinx.html.consumers.filter
+import kotlinx.html.consumers.measureTime
+import kotlinx.html.consumers.trace
+import kotlinx.html.stream.appendHTML
+import kotlinx.html.stream.createHTML
 import java.io.StringWriter
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals

@@ -1,8 +1,8 @@
-package html4k.tests
+package kotlinx.html.tests
 
-import html4k.*
-import html4k.dom.*
-import html4k.dom.createHTMLDocument
+import kotlinx.html.*
+import kotlinx.html.dom.*
+import kotlinx.html.dom.createHTMLDocument
 import kotlin.test.assertEquals
 import org.junit.Test as test
 

@@ -1,11 +1,11 @@
-package html4k.generate
+package kotlinx.html.generate
 
 import com.sun.xml.xsom.XSAttGroupDecl
 import com.sun.xml.xsom.XSAttributeDecl
 import com.sun.xml.xsom.XSComplexType
 import com.sun.xml.xsom.XSTerm
 import com.sun.xml.xsom.parser.XSOMParser
-import html4k.generate.humanize.humanize
+import kotlinx.html.generate.humanize.humanize
 import java.util.ArrayList
 import java.util.HashSet
 import java.util.TreeSet

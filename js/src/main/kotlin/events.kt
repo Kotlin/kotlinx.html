@@ -1,6 +1,6 @@
-package html4k.dom
+package kotlinx.html.dom
 
-import html4k.Tag
+import kotlinx.html.Tag
 import org.w3c.dom.events.Event
 
 object EventAttribute {

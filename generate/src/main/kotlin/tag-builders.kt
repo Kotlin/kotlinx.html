@@ -1,4 +1,4 @@
-package html4k.generate
+package kotlinx.html.generate
 
 val emptyTags = """area
 base

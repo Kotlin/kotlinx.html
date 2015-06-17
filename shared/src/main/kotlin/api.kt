@@ -1,4 +1,4 @@
-package html4k
+package kotlinx.html
 
 import org.w3c.dom.events.Event
 import java.util.LinkedHashSet

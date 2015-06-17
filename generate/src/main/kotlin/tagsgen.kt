@@ -1,6 +1,6 @@
-package html4k.generate
+package kotlinx.html.generate
 
-import html4k.generate.humanize.humanize
+import kotlinx.html.generate.humanize.humanize
 import java.util.ArrayList
 import java.util.LinkedList
 

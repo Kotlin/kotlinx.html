@@ -1,7 +1,7 @@
-package html4k.consumers
+package kotlinx.html.consumers
 
-import html4k.Tag
-import html4k.TagConsumer
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
 import java.util.ArrayList
 import java.util.Date
 

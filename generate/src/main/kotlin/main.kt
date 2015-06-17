@@ -1,6 +1,6 @@
-package html4k.generate
+package kotlinx.html.generate
 
-import html4k.generate.humanize.humanize
+import kotlinx.html.generate.humanize.humanize
 import org.jetbrains
 import java.io.File
 import java.io.FileOutputStream
@@ -21,8 +21,8 @@ fun main(args: Array<String>) {
         it.with {
             packg(packg)
             emptyLine()
-            import("html4k.*")
-            import("html4k.impl.*")
+            import("kotlinx.html.*")
+            import("kotlinx.html.impl.*")
             emptyLine()
 
             warning()
@@ -40,8 +40,8 @@ fun main(args: Array<String>) {
         it.with {
             packg(packg)
             emptyLine()
-            import("html4k.*")
-            import("html4k.impl.*")
+            import("kotlinx.html.*")
+            import("kotlinx.html.impl.*")
             emptyLine()
 
             warning()
@@ -86,9 +86,9 @@ fun main(args: Array<String>) {
             it.with {
                 packg(packg)
                 emptyLine()
-                import("html4k.*")
-                import("html4k.impl.*")
-                import("html4k.attributes.*")
+                import("kotlinx.html.*")
+                import("kotlinx.html.impl.*")
+                import("kotlinx.html.attributes.*")
                 emptyLine()
 
                 warning()
@@ -106,9 +106,9 @@ fun main(args: Array<String>) {
         it.with {
             packg(packg)
             emptyLine()
-            import("html4k.*")
-            import("html4k.impl.*")
-            import("html4k.attributes.*")
+            import("kotlinx.html.*")
+            import("kotlinx.html.impl.*")
+            import("kotlinx.html.attributes.*")
             emptyLine()
 
             warning()
@@ -129,9 +129,9 @@ fun main(args: Array<String>) {
         it.with {
             packg(packg + ".js")
             emptyLine()
-            import("html4k.*")
-            import("html4k.impl.*")
-            import("html4k.attributes.*")
+            import("kotlinx.html.*")
+            import("kotlinx.html.impl.*")
+            import("kotlinx.html.attributes.*")
             import("org.w3c.dom.*")
             emptyLine()
 
@@ -153,9 +153,9 @@ fun main(args: Array<String>) {
         it.with {
             packg(packg + ".js")
             emptyLine()
-            import("html4k.*")
-            import("html4k.attributes.*")
-            import("html4k.dom.*")
+            import("kotlinx.html.*")
+            import("kotlinx.html.attributes.*")
+            import("kotlinx.html.dom.*")
             import("org.w3c.dom.events.*")
             emptyLine()
 
@@ -175,7 +175,7 @@ fun main(args: Array<String>) {
         it.with {
             packg(packg)
             emptyLine()
-            import("html4k.*")
+            import("kotlinx.html.*")
             emptyLine()
 
             warning()
@@ -208,8 +208,8 @@ fun main(args: Array<String>) {
         it.with {
             packg(packg)
             emptyLine()
-            import("html4k.*")
-            import("html4k.attributes.*")
+            import("kotlinx.html.*")
+            import("kotlinx.html.attributes.*")
             emptyLine()
 
             warning()
@@ -226,9 +226,9 @@ fun main(args: Array<String>) {
         it.with {
             packg(packg)
             emptyLine()
-            import("html4k.*")
-            import("html4k.impl.*")
-            import("html4k.attributes.*")
+            import("kotlinx.html.*")
+            import("kotlinx.html.impl.*")
+            import("kotlinx.html.attributes.*")
             emptyLine()
 
             warning()
@@ -255,7 +255,7 @@ fun main(args: Array<String>) {
         it.with {
             packg(packg)
             emptyLine()
-            import("html4k.*")
+            import("kotlinx.html.*")
             emptyLine()
 
             warning()

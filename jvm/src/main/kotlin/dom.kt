@@ -1,10 +1,10 @@
-package html4k.dom
+package kotlinx.html.dom
 
-import html4k.Entities
-import html4k.Tag
-import html4k.TagConsumer
-import html4k.consumers.onFinalize
-import html4k.consumers.onFinalizeMap
+import kotlinx.html.Entities
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import kotlinx.html.consumers.onFinalize
+import kotlinx.html.consumers.onFinalizeMap
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.Node

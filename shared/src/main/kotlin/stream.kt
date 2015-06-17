@@ -1,9 +1,9 @@
-package html4k.stream
+package kotlinx.html.stream
 
-import html4k.*
-import html4k.Entities.*
-import html4k.consumers.delayed
-import html4k.consumers.onFinalizeMap
+import kotlinx.html.*
+import kotlinx.html.Entities.*
+import kotlinx.html.consumers.delayed
+import kotlinx.html.consumers.onFinalizeMap
 import org.w3c.dom.events.Event
 
 private val emptyTags = """area
