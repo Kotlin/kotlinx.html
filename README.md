@@ -34,7 +34,7 @@ For server-side development you can add the following dependency:
 
 ```xml
 		<dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
+            <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx.html.jvm</artifactId>
             <version>${html4k.version}</version>
         </dependency>
@@ -44,7 +44,7 @@ For client-side (JavaScript) you need this one:
 
 ```xml
 		<dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
+            <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx.html.js</artifactId>
             <version>${html4k.version}</version>
         </dependency>
@@ -76,7 +76,7 @@ If you are building web application with war plugin you can use overlays to pack
                             <targetPath>js/</targetPath>
                         </overlay>
                         <overlay>
-                            <groupId>org.jetbrains.kotlin</groupId>
+                            <groupId>org.jetbrains.kotlinx</groupId>
                             <artifactId>kotlinx.html.assembly</artifactId>
                             <classifier>webjar</classifier>
                             <type>jar</type>
@@ -99,10 +99,10 @@ repositories {
 
 dependencies {
     // include for server side
-	compile "org.jetbrains.kotlin:kotlinx.html.jvm:${html4k.version}"
+	compile "org.jetbrains.kotlinx:kotlinx.html.jvm:${html4k.version}"
 	
 	// include for client-side
-	compileClient "org.jetbrains.kotlin:kotlinx.html.js:${html4k.version}"
+	compileClient "org.jetbrains.kotlinx:kotlinx.html.js:${html4k.version}"
 }
 ```
 

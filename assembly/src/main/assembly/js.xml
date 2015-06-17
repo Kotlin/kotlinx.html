@@ -14,8 +14,8 @@
             <unpack>true</unpack>
 
             <includes>
-                <include>org.jetbrains.kotlin:kotlinx.html.shared</include>
-                <include>org.jetbrains.kotlin:kotlinx.html.js</include>
+                <include>org.jetbrains.kotlinx:kotlinx.html.shared</include>
+                <include>org.jetbrains.kotlinx:kotlinx.html.js</include>
             </includes>
 
             <unpackOptions>
