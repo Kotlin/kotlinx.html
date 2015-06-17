@@ -11,7 +11,7 @@ import java.util.ArrayList
 fun main(args: Array<String>) {
     fillRepository()
 
-    val packg = "html4k"
+    val packg = "kotlinx.html"
     val todir = "shared/src/main/kotlin/generated"
     val jsdir = "js/src/main/kotlin/generated"
     File(todir).mkdirs()

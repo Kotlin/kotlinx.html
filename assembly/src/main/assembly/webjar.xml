@@ -24,7 +24,7 @@
                     <exclude>**/*.class</exclude>
                     <exclude>**/*.meta.js</exclude>
                     <exclude>**/META-INF/**</exclude>
-                    <exclude>**/html4k/**</exclude>
+                    <exclude>**/kotlinx/**</exclude>
                 </excludes>
             </unpackOptions>
         </dependencySet>

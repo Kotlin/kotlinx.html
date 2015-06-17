@@ -55,7 +55,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <finalName>html4k-${project.version}</finalName>
+                    <finalName>kotlinx.html-${project.version}</finalName>
                 </configuration>
                 <version>2.5.3</version>
             </plugin>
