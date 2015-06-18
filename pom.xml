@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jetbrains.kotlinx</groupId>
@@ -18,8 +19,8 @@
     <scm>
         <connection>scm:git:git@github.com:cy6erGn0m/html4k.git</connection>
         <url>https://github.com/cy6erGn0m/html4k</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <developers>
         <developer>
@@ -32,8 +33,6 @@
     </developers>
 
     <properties>
-        <!--<kotlin.version>0.11.91.4</kotlin.version>-->
-        <kotlin.version>0.1-SNAPSHOT</kotlin.version>
     </properties>
 
     <dependencies>
@@ -134,38 +133,56 @@
         </pluginManagement>
     </build>
 
-    <repositories>
-        <repository>
-            <id>sonatype.oss.snapshots</id>
-            <name>Sonatype OSS Snapshot Repository</name>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>sonatype.oss.snapshots</id>
-            <name>Sonatype OSS Snapshot Repository</name>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
     <distributionManagement>
         <repository>
             <id>bintray</id>
             <url>https://api.bintray.com/maven/cy6ergn0m/maven/html4k</url>
         </repository>
     </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>kotlin-latest</id>
+            <properties>
+                 <kotlin.version>0.12.613</kotlin.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>kotlin-snapshot</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <kotlin.version>0.1-SNAPSHOT</kotlin.version>
+            </properties>
+
+            <repositories>
+                <repository>
+                    <id>sonatype.oss.snapshots</id>
+                    <name>Sonatype OSS Snapshot Repository</name>
+                    <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>sonatype.oss.snapshots</id>
+                    <name>Sonatype OSS Snapshot Repository</name>
+                    <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
 </project>

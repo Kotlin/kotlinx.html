@@ -128,6 +128,9 @@
                         <goals>
                             <goal>install-node-and-npm</goal>
                         </goals>
+                        <configuration>
+                            <skip>${maven.test.skip}</skip>
+                        </configuration>
                     </execution>
 
                     <execution>
@@ -138,6 +141,7 @@
                         <!-- Optional configuration which provides for running any npm command -->
                         <configuration>
                             <arguments>install</arguments>
+                            <skip>${maven.test.skip}</skip>
                         </configuration>
                     </execution>
 
@@ -148,6 +152,8 @@
                         </goals>
                         <configuration>
                             <karmaConfPath>${project.basedir}/src/test/karma/karma.conf.js</karmaConfPath>
+                            <skip>${maven.test.skip}</skip>
+                            <skipTests>${maven.test.skip}</skipTests>
                         </configuration>
                     </execution>
                 </executions>

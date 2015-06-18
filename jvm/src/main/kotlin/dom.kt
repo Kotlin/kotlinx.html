@@ -52,7 +52,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {
-        throw UnsupportedOperationException("You can't assign lamba event handler on JVM")
+        throw UnsupportedOperationException("You can't assign lambda event handler on JVM")
     }
 
     override fun onTagEnd(tag: Tag) {
