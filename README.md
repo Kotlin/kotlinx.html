@@ -1,10 +1,10 @@
-# html4k
+# KotlinX HTML
 This is just temporary workspace to HTML builders
 Probably need to be imported to kotlinx.html
 
-A html4k library provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript
+A kotlinx.html library provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript
 
-[ ![Download](https://api.bintray.com/packages/cy6ergn0m/maven/html4k/images/download.svg) ](https://bintray.com/cy6ergn0m/maven/html4k/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/kotlinx/kotlinx/kotlinx.html/images/download.svg) ](https://bintray.com/kotlinx/kotlinx/kotlinx.html/_latestVersion)
 
 Build status: [ ![status](http://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Kotlin_KotlinX_Html4k)/statusIcon)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=Kotlin_KotlinX_Html4k&branch_Kotlin_KotlinX=%3Cdefault%3E&tab=buildTypeStatusDiv&guest=1)
 
@@ -36,7 +36,7 @@ For server-side development you can add the following dependency:
 		<dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx.html.jvm</artifactId>
-            <version>${html4k.version}</version>
+            <version>${kotlinx.html.version}</version>
         </dependency>
 ```
 
@@ -46,7 +46,7 @@ For client-side (JavaScript) you need this one:
 		<dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx.html.js</artifactId>
-            <version>${html4k.version}</version>
+            <version>${kotlinx.html.version}</version>
         </dependency>
 ```
 
@@ -99,10 +99,10 @@ repositories {
 
 dependencies {
     // include for server side
-	compile "org.jetbrains.kotlinx:kotlinx.html.jvm:${html4k.version}"
+	compile "org.jetbrains.kotlinx:kotlinx.html.jvm:${kotlinx.html.version}"
 	
 	// include for client-side
-	compileClient "org.jetbrains.kotlinx:kotlinx.html.js:${html4k.version}"
+	compileClient "org.jetbrains.kotlinx:kotlinx.html.js:${kotlinx.html.version}"
 }
 ```
 
