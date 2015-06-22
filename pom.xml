@@ -5,7 +5,7 @@
     <groupId>org.jetbrains.kotlinx</groupId>
     <artifactId>kotlinx.html</artifactId>
     <packaging>pom</packaging>
-    <version>0.4.6</version>
+    <version>0.4.7-SNAPSHOT</version>
     <modules>
         <module>shared</module>
         <module>jvm</module>
@@ -18,7 +18,7 @@
     <scm>
         <connection>scm:git:git@github.com:cy6erGn0m/html4k.git</connection>
         <url>https://github.com/cy6erGn0m/html4k</url>
-        <tag>kotlinx.html-0.4.6</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
