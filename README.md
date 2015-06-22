@@ -24,9 +24,9 @@ To get it work with maven you need to add custom repository
 
 ```xml
 		<repository>
-            <id>bintray-cy6ergn0m-maven</id>
+            <id>bintray-kotlinx</id>
             <name>bintray</name>
-            <url>http://dl.bintray.com/cy6ergn0m/maven</url>
+            <url>http://dl.bintray.com/kotlinx/kotlinx</url>
         </repository>
 ```
 
