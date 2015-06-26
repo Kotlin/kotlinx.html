@@ -2,8 +2,8 @@
 This is just temporary workspace to HTML builders
 Probably need to be imported to kotlinx.html
 
-A kotlinx.html library provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript for 
-better Kotlin programming for Web. 
+A kotlinx.html library provides DSL to build HTML to [Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)/[Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html) or DOM at JVM and JavaScript for 
+better [Kotlin programming](http://kotlinlang.org) for Web. 
 
 [ ![Download](https://api.bintray.com/packages/kotlinx/kotlinx/kotlinx.html/images/download.svg) ](https://bintray.com/kotlinx/kotlinx/kotlinx.html/_latestVersion)
 
@@ -21,10 +21,10 @@ for server-side and second for client-side
 
 # Maven
 
-To get it work with maven you need to add custom repository
+To get it work with [maven](https://maven.apache.org/) you need to add custom [repository](https://maven.apache.org/pom.html#Repositories)
 
 ```xml
-		<repository>
+        <repository>
             <id>bintray-kotlinx</id>
             <name>bintray</name>
             <url>http://dl.bintray.com/kotlinx/kotlinx</url>
@@ -34,7 +34,7 @@ To get it work with maven you need to add custom repository
 For server-side development you can add the following dependency:
 
 ```xml
-		<dependency>
+        <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx.html.jvm</artifactId>
             <version>${kotlinx.html.version}</version>
@@ -44,14 +44,14 @@ For server-side development you can add the following dependency:
 For client-side (JavaScript) you need this one:
 
 ```xml
-		<dependency>
+        <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx.html.js</artifactId>
             <version>${kotlinx.html.version}</version>
         </dependency>
 ```
 
-If you are building web application with war plugin you can use overlays to pack JavaScripts from webjar like this:
+If you are building web application with [war plugin](https://maven.apache.org/plugins/maven-war-plugin/) you can use [overlays](https://maven.apache.org/plugins/maven-war-plugin/overlays.html) to pack JavaScripts from webjar like this:
 
 ```xml
 			<plugin>
@@ -90,7 +90,8 @@ If you are building web application with war plugin you can use overlays to pack
 
 # Gradle
 
-You have to add repository before:
+You have to add [repository and dependencies](https://docs.gradle.org/2.4/userguide/artifact_dependencies_tutorial.html)
+
 ```groovy
 repositories {
     maven {
@@ -209,10 +210,16 @@ System.out.appendHTML().measureTime().html {
 }
 ```
 
-# Building
+# Building and development
 
 Once you open project in IDE you have to select Maven profile (in Maven tab): it should be kotlin-js or kotlin-jvm, you shouldn't enable both otherwise IDEA inspections will not work.
 
 You can build project by Maven only, you can't use IDEA's compile facilities. If you run Maven via IDEA runner please ensure you have -Pkotlin-js,kotlin-jvm in the command line
 
 You have to install shared module before build other dependant submodules. Don't forget to reinstall shared once you have changed something in shared
+
+You can build all by maven by command line
+
+```bash
+mvn clean package
+```
