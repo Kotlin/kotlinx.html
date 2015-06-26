@@ -2,7 +2,8 @@
 This is just temporary workspace to HTML builders
 Probably need to be imported to kotlinx.html
 
-A kotlinx.html library provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript
+A kotlinx.html library provides DSL to build HTML to Writer/Appendable or DOM at JVM and JavaScript for 
+better Kotlin programming for Web. 
 
 [ ![Download](https://api.bintray.com/packages/kotlinx/kotlinx/kotlinx.html/images/download.svg) ](https://bintray.com/kotlinx/kotlinx/kotlinx.html/_latestVersion)
 
