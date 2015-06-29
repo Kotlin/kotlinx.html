@@ -6,11 +6,11 @@ import kotlinx.html.TagConsumer
 import org.w3c.dom.events.Event
 import java.util.Date
 
-public data class Timed<T>(val result: T, val time: Long)
-public val <O: Appendable> Timed<O>.out: O
+public data class TimedResult<T>(val result: T, val time: Long)
+public val <O: Appendable> TimedResult<O>.out: O
     get() = result
 
-private class TimeMeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<Timed<R>> {
+private class TimeMeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<TimedResult<R>> {
     private val start = Date()
 
     override fun onTagStart(tag: Tag) {
@@ -37,7 +37,7 @@ private class TimeMeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsu
         downstream.onTagContentEntity(entity)
     }
 
-    override fun finalize(): Timed<R> = Timed(downstream.finalize(), Date().getTime().toLong() - start.getTime())
+    override fun finalize(): TimedResult<R> = TimedResult(downstream.finalize(), Date().getTime().toLong() - start.getTime())
 }
 
-public fun <R> TagConsumer<R>.measureTime() : TagConsumer<Timed<R>> = TimeMeasureConsumer(this)
+public fun <R> TagConsumer<R>.measureTime() : TagConsumer<TimedResult<R>> = TimeMeasureConsumer(this)
