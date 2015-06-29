@@ -109,7 +109,7 @@ dependencies {
 # DOM
 You can build DOM tree with JVM and JS naturally
 
-See example at JavaScript
+See example for JavaScript-targeted Kotlin
 
 ```kotlin
 window.setInterval({
