@@ -1,4 +1,4 @@
-# kotlinx.html
+# KotlinX HTML
 
 A kotlinx.html library provides DSL to build HTML to [Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)/[Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html) or DOM at JVM and JavaScript for 
 better [Kotlin programming](http://kotlinlang.org) for Web. 
@@ -14,12 +14,12 @@ There are three bundles available:
 - jar with JavaScripts and meta-data (required for Kotlin compiler)
 - webjar with JavaScripts (without meta-data)
 
-you can grab them at [releases](https://github.com/cy6erGn0m/html4k/releases) tab and include to your project. Use first
+you can grab them from the [releases](https://github.com/cy6erGn0m/html4k/releases) tab and include it in your project. Use first
 for server-side and second for client-side
 
 # Maven
 
-To get it work with [maven](https://maven.apache.org/) you need to add custom [repository](https://maven.apache.org/pom.html#Repositories)
+To get it working with [maven](https://maven.apache.org/) you need to add custom [repository](https://maven.apache.org/pom.html#Repositories)
 
 ```xml
         <repository>
@@ -88,7 +88,7 @@ If you are building web application with [war plugin](https://maven.apache.org/p
 
 # Gradle
 
-You have to add [repository and dependencies](https://docs.gradle.org/2.4/userguide/artifact_dependencies_tutorial.html)
+You have to add the [repository and dependencies](https://docs.gradle.org/2.4/userguide/artifact_dependencies_tutorial.html)
 
 ```groovy
 repositories {
@@ -107,7 +107,7 @@ dependencies {
 ```
 
 # DOM
-You can build DOM tree at JVM and JS naturally
+You can build DOM tree with JVM and JS naturally
 
 See example at JavaScript
 
@@ -159,9 +159,10 @@ StringBuilder {
 ```
 
 # Interceptors
-You can define interceptors chain that could transform HTML during building or make some observations.
-There is default "filter interceptor so you can filter out some elements
-Here is example that filters HTML that way so all div will be omited but content will remain
+You can define interceptors chains that could transform HTML during building or make some observations.
+There is a default "filter interceptor", so you can filter out some elements. 
+
+Below is an example that filters HTML that way so all div will be omited but content will remain
 
 ```kotlin
 println(document {
@@ -204,18 +205,18 @@ System.out.appendHTML().measureTime().html {
 		}
 	}
 }.let {
-	it.result.println()
-	it.result.println("Generated in ${it.time} ms")
+	it.first.println()
+	it.first.println("Generated in ${it.second} ms")
 }
 ```
 
 # Building and development
 
-Once you open project in IDE you have to select Maven profile (in Maven tab): it should be kotlin-js or kotlin-jvm, you shouldn't enable both otherwise IDEA inspections will not work.
+Once you open a project in the IDE you have to select a Maven profile (in Maven tab): it should be kotlin-js or kotlin-jvm, you shouldn't enable both otherwise IDEA inspections will not work.
 
-You can build project by Maven only, you can't use IDEA's compile facilities. If you run Maven via IDEA runner please ensure you have -Pkotlin-js,kotlin-jvm in the command line
+You can build the project only using Maven. If you run Maven via the IDEA runner please ensure you have -Pkotlin-js,kotlin-jvm in the command line
 
-You have to install shared module before build other dependant sub-modules. Don't forget to reinstall shared once you have changed something in shared
+You have to install shared module before build other dependant submodules. Don't forget to reinstall shared once you have changed something in shared
 
 You can build all by maven by command line
 
