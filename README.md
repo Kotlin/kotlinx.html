@@ -205,8 +205,8 @@ System.out.appendHTML().measureTime().html {
 		}
 	}
 }.let {
-	it.first.println()
-	it.first.println("Generated in ${it.second} ms")
+	it.out.println()
+	it.out.println("Generated in ${it.time} ms")
 }
 ```
 
