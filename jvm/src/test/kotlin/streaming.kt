@@ -245,8 +245,8 @@ class TestStreaming {
             }
         }
 
-        assertTrue(rs.second > 0)
-        assertTrue(rs.second < count.toLong())
+        assertTrue(rs.time > 0)
+        assertTrue(rs.time < count.toLong())
 
         val expected = StringBuilder {
             append("<div>")
@@ -259,7 +259,7 @@ class TestStreaming {
             append("</div>")
         }
 
-        assertEquals(expected.toString(), rs.first.toString())
+        assertEquals(expected.toString(), rs.result.toString())
     }
 
     test fun `escape bad chars`() {

@@ -204,8 +204,8 @@ System.out.appendHTML().measureTime().html {
 		}
 	}
 }.let {
-	it.first.println()
-	it.first.println("Generated in ${it.second} ms")
+	it.result.println()
+	it.result.println("Generated in ${it.time} ms")
 }
 ```
 
@@ -215,7 +215,7 @@ Once you open project in IDE you have to select Maven profile (in Maven tab): it
 
 You can build project by Maven only, you can't use IDEA's compile facilities. If you run Maven via IDEA runner please ensure you have -Pkotlin-js,kotlin-jvm in the command line
 
-You have to install shared module before build other dependant submodules. Don't forget to reinstall shared once you have changed something in shared
+You have to install shared module before build other dependant sub-modules. Don't forget to reinstall shared once you have changed something in shared
 
 You can build all by maven by command line
 
