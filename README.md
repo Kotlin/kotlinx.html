@@ -1,4 +1,4 @@
-# KotlinX HTML
+# kotlinx.html
 
 A kotlinx.html library provides DSL to build HTML to [Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)/[Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html) or DOM at JVM and JavaScript for 
 better [Kotlin programming](http://kotlinlang.org) for Web. 
