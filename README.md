@@ -1,6 +1,4 @@
 # KotlinX HTML
-This is just temporary workspace to HTML builders
-Probably need to be imported to kotlinx.html
 
 A kotlinx.html library provides DSL to build HTML to [Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)/[Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html) or DOM at JVM and JavaScript for 
 better [Kotlin programming](http://kotlinlang.org) for Web. 
@@ -95,7 +93,7 @@ You have to add [repository and dependencies](https://docs.gradle.org/2.4/usergu
 ```groovy
 repositories {
     maven {
-        url "http://dl.bintray.com/cy6ergn0m/maven"
+        url "http://dl.bintray.com/kotlinx/kotlinx" 
     }
 }
 
@@ -110,6 +108,7 @@ dependencies {
 
 # DOM
 You can build DOM tree at JVM and JS naturally
+
 See example at JavaScript
 
 ```kotlin
@@ -144,7 +143,7 @@ System.out.appendHTML().html {
 			}
 		}
 	}
-}.println()
+}
 ```
 
 Same for StringBuilder
