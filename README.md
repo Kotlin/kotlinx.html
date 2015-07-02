@@ -1,106 +1,11 @@
 # kotlinx.html [ ![Download](https://api.bintray.com/packages/kotlinx/kotlinx/kotlinx.html/images/download.svg) ](https://bintray.com/kotlinx/kotlinx/kotlinx.html/_latestVersion) [ ![status](http://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Kotlin_KotlinX_Html4k)/statusIcon)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=Kotlin_KotlinX_Html4k&branch_Kotlin_KotlinX=%3Cdefault%3E&tab=buildTypeStatusDiv&guest=1)
 
-A kotlinx.html library provides DSL to build HTML to [Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)/[Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html) or DOM at JVM and JavaScript for 
+A kotlinx.html library provides DSL to build HTML to [Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)/[Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html) or DOM at JVM and browser (or other JavaScript engine) for 
 better [Kotlin programming](http://kotlinlang.org) for Web. 
 
 # Get started
 
-There are three bundles available: 
-- zip with two JVM jars
-- jar with JavaScripts and meta-data (required for Kotlin compiler)
-- webjar with JavaScripts (without meta-data)
-
-you can grab them from the [releases](https://github.com/cy6erGn0m/html4k/releases) tab and include it in your project. Use first
-for server-side and second for client-side
-
-# Maven
-
-To get it working with [maven](https://maven.apache.org/) you need to add custom [repository](https://maven.apache.org/pom.html#Repositories)
-
-```xml
-        <repository>
-            <id>bintray-kotlinx</id>
-            <name>bintray</name>
-            <url>http://dl.bintray.com/kotlinx/kotlinx</url>
-        </repository>
-```
-
-For server-side development you can add the following dependency:
-
-```xml
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx.html.jvm</artifactId>
-            <version>${kotlinx.html.version}</version>
-        </dependency>
-```
-
-For client-side (JavaScript) you need this one:
-
-```xml
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx.html.js</artifactId>
-            <version>${kotlinx.html.version}</version>
-        </dependency>
-```
-
-If you are building web application with [war plugin](https://maven.apache.org/plugins/maven-war-plugin/) you can use [overlays](https://maven.apache.org/plugins/maven-war-plugin/overlays.html) to pack JavaScripts from webjar like this:
-
-```xml
-			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <dependentWarExcludes>META-INF/*,META-INF/**/*,*meta.js,**/*class</dependentWarExcludes>
-                    <webXml>src/main/resources/web.xml</webXml>
-                    <webResources>
-                        <resource>
-                            <directory>src/main/webapp</directory>
-                        </resource>
-                    </webResources>
-                    <overlays>
-                        <overlay>
-                            <groupId>org.jetbrains.kotlin</groupId>
-                            <artifactId>kotlin-js-library</artifactId>
-                            <type>jar</type>
-                            <includes>
-                                <include>kotlin.js</include>
-                            </includes>
-                            <targetPath>js/</targetPath>
-                        </overlay>
-                        <overlay>
-                            <groupId>org.jetbrains.kotlinx</groupId>
-                            <artifactId>kotlinx.html.assembly</artifactId>
-                            <classifier>webjar</classifier>
-                            <type>jar</type>
-                            <targetPath>js/</targetPath>
-                        </overlay>
-                    </overlays>
-                </configuration>
-            </plugin>
-```
-
-# Gradle
-
-You have to add the [repository and dependencies](https://docs.gradle.org/2.4/userguide/artifact_dependencies_tutorial.html)
-
-```groovy
-repositories {
-    maven {
-        url "http://dl.bintray.com/kotlinx/kotlinx" 
-    }
-}
-
-dependencies {
-    // include for server side
-	compile "org.jetbrains.kotlinx:kotlinx.html.jvm:${kotlinx.html.version}"
-	
-	// include for client-side
-	compileClient "org.jetbrains.kotlinx:kotlinx.html.js:${kotlinx.html.version}"
-}
-```
+See [Getting started](https://github.com/kotlinx/kotlinx.html/wiki/0.-Getting-started) page for details how to include the library
 
 # DOM
 You can build DOM tree with JVM and JS naturally
