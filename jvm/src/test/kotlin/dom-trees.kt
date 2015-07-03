@@ -41,4 +41,73 @@ class TestDOMTrees {
                 "  </body>\n" +
                 "</html>", tree.serialize(true).trim().replace("\r\n", "\n"))
     }
+
+    test fun `vals create and append support`() {
+        val document = createHTMLDocument().html {
+            body {
+                div {
+                    id = "content"
+                }
+            }
+        }
+
+        val contentNode = document.getElementById("content")!!
+        contentNode.append.p {
+            +"p1"
+        }
+
+        val p2 = document.create.p {
+            +"p2"
+        }
+        contentNode.appendChild(p2)
+
+        assertEquals("""<!DOCTYPE html>
+<html>
+  <body>
+    <div id="content">
+      <p>p1</p>
+      <p>p2</p>
+    </div>
+  </body>
+</html>
+        """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n"))
+    }
+
+    test fun `append function support`() {
+        val document = createHTMLDocument().html {
+            body {
+                div {
+                    id = "content"
+                }
+            }
+        }
+
+        val contentNode = document.getElementById("content")!!
+
+        val nodes = contentNode.append {
+            p {
+                +"p1"
+            }
+            p {
+                +"p2"
+                p {
+                    +"p3"
+                }
+            }
+        }
+
+        assertEquals(2, nodes.size())
+
+        assertEquals("""<!DOCTYPE html>
+<html>
+  <body>
+    <div id="content">
+      <p>p1</p>
+      <p>p2<p>p3</p>
+      </p>
+    </div>
+  </body>
+</html>
+        """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n"))
+    }
 }
