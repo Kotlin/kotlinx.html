@@ -47,71 +47,8 @@ System.out.appendHTML().html {
 }
 ```
 
-# Interceptors
-You can define interceptors chains that could transform HTML during building or make some observations.
-There is a default "filter interceptor", so you can filter out some elements. 
-
-Below is an example that filters HTML that way so all div will be omited but content will remain
-
-```kotlin
-println(document {
-		appendChild(
-			createTree().filter { if (it.name == "div") SKIP else PASS  }.html {
-				body {
-					div {
-						a { +"link1" }
-					}
-					a { +"link2" }
-				}
-			}
-		)
-	}.serialize())
-```
-
-The code above will produce the following output
-
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <a>link1</a><a>link2</a>
-  </body>
-</html>
-```
-The other interceptor doesn't mutate HTML but measures generation time
-
-```kotlin
-System.out.appendHTML().measureTime().html {
-	head {
-		title("Welcome page")
-	}
-	body {
-		div {
-			+"<<<special chars & entities goes here>>>"
-		}
-		div {
-			CDATA("Here is my content")
-		}
-	}
-}.let {
-	println()
-	println("Generated in ${it.time} ms")
-}
-```
-
-# Building and development
-
-Once you open a project in the IDE you have to select a Maven profile (in Maven tab): it should be kotlin-js or kotlin-jvm, you shouldn't enable both otherwise IDEA inspections will not work.
-
-You can build the project only using Maven. If you run Maven via the IDEA runner please ensure you have -Pkotlin-js,kotlin-jvm in the command line
-
-You have to install shared module before build other dependant submodules. Don't forget to reinstall shared once you have changed something in shared
-
-You can build all by maven by command line
-
-```bash
-mvn clean package
-```
+# Building 
+See [development](https://github.com/kotlinx/kotlinx.html/wiki/5.-Development) page for details
 
 # Old version
 
