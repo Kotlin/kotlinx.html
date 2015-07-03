@@ -47,6 +47,10 @@ System.out.appendHTML().html {
 }
 ```
 
+# Documentation
+
+See [wiki](https://github.com/kotlinx/kotlinx.html/wiki) pages
+
 # Building 
 See [development](https://github.com/kotlinx/kotlinx.html/wiki/5.-Development) page for details
 
