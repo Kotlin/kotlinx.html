@@ -47,18 +47,6 @@ System.out.appendHTML().html {
 }
 ```
 
-Same for StringBuilder
-```kotlin
-StringBuilder {
-    appendln("<!DOCTYPE html>")
-    appendHTML().html {
-        body {
-            a("http://kotlinlang.org") { +"link" }
-        }
-    }
-}
-```
-
 # Interceptors
 You can define interceptors chains that could transform HTML during building or make some observations.
 There is a default "filter interceptor", so you can filter out some elements. 
