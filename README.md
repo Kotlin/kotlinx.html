@@ -5,7 +5,7 @@ better [Kotlin programming](http://kotlinlang.org) for Web.
 
 # Get started
 
-See [Getting started](https://github.com/kotlinx/kotlinx.html/wiki/0.-Getting-started) page for details how to include the library
+See [Getting started](https://github.com/kotlinx/kotlinx.html/wiki/Getting-started) page for details how to include the library
 
 # DOM
 You can build DOM tree with JVM and JS naturally
@@ -52,7 +52,7 @@ System.out.appendHTML().html {
 See [wiki](https://github.com/kotlinx/kotlinx.html/wiki) pages
 
 # Building 
-See [development](https://github.com/kotlinx/kotlinx.html/wiki/5.-Development) page for details
+See [development](https://github.com/kotlinx/kotlinx.html/wiki/Development) page for details
 
 # Old version
 
