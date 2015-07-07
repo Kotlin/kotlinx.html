@@ -1,5 +1,6 @@
 package kotlinx.html.tests
 
+import kotlinx.html.div
 import kotlinx.html.dom.create
 import kotlinx.html.injector.InjectByClassName
 import kotlinx.html.injector.InjectByTagName
@@ -13,6 +14,7 @@ import org.w3c.dom.HTMLParagraphElement
 import kotlin.browser.document
 import kotlin.properties.Delegates
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlin.test.fail
 import org.junit.Test as test
@@ -23,6 +25,11 @@ class MyBeanWithDiv {
 
 class MyBeanWithP {
     var p: HTMLParagraphElement by Delegates.notNull()
+}
+
+class ExampleBean {
+    var myDiv: HTMLDivElement by Delegates.notNull()
+    var myP: HTMLParagraphElement by Delegates.notNull()
 }
 
 class InjectorTests {
@@ -66,5 +73,23 @@ class InjectorTests {
         }
 
         assertEquals("P", bean.p.tagName)
+    }
+
+    test fun exampleFromWiki() {
+        val bean = ExampleBean()
+
+        document.create.inject(bean, listOf(
+                InjectByClassName("my-class") to ExampleBean::myDiv,
+                InjectByTagName("p") to ExampleBean::myP
+        )).div {
+            div("my-class") {
+                p {
+                    +"test"
+                }
+            }
+        }
+
+        assertNotNull(bean.myDiv)
+        assertNotNull(bean.myP)
     }
 }

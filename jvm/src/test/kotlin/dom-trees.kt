@@ -1,6 +1,7 @@
 package kotlinx.html.tests
 
 import kotlinx.html.*
+import kotlinx.html.consumers.filter
 import kotlinx.html.dom.*
 import kotlinx.html.dom.createHTMLDocument
 import kotlin.test.assertEquals
@@ -109,5 +110,18 @@ class TestDOMTrees {
   </body>
 </html>
         """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n"))
+    }
+
+    fun `should compile wiki example`() {
+        println(document {
+            append.filter { if (it.tagName == "div") SKIP else PASS  }.html {
+                body {
+                    div {
+                        a { +"link1" }
+                    }
+                    a { +"link2" }
+                }
+            }
+        }.serialize())
     }
 }
