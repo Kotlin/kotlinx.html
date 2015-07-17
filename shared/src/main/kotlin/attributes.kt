@@ -65,7 +65,7 @@ class EnumEncoder<T : AttributeEnum>(val valuesMap : Map<String, T>) : Attribute
     override fun decode(attributeName: String, value: String): T = valuesMap[value] ?: throw IllegalArgumentException("Unknown value $value for $attributeName")
 }
 
-fun <T : AttributeEnum> T.enumEncode() : String = realValue
+fun AttributeEnum.enumEncode() : String = realValue
 data class EnumAttribute<T : AttributeEnum>(val values : Map<String, T>) : Attribute<T>(EnumEncoder(values))
 
 fun stringSetDecode(value: String?): Set<String>? = value?.split("\\s+".toRegex())?.filterNot {it.isEmpty()}?.toSet()
