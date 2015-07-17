@@ -31,12 +31,12 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
         emptyLine()
     }
 
-    tag.directChildren.map {Repository.tags[it]}.forEach { children ->
+    tag.directChildren.map {Repository.tags[it]}.filterNotNull().forEach { children ->
         htmlTagBuilders(tag.safeName.toUpperCase(), children)
     }
 
     if (parentElementTraits.size() > 1) {
-        val commons = tag.tagGroupNames.map {Repository.tagGroups[it].tags.toSet()}.reduce { a, b -> a.intersect(b) }
+        val commons = tag.tagGroupNames.map {Repository.tagGroups[it]?.tags?.toSet()}.filterNotNull().reduce { a, b -> a.intersect(b) }
         if (commons.isNotEmpty()) {
             parentElementTraits.forEach { group ->
                 append("public ")

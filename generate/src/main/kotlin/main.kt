@@ -244,8 +244,8 @@ fun main(args: Array<String>) {
 
             Repository.tagGroups.values().forEach { group ->
                 val receiver = group.name.escapeUnsafeValues().capitalize()
-                group.tags.forEach {
-                    htmlTagBuilders(receiver, Repository.tags[it])
+                group.tags.map { Repository.tags[it] }.filterNotNull(). forEach {
+                    htmlTagBuilders(receiver, it)
                 }
             }
         }
