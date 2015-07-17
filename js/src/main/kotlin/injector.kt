@@ -5,15 +5,16 @@ import kotlinx.html.dom.append
 import kotlinx.html.dom.createTree
 import org.w3c.dom.*
 import kotlin.properties.Delegates
-import kotlin.reflect.KMutableMemberProperty
+import kotlin.reflect.KMutableProperty
+import kotlin.reflect.KMutableProperty1
 
-fun <F : Any, T : Any> F.injectTo(bean : T, field : KMutableMemberProperty<T, in F>) {
+fun <F : Any, T : Any> F.injectTo(bean : T, field : KMutableProperty1<T, in F>) {
     field.set(bean, this)
 }
 
-private fun <F : Any, T : Any> F.injectToUnsafe(bean : T, field : KMutableMemberProperty<T, out F>) {
+private fun <F : Any, T : Any> F.injectToUnsafe(bean : T, field : KMutableProperty1<T, out F>) {
     @suppress("UNCHECKED_CAST")
-    val unsafe = field as KMutableMemberProperty<T, F>
+    val unsafe = field as KMutableProperty1<T, F>
     injectTo(bean, unsafe)
 }
 
@@ -25,7 +26,7 @@ public interface CustomCapture : InjectCapture {
     fun apply(element : HTMLElement) : Boolean
 }
 
-class InjectorConsumer<T>(val downstream : TagConsumer<HTMLElement>, val bean : T, rules : List<Pair<InjectCapture, KMutableMemberProperty<T, out HTMLElement>>>) : TagConsumer<HTMLElement> by downstream {
+class InjectorConsumer<T>(val downstream : TagConsumer<HTMLElement>, val bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>) : TagConsumer<HTMLElement> by downstream {
 
     private val classesMap = rules
             .filter { it.first is InjectByClassName }
@@ -74,8 +75,8 @@ class InjectorConsumer<T>(val downstream : TagConsumer<HTMLElement>, val bean : 
     }
 }
 
-public fun <T> TagConsumer<HTMLElement>.inject(bean : T, rules : List<Pair<InjectCapture, KMutableMemberProperty<T, out HTMLElement>>>) : TagConsumer<HTMLElement> = InjectorConsumer(this, bean, rules)
-public fun <T> HTMLElement.appendAndInject(bean : T, rules : List<Pair<InjectCapture, KMutableMemberProperty<T, out HTMLElement>>>, block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> = append {
+public fun <T> TagConsumer<HTMLElement>.inject(bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>) : TagConsumer<HTMLElement> = InjectorConsumer(this, bean, rules)
+public fun <T> HTMLElement.appendAndInject(bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>, block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> = append {
     InjectorConsumer(this@append, bean, rules).block()
     Unit
 }
