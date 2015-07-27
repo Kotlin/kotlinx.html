@@ -56,4 +56,4 @@ See [development](https://github.com/kotlinx/kotlinx.html/wiki/Development) page
 
 # Old version
 
-See https://github.com/kotlinx/kotlinx.html.legacy for older version. We are strongly recommend to migrate to latest version.
+See https://github.com/kotlinx/kotlinx.html.legacy for older version. We strongly recommend to migrate to latest version.
