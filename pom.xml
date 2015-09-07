@@ -14,10 +14,10 @@
         <module>assembly</module>
     </modules>
 
-    <url>https://github.com/cy6erGn0m/html4k</url>
+    <url>https://github.com/Kotlin/kotlinx.html</url>
     <scm>
-        <connection>scm:git:git@github.com:kotlinx/kotlinx.html.git</connection>
-        <url>https://github.com/kotlinx/kotlinx.html</url>
+        <connection>scm:git:git@github.com:Kotlin/kotlinx.html.git</connection>
+        <url>https://github.com/Kotlin/kotlinx.html</url>
         <tag>HEAD</tag>
     </scm>
 
