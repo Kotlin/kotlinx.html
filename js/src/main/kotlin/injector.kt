@@ -1,12 +1,10 @@
 package kotlinx.html.injector
 
 import kotlinx.html.*
-import kotlinx.html.dom.append
-import kotlinx.html.dom.createTree
+import kotlinx.html.dom.*
 import org.w3c.dom.*
-import kotlin.properties.Delegates
-import kotlin.reflect.KMutableProperty
-import kotlin.reflect.KMutableProperty1
+import org.w3c.dom.HTMLElement
+import kotlin.reflect.*
 
 fun <F : Any, T : Any> F.injectTo(bean : T, field : KMutableProperty1<T, in F>) {
     field.set(bean, this)
@@ -26,7 +24,7 @@ public interface CustomCapture : InjectCapture {
     fun apply(element : HTMLElement) : Boolean
 }
 
-class InjectorConsumer<T>(val downstream : TagConsumer<HTMLElement>, val bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>) : TagConsumer<HTMLElement> by downstream {
+class InjectorConsumer<T: Any>(val downstream : TagConsumer<HTMLElement>, val bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>) : TagConsumer<HTMLElement> by downstream {
 
     private val classesMap = rules
             .filter { it.first is InjectByClassName }
@@ -75,8 +73,8 @@ class InjectorConsumer<T>(val downstream : TagConsumer<HTMLElement>, val bean : 
     }
 }
 
-public fun <T> TagConsumer<HTMLElement>.inject(bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>) : TagConsumer<HTMLElement> = InjectorConsumer(this, bean, rules)
-public fun <T> HTMLElement.appendAndInject(bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>, block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> = append {
+public fun <T: Any> TagConsumer<HTMLElement>.inject(bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>) : TagConsumer<HTMLElement> = InjectorConsumer(this, bean, rules)
+public fun <T: Any> HTMLElement.appendAndInject(bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>, block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> = append {
     InjectorConsumer(this@append, bean, rules).block()
     Unit
 }
