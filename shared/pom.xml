@@ -58,10 +58,6 @@
                 <configuration>
                     <forceCreation>true</forceCreation>
                     <classesDirectory>${project.build.outputDirectory}</classesDirectory>
-                    <includes>
-                        <include>**/*.js</include>
-                        <include>**/*.class</include>
-                    </includes>
                     <archive>
                         <forced />
                         <manifestEntries>
