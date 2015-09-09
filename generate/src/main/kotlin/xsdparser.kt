@@ -12,41 +12,41 @@ val HTML_NAMESPACE = "html-5"
 private val attributeNamesMap = mapOf("class" to "classes")
 
 private fun flattenTerm(term: XSTerm, result: MutableCollection<String>, visitedModelNames: MutableSet<String>) {
-    if (term.isElementDecl()) {
-        result.add(term.asElementDecl().getName())
-    } else if (term.isModelGroupDecl()) {
-        visitedModelNames.add(term.asModelGroupDecl().getName())
-        term.asModelGroupDecl().getModelGroup().toList().map { it.getTerm() }.forEach {
+    if (term.isElementDecl) {
+        result.add(term.asElementDecl().name)
+    } else if (term.isModelGroupDecl) {
+        visitedModelNames.add(term.asModelGroupDecl().name)
+        term.asModelGroupDecl().modelGroup.toList().map { it.term }.forEach {
             flattenTerm(it, result, visitedModelNames)
         }
-    } else if (term.isModelGroup()) {
-        term.asModelGroup().toList().map { it.getTerm() }.forEach {
+    } else if (term.isModelGroup) {
+        term.asModelGroup().toList().map { it.term }.forEach {
             flattenTerm(it, result, visitedModelNames)
         }
     }
 }
 
 fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttributeDecl): AttributeInfo {
-    val name = attributeDeclaration.getName()
-    val type = attributeDeclaration.getType()
+    val name = attributeDeclaration.name
+    val type = attributeDeclaration.type
 
     val safeName = attributeNamesMap[name] ?: name.escapeUnsafeValues()
-    if (type.isUnion()) {
+    if (type.isUnion) {
         val enumEntries = type.asUnion()
-                .filter { it.isRestriction() }
+                .filter { it.isRestriction }
                 .map { it.asRestriction() }
-                .flatMap { it.getDeclaredFacets() ?: emptyList() }
-                .filter { it.getName() == "enumeration" }
-                .map { it.getValue().value }
+                .flatMap { it.declaredFacets ?: emptyList() }
+                .filter { it.name == "enumeration" }
+                .map { it.value.value }
 
         return AttributeInfo(name, AttributeType.STRING, safeName, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
-    } else if (type.isPrimitive() || type.getName() in setOf("integer", "string", "boolean", "decimal")) {
-        return AttributeInfo(name, xsdToType[type.getPrimitiveType().getName()] ?: AttributeType.STRING, safeName)
-    } else if (type.isRestriction()) {
+    } else if (type.isPrimitive || type.name in setOf("integer", "string", "boolean", "decimal")) {
+        return AttributeInfo(name, xsdToType[type.primitiveType.name] ?: AttributeType.STRING, safeName)
+    } else if (type.isRestriction) {
         val restriction = type.asRestriction()
-        val enumEntries = restriction.getDeclaredFacets()
-                .filter { it.getName() == "enumeration" }
-                .map { it.getValue().value }
+        val enumEntries = restriction.declaredFacets
+                .filter { it.name == "enumeration" }
+                .map { it.value.value }
 
         if (enumEntries.size() == 1 && enumEntries.single() == name) {
             // probably ticker
@@ -65,7 +65,7 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
 
 fun flattenGroups(root: XSAttGroupDecl, result: MutableList<XSAttGroupDecl> = ArrayList()): List<XSAttGroupDecl> {
     result.add(root)
-    root.getAttGroups()?.forEach {
+    root.attGroups?.forEach {
         flattenGroups(it, result)
     }
 
@@ -79,16 +79,16 @@ fun AttributeInfo.handleSpecialType(tagName: String = ""): AttributeInfo = speci
 fun fillRepository() {
     val parser = XSOMParser(SAXParserFactory.newInstance())
     parser.parse(SCHEME_URL)
-    val schema = parser.getResult().getSchema(HTML_NAMESPACE)
+    val schema = parser.result.getSchema(HTML_NAMESPACE)
 
     @Suppress("UNCHECKED_CAST")
     val alreadyIncluded = TreeSet<String>() { a, b -> a.compareTo(b, true) }
-    schema.getAttGroupDecls().values().forEach { attributeGroup ->
+    schema.attGroupDecls.values().forEach { attributeGroup ->
         val requiredNames = HashSet<String>()
-        val facadeAttributes = attributeGroup.getAttributeUses().map { attributeUse ->
-            val attributeDeclaration = attributeUse.getDecl()
-            if (attributeUse.isRequired()) {
-                requiredNames add attributeDeclaration.getName()
+        val facadeAttributes = attributeGroup.attributeUses.map { attributeUse ->
+            val attributeDeclaration = attributeUse.decl
+            if (attributeUse.isRequired) {
+                requiredNames add attributeDeclaration.name
             }
 
             handleAttributeDeclaration("", attributeDeclaration).handleSpecialType()
@@ -97,7 +97,7 @@ fun fillRepository() {
                 .filter { !it.name.startsWith("On") }
                 .sortedBy { it.name }
 
-        val name = attributeGroup.getName()
+        val name = attributeGroup.name
 
         if (facadeAttributes.isNotEmpty()) {
             Repository.attributeFacades[name] = AttributeFacade(name, facadeAttributes, requiredNames)
@@ -105,20 +105,20 @@ fun fillRepository() {
         }
     }
 
-    schema.getModelGroupDecls().values().forEach { modelGroupDeclaration ->
-        val name = modelGroupDeclaration.getName()
-        val children = modelGroupDeclaration.getModelGroup()
-                .getChildren()
-                .map { it.getTerm() }
-                .filter { it.isElementDecl() }
-                .map { it.asElementDecl().getName() }
+    schema.modelGroupDecls.values().forEach { modelGroupDeclaration ->
+        val name = modelGroupDeclaration.name
+        val children = modelGroupDeclaration.modelGroup
+                .children
+                .map { it.term }
+                .filter { it.isElementDecl }
+                .map { it.asElementDecl().name }
 
         Repository.tagGroups[name] = TagGroup(name, children)
     }
 
-    schema.getElementDecls().values().forEach { elementDeclaration ->
-        val name = elementDeclaration.getName()
-        val type = elementDeclaration.getType()
+    schema.elementDecls.values().forEach { elementDeclaration ->
+        val name = elementDeclaration.name
+        val type = elementDeclaration.type
         val suggestedNames = HashSet<String>()
         globalSuggestedAttributes.get(name)?.let {
             suggestedNames.addAll(it.filter { !it.startsWith("-") })
@@ -126,27 +126,27 @@ fun fillRepository() {
         val excluded = globalSuggestedAttributes.get(name)?.filter { it.startsWith("-") }?.map { it.removePrefix("-") } ?: emptyList()
 
         val tagInfo: TagInfo
-        if (type.isComplexType()) {
+        if (type.isComplexType) {
             val complex = type.asComplexType()
-            val groupDeclarations = complex.getAttGroups().flatMap { flattenGroups(it) }.distinct().toList()
-            val attributeGroups = groupDeclarations.map { Repository.attributeFacades[it.getName()] }.filterNotNull()
+            val groupDeclarations = complex.attGroups.flatMap { flattenGroups(it) }.distinct().toList()
+            val attributeGroups = groupDeclarations.map { Repository.attributeFacades[it.name] }.filterNotNull()
 
-            val attributes = complex.getDeclaredAttributeUses().map {
-                if (it.isRequired()) {
-                    suggestedNames add it.getDecl().getName()
+            val attributes = complex.declaredAttributeUses.map {
+                if (it.isRequired) {
+                    suggestedNames add it.decl.name
                 }
 
-                handleAttributeDeclaration(name.humanize(), it.getDecl()).handleSpecialType(name)
+                handleAttributeDeclaration(name.humanize(), it.decl).handleSpecialType(name)
             }
 
             val children = HashSet<String>()
             val modelGroupNames = HashSet<String>()
-            val contentTerm = complex.getContentType()?.asParticle()?.getTerm()
+            val contentTerm = complex.contentType?.asParticle()?.term
             val directChildren = ArrayList<String>()
             if (contentTerm != null) {
                 flattenTerm(contentTerm, children, modelGroupNames)
-                if (contentTerm.isModelGroup()) {
-                    directChildren.addAll(contentTerm.asModelGroup().getChildren().map { it.getTerm() }.filter { it.isElementDecl() }.map { it.asElementDecl().getName() })
+                if (contentTerm.isModelGroup) {
+                    directChildren.addAll(contentTerm.asModelGroup().children.map { it.term }.filter { it.isElementDecl }.map { it.asElementDecl().name })
                 }
             }
 

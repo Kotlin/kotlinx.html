@@ -33,7 +33,7 @@ class ExampleBean {
 }
 
 class InjectorTests {
-    test fun injectByClass() {
+    @test fun injectByClass() {
         val bean = MyBeanWithDiv()
         val node = document.create.inject(bean, listOf(
                 InjectByClassName("my-class") to MyBeanWithDiv::node
@@ -47,7 +47,7 @@ class InjectorTests {
         assertEquals(found, bean.node)
     }
 
-    test fun injectByClassFailed() {
+    @test fun injectByClassFailed() {
         val bean = MyBeanWithDiv()
         document.create.inject(bean, listOf(
                 InjectByClassName("my-class") to MyBeanWithDiv::node
@@ -63,7 +63,7 @@ class InjectorTests {
         }
     }
 
-    test fun injectByTagName() {
+    @test fun injectByTagName() {
         val bean = MyBeanWithP()
         document.create.inject(bean, listOf(
                 InjectByTagName("p") to MyBeanWithP::p
@@ -75,7 +75,7 @@ class InjectorTests {
         assertEquals("P", bean.p.tagName)
     }
 
-    test fun exampleFromWiki() {
+    @test fun exampleFromWiki() {
         val bean = ExampleBean()
 
         document.create.inject(bean, listOf(

@@ -21,7 +21,7 @@ import kotlin.test.fail
 import org.junit.Test as test
 
 class DomTreeImplTest {
-    test fun simpleTree() {
+    @test fun simpleTree() {
         val node = document.body!!.append.div {
             p {
                 +"test"
@@ -36,7 +36,7 @@ class DomTreeImplTest {
         assertEquals(node, document.body!!.children.asList().last())
     }
 
-    test fun appendSingleNode() {
+    @test fun appendSingleNode() {
         val myDiv: HTMLDivElement = document.body!!.append.div {
             p {
                 +"test"
@@ -48,7 +48,7 @@ class DomTreeImplTest {
         assertEquals("<div><p>test</p></div>", myDiv.outerHTML.replace("\\s+".toRegex(), ""))
     }
 
-    test fun appendNodeWithEventHandler() {
+    @test fun appendNodeWithEventHandler() {
     	var clicked = false
     	
         document.body!!.append.div {
@@ -71,7 +71,7 @@ class DomTreeImplTest {
         assertTrue(clicked)
     }
 
-    test fun testAtMainPage() {
+    @test fun testAtMainPage() {
         val containerCreated = document.body!!.append.div {
             id = "container"
         }
@@ -94,7 +94,7 @@ class DomTreeImplTest {
         assertEquals("<div class=\"panel\"><p>Here is <a href=\"http://kotlinlang.org\">official Kotlin site</a></p></div>", container.innerHTML)
     }
 
-    test fun appendMultipleNodes() {
+    @test fun appendMultipleNodes() {
         val wrapper = wrapper()
 
         val nodes = wrapper.append {
@@ -114,7 +114,7 @@ class DomTreeImplTest {
         assertEquals("<div>div1</div><div>div2</div>", wrapper.innerHTML)
     }
 
-    test fun appendEntity() {
+    @test fun appendEntity() {
         val wrapper = wrapper()
         wrapper.append.span {
             +Entities.nbsp
@@ -123,7 +123,7 @@ class DomTreeImplTest {
         assertEquals("<span>&nbsp;</span>", wrapper.innerHTML)
     }
 
-    test fun pastTagAtrributeChangedShouldBeProhibited() {
+    @test fun pastTagAtrributeChangedShouldBeProhibited() {
         try {
             document.body!!.append.trace().div {
                 span {
@@ -139,7 +139,7 @@ class DomTreeImplTest {
         }
     }
 
-    test fun buildBiggerPage() {
+    @test fun buildBiggerPage() {
         val wrapper = wrapper()
 
         wrapper.append {

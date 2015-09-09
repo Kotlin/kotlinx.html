@@ -37,4 +37,4 @@ fun <T: Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit
 
 fun Iterable<Pair<String, String?>>.toAttributesMap(): Map<String, String> = filter { it.second != null }.map { it.first to it.second!! }.toMap()
 
-internal val emptyMap: Map<String, String> = emptyMap()
+val emptyMap: Map<String, String> = emptyMap()

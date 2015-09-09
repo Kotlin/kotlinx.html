@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 import org.junit.Test as test
 
 class TestDOMTrees {
-    test fun `able to create simple tree`() {
+    @test fun `able to create simple tree`() {
         val tree = createHTMLDocument().div {
             id = "test-node"
             +"content"
@@ -17,7 +17,7 @@ class TestDOMTrees {
         assertEquals("div", tree.getElementById("test-node")?.getTagName()?.toLowerCase())
     }
 
-    test fun `able to create complex tree and render it with pretty print`() {
+    @test fun `able to create complex tree and render it with pretty print`() {
         val tree = createHTMLDocument().html {
             body {
                 h1 {
@@ -43,7 +43,7 @@ class TestDOMTrees {
                 "</html>", tree.serialize(true).trim().replace("\r\n", "\n"))
     }
 
-    test fun `vals create and append support`() {
+    @test fun `vals create and append support`() {
         val document = createHTMLDocument().html {
             body {
                 div {
@@ -74,7 +74,7 @@ class TestDOMTrees {
         """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n"))
     }
 
-    test fun `append function support`() {
+    @test fun `append function support`() {
         val document = createHTMLDocument().html {
             body {
                 div {
