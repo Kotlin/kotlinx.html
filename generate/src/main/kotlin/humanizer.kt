@@ -1,11 +1,8 @@
 package kotlinx.html.generate.humanize
 
-import kotlinx.html.generate.wellKnownWords
-import java.util.ArrayList
-import java.util.HashSet
-import java.util.regex.MatchResult
-import java.util.regex.Matcher
-import java.util.regex.Pattern
+import kotlinx.html.generate.*
+import java.util.*
+import java.util.regex.*
 
 
 fun String.humanize() : String {
@@ -54,7 +51,7 @@ private fun String.makeCamelCaseByDictionary() : String {
 
     val allRanges = wellKnownWords.flatMap { word ->
         word.matcher(current).findAll()
-    }.sortBy { it.start() }
+    }.sortedBy { it.start() }
 
     fun applyMatchResult(mr : MatchResult, cutTail : Boolean) {
         if (mr.start() > 0) {
@@ -68,7 +65,7 @@ private fun String.makeCamelCaseByDictionary() : String {
     var unprocessedStart = 0
     allRanges.forEachIndexed { i, mr ->
         if (mr.start() >= unprocessedStart) {
-            val startClash = allRanges.safeSubList(i + 1).asSequence().takeWhile { it.start() == mr.start() }.maxBy<Int, MatchResult> { it.group().length() }
+            val startClash = allRanges.safeSubList(i + 1).asSequence().takeWhile { it.start() == mr.start() }.maxBy { it.group().length() }
             if (startClash == null || startClash.group().length() <= mr.group().length()) {
                 val possibleTail = when {
                     mr.group().endsWith("ing") -> 3

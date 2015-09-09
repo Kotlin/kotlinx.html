@@ -1,14 +1,10 @@
 package kotlinx.html.generate
 
-import com.sun.xml.xsom.XSAttGroupDecl
-import com.sun.xml.xsom.XSAttributeDecl
-import com.sun.xml.xsom.XSComplexType
-import com.sun.xml.xsom.XSTerm
-import com.sun.xml.xsom.parser.XSOMParser
-import kotlinx.html.generate.humanize.humanize
-import java.util.ArrayList
-import java.util.HashSet
-import java.util.TreeSet
+import com.sun.xml.xsom.*
+import com.sun.xml.xsom.parser.*
+import kotlinx.html.generate.humanize.*
+import java.util.*
+import javax.xml.parsers.*
 
 val SCHEME_URL = "generate/src/main/resources/html_5.xsd"
 val HTML_NAMESPACE = "html-5"
@@ -55,7 +51,7 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
         if (enumEntries.size() == 1 && enumEntries.single() == name) {
             // probably ticker
             return AttributeInfo(name, AttributeType.TICKER, safeName)
-        } else if (enumEntries.size() == 2 && enumEntries.sort() == listOf("off", "on")) {
+        } else if (enumEntries.size() == 2 && enumEntries.sorted() == listOf("off", "on")) {
             return AttributeInfo(name, AttributeType.BOOLEAN, safeName, trueFalse = listOf("on", "off"))
         } else if (enumEntries.isEmpty()) {
             return AttributeInfo(name, AttributeType.STRING, safeName)
@@ -81,12 +77,12 @@ fun AttributeInfo.handleSpecialType(tagName: String = ""): AttributeInfo = speci
 } ?: this
 
 fun fillRepository() {
-    val parser = XSOMParser()
+    val parser = XSOMParser(SAXParserFactory.newInstance())
     parser.parse(SCHEME_URL)
     val schema = parser.getResult().getSchema(HTML_NAMESPACE)
 
-    @suppress("UNCHECKED_CAST")
-    val alreadyIncluded = TreeSet<String>() { a, b -> a.compareTo(b, true) } as MutableSet<String>
+    @Suppress("UNCHECKED_CAST")
+    val alreadyIncluded = TreeSet<String>() { a, b -> a.compareTo(b, true) }
     schema.getAttGroupDecls().values().forEach { attributeGroup ->
         val requiredNames = HashSet<String>()
         val facadeAttributes = attributeGroup.getAttributeUses().map { attributeUse ->
@@ -99,7 +95,7 @@ fun fillRepository() {
         }
                 .filter { it.name !in alreadyIncluded }
                 .filter { !it.name.startsWith("On") }
-                .sortBy { it.name }
+                .sortedBy { it.name }
 
         val name = attributeGroup.getName()
 
@@ -159,7 +155,7 @@ fun fillRepository() {
             suggestedNames.addAll(attributeGroups.flatMap { it.attributes }.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
             suggestedNames.removeAll(excluded)
 
-            tagInfo = TagInfo(name, children.toList().sort(), directChildren, attributeGroups, attributes, suggestedNames, modelGroupNames.sort().toList())
+            tagInfo = TagInfo(name, children.toList().sorted(), directChildren, attributeGroups, attributes, suggestedNames, modelGroupNames.sorted().toList())
         } else {
             throw UnsupportedOperationException()
         }

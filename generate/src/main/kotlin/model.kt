@@ -1,15 +1,13 @@
 package kotlinx.html.generate
 
-import kotlinx.html.generate.humanize.humanize
-import java.util.ArrayList
-import java.util.TreeMap
-import java.util.TreeSet
+import kotlinx.html.generate.humanize.*
+import java.util.*
 
 object Repository {
     val tags = TreeMap<String, TagInfo>()
 
-    @suppress("UNCHECKED_CAST")
-    val attributeDelegateRequests = TreeSet<AttributeRequest> ({a, b ->
+    @Suppress("UNCHECKED_CAST")
+    val attributeDelegateRequests = TreeSet<AttributeRequest> ({a, b -> // TODO use new API instead to build comparator
         a.type.compareTo(b.type).let { typeComparison ->
             if (typeComparison != 0) typeComparison
             else a.enumTypeName.compareTo(b.enumTypeName).let { enumTypeComparison ->
@@ -21,7 +19,7 @@ object Repository {
                 }
             }
         }
-    }) as MutableSet<AttributeRequest>
+    })
 
     val attributeFacades = TreeMap<String, AttributeFacade>()
     val tagGroups = TreeMap<String, TagGroup>()
@@ -98,5 +96,3 @@ data class TagGroup(
         val name : String,
         val tags : List<String>
 )
-
-private fun Any.toNameHash() = Integer.toHexString(hashCode())

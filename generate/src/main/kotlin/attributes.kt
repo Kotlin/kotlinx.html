@@ -1,14 +1,12 @@
 package kotlinx.html.generate
 
-import java.util.ArrayList
-
 fun String.quote() = "\"$this\""
 
 fun <O : Appendable> O.attributePseudoDelegate(request: AttributeRequest) {
     val classNamePrefix = request.type.classPrefix
     val className = "${classNamePrefix}Attribute"
 
-    append("private ")
+    append("internal ")
     variable(Var(request.delegatePropertyName, "Attribute<${request.typeName}>"))
     defineIs(StringBuilder {
         functionCallConsts(className, request.options)
@@ -46,7 +44,6 @@ fun <O : Appendable> O.facade(facade: AttributeFacade) {
 }
 
 fun <O : Appendable> O.eventProperty(parent: String, attribute: AttributeInfo) {
-    append("public ")
     variable(receiver = parent, variable = Var(
             name = attribute.fieldName + "Function",
             type = "(Event) -> Unit",

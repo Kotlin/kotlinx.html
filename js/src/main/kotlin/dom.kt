@@ -1,17 +1,17 @@
 package kotlinx.html.dom
 
 import kotlinx.html.*
-import kotlinx.html.js.*
-import kotlinx.html.consumers.onFinalize
-import kotlinx.html.consumers.onFinalizeMap
+import kotlinx.html.consumers.*
 import org.w3c.dom.*
-import org.w3c.dom.events.Event
-import java.util.ArrayList
-import kotlin.dom.asList
-import kotlin.dom.first
+import org.w3c.dom.HTMLElement
+import org.w3c.dom.events.*
+import java.util.*
+import kotlin.dom.*
+import kotlin.js.native
+import kotlin.js.nativeSetter
 
-native
-nativeSetter
+@native
+@nativeSetter
 private fun HTMLElement.setEvent(name : String, callback : (Event) -> Unit) : Unit
 
 class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
@@ -86,7 +86,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
 
     override fun finalize(): R = lastLeaved?.asR() ?: throw IllegalStateException("We can't finalize as there was no tags")
 
-    @suppress("UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST")
     private fun HTMLElement.asR() = this as R
 
 }

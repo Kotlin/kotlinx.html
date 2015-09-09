@@ -39,7 +39,6 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
         val commons = tag.tagGroupNames.map {Repository.tagGroups[it]?.tags?.toSet()}.filterNotNull().reduce { a, b -> a.intersect(b) }
         if (commons.isNotEmpty()) {
             parentElementTraits.forEach { group ->
-                append("public ")
                 variable(Var(name = "as" + group.escapeUnsafeValues().capitalize(), type = group.escapeUnsafeValues().capitalize()), receiver = tag.safeName.toUpperCase())
                 appendln()
                 getter()
@@ -52,7 +51,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
     emptyLine()
 }
 
-private fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): AttributeRequest {
+internal fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): AttributeRequest {
     val options = LinkedList<Const<*>>()
 
     if (attribute.type == AttributeType.ENUM) {
@@ -108,7 +107,6 @@ fun <O : Appendable> O.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean
 }
 
 fun <O : Appendable> O.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
-    append("public ")
     function(tag.safeName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
     defineIs(StringBuilder {
         functionCall(tag.nameUpper, listOf(

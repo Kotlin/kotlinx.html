@@ -58,7 +58,7 @@ fun <O : Appendable> O.enum(attribute : AttributeInfo) {
     }
 
     emptyLine()
-    append("private ")
+    append("internal ")
     variable(Var(name.decapitalize() + "Values", "Map<String, $name>", false, defaultValue = "$name.values().toMap { it.realValue }"))
     emptyLine()
 }

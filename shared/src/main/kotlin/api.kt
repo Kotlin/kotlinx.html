@@ -1,9 +1,8 @@
 package kotlinx.html
 
-import org.w3c.dom.events.Event
-import java.util.LinkedHashSet
+import org.w3c.dom.events.*
 
-public interface TagConsumer<out R> {
+interface TagConsumer<out R> {
     fun onTagStart(tag: Tag)
     fun onTagAttributeChange(tag: Tag, attribute: String, value: String?)
     fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit)
@@ -13,7 +12,7 @@ public interface TagConsumer<out R> {
     fun finalize(): R
 }
 
-public interface Tag {
+interface Tag {
     val tagName: String
     val consumer: TagConsumer<*>
 
@@ -38,6 +37,4 @@ fun <T: Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit
 
 fun Iterable<Pair<String, String?>>.toAttributesMap(): Map<String, String> = filter { it.second != null }.map { it.first to it.second!! }.toMap()
 
-private val emptyMap: Map<String, String> = emptyMap()
-private val String.realValue: String
-    get() = this
+internal val emptyMap: Map<String, String> = emptyMap()

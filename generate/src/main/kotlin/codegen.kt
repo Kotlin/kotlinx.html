@@ -110,7 +110,7 @@ fun <O : Appendable> O.setter(block : O.() -> Unit) : O {
 fun <O : Appendable> O.clazz(clazz : Clazz, block : O.() -> Unit) : O {
     val tokens = ArrayList<String>()
     if (clazz.isPublic) {
-        tokens.add("public")
+        //tokens.add("public") // TODO we need to check !isPublic
     }
     if (clazz.isAbstract) {
         tokens.add("abstract")
