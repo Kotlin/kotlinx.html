@@ -11,7 +11,7 @@ fun <F : Any, T : Any> F.injectTo(bean : T, field : KMutableProperty1<T, in F>) 
 }
 
 private fun <F : Any, T : Any> F.injectToUnsafe(bean : T, field : KMutableProperty1<T, out F>) {
-    @suppress("UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST")
     val unsafe = field as KMutableProperty1<T, F>
     injectTo(bean, unsafe)
 }

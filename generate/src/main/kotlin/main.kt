@@ -1,7 +1,6 @@
 package kotlinx.html.generate
 
 import kotlinx.html.generate.humanize.humanize
-import org.jetbrains
 import java.io.File
 import java.io.FileOutputStream
 import java.io.Writer
