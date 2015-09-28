@@ -161,8 +161,8 @@ fun <O : Appendable> O.functionCallConsts(name : String, arguments : List<Const<
     functionCall(name, arguments.map {it.asValue})
 }
 
-fun <O : Appendable> O.function(name : String, arguments : List<Var> = emptyList(), returnType : String = "Unit", generics : List<String> = emptyList(), receiver : String = "") : O {
-    append("fun ")
+fun <O : Appendable> O.function(name : String, arguments : List<Var> = emptyList(), returnType : String = "Unit", generics : List<String> = emptyList(), receiver : String = "", modifiers: List<String> = emptyList()) : O {
+    (modifiers + "fun").joinTo(this, separator = " ", postfix = " ")
 
     if (generics.isNotEmpty()) {
         generics.joinTo(this, ", ", "<", "> ")

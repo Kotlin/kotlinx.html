@@ -1,10 +1,6 @@
 package kotlinx.html.generate
 
-import kotlinx.html.generate.humanize.humanize
-import java.io.File
-import java.io.FileOutputStream
-import java.io.Writer
-import java.util.ArrayList
+import java.io.*
 
 
 fun main(args: Array<String>) {
@@ -67,12 +63,12 @@ fun main(args: Array<String>) {
                 })
                 emptyLine()
 
-                function(receiver = "Entities", name = "plus") block {
+                function(receiver = "Entities", name = "plus", modifiers = listOf("operator")) block {
                     receiverDot("consumer")
                     functionCall("onTagContentEntity", listOf("this"))
                 }
 
-                function(receiver = "String", name = "plus") block {
+                function(receiver = "String", name = "plus", modifiers = listOf("operator")) block {
                     receiverDot("consumer")
                     functionCall("onTagContent", listOf("this"))
                 }

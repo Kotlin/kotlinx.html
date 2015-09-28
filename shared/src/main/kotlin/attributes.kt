@@ -10,12 +10,12 @@ interface AttributeEncoder<T> {
 }
 
 abstract class Attribute<T>(val encoder : AttributeEncoder<T>) {
-    open fun get(thisRef: Tag, attributeName: String) : T =
+    open operator fun get(thisRef: Tag, attributeName: String) : T =
             thisRef.attributes[attributeName]?.let {
                 encoder.decode(attributeName, it)
             } ?: encoder.empty(attributeName, thisRef)
 
-    open fun set(thisRef: Tag, attributeName: String, value : T) {
+    open operator fun set(thisRef: Tag, attributeName: String, value : T) {
         thisRef.attributes[attributeName] = encoder.encode(attributeName, value)
     }
 }
@@ -25,7 +25,7 @@ object StringEncoder : AttributeEncoder<String> {
     override fun decode(attributeName: String, value: String): String = value
 }
 
-data class StringAttribute : Attribute<String>(StringEncoder)
+class StringAttribute : Attribute<String>(StringEncoder)
 
 //public class IntAttribute : Attribute<Int>() {
 //    override fun encode(desc: PropertyMetadata, value: Int): String = value.toString()
@@ -42,7 +42,7 @@ class BooleanEncoder(val trueValue: String = "true", val falseValue: String = "f
     }
 }
 
-data class BooleanAttribute(trueValue: String = "true", falseValue: String = "false") : Attribute<Boolean>(BooleanEncoder(trueValue, falseValue))
+class BooleanAttribute(trueValue: String = "true", falseValue: String = "false") : Attribute<Boolean>(BooleanEncoder(trueValue, falseValue))
 
 fun Boolean.tickerEncode(attributeName: String) : String = if (this) attributeName else ""
 object TickerEncoder : AttributeEncoder<Boolean> {
@@ -50,7 +50,7 @@ object TickerEncoder : AttributeEncoder<Boolean> {
     override fun decode(attributeName: String, value: String): Boolean = value == attributeName
 }
 
-public data class TickerAttribute : Attribute<Boolean>(TickerEncoder) {
+public class TickerAttribute : Attribute<Boolean>(TickerEncoder) {
     override fun set(thisRef: Tag, attributeName: String, value: Boolean) {
         if (value) {
             thisRef.attributes[attributeName] = attributeName
@@ -66,7 +66,7 @@ class EnumEncoder<T : AttributeEnum>(val valuesMap : Map<String, T>) : Attribute
 }
 
 fun AttributeEnum.enumEncode() : String = realValue
-data class EnumAttribute<T : AttributeEnum>(val values : Map<String, T>) : Attribute<T>(EnumEncoder(values))
+class EnumAttribute<T : AttributeEnum>(val values : Map<String, T>) : Attribute<T>(EnumEncoder(values))
 
 fun stringSetDecode(value: String?): Set<String>? = value?.split("\\s+".toRegex())?.filterNot {it.isEmpty()}?.toSet()
 fun Set<String>.stringSetEncode() = join(" ")
@@ -75,4 +75,4 @@ object StringSetEncoder : AttributeEncoder<Set<String>> {
     override fun decode(attributeName: String, value: String): Set<String> = stringSetDecode(value)!!
     override fun empty(attributeName: String, tag: Tag) = emptySet<String>()
 }
-data class StringSetAttribute : Attribute<Set<String>>(StringSetEncoder)
+class StringSetAttribute : Attribute<Set<String>>(StringSetEncoder)

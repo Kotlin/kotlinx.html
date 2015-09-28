@@ -13,8 +13,8 @@ open class HTMLTag(override val tagName : String, override val consumer : TagCon
     override val attributes : DelegatingMap = DelegatingMap(initialAttributes, this){ consumer }
 
 
-fun Entities.plus() : Unit{
+operator fun Entities.plus() : Unit{
 consumer.onTagContentEntity(this)}
-fun String.plus() : Unit{
+operator fun String.plus() : Unit{
 consumer.onTagContent(this)}
 }
