@@ -135,7 +135,7 @@
     <distributionManagement>
         <repository>
             <id>bintray</id>
-            <url>https://api.bintray.com/maven/kotlinx/kotlinx/kotlinx.html</url>
+            <url>https://api.bintray.com/maven/kotlin/kotlinx.html/kotlinx.html</url>
         </repository>
     </distributionManagement>
 
