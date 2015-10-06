@@ -112,7 +112,7 @@ class TestDOMTrees {
         """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n"))
     }
 
-    fun `should compile wiki example`() {
+    @test fun `should compile wiki example`() {
         println(document {
             append.filter { if (it.tagName == "div") SKIP else PASS  }.html {
                 body {

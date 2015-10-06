@@ -56,7 +56,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun onTagEnd(tag: Tag) {
-        if (path.isEmpty() || path.last().getTagName().toLowerCase() != tag.tagName.toLowerCase()) {
+        if (path.isEmpty() || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
             throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
 
@@ -95,13 +95,19 @@ public val Document.create : TagConsumer<Element>
     get() = HTMLDOMBuilder(this)
 
 public fun Node.append(block : TagConsumer<Element>.() -> Unit) : List<Element> = ArrayList<Element>().let { result ->
-    getOwnerDocument().createHTMLTree().onFinalize { it, partial -> if (!partial) {appendChild(it); result.add(it)} }.block()
+    ownerDocumentExt.createHTMLTree().onFinalize { it, partial -> if (!partial) {appendChild(it); result.add(it)} }.block()
 
     result
 }
 
 public val Node.append: TagConsumer<Element>
-    get() = getOwnerDocument().createHTMLTree().onFinalize { it, partial -> if (!partial) { appendChild(it) } }
+    get() = ownerDocumentExt.createHTMLTree().onFinalize { it, partial -> if (!partial) { appendChild(it) } }
+
+private val Node.ownerDocumentExt: Document
+    get() = when {
+        this is Document -> this
+        else -> ownerDocument ?: throw IllegalArgumentException("node has no ownerDocument")
+    }
 
 public fun createHTMLDocument() : TagConsumer<Document> = createDocument().let { document -> HTMLDOMBuilder(document).onFinalizeMap { it, partial -> if (!partial) {document.appendChild(it)}; document } }
 
@@ -112,7 +118,7 @@ public inline fun document(block : Document.() -> Unit) : Document = DocumentBui
 
 public fun Writer.write(document : Document, prettyPrint : Boolean = true) : Writer {
     write("<!DOCTYPE html>\n")
-    write(document.getDocumentElement(), prettyPrint)
+    write(document.documentElement, prettyPrint)
     return this
 }
 

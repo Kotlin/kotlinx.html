@@ -98,10 +98,16 @@ public val Document.create : TagConsumer<HTMLElement>
 
 public fun Node.append(block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> =
         ArrayList<HTMLElement>().let { result ->
-            ownerDocument!!.createTree().onFinalize { it, partial -> if (!partial) {result.add(it); appendChild(it) } }.block()
+            ownerDocumentExt.createTree().onFinalize { it, partial -> if (!partial) {result.add(it); appendChild(it) } }.block()
 
             result
         }
 
 public val HTMLElement.append : TagConsumer<HTMLElement>
-    get() = ownerDocument!!.createTree().onFinalize { element, partial -> if (!partial) { this@append.appendChild(element) } }
+    get() = ownerDocumentExt.createTree().onFinalize { element, partial -> if (!partial) { this@append.appendChild(element) } }
+
+private val Node.ownerDocumentExt: Document
+    get() = when {
+        this is Document -> this
+        else -> ownerDocument ?: throw IllegalStateException("Node has no ownerDocument")
+    }
