@@ -167,20 +167,35 @@ class DomTreeImplTest {
             }
         }
 
-        assertEquals("<h1>kotlin</h1>" +
-                "<p>Here we are</p>" +
-                "<div class=\"root\">" +
-                "<div class=\"menu\">" +
-                "<ul>" +
-                "<li>item1</li>" +
-                "<li>item2</li>" +
-                "<li>item3</li>" +
-                "</ul>" +
-                "</div>" +
-                "<div class=\"content\"></div>" +
-                "</div>", wrapper.innerHTML)
+        assertEquals("""
+                <h1>kotlin</h1>
+                <p>Here we are</p>
+                <div class="root">
+                <div class="menu">
+                <ul>
+                <li>item1</li>
+                <li>item2</li>
+                <li>item3</li>
+                </ul>
+                </div>
+                <div class="content"></div>
+                </div>""".trimLines(), wrapper.innerHTML)
+    }
+
+    @test fun testAppendAndRemoveClass() {
+        val wrapper = wrapper()
+
+        wrapper.append {
+            span("class1") {
+                classes += "class2"
+                classes -= "class1"
+            }
+        }
+
+        assertEquals("<span class=\"class2\"></span>", wrapper.innerHTML)
     }
 
     private fun wrapper() = document.body!!.append.div {}
-    private fun <T> uninitialized(): T = null as T 
+    private fun <T> uninitialized(): T = null as T
+    private fun String.trimLines() = trimIndent().lines().filter { it.isNotBlank() }.join("")
 }
