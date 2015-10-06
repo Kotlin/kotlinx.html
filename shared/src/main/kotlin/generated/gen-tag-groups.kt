@@ -168,7 +168,7 @@ fun FlowContent.rsaKeyGen(classes : String? = null, block : KEYGEN.() -> Unit = 
 
 fun FlowContent.label(classes : String? = null, block : LABEL.() -> Unit = {}) : Unit = LABEL(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
-fun FlowContent.link(href : String? = null, rel : String? = null, block : LINK.() -> Unit = {}) : Unit = LINK(listOf("href" to href,"rel" to rel).toAttributesMap(), consumer).visit(block)
+fun FlowContent.link(href : String? = null, rel : String? = null, type : String? = null, block : LINK.() -> Unit = {}) : Unit = LINK(listOf("href" to href,"rel" to rel,"type" to type).toAttributesMap(), consumer).visit(block)
 
 fun FlowContent.map(name : String? = null, classes : String? = null, block : MAP.() -> Unit = {}) : Unit = MAP(listOf("name" to name,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
@@ -352,7 +352,7 @@ fun MetaDataContent.commandCommand(classes : String? = null, block : COMMAND.() 
 fun MetaDataContent.checkBoxCommand(classes : String? = null, block : COMMAND.() -> Unit = {}) : Unit = COMMAND(listOf("type" to CommandType.checkBox.realValue,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 fun MetaDataContent.radioCommand(classes : String? = null, block : COMMAND.() -> Unit = {}) : Unit = COMMAND(listOf("type" to CommandType.radio.realValue,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
-fun MetaDataContent.link(href : String? = null, rel : String? = null, block : LINK.() -> Unit = {}) : Unit = LINK(listOf("href" to href,"rel" to rel).toAttributesMap(), consumer).visit(block)
+fun MetaDataContent.link(href : String? = null, rel : String? = null, type : String? = null, block : LINK.() -> Unit = {}) : Unit = LINK(listOf("href" to href,"rel" to rel,"type" to type).toAttributesMap(), consumer).visit(block)
 
 fun MetaDataContent.meta(name : String? = null, content : String? = null, block : META.() -> Unit = {}) : Unit = META(listOf("name" to name,"content" to content).toAttributesMap(), consumer).visit(block)
 
@@ -473,7 +473,7 @@ fun PhrasingContent.rsaKeyGen(classes : String? = null, block : KEYGEN.() -> Uni
 
 fun PhrasingContent.label(classes : String? = null, block : LABEL.() -> Unit = {}) : Unit = LABEL(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
-fun PhrasingContent.link(href : String? = null, rel : String? = null, block : LINK.() -> Unit = {}) : Unit = LINK(listOf("href" to href,"rel" to rel).toAttributesMap(), consumer).visit(block)
+fun PhrasingContent.link(href : String? = null, rel : String? = null, type : String? = null, block : LINK.() -> Unit = {}) : Unit = LINK(listOf("href" to href,"rel" to rel,"type" to type).toAttributesMap(), consumer).visit(block)
 
 fun PhrasingContent.map(name : String? = null, classes : String? = null, block : MAP.() -> Unit = {}) : Unit = MAP(listOf("name" to name,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 

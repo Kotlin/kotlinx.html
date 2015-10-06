@@ -128,7 +128,7 @@ public fun TagConsumer<HTMLElement>.legEnd(classes : String? = null, block : LEG
 
 public fun TagConsumer<HTMLElement>.li(classes : String? = null, block : LI.() -> Unit = {}) : HTMLLIElement = LI(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, block) as HTMLLIElement
 
-public fun TagConsumer<HTMLElement>.link(href : String? = null, rel : String? = null, block : LINK.() -> Unit = {}) : HTMLLinkElement = LINK(listOf("href" to href,"rel" to rel).toAttributesMap(), this).visitAndFinalize(this, block) as HTMLLinkElement
+public fun TagConsumer<HTMLElement>.link(href : String? = null, rel : String? = null, type : String? = null, block : LINK.() -> Unit = {}) : HTMLLinkElement = LINK(listOf("href" to href,"rel" to rel,"type" to type).toAttributesMap(), this).visitAndFinalize(this, block) as HTMLLinkElement
 
 public fun TagConsumer<HTMLElement>.map(name : String? = null, classes : String? = null, block : MAP.() -> Unit = {}) : HTMLMapElement = MAP(listOf("name" to name,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, block) as HTMLMapElement
 

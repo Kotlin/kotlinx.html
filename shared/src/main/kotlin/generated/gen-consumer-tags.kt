@@ -127,7 +127,7 @@ fun <T, C : TagConsumer<T>> C.legEnd(classes : String? = null, block : LEGEND.()
 
 fun <T, C : TagConsumer<T>> C.li(classes : String? = null, block : LI.() -> Unit = {}) : T = LI(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, block)
 
-fun <T, C : TagConsumer<T>> C.link(href : String? = null, rel : String? = null, block : LINK.() -> Unit = {}) : T = LINK(listOf("href" to href,"rel" to rel).toAttributesMap(), this).visitAndFinalize(this, block)
+fun <T, C : TagConsumer<T>> C.link(href : String? = null, rel : String? = null, type : String? = null, block : LINK.() -> Unit = {}) : T = LINK(listOf("href" to href,"rel" to rel,"type" to type).toAttributesMap(), this).visitAndFinalize(this, block)
 
 fun <T, C : TagConsumer<T>> C.map(name : String? = null, classes : String? = null, block : MAP.() -> Unit = {}) : T = MAP(listOf("name" to name,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, block)
 
