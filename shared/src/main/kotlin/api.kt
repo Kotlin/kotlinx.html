@@ -9,6 +9,7 @@ interface TagConsumer<out R> {
     fun onTagEnd(tag: Tag)
     fun onTagContent(content: CharSequence)
     fun onTagContentEntity(entity: Entities)
+    fun onTagContentUnsafe(block: Unsafe.() -> Unit)
     fun finalize(): R
 }
 
@@ -17,6 +18,11 @@ interface Tag {
     val consumer: TagConsumer<*>
 
     val attributes: MutableMap<String, String>
+}
+
+interface Unsafe {
+    operator fun plus(s: String)
+    operator fun plus(e: Entities) = plus(e.text)
 }
 
 interface AttributeEnum {
@@ -37,4 +43,16 @@ fun <T: Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit
 
 fun Iterable<Pair<String, String?>>.toAttributesMap(): Map<String, String> = filter { it.second != null }.map { it.first to it.second!! }.toMap()
 
+fun HTMLTag.unsafe(block: Unsafe.() -> Unit): Unit = consumer.onTagContentUnsafe(block)
+
 val emptyMap: Map<String, String> = emptyMap()
+
+class DefaultUnsafe : Unsafe {
+    private val sb = StringBuilder()
+
+    override fun plus(s: String) {
+        sb.append(s)
+    }
+
+    override fun toString(): String = sb.toString()
+}

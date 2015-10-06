@@ -3,6 +3,7 @@ package kotlinx.html.consumers
 import kotlinx.html.Entities
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
+import kotlinx.html.Unsafe
 import org.w3c.dom.events.Event
 
 class DelayedConsumer<T>(val downstream : TagConsumer<T>) : TagConsumer<T> {
@@ -43,6 +44,11 @@ class DelayedConsumer<T>(val downstream : TagConsumer<T>) : TagConsumer<T> {
     override fun finalize(): T {
         processDelayedTag()
         return downstream.finalize()
+    }
+
+    override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
+        processDelayedTag()
+        return downstream.onTagContentUnsafe(block)
     }
 
     private fun processDelayedTag() {

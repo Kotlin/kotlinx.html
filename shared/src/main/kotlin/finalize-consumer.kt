@@ -3,6 +3,7 @@ package kotlinx.html.consumers
 import kotlinx.html.Entities
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
+import kotlinx.html.Unsafe
 import org.w3c.dom.events.Event
 
 class FinalizeConsumer<F, T>(val downstream : TagConsumer<F>, val block : (F, Boolean) -> T) : TagConsumer<T> {
@@ -21,6 +22,7 @@ class FinalizeConsumer<F, T>(val downstream : TagConsumer<F>, val block : (F, Bo
     override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) = downstream.onTagEvent(tag, event, value)
     override fun onTagContent(content: CharSequence) = downstream.onTagContent(content)
     override fun onTagContentEntity(entity: Entities) = downstream.onTagContentEntity(entity)
+    override fun onTagContentUnsafe(block: Unsafe.() -> Unit) = downstream.onTagContentUnsafe(block)
 
     override fun finalize() = block(downstream.finalize(), level > 0)
 }

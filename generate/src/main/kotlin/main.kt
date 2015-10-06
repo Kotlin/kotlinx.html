@@ -63,14 +63,24 @@ fun main(args: Array<String>) {
                 })
                 emptyLine()
 
+                indent()
                 function(receiver = "Entities", name = "plus", modifiers = listOf("operator")) block {
+                    indent(2)
                     receiverDot("consumer")
                     functionCall("onTagContentEntity", listOf("this"))
+
+                    emptyLine()
+                    indent()
                 }
 
+                indent()
                 function(receiver = "String", name = "plus", modifiers = listOf("operator")) block {
+                    indent(2)
                     receiverDot("consumer")
                     functionCall("onTagContent", listOf("this"))
+
+                    emptyLine()
+                    indent()
                 }
             }
         }

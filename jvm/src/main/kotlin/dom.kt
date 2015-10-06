@@ -1,8 +1,6 @@
 package kotlinx.html.dom
 
-import kotlinx.html.Entities
-import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
+import kotlinx.html.*
 import kotlinx.html.consumers.onFinalize
 import kotlinx.html.consumers.onFinalizeMap
 import org.w3c.dom.Document
@@ -11,13 +9,14 @@ import org.w3c.dom.Node
 import org.w3c.dom.events.Event
 import java.io.StringWriter
 import java.io.Writer
-import java.util.ArrayList
+import java.util.*
 import javax.xml.parsers.DocumentBuilderFactory
-import javax.xml.transform.*
+import javax.xml.transform.OutputKeys
+import javax.xml.transform.TransformerFactory
 import javax.xml.transform.dom.DOMSource
 import javax.xml.transform.stream.StreamResult
 import kotlin.dom.createDocument
-import kotlin.dom.writeXmlString
+import kotlin.dom.innerHTML
 
 class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     private val path = arrayListOf<Element>()
@@ -82,6 +81,10 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun finalize() = lastLeaved ?: throw IllegalStateException("No tags were emitted")
+
+    override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
+        throw UnsupportedOperationException("unsafe content for DOM at JVM is not supported yet")
+    }
 
     private fun Element.setIdAttributeName() {
         if (hasAttribute("id")) {

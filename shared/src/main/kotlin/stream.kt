@@ -155,6 +155,16 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
 
     override fun finalize(): O = out
 
+    override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
+        UnsafeImpl.block()
+    }
+
+    val UnsafeImpl = object : Unsafe {
+        override fun plus(s: String) {
+            out.append(s)
+        }
+    }
+
     private fun appenln() {
         if (prettyPrint && !ln) {
             out.append("\n")

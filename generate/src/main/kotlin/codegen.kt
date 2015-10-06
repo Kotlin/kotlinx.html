@@ -202,7 +202,7 @@ fun <O : Appendable> O.blockShort(block : O.() -> Unit) : O = with {
 }
 
 fun <O : Appendable> O.block(block : O.() -> Unit) : O {
-    append("{\n")
+    append(" {\n")
     block()
     append("}\n")
 

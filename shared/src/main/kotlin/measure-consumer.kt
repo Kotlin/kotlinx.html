@@ -3,6 +3,7 @@ package kotlinx.html.consumers
 import kotlinx.html.Entities
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
+import kotlinx.html.Unsafe
 import org.w3c.dom.events.Event
 import java.util.Date
 
@@ -35,6 +36,10 @@ private class TimeMeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsu
 
     override fun onTagContentEntity(entity: Entities) {
         downstream.onTagContentEntity(entity)
+    }
+
+    override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
+        downstream.onTagContentUnsafe(block)
     }
 
     override fun finalize(): TimedResult<R> = TimedResult(downstream.finalize(), Date().getTime().toLong() - start.getTime())
