@@ -7,15 +7,11 @@ import kotlinx.html.dom.create
 import kotlinx.html.js.div
 import kotlinx.html.js.onClickFunction
 import kotlinx.html.js.span
-import org.w3c.dom.events.Event
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLSpanElement
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.asList
-import kotlin.dom.asList
 import kotlin.browser.document
 import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlin.test.fail
 import org.junit.Test as test
