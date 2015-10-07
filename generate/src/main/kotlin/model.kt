@@ -6,20 +6,14 @@ import java.util.*
 object Repository {
     val tags = TreeMap<String, TagInfo>()
 
-    @Suppress("UNCHECKED_CAST")
-    val attributeDelegateRequests = TreeSet<AttributeRequest> ({a, b -> // TODO use new API instead to build comparator
-        a.type.compareTo(b.type).let { typeComparison ->
-            if (typeComparison != 0) typeComparison
-            else a.enumTypeName.compareTo(b.enumTypeName).let { enumTypeComparison ->
-                if (enumTypeComparison != 0) enumTypeComparison
-                else a.options.size.compareTo(b.options.size).let { sizeComparison ->
-                    if (sizeComparison != 0) sizeComparison
-                    else if (a.options.isEmpty()) 0
-                    else a.options.indices.map { a.options[it].asValue.compareTo(b.options[it].asValue) }.firstOrNull() { it != 0 } ?: 0
-                }
-            }
-        }
-    })
+    val attributeDelegateRequests = TreeSet<AttributeRequest> (
+            comparator<AttributeRequest> { a, b -> a.type.compareTo(b.type) }
+                    .thenComparator { a, b -> a.enumTypeName.compareTo(b.enumTypeName) }
+                    .thenComparator { a, b -> a.options.size.compareTo(b.options.size) }
+                    .thenComparator { a, b ->
+                        a.options.zip(b.options).map { it.first.asValue.compareTo(it.second.asValue) }.firstOrNull { it != 0 } ?: 0
+                    }
+    )
 
     val attributeFacades = TreeMap<String, AttributeFacade>()
     val tagGroups = TreeMap<String, TagGroup>()
