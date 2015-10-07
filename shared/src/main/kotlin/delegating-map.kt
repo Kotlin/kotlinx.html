@@ -2,12 +2,12 @@ package kotlinx.html.impl
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import java.util.HashMap
 
 class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val consumer : () -> TagConsumer<*>) : MutableMap<String, String> {
     private val backing = linkedMapOf<String, String>().let { it.putAll(initialValues); it }
 
-    override fun size(): Int = backing.size()
+    override val size: Int
+        get() = backing.size
     override fun isEmpty(): Boolean = backing.isEmpty()
     override fun containsKey(key: Any?): Boolean = backing.containsKey(key)
     override fun containsValue(value: Any?): Boolean = backing.containsValue(value)
