@@ -11,6 +11,7 @@ import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.asList
 import kotlin.browser.document
+import kotlin.dom.*
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlin.test.fail
@@ -189,6 +190,15 @@ class DomTreeImplTest {
         }
 
         assertEquals("<span class=\"class2\"></span>", wrapper.innerHTML)
+    }
+
+    @test fun testSvg() {
+        val wrapper = wrapper()
+
+        wrapper.append.svg {
+        }
+
+        assertEquals("http://www.w3.org/2000/svg", wrapper.childNodes.toElementList().first { it.tagName.toLowerCase() == "svg" }.namespaceURI)
     }
 
     private fun wrapper() = document.body!!.append.div {}

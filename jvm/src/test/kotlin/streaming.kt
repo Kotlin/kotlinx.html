@@ -357,6 +357,17 @@ class TestStreaming {
             }
         }
     }
+
+    @test fun `svg should have namespace`() {
+        val t = createHTML(false).html {
+            body {
+                svg {
+                }
+            }
+        }
+
+        assertEquals("<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>", t)
+    }
 }
 
 fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }

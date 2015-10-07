@@ -8,6 +8,8 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
     val parentAttributeTraits = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
     val parentElementTraits = tag.tagGroupNames.map {it.escapeUnsafeValues().capitalize()}
 
+    val namespaceArg = tagNamespaces[tag.name.toLowerCase()]?.let { listOf(it.quote()) } ?: emptyList<String>()
+
     clazz(Clazz(
             name = tag.safeName.toUpperCase(),
             variables = listOf(
@@ -15,7 +17,13 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
                     Var("consumer", "TagConsumer<*>", false, true)
             ),
             parents = listOf(
-                    "HTMLTag(\"${tag.name}\", consumer, initialAttributes)"
+                    StringBuilder {
+                        functionCall("HTMLTag", listOf(
+                                "${tag.name.quote()}",
+                                "consumer",
+                                "initialAttributes"
+                        ) + namespaceArg)
+                    }.toString()
             ) + parentAttributeTraits + parentElementTraits,
             isOpen = true
     )) {

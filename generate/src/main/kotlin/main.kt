@@ -48,7 +48,8 @@ fun main(args: Array<String>) {
                     variables = listOf(
                             Var("tagName", "String", override = true),
                             Var("consumer", "TagConsumer<*>", override = true),
-                            Var("initialAttributes", "Map<String, String>")
+                            Var("initialAttributes", "Map<String, String>"),
+                            Var("namespace", "String?", override = true, defaultValue = "null")
                     ),
                     parents = listOf("Tag"),
                     isOpen = true

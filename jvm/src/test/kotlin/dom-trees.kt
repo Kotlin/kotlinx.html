@@ -14,7 +14,7 @@ class TestDOMTrees {
             +"content"
         }
 
-        assertEquals("div", tree.getElementById("test-node")?.getTagName()?.toLowerCase())
+        assertEquals("div", tree.getElementById("test-node")?.tagName?.toLowerCase())
     }
 
     @test fun `able to create complex tree and render it with pretty print`() {
@@ -97,7 +97,7 @@ class TestDOMTrees {
             }
         }
 
-        assertEquals(2, nodes.size())
+        assertEquals(2, nodes.size)
 
         assertEquals("""<!DOCTYPE html>
 <html>
@@ -123,5 +123,19 @@ class TestDOMTrees {
                 }
             }
         }.serialize())
+    }
+
+    @test fun `svg should have namespace`() {
+        val d = document {
+            append.html {
+                body {
+                    svg {
+                    }
+                }
+            }
+        }
+
+        assertEquals("<!DOCTYPE html>\n<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>",
+                d.serialize(false).trim().replace("\r\n", "\n"))
     }
 }

@@ -16,6 +16,7 @@ interface TagConsumer<out R> {
 interface Tag {
     val tagName: String
     val consumer: TagConsumer<*>
+    val namespace: String?
 
     val attributes: MutableMap<String, String>
 }

@@ -28,6 +28,10 @@ val globalSuggestedAttributes = listOf(
         "title" to "-class"
 ).groupBy { it.first }.mapValues { it.getValue().map { it.second } }
 
+val tagNamespaces = mapOf(
+        "svg" to "http://www.w3.org/2000/svg"
+)
+
 val globalSuggestedAttributeNames = setOf("class")
 
 val specialTypes = listOf(

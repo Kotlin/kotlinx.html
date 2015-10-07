@@ -126,7 +126,7 @@ open class SUP(initialAttributes : Map<String, String>, override val consumer : 
 
 }
 
-open class SVG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("svg", consumer, initialAttributes), CommonAttributeGroupFacade {
+open class SVG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("svg", consumer, initialAttributes, "http://www.w3.org/2000/svg"), CommonAttributeGroupFacade {
 
 }
 

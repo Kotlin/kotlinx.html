@@ -19,7 +19,10 @@ class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
     private var lastLeaved : HTMLElement? = null
 
     override fun onTagStart(tag: Tag) {
-        val element = document.createElement(tag.tagName) as HTMLElement
+        val element = when {
+            tag.namespace != null -> document.createElementNS(tag.namespace!!, tag.tagName) as HTMLElement
+            else -> document.createElement(tag.tagName) as HTMLElement
+        }
 
         tag.attributes.forEach {
             element.setAttribute(it.getKey(), it.getValue())

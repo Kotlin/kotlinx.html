@@ -101,6 +101,12 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
         out.append("<")
         out.append(tag.tagName)
 
+        if (tag.namespace != null) {
+            out.append(" xmlns=\"")
+            out.append(tag.namespace)
+            out.append("\"")
+        }
+
         if (tag.attributes.isNotEmpty()) {
             tag.attributes.entrySet().map { e ->
                 if (!e.getKey().isValidXmlAttributeName()) {

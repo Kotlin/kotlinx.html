@@ -1,29 +1,26 @@
 package kotlinx.html.dom
 
 import kotlinx.html.*
-import kotlinx.html.consumers.onFinalize
-import kotlinx.html.consumers.onFinalizeMap
-import org.w3c.dom.Document
-import org.w3c.dom.Element
-import org.w3c.dom.Node
-import org.w3c.dom.events.Event
-import java.io.StringWriter
-import java.io.Writer
+import kotlinx.html.consumers.*
+import org.w3c.dom.*
+import org.w3c.dom.events.*
+import java.io.*
 import java.util.*
-import javax.xml.parsers.DocumentBuilderFactory
-import javax.xml.transform.OutputKeys
-import javax.xml.transform.TransformerFactory
-import javax.xml.transform.dom.DOMSource
-import javax.xml.transform.stream.StreamResult
-import kotlin.dom.createDocument
-import kotlin.dom.innerHTML
+import javax.xml.parsers.*
+import javax.xml.transform.*
+import javax.xml.transform.dom.*
+import javax.xml.transform.stream.*
+import kotlin.dom.*
 
 class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     private val path = arrayListOf<Element>()
     private var lastLeaved : Element? = null
 
     override fun onTagStart(tag: Tag) {
-        val element = document.createElement(tag.tagName)
+        val element = when {
+            tag.namespace != null -> document.createElementNS(tag.namespace!!, tag.tagName)
+            else -> document.createElement(tag.tagName)
+        }
 
         tag.attributes.forEach {
             element.setAttribute(it.getKey(), it.getValue())
