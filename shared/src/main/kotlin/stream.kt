@@ -1,9 +1,7 @@
 package kotlinx.html.stream
 
 import kotlinx.html.*
-import kotlinx.html.Entities.*
-import kotlinx.html.consumers.delayed
-import kotlinx.html.consumers.onFinalizeMap
+import kotlinx.html.consumers.*
 import org.w3c.dom.events.Event
 
 private val emptyTags = """area
@@ -160,8 +158,8 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
     }
 
     val UnsafeImpl = object : Unsafe {
-        override fun plus(s: String) {
-            out.append(s)
+        override operator fun String.plus() {
+            out.append(this)
         }
     }
 

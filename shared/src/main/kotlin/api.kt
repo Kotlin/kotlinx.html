@@ -21,8 +21,8 @@ interface Tag {
 }
 
 interface Unsafe {
-    operator fun plus(s: String)
-    operator fun plus(e: Entities) = plus(e.text)
+    operator fun String.plus()
+    operator fun Entities.plus() = +text
 }
 
 interface AttributeEnum {
@@ -50,8 +50,8 @@ val emptyMap: Map<String, String> = emptyMap()
 class DefaultUnsafe : Unsafe {
     private val sb = StringBuilder()
 
-    override fun plus(s: String) {
-        sb.append(s)
+    override fun String.plus() {
+        sb.append(this)
     }
 
     override fun toString(): String = sb.toString()
