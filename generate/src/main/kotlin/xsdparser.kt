@@ -48,10 +48,10 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
                 .filter { it.name == "enumeration" }
                 .map { it.value.value }
 
-        if (enumEntries.size() == 1 && enumEntries.single() == name) {
+        if (enumEntries.size == 1 && enumEntries.single() == name) {
             // probably ticker
             return AttributeInfo(name, AttributeType.TICKER, safeName)
-        } else if (enumEntries.size() == 2 && enumEntries.sorted() == listOf("off", "on")) {
+        } else if (enumEntries.size == 2 && enumEntries.sorted() == listOf("off", "on")) {
             return AttributeInfo(name, AttributeType.BOOLEAN, safeName, trueFalse = listOf("on", "off"))
         } else if (enumEntries.isEmpty()) {
             return AttributeInfo(name, AttributeType.STRING, safeName)

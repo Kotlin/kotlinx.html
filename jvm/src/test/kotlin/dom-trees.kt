@@ -33,14 +33,15 @@ class TestDOMTrees {
         }
 
         assertEquals("<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>", tree.serialize(false))
-        assertEquals("<!DOCTYPE html>\n" +
-                "<html>\n" +
-                "  <body>\n" +
-                "    <h1>header</h1>\n" +
-                "    <div>content<span>yo</span>\n" +
-                "    </div>\n" +
-                "  </body>\n" +
-                "</html>", tree.serialize(true).trim().replace("\r\n", "\n"))
+        assertEquals("""
+                <!DOCTYPE html>
+                <html>
+                  <body>
+                    <h1>header</h1>
+                    <div>content<span>yo</span>
+                    </div>
+                  </body>
+                </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n"))
     }
 
     @test fun `vals create and append support`() {

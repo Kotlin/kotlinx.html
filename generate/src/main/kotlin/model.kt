@@ -12,7 +12,7 @@ object Repository {
             if (typeComparison != 0) typeComparison
             else a.enumTypeName.compareTo(b.enumTypeName).let { enumTypeComparison ->
                 if (enumTypeComparison != 0) enumTypeComparison
-                else a.options.size().compareTo(b.options.size()).let { sizeComparison ->
+                else a.options.size.compareTo(b.options.size).let { sizeComparison ->
                     if (sizeComparison != 0) sizeComparison
                     else if (a.options.isEmpty()) 0
                     else a.options.indices.map { a.options[it].asValue.compareTo(b.options[it].asValue) }.firstOrNull() { it != 0 } ?: 0

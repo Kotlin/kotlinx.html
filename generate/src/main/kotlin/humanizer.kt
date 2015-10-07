@@ -44,7 +44,7 @@ private fun Matcher.findAll() : List<MatchResult> = ArrayList<MatchResult>().let
     results
 }
 
-private fun <T> List<T>.safeSubList(from : Int) : List<T> = if (from >= size()) emptyList() else subList(from, size())
+private fun <T> List<T>.safeSubList(from : Int) : List<T> = if (from >= size) emptyList() else subList(from, size)
 
 private fun String.makeCamelCaseByDictionary() : String {
     var current = StringBuilder(this)

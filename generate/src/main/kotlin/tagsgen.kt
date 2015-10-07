@@ -1,8 +1,6 @@
 package kotlinx.html.generate
 
-import kotlinx.html.generate.humanize.humanize
-import java.util.ArrayList
-import java.util.LinkedList
+import java.util.*
 
 fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) : O = with {
     val parentAttributeTraits = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
@@ -43,7 +41,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
         htmlTagBuilders(tag.safeName.toUpperCase(), children)
     }
 
-    if (parentElementTraits.size() > 1) {
+    if (parentElementTraits.size > 1) {
         val commons = tag.tagGroupNames.map {Repository.tagGroups[it]?.tags?.toSet()}.filterNotNull().reduce { a, b -> a.intersect(b) }
         if (commons.isNotEmpty()) {
             parentElementTraits.forEach { group ->
