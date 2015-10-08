@@ -103,7 +103,7 @@ class DomTreeImplTest {
             }
         }
 
-        assertEquals(2, nodes.size())
+        assertEquals(2, nodes.size)
         nodes.forEach {
             assertTrue(it in wrapper.children.asList())
         }
@@ -203,5 +203,5 @@ class DomTreeImplTest {
 
     private fun wrapper() = document.body!!.append.div {}
     private fun <T> uninitialized(): T = null as T
-    private fun String.trimLines() = trimIndent().lines().filter { it.isNotBlank() }.join("")
+    private fun String.trimLines() = trimIndent().lines().filter { it.isNotBlank() }.joinToString("")
 }

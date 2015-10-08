@@ -96,7 +96,7 @@ open class OPTION(initialAttributes : Map<String, String>, override val consumer
 
 }
 
-open class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("output", consumer, initialAttributes), CommonAttributeGroupFacade, PhrasingContent {
+open class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("output", consumer, initialAttributes), CommonAttributeGroupFacadePhrasingContent {
     var for_ : String
         get()  = attributeStringString.get(this, "for")
         set(newValue) {attributeStringString.set(this, "for", newValue)}

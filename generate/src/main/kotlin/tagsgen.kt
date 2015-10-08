@@ -5,6 +5,7 @@ import java.util.*
 fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) : O = with {
     val parentAttributeTraits = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
     val parentElementTraits = tag.tagGroupNames.map {it.escapeUnsafeValues().capitalize()}
+    val allParentTraits = parentAttributeTraits + parentElementTraits
 
     val namespaceArg = tagNamespaces[tag.name.toLowerCase()]?.let { listOf(it.quote()) } ?: emptyList<String>()
 
@@ -22,7 +23,10 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
                                 "initialAttributes"
                         ) + namespaceArg)
                     }.toString()
-            ) + parentAttributeTraits + parentElementTraits,
+            ) + when {
+                allParentTraits.isNotEmpty() -> listOf(allParentTraits.joinToString(""))
+                else -> emptyList<String>()
+            },
             isOpen = true
     )) {
         val lowerCasedNames = tag.attributes.map {it.name.toLowerCase()}.toSet()

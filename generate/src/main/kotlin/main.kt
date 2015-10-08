@@ -297,4 +297,6 @@ fun main(args: Array<String>) {
             }
         }
     }
+
+    generateParentTraits(todir, packg)
 }
