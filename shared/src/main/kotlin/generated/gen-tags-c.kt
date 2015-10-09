@@ -21,15 +21,15 @@ open class CANVAS(initialAttributes : Map<String, String>, override val consumer
 
 }
 
-open class CAPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("caption", consumer, initialAttributes), AbstractFlowContent {
+open class CAPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("caption", consumer, initialAttributes), HtmlBlockTag {
 
 }
 
-open class CITE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("cite", consumer, initialAttributes), AbstractPhrasingContent {
+open class CITE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("cite", consumer, initialAttributes), HtmlInlineTag {
 
 }
 
-open class CODE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("code", consumer, initialAttributes), AbstractPhrasingContent {
+open class CODE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("code", consumer, initialAttributes), HtmlInlineTag {
 
 }
 

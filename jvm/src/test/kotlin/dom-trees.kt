@@ -139,4 +139,39 @@ class TestDOMTrees {
         assertEquals("<!DOCTYPE html>\n<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>",
                 d.serialize(false).trim().replace("\r\n", "\n"))
     }
+
+    @test fun `generalize tests`() {
+        fun <T> T.genericFlow() where T: HtmlBlockTag {
+            classes += "aha"
+                div {
+                }
+            }
+
+        fun <T> T.genericPhrasing() where T: HtmlInlineTag {
+            classes += "aha"
+            span {  }
+        }
+
+        fun <T> T.genericMetaData() where T: HtmlHeadTag {
+            classes += "aha"
+            meta("a")
+            script(ScriptType.textJavaScript) {  }
+        }
+
+        document {
+            append.html {
+                head {
+                    genericMetaData()
+                }
+                body {
+                    div {
+                        genericFlow()
+                        p {
+                            genericPhrasing()
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -35,7 +35,7 @@ open class TBODY(initialAttributes : Map<String, String>, override val consumer 
 fun TBODY.tr(classes : String? = null, block : TR.() -> Unit = {}) : Unit = TR(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
 
-open class TD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("td", consumer, initialAttributes), AbstractFlowContent {
+open class TD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("td", consumer, initialAttributes), HtmlBlockTag {
     var headers : String
         get()  = attributeStringString.get(this, "headers")
         set(newValue) {attributeStringString.set(this, "headers", newValue)}
@@ -105,7 +105,7 @@ open class TFOOT(initialAttributes : Map<String, String>, override val consumer 
 fun TFOOT.tr(classes : String? = null, block : TR.() -> Unit = {}) : Unit = TR(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
 
-open class TH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("th", consumer, initialAttributes), AbstractPhrasingContent {
+open class TH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("th", consumer, initialAttributes), HtmlInlineTag {
     var headers : String
         get()  = attributeStringString.get(this, "headers")
         set(newValue) {attributeStringString.set(this, "headers", newValue)}
@@ -131,7 +131,7 @@ open class THEAD(initialAttributes : Map<String, String>, override val consumer 
 fun THEAD.tr(classes : String? = null, block : TR.() -> Unit = {}) : Unit = TR(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
 
-open class TIME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("time", consumer, initialAttributes), AbstractPhrasingContent {
+open class TIME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("time", consumer, initialAttributes), HtmlInlineTag {
     var dateTime : String
         get()  = attributeStringString.get(this, "datetime")
         set(newValue) {attributeStringString.set(this, "datetime", newValue)}

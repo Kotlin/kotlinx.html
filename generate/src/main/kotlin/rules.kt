@@ -33,10 +33,10 @@ val tagNamespaces = mapOf(
 )
 
 val renames = mapOf(
-        "CommonAttributeGroupFacadePhrasingContent" to "AbstractPhrasingContent",
-        "CommonAttributeGroupFacadeFlowContent" to "AbstractFlowContent",
-        "CommonAttributeGroupFacadeMetaDataContent" to "AbstractMetaDataContent",
-        "CommonAttributeGroupFacadeFlowContentPhrasingContent" to "AbstractFlowAndPhrasingContent"
+        "CommonAttributeGroupFacadePhrasingContent" to "HtmlInlineTag",
+        "CommonAttributeGroupFacadeFlowContent" to "HtmlBlockTag",
+        "CommonAttributeGroupFacadeMetaDataContent" to "HtmlHeadTag",
+        "CommonAttributeGroupFacadeFlowContentPhrasingContent" to "HtmlBlockInlineTag"
 )
 
 val globalSuggestedAttributeNames = setOf("class")
