@@ -32,6 +32,13 @@ val tagNamespaces = mapOf(
         "svg" to "http://www.w3.org/2000/svg"
 )
 
+val renames = mapOf(
+        "CommonAttributeGroupFacadePhrasingContent" to "AbstractPhrasingContent",
+        "CommonAttributeGroupFacadeFlowContent" to "AbstractFlowContent",
+        "CommonAttributeGroupFacadeMetaDataContent" to "AbstractMetaDataContent",
+        "CommonAttributeGroupFacadeFlowContentPhrasingContent" to "AbstractFlowAndPhrasingContent"
+)
+
 val globalSuggestedAttributeNames = setOf("class")
 
 val specialTypes = listOf(

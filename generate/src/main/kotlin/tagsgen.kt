@@ -24,7 +24,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
                         ) + namespaceArg)
                     }.toString()
             ) + when {
-                allParentTraits.isNotEmpty() -> listOf(allParentTraits.joinToString(""))
+                allParentTraits.isNotEmpty() -> listOf(allParentTraits.joinToString("")).map { renames[it] ?: it }
                 else -> emptyList<String>()
             },
             isOpen = true

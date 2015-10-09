@@ -46,11 +46,13 @@ fun generateParentTraits(todir: String, packg: String) {
                     allIntroduced.map { it.sorted() }.filter { other -> other != iface && other.all { it in iface } } +
                     allParentTraits.map { it.sorted() }.filter { other -> other != iface && other.all { it in iface } }
 
-                println(subs)
+                val computedParents =
+                        (iface - subs.flatMap { it } + subs.map { it.sorted().joinToString("") } - ifaceName)
+                            .distinct()
+                            .map { renames[it] ?: it }
+                            .sorted()
 
-                val parents = iface - subs.flatMap { it } + subs.map { it.sorted().joinToString("") } - ifaceName
-
-                clazz(Clazz(name = ifaceName, parents = parents.distinct().sorted(), isTrait = true)) {
+                clazz(Clazz(name = renames[ifaceName] ?: ifaceName, parents = computedParents, isTrait = true)) {
                 }
                 emptyLine()
             }
