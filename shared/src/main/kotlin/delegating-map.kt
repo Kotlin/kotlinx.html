@@ -8,7 +8,9 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
 
     override val size: Int
         get() = backing.size
-    override fun isEmpty(): Boolean = backing.isEmpty()
+    override val isEmpty: Boolean 
+        get() = backing.isEmpty
+
     override fun containsKey(key: Any?): Boolean = backing.containsKey(key)
     override fun containsValue(value: Any?): Boolean = backing.containsValue(value)
     override fun get(key: Any?): String? = backing[key]
@@ -33,7 +35,7 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
 
     override fun putAll(m: Map<out String, String>) {
         m.entrySet().forEach { e ->
-            put(e.getKey(), e.getValue())
+            put(e.key, e.value)
         }
 
 //        m.forEach { e ->
@@ -42,7 +44,7 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
     }
 
     override fun clear() {
-        backing.forEach { consumer().onTagAttributeChange(tag, it.getKey(), null) }
+        backing.forEach { consumer().onTagAttributeChange(tag, it.key, null) }
         backing.clear()
     }
 

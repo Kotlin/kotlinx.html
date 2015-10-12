@@ -32,7 +32,7 @@ fun <O : Appendable> O.enumObject(attribute : AttributeInfo) {
         emptyLine()
         append("    ")
 //        append("private ")
-        variable(Var("values", "List<String>", defaultValue = attribute.enumValues.map {"\"${it.fieldName}\""}.join(", ", "listOf(", ")")))
+        variable(Var("values", "List<String>", defaultValue = attribute.enumValues.map {"\"${it.fieldName}\""}.joinToString(", ", "listOf(", ")")))
         emptyLine()
     }
 
@@ -59,6 +59,6 @@ fun <O : Appendable> O.enum(attribute : AttributeInfo) {
 
     emptyLine()
     append("internal ")
-    variable(Var(name.decapitalize() + "Values", "Map<String, $name>", false, defaultValue = "$name.values().toMap { it.realValue }"))
+    variable(Var(name.decapitalize() + "Values", "Map<String, $name>", false, defaultValue = "$name.values().toMapBy { it.realValue }"))
     emptyLine()
 }

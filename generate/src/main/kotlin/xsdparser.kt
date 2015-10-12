@@ -40,7 +40,8 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
                 .map { it.value.value }
 
         return AttributeInfo(name, AttributeType.STRING, safeName, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
-    } else if (type.isPrimitive || type.name in setOf("integer", "string", "boolean", "decimal")) {
+    } else if (type.isPrimitive || type.name in setOf<String?>("integer", "string", "boolean", "decimal")) {
+        setOf("a").contains(null)
         return AttributeInfo(name, xsdToType[type.primitiveType.name] ?: AttributeType.STRING, safeName)
     } else if (type.isRestriction) {
         val restriction = type.asRestriction()
@@ -53,7 +54,7 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
             return AttributeInfo(name, AttributeType.TICKER, safeName)
         } else if (enumEntries.size == 2 && enumEntries.sorted() == listOf("off", "on")) {
             return AttributeInfo(name, AttributeType.BOOLEAN, safeName, trueFalse = listOf("on", "off"))
-        } else if (enumEntries.isEmpty()) {
+        } else if (enumEntries.isEmpty) {
             return AttributeInfo(name, AttributeType.STRING, safeName)
         } else {
             return AttributeInfo(name, AttributeType.ENUM, safeName, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
@@ -88,7 +89,7 @@ fun fillRepository() {
         val facadeAttributes = attributeGroup.attributeUses.map { attributeUse ->
             val attributeDeclaration = attributeUse.decl
             if (attributeUse.isRequired) {
-                requiredNames add attributeDeclaration.name
+                requiredNames.add(attributeDeclaration.name)
             }
 
             handleAttributeDeclaration("", attributeDeclaration).handleSpecialType()
@@ -133,7 +134,7 @@ fun fillRepository() {
 
             val attributes = complex.declaredAttributeUses.map {
                 if (it.isRequired) {
-                    suggestedNames add it.decl.name
+                    suggestedNames.add(it.decl.name)
                 }
 
                 handleAttributeDeclaration(name.humanize(), it.decl).handleSpecialType(name)

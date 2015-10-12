@@ -25,7 +25,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
         }
 
         tag.attributes.forEach {
-            element.setAttribute(it.getKey(), it.getValue())
+            element.setAttribute(it.key, it.value)
         }
 
         if (path.isNotEmpty()) {
@@ -37,7 +37,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
 
     override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
         when {
-            path.isEmpty() -> throw IllegalStateException("No current tag")
+            path.isEmpty -> throw IllegalStateException("No current tag")
             path.last().tagName.toLowerCase() != tag.tagName.toLowerCase() -> throw IllegalStateException("Wrong current tag")
             else -> path.last().let { node ->
                 if (value == null) {
@@ -51,22 +51,22 @@ class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
 
     override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {
         when {
-            path.isEmpty() -> throw IllegalStateException("No current tag")
+            path.isEmpty -> throw IllegalStateException("No current tag")
             path.last().tagName.toLowerCase() != tag.tagName.toLowerCase() -> throw IllegalStateException("Wrong current tag")
             else -> path.last().setEvent(event, value)
         }
     }
 
     override fun onTagEnd(tag: Tag) {
-        if (path.isEmpty() || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
+        if (path.isEmpty || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
             throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
 
-        lastLeaved = path.remove(path.lastIndex)
+        lastLeaved = path.removeAt(path.lastIndex)
     }
 
     override fun onTagContent(content: CharSequence) {
-        if (path.isEmpty()) {
+        if (path.isEmpty) {
             throw IllegalStateException("No current DOM node")
         }
 
@@ -74,7 +74,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
     }
 
     override fun onTagContentEntity(entity: Entities) {
-        if (path.isEmpty()) {
+        if (path.isEmpty) {
             throw IllegalStateException("No current DOM node")
         }
 

@@ -23,7 +23,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
         }
 
         tag.attributes.forEach {
-            element.setAttribute(it.getKey(), it.getValue())
+            element.setAttribute(it.key, it.value)
         }
 
         if (path.isNotEmpty()) {
@@ -34,7 +34,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
-        if (path.isEmpty()) {
+        if (path.isEmpty) {
             throw IllegalStateException("No current tag")
         }
 
@@ -52,17 +52,17 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun onTagEnd(tag: Tag) {
-        if (path.isEmpty() || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
+        if (path.isEmpty || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
             throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
 
-        val element = path.remove(path.lastIndex)
+        val element = path.removeAt(path.lastIndex)
         element.setIdAttributeName()
         lastLeaved = element
     }
 
     override fun onTagContent(content: CharSequence) {
-        if (path.isEmpty()) {
+        if (path.isEmpty) {
             throw IllegalStateException("No current DOM node")
         }
 
@@ -70,7 +70,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun onTagContentEntity(entity: Entities) {
-        if (path.isEmpty()) {
+        if (path.isEmpty) {
             throw IllegalStateException("No current DOM node")
         }
 

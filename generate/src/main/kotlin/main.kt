@@ -60,12 +60,12 @@ fun main(args: Array<String>) {
                 append("    ")
                 variable(Var("attributes", "DelegatingMap", false, true))
                 defineIs(StringBuilder {
-                    functionCall("DelegatingMap", listOf("initialAttributes", "this")) blockShort { append("consumer") }
+                    functionCall("DelegatingMap", listOf("initialAttributes", "this")).blockShort { append("consumer") }
                 })
                 emptyLine()
 
                 indent()
-                function(receiver = "Entities", name = "plus", modifiers = listOf("operator")) block {
+                function(receiver = "Entities", name = "plus", modifiers = listOf("operator")).block {
                     indent(2)
                     receiverDot("consumer")
                     functionCall("onTagContentEntity", listOf("this"))
@@ -75,7 +75,7 @@ fun main(args: Array<String>) {
                 }
 
                 indent()
-                function(receiver = "String", name = "plus", modifiers = listOf("operator")) block {
+                function(receiver = "String", name = "plus", modifiers = listOf("operator")).block {
                     indent(2)
                     receiverDot("consumer")
                     functionCall("onTagContent", listOf("this"))
@@ -88,7 +88,7 @@ fun main(args: Array<String>) {
     }
 
     Repository.tags.values().groupBy { it.name[0] }.entrySet().forEach { e ->
-        FileOutputStream("$todir/gen-tags-${e.getKey()}.kt").writer("UTF-8").use {
+        FileOutputStream("$todir/gen-tags-${e.key}.kt").writer("UTF-8").use {
             it.with {
                 packg(packg)
                 emptyLine()
@@ -101,7 +101,7 @@ fun main(args: Array<String>) {
                 emptyLine()
                 emptyLine()
 
-                e.getValue().forEach {
+                e.value.forEach {
                     tagClass(it, emptySet())
                 }
             }
@@ -122,7 +122,7 @@ fun main(args: Array<String>) {
             emptyLine()
 
             Repository.tags.values().forEach {
-                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags) {
+                if (it.possibleChildren.isEmpty && it.name.toLowerCase() !in emptyTags) {
                     consumerBuilderShared(it, false)
                 }
                 consumerBuilderShared(it, true)
@@ -146,7 +146,7 @@ fun main(args: Array<String>) {
             emptyLine()
 
             Repository.tags.values().forEach {
-                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && it.name.toLowerCase() !in shouldHaveNoContent) {
+                if (it.possibleChildren.isEmpty && it.name.toLowerCase() !in emptyTags && it.name.toLowerCase() !in shouldHaveNoContent) {
                     consumerBuilderJS(it, false)
                 }
                 consumerBuilderJS(it, true)

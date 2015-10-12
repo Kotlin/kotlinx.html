@@ -125,6 +125,7 @@
                 <executions>
                     <execution>
                         <id>install node and npm</id>
+                        <phase>generate-test-resources</phase>
                         <goals>
                             <goal>install-node-and-npm</goal>
                         </goals>
@@ -135,6 +136,7 @@
 
                     <execution>
                         <id>npm install</id>
+                        <phase>generate-test-resources</phase>
                         <goals>
                             <goal>npm</goal>
                         </goals>

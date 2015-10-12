@@ -30,13 +30,13 @@ class InjectorConsumer<T: Any>(val downstream : TagConsumer<HTMLElement>, val be
             .filter { it.first is InjectByClassName }
             .map { it.first as InjectByClassName to it.second }
             .groupBy { it.first.className }
-            .mapValues { it.getValue().map {it.second} }
+            .mapValues { it.value.map {it.second} }
 
     private val tagNamesMap = rules
             .filter { it.first is InjectByTagName }
             .map { it.first as InjectByTagName to it.second }
             .groupBy { it.first.tagName.toLowerCase() }
-            .mapValues { it.getValue().map {it.second} }
+            .mapValues { it.value.map {it.second} }
 
     private val rootCaptures = rules.filter { it.first == InjectRoot }.map { it.second }
     private val customCaptures = rules.filter {it.first is CustomCapture}.map {it.first as CustomCapture to it.second}

@@ -26,7 +26,7 @@ val globalSuggestedAttributes = listOf(
         "style" to "-class",
         "meta" to "-class",
         "title" to "-class"
-).groupBy { it.first }.mapValues { it.getValue().map { it.second } }
+).groupBy { it.first }.mapValues { it.value.map { it.second } }
 
 val tagNamespaces = mapOf(
         "svg" to "http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@ val globalSuggestedAttributeNames = setOf("class")
 
 val specialTypes = listOf(
         "*.class" to AttributeType.STRING_SET
-).groupBy { it.first }.mapValues { it.getValue().single().second }
+).groupBy { it.first }.mapValues { it.value.single().second }
 
 fun specialTypeFor(tagName: String, attributeName: String): AttributeType? =
         specialTypes[tagName + "." + attributeName] ?: specialTypes["*." + attributeName]

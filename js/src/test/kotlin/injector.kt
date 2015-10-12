@@ -1,22 +1,14 @@
 package kotlinx.html.tests
 
-import kotlinx.html.div
-import kotlinx.html.dom.create
-import kotlinx.html.injector.InjectByClassName
-import kotlinx.html.injector.InjectByTagName
-import kotlinx.html.injector.inject
-import kotlinx.html.injector.injectTo
-import kotlinx.html.js.div
-import kotlinx.html.p
+import kotlinx.html.*
+import kotlinx.html.dom.*
+import kotlinx.html.injector.*
+import kotlinx.html.js.*
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLParagraphElement
-import kotlin.browser.document
-import kotlin.properties.Delegates
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
-import kotlin.test.fail
+import kotlin.browser.*
+import kotlin.properties.*
+import kotlin.test.*
 import org.junit.Test as test
 
 class MyBeanWithDiv {

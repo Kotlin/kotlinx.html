@@ -12,19 +12,19 @@ enum class Dir(override val realValue : String) : AttributeEnum {
     rtl("rtl")
 }
 
-internal val dirValues : Map<String, Dir> = Dir.values().toMap { it.realValue }
+internal val dirValues : Map<String, Dir> = Dir.values().toMapBy { it.realValue }
 enum class Draggable(override val realValue : String) : AttributeEnum {
     true_("true"),
     false_("false"),
     auto("auto")
 }
 
-internal val draggableValues : Map<String, Draggable> = Draggable.values().toMap { it.realValue }
+internal val draggableValues : Map<String, Draggable> = Draggable.values().toMapBy { it.realValue }
 enum class RunAt(override val realValue : String) : AttributeEnum {
     server("server")
 }
 
-internal val runAtValues : Map<String, RunAt> = RunAt.values().toMap { it.realValue }
+internal val runAtValues : Map<String, RunAt> = RunAt.values().toMapBy { it.realValue }
 object ATarget {
     val blank : String = "_blank"
     val parent : String = "_parent"
@@ -76,7 +76,7 @@ enum class AreaShape(override val realValue : String) : AttributeEnum {
     default("default")
 }
 
-internal val areaShapeValues : Map<String, AreaShape> = AreaShape.values().toMap { it.realValue }
+internal val areaShapeValues : Map<String, AreaShape> = AreaShape.values().toMapBy { it.realValue }
 object AreaTarget {
     val blank : String = "_blank"
     val parent : String = "_parent"
@@ -121,7 +121,7 @@ enum class ButtonFormEncType(override val realValue : String) : AttributeEnum {
     textPlain("text/plain")
 }
 
-internal val buttonFormEncTypeValues : Map<String, ButtonFormEncType> = ButtonFormEncType.values().toMap { it.realValue }
+internal val buttonFormEncTypeValues : Map<String, ButtonFormEncType> = ButtonFormEncType.values().toMapBy { it.realValue }
 enum class ButtonFormMethod(override val realValue : String) : AttributeEnum {
     get("get"),
     post("post"),
@@ -129,7 +129,7 @@ enum class ButtonFormMethod(override val realValue : String) : AttributeEnum {
     delete("delete")
 }
 
-internal val buttonFormMethodValues : Map<String, ButtonFormMethod> = ButtonFormMethod.values().toMap { it.realValue }
+internal val buttonFormMethodValues : Map<String, ButtonFormMethod> = ButtonFormMethod.values().toMapBy { it.realValue }
 object ButtonFormTarget {
     val blank : String = "_blank"
     val parent : String = "_parent"
@@ -145,21 +145,21 @@ enum class ButtonType(override val realValue : String) : AttributeEnum {
     submit("submit")
 }
 
-internal val buttonTypeValues : Map<String, ButtonType> = ButtonType.values().toMap { it.realValue }
+internal val buttonTypeValues : Map<String, ButtonType> = ButtonType.values().toMapBy { it.realValue }
 enum class CommandType(override val realValue : String) : AttributeEnum {
     command("command"),
     checkBox("checkbox"),
     radio("radio")
 }
 
-internal val commandTypeValues : Map<String, CommandType> = CommandType.values().toMap { it.realValue }
+internal val commandTypeValues : Map<String, CommandType> = CommandType.values().toMapBy { it.realValue }
 enum class FormEncType(override val realValue : String) : AttributeEnum {
     multipartFormData("multipart/form-data"),
     applicationXWwwFormUrlEncoded("application/x-www-form-urlencoded"),
     textPlain("text/plain")
 }
 
-internal val formEncTypeValues : Map<String, FormEncType> = FormEncType.values().toMap { it.realValue }
+internal val formEncTypeValues : Map<String, FormEncType> = FormEncType.values().toMapBy { it.realValue }
 enum class FormMethod(override val realValue : String) : AttributeEnum {
     get("get"),
     post("post"),
@@ -167,7 +167,7 @@ enum class FormMethod(override val realValue : String) : AttributeEnum {
     delete("delete")
 }
 
-internal val formMethodValues : Map<String, FormMethod> = FormMethod.values().toMap { it.realValue }
+internal val formMethodValues : Map<String, FormMethod> = FormMethod.values().toMapBy { it.realValue }
 object FormTarget {
     val blank : String = "_blank"
     val parent : String = "_parent"
@@ -192,7 +192,7 @@ enum class IframeSandbox(override val realValue : String) : AttributeEnum {
     allowScripts("allow-scripts")
 }
 
-internal val iframeSandboxValues : Map<String, IframeSandbox> = IframeSandbox.values().toMap { it.realValue }
+internal val iframeSandboxValues : Map<String, IframeSandbox> = IframeSandbox.values().toMapBy { it.realValue }
 enum class InputType(override val realValue : String) : AttributeEnum {
     button("button"),
     checkBox("checkbox"),
@@ -219,14 +219,14 @@ enum class InputType(override val realValue : String) : AttributeEnum {
     week("week")
 }
 
-internal val inputTypeValues : Map<String, InputType> = InputType.values().toMap { it.realValue }
+internal val inputTypeValues : Map<String, InputType> = InputType.values().toMapBy { it.realValue }
 enum class InputFormEncType(override val realValue : String) : AttributeEnum {
     multipartFormData("multipart/form-data"),
     applicationXWwwFormUrlEncoded("application/x-www-form-urlencoded"),
     textPlain("text/plain")
 }
 
-internal val inputFormEncTypeValues : Map<String, InputFormEncType> = InputFormEncType.values().toMap { it.realValue }
+internal val inputFormEncTypeValues : Map<String, InputFormEncType> = InputFormEncType.values().toMapBy { it.realValue }
 enum class InputFormMethod(override val realValue : String) : AttributeEnum {
     get("get"),
     post("post"),
@@ -234,7 +234,7 @@ enum class InputFormMethod(override val realValue : String) : AttributeEnum {
     delete("delete")
 }
 
-internal val inputFormMethodValues : Map<String, InputFormMethod> = InputFormMethod.values().toMap { it.realValue }
+internal val inputFormMethodValues : Map<String, InputFormMethod> = InputFormMethod.values().toMapBy { it.realValue }
 object InputFormTarget {
     val blank : String = "_blank"
     val parent : String = "_parent"
@@ -248,7 +248,7 @@ enum class KeyGenKeyType(override val realValue : String) : AttributeEnum {
     rsa("rsa")
 }
 
-internal val keyGenKeyTypeValues : Map<String, KeyGenKeyType> = KeyGenKeyType.values().toMap { it.realValue }
+internal val keyGenKeyTypeValues : Map<String, KeyGenKeyType> = KeyGenKeyType.values().toMapBy { it.realValue }
 object LinkRel {
     val alternate : String = "Alternate"
     val appEndIx : String = "Appendix"
@@ -304,7 +304,7 @@ enum class MenuType(override val realValue : String) : AttributeEnum {
     list("list")
 }
 
-internal val menuTypeValues : Map<String, MenuType> = MenuType.values().toMap { it.realValue }
+internal val menuTypeValues : Map<String, MenuType> = MenuType.values().toMapBy { it.realValue }
 object MetaHttpEquiv {
     val contentLanguage : String = "content-language"
     val contentType : String = "content-type"
@@ -338,7 +338,7 @@ enum class ScriptType(override val realValue : String) : AttributeEnum {
     textVbScript("text/vbscript")
 }
 
-internal val scriptTypeValues : Map<String, ScriptType> = ScriptType.values().toMap { it.realValue }
+internal val scriptTypeValues : Map<String, ScriptType> = ScriptType.values().toMapBy { it.realValue }
 object StyleType {
     val textCss : String = "text/css"
 
@@ -364,7 +364,7 @@ enum class TextAreaWrap(override val realValue : String) : AttributeEnum {
     soft("soft")
 }
 
-internal val textAreaWrapValues : Map<String, TextAreaWrap> = TextAreaWrap.values().toMap { it.realValue }
+internal val textAreaWrapValues : Map<String, TextAreaWrap> = TextAreaWrap.values().toMapBy { it.realValue }
 enum class ThScope(override val realValue : String) : AttributeEnum {
     col("col"),
     colGroup("colgroup"),
@@ -372,4 +372,4 @@ enum class ThScope(override val realValue : String) : AttributeEnum {
     rowGroup("rowgroup")
 }
 
-internal val thScopeValues : Map<String, ThScope> = ThScope.values().toMap { it.realValue }
+internal val thScopeValues : Map<String, ThScope> = ThScope.values().toMapBy { it.realValue }

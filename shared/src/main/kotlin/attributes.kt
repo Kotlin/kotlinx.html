@@ -1,7 +1,6 @@
 package kotlinx.html.attributes
 
 import kotlinx.html.*
-import kotlin.properties.ReadWriteProperty
 
 interface AttributeEncoder<T> {
     fun encode(attributeName: String, value : T) : String
@@ -69,9 +68,9 @@ fun AttributeEnum.enumEncode() : String = realValue
 class EnumAttribute<T : AttributeEnum>(val values : Map<String, T>) : Attribute<T>(EnumEncoder(values))
 
 fun stringSetDecode(value: String?): Set<String>? = value?.split("\\s+".toRegex())?.filterNot {it.isEmpty()}?.toSet()
-fun Set<String>.stringSetEncode() = join(" ")
+fun Set<String>.stringSetEncode() = joinToString(" ")
 object StringSetEncoder : AttributeEncoder<Set<String>> {
-    override fun encode(attributeName: String, value: Set<String>): String = value.join(" ")
+    override fun encode(attributeName: String, value: Set<String>): String = value.joinToString(" ")
     override fun decode(attributeName: String, value: String): Set<String> = stringSetDecode(value)!!
     override fun empty(attributeName: String, tag: Tag) = emptySet<String>()
 }

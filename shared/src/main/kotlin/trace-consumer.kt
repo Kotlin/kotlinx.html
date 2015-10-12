@@ -6,27 +6,27 @@ import java.util.ArrayList
 import java.util.Date
 
 class TraceConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<R> by downstream {
-    private val id = "ID-${Date().getTime() mod 16384}"
+    private val id = "ID-${Date().getTime() % 16384}"
     private val path = ArrayList<String>(1024)
 
     override fun onTagStart(tag: Tag) {
         downstream.onTagStart(tag)
         path.add(tag.tagName)
 
-        println("[$id]  open ${tag.tagName} path: ${path.join(" > ")}")
+        println("[$id]  open ${tag.tagName} path: ${path.joinToString(" > ")}")
     }
 
     override fun onTagEnd(tag: Tag) {
         downstream.onTagEnd(tag)
-        path.remove(path.lastIndex)
+        path.removeAt(path.lastIndex)
 
-        println("[$id] close ${tag.tagName} path: ${path.join(" > ")}")
+        println("[$id] close ${tag.tagName} path: ${path.joinToString(" > ")}")
     }
 
     override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
         downstream.onTagAttributeChange(tag, attribute, value)
 
-        println("[$id]     ${tag.tagName}.${attribute} changed to ${value}")
+        println("[$id]     ${tag.tagName}.$attribute changed to $value")
     }
 
     override fun finalize(): R {

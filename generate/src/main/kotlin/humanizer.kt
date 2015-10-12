@@ -29,7 +29,7 @@ private fun String.replaceHyphensToCamelCase() : String =
                     if (i == 0) s
                     else s.capitalize()
                 }
-                .join("")
+                .joinToString("")
 
 private fun StringBuilder.capitalizeAt(index : Int) {
     val ch = this[index]
