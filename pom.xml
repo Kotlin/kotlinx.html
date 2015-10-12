@@ -5,7 +5,7 @@
     <groupId>org.jetbrains.kotlinx</groupId>
     <artifactId>kotlinx.html</artifactId>
     <packaging>pom</packaging>
-    <version>0.4.34-SNAPSHOT</version>
+    <version>0.4.34</version>
     <modules>
         <module>shared</module>
         <module>jvm</module>
@@ -18,7 +18,7 @@
     <scm>
         <connection>scm:git:git@github.com:Kotlin/kotlinx.html.git</connection>
         <url>https://github.com/Kotlin/kotlinx.html</url>
-        <tag>HEAD</tag>
+        <tag>kotlinx.html-0.4.34</tag>
     </scm>
 
     <developers>
