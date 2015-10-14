@@ -31,62 +31,6 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("$todir/gen-htmltag.kt").writer().use {
-        it.with {
-            packg(packg)
-            emptyLine()
-            import("kotlinx.html.*")
-            import("kotlinx.html.impl.*")
-            emptyLine()
-
-            warning()
-            emptyLine()
-            emptyLine()
-
-            val baseTagClass = Clazz(
-                    name = "HTMLTag",
-                    variables = listOf(
-                            Var("tagName", "String", override = true),
-                            Var("consumer", "TagConsumer<*>", override = true),
-                            Var("initialAttributes", "Map<String, String>"),
-                            Var("namespace", "String?", override = true, defaultValue = "null")
-                    ),
-                    parents = listOf("Tag"),
-                    isOpen = true
-            )
-
-            clazz(baseTagClass) {
-                emptyLine()
-                append("    ")
-                variable(Var("attributes", "DelegatingMap", false, true))
-                defineIs(StringBuilder {
-                    functionCall("DelegatingMap", listOf("initialAttributes", "this")).blockShort { append("consumer") }
-                })
-                emptyLine()
-
-                indent()
-                function(receiver = "Entities", name = "plus", modifiers = listOf("operator")).block {
-                    indent(2)
-                    receiverDot("consumer")
-                    functionCall("onTagContentEntity", listOf("this"))
-
-                    emptyLine()
-                    indent()
-                }
-
-                indent()
-                function(receiver = "String", name = "plus", modifiers = listOf("operator")).block {
-                    indent(2)
-                    receiverDot("consumer")
-                    functionCall("onTagContent", listOf("this"))
-
-                    emptyLine()
-                    indent()
-                }
-            }
-        }
-    }
-
     Repository.tags.values().groupBy { it.name[0] }.entrySet().forEach { e ->
         FileOutputStream("$todir/gen-tags-${e.key}.kt").writer("UTF-8").use {
             it.with {

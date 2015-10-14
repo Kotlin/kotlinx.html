@@ -19,6 +19,13 @@ interface Tag {
     val namespace: String?
 
     val attributes: MutableMap<String, String>
+
+    operator fun Entities.plus() : Unit {
+        consumer.onTagContentEntity(this)
+    }
+    operator fun String.plus() : Unit {
+        consumer.onTagContent(this)
+    }
 }
 
 interface Unsafe {

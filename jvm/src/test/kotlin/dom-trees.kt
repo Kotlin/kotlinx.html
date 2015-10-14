@@ -115,7 +115,7 @@ class TestDOMTrees {
 
     @test fun `should compile wiki example`() {
         println(document {
-            append.filter { if (it.tagName == "div") SKIP else PASS  }.html {
+            append.filter { if (it.tagName == "div") SKIP else PASS }.html {
                 body {
                     div {
                         a { +"link1" }
@@ -141,21 +141,27 @@ class TestDOMTrees {
     }
 
     @test fun `generalize tests`() {
-        fun <T> T.genericFlow() where T: HtmlBlockTag {
+        fun <T> T.genericFlow() where T : HtmlBlockTag {
             classes += "aha"
-                div {
-                }
+            +"content"
+            +Entities.nbsp
+            div {
             }
-
-        fun <T> T.genericPhrasing() where T: HtmlInlineTag {
-            classes += "aha"
-            span {  }
         }
 
-        fun <T> T.genericMetaData() where T: HtmlHeadTag {
+        fun <T> T.genericPhrasing() where T : HtmlInlineTag {
             classes += "aha"
+            +"content"
+            +Entities.nbsp
+            span { }
+        }
+
+        fun <T> T.genericMetaData() where T : HtmlHeadTag {
+            classes += "aha"
+            +"content"
+            +Entities.nbsp
             meta("a")
-            script(ScriptType.textJavaScript) {  }
+            script(ScriptType.textJavaScript) { }
         }
 
         document {
