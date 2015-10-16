@@ -34,7 +34,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
-        if (path.isEmpty) {
+        if (path.isEmpty()) {
             throw IllegalStateException("No current tag")
         }
 
@@ -52,7 +52,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun onTagEnd(tag: Tag) {
-        if (path.isEmpty || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
+        if (path.isEmpty() || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
             throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
 
@@ -62,7 +62,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun onTagContent(content: CharSequence) {
-        if (path.isEmpty) {
+        if (path.isEmpty()) {
             throw IllegalStateException("No current DOM node")
         }
 
@@ -70,11 +70,11 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun onTagContentEntity(entity: Entities) {
-        if (path.isEmpty) {
+        if (path.isEmpty()) {
             throw IllegalStateException("No current DOM node")
         }
 
-        path.last().appendChild(document.createEntityReference(entity.name()))
+        path.last().appendChild(document.createEntityReference(entity.name))
     }
 
     override fun finalize() = lastLeaved ?: throw IllegalStateException("No tags were emitted")

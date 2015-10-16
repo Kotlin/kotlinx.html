@@ -8,12 +8,12 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
 
     override val size: Int
         get() = backing.size
-    override val isEmpty: Boolean 
-        get() = backing.isEmpty
 
-    override fun containsKey(key: Any?): Boolean = backing.containsKey(key)
-    override fun containsValue(value: Any?): Boolean = backing.containsValue(value)
-    override fun get(key: Any?): String? = backing[key]
+    override fun isEmpty(): Boolean = backing.isEmpty()
+
+    override fun containsKey(key: String): Boolean = backing.containsKey(key)
+    override fun containsValue(value: String): Boolean = backing.containsValue(value)
+    override fun get(key: String): String? = backing[key]
 
     override fun put(key: String, value: String): String? {
         val old = backing.put(key, value)
@@ -24,7 +24,7 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
         return old
     }
 
-    override fun remove(key: Any?): String? =
+    override fun remove(key: String): String? =
         backing.remove(key)?.let { removed ->
             if (key is String) {
                 consumer().onTagAttributeChange(tag, key, null)
@@ -34,7 +34,7 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
         }
 
     override fun putAll(m: Map<out String, String>) {
-        m.entrySet().forEach { e ->
+        m.entries.forEach { e ->
             put(e.key, e.value)
         }
 
@@ -48,15 +48,12 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
         backing.clear()
     }
 
-    override fun keySet(): MutableSet<String> {
-        return backing.keySet()  // TODO we need to handle changes too
-    }
+    override val keys: MutableSet<String>
+        get() = backing.keys  // TODO we need to handle changes too
 
-    override fun values(): MutableCollection<String> {
-        return backing.values()   // TODO we need to handle changes too
-    }
+    override val values: MutableCollection<String>
+        get() = backing.values  // TODO we need to handle changes too
 
-    override fun entrySet(): MutableSet<MutableMap.MutableEntry<String, String>> {
-        return backing.entrySet()  // TODO we need to handle changes too
-    }
+    override val entries: MutableSet<MutableMap.MutableEntry<String, String>>
+        get() = backing.entries   // TODO we need to handle changes too
 }

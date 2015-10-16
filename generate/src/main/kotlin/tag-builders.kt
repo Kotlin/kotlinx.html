@@ -25,7 +25,7 @@ wbr""".lines().toSet()
 val shouldHaveNoContent = setOf("script")
 
 fun <O : Appendable> O.htmlTagBuilders(receiver : String, tag : TagInfo) {
-    val probablyContentOnly = tag.possibleChildren.isEmpty && tag.name.toLowerCase() !in emptyTags && tag.name.toLowerCase() !in shouldHaveNoContent
+    val probablyContentOnly = tag.possibleChildren.isEmpty() && tag.name.toLowerCase() !in emptyTags && tag.name.toLowerCase() !in shouldHaveNoContent
     htmlTagBuilderMethod(receiver, tag, true)
     if (probablyContentOnly) {
         htmlTagBuilderMethod(receiver, tag, false)

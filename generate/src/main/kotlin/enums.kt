@@ -4,7 +4,7 @@ import kotlinx.html.generate.humanize.humanize
 
 
 private fun List<AttributeEnumValue>.replaceAllIfStartsWithUnderscore() : List<AttributeEnumValue> =
-    if (all { it.fieldName.startsWith("_") && it.fieldName.length() > 1 }) map { it.copy(fieldName = it.fieldName.substring(1)) } else this
+    if (all { it.fieldName.startsWith("_") && it.fieldName.length > 1 }) map { it.copy(fieldName = it.fieldName.substring(1)) } else this
 
 val reservedNames = setOf("class", "val", "var", "object", "true", "false", "as", "is", "for")
 

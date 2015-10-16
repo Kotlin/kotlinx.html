@@ -108,11 +108,11 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
         }
 
         if (tag.attributes.isNotEmpty()) {
-            tag.attributes.entrySet().map { e ->
+            tag.attributes.entries.map { e ->
                 if (!e.key.isValidXmlAttributeName()) {
                     throw IllegalArgumentException("Tag ${tag.tagName} has invalid attribute name ${e.key}")
                 }
-                StringBuilder {
+                StringBuilder().apply {
                     append(e.key)
                     append("=\"")
                     escapeAppend(e.value)
@@ -213,7 +213,7 @@ private fun String.isValidXmlAttributeName() =
 
 private fun Appendable.escapeAppend(s : CharSequence) {
     var lastIndex = 0
-    for (idx in 0 .. s.length() - 1) {
+    for (idx in 0 .. s.length - 1) {
         val ch = s[idx]
         val escape = escapeMap[ch]
         if (escape != null) {
@@ -223,7 +223,7 @@ private fun Appendable.escapeAppend(s : CharSequence) {
         }
     }
 
-    if (lastIndex < s.length()) {
-        append(s, lastIndex, s.length())
+    if (lastIndex < s.length) {
+        append(s, lastIndex, s.length)
     }
 }

@@ -11,7 +11,7 @@ class TestStreaming {
     @test fun `we should be able to construct at least simple things`() {
         assertEquals(
                 "<html>\n  <body>\n    <h1>Test me</h1>\n  </body>\n</html>\n",
-                StringBuilder {
+                StringBuilder().apply {
                     appendHTML().html {
                         body {
                             h1 {
@@ -25,7 +25,7 @@ class TestStreaming {
     @test fun `we should be able append multiple htmls`() {
         assertEquals(
                 "<html>\n  <body>\n    <h1>Test me</h1>\n  </body>\n</html>\n<html></html>\n",
-                StringBuilder {
+                StringBuilder().apply {
                     appendHTML().html {
                         body {
                             h1 {
@@ -41,7 +41,7 @@ class TestStreaming {
 
     @test(expected = IllegalStateException::class)
     fun `we shouldn't be able to change attributes of other tag`() {
-        StringBuilder {
+        StringBuilder().apply {
             appendHTML().html {
                 body {
                     div {
@@ -243,7 +243,7 @@ class TestStreaming {
         assertTrue(rs.time > 0)
         assertTrue(rs.time < count.toLong())
 
-        val expected = StringBuilder {
+        val expected = StringBuilder().apply {
             append("<div>")
             for (i in 1..count) {
                 append("<div><p>")
@@ -287,7 +287,7 @@ class TestStreaming {
     }
 
     @test fun `pretty print should take into account inline tags`() {
-        val text = StringBuilder {
+        val text = StringBuilder().apply {
             appendHTML().div {
                 +"content"
                 span {

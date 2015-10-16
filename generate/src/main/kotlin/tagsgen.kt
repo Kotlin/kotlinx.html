@@ -184,7 +184,7 @@ private fun buildSuggestedAttributesArgument(tag: TagInfo, predefinedValues : Ma
 
         "${attribute.name.quote()} to $encoded"
     }.let { attributeArgs ->
-        if (attributeArgs.isEmpty) "emptyMap" else attributeArgs.joinToString(",", "listOf(", ").toAttributesMap()")
+        if (attributeArgs.isEmpty()) "emptyMap" else attributeArgs.joinToString(",", "listOf(", ").toAttributesMap()")
     }
 
 private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) : ArrayList<Var> {

@@ -24,14 +24,14 @@ fun main(args: Array<String>) {
             emptyLine()
             emptyLine()
 
-            Repository.attributeFacades.values().forEach {
+            Repository.attributeFacades.values.forEach {
                 facade(it)
                 emptyLine()
             }
         }
     }
 
-    Repository.tags.values().groupBy { it.name[0] }.entrySet().forEach { e ->
+    Repository.tags.values.groupBy { it.name[0] }.entries.forEach { e ->
         FileOutputStream("$todir/gen-tags-${e.key}.kt").writer("UTF-8").use {
             it.with {
                 packg(packg)
@@ -65,8 +65,8 @@ fun main(args: Array<String>) {
             emptyLine()
             emptyLine()
 
-            Repository.tags.values().forEach {
-                if (it.possibleChildren.isEmpty && it.name.toLowerCase() !in emptyTags) {
+            Repository.tags.values.forEach {
+                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags) {
                     consumerBuilderShared(it, false)
                 }
                 consumerBuilderShared(it, true)
@@ -89,8 +89,8 @@ fun main(args: Array<String>) {
             emptyLine()
             emptyLine()
 
-            Repository.tags.values().forEach {
-                if (it.possibleChildren.isEmpty && it.name.toLowerCase() !in emptyTags && it.name.toLowerCase() !in shouldHaveNoContent) {
+            Repository.tags.values.forEach {
+                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && it.name.toLowerCase() !in shouldHaveNoContent) {
                     consumerBuilderJS(it, false)
                 }
                 consumerBuilderJS(it, true)
@@ -140,13 +140,13 @@ fun main(args: Array<String>) {
                 }
             }
 
-            Repository.attributeFacades.values().forEach { facade ->
+            Repository.attributeFacades.values.forEach { facade ->
                 facade.attributes.filter { it.enumValues.isNotEmpty() }.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
                     genEnumAttribute(attribute)
                 }
             }
 
-            Repository.tags.values().forEach { tag ->
+            Repository.tags.values.forEach { tag ->
                 tag.attributes.filter { it.enumValues.isNotEmpty() }.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
                     genEnumAttribute(attribute)
                 }
@@ -185,14 +185,14 @@ fun main(args: Array<String>) {
             emptyLine()
             emptyLine()
 
-            Repository.tagGroups.values().forEach { group ->
+            Repository.tagGroups.values.forEach { group ->
                 val groupName = group.name.escapeUnsafeValues()
                 clazz(Clazz(name = groupName.capitalize(), parents = listOf("Tag"), isPublic = true, isTrait = true)) {
                 }
                 emptyLine()
             }
 
-            Repository.tagGroups.values().forEach { group ->
+            Repository.tagGroups.values.forEach { group ->
                 val receiver = group.name.escapeUnsafeValues().capitalize()
                 group.tags.map { Repository.tags[it] }.filterNotNull(). forEach {
                     htmlTagBuilders(receiver, it)
@@ -229,7 +229,7 @@ fun main(args: Array<String>) {
                 variable(Var(name = "text", type = "String"))
                 appendln()
                 getter()
-                defineIs(StringBuilder {
+                defineIs(StringBuilder().apply {
                     append("&".quote())
                     append(" + ")
                     receiverDot("this")

@@ -5,7 +5,7 @@ import java.util.*
 import kotlin.support.*
 
 fun generateParentTraits(todir: String, packg: String) {
-    val allParentTraits = Repository.tags.values().map { tag ->
+    val allParentTraits = Repository.tags.values.map { tag ->
         val parentAttributeTraits = tag.attributeGroups.map { it.name.capitalize() + "Facade" }
         val parentElementTraits = tag.tagGroupNames.map { it.escapeUnsafeValues().capitalize() }
 
@@ -22,7 +22,7 @@ fun generateParentTraits(todir: String, packg: String) {
             }
         }
 
-        if (introduced.isEmpty) {
+        if (introduced.isEmpty()) {
             break
         }
 
@@ -64,7 +64,7 @@ private class PairsIterator<T>(val source: List<T>, val skipSamePairs: Boolean) 
     private var index = 0
 
     override fun computeNext() {
-        if (source.isEmpty) {
+        if (source.isEmpty()) {
             done()
             return
         }

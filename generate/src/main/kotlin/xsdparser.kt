@@ -54,7 +54,7 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
             return AttributeInfo(name, AttributeType.TICKER, safeName)
         } else if (enumEntries.size == 2 && enumEntries.sorted() == listOf("off", "on")) {
             return AttributeInfo(name, AttributeType.BOOLEAN, safeName, trueFalse = listOf("on", "off"))
-        } else if (enumEntries.isEmpty) {
+        } else if (enumEntries.isEmpty()) {
             return AttributeInfo(name, AttributeType.STRING, safeName)
         } else {
             return AttributeInfo(name, AttributeType.ENUM, safeName, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
@@ -84,7 +84,7 @@ fun fillRepository() {
 
     @Suppress("UNCHECKED_CAST")
     val alreadyIncluded = TreeSet<String>() { a, b -> a.compareTo(b, true) }
-    schema.attGroupDecls.values().forEach { attributeGroup ->
+    schema.attGroupDecls.values.forEach { attributeGroup ->
         val requiredNames = HashSet<String>()
         val facadeAttributes = attributeGroup.attributeUses.map { attributeUse ->
             val attributeDeclaration = attributeUse.decl
@@ -106,7 +106,7 @@ fun fillRepository() {
         }
     }
 
-    schema.modelGroupDecls.values().forEach { modelGroupDeclaration ->
+    schema.modelGroupDecls.values.forEach { modelGroupDeclaration ->
         val name = modelGroupDeclaration.name
         val children = modelGroupDeclaration.modelGroup
                 .children
@@ -117,7 +117,7 @@ fun fillRepository() {
         Repository.tagGroups[name] = TagGroup(name, children)
     }
 
-    schema.elementDecls.values().forEach { elementDeclaration ->
+    schema.elementDecls.values.forEach { elementDeclaration ->
         val name = elementDeclaration.name
         val type = elementDeclaration.type
         val suggestedNames = HashSet<String>()

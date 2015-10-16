@@ -7,7 +7,7 @@ import kotlin.test.*
 class UnsafeContentTest {
     @Test
     fun testStream() {
-        val text = StringBuilder {
+        val text = StringBuilder().apply {
             appendHTML(false).html {
                 unsafe {
                     +"<p>para</p>"

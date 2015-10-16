@@ -21,7 +21,7 @@
 
             <exclusions>
                 <exclusion>
-                    <groupId>org.jetbrains.kotlinx</groupId>
+                    <groupId>org.jetbrains.kotlin</groupId>
                     <artifactId>kotlin-stdlib</artifactId>
                 </exclusion>
             </exclusions>

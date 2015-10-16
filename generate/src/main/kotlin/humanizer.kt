@@ -57,7 +57,7 @@ private fun String.makeCamelCaseByDictionary() : String {
         if (mr.start() > 0) {
             current.capitalizeAt(mr.start())
         }
-        if (!cutTail && mr.end() < length()) {
+        if (!cutTail && mr.end() < length) {
             current.capitalizeAt(mr.end())
         }
     }
@@ -65,8 +65,8 @@ private fun String.makeCamelCaseByDictionary() : String {
     var unprocessedStart = 0
     allRanges.forEachIndexed { i, mr ->
         if (mr.start() >= unprocessedStart) {
-            val startClash = allRanges.safeSubList(i + 1).asSequence().takeWhile { it.start() == mr.start() }.maxBy { it.group().length() }
-            if (startClash == null || startClash.group().length() <= mr.group().length()) {
+            val startClash = allRanges.safeSubList(i + 1).asSequence().takeWhile { it.start() == mr.start() }.maxBy { it.group().length }
+            if (startClash == null || startClash.group().length <= mr.group().length) {
                 val possibleTail = when {
                     mr.group().endsWith("ing") -> 3
                     mr.group().endsWith("es") -> 2
