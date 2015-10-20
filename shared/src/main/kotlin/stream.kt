@@ -164,7 +164,7 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
     }
 
     val UnsafeImpl = object : Unsafe {
-        override operator fun String.plus() {
+        override operator fun String.unaryPlus() {
             out.append(this)
         }
     }

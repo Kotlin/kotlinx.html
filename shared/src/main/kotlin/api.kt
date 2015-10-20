@@ -20,17 +20,17 @@ interface Tag {
 
     val attributes: MutableMap<String, String>
 
-    operator fun Entities.plus() : Unit {
+    operator fun Entities.unaryPlus() : Unit {
         consumer.onTagContentEntity(this)
     }
-    operator fun String.plus() : Unit {
+    operator fun String.unaryPlus() : Unit {
         consumer.onTagContent(this)
     }
 }
 
 interface Unsafe {
-    operator fun String.plus()
-    operator fun Entities.plus() = +text
+    operator fun String.unaryPlus()
+    operator fun Entities.unaryPlus() = +text
 }
 
 interface AttributeEnum {
@@ -58,7 +58,7 @@ val emptyMap: Map<String, String> = emptyMap()
 class DefaultUnsafe : Unsafe {
     private val sb = StringBuilder()
 
-    override fun String.plus() {
+    override fun String.unaryPlus() {
         sb.append(this)
     }
 
