@@ -122,6 +122,7 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
         }
 
         out.append(">")
+        ln = false
     }
 
     override fun onTagAttributeChange(tag : Tag, attribute: String, value: String?) {
@@ -151,10 +152,12 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
 
     override fun onTagContent(content: CharSequence) {
         out.escapeAppend(content)
+        ln = false
     }
 
     override fun onTagContentEntity(entity: Entities) {
         out.append(entity.text)
+        ln = false
     }
 
     override fun finalize(): O = out

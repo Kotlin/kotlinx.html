@@ -368,6 +368,31 @@ class TestStreaming {
 
         assertEquals("<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>", t)
     }
+
+    @test fun `pretty print`() {
+        val x = StringBuilder().appendHTML().html {
+            body {
+                article {
+                    p {
+                    }
+                    a {
+                        +"aaa"
+                    }
+                    span { }
+                }
+            }
+        }.toString()
+
+        assertEquals("""
+            <html>
+              <body>
+                <article>
+                  <p></p>
+            <a>aaa</a><span></span></article>
+              </body>
+            </html>
+            """.trimIndent(), x.trimEnd())
+    }
 }
 
 fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }
