@@ -56,7 +56,7 @@ fun generateParentTraits(todir: String, packg: String) {
                 clazz(Clazz(name = renames[ifaceName] ?: ifaceName, parents = computedParents, isTrait = true)) {
                 }
                 emptyLine()
-            }a
+            }
         }
     }
 }
