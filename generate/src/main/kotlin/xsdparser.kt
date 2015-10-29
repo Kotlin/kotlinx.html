@@ -41,7 +41,6 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
 
         return AttributeInfo(name, AttributeType.STRING, safeName, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
     } else if (type.isPrimitive || type.name in setOf<String?>("integer", "string", "boolean", "decimal")) {
-        setOf("a").contains(null)
         return AttributeInfo(name, xsdToType[type.primitiveType.name] ?: AttributeType.STRING, safeName)
     } else if (type.isRestriction) {
         val restriction = type.asRestriction()
@@ -84,7 +83,7 @@ fun fillRepository() {
 
     @Suppress("UNCHECKED_CAST")
     val alreadyIncluded = TreeSet<String>() { a, b -> a.compareTo(b, true) }
-    schema.attGroupDecls.values.forEach { attributeGroup ->
+    schema.attGroupDecls.values.sortedByDescending { it.attributeUses.size }.forEach { attributeGroup ->
         val requiredNames = HashSet<String>()
         val facadeAttributes = attributeGroup.attributeUses.map { attributeUse ->
             val attributeDeclaration = attributeUse.decl
@@ -93,8 +92,7 @@ fun fillRepository() {
             }
 
             handleAttributeDeclaration("", attributeDeclaration).handleSpecialType()
-        }
-                .filter { it.name !in alreadyIncluded }
+        }.filter { it.name !in alreadyIncluded }
                 .filter { !it.name.startsWith("On") }
                 .sortedBy { it.name }
 

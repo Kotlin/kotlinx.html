@@ -8,8 +8,9 @@ fun generateParentTraits(todir: String, packg: String) {
     val allParentTraits = Repository.tags.values.map { tag ->
         val parentAttributeTraits = tag.attributeGroups.map { it.name.capitalize() + "Facade" }
         val parentElementTraits = tag.tagGroupNames.map { it.escapeUnsafeValues().capitalize() }
+        val sum = parentAttributeTraits + parentElementTraits
 
-        parentAttributeTraits + parentElementTraits
+        sum.toSet()
     }.filter { it.isNotEmpty() }.toSet()
 
     val allIntroduced = HashSet<Set<String>>(allParentTraits.size)
@@ -40,7 +41,7 @@ fun generateParentTraits(todir: String, packg: String) {
             emptyLine()
             emptyLine()
 
-            (allIntroduced.map { it.sorted() } + allParentTraits.filter { it.size > 1 }.map { it.sorted() }).distinct().forEach { iface ->
+            (allIntroduced.map { it.sorted() } + allParentTraits.filter { it.size > 1 }.map { it.sorted() }).distinct().sortedBy { it.sorted().joinToString("").let { renames[it] ?: it } }.forEach { iface ->
                 val ifaceName = iface.sorted().joinToString("")
                 val subs =
                     allIntroduced.map { it.sorted() }.filter { other -> other != iface && other.all { it in iface } } +
@@ -55,7 +56,7 @@ fun generateParentTraits(todir: String, packg: String) {
                 clazz(Clazz(name = renames[ifaceName] ?: ifaceName, parents = computedParents, isTrait = true)) {
                 }
                 emptyLine()
-            }
+            }a
         }
     }
 }
