@@ -16,13 +16,13 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
                     Var("consumer", "TagConsumer<*>", false, true)
             ),
             parents = listOf(
-                    StringBuilder {
+                    buildString {
                         functionCall("HTMLTag", listOf(
                                 "${tag.name.quote()}",
                                 "consumer",
                                 "initialAttributes"
                         ) + namespaceArg)
-                    }.toString()
+                    }
             ) + when {
                 allParentTraits.isNotEmpty() -> listOf(allParentTraits.joinToString("")).map { renames[it] ?: it }
                 else -> emptyList<String>()
@@ -98,7 +98,7 @@ fun <O : Appendable> O.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean
 
     append("public ")
     function(tag.safeName, tagBuilderFunctionArguments(tag, blockOrContent), resultType, receiver = "TagConsumer<HTMLElement>")
-    defineIs(StringBuilder {
+    defineIs(buildString {
         functionCall(tag.nameUpper, listOf(
                 buildSuggestedAttributesArgument(tag),
                 "this"
@@ -118,7 +118,7 @@ fun <O : Appendable> O.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean
 
 fun <O : Appendable> O.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
     function(tag.safeName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
-    defineIs(StringBuilder {
+    defineIs(buildString {
         functionCall(tag.nameUpper, listOf(
                 buildSuggestedAttributesArgument(tag),
                 "this"
@@ -135,7 +135,7 @@ fun <O : Appendable> O.htmlTagBuilderMethod(receiver : String, tag : TagInfo, bl
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent)
 
     function(tag.safeName, arguments, "Unit", receiver = receiver)
-    defineIs(StringBuilder {
+    defineIs(buildString {
         functionCall(tag.nameUpper, listOf(
                 buildSuggestedAttributesArgument(tag),
                 "consumer"
@@ -153,7 +153,7 @@ fun <O : Appendable> O.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo
     enumAttribute.enumValues.forEach { enumValue ->
         indent(indent)
         function(enumValue.fieldName + tag.safeName.capitalize(), arguments, "Unit", receiver = receiver)
-        defineIs(StringBuilder {
+        defineIs(buildString {
             functionCall(tag.nameUpper, listOf(
                     buildSuggestedAttributesArgument(tag, mapOf(enumAttribute.fieldName to enumAttribute.typeName + "." + enumValue.fieldName + ".realValue")),
                     "consumer"
