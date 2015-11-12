@@ -105,32 +105,39 @@
                     <version>${kotlin.version}</version>
                 </plugin>
 
-                <!-- TODO package some apidocs to jars -->
                 <plugin>
-                    <groupId>org.jetbrains.kotlin</groupId>
-                    <artifactId>kdoc-maven-plugin</artifactId>
-                    <version>${kotlin.version}</version>
-
+                    <groupId>org.jetbrains.dokka</groupId>
+                    <artifactId>dokka-maven-plugin</artifactId>
+                    <version>0.9.1</version>
                     <executions>
                         <execution>
-                            <id>docs</id>
+                            <phase>pre-site</phase>
                             <goals>
-                                <goal>apidoc</goal>
+                                <goal>dokka</goal>
                             </goals>
-                            <!--<phase>prepare-package</phase>-->
-                            <phase>none</phase>
                         </execution>
                     </executions>
 
                     <configuration>
-                        <sources>
-                            <source>${pom.basedir}/src/main/kotlin</source>
-                        </sources>
+                        <sourceLinks>
+                            <link>
+                                <dir>${project.basedir}/src/main/kotlin</dir>
+                                <url>https://github.com/Kotlin/kotlinx.html/</url>
+                            </link>
+                        </sourceLinks>
                     </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jcenter</id>
+            <name>JCenter</name>
+            <url>https://jcenter.bintray.com/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <distributionManagement>
         <repository>
