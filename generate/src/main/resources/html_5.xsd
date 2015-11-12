@@ -1288,6 +1288,13 @@
             </xsd:attribute>
             <xsd:attribute name="accept"/>
             <xsd:attribute name="alt"/>
+            <xsd:attribute name="autofocus">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:NMTOKEN">
+                        <xsd:enumeration value="autofocus"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
             <xsd:attribute name="autocomplete">
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:NMTOKEN">
@@ -1473,6 +1480,13 @@
             </xsd:attribute>
             <xsd:attribute name="name"/>
             <xsd:attribute name="size"/>
+            <xsd:attribute name="required">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:NMTOKEN">
+                        <xsd:enumeration value="required"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
         </xsd:complexType>
     </xsd:element>
 

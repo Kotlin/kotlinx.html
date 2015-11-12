@@ -82,6 +82,10 @@ open class INPUT(initialAttributes : Map<String, String>, override val consumer 
         get()  = attributeStringString.get(this, "alt")
         set(newValue) {attributeStringString.set(this, "alt", newValue)}
 
+    var autoFocus : Boolean
+        get()  = attributeBooleanTicker.get(this, "autofocus")
+        set(newValue) {attributeBooleanTicker.set(this, "autofocus", newValue)}
+
     var autoComplete : Boolean
         get()  = attributeBooleanBooleanOnOff.get(this, "autocomplete")
         set(newValue) {attributeBooleanBooleanOnOff.set(this, "autocomplete", newValue)}

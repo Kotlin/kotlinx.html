@@ -66,6 +66,10 @@ open class SELECT(initialAttributes : Map<String, String>, override val consumer
         get()  = attributeStringString.get(this, "size")
         set(newValue) {attributeStringString.set(this, "size", newValue)}
 
+    var required : Boolean
+        get()  = attributeBooleanTicker.get(this, "required")
+        set(newValue) {attributeBooleanTicker.set(this, "required", newValue)}
+
 
 }
 fun SELECT.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
