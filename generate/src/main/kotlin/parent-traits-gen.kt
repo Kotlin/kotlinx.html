@@ -16,7 +16,7 @@ fun generateParentTraits(todir: String, packg: String) {
     val allIntroduced = HashSet<Set<String>>(allParentTraits.size)
     do {
         val introduced = HashSet<Set<String>>()
-        PairsSequence(allParentTraits.toList(), true).forEach { pair ->
+        allParentTraits.toList().allPairs().forEach { pair ->
             val intersection = pair.first.intersect(pair.second)
             if (intersection.size > 1 && intersection !in allIntroduced && intersection !in allParentTraits) {
                 introduced.add(intersection)
@@ -61,6 +61,16 @@ fun generateParentTraits(todir: String, packg: String) {
     }
 }
 
+/**
+ * Returns a sequence that consists of all possible pair of original list elements, does nothing with potential duplicates
+ * @param skipSamePairs indicates whether it should produce pairs from the same element at both first and second positions
+ */
+fun <T> List<T>.allPairs(skipSamePairs: Boolean = true): Sequence<Pair<T, T>> = PairsSequence(this, skipSamePairs)
+
+private class PairsSequence<T>(val source: List<T>, val skipSamePairs: Boolean) : Sequence<Pair<T, T>> {
+    override fun iterator(): Iterator<Pair<T, T>> = PairsIterator(source, skipSamePairs)
+}
+
 private class PairsIterator<T>(val source: List<T>, val skipSamePairs: Boolean) : AbstractIterator<Pair<T, T>>() {
     private var index = 0
 
@@ -86,8 +96,4 @@ private class PairsIterator<T>(val source: List<T>, val skipSamePairs: Boolean) 
 
         setNext(Pair(source[i1], source[i2]))
     }
-}
-
-private class PairsSequence<T>(val source: List<T>, val skipSamePairs: Boolean) : Sequence<Pair<T, T>> {
-    override fun iterator(): Iterator<Pair<T, T>> = PairsIterator(source, skipSamePairs)
 }
