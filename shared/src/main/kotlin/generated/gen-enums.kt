@@ -298,13 +298,6 @@ object LinkType {
     val values : List<String> = listOf("textAsp", "textAsa", "textCss", "textHtml", "textJavaScript", "textPlain", "textScriptLet", "textXComponent", "textXHtmlInsertion", "textXml")
 }
 
-enum class MenuType(override val realValue : String) : AttributeEnum {
-    context("context"),
-    toolbar("toolbar"),
-    list("list")
-}
-
-internal val menuTypeValues : Map<String, MenuType> = MenuType.values().toMapBy { it.realValue }
 object MetaHttpEquiv {
     val contentLanguage : String = "content-language"
     val contentType : String = "content-type"

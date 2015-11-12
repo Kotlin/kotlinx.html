@@ -176,11 +176,6 @@ fun FlowContent.mark(classes : String? = null, block : MARK.() -> Unit = {}) : U
 
 fun FlowContent.math(classes : String? = null, block : MATH.() -> Unit = {}) : Unit = MATH(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
-fun FlowContent.menu(type : MenuType? = null, classes : String? = null, block : MENU.() -> Unit = {}) : Unit = MENU(listOf("type" to type?.enumEncode(),"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-fun FlowContent.contextMenu(classes : String? = null, block : MENU.() -> Unit = {}) : Unit = MENU(listOf("type" to MenuType.context.realValue,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-fun FlowContent.toolbarMenu(classes : String? = null, block : MENU.() -> Unit = {}) : Unit = MENU(listOf("type" to MenuType.toolbar.realValue,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-fun FlowContent.listMenu(classes : String? = null, block : MENU.() -> Unit = {}) : Unit = MENU(listOf("type" to MenuType.list.realValue,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-
 fun FlowContent.meta(name : String? = null, content : String? = null, block : META.() -> Unit = {}) : Unit = META(listOf("name" to name,"content" to content).toAttributesMap(), consumer).visit(block)
 
 fun FlowContent.meter(classes : String? = null, block : METER.() -> Unit = {}) : Unit = METER(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
@@ -326,11 +321,6 @@ fun InteractiveContent.keyGen(keyType : KeyGenKeyType? = null, classes : String?
 fun InteractiveContent.rsaKeyGen(classes : String? = null, block : KEYGEN.() -> Unit = {}) : Unit = KEYGEN(listOf("keytype" to KeyGenKeyType.rsa.realValue,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
 fun InteractiveContent.label(classes : String? = null, block : LABEL.() -> Unit = {}) : Unit = LABEL(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-
-fun InteractiveContent.menu(type : MenuType? = null, classes : String? = null, block : MENU.() -> Unit = {}) : Unit = MENU(listOf("type" to type?.enumEncode(),"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-fun InteractiveContent.contextMenu(classes : String? = null, block : MENU.() -> Unit = {}) : Unit = MENU(listOf("type" to MenuType.context.realValue,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-fun InteractiveContent.toolbarMenu(classes : String? = null, block : MENU.() -> Unit = {}) : Unit = MENU(listOf("type" to MenuType.toolbar.realValue,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-fun InteractiveContent.listMenu(classes : String? = null, block : MENU.() -> Unit = {}) : Unit = MENU(listOf("type" to MenuType.list.realValue,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 
 fun InteractiveContent.object_(classes : String? = null, block : OBJECT_.() -> Unit = {}) : Unit = OBJECT_(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
 

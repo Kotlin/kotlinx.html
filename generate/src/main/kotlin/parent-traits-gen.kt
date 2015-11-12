@@ -5,7 +5,7 @@ import java.util.*
 import kotlin.support.*
 
 fun generateParentTraits(todir: String, packg: String) {
-    val allParentTraits = Repository.tags.values.map { tag ->
+    val allParentTraits = Repository.tags.values.filterIgnored().map { tag ->
         val parentAttributeTraits = tag.attributeGroups.map { it.name.capitalize() + "Facade" }
         val parentElementTraits = tag.tagGroupNames.map { it.escapeUnsafeValues().capitalize() }
         val sum = parentAttributeTraits + parentElementTraits

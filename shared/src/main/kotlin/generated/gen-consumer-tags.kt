@@ -138,8 +138,6 @@ fun <T, C : TagConsumer<T>> C.math(classes : String? = null, block : MATH.() -> 
 fun <T, C : TagConsumer<T>> C.mathml(classes : String? = null, content : String = "") : T = MATHML(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, {+content})
 fun <T, C : TagConsumer<T>> C.mathml(classes : String? = null, block : MATHML.() -> Unit = {}) : T = MATHML(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, block)
 
-fun <T, C : TagConsumer<T>> C.menu(type : MenuType? = null, classes : String? = null, block : MENU.() -> Unit = {}) : T = MENU(listOf("type" to type?.enumEncode(),"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, block)
-
 fun <T, C : TagConsumer<T>> C.meta(name : String? = null, content : String? = null, block : META.() -> Unit = {}) : T = META(listOf("name" to name,"content" to content).toAttributesMap(), this).visitAndFinalize(this, block)
 
 fun <T, C : TagConsumer<T>> C.meter(classes : String? = null, block : METER.() -> Unit = {}) : T = METER(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, block)

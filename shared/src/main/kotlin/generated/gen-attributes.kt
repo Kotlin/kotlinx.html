@@ -44,8 +44,6 @@ internal val attributeInputTypeEnumInputTypeValues : Attribute<InputType> = Enum
 
 internal val attributeKeyGenKeyTypeEnumKeyGenKeyTypeValues : Attribute<KeyGenKeyType> = EnumAttribute(keyGenKeyTypeValues)
 
-internal val attributeMenuTypeEnumMenuTypeValues : Attribute<MenuType> = EnumAttribute(menuTypeValues)
-
 internal val attributeRunAtEnumRunAtValues : Attribute<RunAt> = EnumAttribute(runAtValues)
 
 internal val attributeScriptTypeEnumScriptTypeValues : Attribute<ScriptType> = EnumAttribute(scriptTypeValues)

@@ -39,6 +39,12 @@ val renames = mapOf(
         "CommonAttributeGroupFacadeFlowContentPhrasingContent" to "HtmlBlockInlineTag"
 )
 
+val tagIgnoreList = setOf(
+    "menu", "menuitem"
+)
+
+fun Iterable<TagInfo>.filterIgnored() = filter { it.name.toLowerCase() !in tagIgnoreList }
+
 val globalSuggestedAttributeNames = setOf("class")
 
 val specialTypes = listOf(

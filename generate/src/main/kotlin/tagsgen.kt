@@ -41,7 +41,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
         emptyLine()
     }
 
-    tag.directChildren.map {Repository.tags[it]}.filterNotNull().forEach { children ->
+    tag.directChildren.map {Repository.tags[it]}.filterNotNull().filterIgnored().forEach { children ->
         htmlTagBuilders(tag.safeName.toUpperCase(), children)
     }
 

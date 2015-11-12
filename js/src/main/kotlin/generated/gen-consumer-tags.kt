@@ -139,8 +139,6 @@ public fun TagConsumer<HTMLElement>.math(classes : String? = null, block : MATH.
 public fun TagConsumer<HTMLElement>.mathml(classes : String? = null, content : String = "") : HTMLElement = MATHML(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, {+content})
 public fun TagConsumer<HTMLElement>.mathml(classes : String? = null, block : MATHML.() -> Unit = {}) : HTMLElement = MATHML(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, block)
 
-public fun TagConsumer<HTMLElement>.menu(type : MenuType? = null, classes : String? = null, block : MENU.() -> Unit = {}) : HTMLMenuElement = MENU(listOf("type" to type?.enumEncode(),"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, block) as HTMLMenuElement
-
 public fun TagConsumer<HTMLElement>.meta(name : String? = null, content : String? = null, block : META.() -> Unit = {}) : HTMLMetaElement = META(listOf("name" to name,"content" to content).toAttributesMap(), this).visitAndFinalize(this, block) as HTMLMetaElement
 
 public fun TagConsumer<HTMLElement>.meter(classes : String? = null, block : METER.() -> Unit = {}) : HTMLMeterElement = METER(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), this).visitAndFinalize(this, block) as HTMLMeterElement

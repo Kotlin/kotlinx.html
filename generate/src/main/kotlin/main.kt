@@ -31,7 +31,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    Repository.tags.values.groupBy { it.name[0] }.entries.forEach { e ->
+    Repository.tags.values.filterIgnored().groupBy { it.name[0] }.entries.forEach { e ->
         FileOutputStream("$todir/gen-tags-${e.key}.kt").writer("UTF-8").use {
             it.with {
                 packg(packg)
@@ -65,7 +65,7 @@ fun main(args: Array<String>) {
             emptyLine()
             emptyLine()
 
-            Repository.tags.values.forEach {
+            Repository.tags.values.filterIgnored().forEach {
                 if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags) {
                     consumerBuilderShared(it, false)
                 }
@@ -89,7 +89,7 @@ fun main(args: Array<String>) {
             emptyLine()
             emptyLine()
 
-            Repository.tags.values.forEach {
+            Repository.tags.values.filterIgnored().forEach {
                 if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && it.name.toLowerCase() !in shouldHaveNoContent) {
                     consumerBuilderJS(it, false)
                 }
@@ -146,7 +146,7 @@ fun main(args: Array<String>) {
                 }
             }
 
-            Repository.tags.values.forEach { tag ->
+            Repository.tags.values.filterIgnored().forEach { tag ->
                 tag.attributes.filter { it.enumValues.isNotEmpty() }.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
                     genEnumAttribute(attribute)
                 }
@@ -194,7 +194,7 @@ fun main(args: Array<String>) {
 
             Repository.tagGroups.values.forEach { group ->
                 val receiver = group.name.escapeUnsafeValues().capitalize()
-                group.tags.map { Repository.tags[it] }.filterNotNull(). forEach {
+                group.tags.map { Repository.tags[it] }.filterNotNull().filterIgnored().forEach {
                     htmlTagBuilders(receiver, it)
                 }
             }

@@ -35,20 +35,6 @@ open class MATHML(initialAttributes : Map<String, String>, override val consumer
 
 }
 
-open class MENU(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("menu", consumer, initialAttributes), HtmlBlockTag {
-    var type : MenuType
-        get()  = attributeMenuTypeEnumMenuTypeValues.get(this, "type")
-        set(newValue) {attributeMenuTypeEnumMenuTypeValues.set(this, "type", newValue)}
-
-    var label : String
-        get()  = attributeStringString.get(this, "label")
-        set(newValue) {attributeStringString.set(this, "label", newValue)}
-
-
-}
-fun MENU.li(classes : String? = null, block : LI.() -> Unit = {}) : Unit = LI(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-
-
 open class META(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meta", consumer, initialAttributes), CommonAttributeGroupFacade {
     var httpEquiv : String
         get()  = attributeStringString.get(this, "http-equiv")
