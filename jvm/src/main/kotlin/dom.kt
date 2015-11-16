@@ -10,7 +10,6 @@ import javax.xml.parsers.*
 import javax.xml.transform.*
 import javax.xml.transform.dom.*
 import javax.xml.transform.stream.*
-import kotlin.dom.*
 
 class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     private val path = arrayListOf<Element>()
@@ -109,7 +108,9 @@ private val Node.ownerDocumentExt: Document
         else -> ownerDocument ?: throw IllegalArgumentException("node has no ownerDocument")
     }
 
-public fun createHTMLDocument() : TagConsumer<Document> = createDocument().let { document -> HTMLDOMBuilder(document).onFinalizeMap { it, partial -> if (!partial) {document.appendChild(it)}; document } }
+public fun createHTMLDocument() : TagConsumer<Document> = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let {
+    document -> HTMLDOMBuilder(document).onFinalizeMap { it, partial -> if (!partial) {document.appendChild(it)}; document }
+}
 
 public inline fun document(block : Document.() -> Unit) : Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
     document.block()
