@@ -5,7 +5,7 @@ import kotlinx.html.dom.*
 import org.w3c.dom.*
 import org.w3c.dom.HTMLElement
 import kotlin.reflect.*
-imoprt kotlin.dom.asList
+import kotlin.dom.asList
 
 fun <F : Any, T : Any> F.injectTo(bean : T, field : KMutableProperty1<T, in F>) {
     field.set(bean, this)
