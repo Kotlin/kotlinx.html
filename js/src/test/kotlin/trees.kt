@@ -9,7 +9,6 @@ import kotlinx.html.js.onClickFunction
 import kotlinx.html.js.span
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
-import org.w3c.dom.asList
 import kotlin.browser.document
 import kotlin.dom.*
 import kotlin.test.assertEquals
@@ -30,7 +29,7 @@ class DomTreeImplTest {
         assertEquals("P", node.children[0]?.tagName)
 
         assertTrue(document.body!!.children.length > 0)
-        assertEquals(node, document.body!!.children.asList().last())
+        assertEquals(node, document.body!!.children!!.asList().last())
     }
 
     @test fun appendSingleNode() {
@@ -56,7 +55,7 @@ class DomTreeImplTest {
         document.create.div("a b c ") {
             a("http://kotlinlang.org") { +"official Kotlin site" }
         }
-        document.getElementsByTagName("div").asList().forEach {
+        document.getElementsByTagName("div")!!.asList().forEach {
         	if (it is HTMLElement) {
         		val clickHandler = it.onclick
         		if (clickHandler != null) {
