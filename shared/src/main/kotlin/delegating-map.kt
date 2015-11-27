@@ -33,8 +33,8 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
             removed
         }
 
-    override fun putAll(m: Map<out String, String>) {
-        m.entries.forEach { e ->
+    override fun putAll(from: Map<out String, String>) {
+        from.entries.forEach { e ->
             put(e.key, e.value)
         }
 
