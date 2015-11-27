@@ -95,6 +95,23 @@
                     <reuseForks>true</reuseForks>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.devexperts.bintray</groupId>
+                <artifactId>bintray-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <executions>
+                    <execution>
+                        <id>bintray-deploy</id>
+                        <goals>
+                            <goal>publish</goal>
+                        </goals>
+                        <configuration>
+                            <id>bintray</id>
+                            <url>https://api.bintray.com/maven/kotlin/kotlinx.html/kotlinx.html</url>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
 
         <pluginManagement>
