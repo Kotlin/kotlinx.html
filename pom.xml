@@ -170,7 +170,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                 <kotlin.version>1.0.0-beta-2422</kotlin.version>
+                 <kotlin.version>1.0.0-beta-3595</kotlin.version>
             </properties>
         </profile>
         <profile>
