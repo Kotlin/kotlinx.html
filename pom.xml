@@ -55,6 +55,11 @@
                 <artifactId>kotlin-js-library</artifactId>
                 <version>${kotlin.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-test-junit</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -170,7 +175,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                 <kotlin.version>1.0.0-beta-3595</kotlin.version>
+                 <kotlin.version>1.0.0-beta-4583</kotlin.version>
             </properties>
         </profile>
         <profile>

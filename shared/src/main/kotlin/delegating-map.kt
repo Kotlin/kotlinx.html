@@ -44,7 +44,7 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
     }
 
     override fun clear() {
-        backing.forEach { consumer().onTagAttributeChange(tag, it.key, null) }
+        backing.forEach { e -> consumer().onTagAttributeChange(tag, e.key, null) }
         backing.clear()
     }
 
