@@ -175,7 +175,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                 <kotlin.version>1.0.0-beta-4583</kotlin.version>
+                 <kotlin.version>1.0.0-beta-4584</kotlin.version>
             </properties>
         </profile>
         <profile>
