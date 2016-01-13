@@ -4,7 +4,8 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 
 class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val consumer : () -> TagConsumer<*>) : MutableMap<String, String> {
-    private val backing = linkedMapOf<String, String>().let { it.putAll(initialValues); it }
+    private var backing: Map<String, String> = initialValues
+    private var backingMutable = false
 
     override val size: Int
         get() = backing.size
@@ -16,7 +17,9 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
     override fun get(key: String): String? = backing[key]
 
     override fun put(key: String, value: String): String? {
-        val old = backing.put(key, value)
+        val mutable = switchToMutable()
+
+        val old = mutable.put(key, value)
         if (old != value) {
             consumer().onTagAttributeChange(tag, key, value)
         }
@@ -24,36 +27,44 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
         return old
     }
 
-    override fun remove(key: String): String? =
-        backing.remove(key)?.let { removed ->
+    override fun remove(key: String): String? {
+        val mutable = switchToMutable()
+
+        return mutable.remove(key)?.let { removed ->
             if (key is String) {
                 consumer().onTagAttributeChange(tag, key, null)
             }
 
             removed
         }
+    }
 
     override fun putAll(from: Map<out String, String>) {
         from.entries.forEach { e ->
             put(e.key, e.value)
         }
-
-//        m.forEach { e ->
-//            put(e.getKey(), e.getValue())
-//        }
     }
 
     override fun clear() {
         backing.forEach { e -> consumer().onTagAttributeChange(tag, e.key, null) }
-        backing.clear()
+        backing = emptyMap()
+        backingMutable = false
     }
 
+    private fun switchToMutable(): MutableMap<String, String> = if (backingMutable) {
+        backing
+    } else {
+        backingMutable = true
+        backing = backing.toLinkedMap()
+        backing
+    } as MutableMap
+
     override val keys: MutableSet<String>
-        get() = backing.keys  // TODO we need to handle changes too
+        get() = switchToMutable().keys  // TODO we need to handle changes too
 
     override val values: MutableCollection<String>
-        get() = backing.values  // TODO we need to handle changes too
+        get() = switchToMutable().values  // TODO we need to handle changes too
 
     override val entries: MutableSet<MutableMap.MutableEntry<String, String>>
-        get() = backing.entries   // TODO we need to handle changes too
+        get() = switchToMutable().entries   // TODO we need to handle changes too
 }

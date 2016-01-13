@@ -44,7 +44,7 @@ open class OBJECT_(initialAttributes : Map<String, String>, override val consume
 
 
 }
-fun OBJECT_.param(name : String? = null, value : String? = null, block : PARAM.() -> Unit = {}) : Unit = PARAM(listOf("name" to name,"value" to value).toAttributesMap(), consumer).visit(block)
+fun OBJECT_.param(name : String? = null, value : String? = null, block : PARAM.() -> Unit = {}) : Unit = PARAM(attributesMapOf("name", name,"value", value), consumer).visit(block)
 
 
 open class OL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ol", consumer, initialAttributes), CommonAttributeGroupFacade {
@@ -58,7 +58,7 @@ open class OL(initialAttributes : Map<String, String>, override val consumer : T
 
 
 }
-fun OL.li(classes : String? = null, block : LI.() -> Unit = {}) : Unit = LI(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun OL.li(classes : String? = null, block : LI.() -> Unit = {}) : Unit = LI(attributesMapOf("class", classes), consumer).visit(block)
 
 
 open class OPTGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("optgroup", consumer, initialAttributes), CommonAttributeGroupFacade {
@@ -72,8 +72,8 @@ open class OPTGROUP(initialAttributes : Map<String, String>, override val consum
 
 
 }
-fun OPTGROUP.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-fun OPTGROUP.option(classes : String? = null, content : String = "") : Unit = OPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit({+content})
+fun OPTGROUP.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
+fun OPTGROUP.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
 
 
 open class OPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("option", consumer, initialAttributes), CommonAttributeGroupFacade {

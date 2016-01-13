@@ -1,6 +1,7 @@
 package kotlinx.html
 
 import org.w3c.dom.events.*
+import java.util.*
 
 interface TagConsumer<out R> {
     fun onTagStart(tag: Tag)
@@ -49,7 +50,30 @@ fun <T: Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit
     return consumer.finalize()
 }
 
-fun Iterable<Pair<String, String?>>.toAttributesMap(): Map<String, String> = filter { it.second != null }.map { it.first to it.second!! }.toMap()
+fun attributesMapOf() = emptyMap
+fun attributesMapOf(key: String, value: String?): Map<String, String> = when (value) {
+    null -> emptyMap
+    else -> singletonMapOf(key, value)
+}
+fun attributesMapOf(vararg pairs: String?): Map<String, String> {
+    var result: LinkedHashMap<String, String>? = null
+
+    for (i in 0 .. pairs.size - 1 step 2) {
+        val k = pairs[i]
+        val v = pairs[i + 1]
+        if (k != null && v != null) {
+            if (result == null) {
+                result = LinkedHashMap(pairs.size - i)
+            }
+            result[k] = v
+        }
+    }
+
+    return result ?: emptyMap
+}
+fun singletonMapOf(key: String, value: String): Map<String, String> = HashMap<String, String>(1).apply {
+    put(key, value)
+}
 
 fun HTMLTag.unsafe(block: Unsafe.() -> Unit): Unit = consumer.onTagContentUnsafe(block)
 

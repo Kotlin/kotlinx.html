@@ -72,10 +72,10 @@ open class SELECT(initialAttributes : Map<String, String>, override val consumer
 
 
 }
-fun SELECT.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-fun SELECT.option(classes : String? = null, content : String = "") : Unit = OPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit({+content})
+fun SELECT.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
+fun SELECT.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
 
-fun SELECT.optGroup(label : String? = null, classes : String? = null, block : OPTGROUP.() -> Unit = {}) : Unit = OPTGROUP(listOf("label" to label,"class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun SELECT.optGroup(label : String? = null, classes : String? = null, block : OPTGROUP.() -> Unit = {}) : Unit = OPTGROUP(attributesMapOf("label", label,"class", classes), consumer).visit(block)
 
 
 open class SMALL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("small", consumer, initialAttributes), HtmlInlineTag {

@@ -179,12 +179,15 @@ private fun buildSuggestedAttributesArgument(tag: TagInfo, predefinedValues : Ma
             AttributeType.BOOLEAN -> "$name?.booleanEncode()"
             AttributeType.ENUM -> "$name?.enumEncode()"
             AttributeType.TICKER -> "$name?.tickerEncode(${attribute.name.quote()})"
-            AttributeType.STRING_SET -> "stringSetDecode($name)?.stringSetEncode()"
+            AttributeType.STRING_SET -> name
         }
 
-        "${attribute.name.quote()} to $encoded"
+        "${attribute.name.quote()}, $encoded"
     }.let { attributeArgs ->
-        if (attributeArgs.isEmpty()) "emptyMap" else attributeArgs.joinToString(",", "listOf(", ").toAttributesMap()")
+        when (attributeArgs.size) {
+            0 -> "emptyMap"
+            else -> attributeArgs.joinToString(",", "attributesMapOf(", ")")
+        }
     }
 
 private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) : ArrayList<Var> {

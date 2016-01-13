@@ -44,17 +44,17 @@ open class HEADER(initialAttributes : Map<String, String>, override val consumer
 open class HGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hgroup", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun HGROUP.h1(classes : String? = null, block : H1.() -> Unit = {}) : Unit = H1(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun HGROUP.h1(classes : String? = null, block : H1.() -> Unit = {}) : Unit = H1(attributesMapOf("class", classes), consumer).visit(block)
 
-fun HGROUP.h2(classes : String? = null, block : H2.() -> Unit = {}) : Unit = H2(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun HGROUP.h2(classes : String? = null, block : H2.() -> Unit = {}) : Unit = H2(attributesMapOf("class", classes), consumer).visit(block)
 
-fun HGROUP.h3(classes : String? = null, block : H3.() -> Unit = {}) : Unit = H3(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun HGROUP.h3(classes : String? = null, block : H3.() -> Unit = {}) : Unit = H3(attributesMapOf("class", classes), consumer).visit(block)
 
-fun HGROUP.h4(classes : String? = null, block : H4.() -> Unit = {}) : Unit = H4(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun HGROUP.h4(classes : String? = null, block : H4.() -> Unit = {}) : Unit = H4(attributesMapOf("class", classes), consumer).visit(block)
 
-fun HGROUP.h5(classes : String? = null, block : H5.() -> Unit = {}) : Unit = H5(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun HGROUP.h5(classes : String? = null, block : H5.() -> Unit = {}) : Unit = H5(attributesMapOf("class", classes), consumer).visit(block)
 
-fun HGROUP.h6(classes : String? = null, block : H6.() -> Unit = {}) : Unit = H6(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun HGROUP.h6(classes : String? = null, block : H6.() -> Unit = {}) : Unit = H6(attributesMapOf("class", classes), consumer).visit(block)
 
 
 open class HR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hr", consumer, initialAttributes), CommonAttributeGroupFacade {
@@ -68,7 +68,7 @@ open class HTML(initialAttributes : Map<String, String>, override val consumer :
 
 
 }
-fun HTML.body(classes : String? = null, block : BODY.() -> Unit = {}) : Unit = BODY(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun HTML.body(classes : String? = null, block : BODY.() -> Unit = {}) : Unit = BODY(attributesMapOf("class", classes), consumer).visit(block)
 
 fun HTML.head(block : HEAD.() -> Unit = {}) : Unit = HEAD(emptyMap, consumer).visit(block)
 

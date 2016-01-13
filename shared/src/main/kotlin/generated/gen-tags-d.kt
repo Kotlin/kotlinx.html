@@ -12,8 +12,8 @@ import kotlinx.html.attributes.*
 open class DATALIST(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("datalist", consumer, initialAttributes), HtmlInlineTag {
 
 }
-fun DATALIST.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
-fun DATALIST.option(classes : String? = null, content : String = "") : Unit = OPTION(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit({+content})
+fun DATALIST.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
+fun DATALIST.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
 
 
 open class DD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dd", consumer, initialAttributes), HtmlBlockTag {
@@ -39,7 +39,7 @@ open class DETAILS(initialAttributes : Map<String, String>, override val consume
 
 
 }
-fun DETAILS.legEnd(classes : String? = null, block : LEGEND.() -> Unit = {}) : Unit = LEGEND(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun DETAILS.legEnd(classes : String? = null, block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
 
 
 open class DFN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dfn", consumer, initialAttributes), HtmlInlineTag {
@@ -57,9 +57,9 @@ open class DIV(initialAttributes : Map<String, String>, override val consumer : 
 open class DL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dl", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun DL.dd(classes : String? = null, block : DD.() -> Unit = {}) : Unit = DD(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun DL.dd(classes : String? = null, block : DD.() -> Unit = {}) : Unit = DD(attributesMapOf("class", classes), consumer).visit(block)
 
-fun DL.dt(classes : String? = null, block : DT.() -> Unit = {}) : Unit = DT(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun DL.dt(classes : String? = null, block : DT.() -> Unit = {}) : Unit = DT(attributesMapOf("class", classes), consumer).visit(block)
 
 
 open class DT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dt", consumer, initialAttributes), HtmlInlineTag {

@@ -12,6 +12,6 @@ import kotlinx.html.attributes.*
 open class UL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ul", consumer, initialAttributes), CommonAttributeGroupFacade {
 
 }
-fun UL.li(classes : String? = null, block : LI.() -> Unit = {}) : Unit = LI(listOf("class" to stringSetDecode(classes)?.stringSetEncode()).toAttributesMap(), consumer).visit(block)
+fun UL.li(classes : String? = null, block : LI.() -> Unit = {}) : Unit = LI(attributesMapOf("class", classes), consumer).visit(block)
 
 
