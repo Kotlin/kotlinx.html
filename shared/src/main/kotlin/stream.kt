@@ -108,17 +108,17 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
         }
 
         if (tag.attributes.isNotEmpty()) {
-            tag.attributesEntries.map { e ->
+            tag.attributesEntries.forEachIndexed { idx, e ->
                 if (!e.key.isValidXmlAttributeName()) {
                     throw IllegalArgumentException("Tag ${tag.tagName} has invalid attribute name ${e.key}")
                 }
-                StringBuilder().apply {
-                    append(e.key)
-                    append("=\"")
-                    escapeAppend(e.value)
-                    append("\"")
-                }
-            }.joinTo(out, " ", " ")
+
+                out.append(' ')
+                out.append(e.key)
+                out.append("=\"")
+                out.escapeAppend(e.value)
+                out.append('\"')
+            }
         }
 
         out.append(">")
