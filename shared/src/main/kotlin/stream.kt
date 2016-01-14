@@ -93,7 +93,7 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
     private var ln = true
 
     override fun onTagStart(tag: Tag) {
-        if (tag.tagName !in inlineTags) {
+        if (prettyPrint && tag.tagName !in inlineTags) {
             indent()
         }
         level++
