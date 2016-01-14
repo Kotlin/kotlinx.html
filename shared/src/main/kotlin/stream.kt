@@ -213,15 +213,23 @@ private val escapeMap = mapOf(
         '\"' to "&quot;"
 )
 
-private fun Char._isLetter() = this in 'a' .. 'z' || this in 'A' .. 'Z'
-private fun Char._isDigit() = this in '0' .. '9'
-//private fun String.contains(ch : Char) = this.indexOf(ch) != -1
+private val letterRangeLowerCase = 'a' .. 'z'
+private val letterRangeUpperCase = 'A' .. 'Z'
+private val digitRange = '0' .. '9'
+
+private fun Char._isLetter() = this in letterRangeLowerCase || this in letterRangeUpperCase
+private fun Char._isDigit() = this in digitRange
 
 private fun String.isValidXmlAttributeName() =
-        !this.toLowerCase().startsWith("xml")
+        !startsWithXml()
                 && this.isNotEmpty()
                 && (this[0]._isLetter() || this[0] == '_')
                 && this.all { it._isLetter() || it._isDigit() || it in "._:-" }
+
+private fun String.startsWithXml() = length >= 3
+        && (this[0].let { it == 'x' || it == 'X' })
+        && (this[1].let { it == 'm' || it == 'M' })
+        && (this[2].let { it == 'l' || it == 'L' })
 
 private fun Appendable.escapeAppend(s : CharSequence) {
     var lastIndex = 0
