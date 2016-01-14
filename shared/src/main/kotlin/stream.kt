@@ -194,7 +194,7 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
                 remaining -= 2
             }
             if (remaining > 0) {
-                out.append(" ")
+                out.append("  ")
             }
             ln = false
         }
