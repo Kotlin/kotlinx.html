@@ -184,8 +184,17 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
             if (!ln) {
                 out.append("\n")
             }
-            for (l in 0..level - 1) {
-                out.append("  ")
+            var remaining = level
+            while (remaining >= 4) {
+                out.append("        ")
+                remaining -= 4
+            }
+            while (remaining >= 2) {
+                out.append("    ")
+                remaining -= 2
+            }
+            if (remaining > 0) {
+                out.append(" ")
             }
             ln = false
         }
