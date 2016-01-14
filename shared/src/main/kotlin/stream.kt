@@ -108,7 +108,7 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
         }
 
         if (tag.attributes.isNotEmpty()) {
-            tag.attributes.entries.map { e ->
+            tag.attributesEntries.map { e ->
                 if (!e.key.isValidXmlAttributeName()) {
                     throw IllegalArgumentException("Tag ${tag.tagName} has invalid attribute name ${e.key}")
                 }

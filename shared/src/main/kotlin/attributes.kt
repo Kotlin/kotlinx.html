@@ -49,7 +49,7 @@ object TickerEncoder : AttributeEncoder<Boolean> {
     override fun decode(attributeName: String, value: String): Boolean = value == attributeName
 }
 
-public class TickerAttribute : Attribute<Boolean>(TickerEncoder) {
+class TickerAttribute : Attribute<Boolean>(TickerEncoder) {
     override fun set(thisRef: Tag, attributeName: String, value: Boolean) {
         if (value) {
             thisRef.attributes[attributeName] = attributeName

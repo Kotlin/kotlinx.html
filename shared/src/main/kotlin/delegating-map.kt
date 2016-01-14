@@ -51,6 +51,9 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
         backingMutable = false
     }
 
+    val immutableEntries: Collection<Map.Entry<String, String>>
+        get() = backing.entries
+
     private fun switchToMutable(): MutableMap<String, String> = if (backingMutable) {
         backing
     } else {

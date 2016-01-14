@@ -24,7 +24,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
             else -> document.createElement(tag.tagName) as HTMLElement
         }
 
-        tag.attributes.forEach {
+        tag.attributesEntries.forEach {
             element.setAttribute(it.key, it.value)
         }
 

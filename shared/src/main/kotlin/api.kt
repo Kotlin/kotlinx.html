@@ -20,6 +20,7 @@ interface Tag {
     val namespace: String?
 
     val attributes: MutableMap<String, String>
+    val attributesEntries: Collection<Map.Entry<String, String>>
 
     operator fun Entities.unaryPlus() : Unit {
         consumer.onTagContentEntity(this)
