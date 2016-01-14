@@ -9,6 +9,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
 
     val namespace = tagNamespaces[tag.name.toLowerCase()]
 
+    appendln("@Suppress(\"unused\")")
     clazz(Clazz(
             name = tag.safeName.toUpperCase(),
             variables = listOf(
