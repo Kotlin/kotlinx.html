@@ -22,6 +22,9 @@ interface Tag {
     val attributes: MutableMap<String, String>
     val attributesEntries: Collection<Map.Entry<String, String>>
 
+    val inlineTag: Boolean
+    val emptyTag: Boolean
+
     operator fun Entities.unaryPlus() : Unit {
         consumer.onTagContentEntity(this)
     }

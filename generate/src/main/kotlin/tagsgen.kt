@@ -7,7 +7,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
     val parentElementTraits = tag.tagGroupNames.map {it.escapeUnsafeValues().capitalize()}
     val allParentTraits = parentAttributeTraits + parentElementTraits
 
-    val namespaceArg = tagNamespaces[tag.name.toLowerCase()]?.let { listOf(it.quote()) } ?: emptyList<String>()
+    val namespace = tagNamespaces[tag.name.toLowerCase()]
 
     clazz(Clazz(
             name = tag.safeName.toUpperCase(),
@@ -18,10 +18,13 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
             parents = listOf(
                     buildString {
                         functionCall("HTMLTag", listOf(
-                                "${tag.name.quote()}",
+                                tag.name.quote(),
                                 "consumer",
-                                "initialAttributes"
-                        ) + namespaceArg)
+                                "initialAttributes",
+                                namespace?.quote().toString(),
+                                (tag.name in inlineTags).toString(),
+                                (tag.name in emptyTags).toString()
+                        ))
                     }
             ) + when {
                 allParentTraits.isNotEmpty() -> listOf(allParentTraits.joinToString("")).map { renames[it] ?: it }
@@ -209,3 +212,65 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) 
 
     return arguments
 }
+
+private val inlineTags = """a
+abbr
+acronym
+area
+b
+base
+basefont
+bdi
+bdo
+bgsound
+big
+br
+button
+cite
+code
+command
+data
+datalist
+device
+dfn
+em
+embed
+font
+i
+iframe
+img
+input
+kbd
+keygen
+label
+legend
+map
+mark
+menuitem
+meter
+object
+optgroup
+option
+output
+param
+progress
+q
+rp
+rt
+ruby
+samp
+select
+small
+source
+span
+strong
+sub
+summary
+sup
+textarea
+time
+track
+tt
+u
+var
+wbr""".lines().toSet()

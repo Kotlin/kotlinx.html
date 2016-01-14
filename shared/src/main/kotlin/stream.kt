@@ -4,96 +4,12 @@ import kotlinx.html.*
 import kotlinx.html.consumers.*
 import org.w3c.dom.events.Event
 
-private val emptyTags = """area
-base
-basefont
-bgsound
-br
-col
-command
-device
-embed
-frame
-hr
-img
-input
-keygen
-link
-menuitem
-meta
-param
-source
-track
-wbr""".lines().toSet()
-
-private val inlineTags = """a
-abbr
-acronym
-area
-b
-base
-basefont
-bdi
-bdo
-bgsound
-big
-br
-button
-cite
-code
-command
-data
-datalist
-device
-dfn
-em
-embed
-font
-i
-iframe
-img
-input
-kbd
-keygen
-label
-legend
-map
-mark
-menuitem
-meter
-object
-optgroup
-option
-output
-param
-progress
-q
-rp
-rt
-ruby
-samp
-select
-small
-source
-span
-strong
-sub
-summary
-sup
-textarea
-time
-track
-tt
-u
-var
-wbr""".lines().toSet()
-
 class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) : TagConsumer<O> {
     private var level = 0
     private var ln = true
 
     override fun onTagStart(tag: Tag) {
-        if (prettyPrint && tag.tagName !in inlineTags) {
+        if (prettyPrint && !tag.inlineTag) {
             indent()
         }
         level++
@@ -139,13 +55,13 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
             indent()
         }
 
-        if (tag.tagName !in emptyTags) {
+        if (!tag.emptyTag) {
             out.append("</")
             out.append(tag.tagName)
             out.append(">")
         }
 
-        if (prettyPrint && tag.tagName !in inlineTags) {
+        if (prettyPrint && !tag.inlineTag) {
             appenln()
         }
     }
@@ -202,8 +118,8 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
 }
 
 private val AVERAGE_PAGE_SIZE = 32768
-public fun createHTML(prettyPrint: Boolean = true): TagConsumer<String> = HTMLStreamBuilder(StringBuilder(AVERAGE_PAGE_SIZE), prettyPrint).onFinalizeMap { sb, last -> sb.toString() }.delayed()
-public fun <O : Appendable> O.appendHTML(prettyPrint : Boolean = true) : TagConsumer<O> = HTMLStreamBuilder(this, prettyPrint).delayed()
+fun createHTML(prettyPrint: Boolean = true): TagConsumer<String> = HTMLStreamBuilder(StringBuilder(AVERAGE_PAGE_SIZE), prettyPrint).onFinalizeMap { sb, last -> sb.toString() }.delayed()
+fun <O : Appendable> O.appendHTML(prettyPrint : Boolean = true) : TagConsumer<O> = HTMLStreamBuilder(this, prettyPrint).delayed()
 
 private val escapeMap = mapOf(
         '<' to "&lt;",
