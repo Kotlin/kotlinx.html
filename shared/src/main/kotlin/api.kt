@@ -72,7 +72,7 @@ fun attributesMapOf(vararg pairs: String?): Map<String, String> {
 
     return result ?: emptyMap
 }
-fun singletonMapOf(key: String, value: String): Map<String, String> = HashMap<String, String>(1).apply {
+fun singletonMapOf(key: String, value: String): Map<String, String> = HashMap<String, String>(2).apply {
     put(key, value)
 }
 
