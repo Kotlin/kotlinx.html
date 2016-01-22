@@ -175,11 +175,14 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                 <kotlin.version>1.0.0-beta-4584</kotlin.version>
+                 <kotlin.version>1.0.0-beta-4589</kotlin.version>
             </properties>
         </profile>
         <profile>
             <id>kotlin-snapshot</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
             <properties>
                 <kotlin.version>0.1-SNAPSHOT</kotlin.version>
             </properties>
