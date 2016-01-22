@@ -32,7 +32,7 @@ fun main(args: Array<String>) {
     }
 
     Repository.tags.values.filterIgnored().groupBy { it.name[0] }.entries.forEach { e ->
-        FileOutputStream("$todir/gen-tags-${e.key}.kt").writer("UTF-8").use {
+        FileOutputStream("$todir/gen-tags-${e.key}.kt").writer(Charsets.UTF_8).use {
             it.with {
                 packg(packg)
                 emptyLine()
@@ -52,7 +52,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("$todir/gen-consumer-tags.kt").writer("UTF-8").use {
+    FileOutputStream("$todir/gen-consumer-tags.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()
@@ -75,7 +75,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("$jsdir/gen-consumer-tags.kt").writer("UTF-8").use {
+    FileOutputStream("$jsdir/gen-consumer-tags.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg + ".js")
             emptyLine()
@@ -99,7 +99,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("$jsdir/gen-event-attrs.kt").writer("UTF-8").use {
+    FileOutputStream("$jsdir/gen-event-attrs.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg + ".js")
             emptyLine()
@@ -121,7 +121,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("$todir/gen-enums.kt").writer("UTF-8").use {
+    FileOutputStream("$todir/gen-enums.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()
@@ -154,7 +154,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("$todir/gen-attributes.kt").writer("UTF-8").use {
+    FileOutputStream("$todir/gen-attributes.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()
@@ -172,7 +172,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("$todir/gen-tag-groups.kt").writer("UTF-8").use {
+    FileOutputStream("$todir/gen-tag-groups.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()
@@ -201,7 +201,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("$todir/gen-entities.kt").writer("UTF-8").use {
+    FileOutputStream("$todir/gen-entities.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()

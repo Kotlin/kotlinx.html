@@ -2,7 +2,6 @@ package kotlinx.html.generate
 
 import java.io.*
 import java.util.*
-import kotlin.support.*
 
 fun generateParentTraits(todir: String, packg: String) {
     val allParentTraits = Repository.tags.values.filterIgnored().map { tag ->
@@ -30,7 +29,7 @@ fun generateParentTraits(todir: String, packg: String) {
         allIntroduced.addAll(introduced)
     } while (true)
 
-    FileOutputStream("$todir/gen-parent-traits.kt").writer("UTF-8").use {
+    FileOutputStream("$todir/gen-parent-traits.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()
