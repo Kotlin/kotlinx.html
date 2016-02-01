@@ -29,7 +29,7 @@ class DomTreeImplTest {
         assertEquals("P", node.children[0]?.tagName)
 
         assertTrue(document.body!!.children.length > 0)
-        assertEquals(node, document.body!!.children!!.asList().last())
+        assertEquals(node, document.body!!.children.asList().last())
     }
 
     @test fun appendSingleNode() {
@@ -55,7 +55,7 @@ class DomTreeImplTest {
         document.create.div("a b c ") {
             a("http://kotlinlang.org") { +"official Kotlin site" }
         }
-        document.getElementsByTagName("div")!!.asList().forEach {
+        document.getElementsByTagName("div").asList().forEach {
         	if (it is HTMLElement) {
         		val clickHandler = it.onclick
         		if (clickHandler != null) {
@@ -82,7 +82,6 @@ class DomTreeImplTest {
         val container = document.getElementById("container")
         if (container == null) {
             fail("container not found")
-            return
         }
 
         container.appendChild(myDiv)
@@ -197,7 +196,7 @@ class DomTreeImplTest {
         wrapper.append.svg {
         }
 
-        assertEquals("http://www.w3.org/2000/svg", wrapper.childNodes.toElementList().first { it.tagName.toLowerCase() == "svg" }.namespaceURI)
+        assertEquals("http://www.w3.org/2000/svg", wrapper.childNodes.asElementList().first { it.tagName.toLowerCase() == "svg" }.namespaceURI)
     }
 
     private fun wrapper() = document.body!!.append.div {}

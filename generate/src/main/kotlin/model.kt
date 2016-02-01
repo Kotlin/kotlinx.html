@@ -2,12 +2,13 @@ package kotlinx.html.generate
 
 import kotlinx.html.generate.humanize.*
 import java.util.*
+import kotlin.comparisons.thenComparator
 
 object Repository {
     val tags = TreeMap<String, TagInfo>()
 
     val attributeDelegateRequests = TreeSet<AttributeRequest> (
-            comparator<AttributeRequest> { a, b -> a.type.compareTo(b.type) }
+            Comparator<AttributeRequest> { a, b -> a.type.compareTo(b.type) }
                     .thenComparator { a, b -> a.enumTypeName.compareTo(b.enumTypeName) }
                     .thenComparator { a, b -> a.options.size.compareTo(b.options.size) }
                     .thenComparator { a, b ->
