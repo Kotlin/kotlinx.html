@@ -22,6 +22,7 @@ fun List<String>.toAttributeValues() : List<AttributeEnumValue> =
 fun <O : Appendable> O.enumObject(attribute : AttributeInfo) {
     val name = attribute.enumTypeName
 
+    appendln("@Suppress(\"unused\")")
     clazz(Clazz(name, isObject = true)) {
         attribute.enumValues.forEach {
             append("    ")
@@ -43,6 +44,7 @@ fun <O : Appendable> O.enum(attribute : AttributeInfo) {
     val name = attribute.enumTypeName
     val realValue = Var("realValue", "String", false, true)
 
+    appendln("@Suppress(\"unused\")")
     append("enum ")
     clazz(Clazz(name, variables = listOf(realValue), parents = listOf("AttributeEnum"))) {
         attribute.enumValues.forEachIndexed { idx, it ->
@@ -59,6 +61,6 @@ fun <O : Appendable> O.enum(attribute : AttributeInfo) {
 
     emptyLine()
     append("internal ")
-    variable(Var(name.decapitalize() + "Values", "Map<String, $name>", false, defaultValue = "$name.values().toMapBy { it.realValue }"))
+    variable(Var(name.decapitalize() + "Values", "Map<String, $name>", false, defaultValue = "$name.values().associateBy { it.realValue }"))
     emptyLine()
 }
