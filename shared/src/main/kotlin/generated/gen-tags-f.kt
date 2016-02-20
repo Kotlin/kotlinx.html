@@ -29,10 +29,17 @@ fun FIELDSET.legEnd(classes : String? = null, block : LEGEND.() -> Unit = {}) : 
 
 
 @Suppress("unused")
+open class FIGCAPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("figcaption", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+
+}
+
+@Suppress("unused")
 open class FIGURE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("figure", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
 fun FIGURE.legEnd(classes : String? = null, block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
+
+fun FIGURE.figcaption(classes : String? = null, block : FIGCAPTION.() -> Unit = {}) : Unit = FIGCAPTION(attributesMapOf("class", classes), consumer).visit(block)
 
 
 @Suppress("unused")

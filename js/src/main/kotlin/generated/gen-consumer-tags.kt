@@ -79,6 +79,8 @@ public fun TagConsumer<HTMLElement>.embed(classes : String? = null, block : EMBE
 
 public fun TagConsumer<HTMLElement>.fieldSet(classes : String? = null, block : FIELDSET.() -> Unit = {}) : HTMLFieldSetElement = FIELDSET(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLFieldSetElement
 
+public fun TagConsumer<HTMLElement>.figcaption(classes : String? = null, block : FIGCAPTION.() -> Unit = {}) : HTMLElement = FIGCAPTION(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
 public fun TagConsumer<HTMLElement>.figure(classes : String? = null, block : FIGURE.() -> Unit = {}) : HTMLElement = FIGURE(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 public fun TagConsumer<HTMLElement>.footer(classes : String? = null, block : FOOTER.() -> Unit = {}) : HTMLElement = FOOTER(attributesMapOf("class", classes), this).visitAndFinalize(this, block)

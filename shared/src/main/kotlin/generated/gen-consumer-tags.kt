@@ -78,6 +78,8 @@ fun <T, C : TagConsumer<T>> C.embed(classes : String? = null, block : EMBED.() -
 
 fun <T, C : TagConsumer<T>> C.fieldSet(classes : String? = null, block : FIELDSET.() -> Unit = {}) : T = FIELDSET(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
+fun <T, C : TagConsumer<T>> C.figcaption(classes : String? = null, block : FIGCAPTION.() -> Unit = {}) : T = FIGCAPTION(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
 fun <T, C : TagConsumer<T>> C.figure(classes : String? = null, block : FIGURE.() -> Unit = {}) : T = FIGURE(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 fun <T, C : TagConsumer<T>> C.footer(classes : String? = null, block : FOOTER.() -> Unit = {}) : T = FOOTER(attributesMapOf("class", classes), this).visitAndFinalize(this, block)

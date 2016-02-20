@@ -95,6 +95,8 @@ fun FlowContent.fieldSet(classes : String? = null, block : FIELDSET.() -> Unit =
 
 fun FlowContent.figure(classes : String? = null, block : FIGURE.() -> Unit = {}) : Unit = FIGURE(attributesMapOf("class", classes), consumer).visit(block)
 
+fun FlowContent.figcaption(classes : String? = null, block : FIGCAPTION.() -> Unit = {}) : Unit = FIGCAPTION(attributesMapOf("class", classes), consumer).visit(block)
+
 fun FlowContent.footer(classes : String? = null, block : FOOTER.() -> Unit = {}) : Unit = FOOTER(attributesMapOf("class", classes), consumer).visit(block)
 
 fun FlowContent.form(action : String? = null, encType : FormEncType? = null, method : FormMethod? = null, classes : String? = null, block : FORM.() -> Unit = {}) : Unit = FORM(attributesMapOf("action", action,"enctype", encType?.enumEncode(),"method", method?.enumEncode(),"class", classes), consumer).visit(block)

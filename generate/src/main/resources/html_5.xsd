@@ -239,6 +239,7 @@
 
             <xsd:element ref="fieldset"/>
             <xsd:element ref="figure"/>
+            <xsd:element ref="figcaption"/>
             <xsd:element ref="footer"/>
             <xsd:element ref="form"/>
 
@@ -901,6 +902,16 @@
             <xsd:choice>
                 <xsd:group ref="flowContent"/>
                 <xsd:element ref="legend" minOccurs="0" maxOccurs="1"/>
+                <xsd:element ref="figcaption" minOccurs="0" maxOccurs="1"/>
+            </xsd:choice>
+            <xsd:attributeGroup ref="commonAttributeGroup"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="figcaption">
+        <xsd:complexType mixed="true">
+            <xsd:choice>
+                <xsd:group ref="flowContent"/>
             </xsd:choice>
             <xsd:attributeGroup ref="commonAttributeGroup"/>
         </xsd:complexType>
