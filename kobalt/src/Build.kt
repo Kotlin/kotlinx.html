@@ -10,6 +10,11 @@ val projectBuildSourceEncoding = "UTF-8"
 val shared = project {
     name = "shared"
     directory = "shared"
+
+    dependenciesTest {
+        compile("junit:junit:4.12")
+        compile("org.jetbrains.kotlin:kotlin-test:1.0.1")
+    }
 }
 
 val generate = project {
@@ -18,6 +23,11 @@ val generate = project {
 
     dependencies {
         compile("com.sun.xsom:xsom:20140925")
+    }
+
+    dependenciesTest {
+        compile("junit:junit:4.12")
+        compile("org.jetbrains.kotlin:kotlin-test:1.0.1")
     }
 }
 
@@ -29,22 +39,13 @@ val jvm = project(shared) {
     version = "0.5.8-SNAPSHOT"
     directory = "jvm"
 
-    dependencies {
-    }
-
     dependenciesTest {
         compile("junit:junit:4.12")
-
+        compile("org.jetbrains.kotlin:kotlin-test:1.0.1")
     }
 
     assemble {
         jar {
         }
     }
-
-    application {
-        mainClass = "com.example.MainKt"
-    }
-
-
 }
