@@ -9,6 +9,6 @@
     "karma-sourcemap-loader": "~0.3",
     "karma-teamcity-reporter": "*",
     "karma-phantomjs-launcher": "*",
-    "phantomjs": "1.9.13"
+    "phantomjs": "2.1.1"
   }
 }
