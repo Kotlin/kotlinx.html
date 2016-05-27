@@ -11,9 +11,7 @@ fun <F : Any, T : Any> F.injectTo(bean : T, field : KMutableProperty1<T, in F>) 
 }
 
 private fun <F : Any, T : Any> F.injectToUnsafe(bean : T, field : KMutableProperty1<T, out F>) {
-    @Suppress("UNCHECKED_CAST")
-    val unsafe = field as KMutableProperty1<T, F>
-    injectTo(bean, unsafe)
+    injectTo(bean, field.asDynamic())
 }
 
 public interface InjectCapture
@@ -24,7 +22,7 @@ public interface CustomCapture : InjectCapture {
     fun apply(element : HTMLElement) : Boolean
 }
 
-class InjectorConsumer<T: Any>(val downstream : TagConsumer<HTMLElement>, val bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>) : TagConsumer<HTMLElement> by downstream {
+class InjectorConsumer<out T: Any>(val downstream : TagConsumer<HTMLElement>, val bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>) : TagConsumer<HTMLElement> by downstream {
 
     private val classesMap = rules
             .filter { it.first is InjectByClassName }
