@@ -11,9 +11,7 @@ import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
 import kotlin.browser.document
 import kotlin.dom.*
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
-import kotlin.test.fail
+import kotlin.test.*
 import org.junit.Test as test
 
 class DomTreeImplTest {

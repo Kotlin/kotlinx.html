@@ -14,13 +14,13 @@ import kotlin.js.nativeSetter
 @nativeSetter
 private fun HTMLElement.setEvent(name : String, callback : (Event) -> Unit) : Unit
 
-class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
+class JSDOMBuilder<out R : HTMLElement>(val document : Document) : TagConsumer<R> {
     private val path = arrayListOf<HTMLElement>()
     private var lastLeaved : HTMLElement? = null
 
     override fun onTagStart(tag: Tag) {
-        val element = when {
-            tag.namespace != null -> document.createElementNS(tag.namespace!!, tag.tagName) as HTMLElement
+        val element: HTMLElement = when {
+            tag.namespace != null -> document.createElementNS(tag.namespace!!, tag.tagName).asDynamic()
             else -> document.createElement(tag.tagName) as HTMLElement
         }
 
@@ -98,7 +98,7 @@ class JSDOMBuilder<R : HTMLElement>(val document : Document) : TagConsumer<R> {
     override fun finalize(): R = lastLeaved?.asR() ?: throw IllegalStateException("We can't finalize as there was no tags")
 
     @Suppress("UNCHECKED_CAST")
-    private fun HTMLElement.asR() = this as R
+    private fun HTMLElement.asR(): R = this.asDynamic()
 
 }
 
