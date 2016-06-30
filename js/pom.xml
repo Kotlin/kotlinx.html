@@ -161,8 +161,8 @@
                 </executions>
 
                 <configuration>
-                    <nodeVersion>v0.12.7</nodeVersion>
-                    <npmVersion>2.14.4</npmVersion>
+                    <nodeVersion>v0.12.15</nodeVersion>
+                    <npmVersion>3.10.2</npmVersion>
 
                     <workingDirectory>${project.basedir}/src/test/karma</workingDirectory>
                 </configuration>
