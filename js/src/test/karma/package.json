@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "devDependencies": {
     "karma": "*",
-    "qunitjs": "*",
+    "qunitjs": "1.23.1",
     "karma-qunit": "*",
     "karma-junit-reporter": "~0.2",
     "karma-sourcemap-loader": "~0.3",
