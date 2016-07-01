@@ -1,15 +1,12 @@
 package kotlinx.html.tests
 
 import kotlinx.html.*
-import kotlinx.html.consumers.trace
-import kotlinx.html.dom.append
-import kotlinx.html.dom.create
-import kotlinx.html.js.div
-import kotlinx.html.js.onClickFunction
-import kotlinx.html.js.span
+import kotlinx.html.consumers.*
+import kotlinx.html.dom.*
+import kotlinx.html.js.*
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
-import kotlin.browser.document
+import kotlin.browser.*
 import kotlin.dom.*
 import kotlin.test.*
 import org.junit.Test as test

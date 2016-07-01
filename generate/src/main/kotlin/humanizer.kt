@@ -1,8 +1,6 @@
 package kotlinx.html.generate.humanize
 
 import kotlinx.html.generate.*
-import java.util.*
-import java.util.regex.*
 
 
 fun String.humanize() : String {
@@ -36,54 +34,46 @@ private fun StringBuilder.capitalizeAt(index : Int) {
     this.setCharAt(index, Character.toUpperCase(ch))
 }
 
-private fun Matcher.findAll() : List<MatchResult> = ArrayList<MatchResult>().let { results ->
-    while (find()) {
-        results.add(toMatchResult())
-    }
-
-    results
-}
-
 private fun <T> List<T>.safeSubList(from : Int) : List<T> = if (from >= size) emptyList() else subList(from, size)
 
 private fun String.makeCamelCaseByDictionary() : String {
-    var current = StringBuilder(this)
+    val current = StringBuilder(this)
 
     val allRanges = wellKnownWords.flatMap { word ->
-        word.matcher(current).findAll()
-    }.sortedBy { it.start() }
+        word.findAll(current).toList()
+    }.sortedBy { it.range.start }
 
     fun applyMatchResult(mr : MatchResult, cutTail : Boolean) {
-        if (mr.start() > 0) {
-            current.capitalizeAt(mr.start())
+        if (mr.range.start > 0) {
+            current.capitalizeAt(mr.range.start)
         }
-        if (!cutTail && mr.end() < length) {
-            current.capitalizeAt(mr.end())
+        if (!cutTail && mr.range.endInclusive < length - 1) {
+            current.capitalizeAt(mr.range.last + 1)
         }
     }
 
     var unprocessedStart = 0
     allRanges.forEachIndexed { i, mr ->
-        if (mr.start() >= unprocessedStart) {
-            val startClash = allRanges.safeSubList(i + 1).asSequence().takeWhile { it.start() == mr.start() }.maxBy { it.group().length }
-            if (startClash == null || startClash.group().length <= mr.group().length) {
+        if (mr.range.start >= unprocessedStart) {
+            val startClash = allRanges.safeSubList(i + 1).asSequence().takeWhile { it.range.start == mr.range.start }.maxBy { it.value.length }
+            if (startClash == null || startClash.value.length <= mr.value.length) {
                 val possibleTail = when {
-                    mr.group().endsWith("ing") -> 3
-                    mr.group().endsWith("es") -> 2
-                    mr.group().endsWith("ed") -> 2
-                    mr.group().endsWith("s") -> 1
-                    mr.group().endsWith("d") -> 1
+                    mr.value.endsWith("ing") -> 3
+                    mr.value.endsWith("es") -> 2
+                    mr.value.endsWith("ed") -> 2
+                    mr.value.endsWith("s") -> 1
+                    mr.value.endsWith("d") -> 1
                     else -> 0
                 }
 
                 val thereAreClashes = possibleTail > 0 &&
                         allRanges.safeSubList(i + 1)
                                 .asSequence()
-                                .takeWhile { it.start() < mr.end() }
-                                .any { it.start() >= mr.end() - possibleTail }
+                                .takeWhile { it.range.start <= mr.range.endInclusive }
+                                .any { it.range.start > mr.range.endInclusive - possibleTail }
 
                 applyMatchResult(mr, thereAreClashes)
-                unprocessedStart = mr.end() - possibleTail
+                unprocessedStart = mr.range.last - possibleTail + 1
             }
         }
     }
