@@ -19,14 +19,12 @@ fun <O : Appendable> O.attributeProperty(attribute: AttributeInfo) {
     val request = tagAttributeVar(attribute)
     append("\n    ")
     getter().defineIs(StringBuilder().apply {
-        append(request.delegatePropertyName)
-        append(".")
+        receiverDot(request.delegatePropertyName)
         functionCall("get", listOf("this", attributeName.quote()))
     })
-    append("    ")
+    indent()
     setter {
-        append(request.delegatePropertyName)
-        append(".")
+        receiverDot(request.delegatePropertyName)
         functionCall("set", listOf("this", attributeName.quote(), "newValue"))
     }
 
@@ -56,8 +54,8 @@ fun <O : Appendable> O.eventProperty(parent: String, attribute: AttributeInfo) {
         functionCall("UnsupportedOperationException", listOf("You can't read variable ${attribute.fieldName}".quote()))
     })
     setter {
-        append("EventAttribute.")
-        functionCall("set", listOf(
+        receiverDot("consumer")
+        functionCall("onTagEvent", listOf(
                 "this",
                 attribute.name.quote(),
                 "newValue"
