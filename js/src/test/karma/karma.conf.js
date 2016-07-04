@@ -19,9 +19,9 @@ module.exports = function (config) {
             reporters: ['progress', 'junit'],
             files: [
                 '../../../target/jsjs/kotlin.js',
-                '../../../target/jsjs/*.js',
                 '../../../../shared/target/classes/*.js',
-                '../../../target/classes/*.js'
+                '../../../target/classes/*.js',
+                '../../../target/jsjs/*.js'
             ],
             exclude: [],
             port: 9876,

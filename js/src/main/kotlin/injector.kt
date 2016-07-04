@@ -78,14 +78,21 @@ fun <T: Any> HTMLElement.appendAndInject(bean : T, rules : List<Pair<InjectCaptu
 
 val z = run {
     js("""
+var stdlib;
+if (Kotlin.modules["stdlib"]) {
+    stdlib = Kotlin.modules["stdlib"];
+} else {
+    stdlib = Kotlin;
+}
+
 var propertyRefClassMetadataCache = {zeroArg:{mutable:{value:null, implementedInterface:function() {
-    return Kotlin.modules["stdlib"].kotlin.reflect.KMutableProperty0;
+    return stdlib.kotlin.reflect.KMutableProperty0;
   }}, immutable:{value:null, implementedInterface:function() {
-    return Kotlin.modules["stdlib"].kotlin.reflect.KProperty0;
+    return stdlib.kotlin.reflect.KProperty0;
   }}}, oneArg:{mutable:{value:null, implementedInterface:function() {
-    return Kotlin.modules["stdlib"].kotlin.reflect.KMutableProperty1;
+    return stdlib.kotlin.reflect.KMutableProperty1;
   }}, immutable:{value:null, implementedInterface:function() {
-    return Kotlin.modules["stdlib"].kotlin.reflect.KProperty1;
+    return stdlib.kotlin.reflect.KProperty1;
   }}}};
 
     var getPropertyRefMetadata = function(cache) {
