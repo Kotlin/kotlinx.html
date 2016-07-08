@@ -216,5 +216,35 @@
                 </pluginRepository>
             </pluginRepositories>
         </profile>
+        <profile>
+            <id>kotlin-dev</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <kotlin.version>1.0.4-dev-13</kotlin.version>
+            </properties>
+
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>bintray-kotlin-kotlin-dev</id>
+                    <name>bintray</name>
+                    <url>http://dl.bintray.com/kotlin/kotlin-dev</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>bintray-kotlin-kotlin-dev</id>
+                    <name>bintray-plugins</name>
+                    <url>http://dl.bintray.com/kotlin/kotlin-dev</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
     </profiles>
 </project>
