@@ -79,7 +79,21 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     override fun finalize() = lastLeaved ?: throw IllegalStateException("No tags were emitted")
 
     override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
-        throw UnsupportedOperationException("unsafe content for DOM at JVM is not supported yet")
+        UnsafeImpl.block()
+    }
+
+    fun String.toElement() = DocumentBuilderFactory
+            .newInstance()
+            .newDocumentBuilder()
+            .parse(ByteArrayInputStream(this.toByteArray()))
+            .documentElement
+
+    val UnsafeImpl = object : Unsafe {
+        override operator fun String.unaryPlus() {
+            val element = this.toElement()
+            val importNode = document.importNode(element, true)
+            path.last().appendChild(importNode)
+        }
     }
 
     private fun Element.setIdAttributeName() {

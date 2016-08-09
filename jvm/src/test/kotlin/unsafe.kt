@@ -19,7 +19,6 @@ class UnsafeContentTest {
     }
 
     @Test
-    @Ignore // not supported yet
     fun testDOM() {
         val tree = createHTMLDocument().html {
             body {
@@ -29,6 +28,6 @@ class UnsafeContentTest {
             }
         }
 
-        assertEquals("<body><p>para</p></body>", tree.documentElement.serialize(false))
+        assertEquals("<html><body><p>para</p></body></html>", tree.documentElement.serialize(false))
     }
 }
