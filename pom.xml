@@ -222,7 +222,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <kotlin.version>1.0.4-dev-13</kotlin.version>
+                <kotlin.version>1.0.4-eap-84</kotlin.version>
             </properties>
 
             <repositories>
