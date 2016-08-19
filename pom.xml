@@ -113,7 +113,7 @@
                         </goals>
                         <configuration>
                             <id>bintray</id>
-                            <url>https://api.bintray.com/maven/kotlin/kotlinx.html/kotlinx.html</url>
+                            <url>${bintray.url}</url>
                         </configuration>
                     </execution>
                 </executions>
@@ -165,7 +165,7 @@
     <distributionManagement>
         <repository>
             <id>bintray</id>
-            <url>https://api.bintray.com/maven/kotlin/kotlinx.html/kotlinx.html</url>
+            <url>${bintray.url}</url>
         </repository>
     </distributionManagement>
 
@@ -177,6 +177,7 @@
             </activation>
             <properties>
                  <kotlin.version>1.0.3</kotlin.version>
+                 <bintray.url>https://api.bintray.com/maven/kotlin/kotlinx.html/kotlinx.html</bintray.url>
             </properties>
         </profile>
         <profile>
@@ -186,6 +187,7 @@
             </activation>
             <properties>
                 <kotlin.version>1.1-SNAPSHOT</kotlin.version>
+                <bintray.url>https://do-not-upload</bintray.url>
             </properties>
 
             <repositories>
@@ -223,6 +225,7 @@
             </activation>
             <properties>
                 <kotlin.version>1.0.4-eap-84</kotlin.version>
+                <bintray.url>https://api.bintray.com/maven/kotlin/kotlin-dev/kotlinx.html</bintray.url>
             </properties>
 
             <repositories>
