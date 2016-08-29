@@ -43,6 +43,7 @@
                             <goal>js</goal>
                         </goals>
                         <configuration>
+                            <moduleKind>umd</moduleKind>
                             <outputFile>${project.build.outputDirectory}/${project.artifactId}.js</outputFile>
                         </configuration>
                     </execution>
@@ -56,6 +57,7 @@
                             <outputFile>${project.basedir}/target/jsjs/${project.artifactId}-tests.js</outputFile>
                             <metaInfo>true</metaInfo>
                             <sourceMap>true</sourceMap>
+                            <moduleKind>umd</moduleKind>
                         </configuration>
                     </execution>
                 </executions>
