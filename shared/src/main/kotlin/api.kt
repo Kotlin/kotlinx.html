@@ -11,6 +11,7 @@ interface TagConsumer<out R> {
     fun onTagContent(content: CharSequence)
     fun onTagContentEntity(entity: Entities)
     fun onTagContentUnsafe(block: Unsafe.() -> Unit)
+    fun onError(tag: Tag, exception: Exception): Unit = throw exception
     fun finalize(): R
 }
 
@@ -44,8 +45,13 @@ interface AttributeEnum {
 
 fun <T : Tag> T.visit(block: T.() -> Unit) {
     consumer.onTagStart(this)
-    this.block()
-    consumer.onTagEnd(this)
+    try {
+        this.block()
+    } catch (err: Exception) {
+        consumer.onError(this, err)
+    } finally {
+        consumer.onTagEnd(this)
+    }
 }
 
 fun <T: Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit): R {

@@ -29,6 +29,12 @@ class TraceConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<R> by down
         println("[$id]     ${tag.tagName}.$attribute changed to $value")
     }
 
+    override fun onError(tag: Tag, exception: Exception) {
+        println("[$id] exception in ${tag.tagName}: ${exception.message}")
+
+        downstream.onError(tag, exception)
+    }
+
     override fun finalize(): R {
         val v = downstream.finalize()
 
