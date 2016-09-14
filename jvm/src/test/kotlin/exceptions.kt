@@ -1,4 +1,5 @@
 import kotlinx.html.*
+import kotlinx.html.consumers.delayed
 import kotlinx.html.stream.appendHTML
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -15,11 +16,11 @@ class TestExceptions {
             sb.appendHTML(prettyPrint = false).html {
                 body {
                     h1 {
-                        +"empty"
+                        +" empty "
                         throw IllegalStateException("testing errors")
                     }
                     h2 {
-                        +"should NOT be written"
+                        +" should NOT be written "
                     }
                 }
             }
@@ -31,34 +32,33 @@ class TestExceptions {
         assertTrue(errorCaught, "Exception should be not re-thrown")
 
         assertEquals(
-                "<html><body><h1>empty</h1></body></html>",
+                """<html><body><h1> empty </h1></body></html>""",
                 sb.toString())
     }
 
     @Test fun `exception handler should add output`() {
 
         val sb = StringBuilder()
-        TestExceptionConsumer(sb.appendHTML(prettyPrint = false)).html {
+        sb.appendHTML(prettyPrint = false).catch {
+            div {
+                +"ERROR: "
+                +it.message!!
+            }
+        }.html {
             body {
                 h1 {
+                    +" text "
                     throw IllegalStateException("testing errors")
                 }
                 h2 {
-                    +"should be present"
+                    +" should be present "
                 }
             }
         }
 
         assertEquals(
-                "<html><body><h1><div>error was handled</div></h1><h2>should be present</h2></body></html>",
+                """<html><body><h1> text <div>ERROR: testing errors</div></h1><h2> should be present </h2></body></html>""",
                 sb.toString())
     }
 }
 
-private class TestExceptionConsumer<R>(val underlying: TagConsumer<R>) : TagConsumer<R> by underlying {
-    override fun onError(tag: Tag, exception: Exception) {
-
-        div { +"error was handled" }
-
-    }
-}
