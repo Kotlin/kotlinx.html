@@ -11,7 +11,7 @@ interface TagConsumer<out R> {
     fun onTagContent(content: CharSequence)
     fun onTagContentEntity(entity: Entities)
     fun onTagContentUnsafe(block: Unsafe.() -> Unit)
-    fun onError(tag: Tag, exception: Exception): Unit = throw exception
+    fun onTagError(tag: Tag, exception: Throwable): Unit = throw exception
     fun finalize(): R
 }
 
@@ -48,7 +48,7 @@ fun <T : Tag> T.visit(block: T.() -> Unit) {
     try {
         this.block()
     } catch (err: Exception) {
-        consumer.onError(this, err)
+        consumer.onTagError(this, err)
     } finally {
         consumer.onTagEnd(this)
     }

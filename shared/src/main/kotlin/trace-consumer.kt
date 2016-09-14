@@ -29,10 +29,10 @@ class TraceConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<R> by down
         println("[$id]     ${tag.tagName}.$attribute changed to $value")
     }
 
-    override fun onError(tag: Tag, exception: Exception) {
+    override fun onTagError(tag: Tag, exception: Throwable) {
         println("[$id] exception in ${tag.tagName}: ${exception.message}")
 
-        downstream.onError(tag, exception)
+        downstream.onTagError(tag, exception)
     }
 
     override fun finalize(): R {

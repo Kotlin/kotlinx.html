@@ -1,5 +1,5 @@
 import kotlinx.html.*
-import kotlinx.html.consumers.delayed
+import kotlinx.html.consumers.catch
 import kotlinx.html.stream.appendHTML
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -39,11 +39,13 @@ class TestExceptions {
     @Test fun `exception handler should add output`() {
 
         val sb = StringBuilder()
-        sb.appendHTML(prettyPrint = false).catch {
+        sb.appendHTML(prettyPrint = false).catch { err ->
+
             div {
                 +"ERROR: "
-                +it.message!!
+                +err.message!!
             }
+
         }.html {
             body {
                 h1 {
