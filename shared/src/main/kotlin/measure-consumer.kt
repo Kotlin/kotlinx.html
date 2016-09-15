@@ -42,6 +42,10 @@ private class TimeMeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsu
         downstream.onTagContentUnsafe(block)
     }
 
+    override fun onTagError(tag: Tag, exception: Throwable) {
+        downstream.onTagError(tag, exception)
+    }
+
     override fun finalize(): TimedResult<R> = TimedResult(downstream.finalize(), Date().getTime().toLong() - start.getTime())
 }
 

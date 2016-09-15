@@ -23,6 +23,7 @@ class FinalizeConsumer<F, T>(val downstream : TagConsumer<F>, val block : (F, Bo
     override fun onTagContent(content: CharSequence) = downstream.onTagContent(content)
     override fun onTagContentEntity(entity: Entities) = downstream.onTagContentEntity(entity)
     override fun onTagContentUnsafe(block: Unsafe.() -> Unit) = downstream.onTagContentUnsafe(block)
+    override fun onTagError(tag: Tag, exception: Throwable) = downstream.onTagError(tag, exception)
 
     override fun finalize() = block(downstream.finalize(), level > 0)
 }

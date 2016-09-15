@@ -41,6 +41,11 @@ class DelayedConsumer<T>(val downstream : TagConsumer<T>) : TagConsumer<T> {
         downstream.onTagContentEntity(entity)
     }
 
+    override fun onTagError(tag: Tag, exception: Throwable) {
+        processDelayedTag()
+        downstream.onTagError(tag, exception)
+    }
+
     override fun finalize(): T {
         processDelayedTag()
         return downstream.finalize()
