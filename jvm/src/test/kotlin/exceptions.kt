@@ -29,7 +29,7 @@ class TestExceptions {
             assertEquals(err.message, "testing errors")
         }
 
-        assertTrue(errorCaught, "Exception should be not re-thrown")
+        assertTrue(errorCaught, "Exception should be thrown")
 
         assertEquals(
                 """<html><body><h1> empty </h1></body></html>""",
