@@ -9,7 +9,8 @@
 
     <dependencySets>
         <dependencySet>
-            <outputDirectory>/</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>META-INF/resources/webjars/kotlinx.html/${project.version}</outputDirectory>
             <fileMode>777</fileMode>
             <includes>
                 <include>org.jetbrains.kotlinx:kotlinx.html.shared</include>
@@ -21,7 +22,6 @@
                 <lineEnding>unix</lineEnding>
                 <useDefaultExcludes>false</useDefaultExcludes>
                 <excludes>
-                    <exclude>**/*.class</exclude>
                     <exclude>**/*.meta.js</exclude>
                     <exclude>**/META-INF/**</exclude>
                     <exclude>**/kotlinx/**</exclude>

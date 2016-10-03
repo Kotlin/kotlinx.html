@@ -9,24 +9,15 @@
 
     <dependencySets>
         <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
             <outputDirectory>/</outputDirectory>
             <fileMode>777</fileMode>
             <unpack>true</unpack>
 
             <includes>
-                <include>org.jetbrains.kotlinx:kotlinx.html.shared</include>
-                <include>org.jetbrains.kotlinx:kotlinx.html.js</include>
+                <include>org.jetbrains.kotlinx:kotlinx.html.shared:jar:js</include>
+                <include>org.jetbrains.kotlinx:kotlinx.html.js:jar</include>
             </includes>
-
-            <unpackOptions>
-                <includes>
-                    <include>**/*.js</include>
-                </includes>
-                <excludes>
-                    <exclude>META-INF</exclude>
-                    <exclude>META-INF/**</exclude>
-                </excludes>
-            </unpackOptions>
         </dependencySet>
     </dependencySets>
 </assembly>

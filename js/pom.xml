@@ -18,6 +18,7 @@
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx.html.shared</artifactId>
             <version>${project.version}</version>
+            <classifier>js</classifier>
 
             <exclusions>
                 <exclusion>
@@ -44,6 +45,7 @@
                         </goals>
                         <configuration>
                             <moduleKind>umd</moduleKind>
+                            <sourceMap>true</sourceMap>
                             <outputFile>${project.build.outputDirectory}/${project.artifactId}.js</outputFile>
                         </configuration>
                     </execution>
@@ -54,7 +56,7 @@
                             <goal>test-js</goal>
                         </goals>
                         <configuration>
-                            <outputFile>${project.basedir}/target/jsjs/${project.artifactId}-tests.js</outputFile>
+                            <outputFile>${project.basedir}/target/test-js/${project.artifactId}-tests.js</outputFile>
                             <metaInfo>true</metaInfo>
                             <sourceMap>true</sourceMap>
                             <moduleKind>umd</moduleKind>
@@ -71,6 +73,10 @@
                     <classesDirectory>${project.build.outputDirectory}</classesDirectory>
                     <includes>
                         <include>**/*.js</include>
+                        <include>**/*.js.map</include>
+                        <include>**/*.kjsm</include>
+                        <include>**/*.kotlin_classes</include>
+                        <include>**/*.kotlin_string_table</include>
                     </includes>
                     <archive>
                         <forced />
@@ -112,7 +118,7 @@
                             <includeScope>test</includeScope>
                             <excludeArtifactIds>kotlinx.html.shared</excludeArtifactIds>
                             <includeTypes>jar</includeTypes>
-                            <outputDirectory>${project.basedir}/target/jsjs</outputDirectory>
+                            <outputDirectory>${project.basedir}/target/test-js</outputDirectory>
                             <includes>*.js</includes>
                             <excludes>*.meta.js</excludes>
                         </configuration>

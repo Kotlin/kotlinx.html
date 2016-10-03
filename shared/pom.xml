@@ -43,7 +43,8 @@
                         </goals>
                         <configuration>
                             <moduleKind>umd</moduleKind>
-                            <outputFile>${project.build.outputDirectory}/${project.artifactId}.js</outputFile>
+                            <sourceMap>true</sourceMap>
+                            <outputFile>${project.build.directory}/js/${project.artifactId}.js</outputFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -58,7 +59,6 @@
                 <version>2.6</version>
                 <configuration>
                     <forceCreation>true</forceCreation>
-                    <classesDirectory>${project.build.outputDirectory}</classesDirectory>
                     <archive>
                         <forced />
                         <manifestEntries>
@@ -69,6 +69,34 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>pack-jvm</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>jvm</classifier>
+                            <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>pack-js</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>js</classifier>
+                            <classesDirectory>${project.build.directory}/js</classesDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

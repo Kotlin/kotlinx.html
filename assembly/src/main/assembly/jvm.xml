@@ -9,10 +9,11 @@
 
     <dependencySets>
         <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
             <outputDirectory>/</outputDirectory>
             <fileMode>777</fileMode>
             <includes>
-                <include>org.jetbrains.kotlinx:kotlinx.html.shared</include>
+                <include>org.jetbrains.kotlinx:kotlinx.html.shared:jar:jvm</include>
                 <include>org.jetbrains.kotlinx:kotlinx.html.jvm</include>
             </includes>
         </dependencySet>

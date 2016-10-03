@@ -18,10 +18,10 @@ module.exports = function (config) {
             frameworks: ['qunit'],
             reporters: ['progress', 'junit'],
             files: [
-                '../../../target/jsjs/kotlin.js',
-                '../../../../shared/target/classes/*.js',
+                '../../../target/test-js/kotlin.js',
+                '../../../../shared/target/js/*.js',
                 '../../../target/classes/*.js',
-                '../../../target/jsjs/*.js'
+                '../../../target/test-js/*.js'
             ],
             exclude: [],
             port: 9876,

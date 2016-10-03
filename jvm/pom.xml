@@ -23,6 +23,7 @@
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx.html.shared</artifactId>
             <version>${project.version}</version>
+            <classifier>jvm</classifier>
 
             <exclusions>
                 <exclusion>
