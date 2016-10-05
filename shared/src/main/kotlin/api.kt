@@ -81,9 +81,8 @@ fun attributesMapOf(vararg pairs: String?): Map<String, String> {
 
     return result ?: emptyMap
 }
-fun singletonMapOf(key: String, value: String): Map<String, String> = HashMap<String, String>(2).apply {
-    put(key, value)
-}
+
+fun singletonMapOf(key: String, value: String): Map<String, String> = SingletonStringMap(key, value)
 
 fun HTMLTag.unsafe(block: Unsafe.() -> Unit): Unit = consumer.onTagContentUnsafe(block)
 
@@ -97,4 +96,29 @@ class DefaultUnsafe : Unsafe {
     }
 
     override fun toString(): String = sb.toString()
+}
+
+private data class SingletonStringMap(override val key: String, override val value: String) : Map<String, String>, Map.Entry<String, String> {
+    override val entries: Set<Map.Entry<String, String>>
+        get() = setOf(this)
+
+    override val keys: Set<String>
+        get() = setOf(key)
+
+    override val size: Int
+        get() = 1
+
+    override val values: Collection<String>
+        get() = listOf(value)
+
+    override fun containsKey(key: String) = key == this.key
+    override fun containsValue(value: String) = value == this.value
+    override fun get(key: String): String? = if (key == this.key) value else null
+    override fun isEmpty() = false
+
+    // workaround for https://youtrack.jetbrains.com/issue/KT-14194
+    @Suppress("UNUSED")
+    private fun getKey(p: Int = 0) = key
+    @Suppress("UNUSED")
+    private fun getValue(p: Int = 0) = value
 }
