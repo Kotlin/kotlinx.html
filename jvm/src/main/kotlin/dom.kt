@@ -4,6 +4,7 @@ import kotlinx.html.*
 import kotlinx.html.consumers.*
 import org.w3c.dom.*
 import org.w3c.dom.events.*
+import org.xml.sax.InputSource
 import java.io.*
 import java.util.*
 import javax.xml.parsers.*
@@ -14,6 +15,7 @@ import javax.xml.transform.stream.*
 class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     private val path = arrayListOf<Element>()
     private var lastLeaved : Element? = null
+    private val documentBuilder by lazy { DocumentBuilderFactory.newInstance().newDocumentBuilder() }
 
     override fun onTagStart(tag: Tag) {
         val element = when {
@@ -79,7 +81,17 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     override fun finalize() = lastLeaved ?: throw IllegalStateException("No tags were emitted")
 
     override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
-        throw UnsupportedOperationException("unsafe content for DOM at JVM is not supported yet")
+        UnsafeImpl.block()
+    }
+
+    val UnsafeImpl = object : Unsafe {
+        override operator fun String.unaryPlus() {
+            val element = documentBuilder
+                .parse(InputSource(StringReader(this)))
+                .documentElement
+            val importNode = document.importNode(element, true)
+            path.last().appendChild(importNode)
+        }
     }
 
     private fun Element.setIdAttributeName() {
