@@ -224,7 +224,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <kotlin.version>1.0.4-eap-84</kotlin.version>
+                <kotlin.version>1.0.5-eap-66</kotlin.version>
                 <bintray.url>https://api.bintray.com/maven/kotlin/kotlin-dev/kotlinx.html</bintray.url>
             </properties>
 
@@ -237,6 +237,14 @@
                     <name>bintray</name>
                     <url>http://dl.bintray.com/kotlin/kotlin-dev</url>
                 </repository>
+                <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>bintray-kotlin-kotlin-eap</id>
+                    <name>bintray</name>
+                    <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
+                </repository>
             </repositories>
             <pluginRepositories>
                 <pluginRepository>
@@ -246,6 +254,14 @@
                     <id>bintray-kotlin-kotlin-dev</id>
                     <name>bintray-plugins</name>
                     <url>http://dl.bintray.com/kotlin/kotlin-dev</url>
+                </pluginRepository>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>bintray-kotlin-kotlin-eap</id>
+                    <name>bintray-plugins</name>
+                    <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
