@@ -251,7 +251,7 @@
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
-                    <id>bintray-kotlin-kotlin-dev</id>
+                    <id>bintray-kotlin-plugin-kotlin-dev</id>
                     <name>bintray-plugins</name>
                     <url>http://dl.bintray.com/kotlin/kotlin-dev</url>
                 </pluginRepository>
@@ -259,7 +259,7 @@
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
-                    <id>bintray-kotlin-kotlin-eap</id>
+                    <id>bintray-kotlin-plugin-kotlin-eap</id>
                     <name>bintray-plugins</name>
                     <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
                 </pluginRepository>
