@@ -128,7 +128,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>0.0.26</version>
+                <version>1.2</version>
 
                 <executions>
                     <execution>
@@ -169,8 +169,8 @@
                 </executions>
 
                 <configuration>
-                    <nodeVersion>v0.12.15</nodeVersion>
-                    <npmVersion>3.10.2</npmVersion>
+                    <nodeVersion>v0.12.17</nodeVersion>
+                    <npmVersion>3.10.9</npmVersion>
 
                     <workingDirectory>${project.basedir}/src/test/karma</workingDirectory>
                 </configuration>
