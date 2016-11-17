@@ -26,10 +26,11 @@ interface Tag {
     val inlineTag: Boolean
     val emptyTag: Boolean
 
-    operator fun Entities.unaryPlus() : Unit {
+    operator fun Entities.unaryPlus(): Unit {
         consumer.onTagContentEntity(this)
     }
-    operator fun String.unaryPlus() : Unit {
+
+    operator fun String.unaryPlus(): Unit {
         consumer.onTagContent(this)
     }
 }
@@ -54,7 +55,7 @@ fun <T : Tag> T.visit(block: T.() -> Unit) {
     }
 }
 
-fun <T: Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit): R {
+fun <T : Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit): R {
     require(this.consumer === consumer)
     visit(block)
     return consumer.finalize()
@@ -65,10 +66,11 @@ fun attributesMapOf(key: String, value: String?): Map<String, String> = when (va
     null -> emptyMap
     else -> singletonMapOf(key, value)
 }
+
 fun attributesMapOf(vararg pairs: String?): Map<String, String> {
     var result: LinkedHashMap<String, String>? = null
 
-    for (i in 0 .. pairs.size - 1 step 2) {
+    for (i in 0..pairs.size - 1 step 2) {
         val k = pairs[i]
         val v = pairs[i + 1]
         if (k != null && v != null) {
@@ -98,6 +100,9 @@ class DefaultUnsafe : Unsafe {
     override fun toString(): String = sb.toString()
 }
 
+@DslMarker
+annotation class HtmlTagMarker
+
 private data class SingletonStringMap(override val key: String, override val value: String) : Map<String, String>, Map.Entry<String, String> {
     override val entries: Set<Map.Entry<String, String>>
         get() = setOf(this)
@@ -119,6 +124,7 @@ private data class SingletonStringMap(override val key: String, override val val
     // workaround for https://youtrack.jetbrains.com/issue/KT-14194
     @Suppress("UNUSED")
     private fun getKey(p: Int = 0) = key
+
     @Suppress("UNUSED")
     private fun getValue(p: Int = 0) = value
 }

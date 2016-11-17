@@ -71,7 +71,7 @@ class TestStreaming {
         val result = sw.appendHTML(false).filter {
             when (it.tagName) {
                 "div" -> DROP
-                "pre" -> SKIP
+                "span", "footer" -> SKIP
                 else -> PASS
             }
         }.html {
@@ -83,18 +83,18 @@ class TestStreaming {
                         }
                     }
                 }
-                pre {
+                footer {
                     p {
-                        +"[pre.p]"
-                        pre {
+                        +"[footer.p]"
+                        span {
                             a {
-                                +"[pre.p.pre.a]"
+                                +"[footer.p.span.a]"
                             }
                         }
                     }
                     div {
                         p {
-                            +"[pre.div.p]"
+                            +"[footer.div.p]"
                         }
                     }
                 }
@@ -103,7 +103,7 @@ class TestStreaming {
 
         val sw2: StringWriter = result // note: this is to ensure result type is valid at compile time
 
-        assertEquals("<html><body><p>[pre.p]<a>[pre.p.pre.a]</a></p></body></html>", sw2.toString())
+        assertEquals("<html><body><p>[footer.p]<a>[footer.p.span.a]</a></p></body></html>", sw2.toString())
     }
 
     @test fun `we should be able to handle many requests`() {
