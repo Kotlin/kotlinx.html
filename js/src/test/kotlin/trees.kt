@@ -4,8 +4,7 @@ import kotlinx.html.*
 import kotlinx.html.consumers.*
 import kotlinx.html.dom.*
 import kotlinx.html.js.*
-import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLElement
+import org.w3c.dom.*
 import kotlin.browser.*
 import kotlin.dom.*
 import kotlin.test.*
@@ -116,8 +115,8 @@ class DomTreeImplTest {
     @test fun pastTagAtrributeChangedShouldBeProhibited() {
         try {
             document.body!!.append.trace().div {
-                span {
-                    p {
+                p {
+                    span {
                         this@div.id = "d1"
                     }
                 }
