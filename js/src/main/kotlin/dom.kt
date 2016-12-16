@@ -3,16 +3,13 @@ package kotlinx.html.dom
 import kotlinx.html.*
 import kotlinx.html.consumers.*
 import org.w3c.dom.*
-import org.w3c.dom.HTMLElement
 import org.w3c.dom.events.*
-import java.util.*
 import kotlin.dom.*
-import kotlin.js.native
-import kotlin.js.nativeSetter
 
-@native
-@nativeSetter
-private fun HTMLElement.setEvent(name : String, callback : (Event) -> Unit) : Unit
+@Suppress("NOTHING_TO_INLINE")
+private inline fun HTMLElement.setEvent(name: String, noinline callback : (Event) -> Unit) : Unit {
+    asDynamic()[name] = callback
+}
 
 class JSDOMBuilder<out R : HTMLElement>(val document : Document) : TagConsumer<R> {
     private val path = arrayListOf<HTMLElement>()
@@ -103,18 +100,18 @@ class JSDOMBuilder<out R : HTMLElement>(val document : Document) : TagConsumer<R
 }
 
 
-public fun Document.createTree() : TagConsumer<HTMLElement> = JSDOMBuilder(this)
-public val Document.create : TagConsumer<HTMLElement>
+fun Document.createTree() : TagConsumer<HTMLElement> = JSDOMBuilder(this)
+val Document.create : TagConsumer<HTMLElement>
     get() = JSDOMBuilder(this)
 
-public fun Node.append(block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> =
+fun Node.append(block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> =
         ArrayList<HTMLElement>().let { result ->
             ownerDocumentExt.createTree().onFinalize { it, partial -> if (!partial) {result.add(it); appendChild(it) } }.block()
 
             result
         }
 
-public val HTMLElement.append : TagConsumer<HTMLElement>
+val HTMLElement.append : TagConsumer<HTMLElement>
     get() = ownerDocumentExt.createTree().onFinalize { element, partial -> if (!partial) { this@append.appendChild(element) } }
 
 private val Node.ownerDocumentExt: Document
