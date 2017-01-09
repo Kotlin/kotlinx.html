@@ -23,14 +23,6 @@
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx.html.shared</artifactId>
             <version>${project.version}</version>
-            <classifier>jvm</classifier>
-
-            <exclusions>
-                <exclusion>
-                    <groupId>org.jetbrains.kotlin</groupId>
-                    <artifactId>kotlin-js-library</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
@@ -57,6 +49,10 @@
                         </goals>
                     </execution>
                 </executions>
+
+                <configuration>
+                    <multiPlatform>true</multiPlatform>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jetbrains.dokka</groupId>

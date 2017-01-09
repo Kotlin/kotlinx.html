@@ -101,17 +101,17 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 }
 
-public fun Document.createHTMLTree() : TagConsumer<Element> = HTMLDOMBuilder(this)
-public val Document.create : TagConsumer<Element>
+fun Document.createHTMLTree() : TagConsumer<Element> = HTMLDOMBuilder(this)
+val Document.create : TagConsumer<Element>
     get() = HTMLDOMBuilder(this)
 
-public fun Node.append(block : TagConsumer<Element>.() -> Unit) : List<Element> = ArrayList<Element>().let { result ->
+fun Node.append(block : TagConsumer<Element>.() -> Unit) : List<Element> = ArrayList<Element>().let { result ->
     ownerDocumentExt.createHTMLTree().onFinalize { it, partial -> if (!partial) {appendChild(it); result.add(it)} }.block()
 
     result
 }
 
-public val Node.append: TagConsumer<Element>
+val Node.append: TagConsumer<Element>
     get() = ownerDocumentExt.createHTMLTree().onFinalize { it, partial -> if (!partial) { appendChild(it) } }
 
 private val Node.ownerDocumentExt: Document
@@ -120,35 +120,35 @@ private val Node.ownerDocumentExt: Document
         else -> ownerDocument ?: throw IllegalArgumentException("node has no ownerDocument")
     }
 
-public fun createHTMLDocument() : TagConsumer<Document> = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let {
+fun createHTMLDocument() : TagConsumer<Document> = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let {
     document -> HTMLDOMBuilder(document).onFinalizeMap { it, partial -> if (!partial) {document.appendChild(it)}; document }
 }
 
-public inline fun document(block : Document.() -> Unit) : Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
+inline fun document(block : Document.() -> Unit) : Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
     document.block()
     document
 }
 
-public fun Writer.write(document : Document, prettyPrint : Boolean = true) : Writer {
+fun Writer.write(document : Document, prettyPrint : Boolean = true) : Writer {
     write("<!DOCTYPE html>\n")
     write(document.documentElement, prettyPrint)
     return this
 }
 
-public fun Writer.write(element: Element, prettyPrint : Boolean = true) : Writer {
-    val transformer = TransformerFactory.newInstance().newTransformer();
-    transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-    transformer.setOutputProperty(OutputKeys.METHOD, "html");
-    transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+fun Writer.write(element: Element, prettyPrint : Boolean = true) : Writer {
+    val transformer = TransformerFactory.newInstance().newTransformer()
+    transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes")
+    transformer.setOutputProperty(OutputKeys.METHOD, "html")
+    transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8")
 
     if (prettyPrint) {
-        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2")
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes")
     }
 
     transformer.transform(DOMSource(element), StreamResult(this))
     return this
 }
 
-public fun Element.serialize(prettyPrint : Boolean = true) : String = StringWriter().let { it.write(this, prettyPrint).toString() }
-public fun Document.serialize(prettyPrint : Boolean = true) : String = StringWriter().let { it.write(this, prettyPrint).toString() }
+fun Element.serialize(prettyPrint : Boolean = true) : String = StringWriter().write(this, prettyPrint).toString()
+fun Document.serialize(prettyPrint : Boolean = true) : String = StringWriter().write(this, prettyPrint).toString()

@@ -100,8 +100,8 @@ class JSDOMBuilder<out R : HTMLElement>(val document : Document) : TagConsumer<R
 }
 
 
-fun Document.createTree() : TagConsumer<HTMLElement> = JSDOMBuilder(this)
-val Document.create : TagConsumer<HTMLElement>
+ fun Document.createTree() : TagConsumer<HTMLElement> = JSDOMBuilder(this)
+ val Document.create : TagConsumer<HTMLElement>
     get() = JSDOMBuilder(this)
 
 fun Node.append(block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> =

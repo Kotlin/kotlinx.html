@@ -5,7 +5,6 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import kotlinx.html.Unsafe
 import org.w3c.dom.events.Event
-import java.util.HashSet
 
 object PredicateResults {
     val PASS = PredicateResult.PASS

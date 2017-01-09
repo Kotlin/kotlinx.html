@@ -4,7 +4,7 @@ import kotlinx.html.*
 import kotlinx.html.consumers.*
 import org.w3c.dom.events.Event
 
-class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) : TagConsumer<O> {
+class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boolean) : TagConsumer<O> {
     private var level = 0
     private var ln = true
 
@@ -24,7 +24,7 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
         }
 
         if (tag.attributes.isNotEmpty()) {
-            tag.attributesEntries.forEachIndexed { idx, e ->
+            tag.attributesEntries.forEachIndexed { _, e ->
                 if (!e.key.isValidXmlAttributeName()) {
                     throw IllegalArgumentException("Tag ${tag.tagName} has invalid attribute name ${e.key}")
                 }
@@ -118,7 +118,7 @@ class HTMLStreamBuilder<O : Appendable>(val out : O, val prettyPrint : Boolean) 
 }
 
 private val AVERAGE_PAGE_SIZE = 32768
-fun createHTML(prettyPrint: Boolean = true): TagConsumer<String> = HTMLStreamBuilder(StringBuilder(AVERAGE_PAGE_SIZE), prettyPrint).onFinalizeMap { sb, last -> sb.toString() }.delayed()
+fun createHTML(prettyPrint: Boolean = true): TagConsumer<String> = HTMLStreamBuilder(StringBuilder(AVERAGE_PAGE_SIZE), prettyPrint).onFinalizeMap { sb, _ -> sb.toString() }.delayed()
 fun <O : Appendable> O.appendHTML(prettyPrint : Boolean = true) : TagConsumer<O> = HTMLStreamBuilder(this, prettyPrint).delayed()
 
 private val escapeMap = mapOf(
@@ -153,13 +153,13 @@ private fun Appendable.escapeAppend(s : CharSequence) {
         val ch = s[idx]
         val escape = escapeMap[ch]
         if (escape != null) {
-            append(s, lastIndex, idx)
+            append(s.substring(lastIndex, idx))
             append(escape)
             lastIndex = idx + 1
         }
     }
 
     if (lastIndex < s.length) {
-        append(s, lastIndex, s.length)
+        append(s.substring(lastIndex, s.length))
     }
 }

@@ -19,8 +19,7 @@ module.exports = function (config) {
             reporters: ['progress', 'junit'],
             files: [
                 '../../../target/test-js/kotlin.js',
-                '../../../../shared/target/js/*.js',
-                '../../../target/classes/*.js',
+		'../../../target/classes/*.js',
                 '../../../target/test-js/*.js'
             ],
             exclude: [],

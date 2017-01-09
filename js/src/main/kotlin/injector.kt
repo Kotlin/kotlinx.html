@@ -25,7 +25,7 @@ interface CustomCapture : InjectCapture {
 
 class InjectorConsumer<out T: Any>(val downstream : TagConsumer<HTMLElement>, val bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>) : TagConsumer<HTMLElement> by downstream {
 
-    private val classesMap = rules
+    private val classesMap: Map<String, List<KMutableProperty1<T, out HTMLElement>>> = rules
             .filter { it.first is InjectByClassName }
             .map { it.first as InjectByClassName to it.second }
             .groupBy ({ it.first.className }, { it.second })
@@ -71,6 +71,7 @@ class InjectorConsumer<out T: Any>(val downstream : TagConsumer<HTMLElement>, va
 }
 
 fun <T: Any> TagConsumer<HTMLElement>.inject(bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>) : TagConsumer<HTMLElement> = InjectorConsumer(this, bean, rules)
+
 fun <T: Any> HTMLElement.appendAndInject(bean : T, rules : List<Pair<InjectCapture, KMutableProperty1<T, out HTMLElement>>>, block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> = append {
     InjectorConsumer(this@append, bean, rules).block()
     Unit

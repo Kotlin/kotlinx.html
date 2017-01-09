@@ -18,14 +18,6 @@
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx.html.shared</artifactId>
             <version>${project.version}</version>
-            <classifier>js</classifier>
-
-            <exclusions>
-                <exclusion>
-                    <groupId>org.jetbrains.kotlin</groupId>
-                    <artifactId>kotlin-stdlib</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
@@ -47,6 +39,7 @@
                             <moduleKind>umd</moduleKind>
                             <sourceMap>true</sourceMap>
                             <outputFile>${project.build.outputDirectory}/${project.artifactId}.js</outputFile>
+                            <multiPlatform>true</multiPlatform>
                         </configuration>
                     </execution>
                     <execution>
@@ -60,6 +53,7 @@
                             <metaInfo>true</metaInfo>
                             <sourceMap>true</sourceMap>
                             <moduleKind>umd</moduleKind>
+                            <multiPlatform>true</multiPlatform>
                         </configuration>
                     </execution>
                 </executions>

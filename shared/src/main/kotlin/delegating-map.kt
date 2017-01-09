@@ -2,7 +2,6 @@ package kotlinx.html.impl
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
-import java.util.*
 
 class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val consumer : () -> TagConsumer<*>) : MutableMap<String, String> {
     private var backing: Map<String, String> = initialValues

@@ -1,7 +1,6 @@
 package kotlinx.html
 
-import org.w3c.dom.events.*
-import java.util.*
+import org.w3c.dom.events.Event
 
 interface TagConsumer<out R> {
     fun onTagStart(tag: Tag)
@@ -48,7 +47,7 @@ fun <T : Tag> T.visit(block: T.() -> Unit) {
     consumer.onTagStart(this)
     try {
         this.block()
-    } catch (err: Exception) {
+    } catch (err: Throwable) {
         consumer.onTagError(this, err)
     } finally {
         consumer.onTagEnd(this)
@@ -56,7 +55,10 @@ fun <T : Tag> T.visit(block: T.() -> Unit) {
 }
 
 fun <T : Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit): R {
-    require(this.consumer === consumer)
+    if (this.consumer !== consumer) {
+        throw IllegalArgumentException("Wrong exception")
+    }
+
     visit(block)
     return consumer.finalize()
 }
@@ -68,16 +70,16 @@ fun attributesMapOf(key: String, value: String?): Map<String, String> = when (va
 }
 
 fun attributesMapOf(vararg pairs: String?): Map<String, String> {
-    var result: LinkedHashMap<String, String>? = null
+    var result: MutableMap<String, String>? = null
 
     for (i in 0..pairs.size - 1 step 2) {
         val k = pairs[i]
         val v = pairs[i + 1]
         if (k != null && v != null) {
             if (result == null) {
-                result = LinkedHashMap(pairs.size - i)
+                result = linkedMapOf()
             }
-            result[k] = v
+            result.put(k, v)
         }
     }
 
@@ -120,11 +122,4 @@ private data class SingletonStringMap(override val key: String, override val val
     override fun containsValue(value: String) = value == this.value
     override fun get(key: String): String? = if (key == this.key) value else null
     override fun isEmpty() = false
-
-    // workaround for https://youtrack.jetbrains.com/issue/KT-14194
-    @Suppress("UNUSED")
-    private fun getKey(p: Int = 0) = key
-
-    @Suppress("UNUSED")
-    private fun getValue(p: Int = 0) = value
 }

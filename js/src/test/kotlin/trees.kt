@@ -112,7 +112,7 @@ class DomTreeImplTest {
         assertEquals("<span>&nbsp;</span>", wrapper.innerHTML)
     }
 
-    @test fun pastTagAtrributeChangedShouldBeProhibited() {
+    @test fun pastTagAttributeChangedShouldBeProhibited() {
         try {
             document.body!!.append.trace().div {
                 p {
@@ -122,7 +122,7 @@ class DomTreeImplTest {
                 }
             }
 
-            fail("We shouldn't be able to do that")
+            fail("We shouldn't be able to modify attribute for outer tag")
         } catch (expected: Throwable) {
             assertTrue(true)
         }
