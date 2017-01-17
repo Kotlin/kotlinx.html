@@ -71,6 +71,7 @@
                         <include>**/*.kjsm</include>
                         <include>**/*.kotlin_classes</include>
                         <include>**/*.kotlin_string_table</include>
+                        <include>**/*.kotlin_file_table</include>
                     </includes>
                     <archive>
                         <forced />
