@@ -10,12 +10,18 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class SAMP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("samp", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class SAMP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("samp", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val SAMP.asFlowContent : FlowContent
+    get()  = this
+
+val SAMP.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class SCRIPT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("script", consumer, initialAttributes, null, false, false) {
+open class SCRIPT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("script", consumer, initialAttributes, null, false, false), FlowMetaDataPhrasingContent {
     var charset : String
         get()  = attributeStringString.get(this, "charset")
         set(newValue) {attributeStringString.set(this, "charset", newValue)}
@@ -38,14 +44,29 @@ open class SCRIPT(initialAttributes : Map<String, String>, override val consumer
 
 
 }
+val SCRIPT.asFlowContent : FlowContent
+    get()  = this
+
+val SCRIPT.asMetaDataContent : MetaDataContent
+    get()  = this
+
+val SCRIPT.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class SECTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("section", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+open class SECTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("section", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowSectioningContent {
 
 }
+val SECTION.asFlowContent : FlowContent
+    get()  = this
+
+val SECTION.asSectioningContent : SectioningContent
+    get()  = this
+
 
 @Suppress("unused")
-open class SELECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("select", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacade {
+open class SELECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("select", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var autoFocus : Boolean
         get()  = attributeBooleanTicker.get(this, "autofocus")
         set(newValue) {attributeBooleanTicker.set(this, "autofocus", newValue)}
@@ -81,11 +102,26 @@ fun SELECT.option(classes : String? = null, content : String = "") : Unit = OPTI
 
 fun SELECT.optGroup(label : String? = null, classes : String? = null, block : OPTGROUP.() -> Unit = {}) : Unit = OPTGROUP(attributesMapOf("label", label,"class", classes), consumer).visit(block)
 
+val SELECT.asFlowContent : FlowContent
+    get()  = this
+
+val SELECT.asInteractiveContent : InteractiveContent
+    get()  = this
+
+val SELECT.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class SMALL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("small", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class SMALL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("small", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val SMALL.asFlowContent : FlowContent
+    get()  = this
+
+val SMALL.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
 open class SOURCE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("source", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacade {
@@ -105,17 +141,29 @@ open class SOURCE(initialAttributes : Map<String, String>, override val consumer
 }
 
 @Suppress("unused")
-open class SPAN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("span", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class SPAN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("span", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val SPAN.asFlowContent : FlowContent
+    get()  = this
+
+val SPAN.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class STRONG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("strong", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class STRONG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("strong", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val STRONG.asFlowContent : FlowContent
+    get()  = this
+
+val STRONG.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class STYLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("style", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
+open class STYLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("style", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowMetaDataContent {
     var type : String
         get()  = attributeStringString.get(this, "type")
         set(newValue) {attributeStringString.set(this, "type", newValue)}
@@ -130,19 +178,43 @@ open class STYLE(initialAttributes : Map<String, String>, override val consumer 
 
 
 }
+val STYLE.asFlowContent : FlowContent
+    get()  = this
+
+val STYLE.asMetaDataContent : MetaDataContent
+    get()  = this
+
 
 @Suppress("unused")
-open class SUB(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("sub", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class SUB(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("sub", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val SUB.asFlowContent : FlowContent
+    get()  = this
+
+val SUB.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class SUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("sup", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class SUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("sup", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val SUP.asFlowContent : FlowContent
+    get()  = this
+
+val SUP.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class SVG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("svg", consumer, initialAttributes, "http://www.w3.org/2000/svg", false, false), CommonAttributeGroupFacade {
+open class SVG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("svg", consumer, initialAttributes, "http://www.w3.org/2000/svg", false, false), HtmlBlockInlineTag {
 
 }
+val SVG.asFlowContent : FlowContent
+    get()  = this
+
+val SVG.asPhrasingContent : PhrasingContent
+    get()  = this
+
 

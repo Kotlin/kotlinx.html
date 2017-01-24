@@ -10,7 +10,7 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class TABLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("table", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
+open class TABLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("table", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var summary : String
         get()  = attributeStringString.get(this, "summary")
         set(newValue) {attributeStringString.set(this, "summary", newValue)}
@@ -55,7 +55,7 @@ open class TD(initialAttributes : Map<String, String>, override val consumer : T
 }
 
 @Suppress("unused")
-open class TEXTAREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("textarea", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacade {
+open class TEXTAREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("textarea", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var autoFocus : Boolean
         get()  = attributeBooleanTicker.get(this, "autofocus")
         set(newValue) {attributeBooleanTicker.set(this, "autofocus", newValue)}
@@ -102,6 +102,15 @@ open class TEXTAREA(initialAttributes : Map<String, String>, override val consum
 
 
 }
+val TEXTAREA.asFlowContent : FlowContent
+    get()  = this
+
+val TEXTAREA.asInteractiveContent : InteractiveContent
+    get()  = this
+
+val TEXTAREA.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
 open class TFOOT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("tfoot", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
@@ -139,16 +148,22 @@ fun THEAD.tr(classes : String? = null, block : TR.() -> Unit = {}) : Unit = TR(a
 
 
 @Suppress("unused")
-open class TIME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("time", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class TIME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("time", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var dateTime : String
         get()  = attributeStringString.get(this, "datetime")
         set(newValue) {attributeStringString.set(this, "datetime", newValue)}
 
 
 }
+val TIME.asFlowContent : FlowContent
+    get()  = this
+
+val TIME.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class TITLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("title", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
+open class TITLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("title", consumer, initialAttributes, null, false, false), HtmlHeadTag {
 
 }
 

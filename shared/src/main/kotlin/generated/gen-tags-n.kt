@@ -10,12 +10,27 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class NAV(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("nav", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+open class NAV(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("nav", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowSectioningContent {
 
 }
+val NAV.asFlowContent : FlowContent
+    get()  = this
+
+val NAV.asSectioningContent : SectioningContent
+    get()  = this
+
 
 @Suppress("unused")
-open class NOSCRIPT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("noscript", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+open class NOSCRIPT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("noscript", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
 
 }
+val NOSCRIPT.asFlowContent : FlowContent
+    get()  = this
+
+val NOSCRIPT.asMetaDataContent : MetaDataContent
+    get()  = this
+
+val NOSCRIPT.asPhrasingContent : PhrasingContent
+    get()  = this
+
 

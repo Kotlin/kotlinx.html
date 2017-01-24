@@ -10,12 +10,18 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class I(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("i", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class I(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("i", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val I.asFlowContent : FlowContent
+    get()  = this
+
+val I.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class IFRAME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("iframe", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacade {
+open class IFRAME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("iframe", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var name : String
         get()  = attributeStringString.get(this, "name")
         set(newValue) {attributeStringString.set(this, "name", newValue)}
@@ -42,9 +48,18 @@ open class IFRAME(initialAttributes : Map<String, String>, override val consumer
 
 
 }
+val IFRAME.asFlowContent : FlowContent
+    get()  = this
+
+val IFRAME.asInteractiveContent : InteractiveContent
+    get()  = this
+
+val IFRAME.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class IMG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("img", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacade {
+open class IMG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("img", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var alt : String
         get()  = attributeStringString.get(this, "alt")
         set(newValue) {attributeStringString.set(this, "alt", newValue)}
@@ -71,9 +86,18 @@ open class IMG(initialAttributes : Map<String, String>, override val consumer : 
 
 
 }
+val IMG.asFlowContent : FlowContent
+    get()  = this
+
+val IMG.asInteractiveContent : InteractiveContent
+    get()  = this
+
+val IMG.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class INPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("input", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacade {
+open class INPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("input", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var type : InputType
         get()  = attributeInputTypeEnumInputTypeValues.get(this, "type")
         set(newValue) {attributeInputTypeEnumInputTypeValues.set(this, "type", newValue)}
@@ -196,9 +220,18 @@ open class INPUT(initialAttributes : Map<String, String>, override val consumer 
 
 
 }
+val INPUT.asFlowContent : FlowContent
+    get()  = this
+
+val INPUT.asInteractiveContent : InteractiveContent
+    get()  = this
+
+val INPUT.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class INS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ins", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class INS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ins", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
     var cite : String
         get()  = attributeStringString.get(this, "cite")
         set(newValue) {attributeStringString.set(this, "cite", newValue)}
@@ -209,4 +242,10 @@ open class INS(initialAttributes : Map<String, String>, override val consumer : 
 
 
 }
+val INS.asFlowContent : FlowContent
+    get()  = this
+
+val INS.asPhrasingContent : PhrasingContent
+    get()  = this
+
 

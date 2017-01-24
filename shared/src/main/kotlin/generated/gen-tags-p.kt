@@ -10,9 +10,15 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class P(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("p", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class P(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("p", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
 
 }
+val P.asFlowContent : FlowContent
+    get()  = this
+
+val P.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
 open class PARAM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("param", consumer, initialAttributes, null, true, true) {
@@ -28,12 +34,18 @@ open class PARAM(initialAttributes : Map<String, String>, override val consumer 
 }
 
 @Suppress("unused")
-open class PRE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("pre", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class PRE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("pre", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
 
 }
+val PRE.asFlowContent : FlowContent
+    get()  = this
+
+val PRE.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class PROGRESS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("progress", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class PROGRESS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("progress", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var value : String
         get()  = attributeStringString.get(this, "value")
         set(newValue) {attributeStringString.set(this, "value", newValue)}
@@ -44,4 +56,10 @@ open class PROGRESS(initialAttributes : Map<String, String>, override val consum
 
 
 }
+val PROGRESS.asFlowContent : FlowContent
+    get()  = this
+
+val PROGRESS.asPhrasingContent : PhrasingContent
+    get()  = this
+
 

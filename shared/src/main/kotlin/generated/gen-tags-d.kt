@@ -10,11 +10,17 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class DATALIST(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("datalist", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class DATALIST(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("datalist", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 fun DATALIST.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
 fun DATALIST.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
+
+val DATALIST.asFlowContent : FlowContent
+    get()  = this
+
+val DATALIST.asPhrasingContent : PhrasingContent
+    get()  = this
 
 
 @Suppress("unused")
@@ -23,7 +29,7 @@ open class DD(initialAttributes : Map<String, String>, override val consumer : T
 }
 
 @Suppress("unused")
-open class DEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("del", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class DEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("del", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
     var cite : String
         get()  = attributeStringString.get(this, "cite")
         set(newValue) {attributeStringString.set(this, "cite", newValue)}
@@ -34,9 +40,15 @@ open class DEL(initialAttributes : Map<String, String>, override val consumer : 
 
 
 }
+val DEL.asFlowContent : FlowContent
+    get()  = this
+
+val DEL.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class DETAILS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("details", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+open class DETAILS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("details", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractiveContent {
     var open : Boolean
         get()  = attributeBooleanTicker.get(this, "open")
         set(newValue) {attributeBooleanTicker.set(this, "open", newValue)}
@@ -45,11 +57,23 @@ open class DETAILS(initialAttributes : Map<String, String>, override val consume
 }
 fun DETAILS.legEnd(classes : String? = null, block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
 
+val DETAILS.asFlowContent : FlowContent
+    get()  = this
+
+val DETAILS.asInteractiveContent : InteractiveContent
+    get()  = this
+
 
 @Suppress("unused")
-open class DFN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dfn", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class DFN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dfn", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val DFN.asFlowContent : FlowContent
+    get()  = this
+
+val DFN.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
 open class DIALOG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dialog", consumer, initialAttributes, null, false, false), HtmlBlockTag {
@@ -62,7 +86,7 @@ open class DIV(initialAttributes : Map<String, String>, override val consumer : 
 }
 
 @Suppress("unused")
-open class DL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dl", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
+open class DL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dl", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
 fun DL.dd(classes : String? = null, block : DD.() -> Unit = {}) : Unit = DD(attributesMapOf("class", classes), consumer).visit(block)

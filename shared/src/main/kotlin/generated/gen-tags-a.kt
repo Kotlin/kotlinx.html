@@ -10,7 +10,7 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class A(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("a", consumer, initialAttributes, null, true, false), HtmlBlockTag {
+open class A(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("a", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var href : String
         get()  = attributeStringString.get(this, "href")
         set(newValue) {attributeStringString.set(this, "href", newValue)}
@@ -33,11 +33,26 @@ open class A(initialAttributes : Map<String, String>, override val consumer : Ta
 
 
 }
+val A.asFlowContent : FlowContent
+    get()  = this
+
+val A.asInteractiveContent : InteractiveContent
+    get()  = this
+
+val A.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class ABBR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("abbr", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class ABBR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("abbr", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val ABBR.asFlowContent : FlowContent
+    get()  = this
+
+val ABBR.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
 open class ADDRESS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("address", consumer, initialAttributes, null, false, false), HtmlBlockTag {
@@ -45,7 +60,7 @@ open class ADDRESS(initialAttributes : Map<String, String>, override val consume
 }
 
 @Suppress("unused")
-open class AREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("area", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacade {
+open class AREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("area", consumer, initialAttributes, null, true, true), HtmlBlockInlineTag {
     var coords : String
         get()  = attributeStringString.get(this, "coords")
         set(newValue) {attributeStringString.set(this, "coords", newValue)}
@@ -80,19 +95,37 @@ open class AREA(initialAttributes : Map<String, String>, override val consumer :
 
 
 }
+val AREA.asFlowContent : FlowContent
+    get()  = this
+
+val AREA.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class ARTICLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("article", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+open class ARTICLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("article", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowSectioningContent {
 
 }
+val ARTICLE.asFlowContent : FlowContent
+    get()  = this
+
+val ARTICLE.asSectioningContent : SectioningContent
+    get()  = this
+
 
 @Suppress("unused")
-open class ASIDE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("aside", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+open class ASIDE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("aside", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowSectioningContent {
 
 }
+val ASIDE.asFlowContent : FlowContent
+    get()  = this
+
+val ASIDE.asSectioningContent : SectioningContent
+    get()  = this
+
 
 @Suppress("unused")
-open class AUDIO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("audio", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
+open class AUDIO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("audio", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var src : String
         get()  = attributeStringString.get(this, "src")
         set(newValue) {attributeStringString.set(this, "src", newValue)}
@@ -116,5 +149,14 @@ open class AUDIO(initialAttributes : Map<String, String>, override val consumer 
 
 }
 fun AUDIO.source(classes : String? = null, block : SOURCE.() -> Unit = {}) : Unit = SOURCE(attributesMapOf("class", classes), consumer).visit(block)
+
+val AUDIO.asFlowContent : FlowContent
+    get()  = this
+
+val AUDIO.asInteractiveContent : InteractiveContent
+    get()  = this
+
+val AUDIO.asPhrasingContent : PhrasingContent
+    get()  = this
 
 

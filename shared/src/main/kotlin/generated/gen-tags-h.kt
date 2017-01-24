@@ -10,32 +10,32 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class H1(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h1", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class H1(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h1", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class H2(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h2", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class H2(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h2", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class H3(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h3", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class H3(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h3", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class H4(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h4", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class H4(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h4", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class H5(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h5", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class H5(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h5", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class H6(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h6", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class H6(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h6", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
@@ -50,7 +50,7 @@ open class HEADER(initialAttributes : Map<String, String>, override val consumer
 }
 
 @Suppress("unused")
-open class HGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hgroup", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
+open class HGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hgroup", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingContent {
 
 }
 fun HGROUP.h1(classes : String? = null, block : H1.() -> Unit = {}) : Unit = H1(attributesMapOf("class", classes), consumer).visit(block)
@@ -65,9 +65,15 @@ fun HGROUP.h5(classes : String? = null, block : H5.() -> Unit = {}) : Unit = H5(
 
 fun HGROUP.h6(classes : String? = null, block : H6.() -> Unit = {}) : Unit = H6(attributesMapOf("class", classes), consumer).visit(block)
 
+val HGROUP.asFlowContent : FlowContent
+    get()  = this
+
+val HGROUP.asHeadingContent : HeadingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class HR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hr", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacade {
+open class HR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hr", consumer, initialAttributes, null, false, true), HtmlBlockTag {
 
 }
 

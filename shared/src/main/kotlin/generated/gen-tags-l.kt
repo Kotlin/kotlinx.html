@@ -10,7 +10,7 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class LABEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("label", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class LABEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("label", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var form : String
         get()  = attributeStringString.get(this, "form")
         set(newValue) {attributeStringString.set(this, "form", newValue)}
@@ -21,6 +21,15 @@ open class LABEL(initialAttributes : Map<String, String>, override val consumer 
 
 
 }
+val LABEL.asFlowContent : FlowContent
+    get()  = this
+
+val LABEL.asInteractiveContent : InteractiveContent
+    get()  = this
+
+val LABEL.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
 open class LEGEND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("legend", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
@@ -43,7 +52,7 @@ open class LI(initialAttributes : Map<String, String>, override val consumer : T
 }
 
 @Suppress("unused")
-open class LINK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("link", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacade {
+open class LINK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("link", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
     var href : String
         get()  = attributeStringString.get(this, "href")
         set(newValue) {attributeStringString.set(this, "href", newValue)}
@@ -66,4 +75,13 @@ open class LINK(initialAttributes : Map<String, String>, override val consumer :
 
 
 }
+val LINK.asFlowContent : FlowContent
+    get()  = this
+
+val LINK.asMetaDataContent : MetaDataContent
+    get()  = this
+
+val LINK.asPhrasingContent : PhrasingContent
+    get()  = this
+
 

@@ -25,14 +25,26 @@ val MAP.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class MARK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("mark", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class MARK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("mark", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val MARK.asFlowContent : FlowContent
+    get()  = this
+
+val MARK.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class MATH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("math", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class MATH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("math", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
 
 }
+val MATH.asFlowContent : FlowContent
+    get()  = this
+
+val MATH.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
 open class MATHML(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("mathml", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
@@ -40,7 +52,7 @@ open class MATHML(initialAttributes : Map<String, String>, override val consumer
 }
 
 @Suppress("unused")
-open class META(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meta", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacade {
+open class META(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meta", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
     var httpEquiv : String
         get()  = attributeStringString.get(this, "http-equiv")
         set(newValue) {attributeStringString.set(this, "http-equiv", newValue)}
@@ -59,9 +71,18 @@ open class META(initialAttributes : Map<String, String>, override val consumer :
 
 
 }
+val META.asFlowContent : FlowContent
+    get()  = this
+
+val META.asMetaDataContent : MetaDataContent
+    get()  = this
+
+val META.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class METER(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meter", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class METER(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meter", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var value : String
         get()  = attributeStringString.get(this, "value")
         set(newValue) {attributeStringString.set(this, "value", newValue)}
@@ -88,4 +109,10 @@ open class METER(initialAttributes : Map<String, String>, override val consumer 
 
 
 }
+val METER.asFlowContent : FlowContent
+    get()  = this
+
+val METER.asPhrasingContent : PhrasingContent
+    get()  = this
+
 

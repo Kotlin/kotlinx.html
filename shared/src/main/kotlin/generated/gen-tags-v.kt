@@ -10,12 +10,18 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class VAR_(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("var", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class VAR_(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("var", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val VAR_.asFlowContent : FlowContent
+    get()  = this
+
+val VAR_.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class VIDEO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("video", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
+open class VIDEO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("video", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var src : String
         get()  = attributeStringString.get(this, "src")
         set(newValue) {attributeStringString.set(this, "src", newValue)}
@@ -51,5 +57,14 @@ open class VIDEO(initialAttributes : Map<String, String>, override val consumer 
 
 }
 fun VIDEO.source(classes : String? = null, block : SOURCE.() -> Unit = {}) : Unit = SOURCE(attributesMapOf("class", classes), consumer).visit(block)
+
+val VIDEO.asFlowContent : FlowContent
+    get()  = this
+
+val VIDEO.asInteractiveContent : InteractiveContent
+    get()  = this
+
+val VIDEO.asPhrasingContent : PhrasingContent
+    get()  = this
 
 

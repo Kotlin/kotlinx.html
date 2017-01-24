@@ -10,7 +10,7 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class OBJECT_(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("object", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacade {
+open class OBJECT_(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("object", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var data : String
         get()  = attributeStringString.get(this, "data")
         set(newValue) {attributeStringString.set(this, "data", newValue)}
@@ -47,9 +47,18 @@ open class OBJECT_(initialAttributes : Map<String, String>, override val consume
 }
 fun OBJECT_.param(name : String? = null, value : String? = null, block : PARAM.() -> Unit = {}) : Unit = PARAM(attributesMapOf("name", name,"value", value), consumer).visit(block)
 
+val OBJECT_.asFlowContent : FlowContent
+    get()  = this
+
+val OBJECT_.asInteractiveContent : InteractiveContent
+    get()  = this
+
+val OBJECT_.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class OL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ol", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
+open class OL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ol", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var start : String
         get()  = attributeStringString.get(this, "start")
         set(newValue) {attributeStringString.set(this, "start", newValue)}
@@ -101,7 +110,7 @@ open class OPTION(initialAttributes : Map<String, String>, override val consumer
 }
 
 @Suppress("unused")
-open class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("output", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("output", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var for_ : String
         get()  = attributeStringString.get(this, "for")
         set(newValue) {attributeStringString.set(this, "for", newValue)}
@@ -116,4 +125,10 @@ open class OUTPUT(initialAttributes : Map<String, String>, override val consumer
 
 
 }
+val OUTPUT.asFlowContent : FlowContent
+    get()  = this
+
+val OUTPUT.asPhrasingContent : PhrasingContent
+    get()  = this
+
 

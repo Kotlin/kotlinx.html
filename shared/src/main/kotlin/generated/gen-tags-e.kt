@@ -10,12 +10,18 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class EM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("em", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+open class EM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("em", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+val EM.asFlowContent : FlowContent
+    get()  = this
+
+val EM.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
 @Suppress("unused")
-open class EMBED(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("embed", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacade {
+open class EMBED(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("embed", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var src : String
         get()  = attributeStringString.get(this, "src")
         set(newValue) {attributeStringString.set(this, "src", newValue)}
@@ -34,4 +40,13 @@ open class EMBED(initialAttributes : Map<String, String>, override val consumer 
 
 
 }
+val EMBED.asFlowContent : FlowContent
+    get()  = this
+
+val EMBED.asInteractiveContent : InteractiveContent
+    get()  = this
+
+val EMBED.asPhrasingContent : PhrasingContent
+    get()  = this
+
 
