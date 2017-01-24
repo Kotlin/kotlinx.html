@@ -2,7 +2,6 @@ package kotlinx.html
 
 import kotlinx.html.impl.*
 
-@HtmlTagMarker
 open class HTMLTag(
         override val tagName : String,
         override val consumer : TagConsumer<*>,

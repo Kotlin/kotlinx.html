@@ -14,6 +14,7 @@ interface TagConsumer<out R> {
     fun finalize(): R
 }
 
+@HtmlTagMarker
 interface Tag {
     val tagName: String
     val consumer: TagConsumer<*>
