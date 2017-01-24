@@ -1,5 +1,6 @@
 package kotlinx.html.generate
 
+import kotlinx.html.generate.humanize.*
 import java.io.*
 import java.util.*
 
@@ -41,13 +42,13 @@ fun generateParentTraits(todir: String, packg: String) {
             emptyLine()
 
             (allIntroduced.map { it.sorted() } + allParentTraits.filter { it.size > 1 }.map { it.sorted() }).distinct().sortedBy { it.sorted().joinToString("").let { renames[it] ?: it } }.forEach { iface ->
-                val ifaceName = iface.sorted().joinToString("")
+                val ifaceName = humanizeJoin(iface)
                 val subs =
                     allIntroduced.map { it.sorted() }.filter { other -> other != iface && other.all { it in iface } } +
                     allParentTraits.map { it.sorted() }.filter { other -> other != iface && other.all { it in iface } }
 
                 val computedParents =
-                        (iface - subs.flatMap { it } + subs.map { it.sorted().joinToString("") } - ifaceName)
+                        (iface - subs.flatMap { it } + subs.map(::humanizeJoin) - ifaceName)
                             .distinct()
                             .map { renames[it] ?: it }
                             .sorted()

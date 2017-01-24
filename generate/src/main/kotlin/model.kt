@@ -2,6 +2,7 @@ package kotlinx.html.generate
 
 import kotlinx.html.generate.humanize.*
 import java.util.*
+import kotlin.collections.HashMap
 import kotlin.comparisons.thenComparator
 
 object Repository {
@@ -18,6 +19,10 @@ object Repository {
 
     val attributeFacades = TreeMap<String, AttributeFacade>()
     val tagGroups = TreeMap<String, TagGroup>()
+    val groupsByTags = HashMap<String, MutableList<TagGroup>>()
+
+    val groupUnions = HashMap<String, GroupUnion>()
+    var unionsByGroups: Map<String, List<GroupUnion>> = emptyMap()
 }
 
 data class AttributeFacade(val name : String, val attributes : List<AttributeInfo>, val required : Set<String>) {
@@ -35,6 +40,10 @@ enum class AttributeType(val classPrefix : String, val typeName : String) {
     BOOLEAN("Boolean", "Boolean"),
     TICKER("Ticker", "Boolean"),
     ENUM("Enum", "???")
+}
+
+data class GroupUnion(val members: List<String>, val intersectionTags: Set<String>, val additionalTags: List<String>, val ambiguityTags: List<String>, val superGroups: List<String>) {
+    val name = unionName(members)
 }
 
 interface HasType {

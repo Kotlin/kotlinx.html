@@ -36,7 +36,7 @@ val renames = mapOf(
         "CommonAttributeGroupFacadePhrasingContent" to "HtmlInlineTag",
         "CommonAttributeGroupFacadeFlowContent" to "HtmlBlockTag",
         "CommonAttributeGroupFacadeMetaDataContent" to "HtmlHeadTag",
-        "CommonAttributeGroupFacadeFlowContentPhrasingContent" to "HtmlBlockInlineTag"
+        "CommonAttributeGroupFacadeFlowPhrasingContent" to "HtmlBlockInlineTag"
 )
 
 val tagIgnoreList = setOf(

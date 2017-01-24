@@ -1,11 +1,13 @@
 package kotlinx.html.generate
 
+import kotlinx.html.generate.humanize.*
 import java.util.*
 
 fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) : O = with {
     val parentAttributeTraits = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
     val parentElementTraits = tag.tagGroupNames.map {it.escapeUnsafeValues().capitalize()}
     val allParentTraits = parentAttributeTraits + parentElementTraits
+    val betterParentTraits = humanizeJoin(allParentTraits)
 
     val namespace = tagNamespaces[tag.name.toLowerCase()]
 
@@ -28,7 +30,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
                         ))
                     }
             ) + when {
-                allParentTraits.isNotEmpty() -> listOf(allParentTraits.joinToString("")).map { renames[it] ?: it }
+                allParentTraits.isNotEmpty() -> listOf(betterParentTraits).map { renames[it] ?: it }
                 else -> emptyList<String>()
             },
             isOpen = true

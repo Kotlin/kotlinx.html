@@ -2,7 +2,6 @@ package kotlinx.html.generate.humanize
 
 import kotlinx.html.generate.*
 
-
 fun String.humanize() : String {
     if (this.isEmpty()) {
         return "empty"
@@ -12,6 +11,50 @@ fun String.humanize() : String {
     val fixedFirstUpper = fixedAllUpper.decapitalize()
 
     return fixedFirstUpper.replaceHyphensToCamelCase().makeCamelCaseByDictionary().replaceMistakesAndUglyWords()
+}
+
+fun humanizeJoin(parts: List<String>): String {
+    val humanizedParts = parts.map(String::humanize)
+    val dictionary = HashMap<String, Int>()
+
+    humanizedParts.forEach { part ->
+        var start = 0
+
+        while (start < part.length) {
+            var end = part.drop(start + 1).indexOfFirst(Char::isUpperCase)
+            if (end == -1) {
+                end = part.length
+            } else {
+                end += start + 1
+            }
+
+            val word = part.substring(start, end).capitalize()
+
+            val newCount = dictionary.getOrElse(word) { 0 } + 1
+            dictionary[word] = newCount
+
+            start = end
+        }
+    }
+
+    val repeated = dictionary.filterValues { it > 1 }.keys.toList().sortedByDescending { it.length }
+    val filteredParts = ArrayList<String>(humanizedParts.size)
+    val trailingParts = HashSet<String>(repeated.size)
+
+    humanizedParts.forEach { part ->
+        var cutPart = part
+        repeated.forEach { word ->
+            if (cutPart.contains(word, ignoreCase = true)) {
+                cutPart = cutPart.replace(word, "", ignoreCase = true)
+                trailingParts.add(word)
+            }
+        }
+
+        filteredParts.add(cutPart)
+    }
+
+    val allParts = filteredParts + trailingParts
+    return allParts.joinToString(separator = "", transform = String::capitalize)
 }
 
 private fun String.replaceMistakesAndUglyWords() : String =

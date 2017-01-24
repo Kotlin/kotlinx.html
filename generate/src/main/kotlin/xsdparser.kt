@@ -112,7 +112,11 @@ fun fillRepository() {
                 .filter { it.isElementDecl }
                 .map { it.asElementDecl().name }
 
-        Repository.tagGroups[name] = TagGroup(name, children)
+        val group = TagGroup(name, children)
+        Repository.tagGroups[name] = group
+        children.forEach {
+            Repository.groupsByTags.getOrPut(it) { ArrayList<TagGroup>() }.add(group)
+        }
     }
 
     schema.elementDecls.values.forEach { elementDeclaration ->
@@ -149,6 +153,8 @@ fun fillRepository() {
                 }
             }
 
+            modelGroupNames.addAll(Repository.groupsByTags[name]?.map { it.name }.orEmpty())
+
             suggestedNames.addAll(attributes.filter { it.type == AttributeType.ENUM }.map { it.name })
             suggestedNames.addAll(attributes.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
             suggestedNames.addAll(attributeGroups.flatMap { it.attributes }.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
@@ -161,6 +167,8 @@ fun fillRepository() {
 
         Repository.tags[name] = tagInfo
     }
+
+    tagUnions()
 }
 
 private val xsdToType = mapOf(

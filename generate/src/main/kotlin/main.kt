@@ -172,8 +172,44 @@ fun main(args: Array<String>) {
         }
     }
 
+    FileOutputStream("$todir/gen-tag-unions.kt").writer(Charsets.UTF_8).use {
+        with(it) {
+            packg(packg)
+            emptyLine()
+            import("kotlinx.html.*")
+            import("kotlinx.html.impl.*")
+            import("kotlinx.html.attributes.*")
+            emptyLine()
+
+            warning()
+            emptyLine()
+            emptyLine()
+
+            Repository.groupUnions.values.forEach { union ->
+                clazz(Clazz(
+                        name = union.name,
+                        isTrait = true,
+                        parents = union.superGroups + "Tag"
+                )) {}
+
+                emptyLine()
+            }
+
+            emptyLine()
+            emptyLine()
+
+            Repository.groupUnions.values.forEach { union ->
+                (union.additionalTags + union.ambiguityTags).mapNotNull { Repository.tags[it] }.filterIgnored().forEach { tag ->
+                    htmlTagBuilders(union.name, tag)
+                }
+
+                emptyLine()
+            }
+        }
+    }
+
     FileOutputStream("$todir/gen-tag-groups.kt").writer(Charsets.UTF_8).use {
-        it.with {
+        with(it) {
             packg(packg)
             emptyLine()
             import("kotlinx.html.*")
@@ -187,14 +223,18 @@ fun main(args: Array<String>) {
 
             Repository.tagGroups.values.forEach { group ->
                 val groupName = group.name.escapeUnsafeValues()
-                clazz(Clazz(name = groupName.capitalize(), parents = listOf("Tag"), isPublic = true, isTrait = true)) {
+                val unions = Repository.unionsByGroups[groupName].orEmpty().map { it.name }
+
+                clazz(Clazz(name = groupName.capitalize(), parents = unions + "Tag", isPublic = true, isTrait = true)) {
                 }
                 emptyLine()
             }
 
             Repository.tagGroups.values.forEach { group ->
                 val receiver = group.name.escapeUnsafeValues().capitalize()
-                group.tags.map { Repository.tags[it] }.filterNotNull().filterIgnored().forEach {
+                val unions = Repository.unionsByGroups[group.name.escapeUnsafeValues()].orEmpty()
+
+                group.tags.mapNotNull { Repository.tags[it] }.filterIgnored().filter { tag -> unions.count { tag.name in it.intersectionTags } == 0 }.forEach {
                     htmlTagBuilders(receiver, it)
                 }
             }
