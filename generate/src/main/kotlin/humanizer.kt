@@ -13,7 +13,9 @@ fun String.humanize() : String {
     return fixedFirstUpper.replaceHyphensToCamelCase().makeCamelCaseByDictionary().replaceMistakesAndUglyWords()
 }
 
-fun humanizeJoin(parts: List<String>): String {
+fun humanizeJoin(parts: Iterable<String>) = humanizeJoin(parts, separator = "")
+
+fun humanizeJoin(parts: Iterable<String>, separator: String): String {
     val humanizedParts = parts.map(String::humanize)
     val dictionary = HashMap<String, Int>()
 
@@ -53,8 +55,7 @@ fun humanizeJoin(parts: List<String>): String {
         filteredParts.add(cutPart)
     }
 
-    val allParts = filteredParts + trailingParts
-    return allParts.joinToString(separator = "", transform = String::capitalize)
+    return filteredParts.joinToString(separator = separator, transform = String::capitalize) + trailingParts.joinToString("", transform = String::capitalize)
 }
 
 private fun String.replaceMistakesAndUglyWords() : String =

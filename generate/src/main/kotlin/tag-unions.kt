@@ -1,5 +1,7 @@
 package kotlinx.html.generate
 
+import kotlinx.html.generate.humanize.*
+
 fun tagUnions() {
     val groupings = Repository.groupsByTags.filter { it.value.size > 1 }
     val groups = groupings.values.map { it.map { it.name }.toHashSet() }.distinct().sortedByDescending { it.size }
@@ -34,4 +36,4 @@ fun tagUnions() {
     Repository.unionsByGroups = unionsByGroups
 }
 
-fun unionName(members: Iterable<String>) = members.sorted().joinToString(separator = "Or", transform = String::capitalize) + "Union"
+fun unionName(members: Iterable<String>) = humanizeJoin(members, "Or")
