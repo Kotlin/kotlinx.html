@@ -67,20 +67,20 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
     emptyLine()
 }
 
-internal fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo): AttributeRequest {
+internal fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo, receiver: String?, indent: Int = 1): AttributeRequest {
     val options = LinkedList<Const<*>>()
 
     if (attribute.type == AttributeType.ENUM) {
         options.add(ReferenceConst(attribute.enumTypeName.decapitalize() + "Values"))
     } else if (attribute.type == AttributeType.BOOLEAN && attribute.trueFalse.isNotEmpty()) {
-        options.addAll(attribute.trueFalse.map { StringConst(it) })
+        options.addAll(attribute.trueFalse.map(::StringConst))
     }
 
     val attributeRequest = AttributeRequest(attribute.type, if (attribute.type == AttributeType.ENUM) attribute.enumTypeName else "", options)
     Repository.attributeDelegateRequests.add(attributeRequest)
 
-    append("    ")
-    variable(Var(attribute.fieldName, attribute.typeName, true))
+    indent(indent)
+    variable(Var(attribute.fieldName, attribute.typeName, true), receiver = receiver ?: "")
     return attributeRequest
 }
 
