@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>kotlinx.html</artifactId>
+        <artifactId>kotlinx-html</artifactId>
         <groupId>org.jetbrains.kotlinx</groupId>
         <version>0.6.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>kotlinx.html.assembly</artifactId>
+    <artifactId>kotlinx-html-assembly</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx.html.jvm</artifactId>
+            <artifactId>kotlinx-html-jvm</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx.html.js</artifactId>
+            <artifactId>kotlinx-html-js</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
@@ -54,14 +54,14 @@
                                     <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                                 </manifest>
                                 <manifestEntries>
-                                    <Kotlin-JS-Module-Name>kotlinx.html.js.assembly</Kotlin-JS-Module-Name>
+                                    <Kotlin-JS-Module-Name>kotlinx-html-js-assembly</Kotlin-JS-Module-Name>
                                 </manifestEntries>
                             </archive>
                         </configuration>
                     </execution>
                 </executions>
                 <configuration>
-                    <finalName>kotlinx.html-${project.version}</finalName>
+                    <finalName>kotlinx-html-${project.version}</finalName>
                 </configuration>
             </plugin>
             <plugin>

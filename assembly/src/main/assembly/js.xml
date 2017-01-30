@@ -15,8 +15,7 @@
             <unpack>true</unpack>
 
             <includes>
-                <include>org.jetbrains.kotlinx:kotlinx.html.shared:jar:js</include>
-                <include>org.jetbrains.kotlinx:kotlinx.html.js:jar</include>
+                <include>org.jetbrains.kotlinx:kotlinx-html-js:jar</include>
             </includes>
         </dependencySet>
     </dependencySets>

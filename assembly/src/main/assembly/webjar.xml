@@ -10,11 +10,10 @@
     <dependencySets>
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>
-            <outputDirectory>META-INF/resources/webjars/kotlinx.html/${project.version}</outputDirectory>
+            <outputDirectory>META-INF/resources/webjars/kotlinx-html/${project.version}</outputDirectory>
             <fileMode>777</fileMode>
             <includes>
-                <include>org.jetbrains.kotlinx:kotlinx.html.shared</include>
-                <include>org.jetbrains.kotlinx:kotlinx.html.js</include>
+                <include>org.jetbrains.kotlinx:kotlinx-html-js</include>
             </includes>
             <unpack>true</unpack>
             <unpackOptions>
@@ -25,6 +24,9 @@
                     <exclude>**/*.meta.js</exclude>
                     <exclude>**/META-INF/**</exclude>
                     <exclude>**/kotlinx/**</exclude>
+                    <exclude>**/kotlinx-html-js/**</exclude>
+                    <exclude>**/*.kotlin_file_table</exclude>
+                    <exclude>**/*.js.map</exclude>
                 </excludes>
             </unpackOptions>
         </dependencySet>
