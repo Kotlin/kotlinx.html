@@ -54,6 +54,7 @@
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-stdlib-common</artifactId>
+                <version>${kotlin.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -228,7 +229,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <kotlin.version>1.0.5-eap-66</kotlin.version>
+                <kotlin.version>1.1.0-dev-6625</kotlin.version>
                 <bintray.url>https://api.bintray.com/maven/kotlin/kotlin-dev/kotlinx.html</bintray.url>
             </properties>
 
