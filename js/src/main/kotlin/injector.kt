@@ -2,9 +2,7 @@ package kotlinx.html.injector
 
 import kotlinx.html.*
 import kotlinx.html.dom.*
-import org.w3c.dom.HTMLElement
-import kotlin.Pair
-import kotlin.dom.*
+import org.w3c.dom.*
 import kotlin.reflect.*
 
 fun <F : Any, T : Any> F.injectTo(bean : T, field : KMutableProperty1<T, in F>) {

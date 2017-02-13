@@ -190,7 +190,8 @@ class DomTreeImplTest {
         wrapper.append.svg {
         }
 
-        assertEquals("http://www.w3.org/2000/svg", wrapper.childNodes.asElementList().first { it.tagName.toLowerCase() == "svg" }.namespaceURI)
+        @Suppress("UNCHECKED_CAST")
+        assertEquals("http://www.w3.org/2000/svg", (wrapper.childNodes.asList() as List<Element>).first { it.tagName.toLowerCase() == "svg" }.namespaceURI)
     }
 
     private fun wrapper() = document.body!!.append.div {}
