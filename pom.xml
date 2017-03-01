@@ -178,17 +178,17 @@
         <profile>
             <id>kotlin-latest</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                 <kotlin.version>1.0.5-2</kotlin.version>
+                 <kotlin.version>1.1.0</kotlin.version>
                  <bintray.url>https://api.bintray.com/maven/kotlin/kotlinx.html/kotlinx.html</bintray.url>
             </properties>
         </profile>
         <profile>
             <id>kotlin-snapshot</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <kotlin.version>1.1-SNAPSHOT</kotlin.version>
