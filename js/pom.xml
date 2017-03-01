@@ -23,6 +23,7 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-js</artifactId>
             <version>${kotlin.version}</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
