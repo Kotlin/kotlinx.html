@@ -24,6 +24,10 @@ class ExampleBean {
     var myP: HTMLParagraphElement by Delegates.notNull()
 }
 
+class InjectToLateInitVarBean {
+    lateinit var myP: HTMLParagraphElement
+}
+
 class InjectorTests {
     @test fun injectByClass() {
         val bean = MyBeanWithDiv()
@@ -65,6 +69,18 @@ class InjectorTests {
         }
 
         assertEquals("P", bean.p.tagName)
+    }
+
+    @test fun injectToLateInitVar() {
+        val bean = InjectToLateInitVarBean()
+        document.create.inject(bean, listOf(
+                InjectByTagName("p") to InjectToLateInitVarBean::myP
+        )).div {
+            p {
+            }
+        }
+
+        assertEquals("P", bean.myP.tagName)
     }
 
     @test fun exampleFromWiki() {
