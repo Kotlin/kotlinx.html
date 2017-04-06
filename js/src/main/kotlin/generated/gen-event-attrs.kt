@@ -46,6 +46,10 @@ var CommonAttributeGroupFacade.onDragFunction : (Event) -> Unit
     get()  = throw UnsupportedOperationException("You can't read variable onDrag")
     set(newValue) {consumer.onTagEvent(this, "ondrag", newValue)}
 
+var CommonAttributeGroupFacade.onDragEndFunction : (Event) -> Unit
+    get()  = throw UnsupportedOperationException("You can't read variable onDragEnd")
+    set(newValue) {consumer.onTagEvent(this, "ondragend", newValue)}
+
 var CommonAttributeGroupFacade.onDragEnterFunction : (Event) -> Unit
     get()  = throw UnsupportedOperationException("You can't read variable onDragEnter")
     set(newValue) {consumer.onTagEvent(this, "ondragenter", newValue)}

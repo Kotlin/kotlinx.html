@@ -138,6 +138,7 @@
         <xsd:attribute name="oncontextmenu"/>
         <xsd:attribute name="ondblclick"/>
         <xsd:attribute name="ondrag"/>
+        <xsd:attribute name="ondragend"/>
         <xsd:attribute name="ondragenter"/>
         <xsd:attribute name="ondragleave"/>
         <xsd:attribute name="ondragover"/>

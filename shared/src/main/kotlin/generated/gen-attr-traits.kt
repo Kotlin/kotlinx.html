@@ -106,6 +106,10 @@ var CommonAttributeGroupFacade.onDrag : String
     get()  = attributeStringString.get(this, "ondrag")
     set(newValue) {attributeStringString.set(this, "ondrag", newValue)}
 
+var CommonAttributeGroupFacade.onDragEnd : String
+    get()  = attributeStringString.get(this, "ondragend")
+    set(newValue) {attributeStringString.set(this, "ondragend", newValue)}
+
 var CommonAttributeGroupFacade.onDragEnter : String
     get()  = attributeStringString.get(this, "ondragenter")
     set(newValue) {attributeStringString.set(this, "ondragenter", newValue)}
