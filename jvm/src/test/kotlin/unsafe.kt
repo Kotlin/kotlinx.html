@@ -19,6 +19,24 @@ class UnsafeContentTest {
     }
 
     @Test
+    fun testStreamPlusAny() {
+        val i = 2
+
+        val text = StringBuilder().apply {
+            appendHTML(false).html {
+                unsafe {
+                    +"1"
+                    raw(i)
+                    raw(3)
+                    raw(Entities.nbsp)
+                }
+            }
+        }.toString()
+
+        assertEquals("<html>123&nbsp;</html>", text)
+    }
+
+    @Test
     fun testDOM() {
         val tree = createHTMLDocument().html {
             body {

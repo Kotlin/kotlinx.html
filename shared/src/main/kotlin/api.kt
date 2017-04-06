@@ -1,6 +1,6 @@
 package kotlinx.html
 
-import org.w3c.dom.events.Event
+import org.w3c.dom.events.*
 
 interface TagConsumer<out R> {
     fun onTagStart(tag: Tag)
@@ -27,17 +27,42 @@ interface Tag {
     val emptyTag: Boolean
 
     operator fun Entities.unaryPlus(): Unit {
-        consumer.onTagContentEntity(this)
+        entity(this)
     }
 
     operator fun String.unaryPlus(): Unit {
-        consumer.onTagContent(this)
+        text(this)
+    }
+
+    fun text(s: String) {
+        consumer.onTagContent(s)
+    }
+
+    fun text(n: Number) {
+        text(n.toString())
+    }
+
+    fun entity(e: Entities) {
+        consumer.onTagContentEntity(e)
     }
 }
 
+@HtmlTagMarker
 interface Unsafe {
     operator fun String.unaryPlus()
     operator fun Entities.unaryPlus() = +text
+
+    fun raw(s: String) {
+        +s
+    }
+
+    fun raw(entity: Entities) {
+        +entity
+    }
+
+    fun raw(n: Number) {
+        +n.toString()
+    }
 }
 
 interface AttributeEnum {
