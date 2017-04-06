@@ -27,6 +27,10 @@ open class A(initialAttributes : Map<String, String>, override val consumer : Ta
         get()  = attributeStringString.get(this, "rel")
         set(newValue) {attributeStringString.set(this, "rel", newValue)}
 
+    var hrefLang : String
+        get()  = attributeStringString.get(this, "hreflang")
+        set(newValue) {attributeStringString.set(this, "hreflang", newValue)}
+
     var type : String
         get()  = attributeStringString.get(this, "type")
         set(newValue) {attributeStringString.set(this, "type", newValue)}
@@ -68,6 +72,10 @@ open class AREA(initialAttributes : Map<String, String>, override val consumer :
     var href : String
         get()  = attributeStringString.get(this, "href")
         set(newValue) {attributeStringString.set(this, "href", newValue)}
+
+    var hrefLang : String
+        get()  = attributeStringString.get(this, "hreflang")
+        set(newValue) {attributeStringString.set(this, "hreflang", newValue)}
 
     var alt : String
         get()  = attributeStringString.get(this, "alt")

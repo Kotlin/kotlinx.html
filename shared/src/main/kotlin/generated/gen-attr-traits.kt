@@ -70,6 +70,10 @@ var CommonAttributeGroupFacade.itemProp : String
     get()  = attributeStringString.get(this, "itemprop")
     set(newValue) {attributeStringString.set(this, "itemprop", newValue)}
 
+var CommonAttributeGroupFacade.lang : String
+    get()  = attributeStringString.get(this, "lang")
+    set(newValue) {attributeStringString.set(this, "lang", newValue)}
+
 var CommonAttributeGroupFacade.onAbort : String
     get()  = attributeStringString.get(this, "onabort")
     set(newValue) {attributeStringString.set(this, "onabort", newValue)}

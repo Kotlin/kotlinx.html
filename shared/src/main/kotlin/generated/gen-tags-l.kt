@@ -57,6 +57,10 @@ open class LINK(initialAttributes : Map<String, String>, override val consumer :
         get()  = attributeStringString.get(this, "href")
         set(newValue) {attributeStringString.set(this, "href", newValue)}
 
+    var hrefLang : String
+        get()  = attributeStringString.get(this, "hreflang")
+        set(newValue) {attributeStringString.set(this, "hreflang", newValue)}
+
     var rel : String
         get()  = attributeStringString.get(this, "rel")
         set(newValue) {attributeStringString.set(this, "rel", newValue)}

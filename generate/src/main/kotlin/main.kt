@@ -133,10 +133,12 @@ fun main(args: Array<String>) {
             emptyLine()
 
             fun genEnumAttribute(attribute: AttributeInfo) {
-                if (attribute.type == AttributeType.ENUM) {
-                    enum(attribute)
-                } else {
-                    enumObject(attribute)
+                if (!isEnumExcluded(attribute.enumTypeName)) {
+                    if (attribute.type == AttributeType.ENUM) {
+                        enum(attribute)
+                    } else {
+                        enumObject(attribute)
+                    }
                 }
             }
 

@@ -66,8 +66,11 @@ val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
         "item", "area", "length", "colors?"
 ).map { it.toRegex(RegexOption.IGNORE_CASE) }
 
-val excludeAttributes = listOf("lang$", "^item$").map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
+val excludeAttributes = listOf("^item$").map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
 fun isAttributeExcluded(name: String) = excludeAttributes.any { it.matcher(name).find() }
+
+val excludedEnums = listOf("Lang$").map { it.toRegex(RegexOption.IGNORE_CASE) }
+fun isEnumExcluded(name: String) = excludedEnums.any { it.containsMatchIn(name) }
 
 val knownTagClasses = """
 HTMLElement
