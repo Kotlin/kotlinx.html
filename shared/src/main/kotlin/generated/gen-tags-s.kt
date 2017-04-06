@@ -26,9 +26,9 @@ open class SCRIPT(initialAttributes : Map<String, String>, override val consumer
         get()  = attributeStringString.get(this, "charset")
         set(newValue) {attributeStringString.set(this, "charset", newValue)}
 
-    var type : ScriptType
-        get()  = attributeScriptTypeEnumScriptTypeValues.get(this, "type")
-        set(newValue) {attributeScriptTypeEnumScriptTypeValues.set(this, "type", newValue)}
+    var type : String
+        get()  = attributeStringString.get(this, "type")
+        set(newValue) {attributeStringString.set(this, "type", newValue)}
 
     var src : String
         get()  = attributeStringString.get(this, "src")

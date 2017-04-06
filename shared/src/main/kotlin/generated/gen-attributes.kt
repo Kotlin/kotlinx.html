@@ -46,8 +46,6 @@ internal val attributeKeyGenKeyTypeEnumKeyGenKeyTypeValues : Attribute<KeyGenKey
 
 internal val attributeRunAtEnumRunAtValues : Attribute<RunAt> = EnumAttribute(runAtValues)
 
-internal val attributeScriptTypeEnumScriptTypeValues : Attribute<ScriptType> = EnumAttribute(scriptTypeValues)
-
 internal val attributeTextAreaWrapEnumTextAreaWrapValues : Attribute<TextAreaWrap> = EnumAttribute(textAreaWrapValues)
 
 internal val attributeThScopeEnumThScopeValues : Attribute<ThScope> = EnumAttribute(thScopeValues)

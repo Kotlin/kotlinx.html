@@ -2,11 +2,11 @@
 <xsd:schema xmlns='html-5'
 			xmlns:xsd='http://www.w3.org/2001/XMLSchema'
 			version="1.0" targetNamespace='html-5'
-			
-			
-			
-			
-			
+
+
+
+
+
 		>
     <!--
 	 Warning:																					
@@ -543,20 +543,27 @@
             <xsd:attribute name="charset" type="xsd:string"/>
             <xsd:attribute name="type" use="required">
                 <xsd:simpleType>
-                    <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="text/ecmascript"/>
-                        <xsd:enumeration value="text/javascript"/>
-                        <xsd:enumeration value="text/javascript1.0"/>
-                        <xsd:enumeration value="text/javascript1.1"/>
-                        <xsd:enumeration value="text/javascript1.2"/>
-                        <xsd:enumeration value="text/javascript1.3"/>
-                        <xsd:enumeration value="text/javascript1.4"/>
-                        <xsd:enumeration value="text/javascript1.5"/>
-                        <xsd:enumeration value="text/jscript"/>
-                        <xsd:enumeration value="text/x-javascript"/>
-                        <xsd:enumeration value="text/x-ecmascript"/>
-                        <xsd:enumeration value="text/vbscript"/>
-                    </xsd:restriction>
+                    <xsd:union>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:enumeration value="text/ecmascript"/>
+                                <xsd:enumeration value="text/javascript"/>
+                                <xsd:enumeration value="text/javascript1.0"/>
+                                <xsd:enumeration value="text/javascript1.1"/>
+                                <xsd:enumeration value="text/javascript1.2"/>
+                                <xsd:enumeration value="text/javascript1.3"/>
+                                <xsd:enumeration value="text/javascript1.4"/>
+                                <xsd:enumeration value="text/javascript1.5"/>
+                                <xsd:enumeration value="text/jscript"/>
+                                <xsd:enumeration value="text/x-javascript"/>
+                                <xsd:enumeration value="text/x-ecmascript"/>
+                                <xsd:enumeration value="text/vbscript"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string"/>
+                        </xsd:simpleType>
+                    </xsd:union>
                 </xsd:simpleType>
             </xsd:attribute>
             <xsd:attribute name="src" type="xsd:anyURI"/>

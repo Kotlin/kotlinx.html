@@ -78,19 +78,7 @@ fun MetaDataContent.meta(name : String? = null, content : String? = null, block 
 
 fun MetaDataContent.noScript(classes : String? = null, block : NOSCRIPT.() -> Unit = {}) : Unit = NOSCRIPT(attributesMapOf("class", classes), consumer).visit(block)
 
-fun MetaDataContent.script(type : ScriptType? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type?.enumEncode(),"src", src), consumer).visit(block)
-fun MetaDataContent.textEcmaScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textEcmaScript.realValue,"src", src), consumer).visit(block)
-fun MetaDataContent.textJavaScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript.realValue,"src", src), consumer).visit(block)
-fun MetaDataContent.textJavaScript10Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript10.realValue,"src", src), consumer).visit(block)
-fun MetaDataContent.textJavaScript11Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript11.realValue,"src", src), consumer).visit(block)
-fun MetaDataContent.textJavaScript12Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript12.realValue,"src", src), consumer).visit(block)
-fun MetaDataContent.textJavaScript13Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript13.realValue,"src", src), consumer).visit(block)
-fun MetaDataContent.textJavaScript14Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript14.realValue,"src", src), consumer).visit(block)
-fun MetaDataContent.textJavaScript15Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript15.realValue,"src", src), consumer).visit(block)
-fun MetaDataContent.textJScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJScript.realValue,"src", src), consumer).visit(block)
-fun MetaDataContent.textXJavaScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textXJavaScript.realValue,"src", src), consumer).visit(block)
-fun MetaDataContent.textXEcmaScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textXEcmaScript.realValue,"src", src), consumer).visit(block)
-fun MetaDataContent.textVbScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textVbScript.realValue,"src", src), consumer).visit(block)
+fun MetaDataContent.script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src), consumer).visit(block)
 
 fun MetaDataContent.style(type : String? = null, block : STYLE.() -> Unit = {}) : Unit = STYLE(attributesMapOf("type", type), consumer).visit(block)
 fun MetaDataContent.style(type : String? = null, content : String = "") : Unit = STYLE(attributesMapOf("type", type), consumer).visit({+content})

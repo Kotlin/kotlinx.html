@@ -178,7 +178,7 @@ public fun TagConsumer<HTMLElement>.ruby(classes : String? = null, block : RUBY.
 
 public fun TagConsumer<HTMLElement>.samp(classes : String? = null, block : SAMP.() -> Unit = {}) : HTMLElement = SAMP(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
-public fun TagConsumer<HTMLElement>.script(type : ScriptType? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : HTMLScriptElement = SCRIPT(attributesMapOf("type", type?.enumEncode(),"src", src), this).visitAndFinalize(this, block) as HTMLScriptElement
+public fun TagConsumer<HTMLElement>.script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : HTMLScriptElement = SCRIPT(attributesMapOf("type", type,"src", src), this).visitAndFinalize(this, block) as HTMLScriptElement
 
 public fun TagConsumer<HTMLElement>.section(classes : String? = null, block : SECTION.() -> Unit = {}) : HTMLElement = SECTION(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 

@@ -138,19 +138,7 @@ fun FlowOrPhrasingOrMetaDataContent.meta(name : String? = null, content : String
 
 fun FlowOrPhrasingOrMetaDataContent.noScript(classes : String? = null, block : NOSCRIPT.() -> Unit = {}) : Unit = NOSCRIPT(attributesMapOf("class", classes), consumer).visit(block)
 
-fun FlowOrPhrasingOrMetaDataContent.script(type : ScriptType? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type?.enumEncode(),"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textEcmaScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textEcmaScript.realValue,"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textJavaScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript.realValue,"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textJavaScript10Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript10.realValue,"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textJavaScript11Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript11.realValue,"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textJavaScript12Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript12.realValue,"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textJavaScript13Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript13.realValue,"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textJavaScript14Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript14.realValue,"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textJavaScript15Script(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJavaScript15.realValue,"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textJScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textJScript.realValue,"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textXJavaScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textXJavaScript.realValue,"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textXEcmaScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textXEcmaScript.realValue,"src", src), consumer).visit(block)
-fun FlowOrPhrasingOrMetaDataContent.textVbScriptScript(src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", ScriptType.textVbScript.realValue,"src", src), consumer).visit(block)
+fun FlowOrPhrasingOrMetaDataContent.script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src), consumer).visit(block)
 
 
 fun SectioningOrFlowContent.article(classes : String? = null, block : ARTICLE.() -> Unit = {}) : Unit = ARTICLE(attributesMapOf("class", classes), consumer).visit(block)

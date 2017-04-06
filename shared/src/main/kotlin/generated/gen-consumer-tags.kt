@@ -177,8 +177,8 @@ fun <T, C : TagConsumer<T>> C.ruby(classes : String? = null, block : RUBY.() -> 
 
 fun <T, C : TagConsumer<T>> C.samp(classes : String? = null, block : SAMP.() -> Unit = {}) : T = SAMP(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
-fun <T, C : TagConsumer<T>> C.script(type : ScriptType? = null, src : String? = null, content : String = "") : T = SCRIPT(attributesMapOf("type", type?.enumEncode(),"src", src), this).visitAndFinalize(this, {+content})
-fun <T, C : TagConsumer<T>> C.script(type : ScriptType? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : T = SCRIPT(attributesMapOf("type", type?.enumEncode(),"src", src), this).visitAndFinalize(this, block)
+fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, content : String = "") : T = SCRIPT(attributesMapOf("type", type,"src", src), this).visitAndFinalize(this, {+content})
+fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : T = SCRIPT(attributesMapOf("type", type,"src", src), this).visitAndFinalize(this, block)
 
 fun <T, C : TagConsumer<T>> C.section(classes : String? = null, block : SECTION.() -> Unit = {}) : T = SECTION(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 

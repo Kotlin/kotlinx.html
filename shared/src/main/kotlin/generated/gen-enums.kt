@@ -347,22 +347,23 @@ object ObjectName {
 }
 
 @Suppress("unused")
-enum class ScriptType(override val realValue : String) : AttributeEnum {
-    textEcmaScript("text/ecmascript"),
-    textJavaScript("text/javascript"),
-    textJavaScript10("text/javascript1.0"),
-    textJavaScript11("text/javascript1.1"),
-    textJavaScript12("text/javascript1.2"),
-    textJavaScript13("text/javascript1.3"),
-    textJavaScript14("text/javascript1.4"),
-    textJavaScript15("text/javascript1.5"),
-    textJScript("text/jscript"),
-    textXJavaScript("text/x-javascript"),
-    textXEcmaScript("text/x-ecmascript"),
-    textVbScript("text/vbscript")
+object ScriptType {
+    val textEcmaScript : String = "text/ecmascript"
+    val textJavaScript : String = "text/javascript"
+    val textJavaScript10 : String = "text/javascript1.0"
+    val textJavaScript11 : String = "text/javascript1.1"
+    val textJavaScript12 : String = "text/javascript1.2"
+    val textJavaScript13 : String = "text/javascript1.3"
+    val textJavaScript14 : String = "text/javascript1.4"
+    val textJavaScript15 : String = "text/javascript1.5"
+    val textJScript : String = "text/jscript"
+    val textXJavaScript : String = "text/x-javascript"
+    val textXEcmaScript : String = "text/x-ecmascript"
+    val textVbScript : String = "text/vbscript"
+
+    val values : List<String> = listOf("textEcmaScript", "textJavaScript", "textJavaScript10", "textJavaScript11", "textJavaScript12", "textJavaScript13", "textJavaScript14", "textJavaScript15", "textJScript", "textXJavaScript", "textXEcmaScript", "textVbScript")
 }
 
-internal val scriptTypeValues : Map<String, ScriptType> = ScriptType.values().associateBy { it.realValue }
 @Suppress("unused")
 object StyleType {
     val textCss : String = "text/css"
