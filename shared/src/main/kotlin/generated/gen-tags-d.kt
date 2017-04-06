@@ -55,7 +55,7 @@ open class DETAILS(initialAttributes : Map<String, String>, override val consume
 
 
 }
-fun DETAILS.legEnd(classes : String? = null, block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
+fun DETAILS.legend(classes : String? = null, block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
 
 val DETAILS.asFlowContent : FlowContent
     get()  = this

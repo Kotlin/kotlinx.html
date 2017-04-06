@@ -125,7 +125,7 @@ fun <T, C : TagConsumer<T>> C.keyGen(keyType : KeyGenKeyType? = null, classes : 
 
 fun <T, C : TagConsumer<T>> C.label(classes : String? = null, block : LABEL.() -> Unit = {}) : T = LABEL(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
-fun <T, C : TagConsumer<T>> C.legEnd(classes : String? = null, block : LEGEND.() -> Unit = {}) : T = LEGEND(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+fun <T, C : TagConsumer<T>> C.legend(classes : String? = null, block : LEGEND.() -> Unit = {}) : T = LEGEND(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 fun <T, C : TagConsumer<T>> C.li(classes : String? = null, block : LI.() -> Unit = {}) : T = LI(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 

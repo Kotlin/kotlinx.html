@@ -126,7 +126,7 @@ public fun TagConsumer<HTMLElement>.keyGen(keyType : KeyGenKeyType? = null, clas
 
 public fun TagConsumer<HTMLElement>.label(classes : String? = null, block : LABEL.() -> Unit = {}) : HTMLLabelElement = LABEL(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLLabelElement
 
-public fun TagConsumer<HTMLElement>.legEnd(classes : String? = null, block : LEGEND.() -> Unit = {}) : HTMLElement = LEGEND(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+public fun TagConsumer<HTMLElement>.legend(classes : String? = null, block : LEGEND.() -> Unit = {}) : HTMLLegendElement = LEGEND(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLLegendElement
 
 public fun TagConsumer<HTMLElement>.li(classes : String? = null, block : LI.() -> Unit = {}) : HTMLLIElement = LI(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLLIElement
 
