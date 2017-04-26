@@ -4,10 +4,10 @@ import kotlinx.html.generate.humanize.*
 import java.util.*
 
 fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) : O = with {
-    val parentAttributeTraits = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
-    val parentElementTraits = tag.tagGroupNames.map {it.escapeUnsafeValues().capitalize()}
-    val allParentTraits = parentAttributeTraits + parentElementTraits
-    val betterParentTraits = humanizeJoin(allParentTraits)
+    val parentAttributeIfaces = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
+    val parentElementIfaces = tag.tagGroupNames.map {it.escapeUnsafeValues().capitalize()}
+    val allParentIfaces = parentAttributeIfaces + parentElementIfaces
+    val betterParentIfaces = humanizeJoin(allParentIfaces)
 
     val namespace = tagNamespaces[tag.name.toLowerCase()]
 
@@ -30,7 +30,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
                         ))
                     }
             ) + when {
-                allParentTraits.isNotEmpty() -> listOf(betterParentTraits).map { renames[it] ?: it }
+                allParentIfaces.isNotEmpty() -> listOf(betterParentIfaces).map { renames[it] ?: it }
                 else -> emptyList<String>()
             },
             isOpen = true
@@ -51,10 +51,10 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
         htmlTagBuilders(tag.safeName.toUpperCase(), children)
     }
 
-    if (parentElementTraits.size > 1) {
+    if (parentElementIfaces.size > 1) {
         val commons = tag.tagGroupNames.map {Repository.tagGroups[it]?.tags?.toSet()}.filterNotNull().reduce { a, b -> a.intersect(b) }
         if (commons.isNotEmpty()) {
-            parentElementTraits.forEach { group ->
+            parentElementIfaces.forEach { group ->
                 variable(Var(name = "as" + group.escapeUnsafeValues().capitalize(), type = group.escapeUnsafeValues().capitalize()), receiver = tag.safeName.toUpperCase())
                 appendln()
                 getter()

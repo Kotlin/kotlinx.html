@@ -72,6 +72,8 @@ fun isAttributeExcluded(name: String) = excludeAttributes.any { it.matcher(name)
 val excludedEnums = listOf("Lang$").map { it.toRegex(RegexOption.IGNORE_CASE) }
 fun isEnumExcluded(name: String) = excludedEnums.any { it.containsMatchIn(name) }
 
+val contentlessTags = setOf("html", "head", "script")
+
 val knownTagClasses = """
 HTMLElement
 HTMLUnknownElement

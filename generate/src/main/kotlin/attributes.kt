@@ -37,7 +37,7 @@ fun <O : Appendable> O.attributeProperty(attribute: AttributeInfo, receiver: Str
 fun <O : Appendable> O.facade(facade: AttributeFacade) {
     val facadeName = facade.name.capitalize() + "Facade"
 
-    clazz(Clazz(facadeName, isTrait = true, parents = listOf("Tag"))) {
+    clazz(Clazz(facadeName, isInterface = true, parents = listOf("Tag"))) {
     }
 
     facade.attributes.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->

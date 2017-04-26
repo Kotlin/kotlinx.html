@@ -190,7 +190,7 @@ fun main(args: Array<String>) {
             Repository.groupUnions.values.forEach { union ->
                 clazz(Clazz(
                         name = union.name,
-                        isTrait = true,
+                        isInterface = true,
                         parents = union.superGroups + "Tag"
                 )) {}
 
@@ -227,7 +227,7 @@ fun main(args: Array<String>) {
                 val groupName = group.name.escapeUnsafeValues()
                 val unions = Repository.unionsByGroups[groupName].orEmpty().map { it.name }
 
-                clazz(Clazz(name = groupName.capitalize(), parents = unions + "Tag", isPublic = true, isTrait = true)) {
+                clazz(Clazz(name = groupName.capitalize(), parents = unions + "Tag", isPublic = true, isInterface = true)) {
                 }
                 emptyLine()
             }
@@ -284,5 +284,5 @@ fun main(args: Array<String>) {
         }
     }
 
-    generateParentTraits(todir, packg)
+    generateParentInterfaces(todir, packg)
 }
