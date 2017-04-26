@@ -166,6 +166,10 @@ open class INPUT(initialAttributes : Map<String, String>, override val consumer 
         get()  = attributeStringString.get(this, "maxlength")
         set(newValue) {attributeStringString.set(this, "maxlength", newValue)}
 
+    var minLength : String
+        get()  = attributeStringString.get(this, "minlength")
+        set(newValue) {attributeStringString.set(this, "minlength", newValue)}
+
     var min : String
         get()  = attributeStringString.get(this, "min")
         set(newValue) {attributeStringString.set(this, "min", newValue)}

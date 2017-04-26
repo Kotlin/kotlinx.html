@@ -1369,6 +1369,7 @@
             <xsd:attribute name="list"/>
             <xsd:attribute name="max"/>
             <xsd:attribute name="maxlength"/>
+            <xsd:attribute name="minlength"/>
             <xsd:attribute name="min"/>
             <xsd:attribute name="multiple">
                 <xsd:simpleType>
@@ -1577,6 +1578,7 @@
             </xsd:attribute>
             <xsd:attribute name="form"/>
             <xsd:attribute name="maxlength"/>
+            <xsd:attribute name="minlength"/>
             <xsd:attribute name="name"/>
             <xsd:attribute name="placeholder"/>
             <xsd:attribute name="readonly">

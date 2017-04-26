@@ -72,6 +72,10 @@ open class TEXTAREA(initialAttributes : Map<String, String>, override val consum
         get()  = attributeStringString.get(this, "maxlength")
         set(newValue) {attributeStringString.set(this, "maxlength", newValue)}
 
+    var minLength : String
+        get()  = attributeStringString.get(this, "minlength")
+        set(newValue) {attributeStringString.set(this, "minlength", newValue)}
+
     var name : String
         get()  = attributeStringString.get(this, "name")
         set(newValue) {attributeStringString.set(this, "name", newValue)}
