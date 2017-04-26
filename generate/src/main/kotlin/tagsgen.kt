@@ -44,6 +44,77 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
             }
         }
 
+        fun contentlessTagDeprecation() {
+            indent()
+            appendln("@Deprecated(\"This tag most likely doesn't support text content\")")
+        }
+
+        if (tag.name.toLowerCase() in contentlessTags) {
+            contentlessTagDeprecation()
+
+            indent()
+            function("unaryPlus", modifiers = listOf("override", "operator"), receiver = "Entities")
+            block {
+                indent(2)
+                append("@Suppress(\"DEPRECATION\") ")
+                functionCall("entity", listOf("this"))
+                appendln()
+                indent()
+            }
+
+            appendln()
+            contentlessTagDeprecation()
+
+            indent()
+            function("unaryPlus", modifiers = listOf("override", "operator"), receiver = "String")
+            block {
+                indent(2)
+                append("@Suppress(\"DEPRECATION\") ")
+                functionCall("text", listOf("this"))
+                appendln()
+                indent()
+            }
+
+            appendln()
+            contentlessTagDeprecation()
+
+            indent()
+            function("text", arguments = listOf(Var("s", "String")), modifiers = listOf("override"))
+            block {
+                indent(2)
+                receiverDot("super<HTMLTag>")
+                functionCall("text", listOf("s"))
+                appendln()
+                indent()
+            }
+
+            appendln()
+            contentlessTagDeprecation()
+
+            indent()
+            function("text", arguments = listOf(Var("n", "Number")), modifiers = listOf("override"))
+            block {
+                indent(2)
+                receiverDot("super<HTMLTag>")
+                functionCall("text", listOf("n"))
+                appendln()
+                indent()
+            }
+
+            appendln()
+            contentlessTagDeprecation()
+
+            indent()
+            function("entity", arguments = listOf(Var("e", "Entities")), modifiers = listOf("override"))
+            block {
+                indent(2)
+                receiverDot("super<HTMLTag>")
+                functionCall("entity", listOf("e"))
+                appendln()
+                indent()
+            }
+        }
+
         emptyLine()
     }
 
