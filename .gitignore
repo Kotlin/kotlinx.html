@@ -6,3 +6,5 @@ target
 **/karma/node_modules
 **/karma/node
 **/karma/etc
+kobaltBuild
+.kobalt
