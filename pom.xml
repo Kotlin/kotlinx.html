@@ -35,15 +35,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -181,7 +172,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                 <kotlin.version>1.1.2</kotlin.version>
+                 <kotlin.version>1.1.3-2</kotlin.version>
                  <bintray.url>https://api.bintray.com/maven/kotlin/kotlinx.html/kotlinx.html</bintray.url>
             </properties>
         </profile>
@@ -229,7 +220,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <kotlin.version>1.1.0-dev-6625</kotlin.version>
+                <kotlin.version>1.1.5-dev-261</kotlin.version>
                 <bintray.url>https://api.bintray.com/maven/kotlin/kotlin-dev/kotlinx.html</bintray.url>
             </properties>
 
