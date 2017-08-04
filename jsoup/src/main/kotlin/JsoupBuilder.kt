@@ -1,7 +1,10 @@
+package kotlinx.html.dom
+
 import kotlinx.html.Entities
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import kotlinx.html.Unsafe
+import kotlinx.html.jsoup.plusAssign
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.w3c.dom.events.Event
@@ -24,7 +27,7 @@ class JsoupBuilder(val document: Document) : TagConsumer<Element> {
         }
         
         if (path.isNotEmpty()) {
-            path.last().appendChild(element)
+            path.last() += element
         }
         
         path += element
@@ -58,7 +61,7 @@ class JsoupBuilder(val document: Document) : TagConsumer<Element> {
             throw IllegalStateException("No current DOM node")
         }
         
-        path.last().appendText(content as String)
+        path.last() += content as String
     }
     
     override fun onTagContentEntity(entity: Entities) {
@@ -66,13 +69,13 @@ class JsoupBuilder(val document: Document) : TagConsumer<Element> {
             throw IllegalStateException("No current DOM node")
         }
         
-        path.last().appendText(entity.text)
+        path.last() += entity.text
     }
     
     override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
         val unsafe = object : Unsafe {
             override operator fun String.unaryPlus() {
-                path.last().appendChild(Element(this))
+                path.last() += Element(this)
             }
         }
         
@@ -80,27 +83,4 @@ class JsoupBuilder(val document: Document) : TagConsumer<Element> {
     }
     
     override fun finalize(): Element = document
-}
-
-fun Element.appendHTML(): TagConsumer<Element> {
-    if (this is Document) {
-        return JsoupBuilder(this)
-    }
-    else {
-        val document = ownerDocument() ?: throw IllegalArgumentException("There is no owner document associated with this element.")
-        return JsoupBuilder(document)
-    }
-}
-
-fun Element.appendHTML(action: TagConsumer<Element>.() -> Unit): TagConsumer<Element> {
-    val consumer = if (this is Document) {
-        JsoupBuilder(this)
-    }
-    else {
-        val document = ownerDocument() ?: throw IllegalArgumentException("There is no owner document associated with this element.")
-        return JsoupBuilder(document)
-    }
-    
-    consumer.action()
-    return consumer
 }
