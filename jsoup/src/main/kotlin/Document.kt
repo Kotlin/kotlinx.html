@@ -46,5 +46,5 @@ var Document.quirksMode: QuirksMode
 //endregion
 
 //region Methods
-fun Document.toByteArray(): ByteArray = toString().toByteArray(charset())
+fun Document.toByteArray(): ByteArray = toString().toByteArray(charset)
 //endregion

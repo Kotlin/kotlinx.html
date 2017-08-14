@@ -4,7 +4,6 @@ import kotlinx.html.TagConsumer
 import kotlinx.html.dom.JsoupBuilder
 import org.jsoup.nodes.Attributes
 import org.jsoup.nodes.DataNode
-import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.nodes.Node
 import org.jsoup.select.Elements
@@ -88,27 +87,14 @@ operator fun Element.plusAssign(html: String): Unit {
     append(html)
 }
 
-operator fun Element.get(index: Int): Element = child(index)
+operator fun Element.get(index: Int): Element
+    = child(index)
 
-fun Element.appendHTML(): TagConsumer<Element> {
-    if (this is Document) {
-        return JsoupBuilder(this)
-    }
-    else {
-        val document = owner ?: throw IllegalArgumentException("There is no owner document associated with this element.")
-        return JsoupBuilder(document)
-    }
-}
+fun Element.appendHTML(): TagConsumer<Element>
+    = JsoupBuilder(this)
 
 fun Element.appendHTML(action: TagConsumer<Element>.() -> Unit): TagConsumer<Element> {
-    val consumer = if (this is Document) {
-        JsoupBuilder(this)
-    }
-    else {
-        val document = owner ?: throw IllegalArgumentException("There is no owner document associated with this element.")
-        return JsoupBuilder(document)
-    }
-    
+    val consumer = JsoupBuilder(this)
     consumer.action()
     return consumer
 }

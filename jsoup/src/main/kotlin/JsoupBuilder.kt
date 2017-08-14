@@ -5,16 +5,15 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import kotlinx.html.Unsafe
 import kotlinx.html.jsoup.plusAssign
-import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.w3c.dom.events.Event
 
-class JsoupBuilder(val document: Document) : TagConsumer<Element> {
+class JsoupBuilder(val root: Element) : TagConsumer<Element> {
     val path: MutableList<Element> = ArrayList()
     var current: Element? = null
     
     override fun onTagStart(tag: Tag) {
-        val element = document.appendElement(tag.tagName)
+        val element = root.appendElement(tag.tagName)
         
         tag.attributes.forEach {
             key, value ->
@@ -82,5 +81,5 @@ class JsoupBuilder(val document: Document) : TagConsumer<Element> {
         unsafe.block()
     }
     
-    override fun finalize(): Element = document
+    override fun finalize(): Element = root
 }
