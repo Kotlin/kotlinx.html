@@ -38,6 +38,9 @@ val Element.children: Elements
 
 val Element.ownText: String?
     get() = ownText().takeUnless { it.isEmpty() }
+
+val Element.className: String?
+    get() = className().takeUnless { it.isEmpty() }
 //endregion
 
 //region Mutable Properties
