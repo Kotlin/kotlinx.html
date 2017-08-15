@@ -8,9 +8,9 @@ import kotlinx.html.jsoup.plusAssign
 import org.jsoup.nodes.Element
 import org.w3c.dom.events.Event
 
-class JsoupBuilder(val root: Element) : TagConsumer<Element> {
-    val path: MutableList<Element> = ArrayList()
-    var current: Element? = null
+class JsoupBuilder(private val root: Element) : TagConsumer<Element> {
+    private val path: MutableList<Element> = ArrayList()
+    private var current: Element? = null
     
     override fun onTagStart(tag: Tag) {
         val element = root.appendElement(tag.tagName)
