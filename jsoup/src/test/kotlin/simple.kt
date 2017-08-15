@@ -3,8 +3,8 @@ package kotlinx.html.tests
 import kotlinx.html.body
 import kotlinx.html.classes
 import kotlinx.html.div
+import kotlinx.html.dom.append
 import kotlinx.html.id
-import kotlinx.html.jsoup.appendHTML
 import kotlinx.html.jsoup.tagName
 import kotlinx.html.span
 import org.jsoup.nodes.Document
@@ -15,8 +15,8 @@ class JsoupTests {
     @Test
     fun `able to create simple document`() {
         val document = Document("")
-        
-        document.appendHTML {
+    
+        document.append {
             div {
                 id = "test"
             }
@@ -28,8 +28,8 @@ class JsoupTests {
     @Test
     fun `able to create complex document`() {
         val document = Document("")
-        
-        document.appendHTML {
+    
+        document.append {
             body {
                 div {
                     id = "test"

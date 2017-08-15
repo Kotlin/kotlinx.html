@@ -4,19 +4,21 @@ import kotlinx.html.Entities
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import kotlinx.html.Unsafe
+import kotlinx.html.consumers.onFinalize
+import kotlinx.html.jsoup.owner
 import kotlinx.html.jsoup.plusAssign
+import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.w3c.dom.events.Event
 
-class JsoupBuilder(private val root: Element) : TagConsumer<Element> {
+class HTMLJsoupBuilder(private val root: Document) : TagConsumer<Element> {
     private val path: MutableList<Element> = ArrayList()
     private var current: Element? = null
     
     override fun onTagStart(tag: Tag) {
         val element = root.appendElement(tag.tagName)
         
-        tag.attributes.forEach {
-            key, value ->
+        tag.attributes.forEach { key, value ->
             if (value.isNullOrEmpty()) {
                 element.attr(key)
             }
@@ -83,3 +85,36 @@ class JsoupBuilder(private val root: Element) : TagConsumer<Element> {
     
     override fun finalize(): Element = root
 }
+
+fun Document.createHTMLTree(): TagConsumer<Element> = HTMLJsoupBuilder(this)
+val Document.create: TagConsumer<Element>
+    get() = HTMLJsoupBuilder(this)
+
+fun Element.append(block: TagConsumer<Element>.() -> Unit): List<Element> {
+    val list = ArrayList<Element>()
+    
+    ownerDocumentExt.createHTMLTree()
+        .onFinalize { from, partial ->
+            if (!partial) {
+                this += from
+                list += from
+            }
+        }
+        .block()
+    
+    return list
+    
+}
+
+val Element.append: TagConsumer<Element>
+    get() = ownerDocumentExt.createHTMLTree().onFinalize { from, partial ->
+        if (!partial) {
+            this += from
+        }
+    }
+
+private val Element.ownerDocumentExt: Document
+    get() = when {
+        this is Document -> this
+        else             -> owner ?: throw IllegalArgumentException("Element has no owner document.")
+    }
