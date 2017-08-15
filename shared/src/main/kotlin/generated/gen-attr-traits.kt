@@ -250,6 +250,10 @@ var CommonAttributeGroupFacade.onScroll : String
     get()  = attributeStringString.get(this, "onscroll")
     set(newValue) {attributeStringString.set(this, "onscroll", newValue)}
 
+var CommonAttributeGroupFacade.onSearch : String
+    get()  = attributeStringString.get(this, "onsearch")
+    set(newValue) {attributeStringString.set(this, "onsearch", newValue)}
+
 var CommonAttributeGroupFacade.onSeeked : String
     get()  = attributeStringString.get(this, "onseeked")
     set(newValue) {attributeStringString.set(this, "onseeked", newValue)}

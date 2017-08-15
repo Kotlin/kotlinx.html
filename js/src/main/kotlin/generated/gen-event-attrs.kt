@@ -186,6 +186,10 @@ var CommonAttributeGroupFacade.onScrollFunction : (Event) -> Unit
     get()  = throw UnsupportedOperationException("You can't read variable onScroll")
     set(newValue) {consumer.onTagEvent(this, "onscroll", newValue)}
 
+var CommonAttributeGroupFacade.onSearchFunction : (Event) -> Unit
+    get()  = throw UnsupportedOperationException("You can't read variable onSearch")
+    set(newValue) {consumer.onTagEvent(this, "onsearch", newValue)}
+
 var CommonAttributeGroupFacade.onSeekedFunction : (Event) -> Unit
     get()  = throw UnsupportedOperationException("You can't read variable onSeeked")
     set(newValue) {consumer.onTagEvent(this, "onseeked", newValue)}

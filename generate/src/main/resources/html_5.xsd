@@ -172,6 +172,7 @@
         <xsd:attribute name="onprogress"/>
         <xsd:attribute name="onratechange"/>
         <xsd:attribute name="onreadystatechange"/>
+        <xsd:attribute name="onsearch"/>
         <xsd:attribute name="onscroll"/>
         <xsd:attribute name="onseeked"/>
         <xsd:attribute name="onseeking"/>
