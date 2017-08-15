@@ -4,6 +4,7 @@ import org.jsoup.nodes.Document.OutputSettings
 import org.jsoup.nodes.Document.OutputSettings.Syntax
 import org.jsoup.nodes.Entities.EscapeMode
 import java.nio.charset.Charset
+import java.nio.charset.StandardCharsets
 
 //region Mutable Properties
 var OutputSettings.escapeMode: EscapeMode
@@ -41,4 +42,22 @@ var OutputSettings.indentAmount: Int
     set(value) {
         indentAmount(value)
     }
+//endregion
+
+//region Methods
+fun outputSettings(outline: Boolean = false,
+                   prettyPrint: Boolean = true,
+                   indentAmount: Int = 1,
+                   charset: Charset = StandardCharsets.UTF_8,
+                   escapeMode: EscapeMode = EscapeMode.base,
+                   syntax: Syntax = Syntax.html)
+    : OutputSettings {
+    return OutputSettings()
+        .outline(outline)
+        .prettyPrint(prettyPrint)
+        .indentAmount(indentAmount)
+        .charset(charset)
+        .escapeMode(escapeMode)
+        .syntax(syntax)
+}
 //endregion
