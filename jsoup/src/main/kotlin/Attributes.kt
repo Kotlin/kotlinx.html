@@ -21,5 +21,5 @@ operator fun Attributes.contains(attribute: Pair<String, String>): Boolean
     = this.hasKey(attribute.first) && this[attribute.first] == attribute.second
 
 fun Attributes.toMap(): Map<String, String>
-    = associate { it.key to it.value }
+    = associateBy({ it.key }, { it.value })
 //endregion
