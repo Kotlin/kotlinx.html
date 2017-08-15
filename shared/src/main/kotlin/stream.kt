@@ -125,7 +125,6 @@ private val escapeMap = mapOf(
         '<' to "&lt;",
         '>' to "&gt;",
         '&' to "&amp;",
-        '\'' to "&apos;",
         '\"' to "&quot;"
 )
 
