@@ -44,7 +44,7 @@
                         <configuration>
                             <moduleKind>umd</moduleKind>
                             <sourceMap>true</sourceMap>
-                            <sourceMapEmbedSources>inlining</sourceMapEmbedSources>
+                            <sourceMapEmbedSources>always</sourceMapEmbedSources>
                             <outputFile>${project.build.outputDirectory}/${project.artifactId}.js</outputFile>
                             <multiPlatform>true</multiPlatform>
                         </configuration>
