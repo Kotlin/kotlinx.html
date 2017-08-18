@@ -5,6 +5,7 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 import kotlinx.html.Unsafe
 import kotlinx.html.consumers.onFinalize
+import kotlinx.html.consumers.onFinalizeMap
 import kotlinx.html.jsoup.owner
 import kotlinx.html.jsoup.plusAssign
 import org.jsoup.nodes.Document
@@ -118,3 +119,15 @@ private val Element.ownerDocumentExt: Document
         this is Document -> this
         else             -> owner ?: throw IllegalArgumentException("Element has no owner document.")
     }
+
+fun createJsoupDocument(baseUri: String = ""): TagConsumer<Document> {
+    val document = Document(baseUri)
+    val consumer = HTMLJsoupBuilder(document)
+    return consumer.onFinalizeMap { from, partial ->
+        if (!partial) {
+            document.appendChild(from)
+        }
+        
+        document
+    }
+}
