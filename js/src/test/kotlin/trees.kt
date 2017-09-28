@@ -194,6 +194,29 @@ class DomTreeImplTest {
         assertEquals("http://www.w3.org/2000/svg", (wrapper.childNodes.asList() as List<Element>).first { it.tagName.toLowerCase() == "svg" }.namespaceURI)
     }
 
+    @test fun assignEvent() {
+        val wrapper = wrapper()
+        var invoked = false
+
+        wrapper.append {
+            form {
+                id = "my-form"
+                onSubmitFunction = { event ->
+                    invoked = true
+                }
+            }
+        }
+
+        val event = document.createEvent("Event")
+        event.initEvent("submit", true, true)
+
+        println("Got event $event")
+
+        (wrapper.getElementsByTagName("form").asList().first { it.id == "my-form" } as HTMLFormElement).dispatchEvent(event)
+
+        assertTrue { invoked }
+    }
+
     private fun wrapper() = document.body!!.append.div {}
     private fun <T> uninitialized(): T = null as T
     private fun String.trimLines() = trimIndent().lines().filter { it.isNotBlank() }.joinToString("")
