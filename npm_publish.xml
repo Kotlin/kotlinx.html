@@ -138,6 +138,9 @@
             <copy file="${output}/classes/kotlinx-html-js.js" todir="${package_deploy_dir}" failonerror="true" />
             <copy file="${output}/classes/kotlinx-html-js.js.map" todir="${package_deploy_dir}" failonerror="true" />
             <copy file="${output}/classes/kotlinx-html-js.meta.js" todir="${package_deploy_dir}" failonerror="true" />
+            <copy todir="${package_deploy_dir}/kotlinx-html-js" failonerror="true">
+                 <fileset dir="${output}/classes/kotlinx-html-js"/>
+            </copy>
         </publish-to-npm>
     </target>
 
