@@ -1,5 +1,5 @@
 {
-  "name": "kotlinx-html-js",
+  "name": "kotlinx-html",
   "version": "1.0.0",
   "description": "Library for building HTML in Kotlin",
   "main": "kotlinx-html-js.js",
