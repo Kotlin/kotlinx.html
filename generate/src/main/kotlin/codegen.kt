@@ -79,7 +79,12 @@ fun <O : Appendable> O.variable(variable : Var, omitValVar : Boolean = false, re
     return this
 }
 
-fun <O : Appendable> O.enumEntry(name: String, arguments: List<String>) {
+fun <O : Appendable> O.enumEntry(name: String, deprecated: String?, arguments: List<String>) {
+    if (deprecated != null) {
+        append("@")
+        functionCall("Deprecated", listOf(deprecated.quote()))
+        append(" ")
+    }
     append(name)
     if (arguments.isNotEmpty()) {
         arguments.joinTo(this, ", ", "(", ")")

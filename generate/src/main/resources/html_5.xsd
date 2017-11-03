@@ -1229,6 +1229,7 @@
                         <xsd:enumeration value="post"/>
                         <xsd:enumeration value="put"/>
                         <xsd:enumeration value="delete"/>
+                        <xsd:enumeration value="patch"/>
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:attribute>
@@ -1355,6 +1356,7 @@
                         <xsd:enumeration value="post"/>
                         <xsd:enumeration value="put"/>
                         <xsd:enumeration value="delete"/>
+                        <xsd:enumeration value="patch"/>
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:attribute>
@@ -1444,6 +1446,7 @@
                         <xsd:enumeration value="post"/>
                         <xsd:enumeration value="put"/>
                         <xsd:enumeration value="delete"/>
+                        <xsd:enumeration value="patch"/>
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:attribute>

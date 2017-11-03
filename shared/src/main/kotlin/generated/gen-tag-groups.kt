@@ -50,6 +50,7 @@ fun FlowContent.getForm(action : String? = null, encType : FormEncType? = null, 
 fun FlowContent.postForm(action : String? = null, encType : FormEncType? = null, classes : String? = null, block : FORM.() -> Unit = {}) : Unit = FORM(attributesMapOf("action", action,"enctype", encType?.enumEncode(),"method", FormMethod.post.realValue,"class", classes), consumer).visit(block)
 fun FlowContent.putForm(action : String? = null, encType : FormEncType? = null, classes : String? = null, block : FORM.() -> Unit = {}) : Unit = FORM(attributesMapOf("action", action,"enctype", encType?.enumEncode(),"method", FormMethod.put.realValue,"class", classes), consumer).visit(block)
 fun FlowContent.deleteForm(action : String? = null, encType : FormEncType? = null, classes : String? = null, block : FORM.() -> Unit = {}) : Unit = FORM(attributesMapOf("action", action,"enctype", encType?.enumEncode(),"method", FormMethod.delete.realValue,"class", classes), consumer).visit(block)
+fun FlowContent.patchForm(action : String? = null, encType : FormEncType? = null, classes : String? = null, block : FORM.() -> Unit = {}) : Unit = FORM(attributesMapOf("action", action,"enctype", encType?.enumEncode(),"method", FormMethod.patch.realValue,"class", classes), consumer).visit(block)
 
 fun FlowContent.header(classes : String? = null, block : HEADER.() -> Unit = {}) : Unit = HEADER(attributesMapOf("class", classes), consumer).visit(block)
 

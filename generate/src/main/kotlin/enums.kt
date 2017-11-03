@@ -49,7 +49,9 @@ fun <O : Appendable> O.enum(attribute : AttributeInfo) {
     clazz(Clazz(name, variables = listOf(realValue), parents = listOf("AttributeEnum"))) {
         attribute.enumValues.forEachIndexed { idx, it ->
             append("    ")
-            enumEntry(it.fieldName, listOf("\"${it.realName}\""))
+
+            val depreacated = deprecated.firstOrNull { p -> p.first.matches("""${attribute.enumTypeName}#${it.realName}""") }?.second
+            enumEntry(it.fieldName, depreacated, listOf("\"${it.realName}\""))
 
             if (idx != attribute.enumValues.lastIndex) {
                 append(",")

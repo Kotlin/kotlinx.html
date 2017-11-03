@@ -74,6 +74,9 @@ fun isEnumExcluded(name: String) = excludedEnums.any { it.containsMatchIn(name) 
 
 val contentlessTags = setOf("html", "head", "script")
 
+val deprecated = listOf(".*FormMethod#(put|patch|delete)" to "method is not allowed in browsers")
+        .map { it.first.toRegex(RegexOption.IGNORE_CASE) to it.second }
+
 val knownTagClasses = """
 HTMLElement
 HTMLUnknownElement

@@ -137,8 +137,9 @@ internal val buttonFormEncTypeValues : Map<String, ButtonFormEncType> = ButtonFo
 enum class ButtonFormMethod(override val realValue : String) : AttributeEnum {
     get("get"),
     post("post"),
-    put("put"),
-    delete("delete")
+    @Deprecated("method is not allowed in browsers") put("put"),
+    @Deprecated("method is not allowed in browsers") delete("delete"),
+    @Deprecated("method is not allowed in browsers") patch("patch")
 }
 
 internal val buttonFormMethodValues : Map<String, ButtonFormMethod> = ButtonFormMethod.values().associateBy { it.realValue }
@@ -180,8 +181,9 @@ internal val formEncTypeValues : Map<String, FormEncType> = FormEncType.values()
 enum class FormMethod(override val realValue : String) : AttributeEnum {
     get("get"),
     post("post"),
-    put("put"),
-    delete("delete")
+    @Deprecated("method is not allowed in browsers") put("put"),
+    @Deprecated("method is not allowed in browsers") delete("delete"),
+    @Deprecated("method is not allowed in browsers") patch("patch")
 }
 
 internal val formMethodValues : Map<String, FormMethod> = FormMethod.values().associateBy { it.realValue }
@@ -253,8 +255,9 @@ internal val inputFormEncTypeValues : Map<String, InputFormEncType> = InputFormE
 enum class InputFormMethod(override val realValue : String) : AttributeEnum {
     get("get"),
     post("post"),
-    put("put"),
-    delete("delete")
+    @Deprecated("method is not allowed in browsers") put("put"),
+    @Deprecated("method is not allowed in browsers") delete("delete"),
+    @Deprecated("method is not allowed in browsers") patch("patch")
 }
 
 internal val inputFormMethodValues : Map<String, InputFormMethod> = InputFormMethod.values().associateBy { it.realValue }
