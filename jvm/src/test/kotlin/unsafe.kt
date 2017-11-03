@@ -37,6 +37,32 @@ class UnsafeContentTest {
     }
 
     @Test
+    fun testSafeMeta() {
+        val text = buildString {
+            appendHTML(false).head {
+                meta { charset = "UTF-8" }
+                title("Admin")
+            }
+        }
+
+        assertEquals("<head><meta charset=\"UTF-8\"><title>Admin</title></head>", text)
+    }
+
+    @Test
+    fun testUnsafeMeta() {
+        val text = buildString {
+            appendHTML(false).head {
+                unsafe {
+                    raw("<meta charset=\"UTF-8\" />")
+                }
+                title("Admin")
+            }
+        }
+
+        assertEquals("<head><meta charset=\"UTF-8\" /><title>Admin</title></head>", text)
+    }
+
+    @Test
     fun testDOM() {
         val tree = createHTMLDocument().html {
             body {
