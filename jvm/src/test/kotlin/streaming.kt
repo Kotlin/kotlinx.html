@@ -258,12 +258,13 @@ class TestStreaming {
     }
 
     @test fun `escape bad chars`() {
-        assertEquals("<div id=\"bad&quot;\" custom=\"bad&amp;&quot;\">" +
+        assertEquals("<div id=\"bad&quot;\" custom=\"bad&amp;&quot;\" onevent=\"fire('evt')\">" +
                 "content&lt;script&gt;" +
                 "</div>",
                 StringBuilder().appendHTML(false).div {
                     id = "bad\""
                     attributes["custom"] = "bad&\""
+                    attributes["onevent"] = "fire('evt')"
                     +"content<script>"
                 }.toString())
     }
