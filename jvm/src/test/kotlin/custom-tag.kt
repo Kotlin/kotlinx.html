@@ -2,7 +2,7 @@ package kotlinx.html.tests
 
 import kotlinx.html.*
 import kotlinx.html.stream.*
-import org.junit.*
+import org.junit.Test
 import kotlin.test.*
 
 class CustomTagTest {
