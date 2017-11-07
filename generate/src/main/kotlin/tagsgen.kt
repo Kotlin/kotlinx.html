@@ -5,7 +5,7 @@ import java.util.*
 
 fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) : O = with {
     val parentAttributeIfaces = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
-    val parentElementIfaces = tag.tagGroupNames.map {it.escapeUnsafeValues().capitalize()}
+    val parentElementIfaces = tag.tagGroupNames.map { it.humanize().capitalize() }
     val allParentIfaces = parentAttributeIfaces + parentElementIfaces
     val betterParentIfaces = humanizeJoin(allParentIfaces)
 
@@ -13,7 +13,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
 
     appendln("@Suppress(\"unused\")")
     clazz(Clazz(
-            name = tag.safeName.toUpperCase(),
+            name = tag.className,
             variables = listOf(
                     Var("initialAttributes", "Map<String, String>", false, false, true),
                     Var("consumer", "TagConsumer<*>", false, true)
@@ -119,14 +119,14 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
     }
 
     tag.directChildren.map {Repository.tags[it]}.filterNotNull().filterIgnored().forEach { children ->
-        htmlTagBuilders(tag.safeName.toUpperCase(), children)
+        htmlTagBuilders(tag.className, children)
     }
 
     if (parentElementIfaces.size > 1) {
         val commons = tag.tagGroupNames.map {Repository.tagGroups[it]?.tags?.toSet()}.filterNotNull().reduce { a, b -> a.intersect(b) }
         if (commons.isNotEmpty()) {
             parentElementIfaces.forEach { group ->
-                variable(Var(name = "as" + group.escapeUnsafeValues().capitalize(), type = group.escapeUnsafeValues().capitalize()), receiver = tag.safeName.toUpperCase())
+                variable(Var(name = "as" + group, type = group), receiver = tag.className)
                 appendln()
                 getter()
                 defineIs("this")
@@ -157,7 +157,7 @@ internal fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo, receiv
 
 fun probeType(htmlClassName : String) : Boolean = htmlClassName in knownTagClasses
 
-private fun tagCandidates(tag : TagInfo) = (listOf(tag.safeName) + replacements.map { tag.safeName.replace(it.first.toRegex(), it.second) }).flatMap { listOf(it.capitalize(), it.toUpperCase()) }.distinct()
+private fun tagCandidates(tag : TagInfo) = (listOf(tag.memberName) + tagReplacements.map { tag.memberName.replace(it.first.toRegex(), it.second) }).flatMap { listOf(it.capitalize(), it.toUpperCase()) }.distinct()
 
 fun getTagResultClass(tag: TagInfo) =
         tagCandidates(tag)
@@ -174,9 +174,9 @@ fun <O : Appendable> O.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean
     val resultType = getTagResultClass(tag)
 
     append("public ")
-    function(tag.safeName, tagBuilderFunctionArguments(tag, blockOrContent), resultType, receiver = "TagConsumer<HTMLElement>")
+    function(tag.memberName, tagBuilderFunctionArguments(tag, blockOrContent), resultType, receiver = "TagConsumer<HTMLElement>")
     defineIs(buildString {
-        functionCall(tag.nameUpper, listOf(
+        functionCall(tag.className, listOf(
                 buildSuggestedAttributesArgument(tag),
                 "this"
         ))
@@ -194,9 +194,9 @@ fun <O : Appendable> O.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean
 }
 
 fun <O : Appendable> O.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
-    function(tag.safeName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
+    function(tag.memberName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
     defineIs(buildString {
-        functionCall(tag.nameUpper, listOf(
+        functionCall(tag.className, listOf(
                 buildSuggestedAttributesArgument(tag),
                 "this"
         ))
@@ -211,9 +211,9 @@ fun <O : Appendable> O.consumerBuilderShared(tag : TagInfo, blockOrContent : Boo
 fun <O : Appendable> O.htmlTagBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean) {
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent)
 
-    function(tag.safeName, arguments, "Unit", receiver = receiver)
+    function(tag.memberName, arguments, "Unit", receiver = receiver)
     defineIs(buildString {
-        functionCall(tag.nameUpper, listOf(
+        functionCall(tag.className, listOf(
                 buildSuggestedAttributesArgument(tag),
                 "consumer"
         ))
@@ -229,9 +229,9 @@ fun <O : Appendable> O.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo
 
     enumAttribute.enumValues.forEach { enumValue ->
         indent(indent)
-        function(enumValue.fieldName + tag.safeName.capitalize(), arguments, "Unit", receiver = receiver)
+        function(enumValue.fieldName + tag.memberName.capitalize(), arguments, "Unit", receiver = receiver)
         defineIs(buildString {
-            functionCall(tag.nameUpper, listOf(
+            functionCall(tag.className, listOf(
                     buildSuggestedAttributesArgument(tag, mapOf(enumAttribute.fieldName to enumAttribute.typeName + "." + enumValue.fieldName + ".realValue")),
                     "consumer"
             ))
@@ -279,8 +279,8 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) 
     }
 
     when {
-        tag.name.toLowerCase() in emptyTags -> arguments.add(Var("block", "${tag.nameUpper}.() -> Unit", defaultValue = "{}"))
-        blockOrContent -> arguments.add(Var("block", "${tag.nameUpper}.() -> Unit", defaultValue = "{}"))
+        tag.name.toLowerCase() in emptyTags -> arguments.add(Var("block", "${tag.className}.() -> Unit", defaultValue = "{}"))
+        blockOrContent -> arguments.add(Var("block", "${tag.className}.() -> Unit", defaultValue = "{}"))
         else -> arguments.add(Var("content", "String", defaultValue = "\"\""))
     }
 

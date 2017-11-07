@@ -155,7 +155,7 @@ public fun TagConsumer<HTMLElement>.nav(classes : String? = null, block : NAV.()
 
 public fun TagConsumer<HTMLElement>.noScript(classes : String? = null, block : NOSCRIPT.() -> Unit = {}) : HTMLElement = NOSCRIPT(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
-public fun TagConsumer<HTMLElement>.object_(classes : String? = null, block : OBJECT_.() -> Unit = {}) : HTMLElement = OBJECT_(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+public fun TagConsumer<HTMLElement>.htmlObject(classes : String? = null, block : OBJECT.() -> Unit = {}) : HTMLElement = OBJECT(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 public fun TagConsumer<HTMLElement>.ol(classes : String? = null, block : OL.() -> Unit = {}) : HTMLElement = OL(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
@@ -237,7 +237,7 @@ public fun TagConsumer<HTMLElement>.tr(classes : String? = null, block : TR.() -
 
 public fun TagConsumer<HTMLElement>.ul(classes : String? = null, block : UL.() -> Unit = {}) : HTMLElement = UL(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
-public fun TagConsumer<HTMLElement>.var_(classes : String? = null, block : VAR_.() -> Unit = {}) : HTMLElement = VAR_(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+public fun TagConsumer<HTMLElement>.htmlVar(classes : String? = null, block : VAR.() -> Unit = {}) : HTMLElement = VAR(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 public fun TagConsumer<HTMLElement>.video(classes : String? = null, block : VIDEO.() -> Unit = {}) : HTMLVideoElement = VIDEO(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLVideoElement
 

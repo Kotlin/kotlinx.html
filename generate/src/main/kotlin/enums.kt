@@ -2,22 +2,12 @@ package kotlinx.html.generate
 
 import kotlinx.html.generate.humanize.humanize
 
-
-private fun List<AttributeEnumValue>.replaceAllIfStartsWithUnderscore() : List<AttributeEnumValue> =
-    if (all { it.fieldName.startsWith("_") && it.fieldName.length > 1 }) map { it.copy(fieldName = it.fieldName.substring(1)) } else this
-
 val reservedNames = setOf("class", "val", "var", "object", "true", "false", "as", "is", "for")
 
-fun String.replaceIfReserved() = if (this in reservedNames) this + "_" else this
-
-fun String.escapeUnsafeValues() : String = replace("[^\\w\\d_]".toRegex(), "_").humanize().replaceIfReserved()
-
-private fun AttributeEnumValue.escapeUnsafeValues() : AttributeEnumValue = copy(fieldName = fieldName.escapeUnsafeValues())
+fun String.replaceIfReserved() = if (this in reservedNames) "html" + this.capitalize() else this
 
 fun List<String>.toAttributeValues() : List<AttributeEnumValue> =
-        map {AttributeEnumValue(it, it)}
-        .replaceAllIfStartsWithUnderscore()
-        .map {it.escapeUnsafeValues()}
+        map { AttributeEnumValue(it, if (it == "_") it else it.humanize().replaceIfReserved()) }
 
 fun <O : Appendable> O.enumObject(attribute : AttributeInfo) {
     val name = attribute.enumTypeName
@@ -50,8 +40,8 @@ fun <O : Appendable> O.enum(attribute : AttributeInfo) {
         attribute.enumValues.forEachIndexed { idx, it ->
             append("    ")
 
-            val depreacated = deprecated.firstOrNull { p -> p.first.matches("""${attribute.enumTypeName}#${it.realName}""") }?.second
-            enumEntry(it.fieldName, depreacated, listOf("\"${it.realName}\""))
+            val deprecated = deprecated.firstOrNull { p -> p.first.matches("""${attribute.enumTypeName}#${it.realName}""") }?.second
+            enumEntry(it.fieldName, deprecated, listOf("\"${it.realName}\""))
 
             if (idx != attribute.enumValues.lastIndex) {
                 append(",")

@@ -10,7 +10,7 @@ fun String.humanize() : String {
     val fixedAllUpper = if (all { it.isUpperCase() }) toLowerCase() else this
     val fixedFirstUpper = fixedAllUpper.decapitalize()
 
-    return fixedFirstUpper.replaceHyphensToCamelCase().makeCamelCaseByDictionary().replaceMistakesAndUglyWords()
+    return fixedFirstUpper.replaceHyphensToCamelCase().makeCamelCaseByDictionary().replaceMistakesAndUglyWords().decapitalize()
 }
 
 fun humanizeJoin(parts: Iterable<String>) = humanizeJoin(parts, separator = "")
@@ -59,14 +59,12 @@ fun humanizeJoin(parts: Iterable<String>, separator: String): String {
 }
 
 private fun String.replaceMistakesAndUglyWords() : String =
-        replace("SuspEnd", "Suspend")
-        .replace("suspEnd", "suspend")
-        .replace("dbl", "double")
+        replace("dbl", "double")
         .replace("Dbl", "Double")
 
 
 private fun String.replaceHyphensToCamelCase() : String =
-        this.split("[.:_\\-<>]".toRegex())
+        this.split("[.:_\\-<>/]".toRegex())
                 .mapIndexed { i, s ->
                     if (i == 0) s
                     else s.capitalize()

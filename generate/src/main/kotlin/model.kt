@@ -63,18 +63,17 @@ val AttributeRequest.delegatePropertyName : String
 data class AttributeInfo(
         val name : String,
         override val type : AttributeType,
-        val safeAlias : String,
         val trueFalse : List<String> = listOf(),
         override val enumTypeName : String = "",
         val required : Boolean = false,
         val enumValues : List<AttributeEnumValue> = emptyList()
-) : HasType
+) : HasType {
+    val fieldName: String = attributeReplacements.firstOrNull { it.first.matches(name) }?.second
+            ?: name.humanize().replaceIfReserved()
+}
 
 val HasType.typeName : String
     get() = if (type == AttributeType.ENUM) enumTypeName else type.typeName
-
-val AttributeInfo.fieldName : String
-    get() = if (safeAlias.isEmpty()) name else safeAlias
 
 fun String.isLowerCase() = this.toLowerCase() == this
 
@@ -86,17 +85,18 @@ data class TagInfo(
         val attributes : List<AttributeInfo>,
         val suggestedAttributes : Set<String>,
         val tagGroupNames: List<String>
-)
+) {
+    val className: String = name.humanize().toUpperCase()
+    val memberName: String = name.humanize().replaceIfReserved()
+}
 
 fun TagInfo.mergeAttributes() = attributes + attributeGroups.flatMap { it.attributes }
 
-val TagInfo.safeName : String
-    get() = name.escapeUnsafeValues()
-
-val TagInfo.nameUpper : String
-    get() = safeName.toUpperCase()
-
 data class TagGroup(
         val name : String,
-        val tags : List<String>
-)
+        val tags : List<String>) {
+
+    val memberName: String = name.humanize()
+    val typeName: String = memberName.capitalize()
+}
+

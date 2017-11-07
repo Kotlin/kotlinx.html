@@ -64,7 +64,7 @@ val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
         "click", "play(ing)?", "context",
         "rows?", "cols?", "group(ed)?", "auto",
         "list", "field", "data", "block", "scripts?",
-        "item", "area", "length", "colors?"
+        "item", "area", "length", "colors?", "suspend"
 ).map { it.toRegex(RegexOption.IGNORE_CASE) }
 
 val excludeAttributes = listOf("^item$").map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
@@ -294,7 +294,7 @@ HTMLTableRowElement
 HTMLUListElement
 """.split("\\s+".toRegex()).toSet()
 
-val replacements = listOf(
+val tagReplacements = listOf(
         "img" to "image",
         "h\\d" to "heading",
         "p" to "paragraph",
@@ -307,3 +307,7 @@ val replacements = listOf(
         "tbody" to "TableSection",
         "tfoot" to "TableSection"
 )
+
+val attributeReplacements = listOf(
+        "class" to "classes"
+).map { Pair(it.first.toRegex(), it.second) }

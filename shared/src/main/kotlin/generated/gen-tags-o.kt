@@ -10,7 +10,7 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class OBJECT_(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("object", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+open class OBJECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("object", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var data : String
         get()  = attributeStringString.get(this, "data")
         set(newValue) {attributeStringString.set(this, "data", newValue)}
@@ -45,15 +45,15 @@ open class OBJECT_(initialAttributes : Map<String, String>, override val consume
 
 
 }
-fun OBJECT_.param(name : String? = null, value : String? = null, block : PARAM.() -> Unit = {}) : Unit = PARAM(attributesMapOf("name", name,"value", value), consumer).visit(block)
+fun OBJECT.param(name : String? = null, value : String? = null, block : PARAM.() -> Unit = {}) : Unit = PARAM(attributesMapOf("name", name,"value", value), consumer).visit(block)
 
-val OBJECT_.asFlowContent : FlowContent
+val OBJECT.asFlowContent : FlowContent
     get()  = this
 
-val OBJECT_.asInteractiveContent : InteractiveContent
+val OBJECT.asInteractiveContent : InteractiveContent
     get()  = this
 
-val OBJECT_.asPhrasingContent : PhrasingContent
+val OBJECT.asPhrasingContent : PhrasingContent
     get()  = this
 
 
@@ -111,7 +111,7 @@ open class OPTION(initialAttributes : Map<String, String>, override val consumer
 
 @Suppress("unused")
 open class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("output", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
-    var for_ : String
+    var htmlFor : String
         get()  = attributeStringString.get(this, "for")
         set(newValue) {attributeStringString.set(this, "for", newValue)}
 

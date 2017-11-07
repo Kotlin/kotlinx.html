@@ -15,7 +15,7 @@ open class LABEL(initialAttributes : Map<String, String>, override val consumer 
         get()  = attributeStringString.get(this, "form")
         set(newValue) {attributeStringString.set(this, "form", newValue)}
 
-    var for_ : String
+    var htmlFor : String
         get()  = attributeStringString.get(this, "for")
         set(newValue) {attributeStringString.set(this, "for", newValue)}
 

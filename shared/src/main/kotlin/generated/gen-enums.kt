@@ -16,8 +16,8 @@ enum class Dir(override val realValue : String) : AttributeEnum {
 internal val dirValues : Map<String, Dir> = Dir.values().associateBy { it.realValue }
 @Suppress("unused")
 enum class Draggable(override val realValue : String) : AttributeEnum {
-    true_("true"),
-    false_("false"),
+    htmlTrue("true"),
+    htmlFalse("false"),
     auto("auto")
 }
 

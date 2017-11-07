@@ -154,7 +154,7 @@ fun <T, C : TagConsumer<T>> C.nav(classes : String? = null, block : NAV.() -> Un
 
 fun <T, C : TagConsumer<T>> C.noScript(classes : String? = null, block : NOSCRIPT.() -> Unit = {}) : T = NOSCRIPT(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
-fun <T, C : TagConsumer<T>> C.object_(classes : String? = null, block : OBJECT_.() -> Unit = {}) : T = OBJECT_(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+fun <T, C : TagConsumer<T>> C.htmlObject(classes : String? = null, block : OBJECT.() -> Unit = {}) : T = OBJECT(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 fun <T, C : TagConsumer<T>> C.ol(classes : String? = null, block : OL.() -> Unit = {}) : T = OL(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
@@ -236,7 +236,7 @@ fun <T, C : TagConsumer<T>> C.tr(classes : String? = null, block : TR.() -> Unit
 
 fun <T, C : TagConsumer<T>> C.ul(classes : String? = null, block : UL.() -> Unit = {}) : T = UL(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
-fun <T, C : TagConsumer<T>> C.var_(classes : String? = null, block : VAR_.() -> Unit = {}) : T = VAR_(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+fun <T, C : TagConsumer<T>> C.htmlVar(classes : String? = null, block : VAR.() -> Unit = {}) : T = VAR(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 fun <T, C : TagConsumer<T>> C.video(classes : String? = null, block : VIDEO.() -> Unit = {}) : T = VIDEO(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 

@@ -9,8 +9,6 @@ import javax.xml.parsers.*
 val SCHEME_URL = "generate/src/main/resources/html_5.xsd"
 val HTML_NAMESPACE = "html-5"
 
-private val attributeNamesMap = mapOf("class" to "classes")
-
 private fun flattenTerm(term: XSTerm, result: MutableCollection<String>, visitedModelNames: MutableSet<String>) {
     if (term.isElementDecl) {
         result.add(term.asElementDecl().name)
@@ -30,7 +28,6 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
     val name = attributeDeclaration.name
     val type = attributeDeclaration.type
 
-    val safeName = attributeNamesMap[name] ?: name.escapeUnsafeValues()
     if (type.isUnion) {
         val enumEntries = type.asUnion()
                 .filter { it.isRestriction }
@@ -39,9 +36,9 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
                 .filter { it.name == "enumeration" }
                 .map { it.value.value }
 
-        return AttributeInfo(name, AttributeType.STRING, safeName, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
+        return AttributeInfo(name, AttributeType.STRING, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
     } else if (type.isPrimitive || type.name in setOf<String?>("integer", "string", "boolean", "decimal")) {
-        return AttributeInfo(name, xsdToType[type.primitiveType.name] ?: AttributeType.STRING, safeName)
+        return AttributeInfo(name, xsdToType[type.primitiveType.name] ?: AttributeType.STRING)
     } else if (type.isRestriction) {
         val restriction = type.asRestriction()
         val enumEntries = restriction.declaredFacets
@@ -50,16 +47,16 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
 
         if (enumEntries.size == 1 && enumEntries.single() == name) {
             // probably ticker
-            return AttributeInfo(name, AttributeType.TICKER, safeName)
+            return AttributeInfo(name, AttributeType.TICKER)
         } else if (enumEntries.size == 2 && enumEntries.sorted() == listOf("off", "on")) {
-            return AttributeInfo(name, AttributeType.BOOLEAN, safeName, trueFalse = listOf("on", "off"))
+            return AttributeInfo(name, AttributeType.BOOLEAN, trueFalse = listOf("on", "off"))
         } else if (enumEntries.isEmpty()) {
-            return AttributeInfo(name, AttributeType.STRING, safeName)
+            return AttributeInfo(name, AttributeType.STRING)
         } else {
-            return AttributeInfo(name, AttributeType.ENUM, safeName, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
+            return AttributeInfo(name, AttributeType.ENUM, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
         }
     } else {
-        return AttributeInfo(name, AttributeType.STRING, safeName)
+        return AttributeInfo(name, AttributeType.STRING)
     }
 }
 

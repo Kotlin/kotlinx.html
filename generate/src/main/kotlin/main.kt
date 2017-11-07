@@ -234,17 +234,16 @@ fun main(args: Array<String>) {
             emptyLine()
 
             Repository.tagGroups.values.forEach { group ->
-                val groupName = group.name.escapeUnsafeValues()
-                val unions = Repository.unionsByGroups[groupName].orEmpty().map { it.name }
+                val unions = Repository.unionsByGroups[group.name].orEmpty().map { it.name }
 
-                clazz(Clazz(name = groupName.capitalize(), parents = unions + "Tag", isPublic = true, isInterface = true)) {
+                clazz(Clazz(name = group.typeName, parents = unions + "Tag", isPublic = true, isInterface = true)) {
                 }
                 emptyLine()
             }
 
             Repository.tagGroups.values.forEach { group ->
-                val receiver = group.name.escapeUnsafeValues().capitalize()
-                val unions = Repository.unionsByGroups[group.name.escapeUnsafeValues()].orEmpty()
+                val receiver = group.typeName
+                val unions = Repository.unionsByGroups[group.name].orEmpty()
 
                 group.tags.mapNotNull { Repository.tags[it] }.filterIgnored().filter { tag -> unions.count { tag.name in it.intersectionTags } == 0 }.forEach {
                     htmlTagBuilders(receiver, it)

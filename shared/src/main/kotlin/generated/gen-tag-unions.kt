@@ -126,7 +126,7 @@ fun FlowOrPhrasingContent.svg(classes : String? = null, content : String = "") :
 
 fun FlowOrPhrasingContent.time(classes : String? = null, block : TIME.() -> Unit = {}) : Unit = TIME(attributesMapOf("class", classes), consumer).visit(block)
 
-fun FlowOrPhrasingContent.var_(classes : String? = null, block : VAR_.() -> Unit = {}) : Unit = VAR_(attributesMapOf("class", classes), consumer).visit(block)
+fun FlowOrPhrasingContent.htmlVar(classes : String? = null, block : VAR.() -> Unit = {}) : Unit = VAR(attributesMapOf("class", classes), consumer).visit(block)
 
 
 fun FlowOrPhrasingOrMetaDataContent.command(type : CommandType? = null, classes : String? = null, block : COMMAND.() -> Unit = {}) : Unit = COMMAND(attributesMapOf("type", type?.enumEncode(),"class", classes), consumer).visit(block)
@@ -209,7 +209,7 @@ fun FlowOrInteractiveOrPhrasingContent.rsaKeyGen(classes : String? = null, block
 
 fun FlowOrInteractiveOrPhrasingContent.label(classes : String? = null, block : LABEL.() -> Unit = {}) : Unit = LABEL(attributesMapOf("class", classes), consumer).visit(block)
 
-fun FlowOrInteractiveOrPhrasingContent.object_(classes : String? = null, block : OBJECT_.() -> Unit = {}) : Unit = OBJECT_(attributesMapOf("class", classes), consumer).visit(block)
+fun FlowOrInteractiveOrPhrasingContent.htmlObject(classes : String? = null, block : OBJECT.() -> Unit = {}) : Unit = OBJECT(attributesMapOf("class", classes), consumer).visit(block)
 
 fun FlowOrInteractiveOrPhrasingContent.select(classes : String? = null, block : SELECT.() -> Unit = {}) : Unit = SELECT(attributesMapOf("class", classes), consumer).visit(block)
 
