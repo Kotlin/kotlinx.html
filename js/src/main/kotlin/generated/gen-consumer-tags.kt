@@ -147,7 +147,7 @@ public fun TagConsumer<HTMLElement>.math(classes : String? = null, block : MATH.
 public fun TagConsumer<HTMLElement>.mathml(classes : String? = null, content : String = "") : HTMLElement = MATHML(attributesMapOf("class", classes), this).visitAndFinalize(this, {+content})
 public fun TagConsumer<HTMLElement>.mathml(classes : String? = null, block : MATHML.() -> Unit = {}) : HTMLElement = MATHML(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
-public fun TagConsumer<HTMLElement>.meta(name : String? = null, content : String? = null, block : META.() -> Unit = {}) : HTMLMetaElement = META(attributesMapOf("name", name,"content", content), this).visitAndFinalize(this, block) as HTMLMetaElement
+public fun TagConsumer<HTMLElement>.meta(name : String? = null, content : String? = null, charset : String? = null, block : META.() -> Unit = {}) : HTMLMetaElement = META(attributesMapOf("name", name,"content", content,"charset", charset), this).visitAndFinalize(this, block) as HTMLMetaElement
 
 public fun TagConsumer<HTMLElement>.meter(classes : String? = null, block : METER.() -> Unit = {}) : HTMLMeterElement = METER(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLMeterElement
 

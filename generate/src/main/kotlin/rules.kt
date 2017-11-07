@@ -12,6 +12,7 @@ val globalSuggestedAttributes = listOf(
         "span" to "class",
         "meta" to "name",
         "meta" to "content",
+        "meta" to "charset",
         "i" to "class",
         "input" to "type",
         "input" to "name",

@@ -136,7 +136,7 @@ fun FlowOrPhrasingOrMetaDataContent.radioCommand(classes : String? = null, block
 
 fun FlowOrPhrasingOrMetaDataContent.link(href : String? = null, rel : String? = null, type : String? = null, block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type), consumer).visit(block)
 
-fun FlowOrPhrasingOrMetaDataContent.meta(name : String? = null, content : String? = null, block : META.() -> Unit = {}) : Unit = META(attributesMapOf("name", name,"content", content), consumer).visit(block)
+fun FlowOrPhrasingOrMetaDataContent.meta(name : String? = null, content : String? = null, charset : String? = null, block : META.() -> Unit = {}) : Unit = META(attributesMapOf("name", name,"content", content,"charset", charset), consumer).visit(block)
 
 fun FlowOrPhrasingOrMetaDataContent.noScript(classes : String? = null, block : NOSCRIPT.() -> Unit = {}) : Unit = NOSCRIPT(attributesMapOf("class", classes), consumer).visit(block)
 

@@ -146,7 +146,7 @@ fun <T, C : TagConsumer<T>> C.math(classes : String? = null, block : MATH.() -> 
 fun <T, C : TagConsumer<T>> C.mathml(classes : String? = null, content : String = "") : T = MATHML(attributesMapOf("class", classes), this).visitAndFinalize(this, {+content})
 fun <T, C : TagConsumer<T>> C.mathml(classes : String? = null, block : MATHML.() -> Unit = {}) : T = MATHML(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
-fun <T, C : TagConsumer<T>> C.meta(name : String? = null, content : String? = null, block : META.() -> Unit = {}) : T = META(attributesMapOf("name", name,"content", content), this).visitAndFinalize(this, block)
+fun <T, C : TagConsumer<T>> C.meta(name : String? = null, content : String? = null, charset : String? = null, block : META.() -> Unit = {}) : T = META(attributesMapOf("name", name,"content", content,"charset", charset), this).visitAndFinalize(this, block)
 
 fun <T, C : TagConsumer<T>> C.meter(classes : String? = null, block : METER.() -> Unit = {}) : T = METER(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
