@@ -41,27 +41,27 @@ open class H6(initialAttributes : Map<String, String>, override val consumer : T
 
 @Suppress("unused")
 open class HEAD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("head", consumer, initialAttributes, null, false, false), HtmlHeadTag {
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override operator fun Entities.unaryPlus() : Unit {
         @Suppress("DEPRECATION") entity(this)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override operator fun String.unaryPlus() : Unit {
         @Suppress("DEPRECATION") text(this)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override fun text(s : String) : Unit {
         super<HTMLTag>.text(s)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override fun text(n : Number) : Unit {
         super<HTMLTag>.text(n)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override fun entity(e : Entities) : Unit {
         super<HTMLTag>.entity(e)
     }
@@ -107,27 +107,27 @@ open class HTML(initialAttributes : Map<String, String>, override val consumer :
         get()  = attributeStringString.get(this, "manifest")
         set(newValue) {attributeStringString.set(this, "manifest", newValue)}
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override operator fun Entities.unaryPlus() : Unit {
         @Suppress("DEPRECATION") entity(this)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override operator fun String.unaryPlus() : Unit {
         @Suppress("DEPRECATION") text(this)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override fun text(s : String) : Unit {
         super<HTMLTag>.text(s)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override fun text(n : Number) : Unit {
         super<HTMLTag>.text(n)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override fun entity(e : Entities) : Unit {
         super<HTMLTag>.entity(e)
     }
@@ -136,5 +136,8 @@ open class HTML(initialAttributes : Map<String, String>, override val consumer :
 fun HTML.body(classes : String? = null, block : BODY.() -> Unit = {}) : Unit = BODY(attributesMapOf("class", classes), consumer).visit(block)
 
 fun HTML.head(block : HEAD.() -> Unit = {}) : Unit = HEAD(emptyMap, consumer).visit(block)
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
+fun HTML.head(content : String = "") : Unit = HEAD(emptyMap, consumer).visit({+content})
 
 

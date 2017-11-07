@@ -46,7 +46,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
 
         fun contentlessTagDeprecation() {
             indent()
-            appendln("@Deprecated(\"This tag most likely doesn't support text content\")")
+            appendln("@Deprecated(\"This tag most likely doesn't support text content or requires unsafe content (try unsafe {}\")")
         }
 
         if (tag.name.toLowerCase() in contentlessTags) {

@@ -80,8 +80,13 @@ fun MetaDataContent.meta(name : String? = null, content : String? = null, block 
 fun MetaDataContent.noScript(classes : String? = null, block : NOSCRIPT.() -> Unit = {}) : Unit = NOSCRIPT(attributesMapOf("class", classes), consumer).visit(block)
 
 fun MetaDataContent.script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src), consumer).visit(block)
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
+fun MetaDataContent.script(type : String? = null, src : String? = null, content : String = "") : Unit = SCRIPT(attributesMapOf("type", type,"src", src), consumer).visit({+content})
 
 fun MetaDataContent.style(type : String? = null, block : STYLE.() -> Unit = {}) : Unit = STYLE(attributesMapOf("type", type), consumer).visit(block)
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
 fun MetaDataContent.style(type : String? = null, content : String = "") : Unit = STYLE(attributesMapOf("type", type), consumer).visit({+content})
 
 fun MetaDataContent.title(block : TITLE.() -> Unit = {}) : Unit = TITLE(emptyMap, consumer).visit(block)

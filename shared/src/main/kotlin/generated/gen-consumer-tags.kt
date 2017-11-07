@@ -98,6 +98,9 @@ fun <T, C : TagConsumer<T>> C.h5(classes : String? = null, block : H5.() -> Unit
 
 fun <T, C : TagConsumer<T>> C.h6(classes : String? = null, block : H6.() -> Unit = {}) : T = H6(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
+fun <T, C : TagConsumer<T>> C.head(content : String = "") : T = HEAD(emptyMap, this).visitAndFinalize(this, {+content})
 fun <T, C : TagConsumer<T>> C.head(block : HEAD.() -> Unit = {}) : T = HEAD(emptyMap, this).visitAndFinalize(this, block)
 
 fun <T, C : TagConsumer<T>> C.header(classes : String? = null, block : HEADER.() -> Unit = {}) : T = HEADER(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
@@ -106,6 +109,9 @@ fun <T, C : TagConsumer<T>> C.hGroup(classes : String? = null, block : HGROUP.()
 
 fun <T, C : TagConsumer<T>> C.hr(classes : String? = null, block : HR.() -> Unit = {}) : T = HR(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
+fun <T, C : TagConsumer<T>> C.html(content : String = "") : T = HTML(emptyMap, this).visitAndFinalize(this, {+content})
 fun <T, C : TagConsumer<T>> C.html(block : HTML.() -> Unit = {}) : T = HTML(emptyMap, this).visitAndFinalize(this, block)
 
 fun <T, C : TagConsumer<T>> C.i(classes : String? = null, block : I.() -> Unit = {}) : T = I(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
@@ -177,6 +183,8 @@ fun <T, C : TagConsumer<T>> C.ruby(classes : String? = null, block : RUBY.() -> 
 
 fun <T, C : TagConsumer<T>> C.samp(classes : String? = null, block : SAMP.() -> Unit = {}) : T = SAMP(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
 fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, content : String = "") : T = SCRIPT(attributesMapOf("type", type,"src", src), this).visitAndFinalize(this, {+content})
 fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : T = SCRIPT(attributesMapOf("type", type,"src", src), this).visitAndFinalize(this, block)
 
@@ -192,6 +200,8 @@ fun <T, C : TagConsumer<T>> C.span(classes : String? = null, block : SPAN.() -> 
 
 fun <T, C : TagConsumer<T>> C.strong(classes : String? = null, block : STRONG.() -> Unit = {}) : T = STRONG(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
 fun <T, C : TagConsumer<T>> C.style(type : String? = null, content : String = "") : T = STYLE(attributesMapOf("type", type), this).visitAndFinalize(this, {+content})
 fun <T, C : TagConsumer<T>> C.style(type : String? = null, block : STYLE.() -> Unit = {}) : T = STYLE(attributesMapOf("type", type), this).visitAndFinalize(this, block)
 

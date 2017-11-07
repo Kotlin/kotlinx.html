@@ -22,12 +22,15 @@ source
 track
 wbr""".lines().toSet()
 
-val shouldHaveNoContent = setOf("script")
-
 fun <O : Appendable> O.htmlTagBuilders(receiver : String, tag : TagInfo) {
-    val probablyContentOnly = tag.possibleChildren.isEmpty() && tag.name.toLowerCase() !in emptyTags && tag.name.toLowerCase() !in shouldHaveNoContent
+    val contentlessTag = tag.name.toLowerCase() in contentlessTags
+    val probablyContentOnly = tag.possibleChildren.isEmpty() && tag.name.toLowerCase() !in emptyTags && !contentlessTag
     htmlTagBuilderMethod(receiver, tag, true)
     if (probablyContentOnly) {
+        htmlTagBuilderMethod(receiver, tag, false)
+    } else if (contentlessTag) {
+        deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+        suppress("DEPRECATION")
         htmlTagBuilderMethod(receiver, tag, false)
     }
 
@@ -35,6 +38,10 @@ fun <O : Appendable> O.htmlTagBuilders(receiver : String, tag : TagInfo) {
     if (someEnumAttribute != null && someEnumAttribute.enumValues.size < 25) {
         htmlTagEnumBuilderMethod(receiver, tag, true, someEnumAttribute, 0)
         if (probablyContentOnly) {
+            htmlTagEnumBuilderMethod(receiver, tag, false, someEnumAttribute, 0)
+        } else if (contentlessTag) {
+            deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+            suppress("DEPRECATION")
             htmlTagEnumBuilderMethod(receiver, tag, false, someEnumAttribute, 0)
         }
     }

@@ -72,7 +72,7 @@ fun isAttributeExcluded(name: String) = excludeAttributes.any { it.matcher(name)
 val excludedEnums = listOf("Lang$").map { it.toRegex(RegexOption.IGNORE_CASE) }
 fun isEnumExcluded(name: String) = excludedEnums.any { it.containsMatchIn(name) }
 
-val contentlessTags = setOf("html", "head", "script")
+val contentlessTags = setOf("html", "head", "script", "style")
 
 val deprecated = listOf(".*FormMethod#(put|patch|delete)" to "method is not allowed in browsers")
         .map { it.first.toRegex(RegexOption.IGNORE_CASE) to it.second }

@@ -99,6 +99,9 @@ public fun TagConsumer<HTMLElement>.h5(classes : String? = null, block : H5.() -
 
 public fun TagConsumer<HTMLElement>.h6(classes : String? = null, block : H6.() -> Unit = {}) : HTMLHeadingElement = H6(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLHeadingElement
 
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
+public fun TagConsumer<HTMLElement>.head(content : String = "") : HTMLHeadElement = HEAD(emptyMap, this).visitAndFinalize(this, {+content}) as HTMLHeadElement
 public fun TagConsumer<HTMLElement>.head(block : HEAD.() -> Unit = {}) : HTMLHeadElement = HEAD(emptyMap, this).visitAndFinalize(this, block) as HTMLHeadElement
 
 public fun TagConsumer<HTMLElement>.header(classes : String? = null, block : HEADER.() -> Unit = {}) : HTMLElement = HEADER(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
@@ -107,6 +110,9 @@ public fun TagConsumer<HTMLElement>.hGroup(classes : String? = null, block : HGR
 
 public fun TagConsumer<HTMLElement>.hr(classes : String? = null, block : HR.() -> Unit = {}) : HTMLHRElement = HR(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLHRElement
 
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
+public fun TagConsumer<HTMLElement>.html(content : String = "") : HTMLHtmlElement = HTML(emptyMap, this).visitAndFinalize(this, {+content}) as HTMLHtmlElement
 public fun TagConsumer<HTMLElement>.html(block : HTML.() -> Unit = {}) : HTMLHtmlElement = HTML(emptyMap, this).visitAndFinalize(this, block) as HTMLHtmlElement
 
 public fun TagConsumer<HTMLElement>.i(classes : String? = null, block : I.() -> Unit = {}) : HTMLElement = I(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
@@ -178,6 +184,9 @@ public fun TagConsumer<HTMLElement>.ruby(classes : String? = null, block : RUBY.
 
 public fun TagConsumer<HTMLElement>.samp(classes : String? = null, block : SAMP.() -> Unit = {}) : HTMLElement = SAMP(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
+public fun TagConsumer<HTMLElement>.script(type : String? = null, src : String? = null, content : String = "") : HTMLScriptElement = SCRIPT(attributesMapOf("type", type,"src", src), this).visitAndFinalize(this, {+content}) as HTMLScriptElement
 public fun TagConsumer<HTMLElement>.script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : HTMLScriptElement = SCRIPT(attributesMapOf("type", type,"src", src), this).visitAndFinalize(this, block) as HTMLScriptElement
 
 public fun TagConsumer<HTMLElement>.section(classes : String? = null, block : SECTION.() -> Unit = {}) : HTMLElement = SECTION(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
@@ -192,6 +201,8 @@ public fun TagConsumer<HTMLElement>.span(classes : String? = null, block : SPAN.
 
 public fun TagConsumer<HTMLElement>.strong(classes : String? = null, block : STRONG.() -> Unit = {}) : HTMLElement = STRONG(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
 public fun TagConsumer<HTMLElement>.style(type : String? = null, content : String = "") : HTMLStyleElement = STYLE(attributesMapOf("type", type), this).visitAndFinalize(this, {+content}) as HTMLStyleElement
 public fun TagConsumer<HTMLElement>.style(type : String? = null, block : STYLE.() -> Unit = {}) : HTMLStyleElement = STYLE(attributesMapOf("type", type), this).visitAndFinalize(this, block) as HTMLStyleElement
 

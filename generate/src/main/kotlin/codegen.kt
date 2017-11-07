@@ -228,3 +228,15 @@ fun <T> T.with(block : T.() -> Unit) : T {
     block()
     return this
 }
+
+fun Appendable.deprecated(message: String) {
+    append("@")
+    functionCall("Deprecated", listOf(message.quote()))
+    append("\n")
+}
+
+fun Appendable.suppress(vararg warnings: String) {
+    append("@")
+    functionCall("Suppress", warnings.map { it.quote() })
+    append("\n")
+}

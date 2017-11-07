@@ -66,7 +66,12 @@ fun main(args: Array<String>) {
             emptyLine()
 
             Repository.tags.values.filterIgnored().forEach {
-                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags) {
+                val contentlessTag = it.name.toLowerCase() in contentlessTags
+                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && !contentlessTag) {
+                    consumerBuilderShared(it, false)
+                } else if (contentlessTag) {
+                    deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+                    suppress("DEPRECATION")
                     consumerBuilderShared(it, false)
                 }
                 consumerBuilderShared(it, true)
@@ -90,7 +95,12 @@ fun main(args: Array<String>) {
             emptyLine()
 
             Repository.tags.values.filterIgnored().forEach {
-                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && it.name.toLowerCase() !in shouldHaveNoContent) {
+                val contentlessTag = it.name.toLowerCase() in contentlessTags
+                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && !contentlessTag) {
+                    consumerBuilderJS(it, false)
+                } else if (contentlessTag) {
+                    deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+                    suppress("DEPRECATION")
                     consumerBuilderJS(it, false)
                 }
                 consumerBuilderJS(it, true)

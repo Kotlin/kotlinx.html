@@ -42,27 +42,27 @@ open class SCRIPT(initialAttributes : Map<String, String>, override val consumer
         get()  = attributeBooleanTicker.get(this, "async")
         set(newValue) {attributeBooleanTicker.set(this, "async", newValue)}
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override operator fun Entities.unaryPlus() : Unit {
         @Suppress("DEPRECATION") entity(this)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override operator fun String.unaryPlus() : Unit {
         @Suppress("DEPRECATION") text(this)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override fun text(s : String) : Unit {
         super<HTMLTag>.text(s)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override fun text(n : Number) : Unit {
         super<HTMLTag>.text(n)
     }
 
-    @Deprecated("This tag most likely doesn't support text content")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override fun entity(e : Entities) : Unit {
         super<HTMLTag>.entity(e)
     }
@@ -200,6 +200,30 @@ open class STYLE(initialAttributes : Map<String, String>, override val consumer 
         get()  = attributeBooleanTicker.get(this, "scoped")
         set(newValue) {attributeBooleanTicker.set(this, "scoped", newValue)}
 
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    override operator fun Entities.unaryPlus() : Unit {
+        @Suppress("DEPRECATION") entity(this)
+    }
+
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    override operator fun String.unaryPlus() : Unit {
+        @Suppress("DEPRECATION") text(this)
+    }
+
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    override fun text(s : String) : Unit {
+        super<HTMLTag>.text(s)
+    }
+
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    override fun text(n : Number) : Unit {
+        super<HTMLTag>.text(n)
+    }
+
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    override fun entity(e : Entities) : Unit {
+        super<HTMLTag>.entity(e)
+    }
 
 }
 val STYLE.asFlowContent : FlowContent

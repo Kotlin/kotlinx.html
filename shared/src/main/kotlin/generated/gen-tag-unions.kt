@@ -48,6 +48,8 @@ fun FlowOrHeadingContent.hGroup(classes : String? = null, block : HGROUP.() -> U
 
 
 fun FlowOrMetaDataContent.style(type : String? = null, block : STYLE.() -> Unit = {}) : Unit = STYLE(attributesMapOf("type", type), consumer).visit(block)
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
 fun FlowOrMetaDataContent.style(type : String? = null, content : String = "") : Unit = STYLE(attributesMapOf("type", type), consumer).visit({+content})
 
 
@@ -139,6 +141,9 @@ fun FlowOrPhrasingOrMetaDataContent.meta(name : String? = null, content : String
 fun FlowOrPhrasingOrMetaDataContent.noScript(classes : String? = null, block : NOSCRIPT.() -> Unit = {}) : Unit = NOSCRIPT(attributesMapOf("class", classes), consumer).visit(block)
 
 fun FlowOrPhrasingOrMetaDataContent.script(type : String? = null, src : String? = null, block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src), consumer).visit(block)
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
+fun FlowOrPhrasingOrMetaDataContent.script(type : String? = null, src : String? = null, content : String = "") : Unit = SCRIPT(attributesMapOf("type", type,"src", src), consumer).visit({+content})
 
 
 fun SectioningOrFlowContent.article(classes : String? = null, block : ARTICLE.() -> Unit = {}) : Unit = ARTICLE(attributesMapOf("class", classes), consumer).visit(block)
