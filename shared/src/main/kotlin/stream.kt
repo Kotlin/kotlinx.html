@@ -126,7 +126,11 @@ private val escapeMap = mapOf(
         '>' to "&gt;",
         '&' to "&amp;",
         '\"' to "&quot;"
-)
+).let { mappings ->
+    val maxCode = mappings.keys.map { it.toInt() }.max() ?: -1
+
+    Array(maxCode + 1) { mappings[it.toChar()] }
+}
 
 private val letterRangeLowerCase = 'a' .. 'z'
 private val letterRangeUpperCase = 'A' .. 'Z'
@@ -148,9 +152,13 @@ private fun String.startsWithXml() = length >= 3
 
 private fun Appendable.escapeAppend(s : CharSequence) {
     var lastIndex = 0
+    val mappings = escapeMap
+    val size = mappings.size
+
     for (idx in 0 .. s.length - 1) {
-        val ch = s[idx]
-        val escape = escapeMap[ch]
+        val ch = s[idx].toInt()
+        if (ch < 0 || ch >= size) continue
+        val escape = mappings[ch]
         if (escape != null) {
             append(s.substring(lastIndex, idx))
             append(escape)
