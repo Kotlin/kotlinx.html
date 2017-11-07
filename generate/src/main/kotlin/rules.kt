@@ -302,7 +302,9 @@ val tagReplacements = listOf(
         "blockquote" to "quote",
         "td" to "TableCell",
         "tr" to "TableRow",
-        "th" to "TableCol",
+        "th" to "TableCell",
+        "col" to "TableCol",
+        "colGroup" to "TableCol",
         "thead" to "TableSection",
         "tbody" to "TableSection",
         "tfoot" to "TableSection"

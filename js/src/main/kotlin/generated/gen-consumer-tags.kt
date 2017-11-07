@@ -49,9 +49,9 @@ public fun TagConsumer<HTMLElement>.cite(classes : String? = null, block : CITE.
 
 public fun TagConsumer<HTMLElement>.code(classes : String? = null, block : CODE.() -> Unit = {}) : HTMLElement = CODE(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
-public fun TagConsumer<HTMLElement>.col(classes : String? = null, block : COL.() -> Unit = {}) : HTMLElement = COL(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+public fun TagConsumer<HTMLElement>.col(classes : String? = null, block : COL.() -> Unit = {}) : HTMLTableColElement = COL(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLTableColElement
 
-public fun TagConsumer<HTMLElement>.colGroup(classes : String? = null, block : COLGROUP.() -> Unit = {}) : HTMLElement = COLGROUP(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+public fun TagConsumer<HTMLElement>.colGroup(classes : String? = null, block : COLGROUP.() -> Unit = {}) : HTMLTableColElement = COLGROUP(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLTableColElement
 
 public fun TagConsumer<HTMLElement>.command(type : CommandType? = null, classes : String? = null, block : COMMAND.() -> Unit = {}) : HTMLElement = COMMAND(attributesMapOf("type", type?.enumEncode(),"class", classes), this).visitAndFinalize(this, block)
 
@@ -224,7 +224,7 @@ public fun TagConsumer<HTMLElement>.textArea(rows : String? = null, cols : Strin
 
 public fun TagConsumer<HTMLElement>.tfoot(classes : String? = null, block : TFOOT.() -> Unit = {}) : HTMLTableSectionElement = TFOOT(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLTableSectionElement
 
-public fun TagConsumer<HTMLElement>.th(scope : ThScope? = null, classes : String? = null, block : TH.() -> Unit = {}) : HTMLTableColElement = TH(attributesMapOf("scope", scope?.enumEncode(),"class", classes), this).visitAndFinalize(this, block) as HTMLTableColElement
+public fun TagConsumer<HTMLElement>.th(scope : ThScope? = null, classes : String? = null, block : TH.() -> Unit = {}) : HTMLElement = TH(attributesMapOf("scope", scope?.enumEncode(),"class", classes), this).visitAndFinalize(this, block)
 
 public fun TagConsumer<HTMLElement>.thead(classes : String? = null, block : THEAD.() -> Unit = {}) : HTMLTableSectionElement = THEAD(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLTableSectionElement
 

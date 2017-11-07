@@ -217,6 +217,18 @@ class DomTreeImplTest {
         assertTrue { invoked }
     }
 
+    @test fun testTdThColColGroupCreation() {
+        val td = document.create.td()
+        val th = document.create.th()
+        val col = document.create.col()
+        val colGroup = document.create.colGroup()
+
+        assertEquals("TH", th.tagName.toUpperCase())
+        assertEquals("TD", td.tagName.toUpperCase())
+        assertEquals("COL", col.tagName.toUpperCase())
+        assertEquals("COLGROUP", colGroup.tagName.toUpperCase())
+    }
+
     private fun wrapper() = document.body!!.append.div {}
     private fun <T> uninitialized(): T = null as T
     private fun String.trimLines() = trimIndent().lines().filter { it.isNotBlank() }.joinToString("")
