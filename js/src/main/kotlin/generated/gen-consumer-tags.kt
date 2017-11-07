@@ -224,7 +224,7 @@ public fun TagConsumer<HTMLElement>.textArea(rows : String? = null, cols : Strin
 
 public fun TagConsumer<HTMLElement>.tfoot(classes : String? = null, block : TFOOT.() -> Unit = {}) : HTMLTableSectionElement = TFOOT(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLTableSectionElement
 
-public fun TagConsumer<HTMLElement>.th(scope : ThScope? = null, classes : String? = null, block : TH.() -> Unit = {}) : HTMLElement = TH(attributesMapOf("scope", scope?.enumEncode(),"class", classes), this).visitAndFinalize(this, block)
+public fun TagConsumer<HTMLElement>.th(scope : ThScope? = null, classes : String? = null, block : TH.() -> Unit = {}) : HTMLTableCellElement = TH(attributesMapOf("scope", scope?.enumEncode(),"class", classes), this).visitAndFinalize(this, block) as HTMLTableCellElement
 
 public fun TagConsumer<HTMLElement>.thead(classes : String? = null, block : THEAD.() -> Unit = {}) : HTMLTableSectionElement = THEAD(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLTableSectionElement
 
