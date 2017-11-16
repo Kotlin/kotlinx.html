@@ -1,3 +1,3 @@
 package kotlinx.html
 
-impl fun currentTimeMillis(): Long = System.currentTimeMillis()
+actual fun currentTimeMillis(): Long = System.currentTimeMillis()

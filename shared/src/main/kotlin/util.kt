@@ -14,4 +14,4 @@ val Tag.br : Unit
         consumer.onTagEnd(tag)
     }
 
-header fun currentTimeMillis(): Long
+expect fun currentTimeMillis(): Long
