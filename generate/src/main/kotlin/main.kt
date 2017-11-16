@@ -80,7 +80,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("$jsdir/gen-consumer-tags.kt").writer(Charsets.UTF_8).use {
+    FileOutputStream("$jsdir/gen-consumer-tags-js.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg + ".js")
             emptyLine()
@@ -109,7 +109,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    FileOutputStream("$jsdir/gen-event-attrs.kt").writer(Charsets.UTF_8).use {
+    FileOutputStream("$jsdir/gen-event-attrs-js.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg + ".js")
             emptyLine()
