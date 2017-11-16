@@ -178,7 +178,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                 <kotlin.version>1.1.51</kotlin.version>
+                 <kotlin.version>1.1.60</kotlin.version>
                  <bintray.url>https://api.bintray.com/maven/kotlin/kotlinx.html/kotlinx.html</bintray.url>
             </properties>
         </profile>
