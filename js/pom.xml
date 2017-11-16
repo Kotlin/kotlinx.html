@@ -7,7 +7,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>org.jetbrains.kotlinx</groupId>
     <artifactId>kotlinx-html-js</artifactId>
+    <version>0.6.8-SNAPSHOT</version>
 
     <name>kotlinx.html JS</name>
     <description>kotlinx.html JS implementation</description>
@@ -28,6 +30,13 @@
             </roles>
         </developer>
     </developers>
+    
+    <url>https://github.com/Kotlin/kotlinx.html</url>
+    <scm>
+        <connection>scm:git:git@github.com:Kotlin/kotlinx.html.git</connection>
+        <url>https://github.com/Kotlin/kotlinx.html</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <dependencies>
         <dependency>
@@ -35,6 +44,12 @@
             <artifactId>kotlin-stdlib-js</artifactId>
         </dependency>
         <dependency>
+    <url>https://github.com/Kotlin/kotlinx.html</url>
+    <scm>
+        <connection>scm:git:git@github.com:Kotlin/kotlinx.html.git</connection>
+        <url>https://github.com/Kotlin/kotlinx.html</url>
+        <tag>HEAD</tag>
+    </scm>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-html-common</artifactId>
             <version>${project.version}</version>

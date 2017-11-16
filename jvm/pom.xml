@@ -7,7 +7,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>org.jetbrains.kotlinx</groupId>
     <artifactId>kotlinx-html-jvm</artifactId>
+    <version>0.6.8-SNAPSHOT</version>
 
     <name>kotlinx.html JVM</name>
     <description>kotlinx.html JVM implementation</description>
@@ -28,6 +30,13 @@
             </roles>
         </developer>
     </developers>
+
+    <url>https://github.com/Kotlin/kotlinx.html</url>
+    <scm>
+        <connection>scm:git:git@github.com:Kotlin/kotlinx.html.git</connection>
+        <url>https://github.com/Kotlin/kotlinx.html</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <dependencies>
         <dependency>
