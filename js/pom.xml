@@ -44,12 +44,6 @@
             <artifactId>kotlin-stdlib-js</artifactId>
         </dependency>
         <dependency>
-    <url>https://github.com/Kotlin/kotlinx.html</url>
-    <scm>
-        <connection>scm:git:git@github.com:Kotlin/kotlinx.html.git</connection>
-        <url>https://github.com/Kotlin/kotlinx.html</url>
-        <tag>HEAD</tag>
-    </scm>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-html-common</artifactId>
             <version>${project.version}</version>
