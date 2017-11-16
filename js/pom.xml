@@ -9,6 +9,26 @@
 
     <artifactId>kotlinx-html-js</artifactId>
 
+    <name>kotlinx.html JS</name>
+    <description>kotlinx.html JS implementation</description>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Sergey Mashkov</name>
+            <organization>JetBrains s.r.o.</organization>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <dependencies>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
