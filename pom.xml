@@ -6,6 +6,17 @@
     <artifactId>kotlinx-html</artifactId>
     <packaging>pom</packaging>
     <version>0.6.8-SNAPSHOT</version>
+
+    <name>kotlinx.html root module</name>
+    <description>A root module for all kotlinx.html components</description>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
     <modules>
         <module>shared</module>
         <module>jvm</module>
