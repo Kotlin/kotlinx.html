@@ -8,7 +8,7 @@ import org.w3c.dom.*
 import kotlin.browser.*
 import kotlin.dom.*
 import kotlin.test.*
-import org.junit.Test as test
+import kotlin.test.Test as test
 
 class DomTreeImplTest {
     @test fun simpleTree() {

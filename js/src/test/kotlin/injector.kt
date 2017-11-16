@@ -9,7 +9,7 @@ import org.w3c.dom.HTMLParagraphElement
 import kotlin.browser.*
 import kotlin.properties.*
 import kotlin.test.*
-import org.junit.Test as test
+import kotlin.test.Test as test
 
 class MyBeanWithDiv {
     var node: HTMLDivElement by Delegates.notNull()

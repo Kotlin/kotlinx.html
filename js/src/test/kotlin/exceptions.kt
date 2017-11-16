@@ -3,7 +3,7 @@ import kotlinx.html.dom.append
 import kotlinx.html.h1
 import kotlinx.html.h2
 import kotlinx.html.js.div
-import org.junit.Test
+import kotlin.test.Test
 import kotlin.browser.document
 import kotlin.test.assertEquals
 
