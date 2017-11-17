@@ -69,12 +69,12 @@
                 <executions>
                     <execution>
                         <id>default-jar</id>
-                        <phase>none</phase>
+                        <configuration>
+                            <!-- required for maven central -->
+                            <forceCreation>true</forceCreation>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
             </plugin>
         </plugins>
     </build>
