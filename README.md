@@ -56,7 +56,3 @@ See [wiki](https://github.com/kotlin/kotlinx.html/wiki) pages
 
 # Building 
 See [development](https://github.com/kotlin/kotlinx.html/wiki/Development) page for details
-
-# Old version
-
-See https://github.com/kotlinx/kotlinx.html.legacy for older version. We strongly recommend to migrate to latest version.
