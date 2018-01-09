@@ -3,7 +3,7 @@ package kotlinx.html.impl
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 
-class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val consumer : () -> TagConsumer<*>) : MutableMap<String, String> {
+class DelegatingMap(initialValues : Map<String, String>, private val tag : Tag, private val consumer : () -> TagConsumer<*>) : MutableMap<String, String> {
     private var backing: Map<String, String> = initialValues
     private var backingMutable = false
 
@@ -31,17 +31,21 @@ class DelegatingMap(initialValues : Map<String, String>, val tag : Tag, val cons
         val mutable = switchToMutable()
 
         return mutable.remove(key)?.let { removed ->
-            if (key is String) {
-                consumer().onTagAttributeChange(tag, key, null)
-            }
-
+            consumer().onTagAttributeChange(tag, key, null)
             removed
         }
     }
 
     override fun putAll(from: Map<out String, String>) {
+        if (from.isEmpty()) return
+
+        val consumer = consumer()
+        val mutable = switchToMutable()
+
         from.entries.forEach { e ->
-            put(e.key, e.value)
+            if (mutable.put(e.key, e.value) != e.value) {
+                consumer.onTagAttributeChange(tag, e.key, e.value)
+            }
         }
     }
 
