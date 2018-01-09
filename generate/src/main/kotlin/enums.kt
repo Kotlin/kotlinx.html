@@ -40,7 +40,7 @@ fun Appendable.enum(attribute : AttributeInfo) {
         attribute.enumValues.forEachIndexed { idx, it ->
             append("    ")
 
-            val deprecated = deprecated.firstOrNull { p -> p.first.matches("""${attribute.enumTypeName}#${it.realName}""") }?.second
+            val deprecated = findEnumDeprecation(attribute, it)
             enumEntry(it.fieldName, deprecated, listOf("\"${it.realName}\""))
 
             if (idx != attribute.enumValues.lastIndex) {

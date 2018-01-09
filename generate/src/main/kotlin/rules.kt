@@ -79,6 +79,10 @@ val contentlessTags = setOf("html", "head", "script", "style")
 val deprecated = listOf(".*FormMethod#(put|patch|delete)" to "method is not allowed in browsers")
         .map { it.first.toRegex(RegexOption.IGNORE_CASE) to it.second }
 
+fun findEnumDeprecation(attribute: AttributeInfo, value: AttributeEnumValue): String? {
+    return deprecated.firstOrNull { p -> p.first.matches("""${attribute.enumTypeName}#${value.realName}""") }?.second
+}
+
 val knownTagClasses = """
 HTMLElement
 HTMLUnknownElement

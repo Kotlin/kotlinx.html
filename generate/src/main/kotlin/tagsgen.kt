@@ -228,6 +228,13 @@ fun Appendable.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo, blockO
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent).filter {it.name != enumAttribute.fieldName}
 
     enumAttribute.enumValues.forEach { enumValue ->
+        val deprecation = findEnumDeprecation(enumAttribute, enumValue)
+
+        if (deprecation != null) {
+            indent(indent)
+            suppress("DEPRECATION")
+        }
+
         indent(indent)
         function(enumValue.fieldName + tag.memberName.capitalize(), arguments, "Unit", receiver = receiver)
         defineIs(buildString {
