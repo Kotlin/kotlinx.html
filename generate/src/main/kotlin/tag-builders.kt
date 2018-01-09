@@ -22,7 +22,7 @@ source
 track
 wbr""".lines().toSet()
 
-fun <O : Appendable> O.htmlTagBuilders(receiver : String, tag : TagInfo) {
+fun Appendable.htmlTagBuilders(receiver : String, tag : TagInfo) {
     val contentlessTag = tag.name.toLowerCase() in contentlessTags
     val probablyContentOnly = tag.possibleChildren.isEmpty() && tag.name.toLowerCase() !in emptyTags && !contentlessTag
     htmlTagBuilderMethod(receiver, tag, true)

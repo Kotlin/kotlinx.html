@@ -3,7 +3,7 @@ package kotlinx.html.generate
 import kotlinx.html.generate.humanize.*
 import java.util.*
 
-fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) : O = with {
+fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
     val parentAttributeIfaces = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
     val parentElementIfaces = tag.tagGroupNames.map { it.humanize().capitalize() }
     val allParentIfaces = parentAttributeIfaces + parentElementIfaces
@@ -138,7 +138,7 @@ fun <O : Appendable> O.tagClass(tag : TagInfo, excludeAttributes : Set<String>) 
     emptyLine()
 }
 
-internal fun <O : Appendable> O.tagAttributeVar(attribute: AttributeInfo, receiver: String?, indent: Int = 1): AttributeRequest {
+internal fun Appendable.tagAttributeVar(attribute: AttributeInfo, receiver: String?, indent: Int = 1): AttributeRequest {
     val options = LinkedList<Const<*>>()
 
     if (attribute.type == AttributeType.ENUM) {
@@ -170,7 +170,7 @@ fun contentArgumentValue(tag : TagInfo, blockOrContent : Boolean) = when {
     else -> "{+content}"
 }
 
-fun <O : Appendable> O.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
+fun Appendable.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
     val resultType = getTagResultClass(tag)
 
     append("public ")
@@ -193,7 +193,7 @@ fun <O : Appendable> O.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean
     })
 }
 
-fun <O : Appendable> O.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
+fun Appendable.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
     function(tag.memberName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
     defineIs(buildString {
         functionCall(tag.className, listOf(
@@ -208,7 +208,7 @@ fun <O : Appendable> O.consumerBuilderShared(tag : TagInfo, blockOrContent : Boo
     })
 }
 
-fun <O : Appendable> O.htmlTagBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean) {
+fun Appendable.htmlTagBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean) {
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent)
 
     function(tag.memberName, arguments, "Unit", receiver = receiver)
@@ -222,7 +222,7 @@ fun <O : Appendable> O.htmlTagBuilderMethod(receiver : String, tag : TagInfo, bl
     })
 }
 
-fun <O : Appendable> O.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean, enumAttribute : AttributeInfo, indent : Int) {
+fun Appendable.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean, enumAttribute : AttributeInfo, indent : Int) {
     require(enumAttribute.enumValues.isNotEmpty())
 
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent).filter {it.name != enumAttribute.fieldName}
@@ -241,8 +241,8 @@ fun <O : Appendable> O.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo
     }
 }
 
-fun <O : Appendable> O.indent(stops : Int = 1) {
-    for (i in 0..stops - 1) {
+fun Appendable.indent(stops : Int = 1) {
+    for (i in 0 until stops) {
         append("    ")
     }
 }
@@ -252,7 +252,7 @@ private fun buildSuggestedAttributesArgument(tag: TagInfo, predefinedValues : Ma
         val name = attribute.fieldName
 
         val encoded = if (name in predefinedValues) predefinedValues[name] else when (attribute.type) {
-            AttributeType.STRING -> "$name"
+            AttributeType.STRING -> name
             AttributeType.BOOLEAN -> "$name?.booleanEncode()"
             AttributeType.ENUM -> "$name?.enumEncode()"
             AttributeType.TICKER -> "$name?.tickerEncode(${attribute.name.quote()})"

@@ -2,7 +2,7 @@ package kotlinx.html.generate
 
 fun String.quote() = "\"$this\""
 
-fun <O : Appendable> O.attributePseudoDelegate(request: AttributeRequest) {
+fun Appendable.attributePseudoDelegate(request: AttributeRequest) {
     val classNamePrefix = request.type.classPrefix
     val className = "${classNamePrefix}Attribute"
 
@@ -14,7 +14,7 @@ fun <O : Appendable> O.attributePseudoDelegate(request: AttributeRequest) {
     emptyLine()
 }
 
-fun <O : Appendable> O.attributeProperty(attribute: AttributeInfo, receiver: String? = null, indent: Int = 1) {
+fun Appendable.attributeProperty(attribute: AttributeInfo, receiver: String? = null, indent: Int = 1) {
     val attributeName = attribute.name
     val request = tagAttributeVar(attribute, receiver, indent)
     append("\n")
@@ -34,7 +34,7 @@ fun <O : Appendable> O.attributeProperty(attribute: AttributeInfo, receiver: Str
     emptyLine()
 }
 
-fun <O : Appendable> O.facade(facade: AttributeFacade) {
+fun Appendable.facade(facade: AttributeFacade) {
     val facadeName = facade.name.capitalize() + "Facade"
 
     clazz(Clazz(facadeName, isInterface = true, parents = listOf("Tag"))) {
@@ -47,7 +47,7 @@ fun <O : Appendable> O.facade(facade: AttributeFacade) {
     }
 }
 
-fun <O : Appendable> O.eventProperty(parent: String, attribute: AttributeInfo) {
+fun Appendable.eventProperty(parent: String, attribute: AttributeInfo) {
     variable(receiver = parent, variable = Var(
             name = attribute.fieldName + "Function",
             type = "(Event) -> Unit",

@@ -21,21 +21,19 @@ val Const<*>.asValue : String
         else -> throw UnsupportedOperationException("Value $this of type ${javaClass.name} is not supported")
     }
 
-fun <O : Appendable> O.packg(name : String) : O {
+fun Appendable.packg(name : String) {
     append("package ")
     append(name)
     append("\n")
-    return this
 }
 
-fun <O : Appendable> O.import(name : String) : O {
+fun Appendable.import(name : String) {
     append("import ")
     append(name)
     append("\n")
-    return this
 }
 
-fun <O : Appendable> O.warning() : O {
+fun Appendable.doNotEditWarning() {
     append("/")
     append("*".repeat(79))
     appendln()
@@ -45,18 +43,16 @@ fun <O : Appendable> O.warning() : O {
     appendln()
     append("*".repeat(79))
     append("/")
-
-    return this
 }
 
-fun <O : Appendable> O.const(value : Const<*>) {
+fun Appendable.const(value : Const<*>) {
     append(value.asValue)
 }
 
 data class Var(val name : String, val type : String, val mutable : Boolean = false, val override : Boolean = false, val forceOmitValVar : Boolean = false, val defaultValue : String = "")
 data class Clazz(val name: String, val parameters: List<String> = listOf(), val variables: List<Var> = listOf(), val parents: List<String> = listOf(), val isPublic: Boolean = true, val isAbstract: Boolean = false, val isOpen: Boolean = false, val isObject: Boolean = false, val isInterface: Boolean = false)
 
-fun <O : Appendable> O.variable(variable : Var, omitValVar : Boolean = false, receiver : String = "") : O {
+fun Appendable.variable(variable : Var, omitValVar : Boolean = false, receiver : String = "") {
     if (!omitValVar && !variable.forceOmitValVar) {
         if (variable.override) {
             append("override ")
@@ -75,11 +71,9 @@ fun <O : Appendable> O.variable(variable : Var, omitValVar : Boolean = false, re
         append(" = ")
         append(variable.defaultValue)
     }
-
-    return this
 }
 
-fun <O : Appendable> O.enumEntry(name: String, deprecated: String?, arguments: List<String>) {
+fun Appendable.enumEntry(name: String, deprecated: String?, arguments: List<String>) {
     if (deprecated != null) {
         append("@")
         functionCall("Deprecated", listOf(deprecated.quote()))
@@ -91,12 +85,10 @@ fun <O : Appendable> O.enumEntry(name: String, deprecated: String?, arguments: L
     }
 }
 
-fun <O : Appendable> O.delegateBy(expression : String) : O {
+fun Appendable.delegateBy(expression : String) {
     append(" by ")
     append(expression)
     emptyLine()
-
-    return this
 }
 
 fun <O : Appendable> O.getter(): O {
@@ -157,16 +149,16 @@ fun <O : Appendable> O.clazz(clazz : Clazz, block : O.() -> Unit) : O {
     return this
 }
 
-fun <O : Appendable> O.functionCall(name : String, arguments : List<CharSequence>) : O = with {
+fun Appendable.functionCall(name : String, arguments : List<CharSequence>) {
     append(name)
     arguments.joinTo(this, ", ", "(", ")")
 }
 
-fun <O : Appendable> O.functionCallConsts(name : String, arguments : List<Const<*>>) : O = with {
+fun Appendable.functionCallConsts(name : String, arguments : List<Const<*>>) {
     functionCall(name, arguments.map {it.asValue})
 }
 
-fun <O : Appendable> O.function(name : String, arguments : List<Var> = emptyList(), returnType : String = "Unit", generics : List<String> = emptyList(), receiver : String = "", modifiers: List<String> = emptyList()) : O {
+fun Appendable.function(name : String, arguments : List<Var> = emptyList(), returnType : String = "Unit", generics : List<String> = emptyList(), receiver : String = "", modifiers: List<String> = emptyList()) {
     (modifiers + "fun").joinTo(this, separator = " ", postfix = " ")
 
     if (generics.isNotEmpty()) {
@@ -191,11 +183,9 @@ fun <O : Appendable> O.function(name : String, arguments : List<Var> = emptyList
         append(" : ")
         append(returnType)
     }
-
-    return this
 }
 
-fun <O : Appendable> O.receiverDot(receiver : String) {
+fun Appendable.receiverDot(receiver : String) {
     append(receiver)
     append('.')
 }
@@ -222,7 +212,7 @@ fun <O : Appendable> O.defineIs(expression : CharSequence) : O {
     return this
 }
 
-fun <O : Appendable> O.emptyLine() : O = this.with { appendln() }
+fun Appendable.emptyLine() { appendln() }
 
 fun <T> T.with(block : T.() -> Unit) : T {
     block()

@@ -20,7 +20,7 @@ fun main(args: Array<String>) {
             import("kotlinx.html.impl.*")
             emptyLine()
 
-            warning()
+            doNotEditWarning()
             emptyLine()
             emptyLine()
 
@@ -41,7 +41,7 @@ fun main(args: Array<String>) {
                 import("kotlinx.html.attributes.*")
                 emptyLine()
 
-                warning()
+                doNotEditWarning()
                 emptyLine()
                 emptyLine()
 
@@ -61,7 +61,7 @@ fun main(args: Array<String>) {
             import("kotlinx.html.attributes.*")
             emptyLine()
 
-            warning()
+            doNotEditWarning()
             emptyLine()
             emptyLine()
 
@@ -90,7 +90,7 @@ fun main(args: Array<String>) {
             import("org.w3c.dom.*")
             emptyLine()
 
-            warning()
+            doNotEditWarning()
             emptyLine()
             emptyLine()
 
@@ -119,7 +119,7 @@ fun main(args: Array<String>) {
             import("org.w3c.dom.events.*")
             emptyLine()
 
-            warning()
+            doNotEditWarning()
             emptyLine()
             emptyLine()
 
@@ -138,7 +138,7 @@ fun main(args: Array<String>) {
             import("kotlinx.html.*")
             emptyLine()
 
-            warning()
+            doNotEditWarning()
             emptyLine()
             emptyLine()
 
@@ -174,7 +174,7 @@ fun main(args: Array<String>) {
             import("kotlinx.html.attributes.*")
             emptyLine()
 
-            warning()
+            doNotEditWarning()
             emptyLine()
             emptyLine()
 
@@ -193,7 +193,7 @@ fun main(args: Array<String>) {
             import("kotlinx.html.attributes.*")
             emptyLine()
 
-            warning()
+            doNotEditWarning()
             emptyLine()
             emptyLine()
 
@@ -229,7 +229,7 @@ fun main(args: Array<String>) {
             import("kotlinx.html.attributes.*")
             emptyLine()
 
-            warning()
+            doNotEditWarning()
             emptyLine()
             emptyLine()
 
@@ -259,7 +259,7 @@ fun main(args: Array<String>) {
             import("kotlinx.html.*")
             emptyLine()
 
-            warning()
+            doNotEditWarning()
             emptyLine()
             emptyLine()
 

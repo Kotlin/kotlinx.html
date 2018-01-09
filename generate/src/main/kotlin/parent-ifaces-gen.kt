@@ -37,7 +37,7 @@ fun generateParentInterfaces(todir: String, packg: String) {
 //            import("kotlinx.html.*")
             emptyLine()
 
-            warning()
+            doNotEditWarning()
             emptyLine()
             emptyLine()
 

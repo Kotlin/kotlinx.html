@@ -9,7 +9,7 @@ fun String.replaceIfReserved() = if (this in reservedNames) "html" + this.capita
 fun List<String>.toAttributeValues() : List<AttributeEnumValue> =
         map { AttributeEnumValue(it, if (it == "_") it else it.humanize().replaceIfReserved()) }
 
-fun <O : Appendable> O.enumObject(attribute : AttributeInfo) {
+fun Appendable.enumObject(attribute : AttributeInfo) {
     val name = attribute.enumTypeName
 
     appendln("@Suppress(\"unused\")")
@@ -30,7 +30,7 @@ fun <O : Appendable> O.enumObject(attribute : AttributeInfo) {
     emptyLine()
 }
 
-fun <O : Appendable> O.enum(attribute : AttributeInfo) {
+fun Appendable.enum(attribute : AttributeInfo) {
     val name = attribute.enumTypeName
     val realValue = Var("realValue", "String", false, true)
 
