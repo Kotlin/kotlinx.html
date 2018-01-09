@@ -16,6 +16,7 @@ val globalSuggestedAttributes = listOf(
         "i" to "class",
         "input" to "type",
         "input" to "name",
+        "button" to "name",
         "link" to "rel",
         "link" to "href",
         "link" to "type",

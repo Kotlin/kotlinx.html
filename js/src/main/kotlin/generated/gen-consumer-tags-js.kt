@@ -38,7 +38,7 @@ public fun TagConsumer<HTMLElement>.body(classes : String? = null, block : BODY.
 
 public fun TagConsumer<HTMLElement>.br(classes : String? = null, block : BR.() -> Unit = {}) : HTMLBRElement = BR(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLBRElement
 
-public fun TagConsumer<HTMLElement>.button(formEncType : ButtonFormEncType? = null, formMethod : ButtonFormMethod? = null, type : ButtonType? = null, classes : String? = null, block : BUTTON.() -> Unit = {}) : HTMLButtonElement = BUTTON(attributesMapOf("formenctype", formEncType?.enumEncode(),"formmethod", formMethod?.enumEncode(),"type", type?.enumEncode(),"class", classes), this).visitAndFinalize(this, block) as HTMLButtonElement
+public fun TagConsumer<HTMLElement>.button(formEncType : ButtonFormEncType? = null, formMethod : ButtonFormMethod? = null, name : String? = null, type : ButtonType? = null, classes : String? = null, block : BUTTON.() -> Unit = {}) : HTMLButtonElement = BUTTON(attributesMapOf("formenctype", formEncType?.enumEncode(),"formmethod", formMethod?.enumEncode(),"name", name,"type", type?.enumEncode(),"class", classes), this).visitAndFinalize(this, block) as HTMLButtonElement
 
 public fun TagConsumer<HTMLElement>.canvas(classes : String? = null, content : String = "") : HTMLCanvasElement = CANVAS(attributesMapOf("class", classes), this).visitAndFinalize(this, {+content}) as HTMLCanvasElement
 public fun TagConsumer<HTMLElement>.canvas(classes : String? = null, block : CANVAS.() -> Unit = {}) : HTMLCanvasElement = CANVAS(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLCanvasElement

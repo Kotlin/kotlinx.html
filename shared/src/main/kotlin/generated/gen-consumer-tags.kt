@@ -37,7 +37,7 @@ fun <T, C : TagConsumer<T>> C.body(classes : String? = null, block : BODY.() -> 
 
 fun <T, C : TagConsumer<T>> C.br(classes : String? = null, block : BR.() -> Unit = {}) : T = BR(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
-fun <T, C : TagConsumer<T>> C.button(formEncType : ButtonFormEncType? = null, formMethod : ButtonFormMethod? = null, type : ButtonType? = null, classes : String? = null, block : BUTTON.() -> Unit = {}) : T = BUTTON(attributesMapOf("formenctype", formEncType?.enumEncode(),"formmethod", formMethod?.enumEncode(),"type", type?.enumEncode(),"class", classes), this).visitAndFinalize(this, block)
+fun <T, C : TagConsumer<T>> C.button(formEncType : ButtonFormEncType? = null, formMethod : ButtonFormMethod? = null, name : String? = null, type : ButtonType? = null, classes : String? = null, block : BUTTON.() -> Unit = {}) : T = BUTTON(attributesMapOf("formenctype", formEncType?.enumEncode(),"formmethod", formMethod?.enumEncode(),"name", name,"type", type?.enumEncode(),"class", classes), this).visitAndFinalize(this, block)
 
 fun <T, C : TagConsumer<T>> C.canvas(classes : String? = null, content : String = "") : T = CANVAS(attributesMapOf("class", classes), this).visitAndFinalize(this, {+content})
 fun <T, C : TagConsumer<T>> C.canvas(classes : String? = null, block : CANVAS.() -> Unit = {}) : T = CANVAS(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
