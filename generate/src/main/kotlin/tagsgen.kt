@@ -173,6 +173,7 @@ fun contentArgumentValue(tag : TagInfo, blockOrContent : Boolean) = when {
 fun Appendable.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
     val resultType = getTagResultClass(tag)
 
+    htmlDslMarker()
     append("public ")
     function(tag.memberName, tagBuilderFunctionArguments(tag, blockOrContent), resultType, receiver = "TagConsumer<HTMLElement>")
     defineIs(buildString {
@@ -194,6 +195,7 @@ fun Appendable.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
 }
 
 fun Appendable.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
+    htmlDslMarker()
     function(tag.memberName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
     defineIs(buildString {
         functionCall(tag.className, listOf(
@@ -211,6 +213,7 @@ fun Appendable.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
 fun Appendable.htmlTagBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean) {
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent)
 
+    htmlDslMarker()
     function(tag.memberName, arguments, "Unit", receiver = receiver)
     defineIs(buildString {
         functionCall(tag.className, listOf(
@@ -236,6 +239,7 @@ fun Appendable.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo, blockO
         }
 
         indent(indent)
+        htmlDslMarker()
         function(enumValue.fieldName + tag.memberName.capitalize(), arguments, "Unit", receiver = receiver)
         defineIs(buildString {
             functionCall(tag.className, listOf(
@@ -292,6 +296,10 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) 
     }
 
     return arguments
+}
+
+private fun Appendable.htmlDslMarker() {
+    appendln("@HtmlTagMarker")
 }
 
 private val inlineTags = """a

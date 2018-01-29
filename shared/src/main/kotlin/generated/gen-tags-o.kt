@@ -45,6 +45,7 @@ open class OBJECT(initialAttributes : Map<String, String>, override val consumer
 
 
 }
+@HtmlTagMarker
 fun OBJECT.param(name : String? = null, value : String? = null, block : PARAM.() -> Unit = {}) : Unit = PARAM(attributesMapOf("name", name,"value", value), consumer).visit(block)
 
 val OBJECT.asFlowContent : FlowContent
@@ -69,6 +70,7 @@ open class OL(initialAttributes : Map<String, String>, override val consumer : T
 
 
 }
+@HtmlTagMarker
 fun OL.li(classes : String? = null, block : LI.() -> Unit = {}) : Unit = LI(attributesMapOf("class", classes), consumer).visit(block)
 
 
@@ -84,7 +86,9 @@ open class OPTGROUP(initialAttributes : Map<String, String>, override val consum
 
 
 }
+@HtmlTagMarker
 fun OPTGROUP.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
+@HtmlTagMarker
 fun OPTGROUP.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
 
 
