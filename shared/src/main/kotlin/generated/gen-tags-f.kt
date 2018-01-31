@@ -25,6 +25,7 @@ open class FIELDSET(initialAttributes : Map<String, String>, override val consum
 
 
 }
+@HtmlTagMarker
 fun FIELDSET.legend(classes : String? = null, block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
 
 
@@ -37,8 +38,10 @@ open class FIGCAPTION(initialAttributes : Map<String, String>, override val cons
 open class FIGURE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("figure", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
+@HtmlTagMarker
 fun FIGURE.legend(classes : String? = null, block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
 
+@HtmlTagMarker
 fun FIGURE.figcaption(classes : String? = null, block : FIGCAPTION.() -> Unit = {}) : Unit = FIGCAPTION(attributesMapOf("class", classes), consumer).visit(block)
 
 

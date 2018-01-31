@@ -56,6 +56,7 @@ open class VIDEO(initialAttributes : Map<String, String>, override val consumer 
 
 
 }
+@HtmlTagMarker
 fun VIDEO.source(classes : String? = null, block : SOURCE.() -> Unit = {}) : Unit = SOURCE(attributesMapOf("class", classes), consumer).visit(block)
 
 val VIDEO.asFlowContent : FlowContent
