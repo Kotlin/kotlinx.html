@@ -17,21 +17,39 @@ open class TABLE(initialAttributes : Map<String, String>, override val consumer 
 
 
 }
+/**
+ * Table caption
+ */
 @HtmlTagMarker
 fun TABLE.caption(classes : String? = null, block : CAPTION.() -> Unit = {}) : Unit = CAPTION(attributesMapOf("class", classes), consumer).visit(block)
 
+/**
+ * Table column group
+ */
 @HtmlTagMarker
 fun TABLE.colGroup(classes : String? = null, block : COLGROUP.() -> Unit = {}) : Unit = COLGROUP(attributesMapOf("class", classes), consumer).visit(block)
 
+/**
+ * Table header
+ */
 @HtmlTagMarker
 fun TABLE.thead(classes : String? = null, block : THEAD.() -> Unit = {}) : Unit = THEAD(attributesMapOf("class", classes), consumer).visit(block)
 
+/**
+ * Table footer
+ */
 @HtmlTagMarker
 fun TABLE.tfoot(classes : String? = null, block : TFOOT.() -> Unit = {}) : Unit = TFOOT(attributesMapOf("class", classes), consumer).visit(block)
 
+/**
+ * Table body
+ */
 @HtmlTagMarker
 fun TABLE.tbody(classes : String? = null, block : TBODY.() -> Unit = {}) : Unit = TBODY(attributesMapOf("class", classes), consumer).visit(block)
 
+/**
+ * Table row
+ */
 @HtmlTagMarker
 fun TABLE.tr(classes : String? = null, block : TR.() -> Unit = {}) : Unit = TR(attributesMapOf("class", classes), consumer).visit(block)
 
@@ -40,6 +58,9 @@ fun TABLE.tr(classes : String? = null, block : TR.() -> Unit = {}) : Unit = TR(a
 open class TBODY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("tbody", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
 
 }
+/**
+ * Table row
+ */
 @HtmlTagMarker
 fun TBODY.tr(classes : String? = null, block : TR.() -> Unit = {}) : Unit = TR(attributesMapOf("class", classes), consumer).visit(block)
 
@@ -127,6 +148,9 @@ val TEXTAREA.asPhrasingContent : PhrasingContent
 open class TFOOT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("tfoot", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
 
 }
+/**
+ * Table row
+ */
 @HtmlTagMarker
 fun TFOOT.tr(classes : String? = null, block : TR.() -> Unit = {}) : Unit = TR(attributesMapOf("class", classes), consumer).visit(block)
 
@@ -156,6 +180,9 @@ open class TH(initialAttributes : Map<String, String>, override val consumer : T
 open class THEAD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("thead", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
 
 }
+/**
+ * Table row
+ */
 @HtmlTagMarker
 fun THEAD.tr(classes : String? = null, block : TR.() -> Unit = {}) : Unit = TR(attributesMapOf("class", classes), consumer).visit(block)
 
@@ -184,6 +211,9 @@ open class TITLE(initialAttributes : Map<String, String>, override val consumer 
 open class TR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("tr", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
 
 }
+/**
+ * Table header cell
+ */
 @HtmlTagMarker
 fun TR.th(scope : ThScope? = null, classes : String? = null, block : TH.() -> Unit = {}) : Unit = TH(attributesMapOf("scope", scope?.enumEncode(),"class", classes), consumer).visit(block)
 @HtmlTagMarker
@@ -195,6 +225,9 @@ fun TR.rowTh(classes : String? = null, block : TH.() -> Unit = {}) : Unit = TH(a
 @HtmlTagMarker
 fun TR.rowGroupTh(classes : String? = null, block : TH.() -> Unit = {}) : Unit = TH(attributesMapOf("scope", ThScope.rowGroup.realValue,"class", classes), consumer).visit(block)
 
+/**
+ * Table data cell
+ */
 @HtmlTagMarker
 fun TR.td(classes : String? = null, block : TD.() -> Unit = {}) : Unit = TD(attributesMapOf("class", classes), consumer).visit(block)
 
