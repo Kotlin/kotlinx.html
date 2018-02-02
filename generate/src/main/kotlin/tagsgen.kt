@@ -1,5 +1,6 @@
 package kotlinx.html.generate
 
+import kdoc
 import kotlinx.html.generate.humanize.*
 import java.util.*
 
@@ -173,6 +174,7 @@ fun contentArgumentValue(tag : TagInfo, blockOrContent : Boolean) = when {
 fun Appendable.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
     val resultType = getTagResultClass(tag)
 
+    tagKdoc(tag)
     htmlDslMarker()
     append("public ")
     function(tag.memberName, tagBuilderFunctionArguments(tag, blockOrContent), resultType, receiver = "TagConsumer<HTMLElement>")
@@ -195,6 +197,7 @@ fun Appendable.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
 }
 
 fun Appendable.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
+    tagKdoc(tag)
     htmlDslMarker()
     function(tag.memberName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
     defineIs(buildString {
@@ -213,6 +216,7 @@ fun Appendable.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
 fun Appendable.htmlTagBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean) {
     val arguments = tagBuilderFunctionArguments(tag, blockOrContent)
 
+    tagKdoc(tag)
     htmlDslMarker()
     function(tag.memberName, arguments, "Unit", receiver = receiver)
     defineIs(buildString {
@@ -300,6 +304,13 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) 
 
 private fun Appendable.htmlDslMarker() {
     appendln("@HtmlTagMarker")
+}
+
+private fun Appendable.tagKdoc(tag: TagInfo) {
+    val kdoc = tag.kdoc ?: return
+    appendln("/**")
+    appendln(" * ${kdoc.description}")
+    appendln(" */")
 }
 
 private val inlineTags = """a

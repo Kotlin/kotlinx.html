@@ -23,9 +23,15 @@ open class RT(initialAttributes : Map<String, String>, override val consumer : T
 open class RUBY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ruby", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+/**
+ * Ruby annotation text
+ */
 @HtmlTagMarker
 fun RUBY.rt(classes : String? = null, block : RT.() -> Unit = {}) : Unit = RT(attributesMapOf("class", classes), consumer).visit(block)
 
+/**
+ * Parenthesis for ruby annotation text
+ */
 @HtmlTagMarker
 fun RUBY.rp(classes : String? = null, block : RP.() -> Unit = {}) : Unit = RP(attributesMapOf("class", classes), consumer).visit(block)
 

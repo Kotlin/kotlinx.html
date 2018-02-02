@@ -13,8 +13,14 @@ import kotlinx.html.attributes.*
 open class DATALIST(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("datalist", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
+/**
+ * Selectable choice
+ */
 @HtmlTagMarker
 fun DATALIST.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
+/**
+ * Selectable choice
+ */
 @HtmlTagMarker
 fun DATALIST.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
 
@@ -57,6 +63,9 @@ open class DETAILS(initialAttributes : Map<String, String>, override val consume
 
 
 }
+/**
+ * Fieldset legend
+ */
 @HtmlTagMarker
 fun DETAILS.legend(classes : String? = null, block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
 
@@ -92,9 +101,15 @@ open class DIV(initialAttributes : Map<String, String>, override val consumer : 
 open class DL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dl", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
+/**
+ * Definition description
+ */
 @HtmlTagMarker
 fun DL.dd(classes : String? = null, block : DD.() -> Unit = {}) : Unit = DD(attributesMapOf("class", classes), consumer).visit(block)
 
+/**
+ * Definition term
+ */
 @HtmlTagMarker
 fun DL.dt(classes : String? = null, block : DT.() -> Unit = {}) : Unit = DT(attributesMapOf("class", classes), consumer).visit(block)
 

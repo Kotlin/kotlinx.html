@@ -1,10 +1,12 @@
 package kotlinx.html.generate
 
+import fillKdocRepositoryExtension
 import java.io.*
 
 
 fun main(args: Array<String>) {
     fillRepository()
+    fillKdocRepositoryExtension()
 
     val packg = "kotlinx.html"
     val todir = "shared/src/main/kotlin/generated"

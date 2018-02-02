@@ -121,11 +121,20 @@ open class SELECT(initialAttributes : Map<String, String>, override val consumer
 
 
 }
+/**
+ * Selectable choice
+ */
 @HtmlTagMarker
 fun SELECT.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
+/**
+ * Selectable choice
+ */
 @HtmlTagMarker
 fun SELECT.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
 
+/**
+ * Option group
+ */
 @HtmlTagMarker
 fun SELECT.optGroup(label : String? = null, classes : String? = null, block : OPTGROUP.() -> Unit = {}) : Unit = OPTGROUP(attributesMapOf("label", label,"class", classes), consumer).visit(block)
 
