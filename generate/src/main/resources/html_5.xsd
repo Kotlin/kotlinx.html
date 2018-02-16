@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <xsd:schema xmlns='html-5'
-			xmlns:xsd='http://www.w3.org/2001/XMLSchema'
-			version="1.0" targetNamespace='html-5'
+            xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+            version="1.0" targetNamespace='html-5'
 
 
 
 
 
-		>
+>
     <!--
 	 Warning:																					
 	 Warning: 
@@ -184,6 +184,11 @@
         <xsd:attribute name="ontimeupdate"/>
         <xsd:attribute name="onvolumechange"/>
         <xsd:attribute name="onwaiting"/>
+        <xsd:attribute name="onwheel"/>
+        <xsd:attribute name="ontouchstart"/>
+        <xsd:attribute name="ontouchmove"/>
+        <xsd:attribute name="ontouchend"/>
+        <xsd:attribute name="ontouchcancel"/>
     </xsd:attributeGroup>
 
     <xsd:attributeGroup name="commonAttributeGroup">
