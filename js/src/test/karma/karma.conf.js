@@ -20,7 +20,10 @@ module.exports = function (config) {
             files: [
                 '../../../target/test-js/kotlin.js',
 		'../../../target/classes/*.js',
-                '../../../target/test-js/*.js'
+                //'../../../target/test-js/*.js'
+                '../../../target/test-js/kotlin.js',
+                '../../../target/test-js/kotlin-test.js',
+                '../../../target/test-js/kotlinx-html-js-tests.js'
             ],
             exclude: [],
             port: 9876,
