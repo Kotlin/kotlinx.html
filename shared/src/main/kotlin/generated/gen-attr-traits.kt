@@ -286,6 +286,22 @@ var CommonAttributeGroupFacade.onTimeUpdate : String
     get()  = attributeStringString.get(this, "ontimeupdate")
     set(newValue) {attributeStringString.set(this, "ontimeupdate", newValue)}
 
+var CommonAttributeGroupFacade.onTouchcancel : String
+    get()  = attributeStringString.get(this, "ontouchcancel")
+    set(newValue) {attributeStringString.set(this, "ontouchcancel", newValue)}
+
+var CommonAttributeGroupFacade.onTouchEnd : String
+    get()  = attributeStringString.get(this, "ontouchend")
+    set(newValue) {attributeStringString.set(this, "ontouchend", newValue)}
+
+var CommonAttributeGroupFacade.onTouchmove : String
+    get()  = attributeStringString.get(this, "ontouchmove")
+    set(newValue) {attributeStringString.set(this, "ontouchmove", newValue)}
+
+var CommonAttributeGroupFacade.onTouchStart : String
+    get()  = attributeStringString.get(this, "ontouchstart")
+    set(newValue) {attributeStringString.set(this, "ontouchstart", newValue)}
+
 var CommonAttributeGroupFacade.onVolumeChange : String
     get()  = attributeStringString.get(this, "onvolumechange")
     set(newValue) {attributeStringString.set(this, "onvolumechange", newValue)}
@@ -293,6 +309,10 @@ var CommonAttributeGroupFacade.onVolumeChange : String
 var CommonAttributeGroupFacade.onWaiting : String
     get()  = attributeStringString.get(this, "onwaiting")
     set(newValue) {attributeStringString.set(this, "onwaiting", newValue)}
+
+var CommonAttributeGroupFacade.onWheel : String
+    get()  = attributeStringString.get(this, "onwheel")
+    set(newValue) {attributeStringString.set(this, "onwheel", newValue)}
 
 var CommonAttributeGroupFacade.role : String
     get()  = attributeStringString.get(this, "role")

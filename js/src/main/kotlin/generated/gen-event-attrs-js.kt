@@ -222,6 +222,22 @@ var CommonAttributeGroupFacade.onTimeUpdateFunction : (Event) -> Unit
     get()  = throw UnsupportedOperationException("You can't read variable onTimeUpdate")
     set(newValue) {consumer.onTagEvent(this, "ontimeupdate", newValue)}
 
+var CommonAttributeGroupFacade.onTouchcancelFunction : (Event) -> Unit
+    get()  = throw UnsupportedOperationException("You can't read variable onTouchcancel")
+    set(newValue) {consumer.onTagEvent(this, "ontouchcancel", newValue)}
+
+var CommonAttributeGroupFacade.onTouchEndFunction : (Event) -> Unit
+    get()  = throw UnsupportedOperationException("You can't read variable onTouchEnd")
+    set(newValue) {consumer.onTagEvent(this, "ontouchend", newValue)}
+
+var CommonAttributeGroupFacade.onTouchmoveFunction : (Event) -> Unit
+    get()  = throw UnsupportedOperationException("You can't read variable onTouchmove")
+    set(newValue) {consumer.onTagEvent(this, "ontouchmove", newValue)}
+
+var CommonAttributeGroupFacade.onTouchStartFunction : (Event) -> Unit
+    get()  = throw UnsupportedOperationException("You can't read variable onTouchStart")
+    set(newValue) {consumer.onTagEvent(this, "ontouchstart", newValue)}
+
 var CommonAttributeGroupFacade.onVolumeChangeFunction : (Event) -> Unit
     get()  = throw UnsupportedOperationException("You can't read variable onVolumeChange")
     set(newValue) {consumer.onTagEvent(this, "onvolumechange", newValue)}
@@ -229,4 +245,8 @@ var CommonAttributeGroupFacade.onVolumeChangeFunction : (Event) -> Unit
 var CommonAttributeGroupFacade.onWaitingFunction : (Event) -> Unit
     get()  = throw UnsupportedOperationException("You can't read variable onWaiting")
     set(newValue) {consumer.onTagEvent(this, "onwaiting", newValue)}
+
+var CommonAttributeGroupFacade.onWheelFunction : (Event) -> Unit
+    get()  = throw UnsupportedOperationException("You can't read variable onWheel")
+    set(newValue) {consumer.onTagEvent(this, "onwheel", newValue)}
 
