@@ -69,7 +69,7 @@ interface AttributeEnum {
     val realValue: String
 }
 
-fun <T : Tag> T.visit(block: T.() -> Unit) {
+inline fun <T : Tag> T.visit(block: T.() -> Unit) {
     consumer.onTagStart(this)
     try {
         this.block()
@@ -80,7 +80,7 @@ fun <T : Tag> T.visit(block: T.() -> Unit) {
     }
 }
 
-fun <T : Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit): R {
+inline fun <T : Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit): R {
     if (this.consumer !== consumer) {
         throw IllegalArgumentException("Wrong exception")
     }

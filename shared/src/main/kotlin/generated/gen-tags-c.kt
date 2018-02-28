@@ -76,7 +76,7 @@ open class COLGROUP(initialAttributes : Map<String, String>, override val consum
  * Table column
  */
 @HtmlTagMarker
-fun COLGROUP.col(classes : String? = null, block : COL.() -> Unit = {}) : Unit = COL(attributesMapOf("class", classes), consumer).visit(block)
+inline fun COLGROUP.col(classes : String? = null, block : COL.() -> Unit = {}) : Unit = COL(attributesMapOf("class", classes), consumer).visit(block)
 
 
 @Suppress("unused")

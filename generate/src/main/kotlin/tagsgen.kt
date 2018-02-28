@@ -177,6 +177,7 @@ fun Appendable.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
     tagKdoc(tag)
     htmlDslMarker()
     append("public ")
+    if (tagBuilderCouldBeInline(tag, blockOrContent)) append("inline ")
     function(tag.memberName, tagBuilderFunctionArguments(tag, blockOrContent), resultType, receiver = "TagConsumer<HTMLElement>")
     defineIs(buildString {
         functionCall(tag.className, listOf(
@@ -199,6 +200,7 @@ fun Appendable.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
 fun Appendable.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
     tagKdoc(tag)
     htmlDslMarker()
+    if (tagBuilderCouldBeInline(tag, blockOrContent)) append("inline ")
     function(tag.memberName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
     defineIs(buildString {
         functionCall(tag.className, listOf(
@@ -218,6 +220,7 @@ fun Appendable.htmlTagBuilderMethod(receiver : String, tag : TagInfo, blockOrCon
 
     tagKdoc(tag)
     htmlDslMarker()
+    if (tagBuilderCouldBeInline(tag, blockOrContent)) append("inline ")
     function(tag.memberName, arguments, "Unit", receiver = receiver)
     defineIs(buildString {
         functionCall(tag.className, listOf(
@@ -244,6 +247,7 @@ fun Appendable.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo, blockO
 
         indent(indent)
         htmlDslMarker()
+        if (tagBuilderCouldBeInline(tag, blockOrContent)) append("inline ")
         function(enumValue.fieldName + tag.memberName.capitalize(), arguments, "Unit", receiver = receiver)
         defineIs(buildString {
             functionCall(tag.className, listOf(
@@ -281,6 +285,12 @@ private fun buildSuggestedAttributesArgument(tag: TagInfo, predefinedValues : Ma
             else -> attributeArgs.joinToString(",", "attributesMapOf(", ")")
         }
     }
+
+private fun tagBuilderCouldBeInline(tag: TagInfo, blockOrContent: Boolean): Boolean = when {
+        tag.name.toLowerCase() in emptyTags -> true
+        blockOrContent -> true
+        else -> false
+}
 
 private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) : ArrayList<Var> {
     val arguments = ArrayList<Var>()
