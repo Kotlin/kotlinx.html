@@ -17,6 +17,6 @@ open class UL(initialAttributes : Map<String, String>, override val consumer : T
  * List item
  */
 @HtmlTagMarker
-fun UL.li(classes : String? = null, block : LI.() -> Unit = {}) : Unit = LI(attributesMapOf("class", classes), consumer).visit(block)
+inline fun UL.li(classes : String? = null, block : LI.() -> Unit = {}) : Unit = LI(attributesMapOf("class", classes), consumer).visit(block)
 
 
