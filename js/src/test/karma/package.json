@@ -4,7 +4,7 @@
   "devDependencies": {
     "karma": "*",
     "qunitjs": "1.23.1",
-    "karma-qunit": "*",
+    "karma-qunit": "1.2.1",
     "karma-junit-reporter": "~0.2",
     "karma-sourcemap-loader": "~0.3",
     "karma-teamcity-reporter": "*",
