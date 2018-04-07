@@ -39,14 +39,14 @@ You can build HTML directly to Writer (JVM only) or Appendable (both JVM and JS)
 
 ```kotlin
 System.out.appendHTML().html {
-	body {
-		div {
-			a("http://kotlinlang.org") {
-				target = ATarget.blank
-				+"Main site"
-			}
-		}
-	}
+    body {
+        div {
+            a("http://kotlinlang.org") {
+                target = ATarget.blank
+                +"Main site"
+            }
+        }
+    }
 }
 ```
 
