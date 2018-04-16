@@ -37,6 +37,10 @@ class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boole
             }
         }
 
+        if (tag.emptyTag) {
+            out.append("/")
+        }
+
         out.append(">")
         ln = false
     }

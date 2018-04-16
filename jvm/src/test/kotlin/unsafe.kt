@@ -45,7 +45,7 @@ class UnsafeContentTest {
             }
         }
 
-        assertEquals("<head><meta charset=\"UTF-8\"><title>Admin</title></head>", text)
+        assertEquals("<head><meta charset=\"UTF-8\"/><title>Admin</title></head>", text)
     }
 
     @Test

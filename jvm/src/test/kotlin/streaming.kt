@@ -181,7 +181,7 @@ class TestStreaming {
     }
 
     @test fun `test generated enum could be used`() {
-        assertEquals("<link rel=\"Stylesheet\" href=\"/path\">", StringBuilder().appendHTML(false).link {
+        assertEquals("<link rel=\"Stylesheet\" href=\"/path\"/>", StringBuilder().appendHTML(false).link {
             rel = LinkRel.stylesheet
             href = "/path"
         }.toString())
@@ -211,9 +211,9 @@ class TestStreaming {
 
     @test fun `test form with button`() {
         assertEquals("<form action=\"/someurl\">" +
-                "<input type=\"checkbox\" name=\"cb1\">var1" +
-                "<input type=\"checkbox\" name=\"cb2\" disabled=\"disabled\">var2" +
-                "<input type=\"submit\" value=\"Go!\">" +
+                "<input type=\"checkbox\" name=\"cb1\"/>var1" +
+                "<input type=\"checkbox\" name=\"cb2\" disabled=\"disabled\"/>var2" +
+                "<input type=\"submit\" value=\"Go!\"/>" +
                 "</form>",
                 StringBuilder().appendHTML(false).form("/someurl") {
                     checkBoxInput(name = "cb1") {
@@ -283,8 +283,8 @@ class TestStreaming {
         }
     }
 
-    @test fun `we should print empty tags with no close tag`() {
-        assertEquals("<img src=\"my.jpg\">", StringBuilder().appendHTML(false).img(src = "my.jpg").toString())
+    @test fun `we should print empty tags with self-closing tag`() {
+        assertEquals("<img src=\"my.jpg\"/>", StringBuilder().appendHTML(false).img(src = "my.jpg").toString())
     }
 
     @test fun `pretty print should take into account inline tags`() {
@@ -319,12 +319,12 @@ class TestStreaming {
     }
 
     @test fun `ticker attribute modification should work properly`() {
-        assertEquals("<input type=\"checkbox\" checked=\"checked\">", createHTML(false).input {
+        assertEquals("<input type=\"checkbox\" checked=\"checked\"/>", createHTML(false).input {
             type = InputType.checkBox
             checked = true
         })
 
-        assertEquals("<input type=\"checkbox\">", createHTML(false).input {
+        assertEquals("<input type=\"checkbox\"/>", createHTML(false).input {
             type = InputType.checkBox
             checked = true
             checked = false
@@ -332,8 +332,8 @@ class TestStreaming {
     }
 
     @test fun `meta tag should have name and content suggested attributes`() {
-        assertEquals("<meta name=\"name\" content=\"content\">", createHTML(false).meta("name", "content"))
-        assertEquals("<head><meta name=\"name\" content=\"content\"></head>", createHTML(false).head {
+        assertEquals("<meta name=\"name\" content=\"content\"/>", createHTML(false).meta("name", "content"))
+        assertEquals("<head><meta name=\"name\" content=\"content\"/></head>", createHTML(false).head {
             meta("name", "content")
         })
     }
