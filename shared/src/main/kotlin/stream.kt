@@ -4,7 +4,7 @@ import kotlinx.html.*
 import kotlinx.html.consumers.*
 import org.w3c.dom.events.Event
 
-class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boolean) : TagConsumer<O> {
+class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boolean, val xhtmlCompatible: Boolean) : TagConsumer<O> {
     private var level = 0
     private var ln = true
 
@@ -37,7 +37,7 @@ class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boole
             }
         }
 
-        if (tag.emptyTag) {
+        if (xhtmlCompatible && tag.emptyTag) {
             out.append("/")
         }
 
@@ -122,8 +122,8 @@ class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boole
 }
 
 private val AVERAGE_PAGE_SIZE = 32768
-fun createHTML(prettyPrint: Boolean = true): TagConsumer<String> = HTMLStreamBuilder(StringBuilder(AVERAGE_PAGE_SIZE), prettyPrint).onFinalizeMap { sb, _ -> sb.toString() }.delayed()
-fun <O : Appendable> O.appendHTML(prettyPrint : Boolean = true) : TagConsumer<O> = HTMLStreamBuilder(this, prettyPrint).delayed()
+fun createHTML(prettyPrint: Boolean = true, xhtmlCompatible : Boolean = false): TagConsumer<String> = HTMLStreamBuilder(StringBuilder(AVERAGE_PAGE_SIZE), prettyPrint, xhtmlCompatible).onFinalizeMap { sb, _ -> sb.toString() }.delayed()
+fun <O : Appendable> O.appendHTML(prettyPrint : Boolean = true, xhtmlCompatible : Boolean = false) : TagConsumer<O> = HTMLStreamBuilder(this, prettyPrint, xhtmlCompatible).delayed()
 
 private val escapeMap = mapOf(
         '<' to "&lt;",
