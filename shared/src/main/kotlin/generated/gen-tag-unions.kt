@@ -372,6 +372,12 @@ fun SectioningOrFlowContent.nav(classes : String? = null, block : NAV.() -> Unit
 @HtmlTagMarker
 fun SectioningOrFlowContent.section(classes : String? = null, block : SECTION.() -> Unit = {}) : Unit = SECTION(attributesMapOf("class", classes), consumer).visit(block)
 
+/**
+ * Container for the dominant contents of another element
+ */
+@HtmlTagMarker
+fun SectioningOrFlowContent.main(classes : String? = null, block : MAIN.() -> Unit = {}) : Unit = MAIN(attributesMapOf("class", classes), consumer).visit(block)
+
 
 /**
  * Anchor
