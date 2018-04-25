@@ -388,6 +388,12 @@ fun <T, C : TagConsumer<T>> C.li(classes : String? = null, block : LI.() -> Unit
 fun <T, C : TagConsumer<T>> C.link(href : String? = null, rel : String? = null, type : String? = null, block : LINK.() -> Unit = {}) : T = LINK(attributesMapOf("href", href,"rel", rel,"type", type), this).visitAndFinalize(this, block)
 
 /**
+ * Container for the dominant contents of another element
+ */
+@HtmlTagMarker
+fun <T, C : TagConsumer<T>> C.main(classes : String? = null, block : MAIN.() -> Unit = {}) : T = MAIN(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
+/**
  * Client-side image map
  */
 @HtmlTagMarker
