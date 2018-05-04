@@ -125,11 +125,7 @@ fun Node.append(block : TagConsumer<Element>.() -> Unit) : List<Element> = Array
 fun Node.prepend(block: TagConsumer<Element>.() -> Unit) : List<Element> = ArrayList<Element>().let { result ->
     ownerDocumentExt.createHTMLTree().onFinalize { it, partial ->
         if (!partial) {
-            if (hasChildNodes()) {
-                insertBefore(it, firstChild)
-            } else {
-                appendChild(it)
-            }
+            insertBefore(it, firstChild)
             result.add(it)
         }
     }.block()
@@ -142,11 +138,7 @@ val Node.append: TagConsumer<Element>
 
 val Node.prepend: TagConsumer<Element>
     get() = ownerDocumentExt.createHTMLTree().onFinalize { it, partial -> if (!partial) {
-        if (hasChildNodes()) {
-            insertBefore(it, firstChild)
-        } else {
-            appendChild(it)
-        }
+        insertBefore(it, firstChild)
     }}
 
 private val Node.ownerDocumentExt: Document
