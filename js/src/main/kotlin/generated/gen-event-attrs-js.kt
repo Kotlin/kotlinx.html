@@ -90,6 +90,14 @@ var CommonAttributeGroupFacade.onFocusFunction : (Event) -> Unit
     get()  = throw UnsupportedOperationException("You can't read variable onFocus")
     set(newValue) {consumer.onTagEvent(this, "onfocus", newValue)}
 
+var CommonAttributeGroupFacade.onFocusInFunction : (Event) -> Unit
+    get()  = throw UnsupportedOperationException("You can't read variable onFocusIn")
+    set(newValue) {consumer.onTagEvent(this, "onfocusin", newValue)}
+
+var CommonAttributeGroupFacade.onFocusOutFunction : (Event) -> Unit
+    get()  = throw UnsupportedOperationException("You can't read variable onFocusOut")
+    set(newValue) {consumer.onTagEvent(this, "onfocusout", newValue)}
+
 var CommonAttributeGroupFacade.onFormChangeFunction : (Event) -> Unit
     get()  = throw UnsupportedOperationException("You can't read variable onFormChange")
     set(newValue) {consumer.onTagEvent(this, "onformchange", newValue)}

@@ -149,6 +149,8 @@
         <xsd:attribute name="onended"/>
         <xsd:attribute name="onerror"/>
         <xsd:attribute name="onfocus"/>
+        <xsd:attribute name="onfocusin"/>
+        <xsd:attribute name="onfocusout"/>
         <xsd:attribute name="onformchange"/>
         <xsd:attribute name="onforminput"/>
         <xsd:attribute name="oninput"/>

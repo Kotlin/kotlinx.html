@@ -154,6 +154,14 @@ var CommonAttributeGroupFacade.onFocus : String
     get()  = attributeStringString.get(this, "onfocus")
     set(newValue) {attributeStringString.set(this, "onfocus", newValue)}
 
+var CommonAttributeGroupFacade.onFocusIn : String
+    get()  = attributeStringString.get(this, "onfocusin")
+    set(newValue) {attributeStringString.set(this, "onfocusin", newValue)}
+
+var CommonAttributeGroupFacade.onFocusOut : String
+    get()  = attributeStringString.get(this, "onfocusout")
+    set(newValue) {attributeStringString.set(this, "onfocusout", newValue)}
+
 var CommonAttributeGroupFacade.onFormChange : String
     get()  = attributeStringString.get(this, "onformchange")
     set(newValue) {attributeStringString.set(this, "onformchange", newValue)}
