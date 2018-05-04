@@ -370,6 +370,25 @@ class TestStreaming {
         assertEquals("<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>", t)
     }
 
+    @test fun `able to create html with namespace`() {
+        val html = createHTML(false).html {
+            namespace = "http://www.w3.org/1999/xhtml"
+            body {
+                h1 {
+                    +"header"
+                }
+                div {
+                    +"content"
+                    span {
+                        +"yo"
+                    }
+                }
+            }
+        }
+
+        assertEquals("<html xmlns=\"http://www.w3.org/1999/xhtml\"><body><h1>header</h1><div>content<span>yo</span></div></body></html>", html)
+    }
+
     @test fun `pretty print`() {
         val x = StringBuilder().appendHTML().html {
             body {

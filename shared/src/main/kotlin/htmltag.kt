@@ -1,12 +1,12 @@
 package kotlinx.html
 
-import kotlinx.html.impl.*
+import kotlinx.html.impl.DelegatingMap
 
 open class HTMLTag(
         override val tagName : String,
         override val consumer : TagConsumer<*>,
         initialAttributes : Map<String, String>,
-        override val namespace : String? = null,
+        override var namespace : String? = null,
         override val inlineTag: Boolean,
         override val emptyTag: Boolean) : Tag {
 
