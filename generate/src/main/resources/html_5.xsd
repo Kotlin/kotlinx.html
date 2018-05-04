@@ -272,6 +272,7 @@
             <xsd:element ref="label"/>
             <xsd:element ref="link"/>
 
+            <xsd:element ref="main"/>
             <xsd:element ref="map"/>
             <xsd:element ref="mark"/>
             <xsd:element ref="math"/>
@@ -336,6 +337,7 @@
             <xsd:element ref="aside"/>
             <xsd:element ref="nav"/>
             <xsd:element ref="section"/>
+            <xsd:element ref="main"/>
         </xsd:choice>
     </xsd:group>
 
@@ -625,6 +627,7 @@
         </xsd:complexType>
     </xsd:element>
 
+    <xsd:element name="main" type="simpleFlowContentElement"/>
     <xsd:element name="section" type="simpleFlowContentElement"/>
     <xsd:element name="nav" type="simpleFlowContentElement"/>
 

@@ -389,6 +389,12 @@ public fun TagConsumer<HTMLElement>.li(classes : String? = null, block : LI.() -
 public fun TagConsumer<HTMLElement>.link(href : String? = null, rel : String? = null, type : String? = null, block : LINK.() -> Unit = {}) : HTMLLinkElement = LINK(attributesMapOf("href", href,"rel", rel,"type", type), this).visitAndFinalize(this, block) as HTMLLinkElement
 
 /**
+ * Container for the dominant contents of another element
+ */
+@HtmlTagMarker
+public fun TagConsumer<HTMLElement>.main(classes : String? = null, block : MAIN.() -> Unit = {}) : HTMLElement = MAIN(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
+/**
  * Client-side image map
  */
 @HtmlTagMarker
