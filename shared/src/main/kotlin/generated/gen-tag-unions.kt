@@ -355,6 +355,12 @@ fun SectioningOrFlowContent.article(classes : String? = null, block : ARTICLE.()
 fun SectioningOrFlowContent.aside(classes : String? = null, block : ASIDE.() -> Unit = {}) : Unit = ASIDE(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
+ * Container for the dominant contents of another element
+ */
+@HtmlTagMarker
+fun SectioningOrFlowContent.main(classes : String? = null, block : MAIN.() -> Unit = {}) : Unit = MAIN(attributesMapOf("class", classes), consumer).visit(block)
+
+/**
  * Section with navigational links
  */
 @HtmlTagMarker

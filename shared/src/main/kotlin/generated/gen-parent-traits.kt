@@ -27,6 +27,9 @@ interface CommonAttributeGroupFacadeFlowMetaDataPhrasingContent : CommonAttribut
 interface HtmlBlockInlineTag : CommonAttributeGroupFacade, FlowPhrasingContent, HtmlBlockTag, HtmlInlineTag {
 }
 
+interface CommonAttributeGroupFacadeFlowPhrasingSectioningContent : CommonAttributeGroupFacade, CommonAttributeGroupFacadeFlowSectioningContent, FlowPhrasingContent, HtmlBlockInlineTag, HtmlBlockTag, HtmlInlineTag {
+}
+
 interface CommonAttributeGroupFacadeFlowSectioningContent : CommonAttributeGroupFacade, HtmlBlockTag, SectioningContent {
 }
 

@@ -337,6 +337,7 @@
         <xsd:choice>
             <xsd:element ref="article"/>
             <xsd:element ref="aside"/>
+            <xsd:element ref="main"/>
             <xsd:element ref="nav"/>
             <xsd:element ref="section"/>
         </xsd:choice>
