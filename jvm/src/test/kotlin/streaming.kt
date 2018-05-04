@@ -394,6 +394,19 @@ class TestStreaming {
             </html>
             """.trimIndent(), x.trimEnd())
     }
+
+    @test fun testHtmlWithNamespace() {
+        val x = createHTML().html(namespace = "test") {
+            body {
+            }
+        }
+
+        assertEquals("""
+            <html xmlns="test">
+              <body></body>
+            </html>
+        """.trimIndent(), x.trimEnd())
+    }
 }
 
 fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }

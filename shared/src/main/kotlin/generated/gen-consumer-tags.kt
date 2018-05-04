@@ -309,12 +309,12 @@ fun <T, C : TagConsumer<T>> C.hr(classes : String? = null, block : HR.() -> Unit
  * Document root element
  */
 @HtmlTagMarker
-fun <T, C : TagConsumer<T>> C.html(content : String = "") : T = HTML(emptyMap, this).visitAndFinalize(this, {+content})
+fun <T, C : TagConsumer<T>> C.html(content : String = "", namespace : String? = null) : T = HTML(emptyMap, this, namespace).visitAndFinalize(this, {+content})
 /**
  * Document root element
  */
 @HtmlTagMarker
-fun <T, C : TagConsumer<T>> C.html(block : HTML.() -> Unit = {}) : T = HTML(emptyMap, this).visitAndFinalize(this, block)
+fun <T, C : TagConsumer<T>> C.html(namespace : String? = null, block : HTML.() -> Unit = {}) : T = HTML(emptyMap, this, namespace).visitAndFinalize(this, block)
 
 /**
  * Italic text style

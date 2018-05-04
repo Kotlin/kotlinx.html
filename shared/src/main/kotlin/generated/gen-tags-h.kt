@@ -126,7 +126,7 @@ open class HR(initialAttributes : Map<String, String>, override val consumer : T
 }
 
 @Suppress("unused")
-open class HTML(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("html", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
+open class HTML(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>, namespace : String? = null) : HTMLTag("html", consumer, initialAttributes, namespace, false, false), CommonAttributeGroupFacade {
     var manifest : String
         get()  = attributeStringString.get(this, "manifest")
         set(newValue) {attributeStringString.set(this, "manifest", newValue)}

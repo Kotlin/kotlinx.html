@@ -34,6 +34,8 @@ val tagNamespaces = mapOf(
         "svg" to "http://www.w3.org/2000/svg"
 )
 
+val tagsWithCustomizableNamespace = setOf("html")
+
 val renames = mapOf(
         "CommonAttributeGroupFacadePhrasingContent" to "HtmlInlineTag",
         "CommonAttributeGroupFacadeFlowContent" to "HtmlBlockTag",

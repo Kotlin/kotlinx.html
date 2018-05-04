@@ -310,12 +310,12 @@ public fun TagConsumer<HTMLElement>.hr(classes : String? = null, block : HR.() -
  * Document root element
  */
 @HtmlTagMarker
-public fun TagConsumer<HTMLElement>.html(content : String = "") : HTMLHtmlElement = HTML(emptyMap, this).visitAndFinalize(this, {+content}) as HTMLHtmlElement
+public fun TagConsumer<HTMLElement>.html(content : String = "", namespace : String? = null) : HTMLHtmlElement = HTML(emptyMap, this, namespace).visitAndFinalize(this, {+content}) as HTMLHtmlElement
 /**
  * Document root element
  */
 @HtmlTagMarker
-public fun TagConsumer<HTMLElement>.html(block : HTML.() -> Unit = {}) : HTMLHtmlElement = HTML(emptyMap, this).visitAndFinalize(this, block) as HTMLHtmlElement
+public fun TagConsumer<HTMLElement>.html(namespace : String? = null, block : HTML.() -> Unit = {}) : HTMLHtmlElement = HTML(emptyMap, this, namespace).visitAndFinalize(this, block) as HTMLHtmlElement
 
 /**
  * Italic text style
