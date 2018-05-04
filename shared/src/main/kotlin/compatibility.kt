@@ -56,3 +56,13 @@ var OUTPUT.for_: String
         htmlFor = value
     }
 
+@Deprecated("Use onTouchCancel instead", ReplaceWith("onTouchCancel"))
+var CommonAttributeGroupFacade.onTouchcancel : String
+    get()  = onTouchCancel
+    set(newValue) { onTouchCancel = newValue }
+
+@Deprecated("Use onTouchMove instead", ReplaceWith("onTouchMove"))
+var CommonAttributeGroupFacade.onTouchmove : String
+    get()  = onTouchMove
+    set(newValue) { onTouchMove = newValue }
+

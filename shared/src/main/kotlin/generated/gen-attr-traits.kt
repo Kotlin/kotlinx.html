@@ -294,7 +294,7 @@ var CommonAttributeGroupFacade.onTimeUpdate : String
     get()  = attributeStringString.get(this, "ontimeupdate")
     set(newValue) {attributeStringString.set(this, "ontimeupdate", newValue)}
 
-var CommonAttributeGroupFacade.onTouchcancel : String
+var CommonAttributeGroupFacade.onTouchCancel : String
     get()  = attributeStringString.get(this, "ontouchcancel")
     set(newValue) {attributeStringString.set(this, "ontouchcancel", newValue)}
 
@@ -302,7 +302,7 @@ var CommonAttributeGroupFacade.onTouchEnd : String
     get()  = attributeStringString.get(this, "ontouchend")
     set(newValue) {attributeStringString.set(this, "ontouchend", newValue)}
 
-var CommonAttributeGroupFacade.onTouchmove : String
+var CommonAttributeGroupFacade.onTouchMove : String
     get()  = attributeStringString.get(this, "ontouchmove")
     set(newValue) {attributeStringString.set(this, "ontouchmove", newValue)}
 

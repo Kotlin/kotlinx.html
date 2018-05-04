@@ -67,7 +67,7 @@ val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
         "click", "play(ing)?", "context",
         "rows?", "cols?", "group(ed)?", "auto",
         "list", "field", "data", "block", "scripts?",
-        "item", "area", "length", "colors?", "suspend", "focus"
+        "item", "area", "length", "colors?", "suspend", "focus", "touch"
 ).map { it.toRegex(RegexOption.IGNORE_CASE) }
 
 val excludeAttributes = listOf("^item$").map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }
