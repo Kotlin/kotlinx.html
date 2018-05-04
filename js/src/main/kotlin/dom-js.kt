@@ -92,6 +92,15 @@ class JSDOMBuilder<out R : HTMLElement>(val document : Document) : TagConsumer<R
         }
     }
 
+
+    override fun onTagComment(content: CharSequence) {
+        if (path.isEmpty()) {
+            throw IllegalStateException("No current DOM node")
+        }
+
+        path.last().appendChild(document.createComment(content.toString()))
+    }
+
     override fun finalize(): R = lastLeaved?.asR() ?: throw IllegalStateException("We can't finalize as there was no tags")
 
     @Suppress("UNCHECKED_CAST")

@@ -82,6 +82,12 @@ private class FilterTagConsumer<T>(val downstream : TagConsumer<T>, val predicat
         }
     }
 
+    override fun onTagComment(content: CharSequence) {
+        if (canPassCurrentLevel()) {
+            downstream.onTagComment(content)
+        }
+    }
+
     override fun finalize(): T = downstream.finalize()
 }
 

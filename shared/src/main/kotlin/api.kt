@@ -10,6 +10,7 @@ interface TagConsumer<out R> {
     fun onTagContent(content: CharSequence)
     fun onTagContentEntity(entity: Entities)
     fun onTagContentUnsafe(block: Unsafe.() -> Unit)
+    fun onTagComment(content: CharSequence)
     fun onTagError(tag: Tag, exception: Throwable): Unit = throw exception
     fun finalize(): R
 }
@@ -44,6 +45,10 @@ interface Tag {
 
     fun entity(e: Entities) {
         consumer.onTagContentEntity(e)
+    }
+
+    fun comment(s: String) {
+        consumer.onTagComment(s)
     }
 }
 

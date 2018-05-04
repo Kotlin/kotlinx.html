@@ -217,4 +217,14 @@ class TestDOMTrees {
                 "<html><body><p>OK</p><a>aaa</a></body></html>",
             document.serialize(false).trim().replace("\r\n", "\n"))
     }
+
+    @test fun testComment() {
+        val document = createHTMLDocument().html {
+            comment("commented")
+        }
+
+        assertEquals("<!DOCTYPE html>\n" +
+                "<html><!--commented--></html>",
+            document.serialize(false).trim().replace("\r\n", "\n"))
+    }
 }

@@ -70,6 +70,14 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
         path.last().appendChild(document.createTextNode(content.toString()))
     }
 
+    override fun onTagComment(content: CharSequence) {
+        if (path.isEmpty()) {
+            throw IllegalStateException("No current DOM node")
+        }
+
+        path.last().appendChild(document.createComment(content.toString()))
+    }
+
     override fun onTagContentEntity(entity: Entities) {
         if (path.isEmpty()) {
             throw IllegalStateException("No current DOM node")

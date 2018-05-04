@@ -46,6 +46,11 @@ class DelayedConsumer<T>(val downstream : TagConsumer<T>) : TagConsumer<T> {
         downstream.onTagError(tag, exception)
     }
 
+    override fun onTagComment(content: CharSequence) {
+        processDelayedTag()
+        downstream.onTagComment(content)
+    }
+
     override fun finalize(): T {
         processDelayedTag()
         return downstream.finalize()

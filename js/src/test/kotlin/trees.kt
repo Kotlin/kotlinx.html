@@ -242,6 +242,15 @@ class DomTreeImplTest {
         assertEquals("<p>OK</p><a>aaa</a>", wrapper.innerHTML)
     }
 
+    @test fun testComment() {
+        val wrapper = wrapper()
+        wrapper.append.div {
+            comment("commented")
+        }
+
+        assertEquals("<div><!--commented--></div>", wrapper.innerHTML)
+    }
+
     private fun wrapper() = document.body!!.append.div {}
     private fun <T> uninitialized(): T = null as T
     private fun String.trimLines() = trimIndent().lines().filter { it.isNotBlank() }.joinToString("")

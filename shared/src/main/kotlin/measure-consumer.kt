@@ -42,6 +42,10 @@ private class TimeMeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsu
         downstream.onTagError(tag, exception)
     }
 
+    override fun onTagComment(content: CharSequence) {
+        downstream.onTagComment(content)
+    }
+
     override fun finalize(): TimedResult<R> = TimedResult(downstream.finalize(), currentTimeMillis() - start)
 }
 

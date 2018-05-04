@@ -82,6 +82,18 @@ class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boole
         UnsafeImpl.block()
     }
 
+    override fun onTagComment(content: CharSequence) {
+        if (prettyPrint) {
+            indent()
+        }
+
+        out.append("<!--")
+        out.escapeComment(content)
+        out.append("-->")
+
+        ln = false
+    }
+
     val UnsafeImpl = object : Unsafe {
         override operator fun String.unaryPlus() {
             out.append(this)
@@ -168,5 +180,23 @@ private fun Appendable.escapeAppend(s : CharSequence) {
 
     if (lastIndex < s.length) {
         append(s.substring(lastIndex, s.length))
+    }
+}
+
+private fun Appendable.escapeComment(s: CharSequence) {
+    var start = 0
+    while (start < s.length) {
+        val index = s.indexOf("--")
+        if (index == -1) {
+            if (start == 0) {
+                append(s)
+            } else {
+                append(s, start, s.length)
+            }
+            break
+        }
+
+        append(s, start, index)
+        start += 2
     }
 }

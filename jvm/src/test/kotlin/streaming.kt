@@ -407,6 +407,20 @@ class TestStreaming {
             </html>
         """.trimIndent(), x.trimEnd())
     }
+
+    @test fun testComment() {
+        val x = createHTML().html {
+            comment("commented")
+            body {  }
+        }
+
+        assertEquals("""
+            <html>
+              <!--commented-->
+              <body></body>
+            </html>
+        """.trimIndent(), x.trimEnd())
+    }
 }
 
 fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }
