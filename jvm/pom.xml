@@ -3,13 +3,13 @@
     <parent>
         <artifactId>kotlinx-html</artifactId>
         <groupId>org.jetbrains.kotlinx</groupId>
-        <version>0.6.10-SNAPSHOT</version>
+        <version>0.6.10</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jetbrains.kotlinx</groupId>
     <artifactId>kotlinx-html-jvm</artifactId>
-    <version>0.6.10-SNAPSHOT</version>
+    <version>0.6.10</version>
 
     <name>kotlinx.html JVM</name>
     <description>kotlinx.html JVM implementation</description>
@@ -35,7 +35,7 @@
     <scm>
         <connection>scm:git:git@github.com:Kotlin/kotlinx.html.git</connection>
         <url>https://github.com/Kotlin/kotlinx.html</url>
-        <tag>HEAD</tag>
+        <tag>kotlinx-html-0.6.10</tag>
     </scm>
 
     <dependencies>
