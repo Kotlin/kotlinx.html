@@ -199,4 +199,22 @@ class TestDOMTrees {
                 "<html><head><META http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><script type=\"text/javascript\">fun f() { return 1; }</script></head></html>",
             document.serialize(false).trim().replace("\r\n", "\n"))
     }
+
+    @test fun testPrepend() {
+        val document = createHTMLDocument().html {
+            body {
+                a { text("aaa") }
+            }
+        }
+
+        document.getElementsByTagName("body").item(0).prepend {
+            p {
+                text("OK")
+            }
+        }
+
+        assertEquals("<!DOCTYPE html>\n" +
+                "<html><body><p>OK</p><a>aaa</a></body></html>",
+            document.serialize(false).trim().replace("\r\n", "\n"))
+    }
 }

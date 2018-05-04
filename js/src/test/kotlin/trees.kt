@@ -229,6 +229,19 @@ class DomTreeImplTest {
         assertEquals("COLGROUP", colGroup.tagName.toUpperCase())
     }
 
+    @test fun testPrepend() {
+        val wrapper = wrapper()
+        wrapper.appendChild(document.createElement("A").apply { textContent = "aaa" })
+
+        val nodes = wrapper.prepend {
+            p {
+                text("OK")
+            }
+        }
+
+        assertEquals("<p>OK</p><a>aaa</a>", wrapper.innerHTML)
+    }
+
     private fun wrapper() = document.body!!.append.div {}
     private fun <T> uninitialized(): T = null as T
     private fun String.trimLines() = trimIndent().lines().filter { it.isNotBlank() }.joinToString("")

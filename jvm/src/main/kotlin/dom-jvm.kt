@@ -113,13 +113,41 @@ val Document.create : TagConsumer<Element>
     get() = HTMLDOMBuilder(this)
 
 fun Node.append(block : TagConsumer<Element>.() -> Unit) : List<Element> = ArrayList<Element>().let { result ->
-    ownerDocumentExt.createHTMLTree().onFinalize { it, partial -> if (!partial) {appendChild(it); result.add(it)} }.block()
+    ownerDocumentExt.createHTMLTree().onFinalize { it, partial ->
+        if (!partial) {
+            appendChild(it); result.add(it)
+        }
+    }.block()
+
+    result
+}
+
+fun Node.prepend(block: TagConsumer<Element>.() -> Unit) : List<Element> = ArrayList<Element>().let { result ->
+    ownerDocumentExt.createHTMLTree().onFinalize { it, partial ->
+        if (!partial) {
+            if (hasChildNodes()) {
+                insertBefore(it, firstChild)
+            } else {
+                appendChild(it)
+            }
+            result.add(it)
+        }
+    }.block()
 
     result
 }
 
 val Node.append: TagConsumer<Element>
     get() = ownerDocumentExt.createHTMLTree().onFinalize { it, partial -> if (!partial) { appendChild(it) } }
+
+val Node.prepend: TagConsumer<Element>
+    get() = ownerDocumentExt.createHTMLTree().onFinalize { it, partial -> if (!partial) {
+        if (hasChildNodes()) {
+            insertBefore(it, firstChild)
+        } else {
+            appendChild(it)
+        }
+    }}
 
 private val Node.ownerDocumentExt: Document
     get() = when {

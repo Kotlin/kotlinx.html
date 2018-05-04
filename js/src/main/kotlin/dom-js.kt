@@ -104,15 +104,50 @@ class JSDOMBuilder<out R : HTMLElement>(val document : Document) : TagConsumer<R
  val Document.create : TagConsumer<HTMLElement>
     get() = JSDOMBuilder(this)
 
-fun Node.append(block : TagConsumer<HTMLElement>.() -> Unit) : List<HTMLElement> =
-        ArrayList<HTMLElement>().let { result ->
-            ownerDocumentExt.createTree().onFinalize { it, partial -> if (!partial) {result.add(it); appendChild(it) } }.block()
+fun Node.append(block: TagConsumer<HTMLElement>.() -> Unit): List<HTMLElement> =
+    ArrayList<HTMLElement>().let { result ->
+        ownerDocumentExt.createTree().onFinalize { it, partial ->
+            if (!partial) {
+                result.add(it); appendChild(it)
+            }
+        }.block()
 
-            result
+        result
+    }
+
+fun Node.prepend(block: TagConsumer<HTMLElement>.() -> Unit): List<HTMLElement> =
+    ArrayList<HTMLElement>().let { result ->
+        ownerDocumentExt.createTree().onFinalize { it, partial ->
+            if (!partial) {
+                result.add(it)
+                if (hasChildNodes()) {
+                    insertBefore(it, firstChild)
+                } else {
+                    appendChild(it)
+                }
+            }
+        }.block()
+
+        result
+    }
+
+val HTMLElement.append: TagConsumer<HTMLElement>
+    get() = ownerDocumentExt.createTree().onFinalize { element, partial ->
+        if (!partial) {
+            this@append.appendChild(element)
         }
+    }
 
-val HTMLElement.append : TagConsumer<HTMLElement>
-    get() = ownerDocumentExt.createTree().onFinalize { element, partial -> if (!partial) { this@append.appendChild(element) } }
+val HTMLElement.prepend: TagConsumer<HTMLElement>
+    get() = ownerDocumentExt.createTree().onFinalize { element, partial ->
+        if (!partial) {
+            if (hasChildNodes()) {
+                this@prepend.insertBefore(element, this@prepend.firstChild)
+            } else {
+                this@prepend.appendChild(element)
+            }
+        }
+    }
 
 private val Node.ownerDocumentExt: Document
     get() = when {
