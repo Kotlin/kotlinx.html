@@ -15,7 +15,7 @@ import javax.xml.transform.stream.*
 class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     private val path = arrayListOf<Element>()
     private var lastLeaved : Element? = null
-    private val documentBuilder by lazy { DocumentBuilderFactory.newInstance().newDocumentBuilder() }
+    private val documentBuilder: DocumentBuilder by lazy { DocumentBuilderFactory.newInstance().newDocumentBuilder() }
 
     override fun onTagStart(tag: Tag) {
         val element = when {
@@ -84,13 +84,20 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
         UnsafeImpl.block()
     }
 
-    val UnsafeImpl = object : Unsafe {
+    private val UnsafeImpl = object : Unsafe {
         override operator fun String.unaryPlus() {
             val element = documentBuilder
-                .parse(InputSource(StringReader(this)))
+                .parse(InputSource(StringReader("<unsafeRoot>" + this + "</unsafeRoot>")))
                 .documentElement
+
             val importNode = document.importNode(element, true)
-            path.last().appendChild(importNode)
+
+            check(importNode.nodeName == "unsafeRoot") { "the document factory hasn't created an unsafeRoot node"}
+
+            val last = path.last()
+            while (importNode.hasChildNodes()) {
+                last.appendChild(importNode.removeChild(importNode.firstChild))
+            }
         }
     }
 

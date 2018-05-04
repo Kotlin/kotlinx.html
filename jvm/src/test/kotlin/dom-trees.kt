@@ -180,4 +180,23 @@ class TestDOMTrees {
             }
         }
     }
+
+    @test fun `script content`() {
+        val document = document {
+            append.html {
+                head {
+                    script(ScriptType.textJavaScript) {
+                        unsafe {
+                            raw("fun f() { return 1; }")
+                        }
+                    }
+                }
+            }
+        }
+
+
+        assertEquals("<!DOCTYPE html>\n" +
+                "<html><head><META http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><script type=\"text/javascript\">fun f() { return 1; }</script></head></html>",
+            document.serialize(false).trim().replace("\r\n", "\n"))
+    }
 }
