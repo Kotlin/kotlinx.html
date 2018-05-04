@@ -284,7 +284,16 @@ class TestStreaming {
     }
 
     @test fun `we should print empty tags with no close tag`() {
-        assertEquals("<img src=\"my.jpg\">", StringBuilder().appendHTML(false).img(src = "my.jpg").toString())
+        assertEquals("<img src=\"my.jpg\">", StringBuilder().appendHTML(
+                prettyPrint = false
+        ).img(src = "my.jpg").toString())
+    }
+
+    @test fun `we should print empty tags with close tag if xhtmlCompatible flag is set to true`() {
+        assertEquals("<img src=\"my.jpg\"/>", StringBuilder().appendHTML(
+                prettyPrint = false,
+                xhtmlCompatible = true
+        ).img(src = "my.jpg").toString())
     }
 
     @test fun `pretty print should take into account inline tags`() {
