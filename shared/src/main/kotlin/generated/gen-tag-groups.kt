@@ -113,6 +113,12 @@ fun FlowContent.header(classes : String? = null, block : HEADER.() -> Unit = {})
 fun FlowContent.hr(classes : String? = null, block : HR.() -> Unit = {}) : Unit = HR(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
+ * Container for the dominant contents of another element
+ */
+@HtmlTagMarker
+fun FlowContent.main(classes : String? = null, block : MAIN.() -> Unit = {}) : Unit = MAIN(attributesMapOf("class", classes), consumer).visit(block)
+
+/**
  * Ordered list
  */
 @HtmlTagMarker

@@ -272,6 +272,7 @@
             <xsd:element ref="label"/>
             <xsd:element ref="link"/>
 
+            <xsd:element ref="main" />
             <xsd:element ref="map"/>
             <xsd:element ref="mark"/>
             <xsd:element ref="math"/>
@@ -807,6 +808,7 @@
     <xsd:element name="sup" type="simplePhrasingContentElement"/>
     <xsd:element name="i" type="simplePhrasingContentElement"/>
     <xsd:element name="b" type="simplePhrasingContentElement"/>
+    <xsd:element name="main" type="simplePhrasingContentElement"/>
     <xsd:element name="mark" type="simplePhrasingContentElement"/>
     <xsd:element name="math" type="simplePhrasingContentElement"/>
 

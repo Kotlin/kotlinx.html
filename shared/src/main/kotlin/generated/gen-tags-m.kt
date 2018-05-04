@@ -10,6 +10,17 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
+open class MAIN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("main", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+
+}
+val MAIN.asFlowContent : FlowContent
+    get()  = this
+
+val MAIN.asPhrasingContent : PhrasingContent
+    get()  = this
+
+
+@Suppress("unused")
 open class MAP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("map", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var name : String
         get()  = attributeStringString.get(this, "name")
