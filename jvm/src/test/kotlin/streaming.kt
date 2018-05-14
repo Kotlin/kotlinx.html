@@ -283,6 +283,14 @@ class TestStreaming {
         }
     }
 
+    @test(expected = IllegalStateException::class)
+    fun `attribute values couldn't be changed after tag content`() {
+        createHTML().div {
+            +"content"
+            attributes["a"] = "a"
+        }
+    }
+
     @test fun `we should print empty tags with no close tag`() {
         assertEquals("<img src=\"my.jpg\">", StringBuilder().appendHTML(
                 prettyPrint = false
