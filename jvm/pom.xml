@@ -80,6 +80,11 @@
                         <goals>
                             <goal>compile</goal>
                         </goals>
+                        <configuration>
+                            <args>
+                                <arg>-Xdump-declarations-to=${build.directory}/declarations.json</arg>
+                            </args>
+                        </configuration>
                     </execution>
 
                     <execution>
