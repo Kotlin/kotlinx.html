@@ -542,6 +542,7 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:attribute>
+            <xsd:attribute name="nonce" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
 
@@ -591,6 +592,7 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:attribute>
+            <xsd:attribute name="nonce" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
 

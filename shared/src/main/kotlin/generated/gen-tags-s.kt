@@ -42,6 +42,10 @@ open class SCRIPT(initialAttributes : Map<String, String>, override val consumer
         get()  = attributeBooleanTicker.get(this, "async")
         set(newValue) {attributeBooleanTicker.set(this, "async", newValue)}
 
+    var nonce : String
+        get()  = attributeStringString.get(this, "nonce")
+        set(newValue) {attributeStringString.set(this, "nonce", newValue)}
+
     @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override operator fun Entities.unaryPlus() : Unit {
         @Suppress("DEPRECATION") entity(this)
@@ -211,6 +215,10 @@ open class STYLE(initialAttributes : Map<String, String>, override val consumer 
     var scoped : Boolean
         get()  = attributeBooleanTicker.get(this, "scoped")
         set(newValue) {attributeBooleanTicker.set(this, "scoped", newValue)}
+
+    var nonce : String
+        get()  = attributeStringString.get(this, "nonce")
+        set(newValue) {attributeStringString.set(this, "nonce", newValue)}
 
     @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override operator fun Entities.unaryPlus() : Unit {
