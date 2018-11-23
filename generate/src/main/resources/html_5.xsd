@@ -486,6 +486,7 @@
             <xsd:attribute name="media" type="mediaType" default="screen"/>
             <xsd:attribute name="type" type="contentType"/>
             <xsd:attribute name="sizes"/>
+            <xsd:attribute name="integrity" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
 
@@ -593,6 +594,7 @@
                 </xsd:simpleType>
             </xsd:attribute>
             <xsd:attribute name="nonce" type="xsd:string"/>
+            <xsd:attribute name="integrity" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
 

@@ -7537,6 +7537,8 @@
 			{"visibility": "public",	"declaration": "final fun <set-type>(newValue: kotlin.String): kotlin.Unit", "name": "setType", "desc": "(Ljava/lang/String;)V"},
 			{"visibility": "public",	"declaration": "final fun <get-sizes>(): kotlin.String", "name": "getSizes", "desc": "()Ljava/lang/String;"},
 			{"visibility": "public",	"declaration": "final fun <set-sizes>(newValue: kotlin.String): kotlin.Unit", "name": "setSizes", "desc": "(Ljava/lang/String;)V"},
+			{"visibility": "public",	"declaration": "final fun <get-integrity>(): kotlin.String", "name": "getIntegrity", "desc": "()Ljava/lang/String;"},
+			{"visibility": "public",	"declaration": "final fun <set-integrity>(newValue: kotlin.String): kotlin.Unit", "name": "setIntegrity", "desc": "(Ljava/lang/String;)V"},
 			{"visibility": "public",	"declaration": "open val consumer: kotlinx.html.TagConsumer<*>", "name": "consumer", "desc": "Lkotlinx/html/TagConsumer;"},
 			{"visibility": "public",	"declaration": "open fun <get-consumer>(): kotlinx.html.TagConsumer<*>", "name": "getConsumer", "desc": "()Lkotlinx/html/TagConsumer;"},
 			{"visibility": "public",	"declaration": "constructor LINK(initialAttributes: kotlin.collections.Map<kotlin.String, kotlin.String>, consumer: kotlinx.html.TagConsumer<*>)", "name": "<init>", "desc": "(Ljava/util/Map;Lkotlinx/html/TagConsumer;)V"}
@@ -8023,6 +8025,8 @@
 			{"visibility": "public",	"declaration": "final fun <set-async>(newValue: kotlin.Boolean): kotlin.Unit", "name": "setAsync", "desc": "(Z)V"},
 			{"visibility": "public",	"declaration": "final fun <get-nonce>(): kotlin.String", "name": "getNonce", "desc": "()Ljava/lang/String;"},
 			{"visibility": "public",	"declaration": "final fun <set-nonce>(newValue: kotlin.String): kotlin.Unit", "name": "setNonce", "desc": "(Ljava/lang/String;)V"},
+			{"visibility": "public",	"declaration": "final fun <get-integrity>(): kotlin.String", "name": "getIntegrity", "desc": "()Ljava/lang/String;"},
+			{"visibility": "public",	"declaration": "final fun <set-integrity>(newValue: kotlin.String): kotlin.Unit", "name": "setIntegrity", "desc": "(Ljava/lang/String;)V"},
 			{"visibility": "public",	"declaration": "open fun kotlinx.html.Entities.unaryPlus(): kotlin.Unit", "name": "unaryPlus", "desc": "(Lkotlinx/html/Entities;)V"},
 			{"visibility": "public",	"declaration": "open fun kotlin.String.unaryPlus(): kotlin.Unit", "name": "unaryPlus", "desc": "(Ljava/lang/String;)V"},
 			{"visibility": "public",	"declaration": "open fun text(s: kotlin.String): kotlin.Unit", "name": "text", "desc": "(Ljava/lang/String;)V"},
