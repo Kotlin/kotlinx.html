@@ -259,7 +259,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <kotlin.version>1.1.5-dev-640</kotlin.version>
+                <kotlin.version>1.2.71</kotlin.version>
                 <bintray.url>https://api.bintray.com/maven/kotlin/kotlin-dev/kotlinx.html</bintray.url>
             </properties>
 
