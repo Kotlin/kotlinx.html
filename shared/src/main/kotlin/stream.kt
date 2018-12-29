@@ -66,7 +66,7 @@ class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boole
         }
 
         if (prettyPrint && !tag.inlineTag) {
-            appenln()
+            appendln()
         }
     }
 
@@ -104,7 +104,7 @@ class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boole
         }
     }
 
-    private fun appenln() {
+    private fun appendln() {
         if (prettyPrint && !ln) {
             out.append("\n")
             ln = true
