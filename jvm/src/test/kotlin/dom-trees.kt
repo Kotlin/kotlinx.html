@@ -32,7 +32,8 @@ class TestDOMTrees {
             }
         }
 
-        assertEquals("<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>", tree.serialize(false))
+        assertEquals("<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>",
+                tree.serialize(false).trim().replace("\r\n", "\n"))
         assertEquals("""
                 <!DOCTYPE html>
                 <html>

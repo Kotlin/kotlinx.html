@@ -165,7 +165,7 @@ inline fun document(block : Document.() -> Unit) : Document = DocumentBuilderFac
 }
 
 fun Writer.write(document : Document, prettyPrint : Boolean = true) : Writer {
-    write("<!DOCTYPE html>\n")
+    write(String.format("<!DOCTYPE html>%n"))
     write(document.documentElement, prettyPrint)
     return this
 }
