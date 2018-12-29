@@ -8981,7 +8981,7 @@
 			{"visibility": "public",	"declaration": "open fun onTagComment(content: kotlin.CharSequence): kotlin.Unit", "name": "onTagComment", "desc": "(Ljava/lang/CharSequence;)V"},
 			{"visibility": "public",	"declaration": "final val UnsafeImpl: kotlinx.html.Unsafe", "name": "UnsafeImpl", "desc": "Lkotlinx/html/Unsafe;"},
 			{"visibility": "public",	"declaration": "final fun <get-UnsafeImpl>(): kotlinx.html.Unsafe", "name": "getUnsafeImpl", "desc": "()Lkotlinx/html/Unsafe;"},
-			{"visibility": "private",	"declaration": "final fun appenln(): kotlin.Unit", "name": "appenln", "desc": "()V"},
+			{"visibility": "private",	"declaration": "final fun appendln(): kotlin.Unit", "name": "appendln", "desc": "()V"},
 			{"visibility": "private",	"declaration": "final fun indent(): kotlin.Unit", "name": "indent", "desc": "()V"},
 			{"visibility": "public",	"declaration": "final val out: O", "name": "out", "desc": "Ljava/lang/Appendable;"},
 			{"visibility": "public",	"declaration": "final fun <get-out>(): O", "name": "getOut", "desc": "()Ljava/lang/Appendable;"},
