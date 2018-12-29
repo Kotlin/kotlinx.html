@@ -73,7 +73,7 @@ class TestDOMTrees {
     </div>
   </body>
 </html>
-        """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n"))
+        """.trim(), document.serialize(true).trim().replace("\r\n", "\n"))
     }
 
     @test fun `append function support`() {
@@ -111,7 +111,7 @@ class TestDOMTrees {
     </div>
   </body>
 </html>
-        """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n"))
+        """.trim(), document.serialize(true).trim().replace("\r\n", "\n"))
     }
 
     @test fun `should compile wiki example`() {
