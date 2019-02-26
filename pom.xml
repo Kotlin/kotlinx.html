@@ -13,7 +13,7 @@
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
 
@@ -229,7 +229,7 @@
                 <repository>
                     <id>sonatype.oss.snapshots</id>
                     <name>Sonatype OSS Snapshot Repository</name>
-                    <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                     <releases>
                         <enabled>false</enabled>
                     </releases>
@@ -243,7 +243,7 @@
                 <pluginRepository>
                     <id>sonatype.oss.snapshots</id>
                     <name>Sonatype OSS Snapshot Repository</name>
-                    <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                     <releases>
                         <enabled>false</enabled>
                     </releases>
@@ -270,7 +270,7 @@
                     </snapshots>
                     <id>bintray-kotlin-kotlin-dev</id>
                     <name>bintray</name>
-                    <url>http://dl.bintray.com/kotlin/kotlin-dev</url>
+                    <url>https://dl.bintray.com/kotlin/kotlin-dev</url>
                 </repository>
                 <repository>
                     <snapshots>
@@ -278,7 +278,7 @@
                     </snapshots>
                     <id>bintray-kotlin-kotlin-eap</id>
                     <name>bintray</name>
-                    <url>http://dl.bintray.com/kotlin/kotlin-eap-1.1</url>
+                    <url>https://dl.bintray.com/kotlin/kotlin-eap-1.1</url>
                 </repository>
             </repositories>
             <pluginRepositories>
@@ -288,7 +288,7 @@
                     </snapshots>
                     <id>bintray-kotlin-plugin-kotlin-dev</id>
                     <name>bintray-plugins</name>
-                    <url>http://dl.bintray.com/kotlin/kotlin-dev</url>
+                    <url>https://dl.bintray.com/kotlin/kotlin-dev</url>
                 </pluginRepository>
                 <pluginRepository>
                     <snapshots>
@@ -296,7 +296,7 @@
                     </snapshots>
                     <id>bintray-kotlin-plugin-kotlin-eap</id>
                     <name>bintray-plugins</name>
-                    <url>http://dl.bintray.com/kotlin/kotlin-eap-1.1</url>
+                    <url>https://dl.bintray.com/kotlin/kotlin-eap-1.1</url>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
