@@ -37,7 +37,7 @@ open class DD(initialAttributes : Map<String, String>, override val consumer : T
 }
 
 @Suppress("unused")
-open class DEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("del", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+open class DEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("del", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var cite : String
         get()  = attributeStringString.get(this, "cite")
         set(newValue) {attributeStringString.set(this, "cite", newValue)}
