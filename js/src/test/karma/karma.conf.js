@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+process.env.CHROME_BIN = require('puppeteer').executablePath();
+
 module.exports = function (config) {
     config.set({
             frameworks: ['qunit'],
             reporters: ['progress', 'junit'],
             files: [
                 '../../../target/test-js/kotlin.js',
-		'../../../target/classes/*.js',
-                //'../../../target/test-js/*.js'
-                '../../../target/test-js/kotlin.js',
-                '../../../target/test-js/kotlin-test.js',
-                '../../../target/test-js/kotlinx-html-js-tests.js'
+                '../../../target/classes/kotlinx-html-js.js',
+                '../../../target/test-js/*.js'
             ],
             exclude: [],
             port: 9876,
@@ -31,7 +31,7 @@ module.exports = function (config) {
             colors: true,
             autoWatch: false,
             browsers: [
-                'PhantomJS'
+                'ChromeHeadless'
             ],
             captureTimeout: 5000,
             //singleRun: false,

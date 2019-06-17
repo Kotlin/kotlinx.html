@@ -8,7 +8,6 @@
     "karma-junit-reporter": "~0.2",
     "karma-sourcemap-loader": "~0.3",
     "karma-teamcity-reporter": "*",
-    "karma-phantomjs-launcher": "*",
-    "phantomjs-prebuilt": "2.1.16"
+    "karma-chrome-launcher": "*"
   }
 }
