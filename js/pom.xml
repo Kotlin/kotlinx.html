@@ -49,6 +49,7 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <scope>test</scope>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-js</artifactId>
             <version>${kotlin.version}</version>
