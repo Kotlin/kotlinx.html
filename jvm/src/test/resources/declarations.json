@@ -8828,7 +8828,7 @@
 		"members": [
 			{"name": "<init>", "desc": "(Ljava/util/ArrayList;Lorg/w3c/dom/Node;Lkotlin/jvm/functions/Function1;)V"},
 			{"name": "$result", "desc": "Ljava/util/ArrayList;"},
-			{"name": "receiver$0$inlined", "desc": "Lorg/w3c/dom/Node;"},
+			{"name": "$this_append$inlined", "desc": "Lorg/w3c/dom/Node;"},
 			{"name": "$block$inlined", "desc": "Lkotlin/jvm/functions/Function1;"},
 			{"name": "invoke", "desc": "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"},
 			{"name": "invoke", "desc": "(Lorg/w3c/dom/Element;Z)V"}
@@ -8851,7 +8851,7 @@
 		"members": [
 			{"name": "<init>", "desc": "(Ljava/util/ArrayList;Lorg/w3c/dom/Node;Lkotlin/jvm/functions/Function1;)V"},
 			{"name": "$result", "desc": "Ljava/util/ArrayList;"},
-			{"name": "receiver$0$inlined", "desc": "Lorg/w3c/dom/Node;"},
+			{"name": "$this_prepend$inlined", "desc": "Lorg/w3c/dom/Node;"},
 			{"name": "$block$inlined", "desc": "Lkotlin/jvm/functions/Function1;"},
 			{"name": "invoke", "desc": "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"},
 			{"name": "invoke", "desc": "(Lorg/w3c/dom/Element;Z)V"}
@@ -8865,7 +8865,7 @@
 			{"visibility": "local",	"declaration": "final fun <anonymous>(it: org.w3c.dom.Element, partial: kotlin.Boolean): kotlin.Unit", "name": "invoke", "desc": "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"},
 			{"visibility": "local",	"declaration": "final fun <anonymous>(it: org.w3c.dom.Element, partial: kotlin.Boolean): kotlin.Unit", "name": "invoke", "desc": "(Lorg/w3c/dom/Element;Z)V"},
 			{"visibility": "local",	"declaration": "final fun <anonymous>(it: org.w3c.dom.Element, partial: kotlin.Boolean): kotlin.Unit", "name": "<init>", "desc": "(Lorg/w3c/dom/Node;)V"},
-			{"name": "receiver$0", "desc": "Lorg/w3c/dom/Node;"}
+			{"name": "$this_append", "desc": "Lorg/w3c/dom/Node;"}
 		]
 	},
 	{
@@ -8876,7 +8876,7 @@
 			{"visibility": "local",	"declaration": "final fun <anonymous>(it: org.w3c.dom.Element, partial: kotlin.Boolean): kotlin.Unit", "name": "invoke", "desc": "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"},
 			{"visibility": "local",	"declaration": "final fun <anonymous>(it: org.w3c.dom.Element, partial: kotlin.Boolean): kotlin.Unit", "name": "invoke", "desc": "(Lorg/w3c/dom/Element;Z)V"},
 			{"visibility": "local",	"declaration": "final fun <anonymous>(it: org.w3c.dom.Element, partial: kotlin.Boolean): kotlin.Unit", "name": "<init>", "desc": "(Lorg/w3c/dom/Node;)V"},
-			{"name": "receiver$0", "desc": "Lorg/w3c/dom/Node;"}
+			{"name": "$this_prepend", "desc": "Lorg/w3c/dom/Node;"}
 		]
 	},
 	{
