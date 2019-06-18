@@ -8,6 +8,7 @@
     "karma-junit-reporter": "~0.2",
     "karma-sourcemap-loader": "~0.3",
     "karma-teamcity-reporter": "*",
-    "karma-chrome-launcher": "*"
+    "karma-chrome-launcher": "*",
+    "puppeteer": "*"
   }
 }
