@@ -42,6 +42,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-js</artifactId>
+            <version>${kotlin.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
@@ -74,6 +75,7 @@
                         <configuration>
                             <moduleKind>umd</moduleKind>
                             <sourceMap>true</sourceMap>
+                            <useIrBackend>true</useIrBackend>
                             <sourceMapEmbedSources>always</sourceMapEmbedSources>
                             <sourceMapPrefix>./</sourceMapPrefix>
                             <outputFile>${project.build.outputDirectory}/${project.artifactId}.js</outputFile>
@@ -91,6 +93,7 @@
                             <metaInfo>true</metaInfo>
                             <sourceMap>true</sourceMap>
                             <moduleKind>umd</moduleKind>
+                            <useIrBackend>true</useIrBackend>
                             <multiPlatform>true</multiPlatform>
                         </configuration>
                     </execution>
@@ -128,7 +131,9 @@
                         <include>**/*.kjsm</include>
                         <include>**/*.kotlin_classes</include>
                         <include>**/*.kotlin_string_table</include>
-                        <include>**/*.kotlin_file_table</include>
+                        <include>**/manifest</include>
+                        <include>**/ir/*</include>
+                        <include>**/linkdata/**/*</include>
                     </includes>
                     <archive>
                         <forced />

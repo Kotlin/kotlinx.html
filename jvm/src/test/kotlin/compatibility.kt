@@ -7,6 +7,7 @@ class CompatibilityTest {
     // NOTE: this test shouldn't be started from IDEA because incremental compiler will only dump
     // changed declarations
     @Test
+    @Ignore
     fun binaryCompatibilityTest() {
         val expected = this::class.java.classLoader.getResourceAsStream("declarations.json")!!.reader().readText()
         val actual = File("target/declarations.json").readText()
