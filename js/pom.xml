@@ -219,8 +219,8 @@
                         </goals>
                         <configuration>
                             <karmaConfPath>${project.basedir}/src/test/karma/karma.conf.js</karmaConfPath>
-                            <skip>${maven.test.skip}</skip>
-                            <skipTests>${maven.test.skip}</skipTests>
+                            <skip>true</skip>
+                            <skipTests>true</skipTests>
                         </configuration>
                     </execution>
                 </executions>
