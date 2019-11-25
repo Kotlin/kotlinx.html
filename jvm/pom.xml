@@ -3,13 +3,13 @@
     <parent>
         <artifactId>kotlinx-html</artifactId>
         <groupId>org.jetbrains.kotlinx</groupId>
-        <version>0.6.13-SNAPSHOT</version>
+        <version>1.6.13-js-ir-01</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jetbrains.kotlinx</groupId>
     <artifactId>kotlinx-html-jvm</artifactId>
-    <version>0.6.13-SNAPSHOT</version>
+    <version>1.6.13-js-ir-01</version>
 
     <name>kotlinx.html JVM</name>
     <description>kotlinx.html JVM implementation</description>
