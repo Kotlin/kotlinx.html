@@ -5,7 +5,7 @@
     <groupId>org.jetbrains.kotlinx</groupId>
     <artifactId>kotlinx-html</artifactId>
     <packaging>pom</packaging>
-    <version>1.6.14-js-ir-01-SNAPSHOT</version>
+    <version>1.6.13-js-ir-02-SNAPSHOT</version>
 
     <name>kotlinx.html root module</name>
     <description>A root module for all kotlinx.html components</description>
@@ -259,7 +259,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <kotlin.version>1.3.70-dev-1833</kotlin.version>
+                <kotlin.version>1.3.70-dev-2420</kotlin.version>
                 <bintray.url>https://api.bintray.com/maven/kotlin/kotlin-dev/kotlinx.html</bintray.url>
             </properties>
 
