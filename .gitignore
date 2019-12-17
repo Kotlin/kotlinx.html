@@ -1,6 +1,8 @@
 .idea
 *.iml
 target
+build
+.gradle
 *~
 *.versionsBackup
 **/karma/node_modules
@@ -8,3 +10,4 @@ target
 **/karma/etc
 
 js/src/test/karma/package-lock.json
+
