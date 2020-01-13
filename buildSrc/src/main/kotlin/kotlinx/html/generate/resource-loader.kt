@@ -1,6 +1,6 @@
 package kotlinx.html.generate
 
-import java.net.URL
+import java.net.*
 
 private class ResourceLoader
 

@@ -1,6 +1,6 @@
 package kotlinx.html.generate
 
-import java.util.ArrayList
+import java.util.*
 
 interface Const<T>
 data class StringConst(val value : String) : Const<String>

@@ -1,8 +1,6 @@
 package kotlinx.html.generate
 
-import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStreamReader
+import java.io.*
 
 fun generate(packg: String, todir: String, jsdir: String) {
     fillRepository()

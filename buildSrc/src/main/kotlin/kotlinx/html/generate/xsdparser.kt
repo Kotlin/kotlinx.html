@@ -1,11 +1,9 @@
 package kotlinx.html.generate
 
-import com.sun.xml.xsom.XSAttGroupDecl
-import com.sun.xml.xsom.XSAttributeDecl
-import com.sun.xml.xsom.XSTerm
-import com.sun.xml.xsom.parser.XSOMParser
+import com.sun.xml.xsom.*
+import com.sun.xml.xsom.parser.*
 import java.util.*
-import javax.xml.parsers.SAXParserFactory
+import javax.xml.parsers.*
 
 val SCHEME_URL = "html_5.xsd".asResourceUrl()
 const val HTML_NAMESPACE = "html-5"

@@ -1,6 +1,6 @@
 package kotlinx.html.generate
 
-import java.util.regex.Pattern
+import java.util.regex.*
 
 val globalSuggestedAttributes = listOf(
         "a" to "href",
