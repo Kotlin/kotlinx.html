@@ -310,12 +310,12 @@ public inline fun TagConsumer<HTMLElement>.hr(classes : String? = null, block : 
  * Document root element
  */
 @HtmlTagMarker
-public fun TagConsumer<HTMLElement>.html(content : String = "") : HTMLHtmlElement = HTML(emptyMap, this).visitAndFinalize(this, {+content}) as HTMLHtmlElement
+public fun TagConsumer<HTMLElement>.html(content : String = "", namespace : String? = null) : HTMLHtmlElement = HTML(emptyMap, this, namespace).visitAndFinalize(this, {+content}) as HTMLHtmlElement
 /**
  * Document root element
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.html(block : HTML.() -> Unit = {}) : HTMLHtmlElement = HTML(emptyMap, this).visitAndFinalize(this, block) as HTMLHtmlElement
+public inline fun TagConsumer<HTMLElement>.html(namespace : String? = null, block : HTML.() -> Unit = {}) : HTMLHtmlElement = HTML(emptyMap, this, namespace).visitAndFinalize(this, block) as HTMLHtmlElement
 
 /**
  * Italic text style
@@ -387,6 +387,12 @@ public inline fun TagConsumer<HTMLElement>.li(classes : String? = null, block : 
  */
 @HtmlTagMarker
 public inline fun TagConsumer<HTMLElement>.link(href : String? = null, rel : String? = null, type : String? = null, block : LINK.() -> Unit = {}) : HTMLLinkElement = LINK(attributesMapOf("href", href,"rel", rel,"type", type), this).visitAndFinalize(this, block) as HTMLLinkElement
+
+/**
+ * Container for the dominant contents of another element
+ */
+@HtmlTagMarker
+public inline fun TagConsumer<HTMLElement>.main(classes : String? = null, block : MAIN.() -> Unit = {}) : HTMLElement = MAIN(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 /**
  * Client-side image map
