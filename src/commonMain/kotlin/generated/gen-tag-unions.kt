@@ -358,7 +358,7 @@ inline fun SectioningOrFlowContent.aside(classes : String? = null, block : ASIDE
  * Container for the dominant contents of another element
  */
 @HtmlTagMarker
-fun SectioningOrFlowContent.main(classes : String? = null, block : MAIN.() -> Unit = {}) : Unit = MAIN(attributesMapOf("class", classes), consumer).visit(block)
+inline fun SectioningOrFlowContent.main(classes : String? = null, block : MAIN.() -> Unit = {}) : Unit = MAIN(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
  * Section with navigational links
