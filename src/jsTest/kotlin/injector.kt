@@ -4,8 +4,7 @@ import kotlinx.html.*
 import kotlinx.html.dom.*
 import kotlinx.html.injector.*
 import kotlinx.html.js.*
-import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLParagraphElement
+import org.w3c.dom.*
 import kotlin.browser.*
 import kotlin.properties.*
 import kotlin.test.*

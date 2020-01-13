@@ -1,9 +1,8 @@
 import kotlinx.html.*
-import kotlinx.html.consumers.catch
-import kotlinx.html.stream.appendHTML
+import kotlinx.html.consumers.*
+import kotlinx.html.stream.*
 import org.junit.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 class TestExceptions {
     @Test fun `default exception must result in empty tag`() {

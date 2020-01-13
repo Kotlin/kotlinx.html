@@ -1,7 +1,6 @@
 package kotlinx.html.consumers
 
-import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
+import kotlinx.html.*
 
 private class DelegatingExceptionConsumer<R>(
         val underlying: TagConsumer<R>,

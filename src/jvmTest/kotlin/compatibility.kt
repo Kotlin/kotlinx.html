@@ -1,13 +1,9 @@
 package kotlinx.html.tests
 
-import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.node.ArrayNode
-import com.fasterxml.jackson.databind.node.TextNode
-import java.io.File
-import java.io.InputStreamReader
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import com.fasterxml.jackson.databind.*
+import com.fasterxml.jackson.databind.node.*
+import java.io.*
+import kotlin.test.*
 
 class CompatibilityTest {
     // NOTE: this test shouldn't be started from IDEA because incremental compiler will only dump

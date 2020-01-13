@@ -1,11 +1,8 @@
 package kotlinx.html.tests
 
 import kotlinx.html.*
-import kotlinx.html.consumers.filter
 import kotlinx.html.dom.*
-import kotlinx.html.dom.createHTMLDocument
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import kotlin.test.*
 import org.junit.Test as test
 
 class Html5TagsTest {

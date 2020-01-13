@@ -1,9 +1,9 @@
 package kotlinx.html.tests
 
 import kotlinx.html.*
-import kotlinx.html.stream.appendHTML
-import org.junit.Test
-import kotlin.system.measureTimeMillis
+import kotlinx.html.stream.*
+import org.junit.*
+import kotlin.system.*
 
 open class HugeStreamingBenchmark {
     @Test

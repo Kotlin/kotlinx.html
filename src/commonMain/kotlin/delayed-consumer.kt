@@ -1,10 +1,7 @@
 package kotlinx.html.consumers
 
-import kotlinx.html.Entities
-import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
-import kotlinx.html.Unsafe
-import org.w3c.dom.events.Event
+import kotlinx.html.*
+import org.w3c.dom.events.*
 
 class DelayedConsumer<T>(val downstream : TagConsumer<T>) : TagConsumer<T> {
     private var delayed : Tag? = null

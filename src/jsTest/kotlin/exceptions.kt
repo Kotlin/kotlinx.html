@@ -1,11 +1,9 @@
-import kotlinx.html.consumers.catch
-import kotlinx.html.dom.append
-import kotlinx.html.h1
-import kotlinx.html.h2
-import kotlinx.html.js.div
-import kotlin.test.Test
-import kotlin.browser.document
-import kotlin.test.assertEquals
+import kotlinx.html.*
+import kotlinx.html.consumers.*
+import kotlinx.html.dom.*
+import kotlinx.html.js.*
+import kotlin.browser.*
+import kotlin.test.*
 
 class TestExceptions {
 

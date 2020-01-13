@@ -1,10 +1,7 @@
 package kotlinx.html.consumers
 
-import kotlinx.html.Entities
-import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
-import kotlinx.html.Unsafe
-import org.w3c.dom.events.Event
+import kotlinx.html.*
+import org.w3c.dom.events.*
 
 class FinalizeConsumer<F, T>(val downstream : TagConsumer<F>, val block : (F, Boolean) -> T) : TagConsumer<T> {
     private var level = 0

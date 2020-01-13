@@ -3,7 +3,6 @@ package kotlinx.html.tests.unsafes
 import kotlinx.html.*
 import kotlinx.html.dom.*
 import kotlinx.html.stream.*
-import kotlin.test.Test
 import kotlin.browser.*
 import kotlin.test.*
 

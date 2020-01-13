@@ -6,7 +6,6 @@ import kotlinx.html.dom.*
 import kotlinx.html.js.*
 import org.w3c.dom.*
 import kotlin.browser.*
-import kotlin.dom.*
 import kotlin.test.*
 import kotlin.test.Test as test
 

@@ -1,7 +1,7 @@
 package kotlinx.html.consumers
 
 import kotlinx.html.*
-import org.w3c.dom.events.Event
+import org.w3c.dom.events.*
 
 data class TimedResult<T>(val result: T, val time: Long)
 val <O: Appendable> TimedResult<O>.out: O

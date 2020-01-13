@@ -4,7 +4,7 @@ import kotlinx.html.*
 import kotlinx.html.consumers.*
 import org.w3c.dom.*
 import org.w3c.dom.events.*
-import org.xml.sax.InputSource
+import org.xml.sax.*
 import java.io.*
 import java.util.*
 import javax.xml.parsers.*

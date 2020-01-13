@@ -4,7 +4,6 @@ import kotlinx.html.*
 import kotlinx.html.consumers.*
 import org.w3c.dom.*
 import org.w3c.dom.events.*
-import kotlin.dom.*
 
 @Suppress("NOTHING_TO_INLINE")
 private inline fun HTMLElement.setEvent(name: String, noinline callback : (Event) -> Unit) : Unit {
