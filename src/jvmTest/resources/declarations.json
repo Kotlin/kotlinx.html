@@ -1,27 +1,5 @@
 [
 	{
-		"declaration": "final fun <anonymous>(p1: kotlin.Any?): kotlin.Unit defined in kotlinx.html.consumers.trace",
-		"visibility": "public",
-		"class": "kotlinx/html/consumers/Trace_jvmKt$trace$1",
-		"members": [
-			{"visibility": "public",	"declaration": "final fun <anonymous>(p1: kotlin.Any?): kotlin.Unit", "name": "invoke", "desc": "(Ljava/lang/Object;)Ljava/lang/Object;"},
-			{"visibility": "public",	"declaration": "final fun <anonymous>(p1: kotlin.Any?): kotlin.Unit", "name": "invoke", "desc": "(Ljava/lang/Object;)V"},
-			{"name": "getOwner", "desc": "()Lkotlin/reflect/KDeclarationContainer;"},
-			{"name": "getName", "desc": "()Ljava/lang/String;"},
-			{"name": "getSignature", "desc": "()Ljava/lang/String;"},
-			{"visibility": "public",	"declaration": "final fun <anonymous>(p1: kotlin.Any?): kotlin.Unit", "name": "<init>", "desc": "()V"},
-			{"name": "INSTANCE", "desc": "Lkotlinx/html/consumers/Trace_jvmKt$trace$1;"},
-			{"visibility": "public",	"declaration": "final class <closure-Trace_jvmKt$trace$1> : kotlin.jvm.internal.FunctionReference, (message: kotlin.Any?) -> kotlin.Unit", "name": "<clinit>", "desc": "()V"}
-		]
-	},
-	{
-		"declaration": "package-fragment kotlinx.html.consumers",
-		"class": "kotlinx/html/consumers/Trace_jvmKt",
-		"members": [
-			{"visibility": "public",	"declaration": "fun <R> kotlinx.html.TagConsumer<R>.trace(): kotlinx.html.TagConsumer<R>", "name": "trace", "desc": "(Lkotlinx/html/TagConsumer;)Lkotlinx/html/TagConsumer;"}
-		]
-	},
-	{
 		"declaration": "final class DelayedConsumer<T> : kotlinx.html.TagConsumer<T> defined in kotlinx.html.consumers",
 		"visibility": "public",
 		"class": "kotlinx/html/consumers/DelayedConsumer",
@@ -284,6 +262,28 @@
 		]
 	},
 	{
+		"declaration": "final fun <anonymous>(p1: kotlin.Any?): kotlin.Unit defined in kotlinx.html.consumers.trace",
+		"visibility": "public",
+		"class": "kotlinx/html/consumers/Trace_jvmKt$trace$1",
+		"members": [
+			{"visibility": "public",	"declaration": "final fun <anonymous>(p1: kotlin.Any?): kotlin.Unit", "name": "invoke", "desc": "(Ljava/lang/Object;)Ljava/lang/Object;"},
+			{"visibility": "public",	"declaration": "final fun <anonymous>(p1: kotlin.Any?): kotlin.Unit", "name": "invoke", "desc": "(Ljava/lang/Object;)V"},
+			{"name": "getOwner", "desc": "()Lkotlin/reflect/KDeclarationContainer;"},
+			{"name": "getName", "desc": "()Ljava/lang/String;"},
+			{"name": "getSignature", "desc": "()Ljava/lang/String;"},
+			{"visibility": "public",	"declaration": "final fun <anonymous>(p1: kotlin.Any?): kotlin.Unit", "name": "<init>", "desc": "()V"},
+			{"name": "INSTANCE", "desc": "Lkotlinx/html/consumers/Trace_jvmKt$trace$1;"},
+			{"visibility": "public",	"declaration": "final class <closure-Trace_jvmKt$trace$1> : kotlin.jvm.internal.FunctionReference, (message: kotlin.Any?) -> kotlin.Unit", "name": "<clinit>", "desc": "()V"}
+		]
+	},
+	{
+		"declaration": "package-fragment kotlinx.html.consumers",
+		"class": "kotlinx/html/consumers/Trace_jvmKt",
+		"members": [
+			{"visibility": "public",	"declaration": "fun <R> kotlinx.html.TagConsumer<R>.trace(): kotlinx.html.TagConsumer<R>", "name": "trace", "desc": "(Lkotlinx/html/TagConsumer;)Lkotlinx/html/TagConsumer;"}
+		]
+	},
+	{
 		"declaration": "object StringEncoder : kotlinx.html.attributes.AttributeEncoder<kotlin.String> defined in kotlinx.html.attributes",
 		"visibility": "public",
 		"class": "kotlinx/html/attributes/StringEncoder",
@@ -452,13 +452,6 @@
 			{"visibility": "public",	"declaration": "fun kotlinx.html.AttributeEnum.enumEncode(): kotlin.String", "name": "enumEncode", "desc": "(Lkotlinx/html/AttributeEnum;)Ljava/lang/String;"},
 			{"visibility": "public",	"declaration": "fun stringSetDecode(value: kotlin.String?): kotlin.collections.Set<kotlin.String>?", "name": "stringSetDecode", "desc": "(Ljava/lang/String;)Ljava/util/Set;"},
 			{"visibility": "public",	"declaration": "fun kotlin.collections.Set<kotlin.String>.stringSetEncode(): kotlin.String", "name": "stringSetEncode", "desc": "(Ljava/util/Set;)Ljava/lang/String;"}
-		]
-	},
-	{
-		"declaration": "package-fragment kotlinx.html",
-		"class": "kotlinx/html/UtilsImpl_jvmKt",
-		"members": [
-			{"visibility": "public",	"declaration": "actual fun currentTimeMillis(): kotlin.Long", "name": "currentTimeMillis", "desc": "()J"}
 		]
 	},
 	{
@@ -8752,6 +8745,13 @@
 		"members": [
 			{"visibility": "public",	"declaration": "fun kotlinx.html.HEAD.styleLink(url: kotlin.String): kotlin.Unit", "name": "styleLink", "desc": "(Lkotlinx/html/HEAD;Ljava/lang/String;)V"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.Tag.<get-br>(): kotlin.Unit", "name": "getBr", "desc": "(Lkotlinx/html/Tag;)Lkotlin/Unit;"}
+		]
+	},
+	{
+		"declaration": "package-fragment kotlinx.html",
+		"class": "kotlinx/html/UtilsImpl_jvmKt",
+		"members": [
+			{"visibility": "public",	"declaration": "actual fun currentTimeMillis(): kotlin.Long", "name": "currentTimeMillis", "desc": "()J"}
 		]
 	},
 	{
