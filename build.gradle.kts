@@ -13,7 +13,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "1.3.61"
+    kotlin("multiplatform")
     id("maven-publish")
 }
 
@@ -148,19 +148,19 @@ kotlin {
             }
         }
 
-        compilations["main"].packageJson {
+        (compilations["main"] as org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJsCompilation).packageJson {
             main = "kotlin/kotlinx-html-js.js"
             name = "kotlinx-html-js"
         }
 
-        compilations["main"].kotlinOptions.apply {
+        (compilations["main"] as org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJsCompilation).kotlinOptions.apply {
             outputFile = "$buildDir/js/packages/${project.name}/kotlin/${project.name}-js.js"
             moduleKind = "umd"
             sourceMap = true
             sourceMapEmbedSources = "always"
         }
 
-        compilations["test"].kotlinOptions.apply {
+        (compilations["test"] as org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJsCompilation).kotlinOptions.apply {
             moduleKind = "umd"
             metaInfo = true
             sourceMap = true
@@ -369,7 +369,7 @@ fun MavenPomFile.config(config: MavenPomFile.() -> Unit = {}) {
 }
 
 tasks.withType<GenerateModuleMetadata> {
-    enabled = false
+    enabled = true
 }
 
 fun MavenPublication.jar(taskName: String, config: Action<Jar>) = artifact(tasks.create(taskName, Jar::class, config))
