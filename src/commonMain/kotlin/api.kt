@@ -74,25 +74,10 @@ interface AttributeEnum {
     val realValue: String
 }
 
-inline fun <T : Tag> T.visit(block: T.() -> Unit) {
-    consumer.onTagStart(this)
-    try {
-        this.block()
-    } catch (err: Throwable) {
-        consumer.onTagError(this, err)
-    } finally {
-        consumer.onTagEnd(this)
-    }
-}
+inline fun <T : Tag> T.visit(crossinline block: T.() -> Unit) = visitTag { block() }
 
-inline fun <T : Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit): R {
-    if (this.consumer !== consumer) {
-        throw IllegalArgumentException("Wrong exception")
-    }
-
-    visit(block)
-    return consumer.finalize()
-}
+inline fun <T : Tag, R> T.visitAndFinalize(consumer: TagConsumer<R>, crossinline block: T.() -> Unit): R
+        = visitTagAndFinalize(consumer) { block() }
 
 fun attributesMapOf() = emptyMap
 fun attributesMapOf(key: String, value: String?): Map<String, String> = when (value) {

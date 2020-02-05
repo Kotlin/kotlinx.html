@@ -160,7 +160,7 @@ open class AUDIO(initialAttributes : Map<String, String>, override val consumer 
  * Media source for 
  */
 @HtmlTagMarker
-inline fun AUDIO.source(classes : String? = null, block : SOURCE.() -> Unit = {}) : Unit = SOURCE(attributesMapOf("class", classes), consumer).visit(block)
+inline fun AUDIO.source(classes : String? = null, crossinline block : SOURCE.() -> Unit = {}) : Unit = SOURCE(attributesMapOf("class", classes), consumer).visit(block)
 
 val AUDIO.asFlowContent : FlowContent
     get()  = this

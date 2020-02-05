@@ -17,7 +17,7 @@ open class DATALIST(initialAttributes : Map<String, String>, override val consum
  * Selectable choice
  */
 @HtmlTagMarker
-inline fun DATALIST.option(classes : String? = null, block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
+inline fun DATALIST.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
 /**
  * Selectable choice
  */
@@ -67,7 +67,7 @@ open class DETAILS(initialAttributes : Map<String, String>, override val consume
  * Fieldset legend
  */
 @HtmlTagMarker
-inline fun DETAILS.legend(classes : String? = null, block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
+inline fun DETAILS.legend(classes : String? = null, crossinline block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
 
 val DETAILS.asFlowContent : FlowContent
     get()  = this
@@ -105,13 +105,13 @@ open class DL(initialAttributes : Map<String, String>, override val consumer : T
  * Definition description
  */
 @HtmlTagMarker
-inline fun DL.dd(classes : String? = null, block : DD.() -> Unit = {}) : Unit = DD(attributesMapOf("class", classes), consumer).visit(block)
+inline fun DL.dd(classes : String? = null, crossinline block : DD.() -> Unit = {}) : Unit = DD(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
  * Definition term
  */
 @HtmlTagMarker
-inline fun DL.dt(classes : String? = null, block : DT.() -> Unit = {}) : Unit = DT(attributesMapOf("class", classes), consumer).visit(block)
+inline fun DL.dt(classes : String? = null, crossinline block : DT.() -> Unit = {}) : Unit = DT(attributesMapOf("class", classes), consumer).visit(block)
 
 
 @Suppress("unused")
