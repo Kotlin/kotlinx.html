@@ -81,37 +81,37 @@ open class HGROUP(initialAttributes : Map<String, String>, override val consumer
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h1(classes : String? = null, block : H1.() -> Unit = {}) : Unit = H1(attributesMapOf("class", classes), consumer).visit(block)
+inline fun HGROUP.h1(classes : String? = null, crossinline block : H1.() -> Unit = {}) : Unit = H1(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h2(classes : String? = null, block : H2.() -> Unit = {}) : Unit = H2(attributesMapOf("class", classes), consumer).visit(block)
+inline fun HGROUP.h2(classes : String? = null, crossinline block : H2.() -> Unit = {}) : Unit = H2(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h3(classes : String? = null, block : H3.() -> Unit = {}) : Unit = H3(attributesMapOf("class", classes), consumer).visit(block)
+inline fun HGROUP.h3(classes : String? = null, crossinline block : H3.() -> Unit = {}) : Unit = H3(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h4(classes : String? = null, block : H4.() -> Unit = {}) : Unit = H4(attributesMapOf("class", classes), consumer).visit(block)
+inline fun HGROUP.h4(classes : String? = null, crossinline block : H4.() -> Unit = {}) : Unit = H4(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h5(classes : String? = null, block : H5.() -> Unit = {}) : Unit = H5(attributesMapOf("class", classes), consumer).visit(block)
+inline fun HGROUP.h5(classes : String? = null, crossinline block : H5.() -> Unit = {}) : Unit = H5(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h6(classes : String? = null, block : H6.() -> Unit = {}) : Unit = H6(attributesMapOf("class", classes), consumer).visit(block)
+inline fun HGROUP.h6(classes : String? = null, crossinline block : H6.() -> Unit = {}) : Unit = H6(attributesMapOf("class", classes), consumer).visit(block)
 
 val HGROUP.asFlowContent : FlowContent
     get()  = this
@@ -161,13 +161,13 @@ open class HTML(initialAttributes : Map<String, String>, override val consumer :
  * Document body
  */
 @HtmlTagMarker
-inline fun HTML.body(classes : String? = null, block : BODY.() -> Unit = {}) : Unit = BODY(attributesMapOf("class", classes), consumer).visit(block)
+inline fun HTML.body(classes : String? = null, crossinline block : BODY.() -> Unit = {}) : Unit = BODY(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
  * Document head
  */
 @HtmlTagMarker
-inline fun HTML.head(block : HEAD.() -> Unit = {}) : Unit = HEAD(emptyMap, consumer).visit(block)
+inline fun HTML.head(crossinline block : HEAD.() -> Unit = {}) : Unit = HEAD(emptyMap, consumer).visit(block)
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
 @Suppress("DEPRECATION")
 /**

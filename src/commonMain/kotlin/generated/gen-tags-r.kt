@@ -27,13 +27,13 @@ open class RUBY(initialAttributes : Map<String, String>, override val consumer :
  * Ruby annotation text
  */
 @HtmlTagMarker
-inline fun RUBY.rt(classes : String? = null, block : RT.() -> Unit = {}) : Unit = RT(attributesMapOf("class", classes), consumer).visit(block)
+inline fun RUBY.rt(classes : String? = null, crossinline block : RT.() -> Unit = {}) : Unit = RT(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
  * Parenthesis for ruby annotation text
  */
 @HtmlTagMarker
-inline fun RUBY.rp(classes : String? = null, block : RP.() -> Unit = {}) : Unit = RP(attributesMapOf("class", classes), consumer).visit(block)
+inline fun RUBY.rp(classes : String? = null, crossinline block : RP.() -> Unit = {}) : Unit = RP(attributesMapOf("class", classes), consumer).visit(block)
 
 val RUBY.asFlowContent : FlowContent
     get()  = this
