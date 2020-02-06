@@ -18,7 +18,7 @@ plugins {
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.6.13-SNAPSHOT"
+version = "0.7.1-SNAPSHOT"
 
 /**
  * If "release" profile is used the "-SNAPSHOT" suffix of the version is removed.
