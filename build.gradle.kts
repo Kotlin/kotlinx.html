@@ -93,9 +93,8 @@ publishing {
             jar("jsWebJar") {
                 archiveBaseName by "${project.name}-assembly"
                 archiveClassifier by "webjar"
-                from("$buildDir/js/packages/${project.name}/kotlin/kotlinx-html.js")
+                from("$buildDir/js/packages/${project.name}/kotlin/kotlinx-html-js.js")
                 into("META-INF/resources/webjars/${project.name}/${project.version}/")
-                rename("kotlinx-html.js", "kotlinx-html-js.js")
             }
         }
     }
