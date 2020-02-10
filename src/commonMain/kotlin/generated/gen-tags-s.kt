@@ -269,6 +269,11 @@ val SUB.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
+open class SUMMARY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("summary", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
+
+}
+
+@Suppress("unused")
 open class SUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("sup", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }

@@ -595,6 +595,12 @@ inline fun <T, C : TagConsumer<T>> C.style(type : String? = null, crossinline bl
 inline fun <T, C : TagConsumer<T>> C.sub(classes : String? = null, crossinline block : SUB.() -> Unit = {}) : T = SUB(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 /**
+ * Caption for 
+ */
+@HtmlTagMarker
+inline fun <T, C : TagConsumer<T>> C.summary(classes : String? = null, crossinline block : SUMMARY.() -> Unit = {}) : T = SUMMARY(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
+/**
  * Superscript
  */
 @HtmlTagMarker

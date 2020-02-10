@@ -2203,6 +2203,18 @@
 		]
 	},
 	{
+		"declaration": "final fun kotlinx.html.SUMMARY.<anonymous>(): kotlin.Unit defined in kotlinx.html.summary",
+		"visibility": "local",
+		"class": "kotlinx/html/Gen_consumer_tagsKt$summary$1",
+		"members": [
+			{"visibility": "local",	"declaration": "final fun kotlinx.html.SUMMARY.<anonymous>(): kotlin.Unit", "name": "invoke", "desc": "(Ljava/lang/Object;)Ljava/lang/Object;"},
+			{"visibility": "local",	"declaration": "final fun kotlinx.html.SUMMARY.<anonymous>(): kotlin.Unit", "name": "invoke", "desc": "(Lkotlinx/html/SUMMARY;)V"},
+			{"visibility": "local",	"declaration": "final fun kotlinx.html.SUMMARY.<anonymous>(): kotlin.Unit", "name": "<init>", "desc": "()V"},
+			{"name": "INSTANCE", "desc": "Lkotlinx/html/Gen_consumer_tagsKt$summary$1;"},
+			{"visibility": "public",	"declaration": "final class <closure-Gen_consumer_tagsKt$summary$1> : kotlin.jvm.internal.Lambda, kotlinx.html.SUMMARY.() -> kotlin.Unit", "name": "<clinit>", "desc": "()V"}
+		]
+	},
+	{
 		"declaration": "final fun kotlinx.html.SUP.<anonymous>(): kotlin.Unit defined in kotlinx.html.sup",
 		"visibility": "local",
 		"class": "kotlinx/html/Gen_consumer_tagsKt$sup$1",
@@ -2586,6 +2598,8 @@
 			{"visibility": "public",	"declaration": "inline fun <T, C : kotlinx.html.TagConsumer<T>> C.style(type: kotlin.String? = ..., crossinline block: kotlinx.html.STYLE.() -> kotlin.Unit = ...): T", "name": "style$default", "desc": "(Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;"},
 			{"visibility": "public",	"declaration": "inline fun <T, C : kotlinx.html.TagConsumer<T>> C.sub(classes: kotlin.String? = ..., crossinline block: kotlinx.html.SUB.() -> kotlin.Unit = ...): T", "name": "sub", "desc": "(Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;"},
 			{"visibility": "public",	"declaration": "inline fun <T, C : kotlinx.html.TagConsumer<T>> C.sub(classes: kotlin.String? = ..., crossinline block: kotlinx.html.SUB.() -> kotlin.Unit = ...): T", "name": "sub$default", "desc": "(Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;"},
+			{"visibility": "public",	"declaration": "inline fun <T, C : kotlinx.html.TagConsumer<T>> C.summary(classes: kotlin.String? = ..., crossinline block: kotlinx.html.SUMMARY.() -> kotlin.Unit = ...): T", "name": "summary", "desc": "(Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;"},
+			{"visibility": "public",	"declaration": "inline fun <T, C : kotlinx.html.TagConsumer<T>> C.summary(classes: kotlin.String? = ..., crossinline block: kotlinx.html.SUMMARY.() -> kotlin.Unit = ...): T", "name": "summary$default", "desc": "(Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;"},
 			{"visibility": "public",	"declaration": "inline fun <T, C : kotlinx.html.TagConsumer<T>> C.sup(classes: kotlin.String? = ..., crossinline block: kotlinx.html.SUP.() -> kotlin.Unit = ...): T", "name": "sup", "desc": "(Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;"},
 			{"visibility": "public",	"declaration": "inline fun <T, C : kotlinx.html.TagConsumer<T>> C.sup(classes: kotlin.String? = ..., crossinline block: kotlinx.html.SUP.() -> kotlin.Unit = ...): T", "name": "sup$default", "desc": "(Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;"},
 			{"visibility": "public",	"declaration": "fun <T, C : kotlinx.html.TagConsumer<T>> C.svg(classes: kotlin.String? = ..., content: kotlin.String = ...): T", "name": "svg", "desc": "(Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;"},
@@ -4252,6 +4266,18 @@
 		]
 	},
 	{
+		"declaration": "final fun kotlinx.html.SUMMARY.<anonymous>(): kotlin.Unit defined in kotlinx.html.summary",
+		"visibility": "local",
+		"class": "kotlinx/html/Gen_tag_groupsKt$summary$1",
+		"members": [
+			{"visibility": "local",	"declaration": "final fun kotlinx.html.SUMMARY.<anonymous>(): kotlin.Unit", "name": "invoke", "desc": "(Ljava/lang/Object;)Ljava/lang/Object;"},
+			{"visibility": "local",	"declaration": "final fun kotlinx.html.SUMMARY.<anonymous>(): kotlin.Unit", "name": "invoke", "desc": "(Lkotlinx/html/SUMMARY;)V"},
+			{"visibility": "local",	"declaration": "final fun kotlinx.html.SUMMARY.<anonymous>(): kotlin.Unit", "name": "<init>", "desc": "()V"},
+			{"name": "INSTANCE", "desc": "Lkotlinx/html/Gen_tag_groupsKt$summary$1;"},
+			{"visibility": "public",	"declaration": "final class <closure-Gen_tag_groupsKt$summary$1> : kotlin.jvm.internal.Lambda, kotlinx.html.SUMMARY.() -> kotlin.Unit", "name": "<clinit>", "desc": "()V"}
+		]
+	},
+	{
 		"declaration": "final fun kotlinx.html.TABLE.<anonymous>(): kotlin.Unit defined in kotlinx.html.table",
 		"visibility": "local",
 		"class": "kotlinx/html/Gen_tag_groupsKt$table$1",
@@ -4343,6 +4369,8 @@
 			{"visibility": "public",	"declaration": "inline fun kotlinx.html.FlowContent.p(classes: kotlin.String? = ..., crossinline block: kotlinx.html.P.() -> kotlin.Unit = ...): kotlin.Unit", "name": "p$default", "desc": "(Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V"},
 			{"visibility": "public",	"declaration": "inline fun kotlinx.html.FlowContent.pre(classes: kotlin.String? = ..., crossinline block: kotlinx.html.PRE.() -> kotlin.Unit = ...): kotlin.Unit", "name": "pre", "desc": "(Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V"},
 			{"visibility": "public",	"declaration": "inline fun kotlinx.html.FlowContent.pre(classes: kotlin.String? = ..., crossinline block: kotlinx.html.PRE.() -> kotlin.Unit = ...): kotlin.Unit", "name": "pre$default", "desc": "(Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V"},
+			{"visibility": "public",	"declaration": "inline fun kotlinx.html.FlowContent.summary(classes: kotlin.String? = ..., crossinline block: kotlinx.html.SUMMARY.() -> kotlin.Unit = ...): kotlin.Unit", "name": "summary", "desc": "(Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V"},
+			{"visibility": "public",	"declaration": "inline fun kotlinx.html.FlowContent.summary(classes: kotlin.String? = ..., crossinline block: kotlinx.html.SUMMARY.() -> kotlin.Unit = ...): kotlin.Unit", "name": "summary$default", "desc": "(Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V"},
 			{"visibility": "public",	"declaration": "inline fun kotlinx.html.FlowContent.table(classes: kotlin.String? = ..., crossinline block: kotlinx.html.TABLE.() -> kotlin.Unit = ...): kotlin.Unit", "name": "table", "desc": "(Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V"},
 			{"visibility": "public",	"declaration": "inline fun kotlinx.html.FlowContent.table(classes: kotlin.String? = ..., crossinline block: kotlinx.html.TABLE.() -> kotlin.Unit = ...): kotlin.Unit", "name": "table$default", "desc": "(Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V"},
 			{"visibility": "public",	"declaration": "inline fun kotlinx.html.FlowContent.ul(classes: kotlin.String? = ..., crossinline block: kotlinx.html.UL.() -> kotlin.Unit = ...): kotlin.Unit", "name": "ul", "desc": "(Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V"},
@@ -7855,6 +7883,16 @@
 			{"visibility": "public",	"declaration": "open val consumer: kotlinx.html.TagConsumer<*>", "name": "consumer", "desc": "Lkotlinx/html/TagConsumer;"},
 			{"visibility": "public",	"declaration": "open fun <get-consumer>(): kotlinx.html.TagConsumer<*>", "name": "getConsumer", "desc": "()Lkotlinx/html/TagConsumer;"},
 			{"visibility": "public",	"declaration": "constructor SUB(initialAttributes: kotlin.collections.Map<kotlin.String, kotlin.String>, consumer: kotlinx.html.TagConsumer<*>)", "name": "<init>", "desc": "(Ljava/util/Map;Lkotlinx/html/TagConsumer;)V"}
+		]
+	},
+	{
+		"declaration": "open class SUMMARY : kotlinx.html.HTMLTag, kotlinx.html.CommonAttributeGroupFacadeFlowHeadingPhrasingContent defined in kotlinx.html",
+		"visibility": "public",
+		"class": "kotlinx/html/SUMMARY",
+		"members": [
+			{"visibility": "public",	"declaration": "open val consumer: kotlinx.html.TagConsumer<*>", "name": "consumer", "desc": "Lkotlinx/html/TagConsumer;"},
+			{"visibility": "public",	"declaration": "open fun <get-consumer>(): kotlinx.html.TagConsumer<*>", "name": "getConsumer", "desc": "()Lkotlinx/html/TagConsumer;"},
+			{"visibility": "public",	"declaration": "constructor SUMMARY(initialAttributes: kotlin.collections.Map<kotlin.String, kotlin.String>, consumer: kotlinx.html.TagConsumer<*>)", "name": "<init>", "desc": "(Ljava/util/Map;Lkotlinx/html/TagConsumer;)V"}
 		]
 	},
 	{

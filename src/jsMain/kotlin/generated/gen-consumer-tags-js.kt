@@ -596,6 +596,12 @@ public inline fun TagConsumer<HTMLElement>.style(type : String? = null, crossinl
 public inline fun TagConsumer<HTMLElement>.sub(classes : String? = null, crossinline block : SUB.() -> Unit = {}) : HTMLElement = SUB(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 /**
+ * Caption for 
+ */
+@HtmlTagMarker
+public inline fun TagConsumer<HTMLElement>.summary(classes : String? = null, crossinline block : SUMMARY.() -> Unit = {}) : HTMLElement = SUMMARY(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
+/**
  * Superscript
  */
 @HtmlTagMarker

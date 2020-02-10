@@ -131,6 +131,12 @@ inline fun FlowContent.p(classes : String? = null, crossinline block : P.() -> U
 inline fun FlowContent.pre(classes : String? = null, crossinline block : PRE.() -> Unit = {}) : Unit = PRE(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
+ * Caption for 
+ */
+@HtmlTagMarker
+inline fun FlowContent.summary(classes : String? = null, crossinline block : SUMMARY.() -> Unit = {}) : Unit = SUMMARY(attributesMapOf("class", classes), consumer).visit(block)
+
+/**
  * 
  */
 @HtmlTagMarker

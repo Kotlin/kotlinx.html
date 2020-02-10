@@ -305,6 +305,7 @@
             <xsd:element ref="span"/>
             <xsd:element ref="strong"/>
             <xsd:element ref="style"/>
+            <xsd:element ref="summary"/>
             <xsd:element ref="sub"/>
             <xsd:element ref="sup"/>
             <xsd:element ref="svg"/>
@@ -544,6 +545,18 @@
                 </xsd:simpleType>
             </xsd:attribute>
             <xsd:attribute name="nonce" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- defines a visible heading for the <details> element -->
+
+    <xsd:element name="summary">
+        <xsd:complexType mixed="true">
+            <xsd:choice>
+                <xsd:group ref="phrasingContent" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:group ref="headingContent"/>
+            </xsd:choice>
+            <xsd:attributeGroup ref="commonAttributeGroup"/>
         </xsd:complexType>
     </xsd:element>
 
