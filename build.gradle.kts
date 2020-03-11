@@ -148,19 +148,19 @@ kotlin {
             }
         }
 
-        (compilations["main"] as org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJsCompilation).packageJson {
+        compilations["main"].packageJson {
             main = "kotlin/kotlinx-html-js.js"
             name = "kotlinx-html-js"
         }
 
-        (compilations["main"] as org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJsCompilation).kotlinOptions.apply {
+        compilations["main"].kotlinOptions.apply {
             outputFile = "$buildDir/js/packages/${project.name}/kotlin/${project.name}-js.js"
             moduleKind = "umd"
             sourceMap = true
             sourceMapEmbedSources = "always"
         }
 
-        (compilations["test"] as org.jetbrains.kotlin.gradle.plugin.mpp.KotlinJsCompilation).kotlinOptions.apply {
+        compilations["test"].kotlinOptions.apply {
             moduleKind = "umd"
             metaInfo = true
             sourceMap = true
