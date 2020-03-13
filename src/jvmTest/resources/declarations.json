@@ -273,7 +273,7 @@
 			{"name": "getSignature", "desc": "()Ljava/lang/String;"},
 			{"visibility": "public",	"declaration": "final fun <anonymous>(p1: kotlin.Any?): kotlin.Unit", "name": "<init>", "desc": "()V"},
 			{"name": "INSTANCE", "desc": "Lkotlinx/html/consumers/Trace_jvmKt$trace$1;"},
-			{"visibility": "public",	"declaration": "final class <closure-Trace_jvmKt$trace$1> : kotlin.jvm.internal.FunctionReference, (message: kotlin.Any?) -> kotlin.Unit", "name": "<clinit>", "desc": "()V"}
+			{"visibility": "public",	"declaration": "final class <closure-Trace_jvmKt$trace$1> : kotlin.jvm.internal.FunctionReference, (kotlin.Any?) -> kotlin.Unit", "name": "<clinit>", "desc": "()V"}
 		]
 	},
 	{
@@ -745,9 +745,9 @@
 			{"visibility": "public",	"declaration": "fun kotlinx.html.FIELDSET.legEnd(classes: kotlin.String? = ..., block: kotlinx.html.LEGEND.() -> kotlin.Unit = ...): kotlin.Unit", "name": "legEnd$default", "desc": "(Lkotlinx/html/FIELDSET;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.FIGURE.legEnd(classes: kotlin.String? = ..., block: kotlinx.html.LEGEND.() -> kotlin.Unit = ...): kotlin.Unit", "name": "legEnd", "desc": "(Lkotlinx/html/FIGURE;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.FIGURE.legEnd(classes: kotlin.String? = ..., block: kotlinx.html.LEGEND.() -> kotlin.Unit = ...): kotlin.Unit", "name": "legEnd$default", "desc": "(Lkotlinx/html/FIGURE;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V"},
-			{"visibility": "public",	"declaration": "val kotlinx.html.Draggable.true_: kotlinx.html.Draggable", "name": "true_$annotations", "desc": "(Lkotlinx/html/Draggable;)V"},
+			{"visibility": "public",	"declaration": "val kotlinx.html.Draggable.true_: kotlinx.html.Draggable", "name": "getTrue_$annotations", "desc": "(Lkotlinx/html/Draggable;)V"},
 			{"visibility": "public",	"declaration": "inline fun kotlinx.html.Draggable.<get-true_>(): kotlinx.html.Draggable", "name": "getTrue_", "desc": "(Lkotlinx/html/Draggable;)Lkotlinx/html/Draggable;"},
-			{"visibility": "public",	"declaration": "val kotlinx.html.Draggable.false_: kotlinx.html.Draggable", "name": "false_$annotations", "desc": "(Lkotlinx/html/Draggable;)V"},
+			{"visibility": "public",	"declaration": "val kotlinx.html.Draggable.false_: kotlinx.html.Draggable", "name": "getFalse_$annotations", "desc": "(Lkotlinx/html/Draggable;)V"},
 			{"visibility": "public",	"declaration": "inline fun kotlinx.html.Draggable.<get-false_>(): kotlinx.html.Draggable", "name": "getFalse_", "desc": "(Lkotlinx/html/Draggable;)Lkotlinx/html/Draggable;"},
 			{"visibility": "public",	"declaration": "typealias OBJECT_ = kotlinx.html.OBJECT", "name": "OBJECT_$annotations", "desc": "()V"},
 			{"visibility": "public",	"declaration": "typealias VAR_ = kotlinx.html.VAR", "name": "VAR_$annotations", "desc": "()V"},
@@ -759,16 +759,16 @@
 			{"visibility": "public",	"declaration": "fun kotlinx.html.FlowOrPhrasingContent.var_(classes: kotlin.String? = ..., block: kotlinx.html.VAR.() -> kotlin.Unit): kotlin.Unit", "name": "var_$default", "desc": "(Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.FlowOrInteractiveOrPhrasingContent.object_(classes: kotlin.String? = ..., block: kotlinx.html.OBJECT.() -> kotlin.Unit = ...): kotlin.Unit", "name": "object_", "desc": "(Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.FlowOrInteractiveOrPhrasingContent.object_(classes: kotlin.String? = ..., block: kotlinx.html.OBJECT.() -> kotlin.Unit = ...): kotlin.Unit", "name": "object_$default", "desc": "(Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V"},
-			{"visibility": "public",	"declaration": "var kotlinx.html.LABEL.for_: kotlin.String", "name": "for_$annotations", "desc": "(Lkotlinx/html/LABEL;)V"},
+			{"visibility": "public",	"declaration": "var kotlinx.html.LABEL.for_: kotlin.String", "name": "getFor_$annotations", "desc": "(Lkotlinx/html/LABEL;)V"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.LABEL.<get-for_>(): kotlin.String", "name": "getFor_", "desc": "(Lkotlinx/html/LABEL;)Ljava/lang/String;"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.LABEL.<set-for_>(value: kotlin.String): kotlin.Unit", "name": "setFor_", "desc": "(Lkotlinx/html/LABEL;Ljava/lang/String;)V"},
-			{"visibility": "public",	"declaration": "var kotlinx.html.OUTPUT.for_: kotlin.String", "name": "for_$annotations", "desc": "(Lkotlinx/html/OUTPUT;)V"},
+			{"visibility": "public",	"declaration": "var kotlinx.html.OUTPUT.for_: kotlin.String", "name": "getFor_$annotations", "desc": "(Lkotlinx/html/OUTPUT;)V"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.OUTPUT.<get-for_>(): kotlin.String", "name": "getFor_", "desc": "(Lkotlinx/html/OUTPUT;)Ljava/lang/String;"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.OUTPUT.<set-for_>(value: kotlin.String): kotlin.Unit", "name": "setFor_", "desc": "(Lkotlinx/html/OUTPUT;Ljava/lang/String;)V"},
-			{"visibility": "public",	"declaration": "var kotlinx.html.CommonAttributeGroupFacade.onTouchcancel: kotlin.String", "name": "onTouchcancel$annotations", "desc": "(Lkotlinx/html/CommonAttributeGroupFacade;)V"},
+			{"visibility": "public",	"declaration": "var kotlinx.html.CommonAttributeGroupFacade.onTouchcancel: kotlin.String", "name": "getOnTouchcancel$annotations", "desc": "(Lkotlinx/html/CommonAttributeGroupFacade;)V"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.CommonAttributeGroupFacade.<get-onTouchcancel>(): kotlin.String", "name": "getOnTouchcancel", "desc": "(Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.CommonAttributeGroupFacade.<set-onTouchcancel>(newValue: kotlin.String): kotlin.Unit", "name": "setOnTouchcancel", "desc": "(Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V"},
-			{"visibility": "public",	"declaration": "var kotlinx.html.CommonAttributeGroupFacade.onTouchmove: kotlin.String", "name": "onTouchmove$annotations", "desc": "(Lkotlinx/html/CommonAttributeGroupFacade;)V"},
+			{"visibility": "public",	"declaration": "var kotlinx.html.CommonAttributeGroupFacade.onTouchmove: kotlin.String", "name": "getOnTouchmove$annotations", "desc": "(Lkotlinx/html/CommonAttributeGroupFacade;)V"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.CommonAttributeGroupFacade.<get-onTouchmove>(): kotlin.String", "name": "getOnTouchmove", "desc": "(Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;"},
 			{"visibility": "public",	"declaration": "fun kotlinx.html.CommonAttributeGroupFacade.<set-onTouchmove>(newValue: kotlin.String): kotlin.Unit", "name": "setOnTouchmove", "desc": "(Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V"}
 		]
@@ -8535,8 +8535,6 @@
 		"visibility": "public",
 		"class": "kotlinx/html/dom/HTMLDOMBuilder",
 		"members": [
-			{"name": "$$delegatedProperties", "desc": "[Lkotlin/reflect/KProperty;"},
-			{"visibility": "public",	"declaration": "final class HTMLDOMBuilder : kotlinx.html.TagConsumer<org.w3c.dom.Element>", "name": "<clinit>", "desc": "()V"},
 			{"visibility": "private",	"declaration": "final val path: kotlin.collections.ArrayList<org.w3c.dom.Element> /* = java.util.ArrayList<org.w3c.dom.Element> */", "name": "path", "desc": "Ljava/util/ArrayList;"},
 			{"visibility": "private",	"declaration": "final var lastLeaved: org.w3c.dom.Element?", "name": "lastLeaved", "desc": "Lorg/w3c/dom/Element;"},
 			{"visibility": "private",	"declaration": "final val documentBuilder: javax.xml.parsers.DocumentBuilder", "name": "documentBuilder$delegate", "desc": "Lkotlin/Lazy;"},
