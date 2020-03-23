@@ -486,6 +486,12 @@ public inline fun TagConsumer<HTMLElement>.p(classes : String? = null, crossinli
 public inline fun TagConsumer<HTMLElement>.param(name : String? = null, value : String? = null, crossinline block : PARAM.() -> Unit = {}) : HTMLParamElement = PARAM(attributesMapOf("name", name,"value", value), this).visitAndFinalize(this, block) as HTMLParamElement
 
 /**
+ * Pictures container
+ */
+@HtmlTagMarker
+public inline fun TagConsumer<HTMLElement>.picture(crossinline block : PICTURE.() -> Unit = {}) : HTMLPictureElement = PICTURE(emptyMap, this).visitAndFinalize(this, block) as HTMLPictureElement
+
+/**
  * Preformatted text
  */
 @HtmlTagMarker

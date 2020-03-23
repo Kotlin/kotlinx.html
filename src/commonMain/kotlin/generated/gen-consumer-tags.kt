@@ -485,6 +485,12 @@ inline fun <T, C : TagConsumer<T>> C.p(classes : String? = null, crossinline blo
 inline fun <T, C : TagConsumer<T>> C.param(name : String? = null, value : String? = null, crossinline block : PARAM.() -> Unit = {}) : T = PARAM(attributesMapOf("name", name,"value", value), this).visitAndFinalize(this, block)
 
 /**
+ * Pictures container
+ */
+@HtmlTagMarker
+inline fun <T, C : TagConsumer<T>> C.picture(crossinline block : PICTURE.() -> Unit = {}) : T = PICTURE(emptyMap, this).visitAndFinalize(this, block)
+
+/**
  * Preformatted text
  */
 @HtmlTagMarker

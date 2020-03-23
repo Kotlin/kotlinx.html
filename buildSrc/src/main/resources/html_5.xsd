@@ -4,9 +4,6 @@
             version="1.0" targetNamespace='html-5'
 
 
-
-
-
 >
     <!--
 	 Warning:																					
@@ -265,6 +262,7 @@
             <xsd:element ref="i"/>
             <xsd:element ref="iframe"/>
             <xsd:element ref="img"/>
+            <xsd:element ref="picture"/>
             <xsd:element ref="input"/>
             <xsd:element ref="ins"/>
 
@@ -274,7 +272,7 @@
             <xsd:element ref="label"/>
             <xsd:element ref="link"/>
 
-            <xsd:element ref="main" />
+            <xsd:element ref="main"/>
             <xsd:element ref="map"/>
             <xsd:element ref="mark"/>
             <xsd:element ref="math"/>
@@ -372,6 +370,7 @@
             <xsd:element ref="i"/>
             <xsd:element ref="iframe"/>
             <xsd:element ref="img"/>
+            <xsd:element ref="picture"/>
             <xsd:element ref="input"/>
             <xsd:element ref="ins"/>
 
@@ -424,6 +423,7 @@
             <xsd:element ref="embed"/>
             <xsd:element ref="iframe"/>
             <xsd:element ref="img"/>
+            <xsd:element ref="picture"/>
             <xsd:element ref="input"/>
             <xsd:element ref="keygen"/>
             <xsd:element ref="label"/>
@@ -970,6 +970,16 @@
             </xsd:attribute>
         </xsd:complexType>
     </xsd:element>
+
+    <xsd:element name="picture">
+        <xsd:complexType>
+            <xsd:choice>
+                <xsd:element ref="source"/>
+                <xsd:element ref="img" maxOccurs="1"/>
+            </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+
 
     <xsd:element name="iframe">
         <xsd:complexType mixed="true">

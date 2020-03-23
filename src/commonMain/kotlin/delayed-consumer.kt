@@ -3,15 +3,15 @@ package kotlinx.html.consumers
 import kotlinx.html.*
 import org.w3c.dom.events.*
 
-class DelayedConsumer<T>(val downstream : TagConsumer<T>) : TagConsumer<T> {
-    private var delayed : Tag? = null
+class DelayedConsumer<T>(val downstream: TagConsumer<T>) : TagConsumer<T> {
+    private var delayed: Tag? = null
 
     override fun onTagStart(tag: Tag) {
         processDelayedTag()
         delayed = tag
     }
 
-    override fun onTagAttributeChange(tag : Tag, attribute: String, value: String?) {
+    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
         if (delayed == null || delayed != tag) {
             throw IllegalStateException("You can't change tag attribute because it was already passed to the downstream")
         }
@@ -66,4 +66,4 @@ class DelayedConsumer<T>(val downstream : TagConsumer<T>) : TagConsumer<T> {
     }
 }
 
-fun <T> TagConsumer<T>.delayed() : TagConsumer<T> = if (this is DelayedConsumer<T>) this else DelayedConsumer(this)
+fun <T> TagConsumer<T>.delayed(): TagConsumer<T> = if (this is DelayedConsumer<T>) this else DelayedConsumer(this)
