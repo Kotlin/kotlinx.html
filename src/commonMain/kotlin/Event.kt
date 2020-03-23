@@ -5,7 +5,9 @@ expect interface Event {
     fun stopPropagation()
     fun preventDefault()
 
-    fun initEvent(eventTypeArg: String,
-                           canBubbleArg: Boolean,
-                           cancelableArg: Boolean)
+    fun initEvent(
+        eventTypeArg: String,
+        canBubbleArg: Boolean,
+        cancelableArg: Boolean
+    )
 }

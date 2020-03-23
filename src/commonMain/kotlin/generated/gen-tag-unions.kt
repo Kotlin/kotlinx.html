@@ -440,6 +440,12 @@ fun FlowOrInteractiveOrPhrasingContent.allowScriptsIframe(classes : String? = nu
 inline fun FlowOrInteractiveOrPhrasingContent.img(alt : String? = null, src : String? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit = IMG(attributesMapOf("alt", alt,"src", src,"class", classes), consumer).visit(block)
 
 /**
+ * Pictures container
+ */
+@HtmlTagMarker
+inline fun FlowOrInteractiveOrPhrasingContent.picture(crossinline block : PICTURE.() -> Unit = {}) : Unit = PICTURE(emptyMap, consumer).visit(block)
+
+/**
  * Form control
  */
 @HtmlTagMarker

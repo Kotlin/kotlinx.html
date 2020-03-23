@@ -12,10 +12,10 @@ interface CommonAttributeGroupFacadeFlowHeadingContent : CommonAttributeGroupFac
 interface CommonAttributeGroupFacadeFlowHeadingPhrasingContent : CommonAttributeGroupFacade, CommonAttributeGroupFacadeFlowHeadingContent, FlowPhrasingContent, HtmlBlockInlineTag, HtmlBlockTag, HtmlInlineTag {
 }
 
-interface CommonAttributeGroupFacadeFlowInteractiveContent : CommonAttributeGroupFacade, HtmlBlockTag, InteractiveContent {
+interface CommonAttributeGroupFacadeFlowInteractiveContent : CommonAttributeGroupFacade, FlowInteractiveContent, HtmlBlockTag {
 }
 
-interface CommonAttributeGroupFacadeFlowInteractivePhrasingContent : CommonAttributeGroupFacade, CommonAttributeGroupFacadeFlowInteractiveContent, FlowPhrasingContent, HtmlBlockInlineTag, HtmlBlockTag, HtmlInlineTag {
+interface CommonAttributeGroupFacadeFlowInteractivePhrasingContent : CommonAttributeGroupFacade, CommonAttributeGroupFacadeFlowInteractiveContent, FlowInteractiveContent, FlowInteractivePhrasingContent, FlowPhrasingContent, HtmlBlockInlineTag, HtmlBlockTag, HtmlInlineTag {
 }
 
 interface CommonAttributeGroupFacadeFlowMetaDataContent : CommonAttributeGroupFacade, FlowMetaDataContent, HtmlBlockTag, HtmlHeadTag {
@@ -31,6 +31,12 @@ interface CommonAttributeGroupFacadeFlowPhrasingSectioningContent : CommonAttrib
 }
 
 interface CommonAttributeGroupFacadeFlowSectioningContent : CommonAttributeGroupFacade, HtmlBlockTag, SectioningContent {
+}
+
+interface FlowInteractiveContent : FlowContent, InteractiveContent {
+}
+
+interface FlowInteractivePhrasingContent : FlowInteractiveContent, FlowPhrasingContent {
 }
 
 interface FlowMetaDataContent : FlowContent, MetaDataContent {

@@ -4,7 +4,8 @@ import kotlinx.html.*
 import kotlinx.html.consumers.*
 import org.w3c.dom.events.*
 
-class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boolean, val xhtmlCompatible: Boolean) : TagConsumer<O> {
+class HTMLStreamBuilder<out O : Appendable>(val out: O, val prettyPrint: Boolean, val xhtmlCompatible: Boolean) :
+    TagConsumer<O> {
     private var level = 0
     private var ln = true
 
@@ -45,7 +46,7 @@ class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boole
         ln = false
     }
 
-    override fun onTagAttributeChange(tag : Tag, attribute: String, value: String?) {
+    override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
         throw UnsupportedOperationException("tag attribute can't be changed as it was already written to the stream. Use with DelayedConsumer to be able to modify attributes")
     }
 
@@ -136,50 +137,54 @@ class HTMLStreamBuilder<out O : Appendable>(val out : O, val prettyPrint : Boole
 private val AVERAGE_PAGE_SIZE = 32768
 
 fun createHTML(prettyPrint: Boolean = true, xhtmlCompatible: Boolean = false): TagConsumer<String> =
-        HTMLStreamBuilder(StringBuilder(AVERAGE_PAGE_SIZE), prettyPrint, xhtmlCompatible).onFinalizeMap { sb, _ -> sb.toString() }.delayed()
+    HTMLStreamBuilder(
+        StringBuilder(AVERAGE_PAGE_SIZE),
+        prettyPrint,
+        xhtmlCompatible
+    ).onFinalizeMap { sb, _ -> sb.toString() }.delayed()
 
 fun <O : Appendable> O.appendHTML(prettyPrint: Boolean = true, xhtmlCompatible: Boolean = false): TagConsumer<O> =
-        HTMLStreamBuilder(this, prettyPrint, xhtmlCompatible).delayed()
+    HTMLStreamBuilder(this, prettyPrint, xhtmlCompatible).delayed()
 
 @Deprecated("Should be resolved to the previous implementation", level = DeprecationLevel.HIDDEN)
 fun <O : Appendable> O.appendHTML(prettyPrint: Boolean = true): TagConsumer<O> =
-        appendHTML(prettyPrint, false)
+    appendHTML(prettyPrint, false)
 
 private val escapeMap = mapOf(
-        '<' to "&lt;",
-        '>' to "&gt;",
-        '&' to "&amp;",
-        '\"' to "&quot;"
+    '<' to "&lt;",
+    '>' to "&gt;",
+    '&' to "&amp;",
+    '\"' to "&quot;"
 ).let { mappings ->
     val maxCode = mappings.keys.map { it.toInt() }.max() ?: -1
 
     Array(maxCode + 1) { mappings[it.toChar()] }
 }
 
-private val letterRangeLowerCase = 'a' .. 'z'
-private val letterRangeUpperCase = 'A' .. 'Z'
-private val digitRange = '0' .. '9'
+private val letterRangeLowerCase = 'a'..'z'
+private val letterRangeUpperCase = 'A'..'Z'
+private val digitRange = '0'..'9'
 
 private fun Char._isLetter() = this in letterRangeLowerCase || this in letterRangeUpperCase
 private fun Char._isDigit() = this in digitRange
 
 private fun String.isValidXmlAttributeName() =
-        !startsWithXml()
-                && this.isNotEmpty()
-                && (this[0]._isLetter() || this[0] == '_')
-                && this.all { it._isLetter() || it._isDigit() || it in "._:-" }
+    !startsWithXml()
+            && this.isNotEmpty()
+            && (this[0]._isLetter() || this[0] == '_')
+            && this.all { it._isLetter() || it._isDigit() || it in "._:-" }
 
 private fun String.startsWithXml() = length >= 3
         && (this[0].let { it == 'x' || it == 'X' })
         && (this[1].let { it == 'm' || it == 'M' })
         && (this[2].let { it == 'l' || it == 'L' })
 
-private fun Appendable.escapeAppend(s : CharSequence) {
+private fun Appendable.escapeAppend(s: CharSequence) {
     var lastIndex = 0
     val mappings = escapeMap
     val size = mappings.size
 
-    for (idx in 0 .. s.length - 1) {
+    for (idx in 0..s.length - 1) {
         val ch = s[idx].toInt()
         if (ch < 0 || ch >= size) continue
         val escape = mappings[ch]

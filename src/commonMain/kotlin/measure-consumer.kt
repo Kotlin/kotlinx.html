@@ -4,10 +4,11 @@ import kotlinx.html.*
 import org.w3c.dom.events.*
 
 data class TimedResult<T>(val result: T, val time: Long)
-val <O: Appendable> TimedResult<O>.out: O
+
+val <O : Appendable> TimedResult<O>.out: O
     get() = result
 
-private class TimeMeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsumer<TimedResult<R>> {
+private class TimeMeasureConsumer<R>(val downstream: TagConsumer<R>) : TagConsumer<TimedResult<R>> {
     private val start = currentTimeMillis()
 
     override fun onTagStart(tag: Tag) {
@@ -49,4 +50,4 @@ private class TimeMeasureConsumer<R>(val downstream : TagConsumer<R>) : TagConsu
     override fun finalize(): TimedResult<R> = TimedResult(downstream.finalize(), currentTimeMillis() - start)
 }
 
-fun <R> TagConsumer<R>.measureTime() : TagConsumer<TimedResult<R>> = TimeMeasureConsumer(this)
+fun <R> TagConsumer<R>.measureTime(): TagConsumer<TimedResult<R>> = TimeMeasureConsumer(this)

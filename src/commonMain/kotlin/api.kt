@@ -123,7 +123,8 @@ annotation class HtmlTagMarker
 
 typealias HtmlContent = FlowOrPhrasingContent
 
-private data class SingletonStringMap(override val key: String, override val value: String) : Map<String, String>, Map.Entry<String, String> {
+private data class SingletonStringMap(override val key: String, override val value: String) : Map<String, String>,
+    Map.Entry<String, String> {
     override val entries: Set<Map.Entry<String, String>>
         get() = setOf(this)
 

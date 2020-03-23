@@ -15,10 +15,11 @@ enum class PredicateResult {
     DROP
 }
 
-private class FilterTagConsumer<T>(val downstream : TagConsumer<T>, val predicate : (Tag) -> PredicateResult) : TagConsumer<T> {
+private class FilterTagConsumer<T>(val downstream: TagConsumer<T>, val predicate: (Tag) -> PredicateResult) :
+    TagConsumer<T> {
     private var currentLevel = 0
     private var skippedLevels = HashSet<Int>()
-    private var dropLevel : Int? = null
+    private var dropLevel: Int? = null
 
     override fun onTagStart(tag: Tag) {
         currentLevel++
@@ -88,4 +89,5 @@ private class FilterTagConsumer<T>(val downstream : TagConsumer<T>, val predicat
     override fun finalize(): T = downstream.finalize()
 }
 
-fun <T> TagConsumer<T>.filter(predicate : PredicateResults.(Tag) -> PredicateResult) : TagConsumer<T> = FilterTagConsumer(this) { PredicateResults.predicate(it) }.delayed()
+fun <T> TagConsumer<T>.filter(predicate: PredicateResults.(Tag) -> PredicateResult): TagConsumer<T> =
+    FilterTagConsumer(this) { PredicateResults.predicate(it) }.delayed()
