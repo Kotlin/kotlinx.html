@@ -4,7 +4,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 /**
  * This build script supports following parameters:
- * -Prelease      - activates "release" profile (uploading to Bintray "kotlin/kotlinx.html" without publication and
+ * -Prelease      - activates "release" profile (uploading to Bintray "kotlin/kotlinx" without publication and
  *                  publication to npmjs "kotlinx-html").
  * -Pbranch-build - activates "branch-build" profile (publication to Bintray "kotlin/kotlin-dev" and to npmjs
  *                  "@kotlinx-branch-build/kotlinx-html").
@@ -52,7 +52,7 @@ publishing {
             when {
                 hasProperty("release") -> {
                     maven {
-                        url = uri("https://api.bintray.com/maven/kotlin/kotlinx.html/kotlinx.html;publish=0")
+                        url = uri("https://api.bintray.com/maven/kotlin/kotlinx/kotlinx.html;publish=1")
                         credentials {
                             username = System.getenv("BINTRAY_USERNAME")
                             password = System.getenv("BINTRAY_PASSWORD")
