@@ -260,7 +260,7 @@ tasks.register<Task>("generate") {
 }
 
 tasks.register<Copy>("jsPackagePrepare") {
-    dependsOn("jsMainClasses")
+    dependsOn("jsIrMainClasses")
     tasks["assemble"].dependsOn(this)
 
     group = "build"
