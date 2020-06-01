@@ -14,12 +14,12 @@ import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsSetupTask
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "1.4-M2-eap-82"
+    kotlin("multiplatform") version "1.4-M2-release-89"
     id("maven-publish")
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.7.1-1.4-M2-SNAPSHOT"
+version = "0.7.1-1.4-M2-release-89-SNAPSHOT"
 
 /**
  * If "release" profile is used the "-SNAPSHOT" suffix of the version is removed.
