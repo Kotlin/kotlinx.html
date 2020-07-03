@@ -106,6 +106,7 @@ repositories {
     mavenCentral()
     // It is just for release against Milestone versions
     maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
+    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
 
     when {
         /** Allow all profiles but release to use development and SNAPSHOT dependencies. */
