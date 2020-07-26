@@ -151,7 +151,7 @@ private val escapeMap = mapOf(
         '&' to "&amp;",
         '\"' to "&quot;"
 ).let { mappings ->
-    val maxCode = mappings.keys.map { it.toInt() }.max() ?: -1
+    val maxCode = mappings.keys.map { it.toInt() }.maxOrNull() ?: -1
 
     Array(maxCode + 1) { mappings[it.toChar()] }
 }
