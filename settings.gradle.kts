@@ -1,4 +1,3 @@
-enableFeaturePreview("GRADLE_METADATA")
 rootProject.name = "kotlinx-html"
 pluginManagement {
   repositories {
