@@ -1,6 +1,6 @@
 package kotlinx.html
 
-actual inline fun <T : Tag> T.visitTag(block: T.() -> Unit) {
+actual fun <T : Tag> T.visitTag(block: T.() -> Unit) {
   consumer.onTagStart(this)
   try {
     this.block()
@@ -11,7 +11,7 @@ actual inline fun <T : Tag> T.visitTag(block: T.() -> Unit) {
   }
 }
 
-actual inline fun <T : Tag, R> T.visitTagAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit): R {
+actual fun <T : Tag, R> T.visitTagAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit): R {
   if (this.consumer !== consumer) {
     throw IllegalArgumentException("Wrong exception")
   }

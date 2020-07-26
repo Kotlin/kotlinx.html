@@ -2,27 +2,27 @@ package kotlinx.html.generate
 
 import java.io.*
 
-fun generate(packg: String, todir: String, jsdir: String) {
-    fillRepository()
-    fillKdocRepositoryExtension()
-
-    File(todir).mkdirs()
-    File(jsdir).mkdirs()
-
-    FileOutputStream("$todir/gen-attr-traits.kt").writer().use {
-        it.with {
-            packg(packg)
-            emptyLine()
-            import("kotlinx.html.*")
-            import("kotlinx.html.impl.*")
-            emptyLine()
-
-            doNotEditWarning()
-            emptyLine()
-            emptyLine()
-
-            Repository.attributeFacades.values.forEach {
-                facade(it)
+fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
+  fillRepository()
+  fillKdocRepositoryExtension()
+  
+  File(todir).mkdirs()
+  File(jsdir).mkdirs()
+  
+  FileOutputStream("$todir/gen-attr-traits.kt").writer().use {
+    it.with {
+      packg(packg)
+      emptyLine()
+      import("kotlinx.html.*")
+      import("kotlinx.html.impl.*")
+      emptyLine()
+      
+      doNotEditWarning()
+      emptyLine()
+      emptyLine()
+      
+      Repository.attributeFacades.values.forEach {
+        facade(it)
                 emptyLine()
             }
         }
@@ -96,39 +96,37 @@ fun generate(packg: String, todir: String, jsdir: String) {
                 if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && !contentlessTag) {
                     consumerBuilderJS(it, false)
                 } else if (contentlessTag) {
-                    deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
-                    suppress("DEPRECATION")
-                    consumerBuilderJS(it, false)
+                  deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+                  suppress("DEPRECATION")
+                  consumerBuilderJS(it, false)
                 }
-                consumerBuilderJS(it, true)
-                emptyLine()
+              consumerBuilderJS(it, true)
+              emptyLine()
             }
         }
     }
-
-    FileOutputStream("$jsdir/gen-event-attrs-js.kt").writer(Charsets.UTF_8).use {
-        it.with {
-            packg(packg + ".js")
-            emptyLine()
-            import("kotlinx.html.*")
-            import("kotlinx.html.attributes.*")
-            import("kotlinx.html.dom.*")
-            import("org.w3c.dom.events.*")
-            emptyLine()
-
-            doNotEditWarning()
-            emptyLine()
-            emptyLine()
-
-            Repository.attributeFacades.filter { it.value.attributeNames.any { it.startsWith("on") } }.forEach { facade ->
-                facade.value.attributes.filter { it.name.startsWith("on") }.forEach {
-                    eventProperty(facade.value.name.capitalize() + "Facade", it)
-                }
-            }
+  
+  FileOutputStream("$browserdir/gen-event-attrs-js.kt").writer(Charsets.UTF_8).use {
+    it.with {
+      packg(packg + ".js")
+      emptyLine()
+      import("kotlinx.html.*")
+      import("org.w3c.dom.events.*")
+      emptyLine()
+      
+      doNotEditWarning()
+      emptyLine()
+      emptyLine()
+      
+      Repository.attributeFacades.filter { it.value.attributeNames.any { it.startsWith("on") } }.forEach { facade ->
+        facade.value.attributes.filter { it.name.startsWith("on") }.forEach {
+          eventProperty(facade.value.name.capitalize() + "Facade", it)
         }
+      }
     }
-
-    FileOutputStream("$todir/gen-enums.kt").writer(Charsets.UTF_8).use {
+  }
+  
+  FileOutputStream("$todir/gen-enums.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()
