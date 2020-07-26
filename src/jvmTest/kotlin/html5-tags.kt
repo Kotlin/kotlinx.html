@@ -6,47 +6,50 @@ import kotlin.test.*
 import org.junit.Test as test
 
 class Html5TagsTest {
-    @Test
-    fun able_to_create_main_tag() {
-        val tree = createHTMLDocument().html {
-            body {
-                main(classes = "main-test") {
-                    id = "test-node"
-
-                    +"content"
-                }
-            }
+  @Test
+  fun able_to_create_main_tag() {
+    val tree = createHTMLDocument().html {
+      body {
+        main(classes = "main-test") {
+          id = "test-node"
+          
+          +"content"
         }
-
-        print(tree.serialize(true).trim().replace("\r\n", "\n"))
-
-        assertEquals("<!DOCTYPE html>\n<html><body><main class=\"main-test\" id=\"test-node\">content</main></body></html>", tree.serialize(false))
-        assertEquals("""
+      }
+    }
+    
+    print(tree.serialize(true).trim().replace("\r\n", "\n"))
+    
+    assertEquals("<!DOCTYPE html>\n<html><body><main class=\"main-test\" id=\"test-node\">content</main></body></html>",
+      tree.serialize(false))
+    assertEquals("""
                 <!DOCTYPE html>
                 <html>
                   <body>
                     <main class="main-test" id="test-node">content</main>
                   </body>
                 </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n"))
-    }
-
-    @test fun `able to create complex tree and render it with pretty print`() {
-        val tree = createHTMLDocument().html {
-            body {
-                h1 {
-                    +"header"
-                }
-                div {
-                    +"content"
-                    span {
-                        +"yo"
-                    }
-                }
-            }
+  }
+  
+  @test
+  fun `able to create complex tree and render it with pretty print`() {
+    val tree = createHTMLDocument().html {
+      body {
+        h1 {
+          +"header"
         }
-
-        assertEquals("<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>", tree.serialize(false))
-        assertEquals("""
+        div {
+          +"content"
+          span {
+            +"yo"
+          }
+        }
+      }
+    }
+    
+    assertEquals("<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>",
+      tree.serialize(false))
+    assertEquals("""
                 <!DOCTYPE html>
                 <html>
                   <body>
@@ -56,5 +59,5 @@ class Html5TagsTest {
                     </div>
                   </body>
                 </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n"))
-    }
+  }
 }

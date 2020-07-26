@@ -163,18 +163,23 @@ kotlin {
 
 kotlin {
   sourceSets {
-    commonMain {
+    val commonMain by getting {
       dependencies {
         api(kotlin("stdlib-common"))
       }
     }
-    
+  
+    val browserMain by creating {
+      dependsOn(commonMain)
+    }
+  
     val jsMain by getting {
+      dependsOn(browserMain)
       dependencies {
         api(kotlin("stdlib-js"))
       }
     }
-    
+  
     val jsTest by getting {
       dependencies {
         implementation(kotlin("test-js"))
@@ -183,6 +188,7 @@ kotlin {
     }
     
     val jvmMain by getting {
+      dependsOn(commonMain)
       dependencies {
         api(kotlin("stdlib-jdk8"))
       }
@@ -198,6 +204,7 @@ kotlin {
     }
     
     val wasm32Main by getting {
+      dependsOn(browserMain)
       wasm32().compilations["main"].apply {
         kotlinOptions.freeCompilerArgs = resources.files.flatMap {
           listOf("-include-binary", it.invariantSeparatorsPath)
@@ -219,15 +226,23 @@ tasks.withType<Jar> {
   }
 }
 
+
+tasks {
+  val wrapper by getting(Wrapper::class) {
+    gradleVersion = "6.5"
+  }
+}
+
 tasks.register<Task>("generate") {
   group = "source-generation"
   description = "Generate tag-handling code using tags description."
   
   doLast {
     kotlinx.html.generate.generate(
-      "kotlinx.html",
-      "src/commonMain/kotlin/generated",
-      "src/jsMain/kotlin/generated"
+      packg = "kotlinx.html",
+      todir = "src/commonMain/kotlin/generated",
+      browserdir = "src/browserMain/kotlin/generated",
+      jsdir = "src/jsMain/kotlin/generated"
     )
   }
 }
