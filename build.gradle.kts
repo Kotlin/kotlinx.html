@@ -1,7 +1,7 @@
-import Build_gradle.*
-import kotlinx.html.js.*
-import org.apache.tools.ant.taskdefs.condition.*
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.*
+import Build_gradle.MavenPomFile
+import kotlinx.html.js.packageJson
+import org.apache.tools.ant.taskdefs.condition.Os
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsSetupTask
 
 /**
  * This build script supports following parameters:
@@ -14,7 +14,7 @@ import org.jetbrains.kotlin.gradle.targets.js.nodejs.*
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-  kotlin("multiplatform") version "1.4-M3"
+  kotlin("multiplatform") version "1.4.0-rc"
   id("maven-publish")
 }
 
@@ -104,11 +104,10 @@ publishing {
 repositories {
   jcenter()
   mavenCentral()
-  maven("https://dl.bintray.com/kotlin/kotlin-eap")
   when {
     /** Allow all profiles but release to use development and SNAPSHOT dependencies. */
     !hasProperty("release") -> {
-      maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
+      maven("https://dl.bintray.com/kotlin/kotlin-dev")
       maven {
         url = uri("https://oss.sonatype.org/content/repositories/snapshots")
         mavenContent {
@@ -165,7 +164,6 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api(kotlin("stdlib-common"))
       }
     }
   
@@ -176,21 +174,19 @@ kotlin {
     val jsMain by getting {
       dependsOn(browserMain)
       dependencies {
-        api(kotlin("stdlib-js"))
       }
     }
   
     val jsTest by getting {
       dependencies {
         implementation(kotlin("test-js"))
-        api(npm("puppeteer", "*"))
+        implementation(npm("puppeteer", "*"))
       }
     }
     
     val jvmMain by getting {
       dependsOn(commonMain)
       dependencies {
-        api(kotlin("stdlib-jdk8"))
       }
     }
     
