@@ -121,7 +121,7 @@ repositories {
 kotlin {
   jvm {
     compilations["main"].kotlinOptions.apply {
-      freeCompilerArgs += "-Xdump-declarations-to=${buildDir}/declarations.json"
+      freeCompilerArgs = freeCompilerArgs + "-Xdump-declarations-to=${buildDir}/declarations.json"
     }
   }
   
