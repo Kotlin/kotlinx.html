@@ -10,7 +10,6 @@ function utf8EncodeChars(string) {
 konan.libraries.push({
   kotlinx__currentTimeMillis: function(arena) {
     const timestamp = new Date().getTime();
-    console.log(timestamp);
     return toArena(arena, utf8EncodeChars(timestamp));
   },
 });
