@@ -53,7 +53,7 @@ publishing {
       when {
         hasProperty("release") -> {
           maven {
-            url = uri("https://api.bintray.com/maven/kotlin/kotlinx/kotlinx.html;publish=1")
+            url = uri("https://api.bintray.com/maven/kotlin/kotlinx/kotlinx.html/;publish=1")
             credentials {
               username = System.getenv("BINTRAY_USERNAME")
               password = System.getenv("BINTRAY_PASSWORD")
