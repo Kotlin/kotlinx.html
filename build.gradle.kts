@@ -123,6 +123,18 @@ kotlin {
     compilations["main"].kotlinOptions.apply {
       freeCompilerArgs = freeCompilerArgs + "-Xdump-declarations-to=${buildDir}/declarations.json"
     }
+    mavenPublication {
+      groupId = group as String
+      pom.config { name by "${project.name}-jvm" }
+    
+      javadocJar("jvmJavadocJar")
+      jar("jvmTestSourcesJar") {
+        archiveClassifier by "test-sources"
+        with(sourceSets["jvmTest"]) {
+          from(kotlin, resources)
+        }
+      }
+    }
   }
   
   js {
@@ -146,17 +158,51 @@ kotlin {
       sourceMap = true
       sourceMapEmbedSources = "always"
     }
-    
+  
     compilations["test"].kotlinOptions.apply {
       moduleKind = "umd"
       metaInfo = true
       sourceMap = true
     }
+  
+    mavenPublication {
+      groupId = group as String
+      pom.config { name by "${project.name}-js" }
+    
+      javadocJar("jsJavadocJar")
+      jar("jsTestSourcesJar") {
+        archiveClassifier by "test-sources"
+        with(sourceSets["jsTest"]) {
+          from(kotlin, resources)
+        }
+      }
+    }
   }
   
-  wasm32()
+  wasm32 {
+    mavenPublication {
+      groupId = group as String
+      artifactId = "${project.name}-wasm32"
+      pom.config { name by "${project.name}-wasm32" }
+      
+      javadocJar("wasm32JavadocJar")
+      jar("wasm32TestSourcesJar") {
+        archiveClassifier by "test-sources"
+      }
+    }
+  }
   
   metadata {
+    mavenPublication {
+      groupId = group as String
+      artifactId = "${project.name}-common"
+      pom.config { name by "${project.name}-common" }
+      
+      javadocJar("commonJavadocJar")
+      jar("commonTestSourcesJar") {
+        archiveClassifier by "test-sources"
+      }
+    }
   }
 }
 
