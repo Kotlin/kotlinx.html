@@ -1,7 +1,3 @@
-package org.w3c.dom.events
+package kotlinx.html
 
-actual external interface Event {
-  actual fun stopPropagation()
-  actual fun preventDefault()
-  actual fun initEvent(eventTypeArg: String, canBubbleArg: Boolean, cancelableArg: Boolean)
-}
+actual typealias Event = org.w3c.dom.events.Event

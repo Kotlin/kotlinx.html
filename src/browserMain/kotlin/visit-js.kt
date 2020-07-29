@@ -15,7 +15,7 @@ actual fun <T : Tag, R> T.visitTagAndFinalize(consumer: TagConsumer<R>, block: T
   if (this.consumer !== consumer) {
     throw IllegalArgumentException("Wrong exception")
   }
-  
-  visitTag(block)
+
+    visitTag(block)
   return consumer.finalize()
 }

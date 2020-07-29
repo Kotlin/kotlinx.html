@@ -1,12 +1,7 @@
-package org.w3c.dom.events
+package kotlinx.html
 
-expect interface Event {
-  fun stopPropagation()
+expect open class Event {
   fun preventDefault()
-  
-  fun initEvent(
-    eventTypeArg: String,
-    canBubbleArg: Boolean,
-    cancelableArg: Boolean,
-  )
+  fun initEvent(type: String, bubbles: Boolean, cancelable: Boolean)
+  fun stopPropagation()
 }

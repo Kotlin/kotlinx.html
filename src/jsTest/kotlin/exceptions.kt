@@ -1,22 +1,24 @@
-import kotlinx.browser.*
-import kotlinx.html.*
-import kotlinx.html.consumers.*
-import kotlinx.html.dom.*
-import kotlinx.html.js.*
-import kotlin.test.*
+import kotlinx.browser.document
+import kotlinx.html.consumers.catch
+import kotlinx.html.dom.append
+import kotlinx.html.h1
+import kotlinx.html.h2
+import kotlinx.html.js.div
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class TestExceptions {
-  
+
   @Test
   fun `exception_handler_should_add_output`() {
-    
+
     val container = document.body!!.append.catch { err ->
-      
-      div {
+
+    div {
         +"ERROR: "
         +err.message!!
       }
-      
+
     }.div {
       h1 {
         +" text "
@@ -26,12 +28,13 @@ class TestExceptions {
         +" should be present "
       }
     }
-    
+
     assertEquals(
       """<h1> text <div>ERROR: testing errors</div></h1><h2> should be present </h2>""",
-      container.innerHTML.trimTagSpace())
+      container.innerHTML.trimTagSpace()
+    )
   }
-  
+
   fun String.trimTagSpace() = replace(">\\s+<".toRegex(), "><")
 }
 

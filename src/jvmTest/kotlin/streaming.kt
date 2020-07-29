@@ -1,10 +1,14 @@
 package kotlinx.html.tests
 
 import kotlinx.html.*
-import kotlinx.html.consumers.*
-import kotlinx.html.stream.*
-import java.io.*
-import kotlin.test.*
+import kotlinx.html.consumers.filter
+import kotlinx.html.consumers.measureTime
+import kotlinx.html.stream.appendHTML
+import kotlinx.html.stream.createHTML
+import java.io.StringWriter
+import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertTrue
 import org.junit.Test as test
 
 class TestStreaming {
@@ -20,9 +24,10 @@ class TestStreaming {
             }
           }
         }
-      }.toString())
+      }.toString()
+    )
   }
-  
+
   @test
   fun `we should be able append multiple htmls`() {
     assertEquals(
@@ -35,12 +40,13 @@ class TestStreaming {
             }
           }
         }
-    
+
         appendHTML().html {
         }
-      }.toString())
+      }.toString()
+    )
   }
-  
+
   @test(expected = IllegalStateException::class)
   fun `we shouldn't be able to change attributes of other tag`() {
     StringBuilder().apply {
@@ -53,7 +59,7 @@ class TestStreaming {
       }
     }
   }
-  
+
   @test
   fun `we should be able to write to different appendable`() {
     val sw = StringWriter()
@@ -62,16 +68,16 @@ class TestStreaming {
         p { +"Kotlin" }
       }
     }
-    
+
     val sw2: StringWriter = result  // note: this is to ensure result type is valid at compile time
     assertEquals("<html><body><p>Kotlin</p></body></html>", sw.toString())
     assertEquals("<html><body><p>Kotlin</p></body></html>", sw2.toString())
   }
-  
+
   @test
   fun `we should be able filter tags`() {
     val sw = StringWriter()
-    
+
     val result = sw.appendHTML(false).filter {
       when (it.tagName) {
         "div" -> DROP
@@ -104,12 +110,12 @@ class TestStreaming {
         }
       }
     }
-    
+
     val sw2: StringWriter = result // note: this is to ensure result type is valid at compile time
-    
+
     assertEquals("<html><body><p>[footer.p]<a>[footer.p.span.a]</a></p></body></html>", sw2.toString())
   }
-  
+
   @test
   fun `we should be able to handle many requests`() {
     for (i in 1..1000000) {
@@ -123,10 +129,10 @@ class TestStreaming {
           }
           div {
             classes = setOf("root")
-            
+
             div {
               classes = setOf("menu")
-              
+
               ul {
                 li { +"item1" }
                 li { +"item2" }
@@ -141,20 +147,24 @@ class TestStreaming {
       }
     }
   }
-  
+
   @test
   fun `we should be able to make extension functions with DSL`() {
-    assertEquals("<html><body><div class=\"block deprecated\"><a href=\"http://kotlinlang.org\" target=\"_blank\" custom=\"custom\">test me</a></div></body></html>",
-      StringBuilder().appendHTML(false).buildMe().toString())
+    assertEquals(
+      "<html><body><div class=\"block deprecated\"><a href=\"http://kotlinlang.org\" target=\"_blank\" custom=\"custom\">test me</a></div></body></html>",
+      StringBuilder().appendHTML(false).buildMe().toString()
+    )
   }
-  
+
   @test
   fun `empty tag should have attributes`() {
     assertEquals("<div id=\"d\"></div>", StringBuilder().appendHTML(false).div { id = "d" }.toString())
-    assertEquals("<div id=\"d\"><div id=\"d2\"></div></div>",
-      StringBuilder().appendHTML(false).div { id = "d"; div { id = "d2" } }.toString())
+    assertEquals(
+      "<div id=\"d\"><div id=\"d2\"></div></div>",
+      StringBuilder().appendHTML(false).div { id = "d"; div { id = "d2" } }.toString()
+    )
   }
-  
+
   @test
   fun `test attributes order`() {
     val order1 = StringBuilder().appendHTML(false).html {
@@ -165,7 +175,7 @@ class TestStreaming {
         }
       }
     }.toString()
-    
+
     val order2 = StringBuilder().appendHTML(false).html {
       body {
         div {
@@ -174,10 +184,10 @@ class TestStreaming {
         }
       }
     }.toString()
-    
+
     assertNotEquals(order1, order2)
   }
-  
+
   @test
   fun `multiple attributes and custom attribute present`() {
     assertEquals("<div id=\"d1\" custom=\"c1\" class=\"c1 c2\"></div>", StringBuilder().appendHTML(false).div {
@@ -186,12 +196,12 @@ class TestStreaming {
       classes = linkedSetOf("c1", "c2")
     }.toString())
   }
-  
+
   @test
   fun `test tags order`() {
     assertEquals("<div><p><span></span></p></div>", StringBuilder().appendHTML(false).div { p { span {} } }.toString())
   }
-  
+
   @test
   fun `test generated enum could be used`() {
     assertEquals("<link rel=\"Stylesheet\" href=\"/path\">", StringBuilder().appendHTML(false).link {
@@ -199,14 +209,14 @@ class TestStreaming {
       href = "/path"
     }.toString())
   }
-  
+
   @test
   fun `anchor with href syntax`() {
     assertEquals("<a href=\"a.html\">text</a>", StringBuilder().appendHTML(false).a("a.html") {
       +"text"
     }.toString())
   }
-  
+
   @test
   fun `multiple content`() {
     assertEquals("<span>AAAbbb...</span>", StringBuilder().appendHTML(false).span {
@@ -215,7 +225,7 @@ class TestStreaming {
       +".."
     }.toString())
   }
-  
+
   @test
   fun `content with entity`() {
     assertEquals("<span>before&amp;after</span>", StringBuilder().appendHTML(false).span {
@@ -224,14 +234,15 @@ class TestStreaming {
       +"after"
     }.toString())
   }
-  
+
   @test
   fun `test form with button`() {
-    assertEquals("<form action=\"/someurl\">" +
-        "<input type=\"checkbox\" name=\"cb1\">var1" +
-        "<input type=\"checkbox\" name=\"cb2\" disabled=\"disabled\">var2" +
-        "<input type=\"submit\" value=\"Go!\">" +
-        "</form>",
+    assertEquals(
+      "<form action=\"/someurl\">" +
+              "<input type=\"checkbox\" name=\"cb1\">var1" +
+              "<input type=\"checkbox\" name=\"cb2\" disabled=\"disabled\">var2" +
+              "<input type=\"submit\" value=\"Go!\">" +
+              "</form>",
       StringBuilder().appendHTML(false).form("/someurl") {
         checkBoxInput(name = "cb1") {
           +"var1"
@@ -240,23 +251,24 @@ class TestStreaming {
           disabled = true
           +"var2"
         }
-    
+
         submitInput {
           value = "Go!"
         }
-      }.toString())
+      }.toString()
+    )
   }
-  
+
   @test
   fun `test measure consumer with loop inside`() {
     val count = 1000
     val builder = StringBuilder(26 * (count + 1)).appendHTML(false)
-    
+
     var minStart = 0L
     var maxStart = 0L
     var minEnd = 0L
     var maxEnd = 0L
-    
+
     minStart = currentTimeMillis()
     val rs = builder.measureTime().div {
       maxStart = currentTimeMillis()
@@ -268,14 +280,14 @@ class TestStreaming {
       minEnd = currentTimeMillis()
     }
     maxEnd = currentTimeMillis()
-    
+
     val maxTime = maxEnd - minStart
     val minTime = minEnd - maxStart
-    
+
     val errorMessage = "Expected time should be between $minTime and $maxTime ms, but actual is ${rs.time} ms"
     assertTrue(errorMessage) { rs.time >= minTime }
     assertTrue(errorMessage) { rs.time <= maxTime }
-    
+
     val expected = StringBuilder().apply {
       append("<div>")
       for (i in 1..count) {
@@ -286,37 +298,39 @@ class TestStreaming {
       }
       append("</div>")
     }
-    
+
     assertEquals(expected.toString(), rs.result.toString())
   }
-  
+
   @test
   fun `escape bad chars`() {
-    assertEquals("<div id=\"bad&quot;\" custom=\"bad&amp;&quot;\" onevent=\"fire('evt')\">" +
-        "content&lt;script&gt;" +
-        "</div>",
+    assertEquals(
+      "<div id=\"bad&quot;\" custom=\"bad&amp;&quot;\" onevent=\"fire('evt')\">" +
+              "content&lt;script&gt;" +
+              "</div>",
       StringBuilder().appendHTML(false).div {
         id = "bad\""
         attributes["custom"] = "bad&\""
         attributes["onevent"] = "fire('evt')"
         +"content<script>"
-      }.toString())
+      }.toString()
+    )
   }
-  
+
   @test(expected = IllegalArgumentException::class)
   fun `bad chars in attribute name`() {
     StringBuilder().appendHTML().div {
       attributes["bad'char"] = "test"
     }
   }
-  
+
   @test(expected = IllegalArgumentException::class)
   fun `bad chars 'equals' in attribute name`() {
     StringBuilder().appendHTML().div {
       attributes["bad=char"] = "test"
     }
   }
-  
+
   @test(expected = IllegalStateException::class)
   fun `attribute values couldn't be changed after tag content`() {
     createHTML().div {
@@ -324,22 +338,26 @@ class TestStreaming {
       attributes["a"] = "a"
     }
   }
-  
+
   @test
   fun `we should print empty tags with no close tag`() {
-    assertEquals("<img src=\"my.jpg\">", StringBuilder().appendHTML(
-      prettyPrint = false
-    ).img(src = "my.jpg").toString())
+    assertEquals(
+      "<img src=\"my.jpg\">", StringBuilder().appendHTML(
+        prettyPrint = false
+      ).img(src = "my.jpg").toString()
+    )
   }
-  
+
   @test
   fun `we should print empty tags with close tag if xhtmlCompatible flag is set to true`() {
-    assertEquals("<img src=\"my.jpg\"/>", StringBuilder().appendHTML(
-      prettyPrint = false,
-      xhtmlCompatible = true
-    ).img(src = "my.jpg").toString())
+    assertEquals(
+      "<img src=\"my.jpg\"/>", StringBuilder().appendHTML(
+        prettyPrint = false,
+        xhtmlCompatible = true
+      ).img(src = "my.jpg").toString()
+    )
   }
-  
+
   @test
   fun `pretty print should take into account inline tags`() {
     val text = StringBuilder().apply {
@@ -350,18 +368,19 @@ class TestStreaming {
         }
       }
     }.toString()
-    
+
     assertEquals("<div>content<span>y</span></div>", text.trim())
   }
-  
+
   @test
   fun `pretty print should work`() {
-    assertEquals("<div>\n" +
-        "  <div>content</div>\n" +
-        "  <div>\n" +
-        "    <div></div>\n" +
-        "  </div>\n" +
-        "</div>",
+    assertEquals(
+      "<div>\n" +
+              "  <div>content</div>\n" +
+              "  <div>\n" +
+              "    <div></div>\n" +
+              "  </div>\n" +
+              "</div>",
       StringBuilder().appendHTML(true).div {
         div {
           +"content"
@@ -370,23 +389,24 @@ class TestStreaming {
           div {
           }
         }
-      }.toString().trim())
+      }.toString().trim()
+    )
   }
-  
+
   @test
   fun `ticker attribute modification should work properly`() {
     assertEquals("<input type=\"checkbox\" checked=\"checked\">", createHTML(false).input {
       type = InputType.checkBox
       checked = true
     })
-    
+
     assertEquals("<input type=\"checkbox\">", createHTML(false).input {
       type = InputType.checkBox
       checked = true
       checked = false
     })
   }
-  
+
   @test
   fun `meta tag should have name and content suggested attributes`() {
     assertEquals("<meta name=\"name\" content=\"content\">", createHTML(false).meta("name", "content"))
@@ -394,7 +414,7 @@ class TestStreaming {
       meta("name", "content")
     })
   }
-  
+
   @test
   fun `we should be able to create div with no body`() {
     assertEquals("<div></div>", createHTML(false).div())
@@ -402,7 +422,7 @@ class TestStreaming {
       div()
     })
   }
-  
+
   @test
   fun `meta tag example`() {
     createHTML(true).html {
@@ -417,7 +437,7 @@ class TestStreaming {
       }
     }
   }
-  
+
   @test
   fun `svg should have namespace`() {
     val t = createHTML(false).html {
@@ -426,10 +446,10 @@ class TestStreaming {
         }
       }
     }
-    
+
     assertEquals("<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>", t)
   }
-  
+
   @test
   fun `pretty print`() {
     val x = StringBuilder().appendHTML().html {
@@ -444,8 +464,9 @@ class TestStreaming {
         }
       }
     }.toString()
-    
-    assertEquals("""
+
+    assertEquals(
+      """
             <html>
               <body>
                 <article>
@@ -453,36 +474,41 @@ class TestStreaming {
             <a>aaa</a><span></span></article>
               </body>
             </html>
-            """.trimIndent(), x.trimEnd())
+            """.trimIndent(), x.trimEnd()
+    )
   }
-  
+
   @test
   fun testHtmlWithNamespace() {
     val x = createHTML().html(namespace = "test") {
       body {
       }
     }
-    
-    assertEquals("""
+
+    assertEquals(
+      """
             <html xmlns="test">
               <body></body>
             </html>
-        """.trimIndent(), x.trimEnd())
+        """.trimIndent(), x.trimEnd()
+    )
   }
-  
+
   @test
   fun testComment() {
     val x = createHTML().html {
       comment("commented")
       body { }
     }
-    
-    assertEquals("""
+
+    assertEquals(
+      """
             <html>
               <!--commented-->
               <body></body>
             </html>
-        """.trimIndent(), x.trimEnd())
+        """.trimIndent(), x.trimEnd()
+    )
   }
 }
 
@@ -498,8 +524,8 @@ fun FlowContent.buildMe2() =
 
 object NullAppendable : Appendable {
   override fun append(csq: CharSequence?): Appendable = this
-  
+
   override fun append(csq: CharSequence?, start: Int, end: Int): Appendable = this
-  
+
   override fun append(c: Char): Appendable = this
 }

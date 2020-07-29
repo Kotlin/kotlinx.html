@@ -137,7 +137,7 @@ kotlin {
     }
   }
   
-  js {
+  js(BOTH) {
     browser {
       testTask {
         useKarma {
@@ -146,7 +146,7 @@ kotlin {
         }
       }
     }
-    
+
     compilations["main"].packageJson {
       main = "kotlin/kotlinx-html-js.js"
       name = "kotlinx-html-js"

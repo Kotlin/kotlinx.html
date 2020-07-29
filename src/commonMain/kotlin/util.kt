@@ -3,8 +3,8 @@ package kotlinx.html
 fun HEAD.styleLink(url: String): Unit = link {
   rel = LinkRel.stylesheet
   type = LinkType.textCss
-  
-  href = url
+
+    href = url
 }
 
 val Tag.br: Unit

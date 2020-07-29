@@ -1,44 +1,50 @@
 package kotlinx.html.dom
 
 import kotlinx.html.*
-import kotlinx.html.consumers.*
-import org.w3c.dom.*
-import org.w3c.dom.events.*
-import org.xml.sax.*
-import java.io.*
+import kotlinx.html.consumers.onFinalize
+import kotlinx.html.consumers.onFinalizeMap
+import org.w3c.dom.Document
+import org.w3c.dom.Element
+import org.w3c.dom.Node
+import org.xml.sax.InputSource
+import java.io.StringReader
+import java.io.StringWriter
+import java.io.Writer
 import java.util.*
-import javax.xml.parsers.*
-import javax.xml.transform.*
-import javax.xml.transform.dom.*
-import javax.xml.transform.stream.*
+import javax.xml.parsers.DocumentBuilder
+import javax.xml.parsers.DocumentBuilderFactory
+import javax.xml.transform.OutputKeys
+import javax.xml.transform.TransformerFactory
+import javax.xml.transform.dom.DOMSource
+import javax.xml.transform.stream.StreamResult
 
 class HTMLDOMBuilder(val document: Document) : TagConsumer<Element> {
-  private val path = arrayListOf<Element>()
+  private val path = mutableListOf<Element>()
   private var lastLeaved: Element? = null
   private val documentBuilder: DocumentBuilder by lazy { DocumentBuilderFactory.newInstance().newDocumentBuilder() }
-  
+
   override fun onTagStart(tag: Tag) {
     val element = when {
       tag.namespace != null -> document.createElementNS(tag.namespace!!, tag.tagName)
       else -> document.createElement(tag.tagName)
     }
-    
+
     tag.attributesEntries.forEach {
       element.setAttribute(it.key, it.value)
     }
-    
+
     if (path.isNotEmpty()) {
       path.last().appendChild(element)
     }
-    
+
     path.add(element)
   }
-  
+
   override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
     if (path.isEmpty()) {
       throw IllegalStateException("No current tag")
     }
-    
+
     path.last().let { node ->
       if (value == null) {
         node.removeAttribute(attribute)
@@ -47,68 +53,68 @@ class HTMLDOMBuilder(val document: Document) : TagConsumer<Element> {
       }
     }
   }
-  
+
   override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {
     throw UnsupportedOperationException("You can't assign lambda event handler on JVM")
   }
-  
+
   override fun onTagEnd(tag: Tag) {
     if (path.isEmpty() || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
       throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
     }
-    
+
     val element = path.removeAt(path.lastIndex)
     element.setIdAttributeName()
     lastLeaved = element
   }
-  
+
   override fun onTagContent(content: CharSequence) {
     if (path.isEmpty()) {
       throw IllegalStateException("No current DOM node")
     }
-    
+
     path.last().appendChild(document.createTextNode(content.toString()))
   }
-  
+
   override fun onTagComment(content: CharSequence) {
     if (path.isEmpty()) {
       throw IllegalStateException("No current DOM node")
     }
-    
+
     path.last().appendChild(document.createComment(content.toString()))
   }
-  
+
   override fun onTagContentEntity(entity: Entities) {
     if (path.isEmpty()) {
       throw IllegalStateException("No current DOM node")
     }
-    
+
     path.last().appendChild(document.createEntityReference(entity.name))
   }
-  
+
   override fun finalize() = lastLeaved ?: throw IllegalStateException("No tags were emitted")
-  
+
   override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
     UnsafeImpl.block()
   }
-  
+
   private val UnsafeImpl = object : Unsafe {
     override operator fun String.unaryPlus() {
       val element = documentBuilder
-        .parse(InputSource(StringReader("<unsafeRoot>" + this + "</unsafeRoot>")))
-        .documentElement
-      
+          .parse(InputSource(StringReader("<unsafeRoot>" + this + "</unsafeRoot>")))
+          .documentElement
+
       val importNode = document.importNode(element, true)
-      
+
       check(importNode.nodeName == "unsafeRoot") { "the document factory hasn't created an unsafeRoot node" }
-      
+
       val last = path.last()
       while (importNode.hasChildNodes()) {
         last.appendChild(importNode.removeChild(importNode.firstChild))
       }
     }
   }
-  
+
   private fun Element.setIdAttributeName() {
     if (hasAttribute("id")) {
       setIdAttribute("id", true)
@@ -126,7 +132,7 @@ fun Node.append(block: TagConsumer<Element>.() -> Unit): List<Element> = ArrayLi
       appendChild(it); result.add(it)
     }
   }.block()
-  
+
   result
 }
 
@@ -137,7 +143,7 @@ fun Node.prepend(block: TagConsumer<Element>.() -> Unit): List<Element> = ArrayL
       result.add(it)
     }
   }.block()
-  
+
   result
 }
 
@@ -162,19 +168,19 @@ private val Node.ownerDocumentExt: Document
   }
 
 fun createHTMLDocument(): TagConsumer<Document> =
-  DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
-    HTMLDOMBuilder(document).onFinalizeMap { it, partial ->
-      if (!partial) {
-        document.appendChild(it)
-      }; document
+    DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
+      HTMLDOMBuilder(document).onFinalizeMap { it, partial ->
+        if (!partial) {
+          document.appendChild(it)
+        }; document
+      }
     }
-  }
 
 inline fun document(block: Document.() -> Unit): Document =
-  DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
-    document.block()
-    document
-  }
+    DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
+      document.block()
+      document
+    }
 
 fun Writer.write(document: Document, prettyPrint: Boolean = true): Writer {
   write("<!DOCTYPE html>\n")
@@ -187,12 +193,12 @@ fun Writer.write(element: Element, prettyPrint: Boolean = true): Writer {
   transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes")
   transformer.setOutputProperty(OutputKeys.METHOD, "html")
   transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8")
-  
+
   if (prettyPrint) {
     transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2")
     transformer.setOutputProperty(OutputKeys.INDENT, "yes")
   }
-  
+
   transformer.transform(DOMSource(element), StreamResult(this))
   return this
 }

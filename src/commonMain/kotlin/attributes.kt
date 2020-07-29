@@ -1,6 +1,7 @@
 package kotlinx.html.attributes
 
-import kotlinx.html.*
+import kotlinx.html.AttributeEnum
+import kotlinx.html.Tag
 
 interface AttributeEncoder<T> {
   fun encode(attributeName: String, value: T): String
@@ -14,7 +15,7 @@ abstract class Attribute<T>(val encoder: AttributeEncoder<T>) {
     thisRef.attributes[attributeName]?.let {
       encoder.decode(attributeName, it)
     } ?: encoder.empty(attributeName, thisRef)
-  
+
   open operator fun set(thisRef: Tag, attributeName: String, value: T) {
     thisRef.attributes.put(attributeName, encoder.encode(attributeName, value))
   }

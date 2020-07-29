@@ -29,11 +29,11 @@ typealias VAR_ = VAR
 
 @Deprecated("", ReplaceWith("htmlObject(classes, block)", "kotlinx.html.htmlObject"))
 fun <T, C : TagConsumer<T>> C.object_(classes: String? = null, block: OBJECT.() -> Unit = {}): T =
-  htmlObject(classes, block)
+    htmlObject(classes, block)
 
 @Deprecated("", ReplaceWith("htmlVar(classes, block)", "kotlinx.html.htmlVar"))
 fun <T, C : TagConsumer<T>> C.var_(classes: String? = null, block: VAR.() -> Unit = {}): T =
-  htmlVar(classes, block)
+    htmlVar(classes, block)
 
 @Deprecated("Use htmlVar instead", ReplaceWith("htmlVar(classes, block)", "kotlinx.html.htmlVar"))
 fun FlowOrPhrasingContent.var_(classes: String? = null, block: VAR.() -> Unit) {
@@ -42,7 +42,7 @@ fun FlowOrPhrasingContent.var_(classes: String? = null, block: VAR.() -> Unit) {
 
 @Deprecated("Use htmlObject instead", ReplaceWith("htmlObject(classes, block)", "kotlinx.html.htmlObject"))
 fun FlowOrInteractiveOrPhrasingContent.object_(classes: String? = null, block: OBJECT.() -> Unit = {}) =
-  htmlObject(classes, block)
+    htmlObject(classes, block)
 
 @Deprecated("use htmlFor instead", ReplaceWith("htmlFor"))
 var LABEL.for_: String

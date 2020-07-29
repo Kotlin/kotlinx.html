@@ -1,9 +1,9 @@
 package kotlinx.html.tests
 
 import kotlinx.html.*
-import kotlinx.html.consumers.*
+import kotlinx.html.consumers.filter
 import kotlinx.html.dom.*
-import kotlin.test.*
+import kotlin.test.assertEquals
 import org.junit.Test as test
 
 class TestDOMTrees {
@@ -13,10 +13,10 @@ class TestDOMTrees {
       id = "test-node"
       +"content"
     }
-    
+
     assertEquals("div", tree.getElementById("test-node")?.tagName?.toLowerCase())
   }
-  
+
   @test
   fun `able to create complex tree and render it with pretty print`() {
     val tree = createHTMLDocument().html {
@@ -32,10 +32,13 @@ class TestDOMTrees {
         }
       }
     }
-    
-    assertEquals("<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>",
-      tree.serialize(false))
-    assertEquals("""
+
+    assertEquals(
+      "<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>",
+      tree.serialize(false)
+    )
+    assertEquals(
+      """
                 <!DOCTYPE html>
                 <html>
                   <body>
@@ -44,9 +47,10 @@ class TestDOMTrees {
                       content<span>yo</span>
                     </div>
                   </body>
-                </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n"))
+                </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n")
+    )
   }
-  
+
   @test
   fun `vals create and append support`() {
     val document = createHTMLDocument().html {
@@ -56,18 +60,19 @@ class TestDOMTrees {
         }
       }
     }
-    
+
     val contentNode = document.getElementById("content")!!
     contentNode.append.p {
       +"p1"
     }
-    
+
     val p2 = document.create.p {
       +"p2"
     }
     contentNode.appendChild(p2)
-    
-    assertEquals("""<!DOCTYPE html>
+
+    assertEquals(
+      """<!DOCTYPE html>
 <html>
   <body>
     <div id="content">
@@ -76,9 +81,10 @@ class TestDOMTrees {
     </div>
   </body>
 </html>
-        """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n"))
+        """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n")
+    )
   }
-  
+
   @test
   fun `append function support`() {
     val document = createHTMLDocument().html {
@@ -88,9 +94,9 @@ class TestDOMTrees {
         }
       }
     }
-    
+
     val contentNode = document.getElementById("content")!!
-    
+
     val nodes = contentNode.append {
       p {
         +"p1"
@@ -102,10 +108,11 @@ class TestDOMTrees {
         }
       }
     }
-    
+
     assertEquals(2, nodes.size)
-    
-    assertEquals("""<!DOCTYPE html>
+
+    assertEquals(
+      """<!DOCTYPE html>
 <html>
   <body>
     <div id="content">
@@ -117,9 +124,10 @@ class TestDOMTrees {
     </div>
   </body>
 </html>
-        """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n"))
+        """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n")
+    )
   }
-  
+
   @test
   fun `should compile wiki example`() {
     println(document {
@@ -133,7 +141,7 @@ class TestDOMTrees {
       }
     }.serialize())
   }
-  
+
   @test
   fun `svg should have namespace`() {
     val d = document {
@@ -144,11 +152,13 @@ class TestDOMTrees {
         }
       }
     }
-    
-    assertEquals("<!DOCTYPE html>\n<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>",
-      d.serialize(false).trim().replace("\r\n", "\n"))
+
+    assertEquals(
+      "<!DOCTYPE html>\n<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>",
+      d.serialize(false).trim().replace("\r\n", "\n")
+    )
   }
-  
+
   @test
   fun `generalize tests`() {
     fun <T> T.genericFlow() where T : HtmlBlockTag {
@@ -158,14 +168,14 @@ class TestDOMTrees {
       div {
       }
     }
-    
+
     fun <T> T.genericPhrasing() where T : HtmlInlineTag {
       classes += "aha"
       +"content"
       +Entities.nbsp
       span { }
     }
-    
+
     fun <T> T.genericMetaData() where T : HtmlHeadTag {
       classes += "aha"
       +"content"
@@ -173,7 +183,7 @@ class TestDOMTrees {
       meta("a")
       script(ScriptType.textJavaScript) { }
     }
-    
+
     document {
       append.html {
         head {
@@ -190,7 +200,7 @@ class TestDOMTrees {
       }
     }
   }
-  
+
   @test
   fun `script content`() {
     val document = document {
@@ -204,13 +214,15 @@ class TestDOMTrees {
         }
       }
     }
-    
-    
-    assertEquals("<!DOCTYPE html>\n" +
-        "<html><head><META http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><script type=\"text/javascript\">fun f() { return 1; }</script></head></html>",
-      document.serialize(false).trim().replace("\r\n", "\n"))
+
+
+    assertEquals(
+      "<!DOCTYPE html>\n" +
+              "<html><head><META http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><script type=\"text/javascript\">fun f() { return 1; }</script></head></html>",
+      document.serialize(false).trim().replace("\r\n", "\n")
+    )
   }
-  
+
   @test
   fun testPrepend() {
     val document = createHTMLDocument().html {
@@ -218,26 +230,30 @@ class TestDOMTrees {
         a { text("aaa") }
       }
     }
-    
+
     document.getElementsByTagName("body").item(0).prepend {
       p {
         text("OK")
       }
     }
-    
-    assertEquals("<!DOCTYPE html>\n" +
-        "<html><body><p>OK</p><a>aaa</a></body></html>",
-      document.serialize(false).trim().replace("\r\n", "\n"))
+
+    assertEquals(
+      "<!DOCTYPE html>\n" +
+              "<html><body><p>OK</p><a>aaa</a></body></html>",
+      document.serialize(false).trim().replace("\r\n", "\n")
+    )
   }
-  
+
   @test
   fun testComment() {
     val document = createHTMLDocument().html {
       comment("commented")
     }
-    
-    assertEquals("<!DOCTYPE html>\n" +
-        "<html><!--commented--></html>",
-      document.serialize(false).trim().replace("\r\n", "\n"))
+
+    assertEquals(
+      "<!DOCTYPE html>\n" +
+              "<html><!--commented--></html>",
+      document.serialize(false).trim().replace("\r\n", "\n")
+    )
   }
 }
