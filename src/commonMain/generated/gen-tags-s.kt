@@ -85,7 +85,7 @@ open class SCRIPT<E>(initialAttributes: Map<String, String>, override val consum
     override fun entity(e: Entities): Unit {
         super<HTMLTag>.entity(e)
     }
-    
+
 }
 
 val <E> SCRIPT<E>.asFlowContent: FlowContent<E>
@@ -302,7 +302,7 @@ open class STYLE<E>(initialAttributes: Map<String, String>, override val consume
     override fun entity(e: Entities): Unit {
         super<HTMLTag>.entity(e)
     }
-    
+
 }
 
 val <E> STYLE<E>.asFlowContent: FlowContent<E>

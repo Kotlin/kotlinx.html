@@ -18,27 +18,46 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
       import("kotlinx.html.*")
       import("kotlinx.html.impl.*")
       emptyLine()
+  
+      doNotEditWarning()
+      emptyLine()
+      emptyLine()
+  
+      Repository.attributeFacades.values.forEach {
+        facade(it)
+        emptyLine()
+      }
+    }
+  }
+  FileOutputStream("$todir/gen-event-attrs.kt").writer(Charsets.UTF_8).use {
+    it.with {
+      packg(packg)
+      emptyLine()
+      import("kotlinx.html.*")
+      emptyLine()
       
       doNotEditWarning()
       emptyLine()
       emptyLine()
       
-      Repository.attributeFacades.values.forEach {
-        facade(it)
-                emptyLine()
-            }
+      Repository.attributeFacades.filter { it.value.attributeNames.any { it.startsWith("on") } }.forEach { facade ->
+        val facadeName = facade.value.name.capitalize() + "Facade"
+        facade.value.attributes.filter { it.name.startsWith("on") }.forEach {
+          attributeProperty(it, receiver = "<E> $facadeName<E>", indent = 0)
         }
+      }
     }
-
-    Repository.tags.values.filterIgnored().groupBy { it.name[0] }.entries.forEach { e ->
-        FileOutputStream("$todir/gen-tags-${e.key}.kt").writer(Charsets.UTF_8).use {
-            it.with {
-                packg(packg)
-                emptyLine()
-                import("kotlinx.html.*")
-                import("kotlinx.html.impl.*")
-                import("kotlinx.html.attributes.*")
-                emptyLine()
+  }
+  
+  Repository.tags.values.filterIgnored().groupBy { it.name[0] }.entries.forEach { e ->
+    FileOutputStream("$todir/gen-tags-${e.key}.kt").writer(Charsets.UTF_8).use {
+      it.with {
+        packg(packg)
+        emptyLine()
+        import("kotlinx.html.*")
+        import("kotlinx.html.impl.*")
+        import("kotlinx.html.attributes.*")
+        emptyLine()
 
                 doNotEditWarning()
                 emptyLine()

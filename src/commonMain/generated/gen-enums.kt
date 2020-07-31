@@ -28,7 +28,6 @@ enum class RunAt(override val realValue: String) : AttributeEnum {
 }
 
 internal val runAtValues: Map<String, RunAt> = RunAt.values().associateBy { it.realValue }
-
 @Suppress("unused")
 object ATarget {
     val blank: String = "_blank"
@@ -112,7 +111,6 @@ enum class AreaShape(override val realValue: String) : AttributeEnum {
 }
 
 internal val areaShapeValues: Map<String, AreaShape> = AreaShape.values().associateBy { it.realValue }
-
 @Suppress("unused")
 object AreaTarget {
     val blank: String = "_blank"
@@ -194,7 +192,6 @@ enum class ButtonFormMethod(override val realValue: String) : AttributeEnum {
 
 internal val buttonFormMethodValues: Map<String, ButtonFormMethod> =
     ButtonFormMethod.values().associateBy { it.realValue }
-
 @Suppress("unused")
 object ButtonFormTarget {
     val blank: String = "_blank"
@@ -245,7 +242,6 @@ enum class FormMethod(override val realValue: String) : AttributeEnum {
 }
 
 internal val formMethodValues: Map<String, FormMethod> = FormMethod.values().associateBy { it.realValue }
-
 @Suppress("unused")
 object FormTarget {
     val blank: String = "_blank"
@@ -327,7 +323,6 @@ enum class InputFormMethod(override val realValue: String) : AttributeEnum {
 }
 
 internal val inputFormMethodValues: Map<String, InputFormMethod> = InputFormMethod.values().associateBy { it.realValue }
-
 @Suppress("unused")
 object InputFormTarget {
     val blank: String = "_blank"
@@ -344,7 +339,6 @@ enum class KeyGenKeyType(override val realValue: String) : AttributeEnum {
 }
 
 internal val keyGenKeyTypeValues: Map<String, KeyGenKeyType> = KeyGenKeyType.values().associateBy { it.realValue }
-
 @Suppress("unused")
 object LinkRel {
     val alternate: String = "Alternate"

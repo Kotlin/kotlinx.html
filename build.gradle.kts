@@ -197,7 +197,7 @@ kotlin {
       groupId = group as String
       artifactId = "${project.name}-common"
       pom.config { name by "${project.name}-common" }
-      
+  
       javadocJar("commonJavadocJar")
       jar("commonTestSourcesJar") {
         archiveClassifier by "test-sources"

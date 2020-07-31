@@ -62,7 +62,7 @@ open class HEAD<E>(initialAttributes: Map<String, String>, override val consumer
     override fun entity(e: Entities): Unit {
         super<HTMLTag>.entity(e)
     }
-    
+
 }
 
 @Suppress("unused")

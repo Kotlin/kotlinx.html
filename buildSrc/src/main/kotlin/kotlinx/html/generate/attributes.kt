@@ -40,10 +40,10 @@ fun Appendable.facade(facade: AttributeFacade) {
     clazz(Clazz("$facadeName<E>", isInterface = true, parents = listOf("Tag<E>"))) {
     }
 
-    facade.attributes.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
-        if (attribute.name.isLowerCase() || attribute.name.toLowerCase() !in facade.attributeNames) {
-          attributeProperty(attribute, receiver = "<E> $facadeName<E>", indent = 0)
-        }
+    facade.attributes.filter { !isAttributeExcluded(it.name) && !it.name.startsWith("on") }.forEach { attribute ->
+      if (attribute.name.isLowerCase() || attribute.name.toLowerCase() !in facade.attributeNames) {
+        attributeProperty(attribute, receiver = "<E> $facadeName<E>", indent = 0)
+      }
     }
 }
 
