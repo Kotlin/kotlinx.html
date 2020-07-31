@@ -43,7 +43,7 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
       Repository.attributeFacades.filter { it.value.attributeNames.any { it.startsWith("on") } }.forEach { facade ->
         val facadeName = facade.value.name.capitalize() + "Facade"
         facade.value.attributes.filter { it.name.startsWith("on") }.forEach {
-          attributeProperty(it, receiver = "<E> $facadeName<E>", indent = 0)
+          attributeProperty(it, receiver = "$facadeName<Nothing>", indent = 0)
         }
       }
     }

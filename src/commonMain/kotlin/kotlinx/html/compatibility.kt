@@ -60,14 +60,14 @@ var <E>OUTPUT<E>.for_: String
   }
 
 @Deprecated("Use onTouchCancel instead", ReplaceWith("onTouchCancel"))
-var <E>CommonAttributeGroupFacade<E>.onTouchcancel: String
+var CommonAttributeGroupFacade<Nothing>.onTouchcancel: String
   get() = onTouchCancel
   set(newValue) {
     onTouchCancel = newValue
   }
 
 @Deprecated("Use onTouchMove instead", ReplaceWith("onTouchMove"))
-var <E>CommonAttributeGroupFacade<E>.onTouchmove: String
+var CommonAttributeGroupFacade<Nothing>.onTouchmove: String
   get() = onTouchMove
   set(newValue) {
     onTouchMove = newValue
