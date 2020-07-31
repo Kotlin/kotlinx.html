@@ -18,8 +18,8 @@ plugins {
   id("maven-publish")
 }
 
-group = "lt.petuska"
-version = "0.7.3"
+group = "org.jetbrains.kotlinx"
+version = "0.7.2-SNAPSHOT"
 
 /**
  * If "release" profile is used the "-SNAPSHOT" suffix of the version is removed.
@@ -53,7 +53,7 @@ publishing {
       when {
         hasProperty("release") -> {
           maven {
-            url = uri("https://api.bintray.com/maven/mpetuska/lt.petuska/kotlinx-html/;override=1;publish=1")
+            url = uri("https://api.bintray.com/maven/kotlin/kotlinx/kotlinx.html/;publish=1")
             credentials {
               username = System.getenv("BINTRAY_USERNAME")
               password = System.getenv("BINTRAY_PASSWORD")

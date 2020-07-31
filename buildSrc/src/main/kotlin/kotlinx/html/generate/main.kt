@@ -15,8 +15,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
     it.with {
       packg(packg)
       emptyLine()
-      import("kotlinx.html.*")
-      import("kotlinx.html.impl.*")
       emptyLine()
   
       doNotEditWarning()
@@ -33,7 +31,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
     it.with {
       packg(packg)
       emptyLine()
-      import("kotlinx.html.*")
       emptyLine()
       
       doNotEditWarning()
@@ -54,8 +51,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
       it.with {
         packg(packg)
         emptyLine()
-        import("kotlinx.html.*")
-        import("kotlinx.html.impl.*")
         import("kotlinx.html.attributes.*")
         emptyLine()
         
@@ -74,8 +69,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
     it.with {
       packg(packg)
       emptyLine()
-      import("kotlinx.html.*")
-      import("kotlinx.html.impl.*")
       import("kotlinx.html.attributes.*")
       emptyLine()
       
@@ -103,7 +96,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
       packg(packg + ".js")
       emptyLine()
       import("kotlinx.html.*")
-      import("kotlinx.html.impl.*")
       import("kotlinx.html.attributes.*")
       import("org.w3c.dom.*")
       emptyLine()
@@ -150,7 +142,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
     it.with {
       packg(packg)
       emptyLine()
-      import("kotlinx.html.*")
       emptyLine()
       
       doNotEditWarning()
@@ -187,7 +178,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
     it.with {
       packg(packg)
       emptyLine()
-      import("kotlinx.html.*")
       import("kotlinx.html.attributes.*")
       emptyLine()
       
@@ -205,8 +195,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
     with(it) {
       packg(packg)
       emptyLine()
-      import("kotlinx.html.*")
-      import("kotlinx.html.impl.*")
       import("kotlinx.html.attributes.*")
       emptyLine()
       
@@ -241,8 +229,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
     with(it) {
       packg(packg)
       emptyLine()
-      import("kotlinx.html.*")
-      import("kotlinx.html.impl.*")
       import("kotlinx.html.attributes.*")
       emptyLine()
       
@@ -281,7 +267,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
     it.with {
       packg(packg)
       emptyLine()
-      import("kotlinx.html.*")
       emptyLine()
       
       doNotEditWarning()
