@@ -20,30 +20,29 @@ class CustomTagTest {
 
   @Test
   fun testCustomTagRoot() {
-    val html =
-        buildString {
-          appendHTML(false).custom {
-            span {
-              +"content"
-            }
-          }
+    val html = buildString {
+      appendHTML(false).custom {
+        span {
+          +"content"
         }
+      }
+    }
 
     assertEquals("<custom><span>content</span></custom>", html)
   }
 }
 
-private class CUSTOM(consumer: TagConsumer<*>) :
-    HTMLTag(
-        "custom", consumer, emptyMap(),
-        inlineTag = true,
-        emptyTag = false
-    ), HtmlInlineTag
+private class CUSTOM<E>(consumer: TagConsumer<*, E>) :
+  HTMLTag<E>(
+    "custom", consumer, emptyMap(),
+    inlineTag = true,
+    emptyTag = false
+  ), HtmlInlineTag<E>
 
-private fun <T> TagConsumer<T>.custom(block: CUSTOM.() -> Unit = {}): T {
-  return CUSTOM(this).visitAndFinalize(this, block)
+private fun <T, E> TagConsumer<T, E>.custom(block: CUSTOM<E>.() -> Unit = {}): T {
+  return CUSTOM<E>(this).visitAndFinalize(this, block)
 }
 
-private fun DIV.custom(block: CUSTOM.() -> Unit = {}) {
+private fun <E> DIV<E>.custom(block: CUSTOM<E>.() -> Unit = {}) {
   CUSTOM(consumer).visit(block)
 }

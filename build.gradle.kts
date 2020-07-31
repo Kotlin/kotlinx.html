@@ -205,22 +205,23 @@ kotlin {
     }
   }
 }
-
+val commonGenDir = "src/commonMain/generated"
+val browserGenDir = "src/browserMain/generated"
+val jsGenDir = "src/jsMain/generated"
 kotlin {
   sourceSets {
     val commonMain by getting {
-      dependencies {
-      }
+      kotlin.srcDirs(commonGenDir)
     }
   
     val browserMain by creating {
       dependsOn(commonMain)
+      kotlin.srcDirs(browserGenDir)
     }
   
     val jsMain by getting {
       dependsOn(browserMain)
-      dependencies {
-      }
+      kotlin.srcDirs(jsGenDir)
     }
   
     val jsTest by getting {
@@ -232,8 +233,6 @@ kotlin {
     
     val jvmMain by getting {
       dependsOn(commonMain)
-      dependencies {
-      }
     }
     
     val jvmTest by getting {
@@ -279,18 +278,19 @@ tasks.register<Task>("generate") {
   group = "source-generation"
   description = "Generate tag-handling code using tags description."
   
+  outputs.dirs(commonGenDir, browserGenDir, jsGenDir)
   doLast {
     kotlinx.html.generate.generate(
       packg = "kotlinx.html",
-      todir = "src/commonMain/kotlin/generated",
-      browserdir = "src/browserMain/kotlin/generated",
-      jsdir = "src/jsMain/kotlin/generated"
+      todir = commonGenDir,
+      browserdir = browserGenDir,
+      jsdir = jsGenDir
     )
   }
 }
 
 tasks.register<Copy>("jsPackagePrepare") {
-  dependsOn("jsMainClasses")
+  dependsOn("jsLegacyMainClasses")
   tasks["assemble"].dependsOn(this)
   
   group = "build"

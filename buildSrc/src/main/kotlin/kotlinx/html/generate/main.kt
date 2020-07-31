@@ -1,6 +1,8 @@
 package kotlinx.html.generate
 
-import java.io.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStreamReader
 
 fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
   fillRepository()
@@ -111,7 +113,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
       packg(packg + ".js")
       emptyLine()
       import("kotlinx.html.*")
-      import("org.w3c.dom.events.*")
       emptyLine()
       
       doNotEditWarning()
@@ -194,9 +195,9 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
 
             Repository.groupUnions.values.forEach { union ->
                 clazz(Clazz(
-                        name = union.name,
-                        isInterface = true,
-                        parents = union.superGroups + "Tag"
+                  name = "${union.name}<E>",
+                  isInterface = true,
+                  parents = (union.superGroups + "Tag").map { p -> "$p<E>" }
                 )) {}
 
                 emptyLine()
@@ -229,11 +230,18 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
             emptyLine()
 
             Repository.tagGroups.values.forEach { group ->
-                val unions = Repository.unionsByGroups[group.name].orEmpty().map { it.name }
-
-                clazz(Clazz(name = group.typeName, parents = unions + "Tag", isPublic = true, isInterface = true)) {
-                }
-                emptyLine()
+              val unions = Repository.unionsByGroups[group.name].orEmpty().map { it.name }
+  
+              clazz(
+                Clazz(
+                  name = "${group.typeName}<E>",
+                  parents = (unions + "Tag").map { p -> "$p<E>" },
+                  isPublic = true,
+                  isInterface = true
+                )
+              ) {
+              }
+              emptyLine()
             }
 
             Repository.tagGroups.values.forEach { group ->
