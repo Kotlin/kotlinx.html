@@ -18,8 +18,8 @@ plugins {
   id("maven-publish")
 }
 
-group = "org.jetbrains.kotlinx"
-version = "0.7.2-SNAPSHOT"
+group = "lt.petuska"
+version = "0.7.3"
 
 /**
  * If "release" profile is used the "-SNAPSHOT" suffix of the version is removed.
@@ -53,7 +53,7 @@ publishing {
       when {
         hasProperty("release") -> {
           maven {
-            url = uri("https://api.bintray.com/maven/kotlin/kotlinx/kotlinx.html/;publish=1")
+            url = uri("https://api.bintray.com/maven/mpetuska/lt.petuska/kotlinx-html/;override=1;publish=1")
             credentials {
               username = System.getenv("BINTRAY_USERNAME")
               password = System.getenv("BINTRAY_PASSWORD")
@@ -126,7 +126,7 @@ kotlin {
     mavenPublication {
       groupId = group as String
       pom.config { name by "${project.name}-jvm" }
-    
+  
       javadocJar("jvmJavadocJar")
       jar("jvmTestSourcesJar") {
         archiveClassifier by "test-sources"
@@ -146,7 +146,7 @@ kotlin {
         }
       }
     }
-
+  
     compilations["main"].packageJson {
       main = "kotlin/kotlinx-html-js.js"
       name = "kotlinx-html-js"

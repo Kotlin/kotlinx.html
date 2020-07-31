@@ -24,27 +24,27 @@ interface Tag<E> {
   
   val inlineTag: Boolean
   val emptyTag: Boolean
-
+  
   operator fun Entities.unaryPlus(): Unit {
     entity(this)
   }
-
+  
   operator fun String.unaryPlus(): Unit {
     text(this)
   }
-
+  
   fun text(s: String) {
     consumer.onTagContent(s)
   }
-
+  
   fun text(n: Number) {
     text(n.toString())
   }
-
+  
   fun entity(e: Entities) {
     consumer.onTagContentEntity(e)
   }
-
+  
   fun comment(s: String) {
     consumer.onTagComment(s)
   }
@@ -54,15 +54,15 @@ interface Tag<E> {
 interface Unsafe {
   operator fun String.unaryPlus()
   operator fun Entities.unaryPlus() = +text
-
+  
   fun raw(s: String) {
     +s
   }
-
+  
   fun raw(entity: Entities) {
     +entity
   }
-
+  
   fun raw(n: Number) {
     +n.toString()
   }
@@ -85,7 +85,7 @@ fun attributesMapOf(key: String, value: String?): Map<String, String> = when (va
 
 fun attributesMapOf(vararg pairs: String?): Map<String, String> {
   var result: MutableMap<String, String>? = null
-
+  
   for (i in 0..pairs.size - 1 step 2) {
     val k = pairs[i]
     val v = pairs[i + 1]
@@ -96,7 +96,7 @@ fun attributesMapOf(vararg pairs: String?): Map<String, String> {
       result.put(k, v)
     }
   }
-
+  
   return result ?: emptyMap
 }
 
@@ -108,11 +108,11 @@ val emptyMap: Map<String, String> = emptyMap()
 
 class DefaultUnsafe : Unsafe {
   private val sb = StringBuilder()
-
+  
   override fun String.unaryPlus() {
     sb.append(this)
   }
-
+  
   override fun toString(): String = sb.toString()
 }
 
@@ -122,19 +122,19 @@ annotation class HtmlTagMarker
 typealias HtmlContent<E> = FlowOrPhrasingContent<E>
 
 private data class SingletonStringMap(override val key: String, override val value: String) : Map<String, String>,
-    Map.Entry<String, String> {
+  Map.Entry<String, String> {
   override val entries: Set<Map.Entry<String, String>>
     get() = setOf(this)
-
+  
   override val keys: Set<String>
     get() = setOf(key)
-
+  
   override val size: Int
     get() = 1
-
+  
   override val values: Collection<String>
     get() = listOf(value)
-
+  
   override fun containsKey(key: String) = key == this.key
   override fun containsValue(value: String) = value == this.value
   override fun get(key: String): String? = if (key == this.key) value else null

@@ -14,14 +14,14 @@ class Html5TagsTest {
       body {
         main(classes = "main-test") {
           id = "test-node"
-
+  
           +"content"
         }
       }
     }
-
+  
     print(tree.serialize(true).trim().replace("\r\n", "\n"))
-
+  
     assertEquals(
       "<!DOCTYPE html>\n<html><body><main class=\"main-test\" id=\"test-node\">content</main></body></html>",
       tree.serialize(false)
@@ -36,7 +36,7 @@ class Html5TagsTest {
                 </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n")
     )
   }
-
+  
   @test
   fun `able to create complex tree and render it with pretty print`() {
     val tree = createHTMLDocument().html {
@@ -52,7 +52,7 @@ class Html5TagsTest {
         }
       }
     }
-
+    
     assertEquals(
       "<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>",
       tree.serialize(false)

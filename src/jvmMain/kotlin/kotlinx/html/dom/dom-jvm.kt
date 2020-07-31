@@ -41,7 +41,7 @@ class HTMLDOMBuilder(val document: Document) : JVMTagConsumer<Element> {
     if (path.isNotEmpty()) {
       path.last().appendChild(element)
     }
-
+  
     path.add(element)
   }
   
@@ -68,47 +68,47 @@ class HTMLDOMBuilder(val document: Document) : JVMTagConsumer<Element> {
     element.setIdAttributeName()
     lastLeaved = element
   }
-
+  
   override fun onTagContent(content: CharSequence) {
     if (path.isEmpty()) {
       throw IllegalStateException("No current DOM node")
     }
-
+    
     path.last().appendChild(document.createTextNode(content.toString()))
   }
-
+  
   override fun onTagComment(content: CharSequence) {
     if (path.isEmpty()) {
       throw IllegalStateException("No current DOM node")
     }
-
+    
     path.last().appendChild(document.createComment(content.toString()))
   }
-
+  
   override fun onTagContentEntity(entity: Entities) {
     if (path.isEmpty()) {
       throw IllegalStateException("No current DOM node")
     }
-
+    
     path.last().appendChild(document.createEntityReference(entity.name))
   }
-
+  
   override fun finalize() = lastLeaved ?: throw IllegalStateException("No tags were emitted")
-
+  
   override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
     UnsafeImpl.block()
   }
-
+  
   private val UnsafeImpl = object : Unsafe {
     override operator fun String.unaryPlus() {
       val element = documentBuilder
-          .parse(InputSource(StringReader("<unsafeRoot>" + this + "</unsafeRoot>")))
-          .documentElement
-
+        .parse(InputSource(StringReader("<unsafeRoot>" + this + "</unsafeRoot>")))
+        .documentElement
+  
       val importNode = document.importNode(element, true)
-
+  
       check(importNode.nodeName == "unsafeRoot") { "the document factory hasn't created an unsafeRoot node" }
-
+  
       val last = path.last()
       while (importNode.hasChildNodes()) {
         last.appendChild(importNode.removeChild(importNode.firstChild))
@@ -180,10 +180,10 @@ fun createHTMLDocument(): JVMTagConsumer<Document> =
   }
 
 inline fun document(block: Document.() -> Unit): Document =
-    DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
-      document.block()
-      document
-    }
+  DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
+    document.block()
+    document
+  }
 
 fun Writer.write(document: Document, prettyPrint: Boolean = true): Writer {
   write("<!DOCTYPE html>\n")
@@ -196,12 +196,12 @@ fun Writer.write(element: Element, prettyPrint: Boolean = true): Writer {
   transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes")
   transformer.setOutputProperty(OutputKeys.METHOD, "html")
   transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8")
-
+  
   if (prettyPrint) {
     transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2")
     transformer.setOutputProperty(OutputKeys.INDENT, "yes")
   }
-
+  
   transformer.transform(DOMSource(element), StreamResult(this))
   return this
 }

@@ -34,12 +34,12 @@ class TraceConsumer<R, E>(val downstream: TagConsumer<R, E>, val println: (Strin
     
     downstream.onTagError(tag, exception)
   }
-
+  
   override fun finalize(): R {
     val v = downstream.finalize()
-
+    
     println("[$id] finalized: ${v.toString()}")
-
+    
     return v
   }
 }

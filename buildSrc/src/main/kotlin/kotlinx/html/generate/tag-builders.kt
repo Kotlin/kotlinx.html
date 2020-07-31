@@ -34,18 +34,18 @@ fun Appendable.htmlTagBuilders(rec: String, tag: TagInfo) {
     suppress("DEPRECATION")
     htmlTagBuilderMethod(receiver, tag, false)
   }
-
-    val someEnumAttribute = tag.attributes.filter { it.type == AttributeType.ENUM }.maxBy { it.enumValues.size } // ??
-    if (someEnumAttribute != null && someEnumAttribute.enumValues.size < 25) {
-        htmlTagEnumBuilderMethod(receiver, tag, true, someEnumAttribute, 0)
-        if (probablyContentOnly) {
-            htmlTagEnumBuilderMethod(receiver, tag, false, someEnumAttribute, 0)
-        } else if (contentlessTag) {
-            deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
-            suppress("DEPRECATION")
-            htmlTagEnumBuilderMethod(receiver, tag, false, someEnumAttribute, 0)
-        }
+  
+  val someEnumAttribute = tag.attributes.filter { it.type == AttributeType.ENUM }.maxBy { it.enumValues.size } // ??
+  if (someEnumAttribute != null && someEnumAttribute.enumValues.size < 25) {
+    htmlTagEnumBuilderMethod(receiver, tag, true, someEnumAttribute, 0)
+    if (probablyContentOnly) {
+      htmlTagEnumBuilderMethod(receiver, tag, false, someEnumAttribute, 0)
+    } else if (contentlessTag) {
+      deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+      suppress("DEPRECATION")
+      htmlTagEnumBuilderMethod(receiver, tag, false, someEnumAttribute, 0)
     }
-
-    emptyLine()
+  }
+  
+  emptyLine()
 }

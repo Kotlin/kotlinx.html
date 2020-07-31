@@ -18,10 +18,10 @@ internal val attributeBooleanBooleanOnOff: Attribute<Boolean> = BooleanAttribute
 internal val attributeBooleanTicker: Attribute<Boolean> = TickerAttribute()
 
 internal val attributeButtonFormEncTypeEnumButtonFormEncTypeValues: Attribute<ButtonFormEncType> =
-    EnumAttribute(buttonFormEncTypeValues)
+  EnumAttribute(buttonFormEncTypeValues)
 
 internal val attributeButtonFormMethodEnumButtonFormMethodValues: Attribute<ButtonFormMethod> =
-    EnumAttribute(buttonFormMethodValues)
+  EnumAttribute(buttonFormMethodValues)
 
 internal val attributeButtonTypeEnumButtonTypeValues: Attribute<ButtonType> = EnumAttribute(buttonTypeValues)
 
@@ -36,18 +36,18 @@ internal val attributeFormEncTypeEnumFormEncTypeValues: Attribute<FormEncType> =
 internal val attributeFormMethodEnumFormMethodValues: Attribute<FormMethod> = EnumAttribute(formMethodValues)
 
 internal val attributeIframeSandboxEnumIframeSandboxValues: Attribute<IframeSandbox> =
-    EnumAttribute(iframeSandboxValues)
+  EnumAttribute(iframeSandboxValues)
 
 internal val attributeInputFormEncTypeEnumInputFormEncTypeValues: Attribute<InputFormEncType> =
-    EnumAttribute(inputFormEncTypeValues)
+  EnumAttribute(inputFormEncTypeValues)
 
 internal val attributeInputFormMethodEnumInputFormMethodValues: Attribute<InputFormMethod> =
-    EnumAttribute(inputFormMethodValues)
+  EnumAttribute(inputFormMethodValues)
 
 internal val attributeInputTypeEnumInputTypeValues: Attribute<InputType> = EnumAttribute(inputTypeValues)
 
 internal val attributeKeyGenKeyTypeEnumKeyGenKeyTypeValues: Attribute<KeyGenKeyType> =
-    EnumAttribute(keyGenKeyTypeValues)
+  EnumAttribute(keyGenKeyTypeValues)
 
 internal val attributeRunAtEnumRunAtValues: Attribute<RunAt> = EnumAttribute(runAtValues)
 

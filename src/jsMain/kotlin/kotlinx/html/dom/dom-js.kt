@@ -29,7 +29,7 @@ class JSDOMBuilder<out R : HTMLElement>(val document: Document) : TagConsumer<R,
     if (path.isNotEmpty()) {
       path.last().appendChild(element)
     }
-
+  
     path.add(element)
   }
   
@@ -62,43 +62,43 @@ class JSDOMBuilder<out R : HTMLElement>(val document: Document) : TagConsumer<R,
     
     lastLeaved = path.removeAt(path.lastIndex)
   }
-
+  
   override fun onTagContent(content: CharSequence) {
     if (path.isEmpty()) {
       throw IllegalStateException("No current DOM node")
     }
-
+    
     path.last().appendChild(document.createTextNode(content.toString()))
   }
-
+  
   override fun onTagContentEntity(entity: Entities) {
     if (path.isEmpty()) {
       throw IllegalStateException("No current DOM node")
     }
-
+    
     // stupid hack as browsers doesn't support createEntityReference
     val s = document.createElement("span") as HTMLElement
     s.innerHTML = entity.text
     path.last().appendChild(s.childNodes.asList().first { it.nodeType == Node.TEXT_NODE })
-
+    
     // other solution would be
 //        pathLast().innerHTML += entity.text
   }
-
+  
   override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
     with(DefaultUnsafe()) {
       block()
-
+  
       path.last().innerHTML += toString()
     }
   }
-
-
+  
+  
   override fun onTagComment(content: CharSequence) {
     if (path.isEmpty()) {
       throw IllegalStateException("No current DOM node")
     }
-
+    
     path.last().appendChild(document.createComment(content.toString()))
   }
   

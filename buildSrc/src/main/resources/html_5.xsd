@@ -4,16 +4,13 @@
             version="1.0" targetNamespace='html-5'
 
 
-
-
-
 >
     <!--
-	 Warning:																					
-	 Warning: 
-	 Warning: Do not change the targetNamespace above 
-	 Warning: 
-	 Warning: 
+	 Warning:
+	 Warning:
+	 Warning: Do not change the targetNamespace above
+	 Warning:
+	 Warning:
 -->
 
     <!-- TODO: list of charsets for meta intellisense -->
@@ -274,7 +271,7 @@
             <xsd:element ref="label"/>
             <xsd:element ref="link"/>
 
-            <xsd:element ref="main" />
+            <xsd:element ref="main"/>
             <xsd:element ref="map"/>
             <xsd:element ref="mark"/>
             <xsd:element ref="math"/>
@@ -1743,11 +1740,11 @@
 
     <xsd:element name="table">
         <xsd:complexType>
-            <!-- TODO: cupport order per W3C: 
-                In this order: optionally a caption element, followed by either zero or more colgroup elements, 
-                followed optionally by a thead element, followed optionally by a tfoot element, 
-                followed by either zero or more tbody elements or one or more tr elements, followed optionally 
-                by a tfoot element (but there can only be one tfoot element child in total). 
+            <!-- TODO: cupport order per W3C:
+                In this order: optionally a caption element, followed by either zero or more colgroup elements,
+                followed optionally by a thead element, followed optionally by a tfoot element,
+                followed by either zero or more tbody elements or one or more tr elements, followed optionally
+                by a tfoot element (but there can only be one tfoot element child in total).
             -->
             <xsd:choice>
                 <xsd:element ref="caption" minOccurs="0" maxOccurs="1"/>

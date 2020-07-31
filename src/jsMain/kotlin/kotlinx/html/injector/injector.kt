@@ -39,10 +39,10 @@ class InjectorConsumer<out T : Any>(
     .filter { it.first is InjectByTagName }
     .map { it.first as InjectByTagName to it.second }
     .groupBy({ it.first.tagName.toLowerCase() }, { it.second })
-
-    private val rootCaptures = rules.filter { it.first == InjectRoot }.map { it.second }
-    private val customCaptures =
-        rules.filter { it.first is CustomCapture }.map { it.first as CustomCapture to it.second }
+  
+  private val rootCaptures = rules.filter { it.first == InjectRoot }.map { it.second }
+  private val customCaptures =
+    rules.filter { it.first is CustomCapture }.map { it.first as CustomCapture to it.second }
   
   override fun onTagEnd(tag: Tag<Event>) {
     downstream.onTagEnd(tag)
@@ -54,25 +54,25 @@ class InjectorConsumer<out T : Any>(
         node.injectToUnsafe(bean, field)
       }
     }
-
+    
     if (tagNamesMap.isNotEmpty()) {
       tagNamesMap[node.tagName.toLowerCase()]?.forEach { field ->
         node.injectToUnsafe(bean, field)
       }
     }
-
+    
     customCaptures.filter { it.first.apply(node) }.map { it.second }.forEach { field ->
       node.injectToUnsafe(bean, field)
     }
   }
-
-    override fun finalize(): HTMLElement {
+  
+  override fun finalize(): HTMLElement {
     val node = downstream.finalize()
     rootCaptures.forEach { field ->
       node.injectToUnsafe(bean, field)
     }
-
-        return node
+    
+    return node
   }
 }
 
