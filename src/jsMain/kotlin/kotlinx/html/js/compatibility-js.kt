@@ -1,3 +1,5 @@
+@file:Suppress("FunctionName", "FunctionName")
+
 package kotlinx.html.js
 
 import kotlinx.html.*

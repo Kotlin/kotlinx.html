@@ -1,3 +1,5 @@
+@file:Suppress("FunctionName")
+
 package kotlinx.html
 
 import kotlinx.wasm.jsinterop.*

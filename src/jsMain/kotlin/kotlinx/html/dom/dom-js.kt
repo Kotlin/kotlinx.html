@@ -1,3 +1,5 @@
+@file:Suppress("unused", "MemberVisibilityCanBePrivate")
+
 package kotlinx.html.dom
 
 import kotlinx.html.*
@@ -7,15 +9,16 @@ import org.w3c.dom.HTMLElement
 import org.w3c.dom.Node
 import org.w3c.dom.asList
 
-@Suppress("NOTHING_TO_INLINE")
-private inline fun HTMLElement.setEvent(name: String, noinline callback: (Event) -> Unit): Unit {
+@Suppress("NOTHING_TO_INLINE", "UnsafeCastFromDynamic")
+private inline fun HTMLElement.setEvent(name: String, noinline callback: (Event) -> Unit) {
   asDynamic()[name] = callback
 }
 
 class JSDOMBuilder<out R : HTMLElement>(val document: Document) : TagConsumer<R, Event> {
   private val path = arrayListOf<HTMLElement>()
-  private var lastLeaved: HTMLElement? = null
+  private var lastLeft: HTMLElement? = null
   
+  @Suppress("UnsafeCastFromDynamic")
   override fun onTagStart(tag: Tag<Event>) {
     val element: HTMLElement = when {
       tag.namespace != null -> document.createElementNS(tag.namespace!!, tag.tagName).asDynamic()
@@ -60,7 +63,7 @@ class JSDOMBuilder<out R : HTMLElement>(val document: Document) : TagConsumer<R,
       throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
     }
     
-    lastLeaved = path.removeAt(path.lastIndex)
+    lastLeft = path.removeAt(path.lastIndex)
   }
   
   override fun onTagContent(content: CharSequence) {
@@ -102,11 +105,12 @@ class JSDOMBuilder<out R : HTMLElement>(val document: Document) : TagConsumer<R,
     path.last().appendChild(document.createComment(content.toString()))
   }
   
+  @Suppress("UnsafeCastFromDynamic")
   override fun finalize(): R =
-    lastLeaved?.asR() ?: throw IllegalStateException("We can't finalize as there was no tags")
+    lastLeft?.asR() ?: throw IllegalStateException("We can't finalize as there was no tags")
   
-  @Suppress("UNCHECKED_CAST")
-  private fun HTMLElement.asR(): R = this.asDynamic()
+  @Suppress( "UnsafeCastFromDynamic")
+  private fun HTMLElement.asR() = this.asDynamic()
   override fun onTagError(tag: Tag<Event>, exception: Throwable): Nothing = throw exception
 }
 
@@ -153,7 +157,7 @@ val HTMLElement.prepend: TagConsumer<HTMLElement, Event>
   }
 
 private val Node.ownerDocumentExt: Document
-  get() = when {
-    this is Document -> this
+  get() = when (this) {
+    is Document -> this
     else -> ownerDocument ?: throw IllegalStateException("Node has no ownerDocument")
   }

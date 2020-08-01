@@ -1,3 +1,5 @@
+@file:Suppress("PropertyName", "FunctionName")
+
 package kotlinx.html.stream
 
 import kotlinx.html.Entities
@@ -30,7 +32,7 @@ internal expect class HTMLStreamBuilder<out O : Appendable>(out: O, prettyPrint:
   override fun onTagError(tag: Tag<Nothing>, exception: Throwable)
 }
 
-private val AVERAGE_PAGE_SIZE = 32768
+private const val AVERAGE_PAGE_SIZE = 32768
 
 fun createHTML(prettyPrint: Boolean = true, xhtmlCompatible: Boolean = false): TagConsumer<String, Nothing> =
   HTMLStreamBuilder(

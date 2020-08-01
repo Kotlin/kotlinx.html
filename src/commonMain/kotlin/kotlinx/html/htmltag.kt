@@ -11,6 +11,7 @@ open class HTMLTag<E>(
   override val emptyTag: Boolean,
 ) : Tag<E> {
   
+  @Suppress("LeakingThis")
   override val attributes: DelegatingMap<E> = DelegatingMap(initialAttributes, this) { consumer }
   
   override val attributesEntries: Collection<Map.Entry<String, String>>

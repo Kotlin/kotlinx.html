@@ -17,7 +17,7 @@ abstract class Attribute<T>(val encoder: AttributeEncoder<T>) {
     } ?: encoder.empty(attributeName, thisRef)
   
   open operator fun set(thisRef: Tag<*>, attributeName: String, value: T) {
-    thisRef.attributes.put(attributeName, encoder.encode(attributeName, value))
+    thisRef.attributes[attributeName] = encoder.encode(attributeName, value)
   }
 }
 
@@ -56,7 +56,7 @@ object TickerEncoder : AttributeEncoder<Boolean> {
 class TickerAttribute : Attribute<Boolean>(TickerEncoder) {
   override fun set(thisRef: Tag<*>, attributeName: String, value: Boolean) {
     if (value) {
-      thisRef.attributes.put(attributeName, attributeName)
+      thisRef.attributes[attributeName] = attributeName
     } else {
       thisRef.attributes.remove(attributeName)
     }

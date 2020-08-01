@@ -25,11 +25,11 @@ interface Tag<E> {
   val inlineTag: Boolean
   val emptyTag: Boolean
   
-  operator fun Entities.unaryPlus(): Unit {
+  operator fun Entities.unaryPlus() {
     entity(this)
   }
   
-  operator fun String.unaryPlus(): Unit {
+  operator fun String.unaryPlus() {
     text(this)
   }
   
@@ -86,14 +86,14 @@ fun attributesMapOf(key: String, value: String?): Map<String, String> = when (va
 fun attributesMapOf(vararg pairs: String?): Map<String, String> {
   var result: MutableMap<String, String>? = null
   
-  for (i in 0..pairs.size - 1 step 2) {
+  for (i in pairs.indices step 2) {
     val k = pairs[i]
     val v = pairs[i + 1]
     if (k != null && v != null) {
       if (result == null) {
         result = linkedMapOf()
       }
-      result.put(k, v)
+      result[k] = v
     }
   }
   

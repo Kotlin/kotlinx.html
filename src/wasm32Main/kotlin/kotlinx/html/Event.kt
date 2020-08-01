@@ -1,3 +1,5 @@
+@file:Suppress("FunctionName", "unused")
+
 package kotlinx.html
 
 import kotlinx.wasm.jsinterop.*

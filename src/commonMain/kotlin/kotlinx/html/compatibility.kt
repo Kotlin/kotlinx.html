@@ -1,3 +1,5 @@
+@file:Suppress("unused", "FunctionName", "FunctionName", "FunctionName", "FunctionName", "FunctionName", "FunctionName")
+
 package kotlinx.html
 
 

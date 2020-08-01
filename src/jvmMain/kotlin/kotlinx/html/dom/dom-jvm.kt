@@ -25,7 +25,7 @@ typealias JVMTagConsumer<R> = TagConsumer<R, Nothing>
 
 class HTMLDOMBuilder(val document: Document) : JVMTagConsumer<Element> {
   private val path = mutableListOf<Element>()
-  private var lastLeaved: Element? = null
+  private var lastLeft: Element? = null
   private val documentBuilder: DocumentBuilder by lazy { DocumentBuilderFactory.newInstance().newDocumentBuilder() }
   
   override fun onTagStart(tag: Tag<Nothing>) {
@@ -66,7 +66,7 @@ class HTMLDOMBuilder(val document: Document) : JVMTagConsumer<Element> {
     
     val element = path.removeAt(path.lastIndex)
     element.setIdAttributeName()
-    lastLeaved = element
+    lastLeft = element
   }
   
   override fun onTagContent(content: CharSequence) {
@@ -93,16 +93,17 @@ class HTMLDOMBuilder(val document: Document) : JVMTagConsumer<Element> {
     path.last().appendChild(document.createEntityReference(entity.name))
   }
   
-  override fun finalize() = lastLeaved ?: throw IllegalStateException("No tags were emitted")
+  override fun finalize() = lastLeft ?: throw IllegalStateException("No tags were emitted")
   
   override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
     UnsafeImpl.block()
   }
   
+  @Suppress("PrivatePropertyName")
   private val UnsafeImpl = object : Unsafe {
     override operator fun String.unaryPlus() {
       val element = documentBuilder
-        .parse(InputSource(StringReader("<unsafeRoot>" + this + "</unsafeRoot>")))
+        .parse(InputSource(StringReader("<unsafeRoot>$this</unsafeRoot>")))
         .documentElement
   
       val importNode = document.importNode(element, true)
@@ -165,8 +166,8 @@ val Node.prepend: JVMTagConsumer<Element>
   }
 
 private val Node.ownerDocumentExt: Document
-  get() = when {
-    this is Document -> this
+  get() = when (this) {
+    is Document -> this
     else -> ownerDocument ?: throw IllegalArgumentException("node has no ownerDocument")
   }
 

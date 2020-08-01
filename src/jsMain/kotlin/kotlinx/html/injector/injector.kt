@@ -1,3 +1,5 @@
+@file:Suppress("unused", "MemberVisibilityCanBePrivate")
+
 package kotlinx.html.injector
 
 import kotlinx.html.Event
@@ -13,6 +15,7 @@ fun <F : Any, T : Any> F.injectTo(bean: T, field: KMutableProperty1<T, in F>) {
 }
 
 private fun <F : Any, T : Any> F.injectToUnsafe(bean: T, field: KMutableProperty1<T, out F>) {
+  @Suppress("UnsafeCastFromDynamic")
   injectTo(bean, field.asDynamic())
 }
 

@@ -100,6 +100,7 @@ internal actual class HTMLStreamBuilder<out O : Appendable> actual constructor(
     ln = false
   }
   
+  @Suppress("PropertyName")
   actual val UnsafeImpl = object : Unsafe {
     override operator fun String.unaryPlus() {
       out.append(this)
