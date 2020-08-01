@@ -1,32 +1,33 @@
 package kotlinx.html.tests
 
 import kotlinx.html.*
+import kotlinx.html.stream.appendHTML
 import org.junit.Test
 import kotlin.test.assertEquals
 
 class CustomTagTest {
   @Test
   fun testCustomTagInDiv() {
-    val html = buildString {
+    val html = StringBuilder().apply {
       appendHTML(false).div {
         custom {
           span { +"content" }
         }
       }
-    }
-  
+    }.toString()
+    
     assertEquals("<div><custom><span>content</span></custom></div>", html)
   }
   
   @Test
   fun testCustomTagRoot() {
-    val html = buildString {
+    val html = StringBuilder().apply {
       appendHTML(false).custom {
         span {
           +"content"
         }
       }
-    }
+    }.toString()
     
     assertEquals("<custom><span>content</span></custom>", html)
   }

@@ -1,6 +1,9 @@
+@file:Suppress("UNUSED_VARIABLE")
+
 import Build_gradle.MavenPomFile
 import kotlinx.html.js.packageJson
 import org.apache.tools.ant.taskdefs.condition.Os
+import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsSetupTask
 
 /**
@@ -118,22 +121,42 @@ repositories {
   }
 }
 
+fun KotlinTarget.setupPublishing() {
+  mavenPublication {
+    groupId = group as String
+    pom.config { name by "${project.name}-$targetName" }
+    
+    println("TargetName: $targetName")
+    val sourceSetTarget = when {
+      targetName.startsWith("js") -> "js"
+      targetName.startsWith("metadata") -> "common"
+      targetName.startsWith("jvm") -> targetName
+      else -> targetName.also{targetName ->
+        jar("${targetName}SourcesJar") {
+          archiveClassifier by "sources"
+          compilations["main"].allKotlinSourceSets.forEach {
+            from(it.kotlin, it.resources)
+          }
+        }
+      }
+    }
+    javadocJar("${targetName}JavadocJar")
+    jar("${targetName}TestSourcesJar") {
+      archiveClassifier by "test-sources"
+      with(kotlin.sourceSets["${sourceSetTarget}Test"]) {
+        from(kotlin, resources)
+      }
+    }
+  }
+}
+
+val commonGenDir = "src/commonMain/generated"
+val browserGenDir = "src/browserMain/generated"
+val jsGenDir = "src/jsMain/generated"
 kotlin {
   jvm {
     compilations["main"].kotlinOptions.apply {
       freeCompilerArgs = freeCompilerArgs + "-Xdump-declarations-to=${buildDir}/declarations.json"
-    }
-    mavenPublication {
-      groupId = group as String
-      pom.config { name by "${project.name}-jvm" }
-  
-      javadocJar("jvmJavadocJar")
-      jar("jvmTestSourcesJar") {
-        archiveClassifier by "test-sources"
-        with(sourceSets["jvmTest"]) {
-          from(kotlin, resources)
-        }
-      }
     }
   }
   
@@ -146,7 +169,7 @@ kotlin {
         }
       }
     }
-  
+    
     compilations["main"].packageJson {
       main = "kotlin/kotlinx-html-js.js"
       name = "kotlinx-html-js"
@@ -158,72 +181,78 @@ kotlin {
       sourceMap = true
       sourceMapEmbedSources = "always"
     }
-  
+    
     compilations["test"].kotlinOptions.apply {
       moduleKind = "umd"
       metaInfo = true
       sourceMap = true
     }
-  
-    mavenPublication {
-      groupId = group as String
-      pom.config { name by "${project.name}-js" }
-    
-      javadocJar("jsJavadocJar")
-      jar("jsTestSourcesJar") {
-        archiveClassifier by "test-sources"
-        with(sourceSets["jsTest"]) {
-          from(kotlin, resources)
-        }
-      }
-    }
   }
   
-  wasm32 {
-    mavenPublication {
-      groupId = group as String
-      artifactId = "${project.name}-wasm32"
-      pom.config { name by "${project.name}-wasm32" }
-      
-      javadocJar("wasm32JavadocJar")
-      jar("wasm32TestSourcesJar") {
-        archiveClassifier by "test-sources"
-      }
-    }
+  wasm32 {}
+  
+  val mingwTargets = listOf(
+    mingwX64(),
+    mingwX86()
+  )
+  val unixTargets = listOf(
+    linuxArm32Hfp(),
+    linuxArm64(),
+    linuxMips32(),
+    linuxMipsel32(),
+    linuxX64(),
+    iosArm32(),
+    iosArm64(),
+    iosX64(),
+    macosX64()
+  )
+  val nativeTargets = unixTargets + mingwTargets
+  
+  metadata {}
+  
+  configure(kotlin.targets) {
+    setupPublishing()
   }
   
-  metadata {
-    mavenPublication {
-      groupId = group as String
-      artifactId = "${project.name}-common"
-      pom.config { name by "${project.name}-common" }
-  
-      javadocJar("commonJavadocJar")
-      jar("commonTestSourcesJar") {
-        archiveClassifier by "test-sources"
-      }
-    }
-  }
-}
-val commonGenDir = "src/commonMain/generated"
-val browserGenDir = "src/browserMain/generated"
-val jsGenDir = "src/jsMain/generated"
-kotlin {
   sourceSets {
     val commonMain by getting {
       kotlin.srcDirs(commonGenDir)
     }
-  
+    
     val browserMain by creating {
       dependsOn(commonMain)
       kotlin.srcDirs(browserGenDir)
     }
-  
+    
+    val desktopMain by creating {
+      dependsOn(commonMain)
+    }
+    
+    val nativeMain by creating {
+      dependsOn(desktopMain)
+    }
+    
+    val unixMain by creating {
+      dependsOn(nativeMain)
+    }
+    
+    configure(unixTargets) {
+      this.compilations["main"].defaultSourceSet.dependsOn(unixMain)
+    }
+    
+    val mingwMain by creating {
+      dependsOn(nativeMain)
+    }
+    
+    configure(mingwTargets) {
+      this.compilations["main"].defaultSourceSet.dependsOn(mingwMain)
+    }
+    
     val jsMain by getting {
       dependsOn(browserMain)
       kotlin.srcDirs(jsGenDir)
     }
-  
+    
     val jsTest by getting {
       dependencies {
         implementation(kotlin("test-js"))
@@ -232,7 +261,7 @@ kotlin {
     }
     
     val jvmMain by getting {
-      dependsOn(commonMain)
+      dependsOn(desktopMain)
     }
     
     val jvmTest by getting {
@@ -255,114 +284,112 @@ kotlin {
   }
 }
 
-tasks.withType<Jar> {
-  manifest {
-    attributes += sortedMapOf(
-      "Built-By" to System.getProperty("user.name"),
-      "Build-Jdk" to System.getProperty("java.version"),
-      "Implementation-Vendor" to "JetBrains s.r.o.",
-      "Implementation-Version" to archiveVersion.get(),
-      "Created-By" to org.gradle.util.GradleVersion.current()
-    )
-  }
-}
-
-
 tasks {
   val wrapper by getting(Wrapper::class) {
     gradleVersion = "6.5"
   }
-}
-
-tasks.register<Task>("generate") {
-  group = "source-generation"
-  description = "Generate tag-handling code using tags description."
-  
-  outputs.dirs(commonGenDir, browserGenDir, jsGenDir)
-  doLast {
-    kotlinx.html.generate.generate(
-      packg = "kotlinx.html",
-      todir = commonGenDir,
-      browserdir = browserGenDir,
-      jsdir = jsGenDir
+  register<Task>("generate") {
+    group = "source-generation"
+    description = "Generate tag-handling code using tags description."
+    
+    outputs.dirs(commonGenDir, browserGenDir, jsGenDir)
+    doLast {
+      kotlinx.html.generate.generate(
+        packg = "kotlinx.html",
+        todir = commonGenDir,
+        browserdir = browserGenDir,
+        jsdir = jsGenDir
+      )
+    }
+  }
+  register<Copy>("jsPackagePrepare") {
+    dependsOn("jsLegacyMainClasses")
+    getByName("assemble").dependsOn(this)
+    
+    group = "build"
+    description = "Assembles NPM package (result is placed into 'build/tmp/jsPackage')."
+    
+    val baseTargetDir = "$buildDir/tmp/jsPackage"
+    
+    from("README-JS.md")
+    from("$buildDir/js/packages/${project.name}/kotlin")
+    into(baseTargetDir)
+    
+    rename("README-JS.md", "README.md")
+    
+    doLast {
+      var npmVersion = version as String
+      if (npmVersion.endsWith("-SNAPSHOT")) {
+        npmVersion = npmVersion.replace("-SNAPSHOT", "-${System.currentTimeMillis()}")
+      }
+      
+      val organization = when {
+        project.hasProperty("branch-build") -> "kotlinx-branch-build"
+        project.hasProperty("master-build") -> "kotlinx-master-build"
+        else -> null
+      }
+      
+      File(baseTargetDir, "package.json").writeText(packageJson(npmVersion, organization))
+      file("$baseTargetDir/kotlinx-html-js").renameTo(File("$buildDir/js-module/kotlinx-html-js"))
+    }
+  }
+  register<Exec>("publishNpm") {
+    dependsOn("jsPackagePrepare")
+    dependsOn("kotlinNodeJsSetup")
+    
+    group = "publishing"
+    description = "Publishes ${project.name} NPM module to 'registry.npmjs.org'."
+    
+    val kotlinNodeJsSetupTask = getByName("kotlinNodeJsSetup") as NodeJsSetupTask
+    
+    // For some unknown reason, the node distributive's structure is different on Windows and UNIX.
+    val node = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+      kotlinNodeJsSetupTask.destination
+        .resolve("node.exe")
+    } else {
+      kotlinNodeJsSetupTask.destination
+        .resolve("bin")
+        .resolve("node")
+    }
+    
+    val npm = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+      kotlinNodeJsSetupTask.destination
+        .resolve("node_modules")
+        .resolve("npm")
+        .resolve("bin")
+        .resolve("npm-cli.js")
+    } else {
+      kotlinNodeJsSetupTask.destination
+        .resolve("lib")
+        .resolve("node_modules")
+        .resolve("npm")
+        .resolve("bin")
+        .resolve("npm-cli.js")
+    }
+    
+    commandLine(
+      node,
+      npm,
+      "publish",
+      "$buildDir/tmp/jsPackage",
+      "--//registry.npmjs.org/:_authToken=${System.getenv("NPMJS_AUTH")}",
+      "--access=public"
     )
   }
-}
-
-tasks.register<Copy>("jsPackagePrepare") {
-  dependsOn("jsLegacyMainClasses")
-  tasks["assemble"].dependsOn(this)
-  
-  group = "build"
-  description = "Assembles NPM package (result is placed into 'build/tmp/jsPackage')."
-  
-  val baseTargetDir = "$buildDir/tmp/jsPackage"
-  
-  from("README-JS.md")
-  from("$buildDir/js/packages/${project.name}/kotlin")
-  into(baseTargetDir)
-  
-  rename("README-JS.md", "README.md")
-  
-  doLast {
-    var npmVersion = version as String
-    if (npmVersion.endsWith("-SNAPSHOT")) {
-      npmVersion = npmVersion.replace("-SNAPSHOT", "-${System.currentTimeMillis()}")
+  withType<GenerateModuleMetadata> {
+    enabled = true
+  }
+  withType<Jar> {
+    manifest {
+      attributes += sortedMapOf(
+        "Built-By" to System.getProperty("user.name"),
+        "Build-Jdk" to System.getProperty("java.version"),
+        "Implementation-Vendor" to "JetBrains s.r.o.",
+        "Implementation-Version" to archiveVersion.get(),
+        "Created-By" to org.gradle.util.GradleVersion.current()
+      )
     }
-    
-    val organization = when {
-      project.hasProperty("branch-build") -> "kotlinx-branch-build"
-      project.hasProperty("master-build") -> "kotlinx-master-build"
-      else -> null
-    }
-    
-    File(baseTargetDir, "package.json").writeText(packageJson(npmVersion, organization))
-    file("$baseTargetDir/kotlinx-html-js").renameTo(File("$buildDir/js-module/kotlinx-html-js"))
   }
-}
-
-tasks.register<Exec>("publishNpm") {
-  dependsOn("jsPackagePrepare")
-  dependsOn("kotlinNodeJsSetup")
-  
-  group = "publishing"
-  description = "Publishes ${project.name} NPM module to 'registry.npmjs.org'."
-  
-  val kotlinNodeJsSetupTask = tasks["kotlinNodeJsSetup"] as NodeJsSetupTask
-  
-  // For some unknown reason, the node distributive's structure is different on Windows and UNIX.
-  val node = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-    kotlinNodeJsSetupTask.destination
-      .resolve("node.exe")
-  } else {
-    kotlinNodeJsSetupTask.destination
-      .resolve("bin")
-      .resolve("node")
-  }
-  
-  val npm = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-    kotlinNodeJsSetupTask.destination
-      .resolve("node_modules")
-      .resolve("npm")
-      .resolve("bin")
-      .resolve("npm-cli.js")
-  } else {
-    kotlinNodeJsSetupTask.destination
-      .resolve("lib")
-      .resolve("node_modules")
-      .resolve("npm")
-      .resolve("bin")
-      .resolve("npm-cli.js")
-  }
-  
-  commandLine(
-    node,
-    npm,
-    "publish",
-    "$buildDir/tmp/jsPackage",
-    "--//registry.npmjs.org/:_authToken=${System.getenv("NPMJS_AUTH")}",
-    "--access=public"
-  )
 }
 
 typealias MavenPomFile = org.gradle.api.publish.maven.MavenPom
@@ -398,10 +425,6 @@ fun MavenPomFile.config(config: MavenPomFile.() -> Unit = {}) {
       roles to "developer"
     }
   }
-}
-
-tasks.withType<GenerateModuleMetadata> {
-  enabled = true
 }
 
 fun MavenPublication.jar(taskName: String, config: Action<Jar>) = artifact(tasks.create(taskName, Jar::class, config))

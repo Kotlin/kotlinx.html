@@ -1,6 +1,7 @@
 package kotlinx.html.tests
 
 import kotlinx.html.*
+import kotlinx.html.consumers.DesktopTagConsumer
 import kotlinx.html.consumers.filter
 import kotlinx.html.consumers.measureTime
 import kotlinx.html.stream.appendHTML
@@ -193,7 +194,7 @@ class TestStreaming {
     assertEquals("<div id=\"d1\" custom=\"c1\" class=\"c1 c2\"></div>", StringBuilder().appendHTML(false).div {
       id = "d1"
       attributes["custom"] = "c1"
-      classes = linkedSetOf("c1", "c2")
+      classes = setOf("c1", "c2")
     }.toString())
   }
   
@@ -512,8 +513,8 @@ class TestStreaming {
   }
 }
 
-fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }
-fun FlowContent.buildMe2() =
+fun <T> DesktopTagConsumer<T>.buildMe() = html { body { buildMe2() } }
+fun <E> FlowContent<E>.buildMe2() =
   div("block deprecated") {
     a(href = "http://kotlinlang.org") {
       target = ATarget.blank

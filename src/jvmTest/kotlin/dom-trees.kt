@@ -161,7 +161,7 @@ class TestDOMTrees {
   
   @test
   fun `generalize tests`() {
-    fun <T> T.genericFlow() where T : HtmlBlockTag {
+    fun <T> T.genericFlow() where T : HtmlBlockTag<Nothing> {
       classes += "aha"
       +"content"
       +Entities.nbsp
@@ -169,14 +169,14 @@ class TestDOMTrees {
       }
     }
     
-    fun <T> T.genericPhrasing() where T : HtmlInlineTag {
+    fun <T> T.genericPhrasing() where T : HtmlInlineTag<Nothing> {
       classes += "aha"
       +"content"
       +Entities.nbsp
       span { }
     }
     
-    fun <T> T.genericMetaData() where T : HtmlHeadTag {
+    fun <T> T.genericMetaData() where T : HtmlHeadTag<Nothing> {
       classes += "aha"
       +"content"
       +Entities.nbsp

@@ -2,8 +2,8 @@ package kotlinx.html.dom
 
 import kotlinx.html.Entities
 import kotlinx.html.Tag
-import kotlinx.html.TagConsumer
 import kotlinx.html.Unsafe
+import kotlinx.html.consumers.DesktopTagConsumer
 import kotlinx.html.consumers.onFinalize
 import kotlinx.html.consumers.onFinalizeMap
 import org.w3c.dom.Document
@@ -21,9 +21,7 @@ import javax.xml.transform.TransformerFactory
 import javax.xml.transform.dom.DOMSource
 import javax.xml.transform.stream.StreamResult
 
-typealias JVMTagConsumer<R> = TagConsumer<R, Nothing>
-
-class HTMLDOMBuilder(val document: Document) : JVMTagConsumer<Element> {
+class HTMLDOMBuilder(val document: Document) : DesktopTagConsumer<Element> {
   private val path = mutableListOf<Element>()
   private var lastLeft: Element? = null
   private val documentBuilder: DocumentBuilder by lazy { DocumentBuilderFactory.newInstance().newDocumentBuilder() }
@@ -41,7 +39,7 @@ class HTMLDOMBuilder(val document: Document) : JVMTagConsumer<Element> {
     if (path.isNotEmpty()) {
       path.last().appendChild(element)
     }
-  
+    
     path.add(element)
   }
   
@@ -105,11 +103,11 @@ class HTMLDOMBuilder(val document: Document) : JVMTagConsumer<Element> {
       val element = documentBuilder
         .parse(InputSource(StringReader("<unsafeRoot>$this</unsafeRoot>")))
         .documentElement
-  
+      
       val importNode = document.importNode(element, true)
-  
+      
       check(importNode.nodeName == "unsafeRoot") { "the document factory hasn't created an unsafeRoot node" }
-  
+      
       val last = path.last()
       while (importNode.hasChildNodes()) {
         last.appendChild(importNode.removeChild(importNode.firstChild))
@@ -126,11 +124,11 @@ class HTMLDOMBuilder(val document: Document) : JVMTagConsumer<Element> {
   override fun onTagError(tag: Tag<Nothing>, exception: Throwable): Nothing = throw exception
 }
 
-fun Document.createHTMLTree(): JVMTagConsumer<Element> = HTMLDOMBuilder(this)
-val Document.create: JVMTagConsumer<Element>
+fun Document.createHTMLTree(): DesktopTagConsumer<Element> = HTMLDOMBuilder(this)
+val Document.create: DesktopTagConsumer<Element>
   get() = HTMLDOMBuilder(this)
 
-fun Node.append(block: JVMTagConsumer<Element>.() -> Unit): List<Element> = ArrayList<Element>().let { result ->
+fun Node.append(block: DesktopTagConsumer<Element>.() -> Unit): List<Element> = ArrayList<Element>().let { result ->
   ownerDocumentExt.createHTMLTree().onFinalize { it, partial ->
     if (!partial) {
       appendChild(it); result.add(it)
@@ -140,7 +138,7 @@ fun Node.append(block: JVMTagConsumer<Element>.() -> Unit): List<Element> = Arra
   result
 }
 
-fun Node.prepend(block: JVMTagConsumer<Element>.() -> Unit): List<Element> = ArrayList<Element>().let { result ->
+fun Node.prepend(block: DesktopTagConsumer<Element>.() -> Unit): List<Element> = ArrayList<Element>().let { result ->
   ownerDocumentExt.createHTMLTree().onFinalize { it, partial ->
     if (!partial) {
       insertBefore(it, firstChild)
@@ -151,14 +149,14 @@ fun Node.prepend(block: JVMTagConsumer<Element>.() -> Unit): List<Element> = Arr
   result
 }
 
-val Node.append: JVMTagConsumer<Element>
+val Node.append: DesktopTagConsumer<Element>
   get() = ownerDocumentExt.createHTMLTree().onFinalize { it, partial ->
     if (!partial) {
       appendChild(it)
     }
   }
 
-val Node.prepend: JVMTagConsumer<Element>
+val Node.prepend: DesktopTagConsumer<Element>
   get() = ownerDocumentExt.createHTMLTree().onFinalize { it, partial ->
     if (!partial) {
       insertBefore(it, firstChild)
@@ -171,7 +169,7 @@ private val Node.ownerDocumentExt: Document
     else -> ownerDocument ?: throw IllegalArgumentException("node has no ownerDocument")
   }
 
-fun createHTMLDocument(): JVMTagConsumer<Document> =
+fun createHTMLDocument(): DesktopTagConsumer<Document> =
   DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
     HTMLDOMBuilder(document).onFinalizeMap { it, partial ->
       if (!partial) {
