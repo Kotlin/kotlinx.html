@@ -14,12 +14,12 @@ import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsSetupTask
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "1.4.0-rc"
+    kotlin("multiplatform") version "1.4.0"
     id("maven-publish")
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.7.1-1.4.0-rc-SNAPSHOT"
+version = "0.7.2-SNAPSHOT"
 
 /**
  * If "release" profile is used the "-SNAPSHOT" suffix of the version is removed.
@@ -104,9 +104,6 @@ publishing {
 repositories {
     jcenter()
     mavenCentral()
-    // It is just for release against Milestone versions
-    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
-    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
 
     when {
         /** Allow all profiles but release to use development and SNAPSHOT dependencies. */
