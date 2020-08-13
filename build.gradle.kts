@@ -105,6 +105,10 @@ repositories {
     jcenter()
     mavenCentral()
 
+    // It is just for release against pre-release versions
+    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
+    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
+
     when {
         /** Allow all profiles but release to use development and SNAPSHOT dependencies. */
         !hasProperty("release") -> {
