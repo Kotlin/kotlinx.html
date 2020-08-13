@@ -1,6 +1,7 @@
-import kotlinx.html.js.*
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsSetupTask
+import Build_gradle.MavenPomFile
+import kotlinx.html.js.packageJson
 import org.apache.tools.ant.taskdefs.condition.Os
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsSetupTask
 
 /**
  * This build script supports following parameters:
@@ -13,7 +14,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "1.3.61"
+    kotlin("multiplatform") version "1.4.0"
     id("maven-publish")
 }
 
@@ -104,6 +105,10 @@ repositories {
     jcenter()
     mavenCentral()
 
+    // It is just for release against pre-release versions
+    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
+    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
+
     when {
         /** Allow all profiles but release to use development and SNAPSHOT dependencies. */
         !hasProperty("release") -> {
@@ -139,6 +144,7 @@ kotlin {
     }
 
     js {
+        moduleName = project.name
         browser {
             testTask {
                 useKarma {
@@ -258,7 +264,7 @@ tasks.register<Task>("generate") {
 }
 
 tasks.register<Copy>("jsPackagePrepare") {
-    dependsOn("jsMainClasses")
+    dependsOn("jsLegacyMainClasses")
     tasks["assemble"].dependsOn(this)
 
     group = "build"
@@ -369,7 +375,7 @@ fun MavenPomFile.config(config: MavenPomFile.() -> Unit = {}) {
 }
 
 tasks.withType<GenerateModuleMetadata> {
-    enabled = false
+    enabled = true
 }
 
 fun MavenPublication.jar(taskName: String, config: Action<Jar>) = artifact(tasks.create(taskName, Jar::class, config))
