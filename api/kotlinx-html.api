@@ -412,7 +412,7 @@ public final class kotlinx/html/CommonAttributeGroupFacadeFlowHeadingPhrasingCon
 	public static fun unaryPlus (Lkotlinx/html/CommonAttributeGroupFacadeFlowHeadingPhrasingContent;Lkotlinx/html/Entities;)V
 }
 
-public abstract interface class kotlinx/html/CommonAttributeGroupFacadeFlowInteractiveContent : kotlinx/html/CommonAttributeGroupFacade, kotlinx/html/HtmlBlockTag, kotlinx/html/InteractiveContent {
+public abstract interface class kotlinx/html/CommonAttributeGroupFacadeFlowInteractiveContent : kotlinx/html/CommonAttributeGroupFacade, kotlinx/html/FlowInteractiveContent, kotlinx/html/HtmlBlockTag {
 }
 
 public final class kotlinx/html/CommonAttributeGroupFacadeFlowInteractiveContent$DefaultImpls {
@@ -424,7 +424,7 @@ public final class kotlinx/html/CommonAttributeGroupFacadeFlowInteractiveContent
 	public static fun unaryPlus (Lkotlinx/html/CommonAttributeGroupFacadeFlowInteractiveContent;Lkotlinx/html/Entities;)V
 }
 
-public abstract interface class kotlinx/html/CommonAttributeGroupFacadeFlowInteractivePhrasingContent : kotlinx/html/CommonAttributeGroupFacade, kotlinx/html/CommonAttributeGroupFacadeFlowInteractiveContent, kotlinx/html/FlowPhrasingContent, kotlinx/html/HtmlBlockInlineTag, kotlinx/html/HtmlBlockTag, kotlinx/html/HtmlInlineTag {
+public abstract interface class kotlinx/html/CommonAttributeGroupFacadeFlowInteractivePhrasingContent : kotlinx/html/CommonAttributeGroupFacade, kotlinx/html/CommonAttributeGroupFacadeFlowInteractiveContent, kotlinx/html/FlowInteractiveContent, kotlinx/html/FlowInteractivePhrasingContent, kotlinx/html/FlowPhrasingContent, kotlinx/html/HtmlBlockInlineTag, kotlinx/html/HtmlBlockTag, kotlinx/html/HtmlInlineTag {
 }
 
 public final class kotlinx/html/CommonAttributeGroupFacadeFlowInteractivePhrasingContent$DefaultImpls {
@@ -773,6 +773,30 @@ public final class kotlinx/html/FlowContent$DefaultImpls {
 	public static fun text (Lkotlinx/html/FlowContent;Ljava/lang/String;)V
 	public static fun unaryPlus (Lkotlinx/html/FlowContent;Ljava/lang/String;)V
 	public static fun unaryPlus (Lkotlinx/html/FlowContent;Lkotlinx/html/Entities;)V
+}
+
+public abstract interface class kotlinx/html/FlowInteractiveContent : kotlinx/html/FlowContent, kotlinx/html/InteractiveContent {
+}
+
+public final class kotlinx/html/FlowInteractiveContent$DefaultImpls {
+	public static fun comment (Lkotlinx/html/FlowInteractiveContent;Ljava/lang/String;)V
+	public static fun entity (Lkotlinx/html/FlowInteractiveContent;Lkotlinx/html/Entities;)V
+	public static fun text (Lkotlinx/html/FlowInteractiveContent;Ljava/lang/Number;)V
+	public static fun text (Lkotlinx/html/FlowInteractiveContent;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/FlowInteractiveContent;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/FlowInteractiveContent;Lkotlinx/html/Entities;)V
+}
+
+public abstract interface class kotlinx/html/FlowInteractivePhrasingContent : kotlinx/html/FlowInteractiveContent, kotlinx/html/FlowPhrasingContent {
+}
+
+public final class kotlinx/html/FlowInteractivePhrasingContent$DefaultImpls {
+	public static fun comment (Lkotlinx/html/FlowInteractivePhrasingContent;Ljava/lang/String;)V
+	public static fun entity (Lkotlinx/html/FlowInteractivePhrasingContent;Lkotlinx/html/Entities;)V
+	public static fun text (Lkotlinx/html/FlowInteractivePhrasingContent;Ljava/lang/Number;)V
+	public static fun text (Lkotlinx/html/FlowInteractivePhrasingContent;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/FlowInteractivePhrasingContent;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/FlowInteractivePhrasingContent;Lkotlinx/html/Entities;)V
 }
 
 public abstract interface class kotlinx/html/FlowMetaDataContent : kotlinx/html/FlowContent, kotlinx/html/MetaDataContent {
@@ -1280,6 +1304,8 @@ public final class kotlinx/html/Gen_consumer_tagsKt {
 	public static synthetic fun p$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun param (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun param$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun picture (Lkotlinx/html/TagConsumer;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static synthetic fun picture$default (Lkotlinx/html/TagConsumer;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun pre (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun pre$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun progress (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
@@ -1566,6 +1592,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun passwordInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun patchButton (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/ButtonFormEncType;Ljava/lang/String;Lkotlinx/html/ButtonType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun patchButton$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/ButtonFormEncType;Ljava/lang/String;Lkotlinx/html/ButtonType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun picture (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun picture$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun polyArea (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun polyArea$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun postButton (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/ButtonFormEncType;Ljava/lang/String;Lkotlinx/html/ButtonType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -1829,11 +1857,18 @@ public final class kotlinx/html/Gen_tags_oKt {
 
 public final class kotlinx/html/Gen_tags_pKt {
 	public static final fun getAsFlowContent (Lkotlinx/html/P;)Lkotlinx/html/FlowContent;
+	public static final fun getAsFlowContent (Lkotlinx/html/PICTURE;)Lkotlinx/html/FlowContent;
 	public static final fun getAsFlowContent (Lkotlinx/html/PRE;)Lkotlinx/html/FlowContent;
 	public static final fun getAsFlowContent (Lkotlinx/html/PROGRESS;)Lkotlinx/html/FlowContent;
+	public static final fun getAsInteractiveContent (Lkotlinx/html/PICTURE;)Lkotlinx/html/InteractiveContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/P;)Lkotlinx/html/PhrasingContent;
+	public static final fun getAsPhrasingContent (Lkotlinx/html/PICTURE;)Lkotlinx/html/PhrasingContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/PRE;)Lkotlinx/html/PhrasingContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/PROGRESS;)Lkotlinx/html/PhrasingContent;
+	public static final fun img (Lkotlinx/html/PICTURE;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun img$default (Lkotlinx/html/PICTURE;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun source (Lkotlinx/html/PICTURE;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun source$default (Lkotlinx/html/PICTURE;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 
 public final class kotlinx/html/Gen_tags_qKt {
@@ -2591,6 +2626,11 @@ public class kotlinx/html/PARAM : kotlinx/html/HTMLTag {
 	public final fun getValue ()Ljava/lang/String;
 	public final fun setName (Ljava/lang/String;)V
 	public final fun setValue (Ljava/lang/String;)V
+}
+
+public class kotlinx/html/PICTURE : kotlinx/html/HTMLTag, kotlinx/html/FlowInteractivePhrasingContent {
+	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
+	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 }
 
 public class kotlinx/html/PRE : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInlineTag {
