@@ -763,7 +763,7 @@ public class kotlinx/html/FORM : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockTag
 	public final fun setTarget (Ljava/lang/String;)V
 }
 
-public abstract interface class kotlinx/html/FlowContent : kotlinx/html/FlowOrHeadingContent, kotlinx/html/FlowOrInteractiveContent, kotlinx/html/FlowOrInteractiveOrPhrasingContent, kotlinx/html/FlowOrMetaDataContent, kotlinx/html/FlowOrPhrasingContent, kotlinx/html/FlowOrPhrasingOrMetaDataContent, kotlinx/html/SectioningOrFlowContent, kotlinx/html/Tag {
+public abstract interface class kotlinx/html/FlowContent : kotlinx/html/FlowOrHeadingContent, kotlinx/html/FlowOrInteractiveContent, kotlinx/html/FlowOrInteractiveOrPhrasingContent, kotlinx/html/FlowOrMetaDataContent, kotlinx/html/FlowOrMetaDataOrPhrasingContent, kotlinx/html/FlowOrPhrasingContent, kotlinx/html/SectioningOrFlowContent, kotlinx/html/Tag {
 }
 
 public final class kotlinx/html/FlowContent$DefaultImpls {
@@ -835,7 +835,7 @@ public final class kotlinx/html/FlowOrInteractiveOrPhrasingContent$DefaultImpls 
 	public static fun unaryPlus (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/Entities;)V
 }
 
-public abstract interface class kotlinx/html/FlowOrMetaDataContent : kotlinx/html/FlowOrPhrasingOrMetaDataContent, kotlinx/html/Tag {
+public abstract interface class kotlinx/html/FlowOrMetaDataContent : kotlinx/html/FlowOrMetaDataOrPhrasingContent, kotlinx/html/Tag {
 }
 
 public final class kotlinx/html/FlowOrMetaDataContent$DefaultImpls {
@@ -847,7 +847,19 @@ public final class kotlinx/html/FlowOrMetaDataContent$DefaultImpls {
 	public static fun unaryPlus (Lkotlinx/html/FlowOrMetaDataContent;Lkotlinx/html/Entities;)V
 }
 
-public abstract interface class kotlinx/html/FlowOrPhrasingContent : kotlinx/html/FlowOrInteractiveOrPhrasingContent, kotlinx/html/FlowOrPhrasingOrMetaDataContent, kotlinx/html/Tag {
+public abstract interface class kotlinx/html/FlowOrMetaDataOrPhrasingContent : kotlinx/html/Tag {
+}
+
+public final class kotlinx/html/FlowOrMetaDataOrPhrasingContent$DefaultImpls {
+	public static fun comment (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;)V
+	public static fun entity (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Lkotlinx/html/Entities;)V
+	public static fun text (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/Number;)V
+	public static fun text (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Lkotlinx/html/Entities;)V
+}
+
+public abstract interface class kotlinx/html/FlowOrPhrasingContent : kotlinx/html/FlowOrInteractiveOrPhrasingContent, kotlinx/html/FlowOrMetaDataOrPhrasingContent, kotlinx/html/Tag {
 }
 
 public final class kotlinx/html/FlowOrPhrasingContent$DefaultImpls {
@@ -857,18 +869,6 @@ public final class kotlinx/html/FlowOrPhrasingContent$DefaultImpls {
 	public static fun text (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;)V
 	public static fun unaryPlus (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;)V
 	public static fun unaryPlus (Lkotlinx/html/FlowOrPhrasingContent;Lkotlinx/html/Entities;)V
-}
-
-public abstract interface class kotlinx/html/FlowOrPhrasingOrMetaDataContent : kotlinx/html/Tag {
-}
-
-public final class kotlinx/html/FlowOrPhrasingOrMetaDataContent$DefaultImpls {
-	public static fun comment (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;)V
-	public static fun entity (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Lkotlinx/html/Entities;)V
-	public static fun text (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/Number;)V
-	public static fun text (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;)V
-	public static fun unaryPlus (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;)V
-	public static fun unaryPlus (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Lkotlinx/html/Entities;)V
 }
 
 public abstract interface class kotlinx/html/FlowPhrasingContent : kotlinx/html/FlowContent, kotlinx/html/PhrasingContent {
@@ -1450,8 +1450,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static final fun canvas (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun canvas$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 	public static synthetic fun canvas$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun checkBoxCommand (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun checkBoxCommand$default (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun checkBoxCommand (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun checkBoxCommand$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun checkBoxInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun checkBoxInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun circleArea (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -1462,10 +1462,10 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun code$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun colorInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun colorInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun command (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Lkotlinx/html/CommandType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun command$default (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Lkotlinx/html/CommandType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun commandCommand (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun commandCommand$default (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun command (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Lkotlinx/html/CommandType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun command$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Lkotlinx/html/CommandType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun commandCommand (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun commandCommand$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun dataList (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun dataList$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun dateInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -1538,8 +1538,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun keyGen$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/KeyGenKeyType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun label (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun label$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun link (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun link$default (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun link (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun link$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun main (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun main$default (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun map (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -1548,16 +1548,16 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun mark$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun math (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun math$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun meta (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun meta$default (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun meta (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun meta$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun meter (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun meter$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun monthInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun monthInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun nav (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun nav$default (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun noScript (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun noScript$default (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun noScript (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun noScript$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun numberInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun numberInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun output (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -1576,8 +1576,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun putButton$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/ButtonFormEncType;Ljava/lang/String;Lkotlinx/html/ButtonType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun q (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun q$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun radioCommand (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun radioCommand$default (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun radioCommand (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun radioCommand$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun radioInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun radioInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun rangeInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -1592,10 +1592,10 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun ruby$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun samp (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun samp$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun script (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun script (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun script$default (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
-	public static synthetic fun script$default (Lkotlinx/html/FlowOrPhrasingOrMetaDataContent;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun script (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun script (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun script$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static synthetic fun script$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun searchInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun searchInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun section (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -2476,7 +2476,7 @@ public class kotlinx/html/METER : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockIn
 	public final fun setValue (Ljava/lang/String;)V
 }
 
-public abstract interface class kotlinx/html/MetaDataContent : kotlinx/html/FlowOrMetaDataContent, kotlinx/html/FlowOrPhrasingOrMetaDataContent, kotlinx/html/Tag {
+public abstract interface class kotlinx/html/MetaDataContent : kotlinx/html/FlowOrMetaDataContent, kotlinx/html/FlowOrMetaDataOrPhrasingContent, kotlinx/html/Tag {
 }
 
 public final class kotlinx/html/MetaDataContent$DefaultImpls {
@@ -2607,7 +2607,7 @@ public class kotlinx/html/PROGRESS : kotlinx/html/HTMLTag, kotlinx/html/HtmlBloc
 	public final fun setValue (Ljava/lang/String;)V
 }
 
-public abstract interface class kotlinx/html/PhrasingContent : kotlinx/html/FlowOrInteractiveOrPhrasingContent, kotlinx/html/FlowOrPhrasingContent, kotlinx/html/FlowOrPhrasingOrMetaDataContent, kotlinx/html/Tag {
+public abstract interface class kotlinx/html/PhrasingContent : kotlinx/html/FlowOrInteractiveOrPhrasingContent, kotlinx/html/FlowOrMetaDataOrPhrasingContent, kotlinx/html/FlowOrPhrasingContent, kotlinx/html/Tag {
 }
 
 public final class kotlinx/html/PhrasingContent$DefaultImpls {
