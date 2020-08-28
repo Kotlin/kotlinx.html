@@ -21,6 +21,14 @@ plugins {
 group = "org.jetbrains.kotlinx"
 version = "0.7.2-SNAPSHOT"
 
+buildscript {
+    dependencies {
+        classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.2.3")
+    }
+}
+
+apply(plugin = "binary-compatibility-validator")
+
 /**
  * If "release" profile is used the "-SNAPSHOT" suffix of the version is removed.
  */
