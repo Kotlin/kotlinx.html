@@ -3,7 +3,7 @@ package kotlinx.html.tests.unsafes
 import kotlinx.html.*
 import kotlinx.html.dom.*
 import kotlinx.html.stream.*
-import kotlin.browser.*
+import kotlinx.browser.*
 import kotlin.test.*
 
 class UnsafeContentTest {

@@ -5,7 +5,7 @@ import kotlinx.html.dom.*
 import kotlinx.html.injector.*
 import kotlinx.html.js.*
 import org.w3c.dom.*
-import kotlin.browser.*
+import kotlinx.browser.*
 import kotlin.properties.*
 import kotlin.test.*
 import kotlin.test.Test as test

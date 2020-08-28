@@ -2,7 +2,7 @@ import kotlinx.html.*
 import kotlinx.html.consumers.*
 import kotlinx.html.dom.*
 import kotlinx.html.js.*
-import kotlin.browser.*
+import kotlinx.browser.*
 import kotlin.test.*
 
 class TestExceptions {
