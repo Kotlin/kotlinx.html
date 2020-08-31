@@ -93,7 +93,7 @@ class DomTreeImplTest {
 
     @test
     fun testAtMainPage() {
-        val containerCreated = document.body!!.append.div {
+        document.body!!.append.div {
             id = "container"
         }
 
@@ -247,7 +247,7 @@ class DomTreeImplTest {
         wrapper.append {
             form {
                 id = "my-form"
-                onSubmitFunction = { event ->
+                onSubmitFunction = { _ ->
                     invoked = true
                 }
             }
@@ -283,7 +283,7 @@ class DomTreeImplTest {
         val wrapper = wrapper()
         wrapper.appendChild(document.createElement("A").apply { textContent = "aaa" })
 
-        val nodes = wrapper.prepend {
+        wrapper.prepend {
             p {
                 text("OK")
             }
@@ -303,6 +303,7 @@ class DomTreeImplTest {
     }
 
     private fun wrapper() = document.body!!.append.div {}
+    @Suppress("UNCHECKED_CAST")
     private fun <T> uninitialized(): T = null as T
     private fun String.trimLines() = trimIndent().lines().filter { it.isNotBlank() }.joinToString("")
 }

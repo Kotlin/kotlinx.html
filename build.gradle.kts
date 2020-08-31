@@ -308,6 +308,7 @@ kotlin {
 tasks {
     val wrapper by getting(Wrapper::class) {
         gradleVersion = "6.5"
+        distributionType = Wrapper.DistributionType.ALL
     }
     register<Task>("generate") {
         group = "source-generation"
