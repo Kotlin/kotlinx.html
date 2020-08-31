@@ -13,14 +13,14 @@ open class CANVAS<E>(initialAttributes: Map<String, String>, override val consum
         set(newValue) {
             attributeStringString.set(this, "width", newValue)
         }
-    
+
     var height: String
         get() = attributeStringString.get(this, "height")
         set(newValue) {
             attributeStringString.set(this, "height", newValue)
         }
-    
-    
+
+
 }
 
 val <E> CANVAS<E>.asFlowContent: FlowContent<E>
@@ -64,8 +64,8 @@ open class COL<E>(initialAttributes: Map<String, String>, override val consumer:
         set(newValue) {
             attributeStringString.set(this, "span", newValue)
         }
-    
-    
+
+
 }
 
 @Suppress("unused")
@@ -76,8 +76,8 @@ open class COLGROUP<E>(initialAttributes: Map<String, String>, override val cons
         set(newValue) {
             attributeStringString.set(this, "span", newValue)
         }
-    
-    
+
+
 }
 
 /**
@@ -97,38 +97,38 @@ open class COMMAND<E>(initialAttributes: Map<String, String>, override val consu
         set(newValue) {
             attributeCommandTypeEnumCommandTypeValues.set(this, "type", newValue)
         }
-    
+
     var label: String
         get() = attributeStringString.get(this, "label")
         set(newValue) {
             attributeStringString.set(this, "label", newValue)
         }
-    
+
     var icon: String
         get() = attributeStringString.get(this, "icon")
         set(newValue) {
             attributeStringString.set(this, "icon", newValue)
         }
-    
+
     var disabled: Boolean
         get() = attributeBooleanTicker.get(this, "disabled")
         set(newValue) {
             attributeBooleanTicker.set(this, "disabled", newValue)
         }
-    
+
     var checked: Boolean
         get() = attributeBooleanTicker.get(this, "checked")
         set(newValue) {
             attributeBooleanTicker.set(this, "checked", newValue)
         }
-    
+
     var radioGroup: String
         get() = attributeStringString.get(this, "radiogroup")
         set(newValue) {
             attributeStringString.set(this, "radiogroup", newValue)
         }
-    
-    
+
+
 }
 
 val <E> COMMAND<E>.asFlowContent: FlowContent<E>

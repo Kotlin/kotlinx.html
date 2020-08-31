@@ -13,8 +13,8 @@ open class Q<E>(initialAttributes: Map<String, String>, override val consumer: T
         set(newValue) {
             attributeStringString.set(this, "cite", newValue)
         }
-    
-    
+
+
 }
 
 val <E> Q<E>.asFlowContent: FlowContent<E>

@@ -15,8 +15,8 @@ open class TABLE<E>(initialAttributes: Map<String, String>, override val consume
         set(newValue) {
             attributeStringString.set(this, "summary", newValue)
         }
-    
-    
+
+
 }
 
 /**
@@ -82,20 +82,20 @@ open class TD<E>(initialAttributes: Map<String, String>, override val consumer: 
         set(newValue) {
             attributeStringString.set(this, "headers", newValue)
         }
-    
+
     var rowSpan: String
         get() = attributeStringString.get(this, "rowspan")
         set(newValue) {
             attributeStringString.set(this, "rowspan", newValue)
         }
-    
+
     var colSpan: String
         get() = attributeStringString.get(this, "colspan")
         set(newValue) {
             attributeStringString.set(this, "colspan", newValue)
         }
-    
-    
+
+
 }
 
 @Suppress("unused")
@@ -107,74 +107,74 @@ open class TEXTAREA<E>(initialAttributes: Map<String, String>, override val cons
         set(newValue) {
             attributeBooleanTicker.set(this, "autofocus", newValue)
         }
-    
+
     var disabled: Boolean
         get() = attributeBooleanTicker.get(this, "disabled")
         set(newValue) {
             attributeBooleanTicker.set(this, "disabled", newValue)
         }
-    
+
     var form: String
         get() = attributeStringString.get(this, "form")
         set(newValue) {
             attributeStringString.set(this, "form", newValue)
         }
-    
+
     var maxLength: String
         get() = attributeStringString.get(this, "maxlength")
         set(newValue) {
             attributeStringString.set(this, "maxlength", newValue)
         }
-    
+
     var minLength: String
         get() = attributeStringString.get(this, "minlength")
         set(newValue) {
             attributeStringString.set(this, "minlength", newValue)
         }
-    
+
     var name: String
         get() = attributeStringString.get(this, "name")
         set(newValue) {
             attributeStringString.set(this, "name", newValue)
         }
-    
+
     var placeholder: String
         get() = attributeStringString.get(this, "placeholder")
         set(newValue) {
             attributeStringString.set(this, "placeholder", newValue)
         }
-    
+
     var readonly: Boolean
         get() = attributeBooleanTicker.get(this, "readonly")
         set(newValue) {
             attributeBooleanTicker.set(this, "readonly", newValue)
         }
-    
+
     var required: Boolean
         get() = attributeBooleanTicker.get(this, "required")
         set(newValue) {
             attributeBooleanTicker.set(this, "required", newValue)
         }
-    
+
     var rows: String
         get() = attributeStringString.get(this, "rows")
         set(newValue) {
             attributeStringString.set(this, "rows", newValue)
         }
-    
+
     var cols: String
         get() = attributeStringString.get(this, "cols")
         set(newValue) {
             attributeStringString.set(this, "cols", newValue)
         }
-    
+
     var wrap: TextAreaWrap
         get() = attributeTextAreaWrapEnumTextAreaWrapValues.get(this, "wrap")
         set(newValue) {
             attributeTextAreaWrapEnumTextAreaWrapValues.set(this, "wrap", newValue)
         }
-    
-    
+
+
 }
 
 val <E> TEXTAREA<E>.asFlowContent: FlowContent<E>
@@ -207,26 +207,26 @@ open class TH<E>(initialAttributes: Map<String, String>, override val consumer: 
         set(newValue) {
             attributeStringString.set(this, "headers", newValue)
         }
-    
+
     var rowSpan: String
         get() = attributeStringString.get(this, "rowspan")
         set(newValue) {
             attributeStringString.set(this, "rowspan", newValue)
         }
-    
+
     var colSpan: String
         get() = attributeStringString.get(this, "colspan")
         set(newValue) {
             attributeStringString.set(this, "colspan", newValue)
         }
-    
+
     var scope: ThScope
         get() = attributeThScopeEnumThScopeValues.get(this, "scope")
         set(newValue) {
             attributeThScopeEnumThScopeValues.set(this, "scope", newValue)
         }
-    
-    
+
+
 }
 
 @Suppress("unused")
@@ -249,8 +249,8 @@ open class TIME<E>(initialAttributes: Map<String, String>, override val consumer
         set(newValue) {
             attributeStringString.set(this, "datetime", newValue)
         }
-    
-    
+
+
 }
 
 val <E> TIME<E>.asFlowContent: FlowContent<E>

@@ -9,7 +9,7 @@ fun List<String>.toAttributeValues(): List<AttributeEnumValue> =
 
 fun Appendable.enumObject(attribute: AttributeInfo) {
     val name = attribute.enumTypeName
-    
+
     appendln("@Suppress(\"unused\")")
     clazz(Clazz(name, isObject = true)) {
         attribute.enumValues.forEach {
@@ -17,7 +17,7 @@ fun Appendable.enumObject(attribute: AttributeInfo) {
             variable(Var(it.fieldName, "String", false, defaultValue = "\"${it.realName}\""))
             emptyLine()
         }
-        
+
         emptyLine()
         append("    ")
 //        append("private ")
@@ -30,31 +30,31 @@ fun Appendable.enumObject(attribute: AttributeInfo) {
         )
         emptyLine()
     }
-    
+
     emptyLine()
 }
 
 fun Appendable.enum(attribute: AttributeInfo) {
     val name = attribute.enumTypeName
     val realValue = Var("realValue", "String", false, true)
-    
+
     appendln("@Suppress(\"unused\")")
     append("enum ")
     clazz(Clazz(name, variables = listOf(realValue), parents = listOf("AttributeEnum"))) {
         attribute.enumValues.forEachIndexed { idx, it ->
             append("    ")
-            
+
             val deprecated = findEnumDeprecation(attribute, it)
             enumEntry(it.fieldName, deprecated, listOf("\"${it.realName}\""))
-            
+
             if (idx != attribute.enumValues.lastIndex) {
                 append(",")
             }
-            
+
             appendln()
         }
     }
-    
+
     emptyLine()
     append("internal ")
     variable(

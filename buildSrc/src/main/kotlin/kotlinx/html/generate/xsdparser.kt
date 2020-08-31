@@ -28,7 +28,7 @@ private fun flattenTerm(term: XSTerm, result: MutableCollection<String>, visited
 fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttributeDecl): AttributeInfo {
     val name = attributeDeclaration.name
     val type = attributeDeclaration.type
-    
+
     if (type.isUnion) {
         val enumEntries = type.asUnion()
             .filter { it.isRestriction }
@@ -36,7 +36,7 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
             .flatMap { it.declaredFacets ?: emptyList() }
             .filter { it.name == "enumeration" }
             .map { it.value.value }
-        
+
         return AttributeInfo(
             name,
             AttributeType.STRING,
@@ -50,7 +50,7 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
         val enumEntries = restriction.declaredFacets
             .filter { it.name == "enumeration" }
             .map { it.value.value }
-        
+
         if (enumEntries.size == 1 && enumEntries.single() == name) {
             // probably ticker
             return AttributeInfo(name, AttributeType.TICKER)
@@ -76,7 +76,7 @@ fun flattenGroups(root: XSAttGroupDecl, result: MutableList<XSAttGroupDecl> = Ar
     root.attGroups?.forEach {
         flattenGroups(it, result)
     }
-    
+
     return result
 }
 
@@ -89,7 +89,7 @@ fun fillRepository() {
     val parser = XSOMParser(SAXParserFactory.newInstance())
     parser.parse(SCHEME_URL)
     val schema = parser.result.getSchema(HTML_NAMESPACE)
-    
+
     @Suppress("UNCHECKED_CAST")
     val alreadyIncluded = TreeSet<String> { a, b -> a.compareTo(b, true) }
     schema.attGroupDecls.values.sortedByDescending { it.attributeUses.size }.forEach { attributeGroup ->
@@ -99,20 +99,20 @@ fun fillRepository() {
             if (attributeUse.isRequired) {
                 requiredNames.add(attributeDeclaration.name)
             }
-            
+
             handleAttributeDeclaration("", attributeDeclaration).handleSpecialType()
         }.filter { it.name !in alreadyIncluded }
             .filter { !it.name.startsWith("On") }
             .sortedBy { it.name }
-        
+
         val name = attributeGroup.name
-        
+
         if (facadeAttributes.isNotEmpty()) {
             Repository.attributeFacades[name] = AttributeFacade(name, facadeAttributes, requiredNames)
             alreadyIncluded.addAll(facadeAttributes.map { it.name })
         }
     }
-    
+
     schema.modelGroupDecls.values.forEach { modelGroupDeclaration ->
         val name = modelGroupDeclaration.name
         val children = modelGroupDeclaration.modelGroup
@@ -120,14 +120,14 @@ fun fillRepository() {
             .map { it.term }
             .filter { it.isElementDecl }
             .map { it.asElementDecl().name }
-        
+
         val group = TagGroup(name, children)
         Repository.tagGroups[name] = group
         children.forEach {
             Repository.groupsByTags.getOrPut(it) { ArrayList<TagGroup>() }.add(group)
         }
     }
-    
+
     schema.elementDecls.values.forEach { elementDeclaration ->
         val name = elementDeclaration.name
         val type = elementDeclaration.type
@@ -138,21 +138,21 @@ fun fillRepository() {
         val excluded =
             globalSuggestedAttributes.get(name)?.filter { it.startsWith("-") }?.map { it.removePrefix("-") }
                 ?: emptyList()
-        
+
         val tagInfo: TagInfo
         if (type.isComplexType) {
             val complex = type.asComplexType()
             val groupDeclarations = complex.attGroups.flatMap { flattenGroups(it) }.distinct().toList()
             val attributeGroups = groupDeclarations.map { Repository.attributeFacades[it.name] }.filterNotNull()
-            
+
             val attributes = complex.declaredAttributeUses.map {
                 if (it.isRequired) {
                     suggestedNames.add(it.decl.name)
                 }
-                
+
                 handleAttributeDeclaration(name.humanize(), it.decl).handleSpecialType(name)
             }
-            
+
             val children = HashSet<String>()
             val modelGroupNames = HashSet<String>()
             val contentTerm = complex.contentType?.asParticle()?.term
@@ -165,15 +165,15 @@ fun fillRepository() {
                         .map { it.asElementDecl().name })
                 }
             }
-            
+
             modelGroupNames.addAll(Repository.groupsByTags[name]?.map { it.name }.orEmpty())
-            
+
             suggestedNames.addAll(attributes.filter { it.type == AttributeType.ENUM }.map { it.name })
             suggestedNames.addAll(attributes.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
             suggestedNames.addAll(attributeGroups.flatMap { it.attributes }
                 .filter { it.name in globalSuggestedAttributeNames }.map { it.name })
             suggestedNames.removeAll(excluded)
-            
+
             tagInfo = TagInfo(
                 name,
                 children.toList().sorted(),
@@ -186,10 +186,10 @@ fun fillRepository() {
         } else {
             throw UnsupportedOperationException()
         }
-        
+
         Repository.tags[name] = tagInfo
     }
-    
+
     tagUnions()
 }
 

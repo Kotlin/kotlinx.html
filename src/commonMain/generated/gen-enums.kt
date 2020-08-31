@@ -36,7 +36,7 @@ object ATarget {
     val parent: String = "_parent"
     val self: String = "_self"
     val top: String = "_top"
-    
+
     val values: List<String> = listOf("blank", "parent", "self", "top")
 }
 
@@ -57,7 +57,7 @@ object ARel {
     val start: String = "Start"
     val stylesheet: String = "Stylesheet"
     val subsection: String = "Subsection"
-    
+
     val values: List<String> = listOf(
         "alternate",
         "appEndIx",
@@ -89,7 +89,7 @@ object AType {
     val textXComponent: String = "text/x-component"
     val textXHtmlInsertion: String = "text/x-html-insertion"
     val textXml: String = "text/xml"
-    
+
     val values: List<String> = listOf(
         "textAsp",
         "textAsa",
@@ -120,7 +120,7 @@ object AreaTarget {
     val parent: String = "_parent"
     val self: String = "_self"
     val top: String = "_top"
-    
+
     val values: List<String> = listOf("blank", "parent", "self", "top")
 }
 
@@ -141,7 +141,7 @@ object AreaRel {
     val start: String = "Start"
     val stylesheet: String = "Stylesheet"
     val subsection: String = "Subsection"
-    
+
     val values: List<String> = listOf(
         "alternate",
         "appEndIx",
@@ -167,7 +167,7 @@ object BaseTarget {
     val parent: String = "_parent"
     val self: String = "_self"
     val top: String = "_top"
-    
+
     val values: List<String> = listOf("blank", "parent", "self", "top")
 }
 
@@ -185,10 +185,13 @@ internal val buttonFormEncTypeValues: Map<String, ButtonFormEncType> =
 enum class ButtonFormMethod(override val realValue: String) : AttributeEnum {
     get("get"),
     post("post"),
+
     @Deprecated("method is not allowed in browsers")
     put("put"),
+
     @Deprecated("method is not allowed in browsers")
     delete("delete"),
+
     @Deprecated("method is not allowed in browsers")
     patch("patch")
 }
@@ -202,7 +205,7 @@ object ButtonFormTarget {
     val parent: String = "_parent"
     val self: String = "_self"
     val top: String = "_top"
-    
+
     val values: List<String> = listOf("blank", "parent", "self", "top")
 }
 
@@ -237,10 +240,13 @@ internal val formEncTypeValues: Map<String, FormEncType> = FormEncType.values().
 enum class FormMethod(override val realValue: String) : AttributeEnum {
     get("get"),
     post("post"),
+
     @Deprecated("method is not allowed in browsers")
     put("put"),
+
     @Deprecated("method is not allowed in browsers")
     delete("delete"),
+
     @Deprecated("method is not allowed in browsers")
     patch("patch")
 }
@@ -253,7 +259,7 @@ object FormTarget {
     val parent: String = "_parent"
     val self: String = "_self"
     val top: String = "_top"
-    
+
     val values: List<String> = listOf("blank", "parent", "self", "top")
 }
 
@@ -263,7 +269,7 @@ object IframeName {
     val parent: String = "_parent"
     val self: String = "_self"
     val top: String = "_top"
-    
+
     val values: List<String> = listOf("blank", "parent", "self", "top")
 }
 
@@ -319,10 +325,13 @@ internal val inputFormEncTypeValues: Map<String, InputFormEncType> =
 enum class InputFormMethod(override val realValue: String) : AttributeEnum {
     get("get"),
     post("post"),
+
     @Deprecated("method is not allowed in browsers")
     put("put"),
+
     @Deprecated("method is not allowed in browsers")
     delete("delete"),
+
     @Deprecated("method is not allowed in browsers")
     patch("patch")
 }
@@ -335,7 +344,7 @@ object InputFormTarget {
     val parent: String = "_parent"
     val self: String = "_self"
     val top: String = "_top"
-    
+
     val values: List<String> = listOf("blank", "parent", "self", "top")
 }
 
@@ -363,7 +372,7 @@ object LinkRel {
     val start: String = "Start"
     val stylesheet: String = "Stylesheet"
     val subsection: String = "Subsection"
-    
+
     val values: List<String> = listOf(
         "alternate",
         "appEndIx",
@@ -394,7 +403,7 @@ object LinkMedia {
     val braille: String = "braille"
     val aural: String = "aural"
     val all: String = "all"
-    
+
     val values: List<String> =
         listOf("screen", "print", "tty", "tv", "projection", "handheld", "braille", "aural", "all")
 }
@@ -411,7 +420,7 @@ object LinkType {
     val textXComponent: String = "text/x-component"
     val textXHtmlInsertion: String = "text/x-html-insertion"
     val textXml: String = "text/xml"
-    
+
     val values: List<String> = listOf(
         "textAsp",
         "textAsa",
@@ -432,7 +441,7 @@ object MetaHttpEquiv {
     val contentType: String = "content-type"
     val defaultStyle: String = "default-style"
     val refresh: String = "refresh"
-    
+
     val values: List<String> = listOf("contentLanguage", "contentType", "defaultStyle", "refresh")
 }
 
@@ -442,7 +451,7 @@ object ObjectName {
     val parent: String = "_parent"
     val self: String = "_self"
     val top: String = "_top"
-    
+
     val values: List<String> = listOf("blank", "parent", "self", "top")
 }
 
@@ -460,7 +469,7 @@ object ScriptType {
     val textXJavaScript: String = "text/x-javascript"
     val textXEcmaScript: String = "text/x-ecmascript"
     val textVbScript: String = "text/vbscript"
-    
+
     val values: List<String> = listOf(
         "textEcmaScript",
         "textJavaScript",
@@ -480,7 +489,7 @@ object ScriptType {
 @Suppress("unused")
 object StyleType {
     val textCss: String = "text/css"
-    
+
     val values: List<String> = listOf("textCss")
 }
 
@@ -495,7 +504,7 @@ object StyleMedia {
     val braille: String = "braille"
     val aural: String = "aural"
     val all: String = "all"
-    
+
     val values: List<String> =
         listOf("screen", "print", "tty", "tv", "projection", "handheld", "braille", "aural", "all")
 }

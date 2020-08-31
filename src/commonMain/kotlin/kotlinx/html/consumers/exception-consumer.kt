@@ -7,7 +7,7 @@ private class DelegatingExceptionConsumer<R, E>(
     val underlying: TagConsumer<R, E>,
     val handler: TagConsumer<R, E>.(Throwable) -> Unit,
 ) : TagConsumer<R, E> by underlying {
-    
+
     override fun onTagError(tag: Tag<E>, exception: Throwable) = handler(underlying, exception)
 }
 

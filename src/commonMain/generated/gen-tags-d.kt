@@ -42,14 +42,14 @@ open class DEL<E>(initialAttributes: Map<String, String>, override val consumer:
         set(newValue) {
             attributeStringString.set(this, "cite", newValue)
         }
-    
+
     var dateTime: String
         get() = attributeStringString.get(this, "datetime")
         set(newValue) {
             attributeStringString.set(this, "datetime", newValue)
         }
-    
-    
+
+
 }
 
 val <E> DEL<E>.asFlowContent: FlowContent<E>
@@ -68,8 +68,8 @@ open class DETAILS<E>(initialAttributes: Map<String, String>, override val consu
         set(newValue) {
             attributeBooleanTicker.set(this, "open", newValue)
         }
-    
-    
+
+
 }
 
 /**

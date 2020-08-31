@@ -24,14 +24,14 @@ open class PARAM<E>(initialAttributes: Map<String, String>, override val consume
         set(newValue) {
             attributeStringString.set(this, "name", newValue)
         }
-    
+
     var value: String
         get() = attributeStringString.get(this, "value")
         set(newValue) {
             attributeStringString.set(this, "value", newValue)
         }
-    
-    
+
+
 }
 
 @Suppress("unused")
@@ -53,14 +53,14 @@ open class PROGRESS<E>(initialAttributes: Map<String, String>, override val cons
         set(newValue) {
             attributeStringString.set(this, "value", newValue)
         }
-    
+
     var max: String
         get() = attributeStringString.get(this, "max")
         set(newValue) {
             attributeStringString.set(this, "max", newValue)
         }
-    
-    
+
+
 }
 
 val <E> PROGRESS<E>.asFlowContent: FlowContent<E>

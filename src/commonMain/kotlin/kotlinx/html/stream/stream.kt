@@ -12,23 +12,23 @@ import kotlinx.html.consumers.onFinalizeMap
 internal expect class HTMLStreamBuilder<out O : Appendable>(out: O, prettyPrint: Boolean, xhtmlCompatible: Boolean) :
     TagConsumer<O, Nothing> {
     override fun onTagStart(tag: Tag<Nothing>)
-    
+
     override fun onTagAttributeChange(tag: Tag<Nothing>, attribute: String, value: String?)
-    
+
     override fun onTagEnd(tag: Tag<Nothing>)
-    
+
     override fun onTagContent(content: CharSequence)
-    
+
     override fun onTagContentEntity(entity: Entities)
-    
+
     override fun finalize(): O
-    
+
     override fun onTagContentUnsafe(block: Unsafe.() -> Unit)
-    
+
     override fun onTagComment(content: CharSequence)
-    
+
     val UnsafeImpl: Unsafe
-    
+
     override fun onTagError(tag: Tag<Nothing>, exception: Throwable)
 }
 
@@ -36,14 +36,14 @@ private const val AVERAGE_PAGE_SIZE = 32768
 
 fun createHTML(prettyPrint: Boolean = true, xhtmlCompatible: Boolean = false): TagConsumer<String, Nothing> =
     HTMLStreamBuilder(
-      StringBuilder(AVERAGE_PAGE_SIZE),
-      prettyPrint,
-      xhtmlCompatible
+        StringBuilder(AVERAGE_PAGE_SIZE),
+        prettyPrint,
+        xhtmlCompatible
     ).onFinalizeMap { sb, _ -> sb.toString() }.delayed()
 
 fun <O : Appendable> O.appendHTML(
-  prettyPrint: Boolean = true,
-  xhtmlCompatible: Boolean = false
+    prettyPrint: Boolean = true,
+    xhtmlCompatible: Boolean = false
 ): TagConsumer<O, Nothing> =
     HTMLStreamBuilder(this, prettyPrint, xhtmlCompatible).delayed()
 
@@ -52,13 +52,13 @@ fun <O : Appendable> O.appendHTML(prettyPrint: Boolean = true): TagConsumer<O, N
     appendHTML(prettyPrint, false)
 
 private val escapeMap = mapOf(
-  '<' to "&lt;",
-  '>' to "&gt;",
-  '&' to "&amp;",
-  '\"' to "&quot;"
+    '<' to "&lt;",
+    '>' to "&gt;",
+    '&' to "&amp;",
+    '\"' to "&quot;"
 ).let { mappings ->
     val maxCode = mappings.keys.map { it.toInt() }.maxOrNull() ?: -1
-    
+
     Array(maxCode + 1) { mappings[it.toChar()] }
 }
 
@@ -84,7 +84,7 @@ internal fun Appendable.escapeAppend(s: CharSequence) {
     var lastIndex = 0
     val mappings = escapeMap
     val size = mappings.size
-    
+
     for (idx in s.indices) {
         val ch = s[idx].toInt()
         if (ch < 0 || ch >= size) continue
@@ -95,7 +95,7 @@ internal fun Appendable.escapeAppend(s: CharSequence) {
             lastIndex = idx + 1
         }
     }
-    
+
     if (lastIndex < s.length) {
         append(s.substring(lastIndex, s.length))
     }
@@ -113,7 +113,7 @@ internal fun Appendable.escapeComment(s: CharSequence) {
             }
             break
         }
-        
+
         append(s, start, index)
         start += 2
     }

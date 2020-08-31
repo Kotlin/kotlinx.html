@@ -34,7 +34,7 @@ fun Appendable.htmlTagBuilders(rec: String, tag: TagInfo) {
         suppress("DEPRECATION")
         htmlTagBuilderMethod(receiver, tag, false)
     }
-    
+
     val someEnumAttribute = tag.attributes.filter { it.type == AttributeType.ENUM }.maxBy { it.enumValues.size } // ??
     if (someEnumAttribute != null && someEnumAttribute.enumValues.size < 25) {
         htmlTagEnumBuilderMethod(receiver, tag, true, someEnumAttribute, 0)
@@ -46,6 +46,6 @@ fun Appendable.htmlTagBuilders(rec: String, tag: TagInfo) {
             htmlTagEnumBuilderMethod(receiver, tag, false, someEnumAttribute, 0)
         }
     }
-    
+
     emptyLine()
 }

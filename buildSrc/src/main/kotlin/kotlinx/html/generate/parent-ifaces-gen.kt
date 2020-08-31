@@ -8,10 +8,10 @@ fun generateParentInterfaces(todir: String, packg: String) {
         val parentAttributeIfaces = tag.attributeGroups.map { it.name.humanize().capitalize() + "Facade" }
         val parentElementIfaces = tag.tagGroupNames.map { it.humanize().capitalize() }
         val sum = parentAttributeIfaces + parentElementIfaces
-        
+
         sum.toSet()
     }.filter { it.isNotEmpty() }.toSet()
-    
+
     val allIntroduced = HashSet<Set<String>>(allParentIfaces.size)
     do {
         val introduced = HashSet<Set<String>>()
@@ -21,25 +21,25 @@ fun generateParentInterfaces(todir: String, packg: String) {
                 introduced.add(intersection)
             }
         }
-        
+
         if (introduced.isEmpty()) {
             break
         }
-        
+
         allIntroduced.addAll(introduced)
     } while (true)
-    
+
     FileOutputStream("$todir/gen-parent-traits.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()
 //            import("kotlinx.html.*")
             emptyLine()
-            
+
             doNotEditWarning()
             emptyLine()
             emptyLine()
-            
+
             (allIntroduced.map { it.sorted() } + allParentIfaces.filter { it.size > 1 }.map { it.sorted() }).distinct()
                 .sortedBy { it.sorted().joinToString("").let { renames[it] ?: it } }.forEach { iface ->
                     val ifaceName = humanizeJoin(iface)
@@ -48,13 +48,13 @@ fun generateParentInterfaces(todir: String, packg: String) {
                             .filter { other -> other != iface && other.all { it in iface } } +
                                 allParentIfaces.map { it.sorted() }
                                     .filter { other -> other != iface && other.all { it in iface } }
-                    
+
                     val computedParents =
                         (iface - subs.flatMap { it } + subs.map(::humanizeJoin) - ifaceName)
                             .distinct()
                             .map { renames[it] ?: it }
                             .sorted().map { p -> "$p<E>" }
-                    
+
                     clazz(
                         Clazz(
                             name = "${renames[ifaceName] ?: ifaceName}<E>",
@@ -81,27 +81,27 @@ private class PairsSequence<T>(val source: List<T>, val skipSamePairs: Boolean) 
 
 private class PairsIterator<T>(val source: List<T>, val skipSamePairs: Boolean) : AbstractIterator<Pair<T, T>>() {
     private var index = 0
-    
+
     override fun computeNext() {
         if (source.isEmpty()) {
             done()
             return
         }
-        
+
         index++
-        
+
         val i1 = index / source.size
         val i2 = index % source.size
-        
+
         if (i1 >= source.lastIndex) {
             done()
             return
         }
-        
+
         if (skipSamePairs && i1 == i2) {
             return computeNext()
         }
-        
+
         setNext(Pair(source[i1], source[i2]))
     }
 }

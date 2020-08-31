@@ -36,10 +36,10 @@ class TestDOMTrees {
             id = "test-node"
             +"content"
         }
-        
+
         assertEquals("div", tree.getElementById("test-node")?.tagName?.toLowerCase())
     }
-    
+
     @test
     fun `able to create complex tree and render it with pretty print`() {
         val tree = createHTMLDocument().html {
@@ -55,7 +55,7 @@ class TestDOMTrees {
                 }
             }
         }
-        
+
         assertEquals(
             "<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>",
             tree.serialize(false)
@@ -73,7 +73,7 @@ class TestDOMTrees {
                 </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n")
         )
     }
-    
+
     @test
     fun `vals create and append support`() {
         val document = createHTMLDocument().html {
@@ -83,17 +83,17 @@ class TestDOMTrees {
                 }
             }
         }
-        
+
         val contentNode = document.getElementById("content")!!
         contentNode.append.p {
             +"p1"
         }
-        
+
         val p2 = document.create.p {
             +"p2"
         }
         contentNode.appendChild(p2)
-        
+
         assertEquals(
             """<!DOCTYPE html>
 <html>
@@ -107,7 +107,7 @@ class TestDOMTrees {
         """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n")
         )
     }
-    
+
     @test
     fun `append function support`() {
         val document = createHTMLDocument().html {
@@ -117,9 +117,9 @@ class TestDOMTrees {
                 }
             }
         }
-        
+
         val contentNode = document.getElementById("content")!!
-        
+
         val nodes = contentNode.append {
             p {
                 +"p1"
@@ -131,9 +131,9 @@ class TestDOMTrees {
                 }
             }
         }
-        
+
         assertEquals(2, nodes.size)
-        
+
         assertEquals(
             """<!DOCTYPE html>
 <html>
@@ -150,7 +150,7 @@ class TestDOMTrees {
         """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n")
         )
     }
-    
+
     @test
     fun `should compile wiki example`() {
         println(document {
@@ -164,7 +164,7 @@ class TestDOMTrees {
             }
         }.serialize())
     }
-    
+
     @test
     fun `svg should have namespace`() {
         val d = document {
@@ -175,13 +175,13 @@ class TestDOMTrees {
                 }
             }
         }
-        
+
         assertEquals(
             "<!DOCTYPE html>\n<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>",
             d.serialize(false).trim().replace("\r\n", "\n")
         )
     }
-    
+
     @test
     fun `generalize tests`() {
         fun <T> T.genericFlow() where T : HtmlBlockTag<Nothing> {
@@ -191,14 +191,14 @@ class TestDOMTrees {
             div {
             }
         }
-        
+
         fun <T> T.genericPhrasing() where T : HtmlInlineTag<Nothing> {
             classes += "aha"
             +"content"
             +Entities.nbsp
             span { }
         }
-        
+
         fun <T> T.genericMetaData() where T : HtmlHeadTag<Nothing> {
             classes += "aha"
             +"content"
@@ -206,7 +206,7 @@ class TestDOMTrees {
             meta("a")
             script(ScriptType.textJavaScript) { }
         }
-        
+
         document {
             append.html {
                 head {
@@ -223,7 +223,7 @@ class TestDOMTrees {
             }
         }
     }
-    
+
     @test
     fun `script content`() {
         val document = document {
@@ -237,15 +237,15 @@ class TestDOMTrees {
                 }
             }
         }
-        
-        
+
+
         assertEquals(
             "<!DOCTYPE html>\n" +
                     "<html><head><META http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><script type=\"text/javascript\">fun f() { return 1; }</script></head></html>",
             document.serialize(false).trim().replace("\r\n", "\n")
         )
     }
-    
+
     @test
     fun testPrepend() {
         val document = createHTMLDocument().html {
@@ -253,26 +253,26 @@ class TestDOMTrees {
                 a { text("aaa") }
             }
         }
-        
+
         document.getElementsByTagName("body").item(0).prepend {
             p {
                 text("OK")
             }
         }
-        
+
         assertEquals(
             "<!DOCTYPE html>\n" +
                     "<html><body><p>OK</p><a>aaa</a></body></html>",
             document.serialize(false).trim().replace("\r\n", "\n")
         )
     }
-    
+
     @test
     fun testComment() {
         val document = createHTMLDocument().html {
             comment("commented")
         }
-        
+
         assertEquals(
             "<!DOCTYPE html>\n" +
                     "<html><!--commented--></html>",

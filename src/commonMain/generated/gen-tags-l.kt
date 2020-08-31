@@ -14,14 +14,14 @@ open class LABEL<E>(initialAttributes: Map<String, String>, override val consume
         set(newValue) {
             attributeStringString.set(this, "form", newValue)
         }
-    
+
     var htmlFor: String
         get() = attributeStringString.get(this, "for")
         set(newValue) {
             attributeStringString.set(this, "for", newValue)
         }
-    
-    
+
+
 }
 
 val <E> LABEL<E>.asFlowContent: FlowContent<E>
@@ -53,8 +53,8 @@ open class LI<E>(initialAttributes: Map<String, String>, override val consumer: 
         set(newValue) {
             attributeStringString.set(this, "value", newValue)
         }
-    
-    
+
+
 }
 
 @Suppress("unused")
@@ -66,44 +66,44 @@ open class LINK<E>(initialAttributes: Map<String, String>, override val consumer
         set(newValue) {
             attributeStringString.set(this, "href", newValue)
         }
-    
+
     var hrefLang: String
         get() = attributeStringString.get(this, "hreflang")
         set(newValue) {
             attributeStringString.set(this, "hreflang", newValue)
         }
-    
+
     var rel: String
         get() = attributeStringString.get(this, "rel")
         set(newValue) {
             attributeStringString.set(this, "rel", newValue)
         }
-    
+
     var media: String
         get() = attributeStringString.get(this, "media")
         set(newValue) {
             attributeStringString.set(this, "media", newValue)
         }
-    
+
     var type: String
         get() = attributeStringString.get(this, "type")
         set(newValue) {
             attributeStringString.set(this, "type", newValue)
         }
-    
+
     var sizes: String
         get() = attributeStringString.get(this, "sizes")
         set(newValue) {
             attributeStringString.set(this, "sizes", newValue)
         }
-    
+
     var integrity: String
         get() = attributeStringString.get(this, "integrity")
         set(newValue) {
             attributeStringString.set(this, "integrity", newValue)
         }
-    
-    
+
+
 }
 
 val <E> LINK<E>.asFlowContent: FlowContent<E>

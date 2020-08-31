@@ -4,10 +4,10 @@ fun String.humanize(): String {
     if (this.isEmpty()) {
         return "empty"
     }
-    
+
     val fixedAllUpper = if (all { it.isUpperCase() }) toLowerCase() else this
     val fixedFirstUpper = fixedAllUpper.decapitalize()
-    
+
     return fixedFirstUpper.replaceHyphensToCamelCase().makeCamelCaseByDictionary().replaceMistakesAndUglyWords()
         .decapitalize()
 }
@@ -17,10 +17,10 @@ fun humanizeJoin(parts: Iterable<String>) = humanizeJoin(parts, separator = "")
 fun humanizeJoin(parts: Iterable<String>, separator: String): String {
     val humanizedParts = parts.map(String::humanize)
     val dictionary = HashMap<String, Int>()
-    
+
     humanizedParts.forEach { part ->
         var start = 0
-        
+
         while (start < part.length) {
             var end = part.drop(start + 1).indexOfFirst(Char::isUpperCase)
             if (end == -1) {
@@ -28,20 +28,20 @@ fun humanizeJoin(parts: Iterable<String>, separator: String): String {
             } else {
                 end += start + 1
             }
-            
+
             val word = part.substring(start, end).capitalize()
-            
+
             val newCount = dictionary.getOrElse(word) { 0 } + 1
             dictionary[word] = newCount
-            
+
             start = end
         }
     }
-    
+
     val repeated = dictionary.filterValues { it > 1 }.keys.toList().sortedByDescending { it.length }
     val filteredParts = ArrayList<String>(humanizedParts.size)
     val trailingParts = HashSet<String>(repeated.size)
-    
+
     humanizedParts.forEach { part ->
         var cutPart = part
         repeated.forEach { word ->
@@ -50,10 +50,10 @@ fun humanizeJoin(parts: Iterable<String>, separator: String): String {
                 trailingParts.add(word)
             }
         }
-        
+
         filteredParts.add(cutPart)
     }
-    
+
     return filteredParts.joinToString(
         separator = separator,
         transform = String::capitalize
@@ -85,11 +85,11 @@ private fun <T> List<T>.safeSubList(from: Int): List<T> = if (from >= size) empt
 
 private fun String.makeCamelCaseByDictionary(): String {
     val current = StringBuilder(this)
-    
+
     val allRanges = wellKnownWords.flatMap { word ->
         word.findAll(current).toList()
     }.sortedBy { it.range.start }
-    
+
     fun applyMatchResult(mr: MatchResult, cutTail: Boolean) {
         if (mr.range.start > 0) {
             current.capitalizeAt(mr.range.start)
@@ -98,7 +98,7 @@ private fun String.makeCamelCaseByDictionary(): String {
             current.capitalizeAt(mr.range.last + 1)
         }
     }
-    
+
     var unprocessedStart = 0
     allRanges.forEachIndexed { i, mr ->
         if (mr.range.start >= unprocessedStart) {
@@ -113,18 +113,18 @@ private fun String.makeCamelCaseByDictionary(): String {
                     mr.value.endsWith("d") -> 1
                     else -> 0
                 }
-                
+
                 val thereAreClashes = possibleTail > 0 &&
                         allRanges.safeSubList(i + 1)
                             .asSequence()
                             .takeWhile { it.range.start <= mr.range.endInclusive }
                             .any { it.range.start > mr.range.endInclusive - possibleTail }
-                
+
                 applyMatchResult(mr, thereAreClashes)
                 unprocessedStart = mr.range.last - possibleTail + 1
             }
         }
     }
-    
+
     return current.toString()
 }

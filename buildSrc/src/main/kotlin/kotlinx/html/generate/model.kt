@@ -5,7 +5,7 @@ import kotlin.collections.HashMap
 
 object Repository {
     val tags = TreeMap<String, TagInfo>()
-    
+
     val attributeDelegateRequests = TreeSet<AttributeRequest>(
         Comparator<AttributeRequest> { a, b -> a.type.compareTo(b.type) }
             .thenComparator { a, b -> a.enumTypeName.compareTo(b.enumTypeName) }
@@ -15,11 +15,11 @@ object Repository {
                     ?: 0
             }
     )
-    
+
     val attributeFacades = TreeMap<String, AttributeFacade>()
     val tagGroups = TreeMap<String, TagGroup>()
     val groupsByTags = HashMap<String, MutableList<TagGroup>>()
-    
+
     val groupUnions = HashMap<String, GroupUnion>()
     var unionsByGroups: Map<String, List<GroupUnion>> = emptyMap()
 }
@@ -105,7 +105,7 @@ data class TagGroup(
     val name: String,
     val tags: List<String>
 ) {
-    
+
     val memberName: String = name.humanize()
     val typeName: String = memberName.capitalize()
 }

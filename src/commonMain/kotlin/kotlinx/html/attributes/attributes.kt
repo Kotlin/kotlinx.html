@@ -15,7 +15,7 @@ abstract class Attribute<T>(val encoder: AttributeEncoder<T>) {
         thisRef.attributes[attributeName]?.let {
             encoder.decode(attributeName, it)
         } ?: encoder.empty(attributeName, thisRef)
-    
+
     open operator fun set(thisRef: Tag<*>, attributeName: String, value: T) {
         thisRef.attributes[attributeName] = encoder.encode(attributeName, value)
     }

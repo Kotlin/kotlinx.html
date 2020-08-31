@@ -75,7 +75,7 @@ publishing {
                     require(!(version as String).endsWith("-SNAPSHOT")) {
                         "Profile 'branch-build' assumes non-snapshot version. Use -PversionTag to fix the build."
                     }
-                    
+
                     maven {
                         url = uri("https://api.bintray.com/maven/kotlin/kotlin-dev/kotlinx.html/;publish=1")
                         credentials {
@@ -88,7 +88,7 @@ publishing {
                     require((version as String).endsWith("-SNAPSHOT")) {
                         "Profile 'master-build' assumes snapshot version. Change the version or use another profile."
                     }
-                    
+
                     maven {
                         url = uri("https://oss.sonatype.org/content/repositories/snapshots")
                         credentials {
@@ -99,7 +99,7 @@ publishing {
                 }
             }
         }
-        
+
         create<MavenPublication>("kotlinx-html-assembly") {
             artifactId = "kotlinx-html-assembly"
             jar("jsWebJar") {
@@ -115,11 +115,11 @@ publishing {
 repositories {
     jcenter()
     mavenCentral()
-    
+
     // It is just for release against pre-release versions
     maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
     maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
-    
+
     when {
         /** Allow all profiles but release to use development and SNAPSHOT dependencies. */
         !hasProperty("release") -> {
@@ -149,11 +149,11 @@ kotlin {
         compilations["main"].kotlinOptions.apply {
             freeCompilerArgs += "-Xdump-declarations-to=${buildDir}/declarations.json"
         }
-        
+
         mavenPublication {
             groupId = group as String
             pom.config { name by "${project.name}-jvm" }
-            
+
             javadocJar("jvmJavadocJar")
             jar("jvmTestSourcesJar") {
                 archiveClassifier by "test-sources"
@@ -163,7 +163,7 @@ kotlin {
             }
         }
     }
-    
+
     js(BOTH) {
         moduleName = project.name
         browser {
@@ -174,29 +174,29 @@ kotlin {
                 }
             }
         }
-        
+
         compilations["main"].packageJson {
             main = "kotlin/kotlinx-html-js.js"
             name = "kotlinx-html-js"
         }
-        
+
         compilations["main"].kotlinOptions.apply {
             outputFile = "$buildDir/js/packages/${project.name}/kotlin/${project.name}-js.js"
             moduleKind = "umd"
             sourceMap = true
             sourceMapEmbedSources = "always"
         }
-        
+
         compilations["test"].kotlinOptions.apply {
             moduleKind = "umd"
             metaInfo = true
             sourceMap = true
         }
-        
+
         mavenPublication {
             groupId = group as String
             pom.config { name by "${project.name}-js" }
-            
+
             javadocJar("jsJavadocJar")
             jar("jsTestSourcesJar") {
                 archiveClassifier by "test-sources"
@@ -206,9 +206,9 @@ kotlin {
             }
         }
     }
-    
+
     wasm32 {}
-    
+
     val mingwTargets = listOf(
         mingwX64(),
         mingwX86()
@@ -225,66 +225,66 @@ kotlin {
         macosX64()
     )
     val nativeTargets = unixTargets + mingwTargets
-    
+
     metadata {
         mavenPublication {
             groupId = group as String
             artifactId = "${project.name}-common"
             pom.config { name by "${project.name}-common" }
-            
+
             javadocJar("commonJavadocJar")
             jar("commonTestSourcesJar") {
                 archiveClassifier by "test-sources"
             }
         }
     }
-    
+
     sourceSets {
         val commonMain by getting {
             kotlin.srcDirs(commonGenDir)
         }
-        
+
         val browserMain by creating {
             dependsOn(commonMain)
             kotlin.srcDirs(browserGenDir)
         }
-        
+
         val desktopMain by creating {
             dependsOn(commonMain)
         }
-        
+
         val unixMain by creating {
             dependsOn(desktopMain)
         }
-        
+
         configure(unixTargets) {
             this.compilations["main"].defaultSourceSet.dependsOn(unixMain)
         }
-        
+
         val mingwMain by creating {
             dependsOn(desktopMain)
         }
-        
+
         configure(mingwTargets) {
             this.compilations["main"].defaultSourceSet.dependsOn(mingwMain)
         }
-        
+
         val jsMain by getting {
             dependsOn(browserMain)
             kotlin.srcDirs(jsGenDir)
         }
-        
+
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
                 implementation(npm("puppeteer", "*"))
             }
         }
-        
+
         val jvmMain by getting {
             dependsOn(desktopMain)
         }
-        
+
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
@@ -293,7 +293,7 @@ kotlin {
                 implementation("com.fasterxml.jackson.core:jackson-databind:2.10.1")
             }
         }
-        
+
         val wasm32Main by getting {
             dependsOn(browserMain)
             wasm32().compilations["main"].apply {
@@ -312,7 +312,7 @@ tasks {
     register<Task>("generate") {
         group = "source-generation"
         description = "Generate tag-handling code using tags description."
-        
+
         outputs.dirs(commonGenDir, browserGenDir, jsGenDir)
         doLast {
             kotlinx.html.generate.generate(
@@ -326,30 +326,30 @@ tasks {
     register<Copy>("jsPackagePrepare") {
         dependsOn("jsLegacyMainClasses")
         getByName("assemble").dependsOn(this)
-        
+
         group = "build"
         description = "Assembles NPM package (result is placed into 'build/tmp/jsPackage')."
-        
+
         val baseTargetDir = "$buildDir/tmp/jsPackage"
-        
+
         from("README-JS.md")
         from("$buildDir/js/packages/${project.name}/kotlin")
         into(baseTargetDir)
-        
+
         rename("README-JS.md", "README.md")
-        
+
         doLast {
             var npmVersion = version as String
             if (npmVersion.endsWith("-SNAPSHOT")) {
                 npmVersion = npmVersion.replace("-SNAPSHOT", "-${System.currentTimeMillis()}")
             }
-            
+
             val organization = when {
                 project.hasProperty("branch-build") -> "kotlinx-branch-build"
                 project.hasProperty("master-build") -> "kotlinx-master-build"
                 else -> null
             }
-            
+
             File(baseTargetDir, "package.json").writeText(packageJson(npmVersion, organization))
             file("$baseTargetDir/kotlinx-html-js").renameTo(File("$buildDir/js-module/kotlinx-html-js"))
         }
@@ -357,12 +357,12 @@ tasks {
     register<Exec>("publishNpm") {
         dependsOn("jsPackagePrepare")
         dependsOn("kotlinNodeJsSetup")
-        
+
         group = "publishing"
         description = "Publishes ${project.name} NPM module to 'registry.npmjs.org'."
-        
+
         val kotlinNodeJsSetupTask = getByName("kotlinNodeJsSetup") as NodeJsSetupTask
-        
+
         // For some unknown reason, the node distributive's structure is different on Windows and UNIX.
         val node = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
             kotlinNodeJsSetupTask.destination
@@ -372,7 +372,7 @@ tasks {
                 .resolve("bin")
                 .resolve("node")
         }
-        
+
         val npm = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
             kotlinNodeJsSetupTask.destination
                 .resolve("node_modules")
@@ -387,7 +387,7 @@ tasks {
                 .resolve("bin")
                 .resolve("npm-cli.js")
         }
-        
+
         commandLine(
             node,
             npm,
@@ -417,29 +417,29 @@ typealias MavenPomFile = org.gradle.api.publish.maven.MavenPom
 
 fun MavenPomFile.config(config: MavenPomFile.() -> Unit = {}) {
     config()
-    
+
     url by "https://github.com/Kotlin/kotlinx.html"
-    
+
     licenses {
         license {
             name by "The Apache License, Version 2.0"
             url by "https://www.apache.org/licenses/LICENSE-2.0.txt"
         }
     }
-    
+
     scm {
         connection by "scm:git:git@github.com:Kotlin/kotlinx.html.git"
         url by "https://github.com/Kotlin/kotlinx.html"
         tag by "HEAD"
     }
-    
+
     developers {
         developer {
             name by "Sergey Mashkov"
             organization by "JetBrains s.r.o."
             roles to "developer"
         }
-        
+
         developer {
             name by "Anton Dmitriev"
             organization by "JetBrains s.r.o."

@@ -25,38 +25,38 @@ open class IFRAME<E>(initialAttributes: Map<String, String>, override val consum
         set(newValue) {
             attributeStringString.set(this, "name", newValue)
         }
-    
+
     var src: String
         get() = attributeStringString.get(this, "src")
         set(newValue) {
             attributeStringString.set(this, "src", newValue)
         }
-    
+
     var height: String
         get() = attributeStringString.get(this, "height")
         set(newValue) {
             attributeStringString.set(this, "height", newValue)
         }
-    
+
     var width: String
         get() = attributeStringString.get(this, "width")
         set(newValue) {
             attributeStringString.set(this, "width", newValue)
         }
-    
+
     var sandbox: IframeSandbox
         get() = attributeIframeSandboxEnumIframeSandboxValues.get(this, "sandbox")
         set(newValue) {
             attributeIframeSandboxEnumIframeSandboxValues.set(this, "sandbox", newValue)
         }
-    
+
     var seamless: Boolean
         get() = attributeBooleanTicker.get(this, "seamless")
         set(newValue) {
             attributeBooleanTicker.set(this, "seamless", newValue)
         }
-    
-    
+
+
 }
 
 val <E> IFRAME<E>.asFlowContent: FlowContent<E>
@@ -78,38 +78,38 @@ open class IMG<E>(initialAttributes: Map<String, String>, override val consumer:
         set(newValue) {
             attributeStringString.set(this, "alt", newValue)
         }
-    
+
     var src: String
         get() = attributeStringString.get(this, "src")
         set(newValue) {
             attributeStringString.set(this, "src", newValue)
         }
-    
+
     var height: String
         get() = attributeStringString.get(this, "height")
         set(newValue) {
             attributeStringString.set(this, "height", newValue)
         }
-    
+
     var width: String
         get() = attributeStringString.get(this, "width")
         set(newValue) {
             attributeStringString.set(this, "width", newValue)
         }
-    
+
     var usemap: String
         get() = attributeStringString.get(this, "usemap")
         set(newValue) {
             attributeStringString.set(this, "usemap", newValue)
         }
-    
+
     var ismap: Boolean
         get() = attributeBooleanTicker.get(this, "ismap")
         set(newValue) {
             attributeBooleanTicker.set(this, "ismap", newValue)
         }
-    
-    
+
+
 }
 
 val <E> IMG<E>.asFlowContent: FlowContent<E>
@@ -131,188 +131,188 @@ open class INPUT<E>(initialAttributes: Map<String, String>, override val consume
         set(newValue) {
             attributeInputTypeEnumInputTypeValues.set(this, "type", newValue)
         }
-    
+
     var accept: String
         get() = attributeStringString.get(this, "accept")
         set(newValue) {
             attributeStringString.set(this, "accept", newValue)
         }
-    
+
     var alt: String
         get() = attributeStringString.get(this, "alt")
         set(newValue) {
             attributeStringString.set(this, "alt", newValue)
         }
-    
+
     var autoFocus: Boolean
         get() = attributeBooleanTicker.get(this, "autofocus")
         set(newValue) {
             attributeBooleanTicker.set(this, "autofocus", newValue)
         }
-    
+
     var autoComplete: Boolean
         get() = attributeBooleanBooleanOnOff.get(this, "autocomplete")
         set(newValue) {
             attributeBooleanBooleanOnOff.set(this, "autocomplete", newValue)
         }
-    
+
     var checked: Boolean
         get() = attributeBooleanTicker.get(this, "checked")
         set(newValue) {
             attributeBooleanTicker.set(this, "checked", newValue)
         }
-    
+
     var disabled: Boolean
         get() = attributeBooleanTicker.get(this, "disabled")
         set(newValue) {
             attributeBooleanTicker.set(this, "disabled", newValue)
         }
-    
+
     var form: String
         get() = attributeStringString.get(this, "form")
         set(newValue) {
             attributeStringString.set(this, "form", newValue)
         }
-    
+
     var formAction: String
         get() = attributeStringString.get(this, "formaction")
         set(newValue) {
             attributeStringString.set(this, "formaction", newValue)
         }
-    
+
     var formEncType: InputFormEncType
         get() = attributeInputFormEncTypeEnumInputFormEncTypeValues.get(this, "formenctype")
         set(newValue) {
             attributeInputFormEncTypeEnumInputFormEncTypeValues.set(this, "formenctype", newValue)
         }
-    
+
     var formMethod: InputFormMethod
         get() = attributeInputFormMethodEnumInputFormMethodValues.get(this, "formmethod")
         set(newValue) {
             attributeInputFormMethodEnumInputFormMethodValues.set(this, "formmethod", newValue)
         }
-    
+
     var formNovalidate: Boolean
         get() = attributeBooleanTicker.get(this, "formnovalidate")
         set(newValue) {
             attributeBooleanTicker.set(this, "formnovalidate", newValue)
         }
-    
+
     var formTarget: String
         get() = attributeStringString.get(this, "formtarget")
         set(newValue) {
             attributeStringString.set(this, "formtarget", newValue)
         }
-    
+
     var height: String
         get() = attributeStringString.get(this, "height")
         set(newValue) {
             attributeStringString.set(this, "height", newValue)
         }
-    
+
     var list: String
         get() = attributeStringString.get(this, "list")
         set(newValue) {
             attributeStringString.set(this, "list", newValue)
         }
-    
+
     var max: String
         get() = attributeStringString.get(this, "max")
         set(newValue) {
             attributeStringString.set(this, "max", newValue)
         }
-    
+
     var maxLength: String
         get() = attributeStringString.get(this, "maxlength")
         set(newValue) {
             attributeStringString.set(this, "maxlength", newValue)
         }
-    
+
     var minLength: String
         get() = attributeStringString.get(this, "minlength")
         set(newValue) {
             attributeStringString.set(this, "minlength", newValue)
         }
-    
+
     var min: String
         get() = attributeStringString.get(this, "min")
         set(newValue) {
             attributeStringString.set(this, "min", newValue)
         }
-    
+
     var multiple: Boolean
         get() = attributeBooleanTicker.get(this, "multiple")
         set(newValue) {
             attributeBooleanTicker.set(this, "multiple", newValue)
         }
-    
+
     var pattern: String
         get() = attributeStringString.get(this, "pattern")
         set(newValue) {
             attributeStringString.set(this, "pattern", newValue)
         }
-    
+
     var placeholder: String
         get() = attributeStringString.get(this, "placeholder")
         set(newValue) {
             attributeStringString.set(this, "placeholder", newValue)
         }
-    
+
     var readonly: Boolean
         get() = attributeBooleanTicker.get(this, "readonly")
         set(newValue) {
             attributeBooleanTicker.set(this, "readonly", newValue)
         }
-    
+
     var required: Boolean
         get() = attributeBooleanTicker.get(this, "required")
         set(newValue) {
             attributeBooleanTicker.set(this, "required", newValue)
         }
-    
+
     var size: String
         get() = attributeStringString.get(this, "size")
         set(newValue) {
             attributeStringString.set(this, "size", newValue)
         }
-    
+
     var src: String
         get() = attributeStringString.get(this, "src")
         set(newValue) {
             attributeStringString.set(this, "src", newValue)
         }
-    
+
     var step: String
         get() = attributeStringString.get(this, "step")
         set(newValue) {
             attributeStringString.set(this, "step", newValue)
         }
-    
+
     var width: String
         get() = attributeStringString.get(this, "width")
         set(newValue) {
             attributeStringString.set(this, "width", newValue)
         }
-    
+
     var files: String
         get() = attributeStringString.get(this, "files")
         set(newValue) {
             attributeStringString.set(this, "files", newValue)
         }
-    
+
     var value: String
         get() = attributeStringString.get(this, "value")
         set(newValue) {
             attributeStringString.set(this, "value", newValue)
         }
-    
+
     var name: String
         get() = attributeStringString.get(this, "name")
         set(newValue) {
             attributeStringString.set(this, "name", newValue)
         }
-    
-    
+
+
 }
 
 val <E> INPUT<E>.asFlowContent: FlowContent<E>
@@ -333,14 +333,14 @@ open class INS<E>(initialAttributes: Map<String, String>, override val consumer:
         set(newValue) {
             attributeStringString.set(this, "cite", newValue)
         }
-    
+
     var dateTime: String
         get() = attributeStringString.get(this, "datetime")
         set(newValue) {
             attributeStringString.set(this, "datetime", newValue)
         }
-    
-    
+
+
 }
 
 val <E> INS<E>.asFlowContent: FlowContent<E>

@@ -18,8 +18,8 @@ open class MAP<E>(initialAttributes: Map<String, String>, override val consumer:
         set(newValue) {
             attributeStringString.set(this, "name", newValue)
         }
-    
-    
+
+
 }
 
 val <E> MAP<E>.asFlowContent: FlowContent<E>
@@ -64,26 +64,26 @@ open class META<E>(initialAttributes: Map<String, String>, override val consumer
         set(newValue) {
             attributeStringString.set(this, "http-equiv", newValue)
         }
-    
+
     var name: String
         get() = attributeStringString.get(this, "name")
         set(newValue) {
             attributeStringString.set(this, "name", newValue)
         }
-    
+
     var content: String
         get() = attributeStringString.get(this, "content")
         set(newValue) {
             attributeStringString.set(this, "content", newValue)
         }
-    
+
     var charset: String
         get() = attributeStringString.get(this, "charset")
         set(newValue) {
             attributeStringString.set(this, "charset", newValue)
         }
-    
-    
+
+
 }
 
 val <E> META<E>.asFlowContent: FlowContent<E>
@@ -104,38 +104,38 @@ open class METER<E>(initialAttributes: Map<String, String>, override val consume
         set(newValue) {
             attributeStringString.set(this, "value", newValue)
         }
-    
+
     var min: String
         get() = attributeStringString.get(this, "min")
         set(newValue) {
             attributeStringString.set(this, "min", newValue)
         }
-    
+
     var max: String
         get() = attributeStringString.get(this, "max")
         set(newValue) {
             attributeStringString.set(this, "max", newValue)
         }
-    
+
     var low: String
         get() = attributeStringString.get(this, "low")
         set(newValue) {
             attributeStringString.set(this, "low", newValue)
         }
-    
+
     var high: String
         get() = attributeStringString.get(this, "high")
         set(newValue) {
             attributeStringString.set(this, "high", newValue)
         }
-    
+
     var optimum: String
         get() = attributeStringString.get(this, "optimum")
         set(newValue) {
             attributeStringString.set(this, "optimum", newValue)
         }
-    
-    
+
+
 }
 
 val <E> METER<E>.asFlowContent: FlowContent<E>

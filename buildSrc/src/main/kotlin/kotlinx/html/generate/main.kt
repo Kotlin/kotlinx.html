@@ -7,20 +7,20 @@ import java.io.InputStreamReader
 fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
     fillRepository()
     fillKdocRepositoryExtension()
-    
+
     File(todir).mkdirs()
     File(jsdir).mkdirs()
-    
+
     FileOutputStream("$todir/gen-attr-traits.kt").writer().use {
         it.with {
             packg(packg)
             emptyLine()
             emptyLine()
-            
+
             doNotEditWarning()
             emptyLine()
             emptyLine()
-            
+
             Repository.attributeFacades.values.forEach {
                 facade(it)
                 emptyLine()
@@ -32,11 +32,11 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
             packg(packg)
             emptyLine()
             emptyLine()
-            
+
             doNotEditWarning()
             emptyLine()
             emptyLine()
-            
+
             Repository.attributeFacades.filter { it.value.attributeNames.any { it.startsWith("on") } }
                 .forEach { facade ->
                     val facadeName = facade.value.name.capitalize() + "Facade"
@@ -46,7 +46,7 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
                 }
         }
     }
-    
+
     Repository.tags.values.filterIgnored().groupBy { it.name[0] }.entries.forEach { e ->
         FileOutputStream("$todir/gen-tags-${e.key}.kt").writer(Charsets.UTF_8).use {
             it.with {
@@ -54,29 +54,29 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
                 emptyLine()
                 import("kotlinx.html.attributes.*")
                 emptyLine()
-                
+
                 doNotEditWarning()
                 emptyLine()
                 emptyLine()
-                
+
                 e.value.forEach {
                     tagClass(it, emptySet())
                 }
             }
         }
     }
-    
+
     FileOutputStream("$todir/gen-consumer-tags.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()
             import("kotlinx.html.attributes.*")
             emptyLine()
-            
+
             doNotEditWarning()
             emptyLine()
             emptyLine()
-            
+
             Repository.tags.values.filterIgnored().forEach {
                 val contentlessTag = it.name.toLowerCase() in contentlessTags
                 if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && !contentlessTag) {
@@ -91,7 +91,7 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
             }
         }
     }
-    
+
     FileOutputStream("$jsdir/gen-consumer-tags-js.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg + ".js")
@@ -100,11 +100,11 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
             import("kotlinx.html.attributes.*")
             import("org.w3c.dom.*")
             emptyLine()
-            
+
             doNotEditWarning()
             emptyLine()
             emptyLine()
-            
+
             Repository.tags.values.filterIgnored().forEach {
                 val contentlessTag = it.name.toLowerCase() in contentlessTags
                 if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && !contentlessTag) {
@@ -119,18 +119,18 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
             }
         }
     }
-    
+
     FileOutputStream("$browserdir/gen-event-attrs-js.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg + ".js")
             emptyLine()
             import("kotlinx.html.*")
             emptyLine()
-            
+
             doNotEditWarning()
             emptyLine()
             emptyLine()
-            
+
             Repository.attributeFacades.filter { it.value.attributeNames.any { it.startsWith("on") } }
                 .forEach { facade ->
                     facade.value.attributes.filter { it.name.startsWith("on") }.forEach {
@@ -139,17 +139,17 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
                 }
         }
     }
-    
+
     FileOutputStream("$todir/gen-enums.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()
             emptyLine()
-            
+
             doNotEditWarning()
             emptyLine()
             emptyLine()
-            
+
             fun genEnumAttribute(attribute: AttributeInfo) {
                 if (!isEnumExcluded(attribute.enumTypeName)) {
                     if (attribute.type == AttributeType.ENUM) {
@@ -159,14 +159,14 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
                     }
                 }
             }
-            
+
             Repository.attributeFacades.values.forEach { facade ->
                 facade.attributes.filter { it.enumValues.isNotEmpty() }.filter { !isAttributeExcluded(it.name) }
                     .forEach { attribute ->
                         genEnumAttribute(attribute)
                     }
             }
-            
+
             Repository.tags.values.filterIgnored().forEach { tag ->
                 tag.attributes.filter { it.enumValues.isNotEmpty() }.filter { !isAttributeExcluded(it.name) }
                     .forEach { attribute ->
@@ -175,73 +175,73 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
             }
         }
     }
-    
+
     FileOutputStream("$todir/gen-attributes.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()
             import("kotlinx.html.attributes.*")
             emptyLine()
-            
+
             doNotEditWarning()
             emptyLine()
             emptyLine()
-            
+
             Repository.attributeDelegateRequests.toList().forEach {
                 attributePseudoDelegate(it)
             }
         }
     }
-    
+
     FileOutputStream("$todir/gen-tag-unions.kt").writer(Charsets.UTF_8).use {
         with(it) {
             packg(packg)
             emptyLine()
             import("kotlinx.html.attributes.*")
             emptyLine()
-            
+
             doNotEditWarning()
             emptyLine()
             emptyLine()
-            
+
             Repository.groupUnions.values.forEach { union ->
                 clazz(Clazz(
                     name = "${union.name}<E>",
                     isInterface = true,
                     parents = (union.superGroups + "Tag").map { p -> "$p<E>" }
                 )) {}
-                
+
                 emptyLine()
             }
-            
+
             emptyLine()
             emptyLine()
-            
+
             Repository.groupUnions.values.forEach { union ->
                 (union.additionalTags + union.ambiguityTags).mapNotNull { Repository.tags[it] }.filterIgnored()
                     .forEach { tag ->
                         htmlTagBuilders(union.name, tag)
                     }
-                
+
                 emptyLine()
             }
         }
     }
-    
+
     FileOutputStream("$todir/gen-tag-groups.kt").writer(Charsets.UTF_8).use {
         with(it) {
             packg(packg)
             emptyLine()
             import("kotlinx.html.attributes.*")
             emptyLine()
-            
+
             doNotEditWarning()
             emptyLine()
             emptyLine()
-            
+
             Repository.tagGroups.values.forEach { group ->
                 val unions = Repository.unionsByGroups[group.name].orEmpty().map { it.name }
-                
+
                 clazz(
                     Clazz(
                         name = "${group.typeName}<E>",
@@ -253,11 +253,11 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
                 }
                 emptyLine()
             }
-            
+
             Repository.tagGroups.values.forEach { group ->
                 val receiver = group.typeName
                 val unions = Repository.unionsByGroups[group.name].orEmpty()
-                
+
                 group.tags.mapNotNull { Repository.tags[it] }.filterIgnored()
                     .filter { tag -> unions.count { tag.name in it.intersectionTags } == 0 }.forEach {
                         htmlTagBuilders(receiver, it)
@@ -265,17 +265,17 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
             }
         }
     }
-    
+
     FileOutputStream("$todir/gen-entities.kt").writer(Charsets.UTF_8).use {
         it.with {
             packg(packg)
             emptyLine()
             emptyLine()
-            
+
             doNotEditWarning()
             emptyLine()
             emptyLine()
-            
+
             append("enum ")
             clazz(Clazz(name = "Entities")) {
                 InputStreamReader("entities.txt".asResourceUrl().openStream()).useLines { lines ->
@@ -288,10 +288,10 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
                         emptyLine()
                     }
                 }
-                
+
                 append(";")
                 appendln()
-                
+
                 variable(Var(name = "text", type = "String"))
                 appendln()
                 getter()
@@ -307,6 +307,6 @@ fun generate(packg: String, todir: String, browserdir: String, jsdir: String) {
             }
         }
     }
-    
+
     generateParentInterfaces(todir, packg)
 }

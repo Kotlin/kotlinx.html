@@ -25,50 +25,50 @@ open class VIDEO<E>(initialAttributes: Map<String, String>, override val consume
         set(newValue) {
             attributeStringString.set(this, "src", newValue)
         }
-    
+
     var autoBuffer: Boolean
         get() = attributeBooleanTicker.get(this, "autobuffer")
         set(newValue) {
             attributeBooleanTicker.set(this, "autobuffer", newValue)
         }
-    
+
     var autoPlay: Boolean
         get() = attributeBooleanTicker.get(this, "autoplay")
         set(newValue) {
             attributeBooleanTicker.set(this, "autoplay", newValue)
         }
-    
+
     var loop: Boolean
         get() = attributeBooleanTicker.get(this, "loop")
         set(newValue) {
             attributeBooleanTicker.set(this, "loop", newValue)
         }
-    
+
     var controls: Boolean
         get() = attributeBooleanTicker.get(this, "controls")
         set(newValue) {
             attributeBooleanTicker.set(this, "controls", newValue)
         }
-    
+
     var width: String
         get() = attributeStringString.get(this, "width")
         set(newValue) {
             attributeStringString.set(this, "width", newValue)
         }
-    
+
     var height: String
         get() = attributeStringString.get(this, "height")
         set(newValue) {
             attributeStringString.set(this, "height", newValue)
         }
-    
+
     var poster: String
         get() = attributeStringString.get(this, "poster")
         set(newValue) {
             attributeStringString.set(this, "poster", newValue)
         }
-    
-    
+
+
 }
 
 /**

@@ -22,25 +22,25 @@ private inline fun HTMLElement.setEvent(name: String, noinline callback: (Event)
 class JSDOMBuilder<out R : HTMLElement>(val document: Document) : TagConsumer<R, Event> {
     private val path = arrayListOf<HTMLElement>()
     private var lastLeft: HTMLElement? = null
-    
+
     @Suppress("UnsafeCastFromDynamic")
     override fun onTagStart(tag: Tag<Event>) {
         val element: HTMLElement = when {
             tag.namespace != null -> document.createElementNS(tag.namespace!!, tag.tagName).asDynamic()
             else -> document.createElement(tag.tagName) as HTMLElement
         }
-        
+
         tag.attributesEntries.forEach {
             element.setAttribute(it.key, it.value)
         }
-        
+
         if (path.isNotEmpty()) {
             path.last().appendChild(element)
         }
-        
+
         path.add(element)
     }
-    
+
     override fun onTagAttributeChange(tag: Tag<Event>, attribute: String, value: String?) {
         when {
             path.isEmpty() -> throw IllegalStateException("No current tag")
@@ -54,7 +54,7 @@ class JSDOMBuilder<out R : HTMLElement>(val document: Document) : TagConsumer<R,
             }
         }
     }
-    
+
     override fun onTagEvent(tag: Tag<Event>, event: String, value: (Event) -> Unit) {
         when {
             path.isEmpty() -> throw IllegalStateException("No current tag")
@@ -62,58 +62,58 @@ class JSDOMBuilder<out R : HTMLElement>(val document: Document) : TagConsumer<R,
             else -> path.last().setEvent(event, value)
         }
     }
-    
+
     override fun onTagEnd(tag: Tag<Event>) {
         if (path.isEmpty() || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
             throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
-        
+
         lastLeft = path.removeAt(path.lastIndex)
     }
-    
+
     override fun onTagContent(content: CharSequence) {
         if (path.isEmpty()) {
             throw IllegalStateException("No current DOM node")
         }
-        
+
         path.last().appendChild(document.createTextNode(content.toString()))
     }
-    
+
     override fun onTagContentEntity(entity: Entities) {
         if (path.isEmpty()) {
             throw IllegalStateException("No current DOM node")
         }
-        
+
         // stupid hack as browsers doesn't support createEntityReference
         val s = document.createElement("span") as HTMLElement
         s.innerHTML = entity.text
         path.last().appendChild(s.childNodes.asList().first { it.nodeType == Node.TEXT_NODE })
-        
+
         // other solution would be
 //        pathLast().innerHTML += entity.text
     }
-    
+
     override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
         with(DefaultUnsafe()) {
             block()
-            
+
             path.last().innerHTML += toString()
         }
     }
-    
-    
+
+
     override fun onTagComment(content: CharSequence) {
         if (path.isEmpty()) {
             throw IllegalStateException("No current DOM node")
         }
-        
+
         path.last().appendChild(document.createComment(content.toString()))
     }
-    
+
     @Suppress("UnsafeCastFromDynamic")
     override fun finalize(): R =
         lastLeft?.asR() ?: throw IllegalStateException("We can't finalize as there was no tags")
-    
+
     @Suppress("UnsafeCastFromDynamic")
     private fun HTMLElement.asR() = this.asDynamic()
     override fun onTagError(tag: Tag<Event>, exception: Throwable): Nothing = throw exception
@@ -131,7 +131,7 @@ fun Node.append(block: TagConsumer<HTMLElement, Event>.() -> Unit): List<HTMLEle
                 result.add(it); appendChild(it)
             }
         }.block()
-        
+
         result
     }
 
@@ -143,7 +143,7 @@ fun Node.prepend(block: TagConsumer<HTMLElement, Event>.() -> Unit): List<HTMLEl
                 insertBefore(it, firstChild)
             }
         }.block()
-        
+
         result
     }
 

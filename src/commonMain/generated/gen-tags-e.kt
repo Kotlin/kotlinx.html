@@ -25,26 +25,26 @@ open class EMBED<E>(initialAttributes: Map<String, String>, override val consume
         set(newValue) {
             attributeStringString.set(this, "src", newValue)
         }
-    
+
     var height: String
         get() = attributeStringString.get(this, "height")
         set(newValue) {
             attributeStringString.set(this, "height", newValue)
         }
-    
+
     var width: String
         get() = attributeStringString.get(this, "width")
         set(newValue) {
             attributeStringString.set(this, "width", newValue)
         }
-    
+
     var type: String
         get() = attributeStringString.get(this, "type")
         set(newValue) {
             attributeStringString.set(this, "type", newValue)
         }
-    
-    
+
+
 }
 
 val <E> EMBED<E>.asFlowContent: FlowContent<E>

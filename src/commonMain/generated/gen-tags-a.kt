@@ -14,38 +14,38 @@ open class A<E>(initialAttributes: Map<String, String>, override val consumer: T
         set(newValue) {
             attributeStringString.set(this, "href", newValue)
         }
-    
+
     var target: String
         get() = attributeStringString.get(this, "target")
         set(newValue) {
             attributeStringString.set(this, "target", newValue)
         }
-    
+
     var ping: String
         get() = attributeStringString.get(this, "ping")
         set(newValue) {
             attributeStringString.set(this, "ping", newValue)
         }
-    
+
     var rel: String
         get() = attributeStringString.get(this, "rel")
         set(newValue) {
             attributeStringString.set(this, "rel", newValue)
         }
-    
+
     var hrefLang: String
         get() = attributeStringString.get(this, "hreflang")
         set(newValue) {
             attributeStringString.set(this, "hreflang", newValue)
         }
-    
+
     var type: String
         get() = attributeStringString.get(this, "type")
         set(newValue) {
             attributeStringString.set(this, "type", newValue)
         }
-    
-    
+
+
 }
 
 val <E> A<E>.asFlowContent: FlowContent<E>
@@ -81,56 +81,56 @@ open class AREA<E>(initialAttributes: Map<String, String>, override val consumer
         set(newValue) {
             attributeStringString.set(this, "coords", newValue)
         }
-    
+
     var href: String
         get() = attributeStringString.get(this, "href")
         set(newValue) {
             attributeStringString.set(this, "href", newValue)
         }
-    
+
     var hrefLang: String
         get() = attributeStringString.get(this, "hreflang")
         set(newValue) {
             attributeStringString.set(this, "hreflang", newValue)
         }
-    
+
     var alt: String
         get() = attributeStringString.get(this, "alt")
         set(newValue) {
             attributeStringString.set(this, "alt", newValue)
         }
-    
+
     var target: String
         get() = attributeStringString.get(this, "target")
         set(newValue) {
             attributeStringString.set(this, "target", newValue)
         }
-    
+
     var media: String
         get() = attributeStringString.get(this, "media")
         set(newValue) {
             attributeStringString.set(this, "media", newValue)
         }
-    
+
     var rel: String
         get() = attributeStringString.get(this, "rel")
         set(newValue) {
             attributeStringString.set(this, "rel", newValue)
         }
-    
+
     var ping: String
         get() = attributeStringString.get(this, "ping")
         set(newValue) {
             attributeStringString.set(this, "ping", newValue)
         }
-    
+
     var type: String
         get() = attributeStringString.get(this, "type")
         set(newValue) {
             attributeStringString.set(this, "type", newValue)
         }
-    
-    
+
+
 }
 
 val <E> AREA<E>.asFlowContent: FlowContent<E>
@@ -173,32 +173,32 @@ open class AUDIO<E>(initialAttributes: Map<String, String>, override val consume
         set(newValue) {
             attributeStringString.set(this, "src", newValue)
         }
-    
+
     var autoBuffer: Boolean
         get() = attributeBooleanTicker.get(this, "autobuffer")
         set(newValue) {
             attributeBooleanTicker.set(this, "autobuffer", newValue)
         }
-    
+
     var autoPlay: Boolean
         get() = attributeBooleanTicker.get(this, "autoplay")
         set(newValue) {
             attributeBooleanTicker.set(this, "autoplay", newValue)
         }
-    
+
     var loop: Boolean
         get() = attributeBooleanTicker.get(this, "loop")
         set(newValue) {
             attributeBooleanTicker.set(this, "loop", newValue)
         }
-    
+
     var controls: Boolean
         get() = attributeBooleanTicker.get(this, "controls")
         set(newValue) {
             attributeBooleanTicker.set(this, "controls", newValue)
         }
-    
-    
+
+
 }
 
 /**

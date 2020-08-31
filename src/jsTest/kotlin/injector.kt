@@ -46,13 +46,13 @@ class InjectorTests {
         ).div {
             classes = setOf("my-class")
         }
-        
+
         val found: HTMLDivElement = node
-        
+
         assertEquals("DIV", bean.node.tagName)
         assertEquals(found, bean.node)
     }
-    
+
     @test
     fun injectByClassFailed() {
         val bean = MyBeanWithDiv()
@@ -63,7 +63,7 @@ class InjectorTests {
         ).div {
             classes = setOf("other-class")
         }
-        
+
         try {
             bean.node.tagName
             fail("node shouldn't be initialized")
@@ -71,7 +71,7 @@ class InjectorTests {
             assertTrue(true)
         }
     }
-    
+
     @test
     fun injectByTagName() {
         val bean = MyBeanWithP()
@@ -83,10 +83,10 @@ class InjectorTests {
             p {
             }
         }
-        
+
         assertEquals("P", bean.p.tagName)
     }
-    
+
     @test
     fun injectToLateInitVar() {
         val bean = InjectToLateInitVarBean()
@@ -98,14 +98,14 @@ class InjectorTests {
             p {
             }
         }
-        
+
         assertEquals("P", bean.myP.tagName)
     }
-    
+
     @test
     fun exampleFromWiki() {
         val bean = ExampleBean()
-        
+
         document.create.inject(
             bean, listOf(
                 InjectByClassName("my-class") to ExampleBean::myDiv,
@@ -118,7 +118,7 @@ class InjectorTests {
                 }
             }
         }
-        
+
         assertNotNull(bean.myDiv)
         assertNotNull(bean.myP)
     }

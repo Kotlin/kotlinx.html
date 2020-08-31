@@ -76,14 +76,14 @@ fun Appendable.variable(variable: Var, omitValVar: Boolean = false, receiver: St
         }
         append(if (variable.mutable) "var " else "val ")
     }
-    
+
     if (receiver.isNotEmpty()) {
         receiverDot(receiver)
     }
     append(variable.name)
     append(" : ")
     append(variable.type)
-    
+
     if (variable.defaultValue.isNotEmpty()) {
         append(" = ")
         append(variable.defaultValue)
@@ -117,7 +117,7 @@ fun <O : Appendable> O.setter(block: O.() -> Unit): O {
     append("    set(newValue) {")
     block()
     append("}\n")
-    
+
     return this
 }
 
@@ -132,7 +132,7 @@ fun <O : Appendable> O.clazz(clazz: Clazz, block: O.() -> Unit): O {
     if (clazz.isOpen) {
         tokens.add("open")
     }
-    
+
     tokens.add(
         when {
             clazz.isObject -> "object"
@@ -142,7 +142,7 @@ fun <O : Appendable> O.clazz(clazz: Clazz, block: O.() -> Unit): O {
     )
     tokens.add(clazz.name)
     tokens.joinTo(this, " ")
-    
+
     if (clazz.parameters.isNotEmpty()) {
         clazz.parameters.joinTo(this, ", ", "<", ">")
     }
@@ -156,15 +156,15 @@ fun <O : Appendable> O.clazz(clazz: Clazz, block: O.() -> Unit): O {
         }
         append(")")
     }
-    
+
     if (clazz.parents.isNotEmpty()) {
         clazz.parents.joinTo(this, ", ", " : ")
     }
-    
+
     append(" {\n")
     block()
     append("}\n")
-    
+
     return this
 }
 
@@ -186,15 +186,15 @@ fun Appendable.function(
     modifiers: List<String> = emptyList()
 ) {
     (modifiers + "fun").joinTo(this, separator = " ", postfix = " ")
-    
+
     if (generics.isNotEmpty()) {
         generics.joinTo(this, ", ", "<", "> ")
     }
-    
+
     if (receiver.isNotEmpty()) {
         receiverDot(receiver)
     }
-    
+
     append(name)
     append("(")
     arguments.forEachIndexed { i, p ->
@@ -204,7 +204,7 @@ fun Appendable.function(
         variable(p, true)
     }
     append(")")
-    
+
     if (returnType.isNotEmpty()) {
         append(" : ")
         append(returnType)
@@ -226,7 +226,7 @@ fun <O : Appendable> O.block(block: O.() -> Unit): O {
     append(" {\n")
     block()
     append("}\n")
-    
+
     return this
 }
 
@@ -234,7 +234,7 @@ fun <O : Appendable> O.defineIs(expression: CharSequence): O {
     append(" = ")
     append(expression)
     append("\n")
-    
+
     return this
 }
 

@@ -32,17 +32,17 @@ open class HugeStreamingBenchmark {
         }
         println("avg time is ${time.toDouble() / count} ms, ${count.toDouble() / time} per ms")
     }
-    
+
     open fun testHuge(sb: StringBuilder) {
         sb.delete(0, sb.length)
         sb.appendHTML().html {
             head {
                 title { +"My title" }
-                
+
                 meta("description", "my huge page")
                 meta("keywords", "k1, k2, k3")
             }
-            
+
             body {
                 h1 { +"Title of the huge page" }
                 div("container") {

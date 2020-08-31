@@ -14,50 +14,50 @@ open class OBJECT<E>(initialAttributes: Map<String, String>, override val consum
         set(newValue) {
             attributeStringString.set(this, "data", newValue)
         }
-    
+
     var type: String
         get() = attributeStringString.get(this, "type")
         set(newValue) {
             attributeStringString.set(this, "type", newValue)
         }
-    
+
     var height: String
         get() = attributeStringString.get(this, "height")
         set(newValue) {
             attributeStringString.set(this, "height", newValue)
         }
-    
+
     var width: String
         get() = attributeStringString.get(this, "width")
         set(newValue) {
             attributeStringString.set(this, "width", newValue)
         }
-    
+
     var usemap: String
         get() = attributeStringString.get(this, "usemap")
         set(newValue) {
             attributeStringString.set(this, "usemap", newValue)
         }
-    
+
     var name: String
         get() = attributeStringString.get(this, "name")
         set(newValue) {
             attributeStringString.set(this, "name", newValue)
         }
-    
+
     var form: String
         get() = attributeStringString.get(this, "form")
         set(newValue) {
             attributeStringString.set(this, "form", newValue)
         }
-    
+
     var classId: String
         get() = attributeStringString.get(this, "classid")
         set(newValue) {
             attributeStringString.set(this, "classid", newValue)
         }
-    
-    
+
+
 }
 
 /**
@@ -88,14 +88,14 @@ open class OL<E>(initialAttributes: Map<String, String>, override val consumer: 
         set(newValue) {
             attributeStringString.set(this, "start", newValue)
         }
-    
+
     var reversed: Boolean
         get() = attributeBooleanTicker.get(this, "reversed")
         set(newValue) {
             attributeBooleanTicker.set(this, "reversed", newValue)
         }
-    
-    
+
+
 }
 
 /**
@@ -114,14 +114,14 @@ open class OPTGROUP<E>(initialAttributes: Map<String, String>, override val cons
         set(newValue) {
             attributeBooleanTicker.set(this, "disabled", newValue)
         }
-    
+
     var label: String
         get() = attributeStringString.get(this, "label")
         set(newValue) {
             attributeStringString.set(this, "label", newValue)
         }
-    
-    
+
+
 }
 
 /**
@@ -147,26 +147,26 @@ open class OPTION<E>(initialAttributes: Map<String, String>, override val consum
         set(newValue) {
             attributeBooleanTicker.set(this, "disabled", newValue)
         }
-    
+
     var selected: Boolean
         get() = attributeBooleanTicker.get(this, "selected")
         set(newValue) {
             attributeBooleanTicker.set(this, "selected", newValue)
         }
-    
+
     var label: String
         get() = attributeStringString.get(this, "label")
         set(newValue) {
             attributeStringString.set(this, "label", newValue)
         }
-    
+
     var value: String
         get() = attributeStringString.get(this, "value")
         set(newValue) {
             attributeStringString.set(this, "value", newValue)
         }
-    
-    
+
+
 }
 
 @Suppress("unused")
@@ -177,20 +177,20 @@ open class OUTPUT<E>(initialAttributes: Map<String, String>, override val consum
         set(newValue) {
             attributeStringString.set(this, "for", newValue)
         }
-    
+
     var form: String
         get() = attributeStringString.get(this, "form")
         set(newValue) {
             attributeStringString.set(this, "form", newValue)
         }
-    
+
     var name: String
         get() = attributeStringString.get(this, "name")
         set(newValue) {
             attributeStringString.set(this, "name", newValue)
         }
-    
-    
+
+
 }
 
 val <E> OUTPUT<E>.asFlowContent: FlowContent<E>

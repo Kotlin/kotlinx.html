@@ -22,10 +22,10 @@ class CustomTagTest {
                 }
             }
         }.toString()
-        
+
         assertEquals("<div><custom><span>content</span></custom></div>", html)
     }
-    
+
     @Test
     fun testCustomTagRoot() {
         val html = StringBuilder().apply {
@@ -35,7 +35,7 @@ class CustomTagTest {
                 }
             }
         }.toString()
-        
+
         assertEquals("<custom><span>content</span></custom>", html)
     }
 }

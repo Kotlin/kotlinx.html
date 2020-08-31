@@ -9,6 +9,6 @@ actual interface TagConsumer<out R, E> {
     actual fun onTagContentUnsafe(block: Unsafe.() -> Unit)
     actual fun onTagComment(content: CharSequence)
     actual fun onTagError(tag: Tag<E>, exception: Throwable)
-    
+
     actual fun finalize(): R
 }

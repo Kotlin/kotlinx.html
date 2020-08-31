@@ -3,7 +3,7 @@ package kotlinx.html
 fun <E> HEAD<E>.styleLink(url: String): Unit = link {
     rel = LinkRel.stylesheet
     type = LinkType.textCss
-    
+
     href = url
 }
 
