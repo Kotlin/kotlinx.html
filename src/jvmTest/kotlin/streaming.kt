@@ -295,10 +295,10 @@ class TestStreaming {
         val count = 1000
         val builder = StringBuilder(26 * (count + 1)).appendHTML(false)
 
-        var minStart = 0L
+        var minStart: Long
         var maxStart = 0L
         var minEnd = 0L
-        var maxEnd = 0L
+        var maxEnd: Long
 
         minStart = currentTimeMillis()
         val rs = builder.measureTime().div {

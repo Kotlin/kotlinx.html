@@ -262,6 +262,7 @@
             <xsd:element ref="i"/>
             <xsd:element ref="iframe"/>
             <xsd:element ref="img"/>
+            <xsd:element ref="picture"/>
             <xsd:element ref="input"/>
             <xsd:element ref="ins"/>
 
@@ -369,6 +370,7 @@
             <xsd:element ref="i"/>
             <xsd:element ref="iframe"/>
             <xsd:element ref="img"/>
+            <xsd:element ref="picture"/>
             <xsd:element ref="input"/>
             <xsd:element ref="ins"/>
 
@@ -421,6 +423,7 @@
             <xsd:element ref="embed"/>
             <xsd:element ref="iframe"/>
             <xsd:element ref="img"/>
+            <xsd:element ref="picture"/>
             <xsd:element ref="input"/>
             <xsd:element ref="keygen"/>
             <xsd:element ref="label"/>
@@ -967,6 +970,16 @@
             </xsd:attribute>
         </xsd:complexType>
     </xsd:element>
+
+    <xsd:element name="picture">
+        <xsd:complexType>
+            <xsd:choice>
+                <xsd:element ref="source"/>
+                <xsd:element ref="img" maxOccurs="1"/>
+            </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+
 
     <xsd:element name="iframe">
         <xsd:complexType mixed="true">
