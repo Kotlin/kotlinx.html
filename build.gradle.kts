@@ -218,13 +218,8 @@ kotlin {
         linuxArm64(),
         linuxMips32(),
         linuxMipsel32(),
-        linuxX64(),
-        iosArm32(),
-        iosArm64(),
-        iosX64(),
-        macosX64()
+        linuxX64()
     )
-    val nativeTargets = unixTargets + mingwTargets
 
     metadata {
         mavenPublication {
