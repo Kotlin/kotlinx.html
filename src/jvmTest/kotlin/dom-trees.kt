@@ -1,44 +1,67 @@
 package kotlinx.html.tests
 
-import kotlinx.html.*
+import kotlinx.html.Entities
+import kotlinx.html.HtmlBlockTag
+import kotlinx.html.HtmlHeadTag
+import kotlinx.html.HtmlInlineTag
+import kotlinx.html.ScriptType
+import kotlinx.html.a
+import kotlinx.html.body
+import kotlinx.html.classes
 import kotlinx.html.consumers.filter
-import kotlinx.html.dom.*
+import kotlinx.html.div
+import kotlinx.html.dom.append
+import kotlinx.html.dom.create
+import kotlinx.html.dom.createHTMLDocument
+import kotlinx.html.dom.document
+import kotlinx.html.dom.prepend
+import kotlinx.html.dom.serialize
+import kotlinx.html.h1
+import kotlinx.html.head
+import kotlinx.html.html
+import kotlinx.html.id
+import kotlinx.html.meta
+import kotlinx.html.p
+import kotlinx.html.script
+import kotlinx.html.span
+import kotlinx.html.svg
+import kotlinx.html.unsafe
 import kotlin.test.assertEquals
 import org.junit.Test as test
 
 class TestDOMTrees {
-  @test
-  fun `able to create simple tree`() {
-    val tree = createHTMLDocument().div {
-      id = "test-node"
-      +"content"
-    }
-  
-    assertEquals("div", tree.getElementById("test-node")?.tagName?.toLowerCase())
-  }
-  
-  @test
-  fun `able to create complex tree and render it with pretty print`() {
-    val tree = createHTMLDocument().html {
-      body {
-        h1 {
-          +"header"
+    @test
+    fun `able to create simple tree`() {
+        val tree = createHTMLDocument().div {
+            id = "test-node"
+            +"content"
         }
-        div {
-          +"content"
-          span {
-            +"yo"
-          }
-        }
-      }
+        
+        assertEquals("div", tree.getElementById("test-node")?.tagName?.toLowerCase())
     }
     
-    assertEquals(
-      "<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>",
-      tree.serialize(false)
-    )
-    assertEquals(
-      """
+    @test
+    fun `able to create complex tree and render it with pretty print`() {
+        val tree = createHTMLDocument().html {
+            body {
+                h1 {
+                    +"header"
+                }
+                div {
+                    +"content"
+                    span {
+                        +"yo"
+                    }
+                }
+            }
+        }
+        
+        assertEquals(
+            "<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>",
+            tree.serialize(false)
+        )
+        assertEquals(
+            """
                 <!DOCTYPE html>
                 <html>
                   <body>
@@ -48,31 +71,31 @@ class TestDOMTrees {
                     </div>
                   </body>
                 </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n")
-    )
-  }
-  
-  @test
-  fun `vals create and append support`() {
-    val document = createHTMLDocument().html {
-      body {
-        div {
-          id = "content"
+        )
+    }
+    
+    @test
+    fun `vals create and append support`() {
+        val document = createHTMLDocument().html {
+            body {
+                div {
+                    id = "content"
+                }
+            }
         }
-      }
-    }
-    
-    val contentNode = document.getElementById("content")!!
-    contentNode.append.p {
-      +"p1"
-    }
-    
-    val p2 = document.create.p {
-      +"p2"
-    }
-    contentNode.appendChild(p2)
-    
-    assertEquals(
-      """<!DOCTYPE html>
+        
+        val contentNode = document.getElementById("content")!!
+        contentNode.append.p {
+            +"p1"
+        }
+        
+        val p2 = document.create.p {
+            +"p2"
+        }
+        contentNode.appendChild(p2)
+        
+        assertEquals(
+            """<!DOCTYPE html>
 <html>
   <body>
     <div id="content">
@@ -82,37 +105,37 @@ class TestDOMTrees {
   </body>
 </html>
         """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n")
-    )
-  }
-  
-  @test
-  fun `append function support`() {
-    val document = createHTMLDocument().html {
-      body {
-        div {
-          id = "content"
-        }
-      }
+        )
     }
     
-    val contentNode = document.getElementById("content")!!
-    
-    val nodes = contentNode.append {
-      p {
-        +"p1"
-      }
-      p {
-        +"p2"
-        p {
-          +"p3"
+    @test
+    fun `append function support`() {
+        val document = createHTMLDocument().html {
+            body {
+                div {
+                    id = "content"
+                }
+            }
         }
-      }
-    }
-    
-    assertEquals(2, nodes.size)
-    
-    assertEquals(
-      """<!DOCTYPE html>
+        
+        val contentNode = document.getElementById("content")!!
+        
+        val nodes = contentNode.append {
+            p {
+                +"p1"
+            }
+            p {
+                +"p2"
+                p {
+                    +"p3"
+                }
+            }
+        }
+        
+        assertEquals(2, nodes.size)
+        
+        assertEquals(
+            """<!DOCTYPE html>
 <html>
   <body>
     <div id="content">
@@ -125,135 +148,135 @@ class TestDOMTrees {
   </body>
 </html>
         """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n")
-    )
-  }
-  
-  @test
-  fun `should compile wiki example`() {
-    println(document {
-      append.filter { if (it.tagName == "div") SKIP else PASS }.html {
-        body {
-          div {
-            a { +"link1" }
-          }
-          a { +"link2" }
+        )
+    }
+    
+    @test
+    fun `should compile wiki example`() {
+        println(document {
+            append.filter { if (it.tagName == "div") SKIP else PASS }.html {
+                body {
+                    div {
+                        a { +"link1" }
+                    }
+                    a { +"link2" }
+                }
+            }
+        }.serialize())
+    }
+    
+    @test
+    fun `svg should have namespace`() {
+        val d = document {
+            append.html {
+                body {
+                    svg {
+                    }
+                }
+            }
         }
-      }
-    }.serialize())
-  }
-  
-  @test
-  fun `svg should have namespace`() {
-    val d = document {
-      append.html {
-        body {
-          svg {
-          }
+        
+        assertEquals(
+            "<!DOCTYPE html>\n<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>",
+            d.serialize(false).trim().replace("\r\n", "\n")
+        )
+    }
+    
+    @test
+    fun `generalize tests`() {
+        fun <T> T.genericFlow() where T : HtmlBlockTag<Nothing> {
+            classes += "aha"
+            +"content"
+            +Entities.nbsp
+            div {
+            }
         }
-      }
-    }
-    
-    assertEquals(
-      "<!DOCTYPE html>\n<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>",
-      d.serialize(false).trim().replace("\r\n", "\n")
-    )
-  }
-  
-  @test
-  fun `generalize tests`() {
-    fun <T> T.genericFlow() where T : HtmlBlockTag<Nothing> {
-      classes += "aha"
-      +"content"
-      +Entities.nbsp
-      div {
-      }
-    }
-    
-    fun <T> T.genericPhrasing() where T : HtmlInlineTag<Nothing> {
-      classes += "aha"
-      +"content"
-      +Entities.nbsp
-      span { }
-    }
-    
-    fun <T> T.genericMetaData() where T : HtmlHeadTag<Nothing> {
-      classes += "aha"
-      +"content"
-      +Entities.nbsp
-      meta("a")
-      script(ScriptType.textJavaScript) { }
-    }
-    
-    document {
-      append.html {
-        head {
-          genericMetaData()
+        
+        fun <T> T.genericPhrasing() where T : HtmlInlineTag<Nothing> {
+            classes += "aha"
+            +"content"
+            +Entities.nbsp
+            span { }
         }
-        body {
-          div {
-            genericFlow()
+        
+        fun <T> T.genericMetaData() where T : HtmlHeadTag<Nothing> {
+            classes += "aha"
+            +"content"
+            +Entities.nbsp
+            meta("a")
+            script(ScriptType.textJavaScript) { }
+        }
+        
+        document {
+            append.html {
+                head {
+                    genericMetaData()
+                }
+                body {
+                    div {
+                        genericFlow()
+                        p {
+                            genericPhrasing()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @test
+    fun `script content`() {
+        val document = document {
+            append.html {
+                head {
+                    script(ScriptType.textJavaScript) {
+                        unsafe {
+                            raw("fun f() { return 1; }")
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        assertEquals(
+            "<!DOCTYPE html>\n" +
+                    "<html><head><META http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><script type=\"text/javascript\">fun f() { return 1; }</script></head></html>",
+            document.serialize(false).trim().replace("\r\n", "\n")
+        )
+    }
+    
+    @test
+    fun testPrepend() {
+        val document = createHTMLDocument().html {
+            body {
+                a { text("aaa") }
+            }
+        }
+        
+        document.getElementsByTagName("body").item(0).prepend {
             p {
-              genericPhrasing()
+                text("OK")
             }
-          }
         }
-      }
+        
+        assertEquals(
+            "<!DOCTYPE html>\n" +
+                    "<html><body><p>OK</p><a>aaa</a></body></html>",
+            document.serialize(false).trim().replace("\r\n", "\n")
+        )
     }
-  }
-  
-  @test
-  fun `script content`() {
-    val document = document {
-      append.html {
-        head {
-          script(ScriptType.textJavaScript) {
-            unsafe {
-              raw("fun f() { return 1; }")
-            }
-          }
+    
+    @test
+    fun testComment() {
+        val document = createHTMLDocument().html {
+            comment("commented")
         }
-      }
+        
+        assertEquals(
+            "<!DOCTYPE html>\n" +
+                    "<html><!--commented--></html>",
+            document.serialize(false).trim().replace("\r\n", "\n")
+        )
     }
-    
-    
-    assertEquals(
-      "<!DOCTYPE html>\n" +
-          "<html><head><META http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><script type=\"text/javascript\">fun f() { return 1; }</script></head></html>",
-      document.serialize(false).trim().replace("\r\n", "\n")
-    )
-  }
-  
-  @test
-  fun testPrepend() {
-    val document = createHTMLDocument().html {
-      body {
-        a { text("aaa") }
-      }
-    }
-    
-    document.getElementsByTagName("body").item(0).prepend {
-      p {
-        text("OK")
-      }
-    }
-    
-    assertEquals(
-      "<!DOCTYPE html>\n" +
-          "<html><body><p>OK</p><a>aaa</a></body></html>",
-      document.serialize(false).trim().replace("\r\n", "\n")
-    )
-  }
-  
-  @test
-  fun testComment() {
-    val document = createHTMLDocument().html {
-      comment("commented")
-    }
-    
-    assertEquals(
-      "<!DOCTYPE html>\n" +
-          "<html><!--commented--></html>",
-      document.serialize(false).trim().replace("\r\n", "\n")
-    )
-  }
 }

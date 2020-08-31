@@ -2,102 +2,102 @@ package kotlinx.html
 
 
 expect interface TagConsumer<out R, E> {
-  fun onTagStart(tag: Tag<E>)
-  fun onTagAttributeChange(tag: Tag<E>, attribute: String, value: String?)
-  fun onTagEnd(tag: Tag<E>)
-  fun onTagContent(content: CharSequence)
-  fun onTagContentEntity(entity: Entities)
-  fun onTagContentUnsafe(block: Unsafe.() -> Unit)
-  fun onTagComment(content: CharSequence)
-  fun onTagError(tag: Tag<E>, exception: Throwable)
-  fun finalize(): R
+    fun onTagStart(tag: Tag<E>)
+    fun onTagAttributeChange(tag: Tag<E>, attribute: String, value: String?)
+    fun onTagEnd(tag: Tag<E>)
+    fun onTagContent(content: CharSequence)
+    fun onTagContentEntity(entity: Entities)
+    fun onTagContentUnsafe(block: Unsafe.() -> Unit)
+    fun onTagComment(content: CharSequence)
+    fun onTagError(tag: Tag<E>, exception: Throwable)
+    fun finalize(): R
 }
 
 @HtmlTagMarker
 interface Tag<E> {
-  val tagName: String
-  val consumer: TagConsumer<*, E>
-  val namespace: String?
-  
-  val attributes: MutableMap<String, String>
-  val attributesEntries: Collection<Map.Entry<String, String>>
-  
-  val inlineTag: Boolean
-  val emptyTag: Boolean
-  
-  operator fun Entities.unaryPlus() {
-    entity(this)
-  }
-  
-  operator fun String.unaryPlus() {
-    text(this)
-  }
-  
-  fun text(s: String) {
-    consumer.onTagContent(s)
-  }
-  
-  fun text(n: Number) {
-    text(n.toString())
-  }
-  
-  fun entity(e: Entities) {
-    consumer.onTagContentEntity(e)
-  }
-  
-  fun comment(s: String) {
-    consumer.onTagComment(s)
-  }
+    val tagName: String
+    val consumer: TagConsumer<*, E>
+    val namespace: String?
+    
+    val attributes: MutableMap<String, String>
+    val attributesEntries: Collection<Map.Entry<String, String>>
+    
+    val inlineTag: Boolean
+    val emptyTag: Boolean
+    
+    operator fun Entities.unaryPlus() {
+        entity(this)
+    }
+    
+    operator fun String.unaryPlus() {
+        text(this)
+    }
+    
+    fun text(s: String) {
+        consumer.onTagContent(s)
+    }
+    
+    fun text(n: Number) {
+        text(n.toString())
+    }
+    
+    fun entity(e: Entities) {
+        consumer.onTagContentEntity(e)
+    }
+    
+    fun comment(s: String) {
+        consumer.onTagComment(s)
+    }
 }
 
 @HtmlTagMarker
 interface Unsafe {
-  operator fun String.unaryPlus()
-  operator fun Entities.unaryPlus() = +text
-  
-  fun raw(s: String) {
-    +s
-  }
-  
-  fun raw(entity: Entities) {
-    +entity
-  }
-  
-  fun raw(n: Number) {
-    +n.toString()
-  }
+    operator fun String.unaryPlus()
+    operator fun Entities.unaryPlus() = +text
+    
+    fun raw(s: String) {
+        +s
+    }
+    
+    fun raw(entity: Entities) {
+        +entity
+    }
+    
+    fun raw(n: Number) {
+        +n.toString()
+    }
 }
 
 interface AttributeEnum {
-  val realValue: String
+    val realValue: String
 }
 
 inline fun <T : Tag<E>, E> T.visit(crossinline block: T.() -> Unit) = visitTag { block() }
 
 inline fun <T : Tag<E>, E, R> T.visitAndFinalize(consumer: TagConsumer<R, E>, crossinline block: T.() -> Unit): R =
-  visitTagAndFinalize(consumer) { block() }
+    visitTagAndFinalize(consumer) { block() }
 
 fun attributesMapOf() = emptyMap
 fun attributesMapOf(key: String, value: String?): Map<String, String> = when (value) {
-  null -> emptyMap
-  else -> singletonMapOf(key, value)
+    null -> emptyMap
+    else -> singletonMapOf(key, value)
 }
 
 fun attributesMapOf(vararg pairs: String?): Map<String, String> {
-  var result: MutableMap<String, String>? = null
-  
-  for (i in pairs.indices step 2) {
-    val k = pairs[i]
-    val v = pairs[i + 1]
-    if (k != null && v != null) {
-      if (result == null) {
-        result = linkedMapOf()
-      }
-      result[k] = v
+    var result: MutableMap<String, String>? = null
+    
+    for (i in pairs.indices step 2) {
+        val k = pairs[i]
+        val v = pairs[i + 1]
+        if (k != null && v != null) {
+            if (result == null) {
+                result = linkedMapOf()
+            }
+            result[k] = v
+        }
     }
-  }
-  
-  return result ?: emptyMap
+    
+    return result ?: emptyMap
 }
 
 fun singletonMapOf(key: String, value: String): Map<String, String> = SingletonStringMap(key, value)
@@ -107,13 +107,13 @@ fun <E> HTMLTag<E>.unsafe(block: Unsafe.() -> Unit): Unit = consumer.onTagConten
 val emptyMap: Map<String, String> = emptyMap()
 
 class DefaultUnsafe : Unsafe {
-  private val sb = StringBuilder()
-  
-  override fun String.unaryPlus() {
-    sb.append(this)
-  }
-  
-  override fun toString(): String = sb.toString()
+    private val sb = StringBuilder()
+    
+    override fun String.unaryPlus() {
+        sb.append(this)
+    }
+    
+    override fun toString(): String = sb.toString()
 }
 
 @DslMarker
@@ -122,21 +122,21 @@ annotation class HtmlTagMarker
 typealias HtmlContent<E> = FlowOrPhrasingContent<E>
 
 private data class SingletonStringMap(override val key: String, override val value: String) : Map<String, String>,
-  Map.Entry<String, String> {
-  override val entries: Set<Map.Entry<String, String>>
-    get() = setOf(this)
-  
-  override val keys: Set<String>
-    get() = setOf(key)
-  
-  override val size: Int
-    get() = 1
-  
-  override val values: Collection<String>
-    get() = listOf(value)
-  
-  override fun containsKey(key: String) = key == this.key
-  override fun containsValue(value: String) = value == this.value
-  override fun get(key: String): String? = if (key == this.key) value else null
-  override fun isEmpty() = false
+    Map.Entry<String, String> {
+    override val entries: Set<Map.Entry<String, String>>
+        get() = setOf(this)
+    
+    override val keys: Set<String>
+        get() = setOf(key)
+    
+    override val size: Int
+        get() = 1
+    
+    override val values: Collection<String>
+        get() = listOf(value)
+    
+    override fun containsKey(key: String) = key == this.key
+    override fun containsValue(value: String) = value == this.value
+    override fun get(key: String): String? = if (key == this.key) value else null
+    override fun isEmpty() = false
 }

@@ -1,7 +1,7 @@
 rootProject.name = "kotlinx-html"
 pluginManagement {
-  repositories {
-    mavenCentral()
-    gradlePluginPortal()
-  }
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
 }

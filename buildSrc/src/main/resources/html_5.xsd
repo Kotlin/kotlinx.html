@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<xsd:schema xmlns='html-5'
-            xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+            xmlns='html-5'
             version="1.0" targetNamespace='html-5'
 
 

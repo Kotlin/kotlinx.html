@@ -4,11 +4,11 @@ import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
 
 private class DelegatingExceptionConsumer<R, E>(
-  val underlying: TagConsumer<R, E>,
-  val handler: TagConsumer<R, E>.(Throwable) -> Unit,
+    val underlying: TagConsumer<R, E>,
+    val handler: TagConsumer<R, E>.(Throwable) -> Unit,
 ) : TagConsumer<R, E> by underlying {
-  
-  override fun onTagError(tag: Tag<E>, exception: Throwable) = handler(underlying, exception)
+    
+    override fun onTagError(tag: Tag<E>, exception: Throwable) = handler(underlying, exception)
 }
 
 /**
@@ -16,4 +16,4 @@ private class DelegatingExceptionConsumer<R, E>(
  * For more control of error handling, implement `onTagError` in your subclass of `TagConsumer`
  */
 fun <R, E> TagConsumer<R, E>.catch(handler: TagConsumer<R, E>.(Throwable) -> Unit): TagConsumer<R, E> =
-  DelegatingExceptionConsumer(this, handler)
+    DelegatingExceptionConsumer(this, handler)
