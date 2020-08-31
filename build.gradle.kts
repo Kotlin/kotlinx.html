@@ -17,12 +17,12 @@ import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsSetupTask
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-  kotlin("multiplatform") version "1.4.0-rc"
+  kotlin("multiplatform") version "1.4.0"
   id("maven-publish")
 }
 
-group = "org.jetbrains.kotlinx"
-version = "0.7.2-SNAPSHOT"
+group = "lt.petuska"
+version = "0.7.3"
 
 /**
  * If "release" profile is used the "-SNAPSHOT" suffix of the version is removed.
@@ -56,7 +56,7 @@ publishing {
       when {
         hasProperty("release") -> {
           maven {
-            url = uri("https://api.bintray.com/maven/kotlin/kotlinx/kotlinx.html/;publish=1")
+            url = uri("https://api.bintray.com/maven/mpetuska/lt.petuska/kotlinx-html/;override=1;publish=1")
             credentials {
               username = System.getenv("BINTRAY_USERNAME")
               password = System.getenv("BINTRAY_PASSWORD")
@@ -125,28 +125,6 @@ fun KotlinTarget.setupPublishing() {
   mavenPublication {
     groupId = group as String
     pom.config { name by "${project.name}-$targetName" }
-    
-    println("TargetName: $targetName")
-    val sourceSetTarget = when {
-      targetName.startsWith("js") -> "js"
-      targetName.startsWith("metadata") -> "common"
-      targetName.startsWith("jvm") -> targetName
-      else -> targetName.also{targetName ->
-        jar("${targetName}SourcesJar") {
-          archiveClassifier by "sources"
-          compilations["main"].allKotlinSourceSets.forEach {
-            from(it.kotlin, it.resources)
-          }
-        }
-      }
-    }
-    javadocJar("${targetName}JavadocJar")
-    jar("${targetName}TestSourcesJar") {
-      archiveClassifier by "test-sources"
-      with(kotlin.sourceSets["${sourceSetTarget}Test"]) {
-        from(kotlin, resources)
-      }
-    }
   }
 }
 
