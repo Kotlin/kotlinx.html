@@ -1,6 +1,6 @@
 [![Official JetBrains Project](https://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-green.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.2.71-orange.svg) ](https://kotlinlang.org/)[![Download](https://api.bintray.com/packages/kotlin/kotlinx/kotlinx.html/images/download.svg)](https://bintray.com/kotlin/kotlinx/kotlinx.html/_latestVersion)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.4.0-orange.svg) ](https://kotlinlang.org/)[![Download](https://api.bintray.com/packages/kotlin/kotlinx/kotlinx.html/images/download.svg)](https://bintray.com/kotlin/kotlinx/kotlinx.html/_latestVersion)
 [![npm](https://img.shields.io/npm/v/kotlinx-html.svg)](https://www.npmjs.com/package/kotlinx-html)
 [![TeamCity (simple build status)](https://teamcity.jetbrains.com/app/rest/builds/aggregated/strob:\(branch:\(buildType:\(id:KotlinTools_KotlinxHtml_BuildGradleMasterBranch\),policy:active_history_and_active_vcs_branches\),locator:\(buildType:\(id:KotlinTools_KotlinxHtml_BuildGradleMasterBranch\)\)\)/statusIcon.svg)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=KotlinTools_KotlinxHtml_BuildGradleMasterBranch&branch_Kotlin_KotlinX=%3Cdefault%3E&tab=buildTypeStatusDiv&guest=1)
 
