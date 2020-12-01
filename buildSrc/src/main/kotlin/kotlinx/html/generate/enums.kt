@@ -4,10 +4,10 @@ val reservedNames = setOf("class", "val", "var", "object", "true", "false", "as"
 
 fun String.replaceIfReserved() = if (this in reservedNames) "html" + this.capitalize() else this
 
-fun List<String>.toAttributeValues() : List<AttributeEnumValue> =
-        map { AttributeEnumValue(it, if (it == "_") it else it.humanize().replaceIfReserved()) }
+fun List<String>.toAttributeValues(): List<AttributeEnumValue> =
+    map { AttributeEnumValue(it, if (it == "_") it else it.humanize().replaceIfReserved()) }
 
-fun Appendable.enumObject(attribute : AttributeInfo) {
+fun Appendable.enumObject(attribute: AttributeInfo) {
     val name = attribute.enumTypeName
 
     appendln("@Suppress(\"unused\")")
@@ -21,14 +21,20 @@ fun Appendable.enumObject(attribute : AttributeInfo) {
         emptyLine()
         append("    ")
 //        append("private ")
-        variable(Var("values", "List<String>", defaultValue = attribute.enumValues.map {"\"${it.fieldName}\""}.joinToString(", ", "listOf(", ")")))
+        variable(
+            Var(
+                "values",
+                "List<String>",
+                defaultValue = attribute.enumValues.map { "\"${it.fieldName}\"" }.joinToString(", ", "listOf(", ")")
+            )
+        )
         emptyLine()
     }
 
     emptyLine()
 }
 
-fun Appendable.enum(attribute : AttributeInfo) {
+fun Appendable.enum(attribute: AttributeInfo) {
     val name = attribute.enumTypeName
     val realValue = Var("realValue", "String", false, true)
 
@@ -51,6 +57,13 @@ fun Appendable.enum(attribute : AttributeInfo) {
 
     emptyLine()
     append("internal ")
-    variable(Var(name.decapitalize() + "Values", "Map<String, $name>", false, defaultValue = "$name.values().associateBy { it.realValue }"))
+    variable(
+        Var(
+            name.decapitalize() + "Values",
+            "Map<String, $name>",
+            false,
+            defaultValue = "$name.values().associateBy { it.realValue }"
+        )
+    )
     emptyLine()
 }

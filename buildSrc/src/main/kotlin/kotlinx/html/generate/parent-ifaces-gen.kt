@@ -1,6 +1,6 @@
 package kotlinx.html.generate
 
-import java.io.*
+import java.io.FileOutputStream
 import java.util.*
 
 fun generateParentInterfaces(todir: String, packg: String) {
@@ -40,22 +40,31 @@ fun generateParentInterfaces(todir: String, packg: String) {
             emptyLine()
             emptyLine()
 
-            (allIntroduced.map { it.sorted() } + allParentIfaces.filter { it.size > 1 }.map { it.sorted() }).distinct().sortedBy { it.sorted().joinToString("").let { renames[it] ?: it } }.forEach { iface ->
-                val ifaceName = humanizeJoin(iface)
-                val subs =
-                    allIntroduced.map { it.sorted() }.filter { other -> other != iface && other.all { it in iface } } +
-                    allParentIfaces.map { it.sorted() }.filter { other -> other != iface && other.all { it in iface } }
+            (allIntroduced.map { it.sorted() } + allParentIfaces.filter { it.size > 1 }.map { it.sorted() }).distinct()
+                .sortedBy { it.sorted().joinToString("").let { renames[it] ?: it } }.forEach { iface ->
+                    val ifaceName = humanizeJoin(iface)
+                    val subs =
+                        allIntroduced.map { it.sorted() }
+                            .filter { other -> other != iface && other.all { it in iface } } +
+                                allParentIfaces.map { it.sorted() }
+                                    .filter { other -> other != iface && other.all { it in iface } }
 
-                val computedParents =
+                    val computedParents =
                         (iface - subs.flatMap { it } + subs.map(::humanizeJoin) - ifaceName)
                             .distinct()
                             .map { renames[it] ?: it }
-                            .sorted()
+                            .sorted().map { p -> "$p<E>" }
 
-                clazz(Clazz(name = renames[ifaceName] ?: ifaceName, parents = computedParents, isInterface = true)) {
+                    clazz(
+                        Clazz(
+                            name = "${renames[ifaceName] ?: ifaceName}<E>",
+                            parents = computedParents,
+                            isInterface = true
+                        )
+                    ) {
+                    }
+                    emptyLine()
                 }
-                emptyLine()
-            }
         }
     }
 }

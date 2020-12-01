@@ -1,16 +1,45 @@
 package kotlinx.html.tests
 
-import kotlinx.html.*
-import kotlinx.html.consumers.*
-import kotlinx.html.dom.*
-import kotlinx.html.js.*
-import org.w3c.dom.*
-import kotlinx.browser.*
-import kotlin.test.*
+import kotlinx.browser.document
+import kotlinx.html.Entities
+import kotlinx.html.a
+import kotlinx.html.classes
+import kotlinx.html.consumers.trace
+import kotlinx.html.div
+import kotlinx.html.dom.append
+import kotlinx.html.dom.create
+import kotlinx.html.dom.prepend
+import kotlinx.html.id
+import kotlinx.html.js.col
+import kotlinx.html.js.colGroup
+import kotlinx.html.js.div
+import kotlinx.html.js.form
+import kotlinx.html.js.h1
+import kotlinx.html.js.onClickFunction
+import kotlinx.html.js.onSubmitFunction
+import kotlinx.html.js.p
+import kotlinx.html.js.span
+import kotlinx.html.js.svg
+import kotlinx.html.js.td
+import kotlinx.html.js.th
+import kotlinx.html.li
+import kotlinx.html.p
+import kotlinx.html.span
+import kotlinx.html.ul
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLFormElement
+import org.w3c.dom.asList
+import org.w3c.dom.get
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
+import kotlin.test.fail
 import kotlin.test.Test as test
 
 class DomTreeImplTest {
-    @test fun simpleTree() {
+    @test
+    fun simpleTree() {
         val node = document.body!!.append.div {
             p {
                 +"test"
@@ -25,7 +54,8 @@ class DomTreeImplTest {
         assertEquals(node, document.body!!.children.asList().last())
     }
 
-    @test fun appendSingleNode() {
+    @test
+    fun appendSingleNode() {
         val myDiv: HTMLDivElement = document.body!!.append.div {
             p {
                 +"test"
@@ -37,30 +67,32 @@ class DomTreeImplTest {
         assertEquals("<div><p>test</p></div>", myDiv.outerHTML.replace("\\s+".toRegex(), ""))
     }
 
-    @test fun appendNodeWithEventHandler() {
-    	var clicked = false
-    	
+    @test
+    fun appendNodeWithEventHandler() {
+        var clicked = false
+
         document.body!!.append.div {
             onClickFunction = {
-				clicked = true
+                clicked = true
             }
         }
         document.create.div("a b c ") {
             a("http://kotlinlang.org") { +"official Kotlin site" }
         }
         document.getElementsByTagName("div").asList().forEach {
-        	if (it is HTMLElement) {
-        		val clickHandler = it.onclick
-        		if (clickHandler != null) {
-        			clickHandler(uninitialized())
-        		}
-        	}
+            if (it is HTMLElement) {
+                val clickHandler = it.onclick
+                if (clickHandler != null) {
+                    clickHandler(uninitialized())
+                }
+            }
         }
-        
+
         assertTrue(clicked)
     }
 
-    @test fun testAtMainPage() {
+    @test
+    fun testAtMainPage() {
         document.body!!.append.div {
             id = "container"
         }
@@ -79,10 +111,14 @@ class DomTreeImplTest {
 
         container.appendChild(myDiv)
 
-        assertEquals("<div class=\"panel\"><p>Here is <a href=\"http://kotlinlang.org\">official Kotlin site</a></p></div>", container.innerHTML)
+        assertEquals(
+            "<div class=\"panel\"><p>Here is <a href=\"http://kotlinlang.org\">official Kotlin site</a></p></div>",
+            container.innerHTML
+        )
     }
 
-    @test fun appendMultipleNodes() {
+    @test
+    fun appendMultipleNodes() {
         val wrapper = wrapper()
 
         val nodes = wrapper.append {
@@ -102,7 +138,8 @@ class DomTreeImplTest {
         assertEquals("<div>div1</div><div>div2</div>", wrapper.innerHTML)
     }
 
-    @test fun appendEntity() {
+    @test
+    fun appendEntity() {
         val wrapper = wrapper()
         wrapper.append.span {
             +Entities.nbsp
@@ -111,7 +148,8 @@ class DomTreeImplTest {
         assertEquals("<span>&nbsp;</span>", wrapper.innerHTML)
     }
 
-    @test fun pastTagAttributeChangedShouldBeProhibited() {
+    @test
+    fun pastTagAttributeChangedShouldBeProhibited() {
         try {
             document.body!!.append.trace().div {
                 p {
@@ -127,7 +165,8 @@ class DomTreeImplTest {
         }
     }
 
-    @test fun buildBiggerPage() {
+    @test
+    fun buildBiggerPage() {
         val wrapper = wrapper()
 
         wrapper.append {
@@ -155,7 +194,8 @@ class DomTreeImplTest {
             }
         }
 
-        assertEquals("""
+        assertEquals(
+            """
                 <h1>kotlin</h1>
                 <p>Here we are</p>
                 <div class="root">
@@ -167,10 +207,12 @@ class DomTreeImplTest {
                 </ul>
                 </div>
                 <div class="content"></div>
-                </div>""".trimLines(), wrapper.innerHTML)
+                </div>""".trimLines(), wrapper.innerHTML
+        )
     }
 
-    @test fun testAppendAndRemoveClass() {
+    @test
+    fun testAppendAndRemoveClass() {
         val wrapper = wrapper()
 
         wrapper.append {
@@ -183,17 +225,22 @@ class DomTreeImplTest {
         assertEquals("<span class=\"class2\"></span>", wrapper.innerHTML)
     }
 
-    @test fun testSvg() {
+    @test
+    fun testSvg() {
         val wrapper = wrapper()
 
         wrapper.append.svg {
         }
 
         @Suppress("UNCHECKED_CAST")
-        assertEquals("http://www.w3.org/2000/svg", (wrapper.childNodes.asList() as List<Element>).first { it.tagName.toLowerCase() == "svg" }.namespaceURI)
+        assertEquals(
+            "http://www.w3.org/2000/svg",
+            (wrapper.childNodes.asList() as List<Element>).first { it.tagName.toLowerCase() == "svg" }.namespaceURI
+        )
     }
 
-    @test fun assignEvent() {
+    @test
+    fun assignEvent() {
         val wrapper = wrapper()
         var invoked = false
 
@@ -211,12 +258,15 @@ class DomTreeImplTest {
 
         println("Got event $event")
 
-        (wrapper.getElementsByTagName("form").asList().first { it.id == "my-form" } as HTMLFormElement).dispatchEvent(event)
+        (wrapper.getElementsByTagName("form").asList().first { it.id == "my-form" } as HTMLFormElement).dispatchEvent(
+            event
+        )
 
         assertTrue { invoked }
     }
 
-    @test fun testTdThColColGroupCreation() {
+    @test
+    fun testTdThColColGroupCreation() {
         val td = document.create.td()
         val th = document.create.th()
         val col = document.create.col()
@@ -228,7 +278,8 @@ class DomTreeImplTest {
         assertEquals("COLGROUP", colGroup.tagName.toUpperCase())
     }
 
-    @test fun testPrepend() {
+    @test
+    fun testPrepend() {
         val wrapper = wrapper()
         wrapper.appendChild(document.createElement("A").apply { textContent = "aaa" })
 
@@ -241,7 +292,8 @@ class DomTreeImplTest {
         assertEquals("<p>OK</p><a>aaa</a>", wrapper.innerHTML)
     }
 
-    @test fun testComment() {
+    @test
+    fun testComment() {
         val wrapper = wrapper()
         wrapper.append.div {
             comment("commented")

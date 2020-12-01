@@ -1,11 +1,17 @@
-import kotlinx.html.*
-import kotlinx.html.consumers.*
-import kotlinx.html.stream.*
+import kotlinx.html.body
+import kotlinx.html.consumers.catch
+import kotlinx.html.div
+import kotlinx.html.h1
+import kotlinx.html.h2
+import kotlinx.html.html
+import kotlinx.html.stream.appendHTML
 import org.junit.Test
-import kotlin.test.*
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class TestExceptions {
-    @Test fun `default exception must result in empty tag`() {
+    @Test
+    fun `default exception must result in empty tag`() {
 
         val sb = StringBuilder()
 
@@ -31,11 +37,13 @@ class TestExceptions {
         assertTrue(errorCaught, "Exception should be thrown")
 
         assertEquals(
-                """<html><body><h1> empty </h1></body></html>""",
-                sb.toString())
+            """<html><body><h1> empty </h1></body></html>""",
+            sb.toString()
+        )
     }
 
-    @Test fun `exception handler should add output`() {
+    @Test
+    fun `exception handler should add output`() {
 
         val sb = StringBuilder()
         sb.appendHTML(prettyPrint = false).catch { err ->
@@ -58,8 +66,9 @@ class TestExceptions {
         }
 
         assertEquals(
-                """<html><body><h1> text <div>ERROR: testing errors</div></h1><h2> should be present </h2></body></html>""",
-                sb.toString())
+            """<html><body><h1> text <div>ERROR: testing errors</div></h1><h2> should be present </h2></body></html>""",
+            sb.toString()
+        )
     }
 }
 

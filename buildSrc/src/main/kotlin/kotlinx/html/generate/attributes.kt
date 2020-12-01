@@ -37,22 +37,24 @@ fun Appendable.attributeProperty(attribute: AttributeInfo, receiver: String? = n
 fun Appendable.facade(facade: AttributeFacade) {
     val facadeName = facade.name.capitalize() + "Facade"
 
-    clazz(Clazz(facadeName, isInterface = true, parents = listOf("Tag"))) {
+    clazz(Clazz("$facadeName<E>", isInterface = true, parents = listOf("Tag<E>"))) {
     }
 
-    facade.attributes.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
+    facade.attributes.filter { !isAttributeExcluded(it.name) && !it.name.startsWith("on") }.forEach { attribute ->
         if (attribute.name.isLowerCase() || attribute.name.toLowerCase() !in facade.attributeNames) {
-            attributeProperty(attribute, receiver = facadeName, indent = 0)
+            attributeProperty(attribute, receiver = "<E> $facadeName<E>", indent = 0)
         }
     }
 }
 
 fun Appendable.eventProperty(parent: String, attribute: AttributeInfo) {
-    variable(receiver = parent, variable = Var(
+    variable(
+        receiver = "<E> $parent<E>", variable = Var(
             name = attribute.fieldName + "Function",
-            type = "(Event) -> Unit",
+            type = "(E) -> Unit",
             mutable = true
-    ))
+        )
+    )
     emptyLine()
 
     getter().defineIs(StringBuilder().apply {
@@ -61,11 +63,13 @@ fun Appendable.eventProperty(parent: String, attribute: AttributeInfo) {
     })
     setter {
         receiverDot("consumer")
-        functionCall("onTagEvent", listOf(
+        functionCall(
+            "onTagEvent", listOf(
                 "this",
                 attribute.name.quote(),
                 "newValue"
-        ))
+            )
+        )
     }
     emptyLine()
 }

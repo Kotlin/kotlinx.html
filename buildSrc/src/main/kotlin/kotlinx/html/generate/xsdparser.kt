@@ -1,9 +1,11 @@
 package kotlinx.html.generate
 
-import com.sun.xml.xsom.*
-import com.sun.xml.xsom.parser.*
+import com.sun.xml.xsom.XSAttGroupDecl
+import com.sun.xml.xsom.XSAttributeDecl
+import com.sun.xml.xsom.XSTerm
+import com.sun.xml.xsom.parser.XSOMParser
 import java.util.*
-import javax.xml.parsers.*
+import javax.xml.parsers.SAXParserFactory
 
 val SCHEME_URL = "html_5.xsd".asResourceUrl()
 const val HTML_NAMESPACE = "html-5"
@@ -29,20 +31,25 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
 
     if (type.isUnion) {
         val enumEntries = type.asUnion()
-                .filter { it.isRestriction }
-                .map { it.asRestriction() }
-                .flatMap { it.declaredFacets ?: emptyList() }
-                .filter { it.name == "enumeration" }
-                .map { it.value.value }
+            .filter { it.isRestriction }
+            .map { it.asRestriction() }
+            .flatMap { it.declaredFacets ?: emptyList() }
+            .filter { it.name == "enumeration" }
+            .map { it.value.value }
 
-        return AttributeInfo(name, AttributeType.STRING, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
+        return AttributeInfo(
+            name,
+            AttributeType.STRING,
+            enumValues = enumEntries.toAttributeValues(),
+            enumTypeName = prefix.capitalize() + name.humanize().capitalize()
+        )
     } else if (type.isPrimitive || type.name in setOf<String?>("integer", "string", "boolean", "decimal")) {
         return AttributeInfo(name, xsdToType[type.primitiveType.name] ?: AttributeType.STRING)
     } else if (type.isRestriction) {
         val restriction = type.asRestriction()
         val enumEntries = restriction.declaredFacets
-                .filter { it.name == "enumeration" }
-                .map { it.value.value }
+            .filter { it.name == "enumeration" }
+            .map { it.value.value }
 
         if (enumEntries.size == 1 && enumEntries.single() == name) {
             // probably ticker
@@ -52,7 +59,12 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
         } else if (enumEntries.isEmpty()) {
             return AttributeInfo(name, AttributeType.STRING)
         } else {
-            return AttributeInfo(name, AttributeType.ENUM, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
+            return AttributeInfo(
+                name,
+                AttributeType.ENUM,
+                enumValues = enumEntries.toAttributeValues(),
+                enumTypeName = prefix.capitalize() + name.humanize().capitalize()
+            )
         }
     } else {
         return AttributeInfo(name, AttributeType.STRING)
@@ -68,9 +80,10 @@ fun flattenGroups(root: XSAttGroupDecl, result: MutableList<XSAttGroupDecl> = Ar
     return result
 }
 
-fun AttributeInfo.handleSpecialType(tagName: String = ""): AttributeInfo = specialTypeFor(tagName, this.name)?.let { type ->
-    this.copy(type = type)
-} ?: this
+fun AttributeInfo.handleSpecialType(tagName: String = ""): AttributeInfo =
+    specialTypeFor(tagName, this.name)?.let { type ->
+        this.copy(type = type)
+    } ?: this
 
 fun fillRepository() {
     val parser = XSOMParser(SAXParserFactory.newInstance())
@@ -78,7 +91,7 @@ fun fillRepository() {
     val schema = parser.result.getSchema(HTML_NAMESPACE)
 
     @Suppress("UNCHECKED_CAST")
-    val alreadyIncluded = TreeSet<String>() { a, b -> a.compareTo(b, true) }
+    val alreadyIncluded = TreeSet<String> { a, b -> a.compareTo(b, true) }
     schema.attGroupDecls.values.sortedByDescending { it.attributeUses.size }.forEach { attributeGroup ->
         val requiredNames = HashSet<String>()
         val facadeAttributes = attributeGroup.attributeUses.map { attributeUse ->
@@ -89,8 +102,8 @@ fun fillRepository() {
 
             handleAttributeDeclaration("", attributeDeclaration).handleSpecialType()
         }.filter { it.name !in alreadyIncluded }
-                .filter { !it.name.startsWith("On") }
-                .sortedBy { it.name }
+            .filter { !it.name.startsWith("On") }
+            .sortedBy { it.name }
 
         val name = attributeGroup.name
 
@@ -103,10 +116,10 @@ fun fillRepository() {
     schema.modelGroupDecls.values.forEach { modelGroupDeclaration ->
         val name = modelGroupDeclaration.name
         val children = modelGroupDeclaration.modelGroup
-                .children
-                .map { it.term }
-                .filter { it.isElementDecl }
-                .map { it.asElementDecl().name }
+            .children
+            .map { it.term }
+            .filter { it.isElementDecl }
+            .map { it.asElementDecl().name }
 
         val group = TagGroup(name, children)
         Repository.tagGroups[name] = group
@@ -122,7 +135,9 @@ fun fillRepository() {
         globalSuggestedAttributes.get(name)?.let {
             suggestedNames.addAll(it.filter { !it.startsWith("-") })
         }
-        val excluded = globalSuggestedAttributes.get(name)?.filter { it.startsWith("-") }?.map { it.removePrefix("-") } ?: emptyList()
+        val excluded =
+            globalSuggestedAttributes.get(name)?.filter { it.startsWith("-") }?.map { it.removePrefix("-") }
+                ?: emptyList()
 
         val tagInfo: TagInfo
         if (type.isComplexType) {
@@ -145,7 +160,9 @@ fun fillRepository() {
             if (contentTerm != null) {
                 flattenTerm(contentTerm, children, modelGroupNames)
                 if (contentTerm.isModelGroup) {
-                    directChildren.addAll(contentTerm.asModelGroup().children.map { it.term }.filter { it.isElementDecl }.map { it.asElementDecl().name })
+                    directChildren.addAll(contentTerm.asModelGroup().children.map { it.term }
+                        .filter { it.isElementDecl }
+                        .map { it.asElementDecl().name })
                 }
             }
 
@@ -153,10 +170,19 @@ fun fillRepository() {
 
             suggestedNames.addAll(attributes.filter { it.type == AttributeType.ENUM }.map { it.name })
             suggestedNames.addAll(attributes.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
-            suggestedNames.addAll(attributeGroups.flatMap { it.attributes }.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
+            suggestedNames.addAll(attributeGroups.flatMap { it.attributes }
+                .filter { it.name in globalSuggestedAttributeNames }.map { it.name })
             suggestedNames.removeAll(excluded)
 
-            tagInfo = TagInfo(name, children.toList().sorted(), directChildren, attributeGroups, attributes, suggestedNames, modelGroupNames.sorted().toList())
+            tagInfo = TagInfo(
+                name,
+                children.toList().sorted(),
+                directChildren,
+                attributeGroups,
+                attributes,
+                suggestedNames,
+                modelGroupNames.sorted().toList()
+            )
         } else {
             throw UnsupportedOperationException()
         }
@@ -168,7 +194,7 @@ fun fillRepository() {
 }
 
 private val xsdToType = mapOf(
-        "boolean" to AttributeType.BOOLEAN,
-        "string" to AttributeType.STRING,
-        "anyURI" to AttributeType.STRING // TODO links
+    "boolean" to AttributeType.BOOLEAN,
+    "string" to AttributeType.STRING,
+    "anyURI" to AttributeType.STRING // TODO links
 )

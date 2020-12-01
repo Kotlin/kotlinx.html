@@ -26,7 +26,7 @@ module.exports = function (config) {
             colors: true,
             autoWatch: false,
             browsers: [
-                'ChromeHeadless'
+                'ChromeHeadless',
             ],
             captureTimeout: 5000,
             //singleRun: false,
@@ -35,11 +35,11 @@ module.exports = function (config) {
 
             junitReporter: {
                 outputFile: '../../../target/reports/test-results.xml',
-                suite: ''
+                suite: '',
             },
             preprocessors: {
-                '**/*.js': ['sourcemap']
-            }
-        }
-    )
+                '**/*.js': ['sourcemap'],
+            },
+        },
+    );
 };

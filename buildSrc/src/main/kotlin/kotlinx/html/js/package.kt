@@ -1,6 +1,6 @@
 package kotlinx.html.js
 
-import org.gradle.api.*
+import org.gradle.api.Project
 
 private const val GITHUB_ORGANIZATION = "Kotlin"
 private const val GITHUB_REPOSITORY = "kotlin.html"

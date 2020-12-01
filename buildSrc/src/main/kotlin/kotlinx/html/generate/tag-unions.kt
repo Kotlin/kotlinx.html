@@ -23,14 +23,18 @@ fun tagUnions() {
         val unionName = unionName(groupMembers)
         val union = allUnions[unionName]!!
 
-        val additionalTags = union.intersectionTags.filter { tag -> union.superGroups.none { tag in allUnions[it]!!.intersectionTags } }
-        val ambiguityTags = union.intersectionTags.filter { tag -> union.superGroups.count { tag in allUnions[it]!!.intersectionTags } > 1 }
+        val additionalTags =
+            union.intersectionTags.filter { tag -> union.superGroups.none { tag in allUnions[it]!!.intersectionTags } }
+        val ambiguityTags =
+            union.intersectionTags.filter { tag -> union.superGroups.count { tag in allUnions[it]!!.intersectionTags } > 1 }
 
         allUnions[unionName] = union.copy(additionalTags = additionalTags, ambiguityTags = ambiguityTags)
     }
 
     // transpose map
-    val unionsByGroups = allUnions.values.flatMap { u -> u.members.map { it to u.name } }.groupBy({ it.first }, { allUnions[it.second]!! })
+    val unionsByGroups =
+        allUnions.values.flatMap { u -> u.members.map { it to u.name } }
+            .groupBy({ it.first }, { allUnions[it.second]!! })
     Repository.unionsByGroups = unionsByGroups
 }
 

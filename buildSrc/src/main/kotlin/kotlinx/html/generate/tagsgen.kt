@@ -2,8 +2,8 @@ package kotlinx.html.generate
 
 import java.util.*
 
-fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
-    val parentAttributeIfaces = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
+fun Appendable.tagClass(tag: TagInfo, excludeAttributes: Set<String>) {
+    val parentAttributeIfaces = tag.attributeGroups.map { it.name.capitalize() + "Facade" }
     val parentElementIfaces = tag.tagGroupNames.map { it.humanize().capitalize() }
     val allParentIfaces = parentAttributeIfaces + parentElementIfaces
     val betterParentIfaces = humanizeJoin(allParentIfaces)
@@ -11,9 +11,10 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
     val namespace = tagNamespaces[tag.name.toLowerCase()]
     val customizableNamespace = tag.name.toLowerCase() in tagsWithCustomizableNamespace
 
+    val className = "${tag.className}<E>"
     val parameters = mutableListOf(
         Var("initialAttributes", "Map<String, String>", false, false, true),
-        Var("consumer", "TagConsumer<*>", false, true)
+        Var("consumer", "TagConsumer<*, E>", false, true)
     )
     val superConstructorArguments = mutableListOf<String>(
         tag.name.quote(),
@@ -31,22 +32,22 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
 
     appendln("@Suppress(\"unused\")")
     clazz(Clazz(
-            name = tag.className,
-            variables = parameters,
-            parents = listOf(
-                    buildString {
-                        functionCall("HTMLTag", superConstructorArguments)
-                    }
-            ) + when {
-                allParentIfaces.isNotEmpty() -> listOf(betterParentIfaces).map { renames[it] ?: it }
-                else -> emptyList<String>()
-            },
-            isOpen = true
+        name = className,
+        variables = parameters,
+        parents = listOf(
+            buildString {
+                functionCall("HTMLTag<E>", superConstructorArguments)
+            }
+        ) + when {
+            allParentIfaces.isNotEmpty() -> listOf(betterParentIfaces).map { "${renames[it] ?: it}<E>" }
+            else -> emptyList<String>()
+        },
+        isOpen = true
     )) {
-        val lowerCasedNames = tag.attributes.map {it.name.toLowerCase()}.toSet()
-        val attributes = tag.attributes.filter {it.name !in excludeAttributes}
+        val lowerCasedNames = tag.attributes.map { it.name.toLowerCase() }.toSet()
+        val attributes = tag.attributes.filter { it.name !in excludeAttributes }
 
-        attributes.filter {!isAttributeExcluded(it.name) }.forEach { attribute ->
+        attributes.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
             if (attribute.name[0].isLowerCase() || attribute.name.toLowerCase() !in lowerCasedNames) {
                 attributeProperty(attribute)
             }
@@ -126,15 +127,16 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
         emptyLine()
     }
 
-    tag.directChildren.map {Repository.tags[it]}.filterNotNull().filterIgnored().forEach { children ->
+    tag.directChildren.map { Repository.tags[it] }.filterNotNull().filterIgnored().forEach { children ->
         htmlTagBuilders(tag.className, children)
     }
 
     if (parentElementIfaces.size > 1) {
-        val commons = tag.tagGroupNames.map {Repository.tagGroups[it]?.tags?.toSet()}.filterNotNull().reduce { a, b -> a.intersect(b) }
+        val commons = tag.tagGroupNames.map { Repository.tagGroups[it]?.tags?.toSet() }.filterNotNull()
+            .reduce { a, b -> a.intersect(b) }
         if (commons.isNotEmpty()) {
             parentElementIfaces.forEach { group ->
-                variable(Var(name = "as" + group, type = group), receiver = tag.className)
+                variable(Var(name = "as" + group, type = "$group<E>"), receiver = "<E> ${tag.className}<E>")
                 appendln()
                 getter()
                 defineIs("this")
@@ -146,7 +148,11 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
     emptyLine()
 }
 
-internal fun Appendable.tagAttributeVar(attribute: AttributeInfo, receiver: String?, indent: Int = 1): AttributeRequest {
+internal fun Appendable.tagAttributeVar(
+    attribute: AttributeInfo,
+    receiver: String?,
+    indent: Int = 1
+): AttributeRequest {
     val options = LinkedList<Const<*>>()
 
     if (attribute.type == AttributeType.ENUM) {
@@ -155,7 +161,12 @@ internal fun Appendable.tagAttributeVar(attribute: AttributeInfo, receiver: Stri
         options.addAll(attribute.trueFalse.map(::StringConst))
     }
 
-    val attributeRequest = AttributeRequest(attribute.type, if (attribute.type == AttributeType.ENUM) attribute.enumTypeName else "", options)
+    val attributeRequest =
+        AttributeRequest(
+            attribute.type,
+            if (attribute.type == AttributeType.ENUM) attribute.enumTypeName else "",
+            options
+        )
     Repository.attributeDelegateRequests.add(attributeRequest)
 
     indent(indent)
@@ -163,22 +174,27 @@ internal fun Appendable.tagAttributeVar(attribute: AttributeInfo, receiver: Stri
     return attributeRequest
 }
 
-fun probeType(htmlClassName : String) : Boolean = htmlClassName in knownTagClasses
+fun probeType(htmlClassName: String): Boolean = htmlClassName in knownTagClasses
 
-private fun tagCandidates(tag : TagInfo) = (listOf(tag.memberName) + tagReplacements.map { tag.memberName.replace(it.first.toRegex(), it.second) }).flatMap { listOf(it.capitalize(), it.toUpperCase()) }.distinct()
+private fun tagCandidates(tag: TagInfo) = (listOf(tag.memberName) + tagReplacements.map {
+    tag.memberName.replace(
+        it.first.toRegex(),
+        it.second
+    )
+}).flatMap { listOf(it.capitalize(), it.toUpperCase()) }.distinct()
 
 fun getTagResultClass(tag: TagInfo) =
-        tagCandidates(tag)
-                .map { "HTML${it}Element" }
-                .firstOrNull { probeType(it) } ?: "HTMLElement"
+    tagCandidates(tag)
+        .map { "HTML${it}Element" }
+        .firstOrNull { probeType(it) } ?: "HTMLElement"
 
-fun contentArgumentValue(tag : TagInfo, blockOrContent : Boolean) = when {
+fun contentArgumentValue(tag: TagInfo, blockOrContent: Boolean) = when {
     tag.name.toLowerCase() in emptyTags -> "block"
     blockOrContent -> "block"
     else -> "{+content}"
 }
 
-fun Appendable.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
+fun Appendable.consumerBuilderJS(tag: TagInfo, blockOrContent: Boolean) {
     val resultType = getTagResultClass(tag)
 
     val constructorArgs = mutableListOf<String>(
@@ -194,14 +210,21 @@ fun Appendable.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
     htmlDslMarker()
     append("public ")
     if (tagBuilderCouldBeInline(tag, blockOrContent)) append("inline ")
-    function(tag.memberName, tagBuilderFunctionArguments(tag, blockOrContent), resultType, receiver = "TagConsumer<HTMLElement>")
+    function(
+        tag.memberName,
+        tagBuilderFunctionArguments(tag, blockOrContent, "Event"),
+        resultType,
+        receiver = "TagConsumer<HTMLElement, Event>"
+    )
     defineIs(buildString {
         functionCall(tag.className, constructorArgs)
         append(".")
-        functionCall("visitAndFinalize", listOf(
+        functionCall(
+            "visitAndFinalize", listOf(
                 "this",
                 contentArgumentValue(tag, blockOrContent)
-        ))
+            )
+        )
 
         if (resultType != "HTMLElement") {
             append(" as ")
@@ -210,7 +233,7 @@ fun Appendable.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
     })
 }
 
-fun Appendable.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
+fun Appendable.consumerBuilderShared(tag: TagInfo, blockOrContent: Boolean) {
     val constructorArgs = mutableListOf<String>(
         buildSuggestedAttributesArgument(tag),
         "this"
@@ -223,19 +246,27 @@ fun Appendable.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
     tagKdoc(tag)
     htmlDslMarker()
     if (tagBuilderCouldBeInline(tag, blockOrContent)) append("inline ")
-    function(tag.memberName, tagBuilderFunctionArguments(tag, blockOrContent), "T", listOf("T", "C : TagConsumer<T>"), "C")
+    function(
+        tag.memberName,
+        tagBuilderFunctionArguments(tag, blockOrContent, "E"),
+        "T",
+        listOf("T", "E", "C : TagConsumer<T, E>"),
+        "C"
+    )
     defineIs(buildString {
         functionCall(tag.className, constructorArgs)
         append(".")
-        functionCall("visitAndFinalize", listOf(
+        functionCall(
+            "visitAndFinalize", listOf(
                 "this",
                 contentArgumentValue(tag, blockOrContent)
-        ))
+            )
+        )
     })
 }
 
-fun Appendable.htmlTagBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean) {
-    val arguments = tagBuilderFunctionArguments(tag, blockOrContent)
+fun Appendable.htmlTagBuilderMethod(receiver: String, tag: TagInfo, blockOrContent: Boolean) {
+    val arguments = tagBuilderFunctionArguments(tag, blockOrContent, "E")
 
     val constructorArgs = mutableListOf<String>(
         buildSuggestedAttributesArgument(tag),
@@ -257,16 +288,25 @@ fun Appendable.htmlTagBuilderMethod(receiver : String, tag : TagInfo, blockOrCon
     })
 }
 
-fun Appendable.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo, blockOrContent : Boolean, enumAttribute : AttributeInfo, indent : Int) {
+fun Appendable.htmlTagEnumBuilderMethod(
+    receiver: String,
+    tag: TagInfo,
+    blockOrContent: Boolean,
+    enumAttribute: AttributeInfo,
+    indent: Int
+) {
     require(enumAttribute.enumValues.isNotEmpty())
 
-    val arguments = tagBuilderFunctionArguments(tag, blockOrContent).filter {it.name != enumAttribute.fieldName}
+    val arguments = tagBuilderFunctionArguments(tag, blockOrContent, "E").filter { it.name != enumAttribute.fieldName }
 
     enumAttribute.enumValues.forEach { enumValue ->
         val deprecation = findEnumDeprecation(enumAttribute, enumValue)
 
         val constructorArgs = mutableListOf<String>(
-            buildSuggestedAttributesArgument(tag, mapOf(enumAttribute.fieldName to enumAttribute.typeName + "." + enumValue.fieldName + ".realValue")),
+            buildSuggestedAttributesArgument(
+                tag,
+                mapOf(enumAttribute.fieldName to enumAttribute.typeName + "." + enumValue.fieldName + ".realValue")
+            ),
             "consumer"
         )
         if (tag.name.toLowerCase() in tagsWithCustomizableNamespace) {
@@ -290,14 +330,14 @@ fun Appendable.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo, blockO
     }
 }
 
-fun Appendable.indent(stops : Int = 1) {
+fun Appendable.indent(stops: Int = 1) {
     for (i in 0 until stops) {
         append("    ")
     }
 }
 
-private fun buildSuggestedAttributesArgument(tag: TagInfo, predefinedValues : Map<String, String> = emptyMap()) : String =
-    tag.mergeAttributes().filter {it.name in tag.suggestedAttributes}.map { attribute ->
+private fun buildSuggestedAttributesArgument(tag: TagInfo, predefinedValues: Map<String, String> = emptyMap()): String =
+    tag.mergeAttributes().filter { it.name in tag.suggestedAttributes }.map { attribute ->
         val name = attribute.fieldName
 
         val encoded = if (name in predefinedValues) predefinedValues[name] else when (attribute.type) {
@@ -317,17 +357,21 @@ private fun buildSuggestedAttributesArgument(tag: TagInfo, predefinedValues : Ma
     }
 
 private fun tagBuilderCouldBeInline(tag: TagInfo, blockOrContent: Boolean): Boolean = when {
-        tag.name.toLowerCase() in emptyTags -> true
-        blockOrContent -> true
-        else -> false
+    tag.name.toLowerCase() in emptyTags -> true
+    blockOrContent -> true
+    else -> false
 }
 
-private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) : ArrayList<Var> {
+private fun tagBuilderFunctionArguments(
+    tag: TagInfo,
+    blockOrContent: Boolean,
+    blockReceiverType: String
+): ArrayList<Var> {
     val arguments = ArrayList<Var>()
     val customizableNamespace = tag.name.toLowerCase() in tagsWithCustomizableNamespace
     val defaultNamespace: String = tagNamespaces[tag.name.toLowerCase()]?.quote().toString()
 
-    tag.mergeAttributes().filter {it.name in tag.suggestedAttributes}.forEach { attribute ->
+    tag.mergeAttributes().filter { it.name in tag.suggestedAttributes }.forEach { attribute ->
         val type = when (attribute.type) {
             AttributeType.STRING_SET -> "String"
             else -> attribute.typeName
@@ -342,7 +386,7 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) 
     }
 
     fun addBlockParameter() {
-        arguments.add(Var("crossinline block", "${tag.className}.() -> Unit", defaultValue = "{}"))
+        arguments.add(Var("crossinline block", "${tag.className}<$blockReceiverType>.() -> Unit", defaultValue = "{}"))
     }
 
     fun addContentParameter() {

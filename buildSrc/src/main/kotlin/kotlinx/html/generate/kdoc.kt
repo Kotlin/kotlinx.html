@@ -1,8 +1,9 @@
 package kotlinx.html.generate
 
-import org.w3c.dom.*
-import java.net.*
-import javax.xml.parsers.*
+import org.w3c.dom.Node
+import org.w3c.dom.NodeList
+import java.net.URL
+import javax.xml.parsers.DocumentBuilderFactory
 
 private val HTML_TABLE_URL = "htmltable.xml".asResourceUrl()
 private val HTML5_TABLE_URL = "html5table.xml".asResourceUrl()

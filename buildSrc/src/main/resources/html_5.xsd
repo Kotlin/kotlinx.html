@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<xsd:schema xmlns='html-5'
-            xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+            xmlns='html-5'
             version="1.0" targetNamespace='html-5'
 
 
 >
     <!--
-	 Warning:																					
-	 Warning: 
-	 Warning: Do not change the targetNamespace above 
-	 Warning: 
-	 Warning: 
+	 Warning:
+	 Warning:
+	 Warning: Do not change the targetNamespace above
+	 Warning:
+	 Warning:
 -->
 
     <!-- TODO: list of charsets for meta intellisense -->
@@ -1753,11 +1753,11 @@
 
     <xsd:element name="table">
         <xsd:complexType>
-            <!-- TODO: cupport order per W3C: 
-                In this order: optionally a caption element, followed by either zero or more colgroup elements, 
-                followed optionally by a thead element, followed optionally by a tfoot element, 
-                followed by either zero or more tbody elements or one or more tr elements, followed optionally 
-                by a tfoot element (but there can only be one tfoot element child in total). 
+            <!-- TODO: cupport order per W3C:
+                In this order: optionally a caption element, followed by either zero or more colgroup elements,
+                followed optionally by a thead element, followed optionally by a tfoot element,
+                followed by either zero or more tbody elements or one or more tr elements, followed optionally
+                by a tfoot element (but there can only be one tfoot element child in total).
             -->
             <xsd:choice>
                 <xsd:element ref="caption" minOccurs="0" maxOccurs="1"/>

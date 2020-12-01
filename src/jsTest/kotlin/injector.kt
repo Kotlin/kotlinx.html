@@ -1,13 +1,21 @@
 package kotlinx.html.tests
 
-import kotlinx.html.*
-import kotlinx.html.dom.*
-import kotlinx.html.injector.*
-import kotlinx.html.js.*
-import org.w3c.dom.*
-import kotlinx.browser.*
-import kotlin.properties.*
-import kotlin.test.*
+import kotlinx.browser.document
+import kotlinx.html.classes
+import kotlinx.html.div
+import kotlinx.html.dom.create
+import kotlinx.html.injector.InjectByClassName
+import kotlinx.html.injector.InjectByTagName
+import kotlinx.html.injector.inject
+import kotlinx.html.js.div
+import kotlinx.html.p
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLParagraphElement
+import kotlin.properties.Delegates
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
+import kotlin.test.fail
 import kotlin.test.Test as test
 
 class MyBeanWithDiv {
@@ -28,11 +36,14 @@ class InjectToLateInitVarBean {
 }
 
 class InjectorTests {
-    @test fun injectByClass() {
+    @test
+    fun injectByClass() {
         val bean = MyBeanWithDiv()
-        val node = document.create.inject(bean, listOf(
+        val node = document.create.inject(
+            bean, listOf(
                 InjectByClassName("my-class") to MyBeanWithDiv::node
-        )).div {
+            )
+        ).div {
             classes = setOf("my-class")
         }
 
@@ -42,11 +53,14 @@ class InjectorTests {
         assertEquals(found, bean.node)
     }
 
-    @test fun injectByClassFailed() {
+    @test
+    fun injectByClassFailed() {
         val bean = MyBeanWithDiv()
-        document.create.inject(bean, listOf(
+        document.create.inject(
+            bean, listOf(
                 InjectByClassName("my-class") to MyBeanWithDiv::node
-        )).div {
+            )
+        ).div {
             classes = setOf("other-class")
         }
 
@@ -58,11 +72,14 @@ class InjectorTests {
         }
     }
 
-    @test fun injectByTagName() {
+    @test
+    fun injectByTagName() {
         val bean = MyBeanWithP()
-        document.create.inject(bean, listOf(
+        document.create.inject(
+            bean, listOf(
                 InjectByTagName("p") to MyBeanWithP::p
-        )).div {
+            )
+        ).div {
             p {
             }
         }
@@ -70,11 +87,14 @@ class InjectorTests {
         assertEquals("P", bean.p.tagName)
     }
 
-    @test fun injectToLateInitVar() {
+    @test
+    fun injectToLateInitVar() {
         val bean = InjectToLateInitVarBean()
-        document.create.inject(bean, listOf(
+        document.create.inject(
+            bean, listOf(
                 InjectByTagName("p") to InjectToLateInitVarBean::myP
-        )).div {
+            )
+        ).div {
             p {
             }
         }
@@ -82,13 +102,16 @@ class InjectorTests {
         assertEquals("P", bean.myP.tagName)
     }
 
-    @test fun exampleFromWiki() {
+    @test
+    fun exampleFromWiki() {
         val bean = ExampleBean()
 
-        document.create.inject(bean, listOf(
+        document.create.inject(
+            bean, listOf(
                 InjectByClassName("my-class") to ExampleBean::myDiv,
                 InjectByTagName("p") to ExampleBean::myP
-        )).div {
+            )
+        ).div {
             div("my-class") {
                 p {
                     +"test"

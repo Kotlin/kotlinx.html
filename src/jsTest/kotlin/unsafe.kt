@@ -1,10 +1,13 @@
 package kotlinx.html.tests.unsafes
 
-import kotlinx.html.*
-import kotlinx.html.dom.*
-import kotlinx.html.stream.*
-import kotlinx.browser.*
-import kotlin.test.*
+import kotlinx.browser.document
+import kotlinx.html.div
+import kotlinx.html.dom.createTree
+import kotlinx.html.html
+import kotlinx.html.stream.appendHTML
+import kotlinx.html.unsafe
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class UnsafeContentTest {
     @Test
