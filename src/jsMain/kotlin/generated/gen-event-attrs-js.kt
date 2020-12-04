@@ -212,6 +212,18 @@ public var CommonAttributeGroupFacade.onMouseDownFunction: (Event) -> Unit
     consumer.onTagEvent(this, "onmousedown", newValue)
   }
 
+public var CommonAttributeGroupFacade.onMouseEnterFunction: (Event) -> Unit
+  get() = throw UnsupportedOperationException("You can't read variable onMouseEnter")
+  set(newValue) {
+    consumer.onTagEvent(this, "onmouseenter", newValue)
+  }
+
+public var CommonAttributeGroupFacade.onMouseLeaveFunction: (Event) -> Unit
+  get() = throw UnsupportedOperationException("You can't read variable onMouseLeave")
+  set(newValue) {
+    consumer.onTagEvent(this, "onmouseleave", newValue)
+  }
+
 public var CommonAttributeGroupFacade.onMouseMoveFunction: (Event) -> Unit
   get() = throw UnsupportedOperationException("You can't read variable onMouseMove")
   set(newValue) {

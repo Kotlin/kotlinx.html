@@ -3036,6 +3036,8 @@ public final class kotlinx/html/Gen_attr_traitsKt {
 	public static final fun getOnLoadedData (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getOnLoadedMetaData (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getOnMouseDown (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getOnMouseEnter (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getOnMouseLeave (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getOnMouseMove (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getOnMouseOut (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getOnMouseOver (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
@@ -3129,6 +3131,8 @@ public final class kotlinx/html/Gen_attr_traitsKt {
 	public static final fun setOnLoadedData (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setOnLoadedMetaData (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setOnMouseDown (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnMouseEnter (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnMouseLeave (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setOnMouseMove (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setOnMouseOut (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setOnMouseOver (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V

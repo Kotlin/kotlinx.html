@@ -980,7 +980,7 @@ public inline fun TagConsumer<HTMLElement>.s(classes: String? = null, crossinlin
     .visitAndFinalize(this, block) 
 
 /**
- * Computer output text style
+ * Sample or quote text style
  */
 @HtmlTagMarker
 public inline fun TagConsumer<HTMLElement>.samp(classes: String? = null, crossinline
