@@ -128,8 +128,8 @@ open class OPTION(initialAttributes : Map<String, String>, override val consumer
 @Suppress("unused")
 open class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("output", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var htmlFor : String
-        get()  = attributeStringString.get(this, "for")
-        set(newValue) {attributeStringString.set(this, "for", newValue)}
+        get()  = attributeStringString.get(this, "htmlFor")
+        set(newValue) {attributeStringString.set(this, "htmlFor", newValue)}
 
     var form : String
         get()  = attributeStringString.get(this, "form")
