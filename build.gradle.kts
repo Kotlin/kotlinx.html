@@ -19,7 +19,7 @@ plugins {
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.7.2-SNAPSHOT"
+version = "0.7.3-SNAPSHOT"
 
 /**
  * If "release" profile is used the "-SNAPSHOT" suffix of the version is removed.
@@ -131,7 +131,7 @@ kotlin {
 
         mavenPublication {
             groupId = group as String
-            pom.config { name by "${project.name}-jvm" }
+            pom { name by "${project.name}-jvm" }
 
             javadocJar("jvmJavadocJar")
             jar("jvmTestSourcesJar") {
@@ -174,7 +174,7 @@ kotlin {
 
         mavenPublication {
             groupId = group as String
-            pom.config { name by "${project.name}-js" }
+            pom { name by "${project.name}-js" }
 
             javadocJar("jsJavadocJar")
             jar("jsTestSourcesJar") {
@@ -190,7 +190,9 @@ kotlin {
         mavenPublication {
             groupId = group as String
             artifactId = "${project.name}-common"
-            pom.config { name by "${project.name}-common" }
+            pom {
+                name by "${project.name}-common"
+            }
 
             javadocJar("commonJavadocJar")
             jar("commonTestSourcesJar") {
@@ -337,6 +339,16 @@ tasks.register<Exec>("publishNpm") {
             "--//registry.npmjs.org/:_authToken=${System.getenv("NPMJS_AUTH")}",
             "--access=public"
     )
+}
+
+publishing {
+    publications {
+        configureEach {
+            if (this is MavenPublication) {
+                pom.config()
+            }
+        }
+    }
 }
 
 typealias MavenPomFile = org.gradle.api.publish.maven.MavenPom
