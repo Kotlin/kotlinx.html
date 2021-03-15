@@ -5,17 +5,12 @@ import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsSetupTask
 
 /**
  * This build script supports following parameters:
- * -Prelease      - activates "release" profile (uploading to Bintray "kotlin/kotlinx" without publication and
- *                  publication to npmjs "kotlinx-html").
- * -Pbranch-build - activates "branch-build" profile (publication to Bintray "kotlin/kotlin-dev" and to npmjs
- *                  "@kotlinx-branch-build/kotlinx-html").
- * -Pmaster-build - activates "master-build" profile (publication to OSS Sonatype snapshot repository and to npmjs
- *                  "@kotlinx-master-build/kotlinx-html").
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "1.4.0"
+    kotlin("multiplatform") version "1.4.31"
     id("maven-publish")
+    id("signing")
 }
 
 group = "org.jetbrains.kotlinx"
@@ -23,7 +18,7 @@ version = "0.7.3-SNAPSHOT"
 
 buildscript {
     dependencies {
-        classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.2.3")
+        classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.3.0")
     }
 }
 
@@ -41,7 +36,7 @@ if (hasProperty("release")) {
 
 /**
  * Handler of "versionTag" property.
- * Required to support Bintray and NPM repositories that doesn't support "-SNAPSHOT" versions. To build and publish
+ * Required to support Maven and NPM repositories that doesn't support "-SNAPSHOT" versions. To build and publish
  * artifacts with specific version run "./gradlew -PversionTag=my-tag" and the final version will be "0.6.13-my-tag".
  */
 if (hasProperty("versionTag")) {
@@ -55,44 +50,19 @@ if (hasProperty("versionTag")) {
     }
 }
 
+val publishingUser = System.getenv("PUBLISHING_USER")
+val publishingPassword = System.getenv("PUBLISHING_PASSWORD")
+val publishingUrl = System.getenv("PUBLISHING_URL")
+
 publishing {
     publications {
         repositories {
-            when {
-                hasProperty("release") -> {
-                    maven {
-                        url = uri("https://api.bintray.com/maven/kotlin/kotlinx/kotlinx.html;publish=1")
-                        credentials {
-                            username = System.getenv("BINTRAY_USERNAME")
-                            password = System.getenv("BINTRAY_PASSWORD")
-                        }
-                    }
-                }
-                hasProperty("branch-build") -> {
-                    require(!(version as String).endsWith("-SNAPSHOT")) {
-                        "Profile 'branch-build' assumes non-snapshot version. Use -PversionTag to fix the build."
-                    }
-
-                    maven {
-                        url = uri("https://api.bintray.com/maven/kotlin/kotlin-dev/kotlinx.html/;publish=1")
-                        credentials {
-                            username = System.getenv("BINTRAY_USERNAME")
-                            password = System.getenv("BINTRAY_PASSWORD")
-                        }
-                    }
-                }
-                hasProperty("master-build") -> {
-                    require((version as String).endsWith("-SNAPSHOT")) {
-                        "Profile 'master-build' assumes snapshot version. Change the version or use another profile."
-                    }
-
-                    maven {
-                        url = uri("https://oss.sonatype.org/content/repositories/snapshots")
-                        credentials {
-                            username = System.getenv("SONATYPE_USERNAME")
-                            password = System.getenv("SONATYPE_PASSWORD")
-                        }
-                    }
+            if (publishingUser == null) return@repositories
+            maven {
+                url = uri(publishingUrl)
+                credentials {
+                    username = publishingUrl
+                    password = publishingPassword
                 }
             }
         }
@@ -110,33 +80,11 @@ publishing {
 }
 
 repositories {
-    jcenter()
     mavenCentral()
-
-    // It is just for release against pre-release versions
-    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
-    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
-
-    when {
-        /** Allow all profiles but release to use development and SNAPSHOT dependencies. */
-        !hasProperty("release") -> {
-            maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
-            maven {
-                url = uri("https://oss.sonatype.org/content/repositories/snapshots")
-                mavenContent {
-                    snapshotsOnly()
-                }
-            }
-        }
-    }
 }
 
 kotlin {
     jvm {
-        compilations["main"].kotlinOptions.apply {
-            freeCompilerArgs += "-Xdump-declarations-to=${buildDir}/declarations.json"
-        }
-
         mavenPublication {
             groupId = group as String
             pom { name by "${project.name}-jvm" }
@@ -251,11 +199,11 @@ kotlin {
 tasks.withType<Jar> {
     manifest {
         attributes += sortedMapOf(
-                "Built-By" to System.getProperty("user.name"),
-                "Build-Jdk" to System.getProperty("java.version"),
-                "Implementation-Vendor" to "JetBrains s.r.o.",
-                "Implementation-Version" to archiveVersion.get(),
-                "Created-By" to org.gradle.util.GradleVersion.current()
+            "Built-By" to System.getProperty("user.name"),
+            "Build-Jdk" to System.getProperty("java.version"),
+            "Implementation-Vendor" to "JetBrains s.r.o.",
+            "Implementation-Version" to archiveVersion.get(),
+            "Created-By" to org.gradle.util.GradleVersion.current()
         )
     }
 }
@@ -266,9 +214,9 @@ tasks.register<Task>("generate") {
 
     doLast {
         kotlinx.html.generate.generate(
-                "kotlinx.html",
-                "src/commonMain/kotlin/generated",
-                "src/jsMain/kotlin/generated"
+            "kotlinx.html",
+            "src/commonMain/kotlin/generated",
+            "src/jsMain/kotlin/generated"
         )
     }
 }
@@ -317,35 +265,35 @@ tasks.register<Exec>("publishNpm") {
     // For some unknown reason, the node distributive's structure is different on Windows and UNIX.
     val node = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         kotlinNodeJsSetupTask.destination
-                .resolve("node.exe")
+            .resolve("node.exe")
     } else {
         kotlinNodeJsSetupTask.destination
-                .resolve("bin")
-                .resolve("node")
+            .resolve("bin")
+            .resolve("node")
     }
 
     val npm = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         kotlinNodeJsSetupTask.destination
-                .resolve("node_modules")
-                .resolve("npm")
-                .resolve("bin")
-                .resolve("npm-cli.js")
+            .resolve("node_modules")
+            .resolve("npm")
+            .resolve("bin")
+            .resolve("npm-cli.js")
     } else {
         kotlinNodeJsSetupTask.destination
-                .resolve("lib")
-                .resolve("node_modules")
-                .resolve("npm")
-                .resolve("bin")
-                .resolve("npm-cli.js")
+            .resolve("lib")
+            .resolve("node_modules")
+            .resolve("npm")
+            .resolve("bin")
+            .resolve("npm-cli.js")
     }
 
     commandLine(
-            node,
-            npm,
-            "publish",
-            "$buildDir/tmp/jsPackage",
-            "--//registry.npmjs.org/:_authToken=${System.getenv("NPMJS_AUTH")}",
-            "--access=public"
+        node,
+        npm,
+        "publish",
+        "$buildDir/tmp/jsPackage",
+        "--//registry.npmjs.org/:_authToken=${System.getenv("NPMJS_AUTH")}",
+        "--access=public"
     )
 }
 
