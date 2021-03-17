@@ -360,7 +360,7 @@ infix fun <T> Property<T>.by(value: T) {
 val signingKey = System.getenv("SIGN_KEY_ID")
 val signingKeyPassphrase = System.getenv("SIGN_KEY_PASSPHRASE")
 
-if (signingKey != null && signingKey != "") {
+if (!signingKey.isNullOrBlank()) {
     project.ext["signing.gnupg.keyName"] = signingKey
     project.ext["signing.gnupg.passphrase"] = signingKeyPassphrase
 
