@@ -356,3 +356,16 @@ fun MavenPublication.javadocJar(taskName: String, config: Jar.() -> Unit = {}) =
 infix fun <T> Property<T>.by(value: T) {
     set(value)
 }
+
+val signingKey = System.getenv("SIGN_KEY_ID")
+val signingKeyPassphrase = System.getenv("SIGN_KEY_PASSPHRASE")
+
+if (!signingKey.isNullOrBlank()) {
+    project.ext["signing.gnupg.keyName"] = signingKey
+    project.ext["signing.gnupg.passphrase"] = signingKeyPassphrase
+
+    signing {
+        useGpgCmd()
+        sign(publishing.publications)
+    }
+}
