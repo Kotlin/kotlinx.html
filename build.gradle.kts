@@ -61,7 +61,7 @@ publishing {
             maven {
                 url = uri(publishingUrl)
                 credentials {
-                    username = publishingUrl
+                    username = publishingUser
                     password = publishingPassword
                 }
             }
