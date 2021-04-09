@@ -19,7 +19,7 @@ plugins {
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.7.3-SNAPSHOT"
+version = "0.7.2-SNAPSHOT"
 
 /**
  * If "release" profile is used the "-SNAPSHOT" suffix of the version is removed.
@@ -47,44 +47,23 @@ if (hasProperty("versionTag")) {
     }
 }
 
+if (hasProperty("releaseVersion")) {
+    version = properties["releaseVersion"] as String
+}
+
+val publishingUser = System.getenv("PUBLISHING_USER")
+val publishingPassword = System.getenv("PUBLISHING_PASSWORD")
+val publishingUrl = System.getenv("PUBLISHING_URL")
+
 publishing {
     publications {
         repositories {
-            when {
-                hasProperty("release") -> {
-                    maven {
-                        url = uri("https://api.bintray.com/maven/kotlin/kotlinx/kotlinx.html;publish=1")
-                        credentials {
-                            username = System.getenv("BINTRAY_USERNAME")
-                            password = System.getenv("BINTRAY_PASSWORD")
-                        }
-                    }
-                }
-                hasProperty("branch-build") -> {
-                    require(!(version as String).endsWith("-SNAPSHOT")) {
-                        "Profile 'branch-build' assumes non-snapshot version. Use -PversionTag to fix the build."
-                    }
-
-                    maven {
-                        url = uri("https://api.bintray.com/maven/kotlin/kotlin-dev/kotlinx.html/;publish=1")
-                        credentials {
-                            username = System.getenv("BINTRAY_USERNAME")
-                            password = System.getenv("BINTRAY_PASSWORD")
-                        }
-                    }
-                }
-                hasProperty("master-build") -> {
-                    require((version as String).endsWith("-SNAPSHOT")) {
-                        "Profile 'master-build' assumes snapshot version. Change the version or use another profile."
-                    }
-
-                    maven {
-                        url = uri("https://oss.sonatype.org/content/repositories/snapshots")
-                        credentials {
-                            username = System.getenv("SONATYPE_USERNAME")
-                            password = System.getenv("SONATYPE_PASSWORD")
-                        }
-                    }
+            if (publishingUser == null) return@repositories
+            maven {
+                url = uri(publishingUrl)
+                credentials {
+                    username = publishingUser
+                    password = publishingPassword
                 }
             }
         }
@@ -102,33 +81,11 @@ publishing {
 }
 
 repositories {
-    jcenter()
     mavenCentral()
-
-    // It is just for release against pre-release versions
-    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
-    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
-
-    when {
-        /** Allow all profiles but release to use development and SNAPSHOT dependencies. */
-        !hasProperty("release") -> {
-            maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
-            maven {
-                url = uri("https://oss.sonatype.org/content/repositories/snapshots")
-                mavenContent {
-                    snapshotsOnly()
-                }
-            }
-        }
-    }
 }
 
 kotlin {
     jvm {
-        compilations["main"].kotlinOptions.apply {
-            freeCompilerArgs += "-Xdump-declarations-to=${buildDir}/declarations.json"
-        }
-
         mavenPublication {
             groupId = group as String
             pom { name by "${project.name}-jvm" }
