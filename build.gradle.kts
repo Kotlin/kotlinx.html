@@ -50,6 +50,10 @@ if (hasProperty("versionTag")) {
     }
 }
 
+if (hasProperty("releaseVersion")) {
+    version = properties["releaseVersion"] as String
+}
+
 val publishingUser = System.getenv("PUBLISHING_USER")
 val publishingPassword = System.getenv("PUBLISHING_PASSWORD")
 val publishingUrl = System.getenv("PUBLISHING_URL")
