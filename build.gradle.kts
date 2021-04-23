@@ -317,6 +317,8 @@ fun MavenPomFile.config(config: MavenPomFile.() -> Unit = {}) {
     config()
 
     url by "https://github.com/Kotlin/kotlinx.html"
+    name by "kotlinx.html"
+    description by "A kotlinx.html library provides DSL to build HTML to Writer/Appendable or DOM at JVM and browser (or other JavaScript engine) for better Kotlin programming for Web."
 
     licenses {
         license {
