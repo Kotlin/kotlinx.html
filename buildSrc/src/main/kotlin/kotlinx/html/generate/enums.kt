@@ -1,6 +1,6 @@
 package kotlinx.html.generate
 
-val reservedNames = setOf("class", "val", "var", "object", "true", "false", "as", "is", "for")
+val reservedNames = setOf("val", "var", "object", "true", "false", "as", "is", "for")
 
 fun String.replaceIfReserved() = if (this in reservedNames) "html" + this.capitalize() else this
 

@@ -15,7 +15,7 @@ fun Appendable.attributePseudoDelegate(request: AttributeRequest) {
 }
 
 fun Appendable.attributeProperty(attribute: AttributeInfo, receiver: String? = null, indent: Int = 1) {
-    val attributeName = attribute.name
+    val attributeName = attribute.name.replaceIfReserved()
     val request = tagAttributeVar(attribute, receiver, indent)
     append("\n")
 
