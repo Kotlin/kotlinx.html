@@ -210,6 +210,14 @@ var CommonAttributeGroupFacade.onMouseDown : String
     get()  = attributeStringString.get(this, "onmousedown")
     set(newValue) {attributeStringString.set(this, "onmousedown", newValue)}
 
+var CommonAttributeGroupFacade.onMouseEnter : String
+    get()  = attributeStringString.get(this, "onmouseenter")
+    set(newValue) {attributeStringString.set(this, "onmouseenter", newValue)}
+
+var CommonAttributeGroupFacade.onMouseLeave : String
+    get()  = attributeStringString.get(this, "onmouseleave")
+    set(newValue) {attributeStringString.set(this, "onmouseleave", newValue)}
+
 var CommonAttributeGroupFacade.onMouseMove : String
     get()  = attributeStringString.get(this, "onmousemove")
     set(newValue) {attributeStringString.set(this, "onmousemove", newValue)}

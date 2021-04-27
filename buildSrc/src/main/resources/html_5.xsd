@@ -165,6 +165,8 @@
         <xsd:attribute name="onmouseover"/>
         <xsd:attribute name="onmouseup"/>
         <xsd:attribute name="onmousewheel"/>
+        <xsd:attribute name="onmouseenter"/>
+        <xsd:attribute name="onmouseleave"/>
         <xsd:attribute name="onpause"/>
         <xsd:attribute name="onplay"/>
         <xsd:attribute name="onplaying"/>
