@@ -155,6 +155,12 @@ inline fun FlowContent.u(classes : String? = null, crossinline block : U.() -> U
 inline fun FlowContent.ul(classes : String? = null, crossinline block : UL.() -> Unit = {}) : Unit = UL(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
+ * Strike-through text style
+ */
+@HtmlTagMarker
+inline fun FlowContent.s(classes : String? = null, crossinline block : S.() -> Unit = {}) : Unit = S(attributesMapOf("class", classes), consumer).visit(block)
+
+/**
  * Document base URI
  */
 @HtmlTagMarker

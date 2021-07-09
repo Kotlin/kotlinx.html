@@ -530,6 +530,12 @@ inline fun <T, C : TagConsumer<T>> C.ruby(classes : String? = null, crossinline 
  * Strike-through text style
  */
 @HtmlTagMarker
+inline fun <T, C : TagConsumer<T>> C.s(classes : String? = null, crossinline block : S.() -> Unit = {}) : T = S(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
+/**
+ * Computer output text style
+ */
+@HtmlTagMarker
 inline fun <T, C : TagConsumer<T>> C.samp(classes : String? = null, crossinline block : SAMP.() -> Unit = {}) : T = SAMP(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
