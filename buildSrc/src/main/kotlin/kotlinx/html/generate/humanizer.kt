@@ -53,7 +53,7 @@ fun humanizeJoin(parts: Iterable<String>, separator: String): String {
         filteredParts.add(cutPart)
     }
 
-    return filteredParts.joinToString(separator = separator, transform = String::capitalize) + trailingParts.joinToString("", transform = String::capitalize)
+    return filteredParts.joinToString(separator = separator) { it.capitalize() } + trailingParts.joinToString("") { it.capitalize() }
 }
 
 private fun String.replaceMistakesAndUglyWords() : String =

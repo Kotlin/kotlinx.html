@@ -10,6 +10,17 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
+open class S(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("s", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+
+}
+val S.asFlowContent : FlowContent
+    get()  = this
+
+val S.asPhrasingContent : PhrasingContent
+    get()  = this
+
+
+@Suppress("unused")
 open class SAMP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("samp", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
