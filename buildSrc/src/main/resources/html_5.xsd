@@ -316,6 +316,7 @@
 
             <xsd:element ref="var"/>
             <xsd:element ref="video"/>
+            <xsd:element ref="strike"/>
 
         </xsd:choice>
     </xsd:group>
@@ -831,6 +832,7 @@
     <xsd:element name="main" type="simplePhrasingContentElement"/>
     <xsd:element name="mark" type="simplePhrasingContentElement"/>
     <xsd:element name="math" type="simplePhrasingContentElement"/>
+    <xsd:element name="strike" type="simplePhrasingContentElement"/>
 
     <xsd:element name="progress">
         <xsd:complexType mixed="true">
