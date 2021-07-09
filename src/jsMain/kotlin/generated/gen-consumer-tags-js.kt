@@ -528,7 +528,7 @@ public inline fun TagConsumer<HTMLElement>.rt(classes : String? = null, crossinl
 public inline fun TagConsumer<HTMLElement>.ruby(classes : String? = null, crossinline block : RUBY.() -> Unit = {}) : HTMLElement = RUBY(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 /**
- * Strike-through text style
+ * Computer output text style
  */
 @HtmlTagMarker
 public inline fun TagConsumer<HTMLElement>.samp(classes : String? = null, crossinline block : SAMP.() -> Unit = {}) : HTMLElement = SAMP(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
@@ -575,6 +575,12 @@ public inline fun TagConsumer<HTMLElement>.source(classes : String? = null, cros
  */
 @HtmlTagMarker
 public inline fun TagConsumer<HTMLElement>.span(classes : String? = null, crossinline block : SPAN.() -> Unit = {}) : HTMLSpanElement = SPAN(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLSpanElement
+
+/**
+ * Strike-through text
+ */
+@HtmlTagMarker
+public inline fun TagConsumer<HTMLElement>.strike(classes : String? = null, crossinline block : STRIKE.() -> Unit = {}) : HTMLElement = STRIKE(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 /**
  * Strong emphasis

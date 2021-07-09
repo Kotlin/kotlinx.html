@@ -545,7 +545,7 @@
 />
 <tag name        = "samp"
      helpref     = "struct/text.html#edef-SAMP"
-     description = "strike-through text style"
+     description = "computer output text style"
      startTag    = "true"
      endTag      = "true"
      empty       = "false"

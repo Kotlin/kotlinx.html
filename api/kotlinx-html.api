@@ -1334,6 +1334,8 @@ public final class kotlinx/html/Gen_consumer_tagsKt {
 	public static synthetic fun source$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun span (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun span$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun strike (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static synthetic fun strike$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun strong (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun strong$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun style (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;
@@ -1423,6 +1425,8 @@ public final class kotlinx/html/Gen_tag_groupsKt {
 	public static synthetic fun pre$default (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun putForm (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlinx/html/FormEncType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun putForm$default (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlinx/html/FormEncType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun strike (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun strike$default (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun summary (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun summary$default (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun table (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -1892,6 +1896,7 @@ public final class kotlinx/html/Gen_tags_sKt {
 	public static final fun getAsFlowContent (Lkotlinx/html/SELECT;)Lkotlinx/html/FlowContent;
 	public static final fun getAsFlowContent (Lkotlinx/html/SMALL;)Lkotlinx/html/FlowContent;
 	public static final fun getAsFlowContent (Lkotlinx/html/SPAN;)Lkotlinx/html/FlowContent;
+	public static final fun getAsFlowContent (Lkotlinx/html/STRIKE;)Lkotlinx/html/FlowContent;
 	public static final fun getAsFlowContent (Lkotlinx/html/STRONG;)Lkotlinx/html/FlowContent;
 	public static final fun getAsFlowContent (Lkotlinx/html/STYLE;)Lkotlinx/html/FlowContent;
 	public static final fun getAsFlowContent (Lkotlinx/html/SUB;)Lkotlinx/html/FlowContent;
@@ -1905,6 +1910,7 @@ public final class kotlinx/html/Gen_tags_sKt {
 	public static final fun getAsPhrasingContent (Lkotlinx/html/SELECT;)Lkotlinx/html/PhrasingContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/SMALL;)Lkotlinx/html/PhrasingContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/SPAN;)Lkotlinx/html/PhrasingContent;
+	public static final fun getAsPhrasingContent (Lkotlinx/html/STRIKE;)Lkotlinx/html/PhrasingContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/STRONG;)Lkotlinx/html/PhrasingContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/SUB;)Lkotlinx/html/PhrasingContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/SUP;)Lkotlinx/html/PhrasingContent;
@@ -2758,6 +2764,11 @@ public class kotlinx/html/SOURCE : kotlinx/html/HTMLTag, kotlinx/html/CommonAttr
 }
 
 public class kotlinx/html/SPAN : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInlineTag {
+	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
+	public fun getConsumer ()Lkotlinx/html/TagConsumer;
+}
+
+public class kotlinx/html/STRIKE : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInlineTag {
 	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 }

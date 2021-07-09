@@ -196,6 +196,17 @@ val SPAN.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
+open class STRIKE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("strike", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+
+}
+val STRIKE.asFlowContent : FlowContent
+    get()  = this
+
+val STRIKE.asPhrasingContent : PhrasingContent
+    get()  = this
+
+
+@Suppress("unused")
 open class STRONG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("strong", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
