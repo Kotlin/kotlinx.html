@@ -3085,7 +3085,7 @@ public class kotlinx/html/VIDEO : kotlinx/html/HTMLTag, kotlinx/html/CommonAttri
 	public final fun setWidth (Ljava/lang/String;)V
 }
 
-public final class kotlinx/html/Visit_jvmKt {
+public final class kotlinx/html/VisitKt {
 	public static final fun visitTag (Lkotlinx/html/Tag;Lkotlin/jvm/functions/Function1;)V
 	public static final fun visitTagAndFinalize (Lkotlinx/html/Tag;Lkotlinx/html/TagConsumer;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 }
@@ -3343,7 +3343,8 @@ public final class kotlinx/html/impl/DelegatingMap : java/util/Map, kotlin/jvm/i
 	public final fun containsValue (Ljava/lang/Object;)Z
 	public fun containsValue (Ljava/lang/String;)Z
 	public final fun entrySet ()Ljava/util/Set;
-	public final fun get (Ljava/lang/Object;)Ljava/lang/Object;
+	public synthetic fun get (Ljava/lang/Object;)Ljava/lang/Object;
+	public final fun get (Ljava/lang/Object;)Ljava/lang/String;
 	public fun get (Ljava/lang/String;)Ljava/lang/String;
 	public fun getEntries ()Ljava/util/Set;
 	public final fun getImmutableEntries ()Ljava/util/Collection;
@@ -3355,7 +3356,8 @@ public final class kotlinx/html/impl/DelegatingMap : java/util/Map, kotlin/jvm/i
 	public synthetic fun put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 	public fun put (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun putAll (Ljava/util/Map;)V
-	public final fun remove (Ljava/lang/Object;)Ljava/lang/Object;
+	public synthetic fun remove (Ljava/lang/Object;)Ljava/lang/Object;
+	public final fun remove (Ljava/lang/Object;)Ljava/lang/String;
 	public fun remove (Ljava/lang/String;)Ljava/lang/String;
 	public final fun size ()I
 	public final fun values ()Ljava/util/Collection;

@@ -102,17 +102,8 @@ kotlin {
             }
         }
     }
-
-    js {
+    js(BOTH) {
         moduleName = project.name
-        browser {
-            testTask {
-                useKarma {
-                    useChromeHeadless()
-                    useConfigDirectory("${project.projectDir}/src/jsTest/karma")
-                }
-            }
-        }
 
         compilations["main"].packageJson {
             main = "kotlin/kotlinx-html-js.js"
@@ -145,6 +136,23 @@ kotlin {
             }
         }
     }
+
+    mingwX64()
+    linuxX64()
+    iosX64()
+    iosArm64()
+    iosArm32()
+    iosSimulatorArm64()
+    watchosX86()
+    watchosX64()
+    watchosArm32()
+    watchosArm64()
+    watchosSimulatorArm64()
+    tvosX64()
+    tvosArm64()
+    tvosSimulatorArm64()
+    macosX64()
+    macosArm64()
 
     metadata {
         mavenPublication {
@@ -179,7 +187,6 @@ kotlin {
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
-                api(npm("puppeteer", "*"))
             }
         }
 
@@ -196,6 +203,36 @@ kotlin {
                 implementation("com.fasterxml.jackson.core:jackson-core:2.10.1")
                 implementation("com.fasterxml.jackson.core:jackson-databind:2.10.1")
             }
+        }
+
+        val nativeMain by creating
+        val nativeTest by creating
+
+        val nativeTargets = listOf(
+            "mingwX64",
+            "linuxX64",
+            "iosX64",
+            "iosArm64",
+            "iosArm32",
+            "iosSimulatorArm64",
+            "watchosX86",
+            "watchosX64",
+            "watchosArm32",
+            "watchosArm64",
+            "watchosSimulatorArm64",
+            "tvosX64",
+            "tvosArm64",
+            "tvosSimulatorArm64",
+            "macosX64",
+            "macosArm64"
+        )
+
+        val commonMain by getting
+        nativeMain.dependsOn(commonMain)
+
+        nativeTargets.forEach { target ->
+            findByName("${target}Main")?.dependsOn(nativeMain)
+            findByName("${target}Test")?.dependsOn(nativeTest)
         }
     }
 }
@@ -311,7 +348,7 @@ publishing {
     }
 }
 
-typealias MavenPomFile = org.gradle.api.publish.maven.MavenPom
+typealias MavenPomFile = MavenPom
 
 fun MavenPomFile.config(config: MavenPomFile.() -> Unit = {}) {
     config()
@@ -374,4 +411,13 @@ if (!signingKey.isNullOrBlank()) {
         useGpgCmd()
         sign(publishing.publications)
     }
+}
+
+rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin> {
+    val nodeM1Version = "16.13.1"
+    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().nodeVersion = nodeM1Version
+}
+
+rootProject.plugins.withType(org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin::class.java) {
+    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().ignoreScripts = false
 }
