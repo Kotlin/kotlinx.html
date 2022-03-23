@@ -34,7 +34,8 @@ fun Appendable.htmlTagBuilders(receiver : String, tag : TagInfo) {
         htmlTagBuilderMethod(receiver, tag, false)
     }
 
-    val someEnumAttribute = tag.attributes.filter { it.type == AttributeType.ENUM }.maxBy { it.enumValues.size } // ??
+    val someEnumAttribute =
+        tag.attributes.filter { it.type == AttributeType.ENUM }.maxByOrNull { it.enumValues.size } // ??
     if (someEnumAttribute != null && someEnumAttribute.enumValues.size < 25) {
         htmlTagEnumBuilderMethod(receiver, tag, true, someEnumAttribute, 0)
         if (probablyContentOnly) {

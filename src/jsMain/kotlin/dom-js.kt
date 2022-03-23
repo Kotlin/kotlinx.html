@@ -5,7 +5,6 @@ import kotlinx.html.consumers.*
 import org.w3c.dom.*
 import org.w3c.dom.events.*
 
-@Suppress("NOTHING_TO_INLINE")
 private inline fun HTMLElement.setEvent(name: String, noinline callback : (Event) -> Unit) : Unit {
     asDynamic()[name] = callback
 }

@@ -95,7 +95,8 @@ private fun String.makeCamelCaseByDictionary() : String {
     var unprocessedStart = 0
     allRanges.forEachIndexed { i, mr ->
         if (mr.range.start >= unprocessedStart) {
-            val startClash = allRanges.safeSubList(i + 1).asSequence().takeWhile { it.range.start == mr.range.start }.maxBy { it.value.length }
+            val startClash = allRanges.safeSubList(i + 1).asSequence().takeWhile { it.range.start == mr.range.start }
+                .maxByOrNull { it.value.length }
             if (startClash == null || startClash.value.length <= mr.value.length) {
                 val possibleTail = when {
                     mr.value.endsWith("ing") -> 3

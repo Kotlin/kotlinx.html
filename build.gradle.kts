@@ -14,7 +14,7 @@ plugins {
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.7.3-SNAPSHOT"
+version = "0.7.5-SNAPSHOT"
 
 buildscript {
     dependencies {
@@ -292,50 +292,6 @@ tasks.register<Copy>("jsPackagePrepare") {
         File(baseTargetDir, "package.json").writeText(packageJson(npmVersion, organization))
         file("$baseTargetDir/kotlinx-html-js").renameTo(File("$buildDir/js-module/kotlinx-html-js"))
     }
-}
-
-tasks.register<Exec>("publishNpm") {
-    dependsOn("jsPackagePrepare")
-    dependsOn("kotlinNodeJsSetup")
-
-    group = "publishing"
-    description = "Publishes ${project.name} NPM module to 'registry.npmjs.org'."
-
-    val kotlinNodeJsSetupTask = tasks["kotlinNodeJsSetup"] as NodeJsSetupTask
-
-    // For some unknown reason, the node distributive's structure is different on Windows and UNIX.
-    val node = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        kotlinNodeJsSetupTask.destination
-            .resolve("node.exe")
-    } else {
-        kotlinNodeJsSetupTask.destination
-            .resolve("bin")
-            .resolve("node")
-    }
-
-    val npm = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        kotlinNodeJsSetupTask.destination
-            .resolve("node_modules")
-            .resolve("npm")
-            .resolve("bin")
-            .resolve("npm-cli.js")
-    } else {
-        kotlinNodeJsSetupTask.destination
-            .resolve("lib")
-            .resolve("node_modules")
-            .resolve("npm")
-            .resolve("bin")
-            .resolve("npm-cli.js")
-    }
-
-    commandLine(
-        node,
-        npm,
-        "publish",
-        "$buildDir/tmp/jsPackage",
-        "--//registry.npmjs.org/:_authToken=${System.getenv("NPMJS_AUTH")}",
-        "--access=public"
-    )
 }
 
 publishing {
