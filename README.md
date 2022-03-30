@@ -6,8 +6,7 @@
 
 # kotlinx.html
 
-A kotlinx.html library provides DSL to build HTML to [Writer](https://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)/[Appendable](https://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html) or DOM at JVM and browser (or other JavaScript engine) for
-better [Kotlin programming](https://kotlinlang.org) for Web.
+A kotlinx.html library provides DSL to build HTML to [Writer](https://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)/[Appendable](https://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html) or DOM. Available to all Kotlin Multiplatform targets and browser(or other JavaScript engine) for better [Kotlin programming](https://kotlinlang.org) for Web.
 
 # Get started
 
@@ -38,7 +37,7 @@ window.setInterval({
 ```
 
 # Stream
-You can build HTML directly to Writer (JVM only) or Appendable (both JVM and JS)
+You can build HTML directly to Writer (JVM) or Appendable (Multiplatform)
 
 ```kotlin
 System.out.appendHTML().html {
