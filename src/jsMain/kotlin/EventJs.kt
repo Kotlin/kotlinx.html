@@ -1,6 +1,6 @@
-package org.w3c.dom.events // ktlint-disable filename
+package kotlinx.html.org.w3c.dom.events // ktlint-disable filename
 
-import org.w3c.dom.*
+import org.w3c.dom.events.EventTarget
 
 public actual external interface Event {
     val type: String

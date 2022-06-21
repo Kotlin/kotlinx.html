@@ -2,8 +2,8 @@ package kotlinx.html.dom
 
 import kotlinx.html.*
 import kotlinx.html.consumers.*
+import kotlinx.html.org.w3c.dom.events.Event
 import org.w3c.dom.*
-import org.w3c.dom.events.*
 import org.xml.sax.*
 import java.io.*
 import java.util.*

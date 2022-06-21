@@ -2,7 +2,7 @@ package kotlinx.html.stream
 
 import kotlinx.html.*
 import kotlinx.html.consumers.*
-import org.w3c.dom.events.*
+import kotlinx.html.org.w3c.dom.events.Event
 
 class HTMLStreamBuilder<out O : Appendable>(val out: O, val prettyPrint: Boolean, val xhtmlCompatible: Boolean) :
     TagConsumer<O> {

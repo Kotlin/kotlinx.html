@@ -1,4 +1,4 @@
-package org.w3c.dom.events // ktlint-disable filename
+package kotlinx.html.org.w3c.dom.events // ktlint-disable filename
 
 actual interface Event {
     actual fun stopPropagation()

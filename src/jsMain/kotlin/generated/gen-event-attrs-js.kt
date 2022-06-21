@@ -1,9 +1,7 @@
 package kotlinx.html.js
 
 import kotlinx.html.*
-import kotlinx.html.attributes.*
-import kotlinx.html.dom.*
-import org.w3c.dom.events.*
+import kotlinx.html.org.w3c.dom.events.Event
 
 /*******************************************************************************
     DO NOT EDIT
