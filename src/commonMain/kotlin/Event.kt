@@ -1,4 +1,4 @@
-package org.w3c.dom.events
+package kotlinx.html.org.w3c.dom.events
 
 expect interface Event {
     fun stopPropagation()

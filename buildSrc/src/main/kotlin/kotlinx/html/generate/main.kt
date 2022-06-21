@@ -111,9 +111,7 @@ fun generate(packg: String, todir: String, jsdir: String) {
             packg(packg + ".js")
             emptyLine()
             import("kotlinx.html.*")
-            import("kotlinx.html.attributes.*")
-            import("kotlinx.html.dom.*")
-            import("org.w3c.dom.events.*")
+            import("kotlinx.html.org.w3c.dom.events.Event")
             emptyLine()
 
             doNotEditWarning()

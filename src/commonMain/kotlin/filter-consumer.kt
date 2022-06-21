@@ -1,7 +1,7 @@
 package kotlinx.html.consumers
 
 import kotlinx.html.*
-import org.w3c.dom.events.*
+import kotlinx.html.org.w3c.dom.events.Event
 
 object PredicateResults {
     val PASS = PredicateResult.PASS

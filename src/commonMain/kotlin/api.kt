@@ -1,6 +1,6 @@
 package kotlinx.html
 
-import org.w3c.dom.events.*
+import kotlinx.html.org.w3c.dom.events.Event
 
 interface TagConsumer<out R> {
     fun onTagStart(tag: Tag)
