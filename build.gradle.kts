@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsSetupTask
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "1.6.10"
+    kotlin("multiplatform") version "1.7.0"
     id("maven-publish")
     id("signing")
 }
@@ -18,7 +18,7 @@ version = "0.7.5-SNAPSHOT"
 
 buildscript {
     dependencies {
-        classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.8.0")
+        classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.10.1")
     }
 }
 
