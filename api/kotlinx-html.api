@@ -3343,7 +3343,7 @@ public final class kotlinx/html/impl/DelegatingMap : java/util/Map, kotlin/jvm/i
 	public final fun containsValue (Ljava/lang/Object;)Z
 	public fun containsValue (Ljava/lang/String;)Z
 	public final fun entrySet ()Ljava/util/Set;
-	public synthetic fun get (Ljava/lang/Object;)Ljava/lang/Object;
+	public final synthetic fun get (Ljava/lang/Object;)Ljava/lang/Object;
 	public final fun get (Ljava/lang/Object;)Ljava/lang/String;
 	public fun get (Ljava/lang/String;)Ljava/lang/String;
 	public fun getEntries ()Ljava/util/Set;
@@ -3356,11 +3356,17 @@ public final class kotlinx/html/impl/DelegatingMap : java/util/Map, kotlin/jvm/i
 	public synthetic fun put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 	public fun put (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public fun putAll (Ljava/util/Map;)V
-	public synthetic fun remove (Ljava/lang/Object;)Ljava/lang/Object;
+	public final synthetic fun remove (Ljava/lang/Object;)Ljava/lang/Object;
 	public final fun remove (Ljava/lang/Object;)Ljava/lang/String;
 	public fun remove (Ljava/lang/String;)Ljava/lang/String;
 	public final fun size ()I
 	public final fun values ()Ljava/util/Collection;
+}
+
+public abstract interface class kotlinx/html/org/w3c/dom/events/Event {
+	public abstract fun initEvent (Ljava/lang/String;ZZ)V
+	public abstract fun preventDefault ()V
+	public abstract fun stopPropagation ()V
 }
 
 public final class kotlinx/html/stream/HTMLStreamBuilder : kotlinx/html/TagConsumer {
