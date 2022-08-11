@@ -48,9 +48,10 @@ fun Appendable.facade(facade: AttributeFacade) {
 }
 
 fun Appendable.eventProperty(parent: String, attribute: AttributeInfo) {
+    val type = "(org.w3c.dom.events.Event) -> Unit"
     variable(receiver = parent, variable = Var(
             name = attribute.fieldName + "Function",
-            type = "(Event) -> Unit",
+            type = type,
             mutable = true
     ))
     emptyLine()
@@ -64,7 +65,7 @@ fun Appendable.eventProperty(parent: String, attribute: AttributeInfo) {
         functionCall("onTagEvent", listOf(
                 "this",
                 attribute.name.quote(),
-                "newValue"
+                "newValue.unsafeCast<(Event) -> Unit>()"
         ))
     }
     emptyLine()
