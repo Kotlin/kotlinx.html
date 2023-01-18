@@ -63,8 +63,8 @@ fun generate(packg: String, todir: String, jsdir: String) {
             emptyLine()
 
             Repository.tags.values.filterIgnored().forEach {
-                val contentlessTag = it.name.toLowerCase() in contentlessTags
-                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && !contentlessTag) {
+                val contentlessTag = it.name.lowercase() in contentlessTags
+                if (it.possibleChildren.isEmpty() && it.name.lowercase() !in emptyTags && !contentlessTag) {
                     consumerBuilderShared(it, false)
                 } else if (contentlessTag) {
                     deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
@@ -92,8 +92,8 @@ fun generate(packg: String, todir: String, jsdir: String) {
             emptyLine()
 
             Repository.tags.values.filterIgnored().forEach {
-                val contentlessTag = it.name.toLowerCase() in contentlessTags
-                if (it.possibleChildren.isEmpty() && it.name.toLowerCase() !in emptyTags && !contentlessTag) {
+                val contentlessTag = it.name.lowercase() in contentlessTags
+                if (it.possibleChildren.isEmpty() && it.name.lowercase() !in emptyTags && !contentlessTag) {
                     consumerBuilderJS(it, false)
                 } else if (contentlessTag) {
                     deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
@@ -272,10 +272,10 @@ fun generate(packg: String, todir: String, jsdir: String) {
                 }
 
                 append(";")
-                appendln()
+                appendLine()
 
                 variable(Var(name = "text", type = "String"))
-                appendln()
+                appendLine()
                 getter()
                 defineIs(StringBuilder().apply {
                     append("&".quote())
@@ -285,7 +285,7 @@ fun generate(packg: String, todir: String, jsdir: String) {
                     append(" + ")
                     append(";".quote())
                 })
-                appendln()
+                appendLine()
             }
         }
     }

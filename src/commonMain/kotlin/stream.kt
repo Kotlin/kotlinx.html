@@ -134,7 +134,7 @@ class HTMLStreamBuilder<out O : Appendable>(val out: O, val prettyPrint: Boolean
     }
 }
 
-private val AVERAGE_PAGE_SIZE = 32768
+private const val AVERAGE_PAGE_SIZE = 32768
 
 fun createHTML(prettyPrint: Boolean = true, xhtmlCompatible: Boolean = false): TagConsumer<String> =
     HTMLStreamBuilder(
@@ -156,7 +156,7 @@ private val escapeMap = mapOf(
     '&' to "&amp;",
     '\"' to "&quot;"
 ).let { mappings ->
-    val maxCode = mappings.keys.map { it.toInt() }.maxOrNull() ?: -1
+    val maxCode = mappings.keys.maxOfOrNull { it.code } ?: -1
 
     Array(maxCode + 1) { mappings[it.toChar()] }
 }
@@ -184,8 +184,8 @@ private fun Appendable.escapeAppend(s: CharSequence) {
     val mappings = escapeMap
     val size = mappings.size
 
-    for (idx in 0..s.length - 1) {
-        val ch = s[idx].toInt()
+    for (idx in s.indices) {
+        val ch = s[idx].code
         if (ch < 0 || ch >= size) continue
         val escape = mappings[ch]
         if (escape != null) {

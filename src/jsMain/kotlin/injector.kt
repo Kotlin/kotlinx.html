@@ -9,6 +9,7 @@ fun <F : Any, T : Any> F.injectTo(bean: T, field: KMutableProperty1<T, in F>) {
     field.set(bean, this)
 }
 
+@Suppress("UnsafeCastFromDynamic")
 private fun <F : Any, T : Any> F.injectToUnsafe(bean: T, field: KMutableProperty1<T, out F>) {
     injectTo(bean, field.asDynamic())
 }
@@ -35,7 +36,7 @@ class InjectorConsumer<out T : Any>(
     private val tagNamesMap = rules
         .filter { it.first is InjectByTagName }
         .map { it.first as InjectByTagName to it.second }
-        .groupBy({ it.first.tagName.toLowerCase() }, { it.second })
+        .groupBy({ it.first.tagName.lowercase() }, { it.second })
 
     private val rootCaptures = rules.filter { it.first == InjectRoot }.map { it.second }
     private val customCaptures =
@@ -53,7 +54,7 @@ class InjectorConsumer<out T : Any>(
         }
 
         if (tagNamesMap.isNotEmpty()) {
-            tagNamesMap[node.tagName.toLowerCase()]?.forEach { field ->
+            tagNamesMap[node.tagName.lowercase()]?.forEach { field ->
                 node.injectToUnsafe(bean, field)
             }
         }

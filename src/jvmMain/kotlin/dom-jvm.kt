@@ -53,7 +53,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun onTagEnd(tag: Tag) {
-        if (path.isEmpty() || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
+        if (path.isEmpty() || path.last().tagName.lowercase() != tag.tagName.lowercase()) {
             throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
 

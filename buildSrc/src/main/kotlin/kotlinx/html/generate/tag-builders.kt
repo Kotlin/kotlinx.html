@@ -23,8 +23,8 @@ track
 wbr""".lines().toSet()
 
 fun Appendable.htmlTagBuilders(receiver : String, tag : TagInfo) {
-    val contentlessTag = tag.name.toLowerCase() in contentlessTags
-    val probablyContentOnly = tag.possibleChildren.isEmpty() && tag.name.toLowerCase() !in emptyTags && !contentlessTag
+    val contentlessTag = tag.name.lowercase() in contentlessTags
+    val probablyContentOnly = tag.possibleChildren.isEmpty() && tag.name.lowercase() !in emptyTags && !contentlessTag
     htmlTagBuilderMethod(receiver, tag, true)
     if (probablyContentOnly) {
         htmlTagBuilderMethod(receiver, tag, false)

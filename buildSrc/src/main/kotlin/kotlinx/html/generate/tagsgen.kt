@@ -8,8 +8,8 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
     val allParentIfaces = parentAttributeIfaces + parentElementIfaces
     val betterParentIfaces = humanizeJoin(allParentIfaces)
 
-    val namespace = tagNamespaces[tag.name.toLowerCase()]
-    val customizableNamespace = tag.name.toLowerCase() in tagsWithCustomizableNamespace
+    val namespace = tagNamespaces[tag.name.lowercase()]
+    val customizableNamespace = tag.name.lowercase() in tagsWithCustomizableNamespace
 
     val parameters = mutableListOf(
         Var("initialAttributes", "Map<String, String>", false, false, true),
@@ -29,7 +29,7 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
         superConstructorArguments[3] = "namespace"
     }
 
-    appendln("@Suppress(\"unused\")")
+    appendLine("@Suppress(\"unused\")")
     clazz(Clazz(
             name = tag.className,
             variables = parameters,
@@ -43,21 +43,21 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
             },
             isOpen = true
     )) {
-        val lowerCasedNames = tag.attributes.map {it.name.toLowerCase()}.toSet()
+        val lowerCasedNames = tag.attributes.map {it.name.lowercase()}.toSet()
         val attributes = tag.attributes.filter {it.name !in excludeAttributes}
 
         attributes.filter {!isAttributeExcluded(it.name) }.forEach { attribute ->
-            if (attribute.name[0].isLowerCase() || attribute.name.toLowerCase() !in lowerCasedNames) {
+            if (attribute.name[0].isLowerCase() || attribute.name.lowercase() !in lowerCasedNames) {
                 attributeProperty(attribute)
             }
         }
 
         fun contentlessTagDeprecation() {
             indent()
-            appendln("@Deprecated(\"This tag most likely doesn't support text content or requires unsafe content (try unsafe {}\")")
+            appendLine("@Deprecated(\"This tag most likely doesn't support text content or requires unsafe content (try unsafe {}\")")
         }
 
-        if (tag.name.toLowerCase() in contentlessTags) {
+        if (tag.name.lowercase() in contentlessTags) {
             contentlessTagDeprecation()
 
             indent()
@@ -66,11 +66,11 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
                 indent(2)
                 append("@Suppress(\"DEPRECATION\") ")
                 functionCall("entity", listOf("this"))
-                appendln()
+                appendLine()
                 indent()
             }
 
-            appendln()
+            appendLine()
             contentlessTagDeprecation()
 
             indent()
@@ -79,11 +79,11 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
                 indent(2)
                 append("@Suppress(\"DEPRECATION\") ")
                 functionCall("text", listOf("this"))
-                appendln()
+                appendLine()
                 indent()
             }
 
-            appendln()
+            appendLine()
             contentlessTagDeprecation()
 
             indent()
@@ -92,11 +92,11 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
                 indent(2)
                 receiverDot("super<HTMLTag>")
                 functionCall("text", listOf("s"))
-                appendln()
+                appendLine()
                 indent()
             }
 
-            appendln()
+            appendLine()
             contentlessTagDeprecation()
 
             indent()
@@ -105,11 +105,11 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
                 indent(2)
                 receiverDot("super<HTMLTag>")
                 functionCall("text", listOf("n"))
-                appendln()
+                appendLine()
                 indent()
             }
 
-            appendln()
+            appendLine()
             contentlessTagDeprecation()
 
             indent()
@@ -118,7 +118,7 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
                 indent(2)
                 receiverDot("super<HTMLTag>")
                 functionCall("entity", listOf("e"))
-                appendln()
+                appendLine()
                 indent()
             }
         }
@@ -135,7 +135,7 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
         if (commons.isNotEmpty()) {
             parentElementIfaces.forEach { group ->
                 variable(Var(name = "as" + group, type = group), receiver = tag.className)
-                appendln()
+                appendLine()
                 getter()
                 defineIs("this")
                 emptyLine()
@@ -165,7 +165,7 @@ internal fun Appendable.tagAttributeVar(attribute: AttributeInfo, receiver: Stri
 
 fun probeType(htmlClassName : String) : Boolean = htmlClassName in knownTagClasses
 
-private fun tagCandidates(tag : TagInfo) = (listOf(tag.memberName) + tagReplacements.map { tag.memberName.replace(it.first.toRegex(), it.second) }).flatMap { listOf(it.capitalize(), it.toUpperCase()) }.distinct()
+private fun tagCandidates(tag : TagInfo) = (listOf(tag.memberName) + tagReplacements.map { tag.memberName.replace(it.first.toRegex(), it.second) }).flatMap { listOf(it.capitalize(), it.uppercase()) }.distinct()
 
 fun getTagResultClass(tag: TagInfo) =
         tagCandidates(tag)
@@ -173,7 +173,7 @@ fun getTagResultClass(tag: TagInfo) =
                 .firstOrNull { probeType(it) } ?: "HTMLElement"
 
 fun contentArgumentValue(tag : TagInfo, blockOrContent : Boolean) = when {
-    tag.name.toLowerCase() in emptyTags -> "block"
+    tag.name.lowercase() in emptyTags -> "block"
     blockOrContent -> "block"
     else -> "{+content}"
 }
@@ -186,7 +186,7 @@ fun Appendable.consumerBuilderJS(tag : TagInfo, blockOrContent : Boolean) {
         "this"
     )
 
-    if (tag.name.toLowerCase() in tagsWithCustomizableNamespace) {
+    if (tag.name.lowercase() in tagsWithCustomizableNamespace) {
         constructorArgs.add("namespace")
     }
 
@@ -216,7 +216,7 @@ fun Appendable.consumerBuilderShared(tag : TagInfo, blockOrContent : Boolean) {
         "this"
     )
 
-    if (tag.name.toLowerCase() in tagsWithCustomizableNamespace) {
+    if (tag.name.lowercase() in tagsWithCustomizableNamespace) {
         constructorArgs.add("namespace")
     }
 
@@ -242,7 +242,7 @@ fun Appendable.htmlTagBuilderMethod(receiver : String, tag : TagInfo, blockOrCon
         "consumer"
     )
 
-    if (tag.name.toLowerCase() in tagsWithCustomizableNamespace) {
+    if (tag.name.lowercase() in tagsWithCustomizableNamespace) {
         constructorArgs.add("namespace")
     }
 
@@ -269,7 +269,7 @@ fun Appendable.htmlTagEnumBuilderMethod(receiver : String, tag : TagInfo, blockO
             buildSuggestedAttributesArgument(tag, mapOf(enumAttribute.fieldName to enumAttribute.typeName + "." + enumValue.fieldName + ".realValue")),
             "consumer"
         )
-        if (tag.name.toLowerCase() in tagsWithCustomizableNamespace) {
+        if (tag.name.lowercase() in tagsWithCustomizableNamespace) {
             constructorArgs.add("namespace")
         }
 
@@ -317,15 +317,15 @@ private fun buildSuggestedAttributesArgument(tag: TagInfo, predefinedValues : Ma
     }
 
 private fun tagBuilderCouldBeInline(tag: TagInfo, blockOrContent: Boolean): Boolean = when {
-        tag.name.toLowerCase() in emptyTags -> true
+        tag.name.lowercase() in emptyTags -> true
         blockOrContent -> true
         else -> false
 }
 
 private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) : ArrayList<Var> {
     val arguments = ArrayList<Var>()
-    val customizableNamespace = tag.name.toLowerCase() in tagsWithCustomizableNamespace
-    val defaultNamespace: String = tagNamespaces[tag.name.toLowerCase()]?.quote().toString()
+    val customizableNamespace = tag.name.lowercase() in tagsWithCustomizableNamespace
+    val defaultNamespace: String = tagNamespaces[tag.name.lowercase()]?.quote().toString()
 
     tag.mergeAttributes().filter {it.name in tag.suggestedAttributes}.forEach { attribute ->
         val type = when (attribute.type) {
@@ -350,7 +350,7 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) 
     }
 
     when {
-        tag.name.toLowerCase() in emptyTags || blockOrContent -> {
+        tag.name.lowercase() in emptyTags || blockOrContent -> {
             addNamespaceParameter()
             addBlockParameter()
         }
@@ -364,14 +364,14 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent : Boolean) 
 }
 
 private fun Appendable.htmlDslMarker() {
-    appendln("@HtmlTagMarker")
+    appendLine("@HtmlTagMarker")
 }
 
 private fun Appendable.tagKdoc(tag: TagInfo) {
     val kdoc = tag.kdoc ?: return
-    appendln("/**")
-    appendln(" * ${kdoc.description}")
-    appendln(" */")
+    appendLine("/**")
+    appendLine(" * ${kdoc.description}")
+    appendLine(" */")
 }
 
 private val inlineTags = """a

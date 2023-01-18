@@ -5,7 +5,7 @@ fun String.humanize() : String {
         return "empty"
     }
 
-    val fixedAllUpper = if (all { it.isUpperCase() }) toLowerCase() else this
+    val fixedAllUpper = if (all { it.isUpperCase() }) lowercase() else this
     val fixedFirstUpper = fixedAllUpper.decapitalize()
 
     return fixedFirstUpper.replaceHyphensToCamelCase().makeCamelCaseByDictionary().replaceMistakesAndUglyWords().decapitalize()
