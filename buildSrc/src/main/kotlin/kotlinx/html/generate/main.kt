@@ -208,12 +208,14 @@ fun generate(pkg: String, todir: String, jsdir: String, wasmJsDir: String) {
             append("enum ")
             clazz(Clazz(name = "Entities")) {
                 InputStreamReader("entities.txt".asResourceUrl().openStream()).useLines { lines ->
-                    lines.filter { it.isNotEmpty() }.forEachIndexed { idx, ent ->
+                    // Have to avoid "equals" due to it being an Enum function name
+                    lines.filter { it.isNotEmpty() && it != "equals" }.forEachIndexed { idx, ent ->
                         if (idx > 0) {
                             append(",")
                         }
                         indent()
-                        append(ent)
+                        // Have to escape "in", as it's a Kotlin keyword
+                        append(if (ent == "in") "`$ent`" else ent)
                         emptyLine()
                     }
                 }
@@ -224,14 +226,7 @@ fun generate(pkg: String, todir: String, jsdir: String, wasmJsDir: String) {
                 variable(Var(name = "text", type = "String"))
                 appendLine()
                 getter()
-                defineIs(StringBuilder().apply {
-                    append("&".quote())
-                    append(" + ")
-                    receiverDot("this")
-                    functionCall("toString", emptyList())
-                    append(" + ")
-                    append(";".quote())
-                })
+                defineIs("&\$this;".quote())
                 appendLine()
             }
         }
