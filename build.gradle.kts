@@ -6,7 +6,7 @@ import kotlinx.html.js.packageJson
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "1.8.0"
+    kotlin("multiplatform") version "1.8.20"
     id("maven-publish")
     id("signing")
 }
