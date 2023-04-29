@@ -139,6 +139,7 @@ kotlin {
 
     mingwX64()
     linuxX64()
+    linuxArm64()
     iosX64()
     iosArm64()
     iosArm32()
@@ -211,6 +212,7 @@ kotlin {
         val nativeTargets = listOf(
             "mingwX64",
             "linuxX64",
+            "linuxArm64",
             "iosX64",
             "iosArm64",
             "iosArm32",
