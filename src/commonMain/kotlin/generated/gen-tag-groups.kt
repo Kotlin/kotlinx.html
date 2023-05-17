@@ -177,3 +177,12 @@ inline fun MetaDataContent.title(crossinline block : TITLE.() -> Unit = {}) : Un
 @HtmlTagMarker
 fun MetaDataContent.title(content : String = "") : Unit = TITLE(emptyMap, consumer).visit({+content})
 
+@HtmlTagMarker
+inline fun PhrasingContent.slot(classes : String? = null, crossinline block : SLOT.() -> Unit = {}) : Unit = SLOT(attributesMapOf("class", classes), consumer).visit(block)
+
+/**
+ * Template
+ */
+@HtmlTagMarker
+inline fun PhrasingContent.template(classes : String? = null, crossinline block : TEMPLATE.() -> Unit = {}) : Unit = TEMPLATE(attributesMapOf("class", classes), consumer).visit(block)
+

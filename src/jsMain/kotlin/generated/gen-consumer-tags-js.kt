@@ -113,6 +113,7 @@ import kotlinx.html.SAMP
 import kotlinx.html.SCRIPT
 import kotlinx.html.SECTION
 import kotlinx.html.SELECT
+import kotlinx.html.SLOT
 import kotlinx.html.SMALL
 import kotlinx.html.SOURCE
 import kotlinx.html.SPAN
@@ -126,6 +127,7 @@ import kotlinx.html.ScriptCrossorigin
 import kotlinx.html.TABLE
 import kotlinx.html.TBODY
 import kotlinx.html.TD
+import kotlinx.html.TEMPLATE
 import kotlinx.html.TEXTAREA
 import kotlinx.html.TFOOT
 import kotlinx.html.TH
@@ -187,6 +189,7 @@ import org.w3c.dom.HTMLTableColElement
 import org.w3c.dom.HTMLTableElement
 import org.w3c.dom.HTMLTableRowElement
 import org.w3c.dom.HTMLTableSectionElement
+import org.w3c.dom.HTMLTemplateElement
 import org.w3c.dom.HTMLTextAreaElement
 import org.w3c.dom.HTMLTimeElement
 import org.w3c.dom.HTMLTitleElement
@@ -1032,6 +1035,11 @@ public inline fun TagConsumer<HTMLElement>.select(classes: String? = null, cross
     this)
     .visitAndFinalize(this, block)  as HTMLSelectElement
 
+@HtmlTagMarker
+public inline fun TagConsumer<HTMLElement>.slot(classes: String? = null, crossinline
+    block: SLOT.() -> Unit = {}): HTMLElement = SLOT(attributesMapOf("class", classes), this)
+    .visitAndFinalize(this, block) 
+
 /**
  * Small text style
  */
@@ -1141,6 +1149,15 @@ public inline fun TagConsumer<HTMLElement>.tbody(classes: String? = null, crossi
 public inline fun TagConsumer<HTMLElement>.td(classes: String? = null, crossinline
     block: TD.() -> Unit = {}): HTMLTableCellElement = TD(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLTableCellElement
+
+/**
+ * Template
+ */
+@HtmlTagMarker
+public inline fun TagConsumer<HTMLElement>.template(classes: String? = null, crossinline
+    block: TEMPLATE.() -> Unit = {}): HTMLTemplateElement = TEMPLATE(attributesMapOf("class",
+    classes), this)
+    .visitAndFinalize(this, block)  as HTMLTemplateElement
 
 /**
  * Multi-line text field

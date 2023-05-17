@@ -3367,6 +3367,8 @@ public final class kotlinx/html/Gen_consumer_tagsKt {
 	public static synthetic fun section$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun select (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun select$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun slot (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static synthetic fun slot$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun small (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun small$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun source (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
@@ -3395,6 +3397,8 @@ public final class kotlinx/html/Gen_consumer_tagsKt {
 	public static synthetic fun tbody$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun td (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun td$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun template (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static synthetic fun template$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun textArea (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/TextAreaWrap;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;
 	public static final fun textArea (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/TextAreaWrap;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun textArea$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/TextAreaWrap;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/Object;
@@ -3466,10 +3470,14 @@ public final class kotlinx/html/Gen_tag_groupsKt {
 	public static synthetic fun putForm$default (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlinx/html/FormEncType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun s (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun s$default (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun slot (Lkotlinx/html/PhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun slot$default (Lkotlinx/html/PhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun summary (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun summary$default (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun table (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun table$default (Lkotlinx/html/FlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun template (Lkotlinx/html/PhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun template$default (Lkotlinx/html/PhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun title (Lkotlinx/html/MetaDataContent;Ljava/lang/String;)V
 	public static final fun title (Lkotlinx/html/MetaDataContent;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun title$default (Lkotlinx/html/MetaDataContent;Ljava/lang/String;ILjava/lang/Object;)V
@@ -3990,9 +3998,11 @@ public final class kotlinx/html/Gen_tags_tKt {
 	public static synthetic fun colGroupTh$default (Lkotlinx/html/TR;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun colTh (Lkotlinx/html/TR;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun colTh$default (Lkotlinx/html/TR;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun getAsFlowContent (Lkotlinx/html/TEMPLATE;)Lkotlinx/html/FlowContent;
 	public static final fun getAsFlowContent (Lkotlinx/html/TEXTAREA;)Lkotlinx/html/FlowContent;
 	public static final fun getAsFlowContent (Lkotlinx/html/TIME;)Lkotlinx/html/FlowContent;
 	public static final fun getAsInteractiveContent (Lkotlinx/html/TEXTAREA;)Lkotlinx/html/InteractiveContent;
+	public static final fun getAsPhrasingContent (Lkotlinx/html/TEMPLATE;)Lkotlinx/html/PhrasingContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/TEXTAREA;)Lkotlinx/html/PhrasingContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/TIME;)Lkotlinx/html/PhrasingContent;
 	public static final fun rowGroupTh (Lkotlinx/html/TR;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -4830,6 +4840,13 @@ public class kotlinx/html/SELECT : kotlinx/html/HTMLTag, kotlinx/html/CommonAttr
 	public final fun setSize (Ljava/lang/String;)V
 }
 
+public class kotlinx/html/SLOT : kotlinx/html/HTMLTag, kotlinx/html/HtmlInlineTag {
+	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
+	public fun getConsumer ()Lkotlinx/html/TagConsumer;
+	public final fun getName ()Ljava/lang/String;
+	public final fun setName (Ljava/lang/String;)V
+}
+
 public class kotlinx/html/SMALL : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInlineTag {
 	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
@@ -4997,6 +5014,11 @@ public class kotlinx/html/TD : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockTag {
 	public final fun setColSpan (Ljava/lang/String;)V
 	public final fun setHeaders (Ljava/lang/String;)V
 	public final fun setRowSpan (Ljava/lang/String;)V
+}
+
+public class kotlinx/html/TEMPLATE : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInlineTag {
+	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
+	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 }
 
 public class kotlinx/html/TEXTAREA : kotlinx/html/HTMLTag, kotlinx/html/CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
