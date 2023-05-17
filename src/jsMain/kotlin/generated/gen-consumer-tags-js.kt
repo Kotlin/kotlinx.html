@@ -558,6 +558,9 @@ public inline fun TagConsumer<HTMLElement>.section(classes : String? = null, cro
 @HtmlTagMarker
 public inline fun TagConsumer<HTMLElement>.select(classes : String? = null, crossinline block : SELECT.() -> Unit = {}) : HTMLSelectElement = SELECT(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLSelectElement
 
+@HtmlTagMarker
+public inline fun TagConsumer<HTMLElement>.slot(classes : String? = null, crossinline block : SLOT.() -> Unit = {}) : HTMLElement = SLOT(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
 /**
  * Small text style
  */
@@ -635,6 +638,12 @@ public inline fun TagConsumer<HTMLElement>.tbody(classes : String? = null, cross
  */
 @HtmlTagMarker
 public inline fun TagConsumer<HTMLElement>.td(classes : String? = null, crossinline block : TD.() -> Unit = {}) : HTMLTableCellElement = TD(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLTableCellElement
+
+/**
+ * Template
+ */
+@HtmlTagMarker
+public inline fun TagConsumer<HTMLElement>.template(classes : String? = null, crossinline block : TEMPLATE.() -> Unit = {}) : HTMLTemplateElement = TEMPLATE(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLTemplateElement
 
 /**
  * Multi-line text field

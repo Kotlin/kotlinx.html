@@ -557,6 +557,9 @@ inline fun <T, C : TagConsumer<T>> C.section(classes : String? = null, crossinli
 @HtmlTagMarker
 inline fun <T, C : TagConsumer<T>> C.select(classes : String? = null, crossinline block : SELECT.() -> Unit = {}) : T = SELECT(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
+@HtmlTagMarker
+inline fun <T, C : TagConsumer<T>> C.slot(classes : String? = null, crossinline block : SLOT.() -> Unit = {}) : T = SLOT(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
 /**
  * Small text style
  */
@@ -634,6 +637,12 @@ inline fun <T, C : TagConsumer<T>> C.tbody(classes : String? = null, crossinline
  */
 @HtmlTagMarker
 inline fun <T, C : TagConsumer<T>> C.td(classes : String? = null, crossinline block : TD.() -> Unit = {}) : T = TD(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
+/**
+ * Template
+ */
+@HtmlTagMarker
+inline fun <T, C : TagConsumer<T>> C.template(classes : String? = null, crossinline block : TEMPLATE.() -> Unit = {}) : T = TEMPLATE(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 /**
  * Multi-line text field

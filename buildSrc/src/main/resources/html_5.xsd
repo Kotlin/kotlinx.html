@@ -205,6 +205,7 @@
             <xsd:element ref="noscript"/>
             <xsd:element ref="script"/>
             <xsd:element ref="style"/>
+            <!-- Excluding template element here because it will allow phrasing content here. -->
             <xsd:element ref="title" minOccurs="1" maxOccurs="1"/>
         </xsd:choice>
     </xsd:group>
@@ -399,6 +400,7 @@
             <xsd:element ref="samp"/>
             <xsd:element ref="script"/>
             <xsd:element ref="select"/>
+            <xsd:element ref="slot"/>
             <xsd:element ref="small"/>
             <xsd:element ref="span"/>
             <xsd:element ref="strong"/>
@@ -406,6 +408,7 @@
             <xsd:element ref="sup"/>
             <xsd:element ref="svg"/>
 
+            <xsd:element ref="template"/>
             <xsd:element ref="textarea"/>
             <xsd:element ref="time"/>
 
@@ -619,6 +622,25 @@
                 <xsd:group ref="flowContent"/>
             </xsd:choice>
             <xsd:attributeGroup ref="commonAttributeGroup"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="template">
+        <xsd:complexType mixed="true">
+            <xsd:choice>
+                <xsd:group ref="flowContent"/>
+            </xsd:choice>
+            <xsd:attributeGroup ref="commonAttributeGroup"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="slot">
+        <xsd:complexType mixed="true">
+            <xsd:choice>
+                <xsd:group ref="phrasingContent"/>
+            </xsd:choice>
+            <xsd:attributeGroup ref="commonAttributeGroup"/>
+            <xsd:attribute name="name"/>
         </xsd:complexType>
     </xsd:element>
 
