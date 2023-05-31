@@ -47,7 +47,7 @@ val tagIgnoreList = setOf(
     "menu", "menuitem"
 )
 
-fun Iterable<TagInfo>.filterIgnored() = filter { it.name.toLowerCase() !in tagIgnoreList }
+fun Iterable<TagInfo>.filterIgnored() = filter { it.name.lowercase() !in tagIgnoreList }
 
 val globalSuggestedAttributeNames = setOf("class")
 

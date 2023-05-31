@@ -1,14 +1,12 @@
 import Build_gradle.MavenPomFile
 import kotlinx.html.js.packageJson
-import org.apache.tools.ant.taskdefs.condition.Os
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsSetupTask
 
 /**
  * This build script supports following parameters:
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "1.7.10"
+    kotlin("multiplatform") version "1.8.20"
     id("maven-publish")
     id("signing")
 }
@@ -192,16 +190,13 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
+                implementation(kotlin("stdlib"))
             }
         }
 
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                /* Jackson is required to parse declarations.json. */
-                implementation("com.fasterxml.jackson.core:jackson-core:2.10.1")
-                implementation("com.fasterxml.jackson.core:jackson-databind:2.10.1")
             }
         }
 
@@ -244,7 +239,7 @@ tasks.withType<Jar> {
             "Build-Jdk" to System.getProperty("java.version"),
             "Implementation-Vendor" to "JetBrains s.r.o.",
             "Implementation-Version" to archiveVersion.get(),
-            "Created-By" to org.gradle.util.GradleVersion.current()
+            "Created-By" to GradleVersion.current()
         )
     }
 }

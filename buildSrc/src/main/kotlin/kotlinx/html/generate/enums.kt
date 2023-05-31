@@ -1,5 +1,7 @@
 package kotlinx.html.generate
 
+import java.util.*
+
 val reservedNames = setOf("class", "val", "var", "object", "true", "false", "as", "is", "for")
 
 fun String.replaceIfReserved() = if (this in reservedNames) "html" + this.capitalize() else this
@@ -10,7 +12,7 @@ fun List<String>.toAttributeValues() : List<AttributeEnumValue> =
 fun Appendable.enumObject(attribute : AttributeInfo) {
     val name = attribute.enumTypeName
 
-    appendln("@Suppress(\"unused\")")
+    appendLine("@Suppress(\"unused\")")
     clazz(Clazz(name, isObject = true)) {
         attribute.enumValues.forEach {
             append("    ")
@@ -32,7 +34,7 @@ fun Appendable.enum(attribute : AttributeInfo) {
     val name = attribute.enumTypeName
     val realValue = Var("realValue", "String", false, true)
 
-    appendln("@Suppress(\"unused\")")
+    appendLine("@Suppress(\"unused\")")
     append("enum ")
     clazz(Clazz(name, variables = listOf(realValue), parents = listOf("AttributeEnum"))) {
         attribute.enumValues.forEachIndexed { idx, it ->
@@ -45,7 +47,7 @@ fun Appendable.enum(attribute : AttributeInfo) {
                 append(",")
             }
 
-            appendln()
+            appendLine()
         }
     }
 

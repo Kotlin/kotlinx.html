@@ -13,7 +13,7 @@ class TestDOMTrees {
             +"content"
         }
 
-        assertEquals("div", tree.getElementById("test-node")?.tagName?.toLowerCase())
+        assertEquals("div", tree.getElementById("test-node")?.tagName?.lowercase())
     }
 
     @test fun `able to create complex tree and render it with pretty print`() {

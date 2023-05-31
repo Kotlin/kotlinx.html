@@ -15,7 +15,7 @@ fun fillKdocRepositoryExtension() {
     KdocRepository.tags = parseDocInfos()
 }
 
-val TagInfo.kdoc: KDocInfo? get() = KdocRepository.tags[this.name.toLowerCase()]
+val TagInfo.kdoc: KDocInfo? get() = KdocRepository.tags[this.name.lowercase()]
 
 private fun parseDocInfos(): Map<String, KDocInfo> {
     val html = parseDocInfo(HTML_TABLE_URL)
@@ -30,7 +30,7 @@ private fun parseDocInfo(xmlPath: URL): List<KDocInfo> {
 
     return xml.getElementsByTagName("tag").asList().map { node ->
         KDocInfo(
-            name = node.getAttributeString("name").toLowerCase(),
+            name = node.getAttributeString("name").lowercase(),
             description = node.getAttributeString("description").capitalize(),
             helpref = node.getAttributeString("helpref")
         )

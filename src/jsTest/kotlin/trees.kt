@@ -190,7 +190,7 @@ class DomTreeImplTest {
         }
 
         @Suppress("UNCHECKED_CAST")
-        assertEquals("http://www.w3.org/2000/svg", (wrapper.childNodes.asList() as List<Element>).first { it.tagName.toLowerCase() == "svg" }.namespaceURI)
+        assertEquals("http://www.w3.org/2000/svg", (wrapper.childNodes.asList() as List<Element>).first { it.tagName.lowercase() == "svg" }.namespaceURI)
     }
 
     @test fun assignEvent() {
@@ -222,10 +222,10 @@ class DomTreeImplTest {
         val col = document.create.col()
         val colGroup = document.create.colGroup()
 
-        assertEquals("TH", th.tagName.toUpperCase())
-        assertEquals("TD", td.tagName.toUpperCase())
-        assertEquals("COL", col.tagName.toUpperCase())
-        assertEquals("COLGROUP", colGroup.tagName.toUpperCase())
+        assertEquals("TH", th.tagName.uppercase())
+        assertEquals("TD", td.tagName.uppercase())
+        assertEquals("COL", col.tagName.uppercase())
+        assertEquals("COLGROUP", colGroup.tagName.uppercase())
     }
 
     @test fun testPrepend() {

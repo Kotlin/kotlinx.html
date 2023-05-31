@@ -41,7 +41,7 @@ fun Appendable.facade(facade: AttributeFacade) {
     }
 
     facade.attributes.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
-        if (attribute.name.isLowerCase() || attribute.name.toLowerCase() !in facade.attributeNames) {
+        if (attribute.name.isLowerCase() || attribute.name.lowercase() !in facade.attributeNames) {
             attributeProperty(attribute, receiver = facadeName, indent = 0)
         }
     }

@@ -73,7 +73,7 @@ data class AttributeInfo(
 val HasType.typeName : String
     get() = if (type == AttributeType.ENUM) enumTypeName else type.typeName
 
-fun String.isLowerCase() = this.toLowerCase() == this
+fun String.isLowerCase() = this.lowercase() == this
 
 data class TagInfo(
         val name : String,
@@ -84,7 +84,7 @@ data class TagInfo(
         val suggestedAttributes : Set<String>,
         val tagGroupNames: List<String>
 ) {
-    val className: String = name.humanize().toUpperCase()
+    val className: String = name.humanize().uppercase()
     val memberName: String = name.humanize().replaceIfReserved()
 }
 
