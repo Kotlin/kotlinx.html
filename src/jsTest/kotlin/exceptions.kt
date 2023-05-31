@@ -7,7 +7,8 @@ import kotlin.test.*
 
 class TestExceptions {
 
-    @Test fun `exception_handler_should_add_output`() {
+    @Test
+    fun `exception_handler_should_add_output`() {
 
         val container = document.body!!.append.catch { err ->
 
@@ -27,8 +28,9 @@ class TestExceptions {
         }
 
         assertEquals(
-                """<h1> text <div>ERROR: testing errors</div></h1><h2> should be present </h2>""",
-                container.innerHTML.trimTagSpace())
+            """<h1> text <div>ERROR: testing errors</div></h1><h2> should be present </h2>""",
+            container.innerHTML.trimTagSpace()
+        )
     }
 
     fun String.trimTagSpace() = replace(">\\s+<".toRegex(), "><")

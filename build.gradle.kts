@@ -100,7 +100,7 @@ kotlin {
             }
         }
     }
-    js(BOTH) {
+    js(IR) {
         moduleName = project.name
 
         compilations["main"].packageJson {
@@ -139,9 +139,7 @@ kotlin {
     linuxX64()
     iosX64()
     iosArm64()
-    iosArm32()
     iosSimulatorArm64()
-    watchosX86()
     watchosX64()
     watchosArm32()
     watchosArm64()
