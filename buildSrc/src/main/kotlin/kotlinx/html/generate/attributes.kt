@@ -14,9 +14,14 @@ fun Appendable.attributePseudoDelegate(request: AttributeRequest) {
     emptyLine()
 }
 
-fun Appendable.attributeProperty(attribute: AttributeInfo, receiver: String? = null, indent: Int = 1) {
+fun Appendable.attributeProperty(
+    repository: Repository,
+    attribute: AttributeInfo,
+    receiver: String? = null,
+    indent: Int = 1
+) {
     val attributeName = attribute.name
-    val request = tagAttributeVar(attribute, receiver, indent)
+    val request = tagAttributeVar(repository, attribute, receiver, indent)
     append("\n")
 
     indent(indent)
@@ -34,7 +39,7 @@ fun Appendable.attributeProperty(attribute: AttributeInfo, receiver: String? = n
     emptyLine()
 }
 
-fun Appendable.facade(facade: AttributeFacade) {
+fun Appendable.facade(repository: Repository, facade: AttributeFacade) {
     val facadeName = facade.name.capitalize() + "Facade"
 
     clazz(Clazz(facadeName, isInterface = true, parents = listOf("Tag"))) {
@@ -42,7 +47,7 @@ fun Appendable.facade(facade: AttributeFacade) {
 
     facade.attributes.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
         if (attribute.name.isLowerCase() || attribute.name.lowercase() !in facade.attributeNames) {
-            attributeProperty(attribute, receiver = facadeName, indent = 0)
+            attributeProperty(repository, attribute, receiver = facadeName, indent = 0)
         }
     }
 }

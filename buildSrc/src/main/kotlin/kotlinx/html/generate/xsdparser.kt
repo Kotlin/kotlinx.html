@@ -44,15 +44,15 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
                 .filter { it.name == "enumeration" }
                 .map { it.value.value }
 
-        if (enumEntries.size == 1 && enumEntries.single() == name) {
+        return if (enumEntries.size == 1 && enumEntries.single() == name) {
             // probably ticker
-            return AttributeInfo(name, AttributeType.TICKER)
+            AttributeInfo(name, AttributeType.TICKER)
         } else if (enumEntries.size == 2 && enumEntries.sorted() == listOf("off", "on")) {
-            return AttributeInfo(name, AttributeType.BOOLEAN, trueFalse = listOf("on", "off"))
+            AttributeInfo(name, AttributeType.BOOLEAN, trueFalse = listOf("on", "off"))
         } else if (enumEntries.isEmpty()) {
-            return AttributeInfo(name, AttributeType.STRING)
+            AttributeInfo(name, AttributeType.STRING)
         } else {
-            return AttributeInfo(name, AttributeType.ENUM, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
+            AttributeInfo(name, AttributeType.ENUM, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
         }
     } else {
         return AttributeInfo(name, AttributeType.STRING)
@@ -72,13 +72,12 @@ fun AttributeInfo.handleSpecialType(tagName: String = ""): AttributeInfo = speci
     this.copy(type = type)
 } ?: this
 
-fun fillRepository() {
+fun fillRepository(repository: Repository) {
     val parser = XSOMParser(SAXParserFactory.newInstance())
     parser.parse(SCHEME_URL)
     val schema = parser.result.getSchema(HTML_NAMESPACE)
 
-    @Suppress("UNCHECKED_CAST")
-    val alreadyIncluded = TreeSet<String>() { a, b -> a.compareTo(b, true) }
+    val alreadyIncluded = TreeSet<String> { a, b -> a.compareTo(b, true) }
     schema.attGroupDecls.values.sortedByDescending { it.attributeUses.size }.forEach { attributeGroup ->
         val requiredNames = HashSet<String>()
         val facadeAttributes = attributeGroup.attributeUses.map { attributeUse ->
@@ -95,7 +94,7 @@ fun fillRepository() {
         val name = attributeGroup.name
 
         if (facadeAttributes.isNotEmpty()) {
-            Repository.attributeFacades[name] = AttributeFacade(name, facadeAttributes, requiredNames)
+            repository.attributeFacades[name] = AttributeFacade(name, facadeAttributes, requiredNames)
             alreadyIncluded.addAll(facadeAttributes.map { it.name })
         }
     }
@@ -109,9 +108,9 @@ fun fillRepository() {
                 .map { it.asElementDecl().name }
 
         val group = TagGroup(name, children)
-        Repository.tagGroups[name] = group
+        repository.tagGroups[name] = group
         children.forEach {
-            Repository.groupsByTags.getOrPut(it) { ArrayList<TagGroup>() }.add(group)
+            repository.groupsByTags.getOrPut(it) { ArrayList<TagGroup>() }.add(group)
         }
     }
 
@@ -128,7 +127,7 @@ fun fillRepository() {
         if (type.isComplexType) {
             val complex = type.asComplexType()
             val groupDeclarations = complex.attGroups.flatMap { flattenGroups(it) }.distinct().toList()
-            val attributeGroups = groupDeclarations.map { Repository.attributeFacades[it.name] }.filterNotNull()
+            val attributeGroups = groupDeclarations.map { repository.attributeFacades[it.name] }.filterNotNull()
 
             val attributes = complex.declaredAttributeUses.map {
                 if (it.isRequired) {
@@ -149,7 +148,7 @@ fun fillRepository() {
                 }
             }
 
-            modelGroupNames.addAll(Repository.groupsByTags[name]?.map { it.name }.orEmpty())
+            modelGroupNames.addAll(repository.groupsByTags[name]?.map { it.name }.orEmpty())
 
             suggestedNames.addAll(attributes.filter { it.type == AttributeType.ENUM }.map { it.name })
             suggestedNames.addAll(attributes.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
@@ -161,10 +160,10 @@ fun fillRepository() {
             throw UnsupportedOperationException()
         }
 
-        Repository.tags[name] = tagInfo
+        repository.tags[name] = tagInfo
     }
 
-    tagUnions()
+    tagUnions(repository)
 }
 
 private val xsdToType = mapOf(
