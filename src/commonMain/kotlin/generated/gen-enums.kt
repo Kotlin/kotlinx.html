@@ -1,3 +1,5 @@
+@file:Suppress("EnumEntryName")
+
 package kotlinx.html
 
 import kotlinx.html.*
@@ -215,6 +217,13 @@ enum class IframeSandbox(override val realValue : String) : AttributeEnum {
 }
 
 internal val iframeSandboxValues : Map<String, IframeSandbox> = IframeSandbox.values().associateBy { it.realValue }
+@Suppress("unused")
+enum class ImgLoading(override val realValue : String) : AttributeEnum {
+    eager("eager"),
+    lazy("lazy")
+}
+
+internal val imgLoadingValues : Map<String, ImgLoading> = ImgLoading.values().associateBy { it.realValue }
 @Suppress("unused")
 enum class InputType(override val realValue : String) : AttributeEnum {
     button("button"),
