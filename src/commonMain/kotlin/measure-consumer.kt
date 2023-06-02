@@ -39,10 +39,6 @@ private class TimeMeasureConsumer<R>(val downstream: TagConsumer<R>) : TagConsum
         downstream.onTagContentUnsafe(block)
     }
 
-    override fun onTagError(tag: Tag, exception: Throwable) {
-        downstream.onTagError(tag, exception)
-    }
-
     override fun onTagComment(content: CharSequence) {
         downstream.onTagComment(content)
     }

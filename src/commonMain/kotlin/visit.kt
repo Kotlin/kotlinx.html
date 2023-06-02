@@ -2,13 +2,8 @@ package kotlinx.html
 
 inline fun <T : Tag> T.visitTag(block: T.() -> Unit) {
     consumer.onTagStart(this)
-    try {
-        this.block()
-    } catch (err: Throwable) {
-        consumer.onTagError(this, err)
-    } finally {
-        consumer.onTagEnd(this)
-    }
+    this.block()
+    consumer.onTagEnd(this)
 }
 
 inline fun <T : Tag, R> T.visitTagAndFinalize(consumer: TagConsumer<R>, block: T.() -> Unit): R {

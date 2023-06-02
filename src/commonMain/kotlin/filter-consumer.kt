@@ -74,12 +74,6 @@ private class FilterTagConsumer<T>(val downstream: TagConsumer<T>, val predicate
 
     private fun canPassCurrentLevel() = dropLevel == null && currentLevel !in skippedLevels
 
-    override fun onTagError(tag: Tag, exception: Throwable) {
-        if (canPassCurrentLevel()) {
-            downstream.onTagError(tag, exception)
-        }
-    }
-
     override fun onTagComment(content: CharSequence) {
         if (canPassCurrentLevel()) {
             downstream.onTagComment(content)
