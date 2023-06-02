@@ -2,7 +2,7 @@ package kotlinx.html.generate
 
 import java.util.*
 
-fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
+fun Appendable.tagClass(repository: Repository, tag: TagInfo, excludeAttributes : Set<String>) {
     val parentAttributeIfaces = tag.attributeGroups.map {it.name.capitalize() + "Facade"}
     val parentElementIfaces = tag.tagGroupNames.map { it.humanize().capitalize() }
     val allParentIfaces = parentAttributeIfaces + parentElementIfaces
@@ -48,7 +48,7 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
 
         attributes.filter {!isAttributeExcluded(it.name) }.forEach { attribute ->
             if (attribute.name[0].isLowerCase() || attribute.name.lowercase() !in lowerCasedNames) {
-                attributeProperty(attribute)
+                attributeProperty(repository, attribute)
             }
         }
 
@@ -126,12 +126,12 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
         emptyLine()
     }
 
-    tag.directChildren.map {Repository.tags[it]}.filterNotNull().filterIgnored().forEach { children ->
+    tag.directChildren.map {repository.tags[it]}.filterNotNull().filterIgnored().forEach { children ->
         htmlTagBuilders(tag.className, children)
     }
 
     if (parentElementIfaces.size > 1) {
-        val commons = tag.tagGroupNames.map {Repository.tagGroups[it]?.tags?.toSet()}.filterNotNull().reduce { a, b -> a.intersect(b) }
+        val commons = tag.tagGroupNames.map {repository.tagGroups[it]?.tags?.toSet()}.filterNotNull().reduce { a, b -> a.intersect(b) }
         if (commons.isNotEmpty()) {
             parentElementIfaces.forEach { group ->
                 variable(Var(name = "as" + group, type = group), receiver = tag.className)
@@ -146,7 +146,12 @@ fun Appendable.tagClass(tag : TagInfo, excludeAttributes : Set<String>) {
     emptyLine()
 }
 
-internal fun Appendable.tagAttributeVar(attribute: AttributeInfo, receiver: String?, indent: Int = 1): AttributeRequest {
+internal fun Appendable.tagAttributeVar(
+    repository: Repository,
+    attribute: AttributeInfo,
+    receiver: String?,
+    indent: Int = 1
+): AttributeRequest {
     val options = LinkedList<Const<*>>()
 
     if (attribute.type == AttributeType.ENUM) {
@@ -156,7 +161,7 @@ internal fun Appendable.tagAttributeVar(attribute: AttributeInfo, receiver: Stri
     }
 
     val attributeRequest = AttributeRequest(attribute.type, if (attribute.type == AttributeType.ENUM) attribute.enumTypeName else "", options)
-    Repository.attributeDelegateRequests.add(attributeRequest)
+    repository.attributeDelegateRequests.add(attributeRequest)
 
     indent(indent)
     variable(Var(attribute.fieldName, attribute.typeName, true), receiver = receiver ?: "")

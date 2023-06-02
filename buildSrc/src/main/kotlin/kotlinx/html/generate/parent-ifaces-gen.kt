@@ -3,8 +3,8 @@ package kotlinx.html.generate
 import java.io.*
 import java.util.*
 
-fun generateParentInterfaces(todir: String, packg: String) {
-    val allParentIfaces = Repository.tags.values.filterIgnored().map { tag ->
+fun generateParentInterfaces(repository: Repository, todir: String, packg: String) {
+    val allParentIfaces = repository.tags.values.filterIgnored().map { tag ->
         val parentAttributeIfaces = tag.attributeGroups.map { it.name.humanize().capitalize() + "Facade" }
         val parentElementIfaces = tag.tagGroupNames.map { it.humanize().capitalize() }
         val sum = parentAttributeIfaces + parentElementIfaces

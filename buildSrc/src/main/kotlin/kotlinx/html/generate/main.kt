@@ -3,7 +3,8 @@ package kotlinx.html.generate
 import java.io.*
 
 fun generate(packg: String, todir: String, jsdir: String) {
-    fillRepository()
+    val repository = Repository()
+    fillRepository(repository)
     fillKdocRepositoryExtension()
 
     File(todir).mkdirs()
@@ -21,14 +22,14 @@ fun generate(packg: String, todir: String, jsdir: String) {
             emptyLine()
             emptyLine()
 
-            Repository.attributeFacades.values.forEach {
-                facade(it)
+            repository.attributeFacades.values.forEach {
+                facade(repository, it)
                 emptyLine()
             }
         }
     }
 
-    Repository.tags.values.filterIgnored().groupBy { it.name[0] }.entries.forEach { e ->
+    repository.tags.values.filterIgnored().groupBy { it.name[0] }.entries.forEach { e ->
         FileOutputStream("$todir/gen-tags-${e.key}.kt").writer(Charsets.UTF_8).use {
             it.with {
                 packg(packg)
@@ -43,7 +44,7 @@ fun generate(packg: String, todir: String, jsdir: String) {
                 emptyLine()
 
                 e.value.forEach {
-                    tagClass(it, emptySet())
+                    tagClass(repository, it, emptySet())
                 }
             }
         }
@@ -62,7 +63,7 @@ fun generate(packg: String, todir: String, jsdir: String) {
             emptyLine()
             emptyLine()
 
-            Repository.tags.values.filterIgnored().forEach {
+            repository.tags.values.filterIgnored().forEach {
                 val contentlessTag = it.name.lowercase() in contentlessTags
                 if (it.possibleChildren.isEmpty() && it.name.lowercase() !in emptyTags && !contentlessTag) {
                     consumerBuilderShared(it, false)
@@ -91,7 +92,7 @@ fun generate(packg: String, todir: String, jsdir: String) {
             emptyLine()
             emptyLine()
 
-            Repository.tags.values.filterIgnored().forEach {
+            repository.tags.values.filterIgnored().forEach {
                 val contentlessTag = it.name.lowercase() in contentlessTags
                 if (it.possibleChildren.isEmpty() && it.name.lowercase() !in emptyTags && !contentlessTag) {
                     consumerBuilderJS(it, false)
@@ -118,7 +119,7 @@ fun generate(packg: String, todir: String, jsdir: String) {
             emptyLine()
             emptyLine()
 
-            Repository.attributeFacades.filter { it.value.attributeNames.any { it.startsWith("on") } }.forEach { facade ->
+            repository.attributeFacades.filter { it.value.attributeNames.any { it.startsWith("on") } }.forEach { facade ->
                 facade.value.attributes.filter { it.name.startsWith("on") }.forEach {
                     eventProperty(facade.value.name.capitalize() + "Facade", it)
                 }
@@ -147,13 +148,13 @@ fun generate(packg: String, todir: String, jsdir: String) {
                 }
             }
 
-            Repository.attributeFacades.values.forEach { facade ->
+            repository.attributeFacades.values.forEach { facade ->
                 facade.attributes.filter { it.enumValues.isNotEmpty() }.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
                     genEnumAttribute(attribute)
                 }
             }
 
-            Repository.tags.values.filterIgnored().forEach { tag ->
+            repository.tags.values.filterIgnored().forEach { tag ->
                 tag.attributes.filter { it.enumValues.isNotEmpty() }.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
                     genEnumAttribute(attribute)
                 }
@@ -173,7 +174,7 @@ fun generate(packg: String, todir: String, jsdir: String) {
             emptyLine()
             emptyLine()
 
-            Repository.attributeDelegateRequests.toList().forEach {
+            repository.attributeDelegateRequests.toList().forEach {
                 attributePseudoDelegate(it)
             }
         }
@@ -192,7 +193,7 @@ fun generate(packg: String, todir: String, jsdir: String) {
             emptyLine()
             emptyLine()
 
-            Repository.groupUnions.values.forEach { union ->
+            repository.groupUnions.values.forEach { union ->
                 clazz(Clazz(
                         name = union.name,
                         isInterface = true,
@@ -205,8 +206,8 @@ fun generate(packg: String, todir: String, jsdir: String) {
             emptyLine()
             emptyLine()
 
-            Repository.groupUnions.values.forEach { union ->
-                (union.additionalTags + union.ambiguityTags).mapNotNull { Repository.tags[it] }.filterIgnored().forEach { tag ->
+            repository.groupUnions.values.forEach { union ->
+                (union.additionalTags + union.ambiguityTags).mapNotNull { repository.tags[it] }.filterIgnored().forEach { tag ->
                     htmlTagBuilders(union.name, tag)
                 }
 
@@ -228,19 +229,19 @@ fun generate(packg: String, todir: String, jsdir: String) {
             emptyLine()
             emptyLine()
 
-            Repository.tagGroups.values.forEach { group ->
-                val unions = Repository.unionsByGroups[group.name].orEmpty().map { it.name }
+            repository.tagGroups.values.forEach { group ->
+                val unions = repository.unionsByGroups[group.name].orEmpty().map { it.name }
 
                 clazz(Clazz(name = group.typeName, parents = unions + "Tag", isPublic = true, isInterface = true)) {
                 }
                 emptyLine()
             }
 
-            Repository.tagGroups.values.forEach { group ->
+            repository.tagGroups.values.forEach { group ->
                 val receiver = group.typeName
-                val unions = Repository.unionsByGroups[group.name].orEmpty()
+                val unions = repository.unionsByGroups[group.name].orEmpty()
 
-                group.tags.mapNotNull { Repository.tags[it] }.filterIgnored().filter { tag -> unions.count { tag.name in it.intersectionTags } == 0 }.forEach {
+                group.tags.mapNotNull { repository.tags[it] }.filterIgnored().filter { tag -> unions.count { tag.name in it.intersectionTags } == 0 }.forEach {
                     htmlTagBuilders(receiver, it)
                 }
             }
@@ -290,5 +291,5 @@ fun generate(packg: String, todir: String, jsdir: String) {
         }
     }
 
-    generateParentInterfaces(todir, packg)
+    generateParentInterfaces(repository, todir, packg)
 }

@@ -3,7 +3,7 @@ package kotlinx.html.generate
 import java.util.*
 import kotlin.collections.HashMap
 
-object Repository {
+class Repository {
     val tags = TreeMap<String, TagInfo>()
 
     val attributeDelegateRequests = TreeSet<AttributeRequest> (
