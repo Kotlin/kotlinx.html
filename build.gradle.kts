@@ -68,16 +68,6 @@ publishing {
                 }
             }
         }
-
-        create<MavenPublication>("kotlinx-html-assembly") {
-            artifactId = "kotlinx-html-assembly"
-            jar("jsWebJar") {
-                archiveBaseName by "${project.name}-assembly"
-                archiveClassifier by "webjar"
-                from("$buildDir/js/packages/${project.name}/kotlin/kotlinx-html-js.js")
-                into("META-INF/resources/webjars/${project.name}/${project.version}/")
-            }
-        }
     }
 }
 
@@ -85,53 +75,22 @@ repositories {
     mavenCentral()
 }
 
+
+
 kotlin {
     jvm {
         mavenPublication {
             groupId = group as String
             pom { name by "${project.name}-jvm" }
-
-            javadocJar("jvmJavadocJar")
-            jar("jvmTestSourcesJar") {
-                archiveClassifier by "test-sources"
-                with(sourceSets["jvmTest"]) {
-                    from(kotlin, resources)
-                }
-            }
         }
     }
-    js(BOTH) {
+    js(IR) {
         moduleName = project.name
-
-        compilations["main"].packageJson {
-            main = "kotlin/kotlinx-html-js.js"
-            name = "kotlinx-html-js"
-        }
-
-        compilations["main"].kotlinOptions.apply {
-            outputFile = "$buildDir/js/packages/${project.name}/kotlin/${project.name}-js.js"
-            moduleKind = "umd"
-            sourceMap = true
-            sourceMapEmbedSources = "always"
-        }
-
-        compilations["test"].kotlinOptions.apply {
-            moduleKind = "umd"
-            metaInfo = true
-            sourceMap = true
-        }
+        browser()
 
         mavenPublication {
             groupId = group as String
             pom { name by "${project.name}-js" }
-
-            javadocJar("jsJavadocJar")
-            jar("jsTestSourcesJar") {
-                archiveClassifier by "test-sources"
-                with(sourceSets["jsTest"]) {
-                    from(kotlin, resources)
-                }
-            }
         }
     }
 
@@ -140,9 +99,7 @@ kotlin {
     linuxArm64()
     iosX64()
     iosArm64()
-    iosArm32()
     iosSimulatorArm64()
-    watchosX86()
     watchosX64()
     watchosArm32()
     watchosArm64()
@@ -159,11 +116,6 @@ kotlin {
             artifactId = "${project.name}-common"
             pom {
                 name by "${project.name}-common"
-            }
-
-            javadocJar("commonJavadocJar")
-            jar("commonTestSourcesJar") {
-                archiveClassifier by "test-sources"
             }
         }
     }
@@ -340,13 +292,6 @@ fun MavenPomFile.config(config: MavenPomFile.() -> Unit = {}) {
 
 tasks.withType<GenerateModuleMetadata> {
     enabled = true
-}
-
-fun MavenPublication.jar(taskName: String, config: Action<Jar>) = artifact(tasks.create(taskName, Jar::class, config))
-
-fun MavenPublication.javadocJar(taskName: String, config: Jar.() -> Unit = {}) = jar(taskName) {
-    archiveClassifier by "javadoc"
-    config()
 }
 
 infix fun <T> Property<T>.by(value: T) {
