@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.8.1-SNAPSHOT"
+version = "0.9.0"
 
 buildscript {
     dependencies {
