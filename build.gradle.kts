@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.8.1-SNAPSHOT"
+version = "0.9.0"
 
 buildscript {
     dependencies {
@@ -75,13 +75,19 @@ repositories {
     mavenCentral()
 }
 
-
+val emptyJar = tasks.register<org.gradle.jvm.tasks.Jar>("emptyJar") {
+    archiveAppendix.set("empty")
+}
 
 kotlin {
     jvm {
         mavenPublication {
             groupId = group as String
             pom { name by "${project.name}-jvm" }
+
+            artifact(emptyJar) {
+                classifier = "javadoc"
+            }
         }
     }
     js(IR) {
