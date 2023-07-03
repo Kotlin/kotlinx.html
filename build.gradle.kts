@@ -80,6 +80,8 @@ val emptyJar = tasks.register<org.gradle.jvm.tasks.Jar>("emptyJar") {
 }
 
 kotlin {
+    jvmToolchain(8)
+
     jvm {
         mavenPublication {
             groupId = group as String
