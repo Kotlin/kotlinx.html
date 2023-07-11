@@ -128,6 +128,8 @@ kotlin {
 }
 
 kotlin {
+    jvmToolchain(8)
+
     sourceSets {
         commonMain {
             dependencies {
@@ -325,3 +327,4 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJ
 rootProject.plugins.withType(org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin::class.java) {
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().ignoreScripts = false
 }
+
