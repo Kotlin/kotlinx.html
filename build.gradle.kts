@@ -110,6 +110,7 @@ kotlin {
     watchosArm32()
     watchosArm64()
     watchosSimulatorArm64()
+    watchosDeviceArm64()
     tvosX64()
     tvosArm64()
     tvosSimulatorArm64()
@@ -181,7 +182,8 @@ kotlin {
             "tvosArm64",
             "tvosSimulatorArm64",
             "macosX64",
-            "macosArm64"
+            "macosArm64",
+            "watchosDeviceArm64",
         )
 
         val commonMain by getting
