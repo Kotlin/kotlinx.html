@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.8.1-SNAPSHOT"
+version = "0.9.1"
 
 buildscript {
     dependencies {
@@ -68,21 +68,15 @@ publishing {
                 }
             }
         }
-
-        create<MavenPublication>("kotlinx-html-assembly") {
-            artifactId = "kotlinx-html-assembly"
-            jar("jsWebJar") {
-                archiveBaseName by "${project.name}-assembly"
-                archiveClassifier by "webjar"
-                from("$buildDir/js/packages/${project.name}/kotlin/kotlinx-html-js.js")
-                into("META-INF/resources/webjars/${project.name}/${project.version}/")
-            }
-        }
     }
 }
 
 repositories {
     mavenCentral()
+}
+
+val emptyJar = tasks.register<org.gradle.jvm.tasks.Jar>("emptyJar") {
+    archiveAppendix.set("empty")
 }
 
 kotlin {
@@ -91,61 +85,32 @@ kotlin {
             groupId = group as String
             pom { name by "${project.name}-jvm" }
 
-            javadocJar("jvmJavadocJar")
-            jar("jvmTestSourcesJar") {
-                archiveClassifier by "test-sources"
-                with(sourceSets["jvmTest"]) {
-                    from(kotlin, resources)
-                }
+            artifact(emptyJar) {
+                classifier = "javadoc"
             }
         }
     }
-    js(BOTH) {
+    js(IR) {
         moduleName = project.name
-
-        compilations["main"].packageJson {
-            main = "kotlin/kotlinx-html-js.js"
-            name = "kotlinx-html-js"
-        }
-
-        compilations["main"].kotlinOptions.apply {
-            outputFile = "$buildDir/js/packages/${project.name}/kotlin/${project.name}-js.js"
-            moduleKind = "umd"
-            sourceMap = true
-            sourceMapEmbedSources = "always"
-        }
-
-        compilations["test"].kotlinOptions.apply {
-            moduleKind = "umd"
-            metaInfo = true
-            sourceMap = true
-        }
+        browser()
 
         mavenPublication {
             groupId = group as String
             pom { name by "${project.name}-js" }
-
-            javadocJar("jsJavadocJar")
-            jar("jsTestSourcesJar") {
-                archiveClassifier by "test-sources"
-                with(sourceSets["jsTest"]) {
-                    from(kotlin, resources)
-                }
-            }
         }
     }
 
     mingwX64()
     linuxX64()
+    linuxArm64()
     iosX64()
     iosArm64()
-    iosArm32()
     iosSimulatorArm64()
-    watchosX86()
     watchosX64()
     watchosArm32()
     watchosArm64()
     watchosSimulatorArm64()
+    watchosDeviceArm64()
     tvosX64()
     tvosArm64()
     tvosSimulatorArm64()
@@ -159,16 +124,13 @@ kotlin {
             pom {
                 name by "${project.name}-common"
             }
-
-            javadocJar("commonJavadocJar")
-            jar("commonTestSourcesJar") {
-                archiveClassifier by "test-sources"
-            }
         }
     }
 }
 
 kotlin {
+    jvmToolchain(8)
+
     sourceSets {
         commonMain {
             dependencies {
@@ -206,6 +168,7 @@ kotlin {
         val nativeTargets = listOf(
             "mingwX64",
             "linuxX64",
+            "linuxArm64",
             "iosX64",
             "iosArm64",
             "iosArm32",
@@ -219,7 +182,8 @@ kotlin {
             "tvosArm64",
             "tvosSimulatorArm64",
             "macosX64",
-            "macosArm64"
+            "macosArm64",
+            "watchosDeviceArm64",
         )
 
         val commonMain by getting
@@ -340,13 +304,6 @@ tasks.withType<GenerateModuleMetadata> {
     enabled = true
 }
 
-fun MavenPublication.jar(taskName: String, config: Action<Jar>) = artifact(tasks.create(taskName, Jar::class, config))
-
-fun MavenPublication.javadocJar(taskName: String, config: Jar.() -> Unit = {}) = jar(taskName) {
-    archiveClassifier by "javadoc"
-    config()
-}
-
 infix fun <T> Property<T>.by(value: T) {
     set(value)
 }
@@ -372,3 +329,4 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJ
 rootProject.plugins.withType(org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin::class.java) {
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().ignoreScripts = false
 }
+

@@ -11,7 +11,6 @@ interface TagConsumer<out R> {
     fun onTagContentEntity(entity: Entities)
     fun onTagContentUnsafe(block: Unsafe.() -> Unit)
     fun onTagComment(content: CharSequence)
-    fun onTagError(tag: Tag, exception: Throwable): Unit = throw exception
     fun finalize(): R
 }
 

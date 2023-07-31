@@ -3003,13 +3003,8 @@ public abstract interface class kotlinx/html/TagConsumer {
 	public abstract fun onTagContentEntity (Lkotlinx/html/Entities;)V
 	public abstract fun onTagContentUnsafe (Lkotlin/jvm/functions/Function1;)V
 	public abstract fun onTagEnd (Lkotlinx/html/Tag;)V
-	public abstract fun onTagError (Lkotlinx/html/Tag;Ljava/lang/Throwable;)V
 	public abstract fun onTagEvent (Lkotlinx/html/Tag;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public abstract fun onTagStart (Lkotlinx/html/Tag;)V
-}
-
-public final class kotlinx/html/TagConsumer$DefaultImpls {
-	public static fun onTagError (Lkotlinx/html/TagConsumer;Lkotlinx/html/Tag;Ljava/lang/Throwable;)V
 }
 
 public final class kotlinx/html/TextAreaWrap : java/lang/Enum, kotlinx/html/AttributeEnum {
@@ -3205,17 +3200,12 @@ public final class kotlinx/html/consumers/DelayedConsumer : kotlinx/html/TagCons
 	public fun onTagContentEntity (Lkotlinx/html/Entities;)V
 	public fun onTagContentUnsafe (Lkotlin/jvm/functions/Function1;)V
 	public fun onTagEnd (Lkotlinx/html/Tag;)V
-	public fun onTagError (Lkotlinx/html/Tag;Ljava/lang/Throwable;)V
 	public fun onTagEvent (Lkotlinx/html/Tag;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public fun onTagStart (Lkotlinx/html/Tag;)V
 }
 
 public final class kotlinx/html/consumers/Delayed_consumerKt {
 	public static final fun delayed (Lkotlinx/html/TagConsumer;)Lkotlinx/html/TagConsumer;
-}
-
-public final class kotlinx/html/consumers/Exception_consumerKt {
-	public static final fun catch (Lkotlinx/html/TagConsumer;Lkotlin/jvm/functions/Function2;)Lkotlinx/html/TagConsumer;
 }
 
 public final class kotlinx/html/consumers/Filter_consumerKt {
@@ -3233,7 +3223,6 @@ public final class kotlinx/html/consumers/FinalizeConsumer : kotlinx/html/TagCon
 	public fun onTagContentEntity (Lkotlinx/html/Entities;)V
 	public fun onTagContentUnsafe (Lkotlin/jvm/functions/Function1;)V
 	public fun onTagEnd (Lkotlinx/html/Tag;)V
-	public fun onTagError (Lkotlinx/html/Tag;Ljava/lang/Throwable;)V
 	public fun onTagEvent (Lkotlinx/html/Tag;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public fun onTagStart (Lkotlinx/html/Tag;)V
 }
@@ -3287,7 +3276,6 @@ public final class kotlinx/html/consumers/TraceConsumer : kotlinx/html/TagConsum
 	public fun onTagContentEntity (Lkotlinx/html/Entities;)V
 	public fun onTagContentUnsafe (Lkotlin/jvm/functions/Function1;)V
 	public fun onTagEnd (Lkotlinx/html/Tag;)V
-	public fun onTagError (Lkotlinx/html/Tag;Ljava/lang/Throwable;)V
 	public fun onTagEvent (Lkotlinx/html/Tag;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public fun onTagStart (Lkotlinx/html/Tag;)V
 }
@@ -3330,7 +3318,6 @@ public final class kotlinx/html/dom/HTMLDOMBuilder : kotlinx/html/TagConsumer {
 	public fun onTagContentEntity (Lkotlinx/html/Entities;)V
 	public fun onTagContentUnsafe (Lkotlin/jvm/functions/Function1;)V
 	public fun onTagEnd (Lkotlinx/html/Tag;)V
-	public fun onTagError (Lkotlinx/html/Tag;Ljava/lang/Throwable;)V
 	public fun onTagEvent (Lkotlinx/html/Tag;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public fun onTagStart (Lkotlinx/html/Tag;)V
 }
@@ -3383,7 +3370,6 @@ public final class kotlinx/html/stream/HTMLStreamBuilder : kotlinx/html/TagConsu
 	public fun onTagContentEntity (Lkotlinx/html/Entities;)V
 	public fun onTagContentUnsafe (Lkotlin/jvm/functions/Function1;)V
 	public fun onTagEnd (Lkotlinx/html/Tag;)V
-	public fun onTagError (Lkotlinx/html/Tag;Ljava/lang/Throwable;)V
 	public fun onTagEvent (Lkotlinx/html/Tag;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public fun onTagStart (Lkotlinx/html/Tag;)V
 }
