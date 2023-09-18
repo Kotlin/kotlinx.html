@@ -4,8 +4,11 @@ import kotlinx.html.*
 import kotlinx.html.consumers.*
 import kotlinx.html.org.w3c.dom.events.Event
 
-class HTMLStreamBuilder<out O : Appendable>(val out: O, val prettyPrint: Boolean, val xhtmlCompatible: Boolean) :
-    TagConsumer<O> {
+class HTMLStreamBuilder<out O : Appendable>(
+    val out: O,
+    val prettyPrint: Boolean,
+    val xhtmlCompatible: Boolean
+) : TagConsumer<O> {
     private var level = 0
     private var ln = true
 

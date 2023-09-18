@@ -1,7 +1,8 @@
 package kotlinx.html.org.w3c.dom.events // ktlint-disable filename
 
-actual interface Event {
-    actual fun stopPropagation()
-    actual fun preventDefault()
-    actual fun initEvent(eventTypeArg: String, canBubbleArg: Boolean, cancelableArg: Boolean)
+actual open class Event {
+    actual open fun stopPropagation() {}
+    actual open fun preventDefault() {}
+
+    actual open fun initEvent(type: String, bubbles: Boolean, cancelable: Boolean) {}
 }
