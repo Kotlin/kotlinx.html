@@ -153,6 +153,7 @@ public final class kotlinx/html/AreaShape : java/lang/Enum, kotlinx/html/Attribu
 	public static final field default Lkotlinx/html/AreaShape;
 	public static final field poly Lkotlinx/html/AreaShape;
 	public static final field rect Lkotlinx/html/AreaShape;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/AreaShape;
 	public static fun values ()[Lkotlinx/html/AreaShape;
@@ -278,6 +279,7 @@ public final class kotlinx/html/ButtonFormEncType : java/lang/Enum, kotlinx/html
 	public static final field applicationXWwwFormUrlEncoded Lkotlinx/html/ButtonFormEncType;
 	public static final field multipartFormData Lkotlinx/html/ButtonFormEncType;
 	public static final field textPlain Lkotlinx/html/ButtonFormEncType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/ButtonFormEncType;
 	public static fun values ()[Lkotlinx/html/ButtonFormEncType;
@@ -289,6 +291,7 @@ public final class kotlinx/html/ButtonFormMethod : java/lang/Enum, kotlinx/html/
 	public static final field patch Lkotlinx/html/ButtonFormMethod;
 	public static final field post Lkotlinx/html/ButtonFormMethod;
 	public static final field put Lkotlinx/html/ButtonFormMethod;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/ButtonFormMethod;
 	public static fun values ()[Lkotlinx/html/ButtonFormMethod;
@@ -307,6 +310,7 @@ public final class kotlinx/html/ButtonType : java/lang/Enum, kotlinx/html/Attrib
 	public static final field button Lkotlinx/html/ButtonType;
 	public static final field reset Lkotlinx/html/ButtonType;
 	public static final field submit Lkotlinx/html/ButtonType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/ButtonType;
 	public static fun values ()[Lkotlinx/html/ButtonType;
@@ -371,6 +375,7 @@ public final class kotlinx/html/CommandType : java/lang/Enum, kotlinx/html/Attri
 	public static final field checkBox Lkotlinx/html/CommandType;
 	public static final field command Lkotlinx/html/CommandType;
 	public static final field radio Lkotlinx/html/CommandType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/CommandType;
 	public static fun values ()[Lkotlinx/html/CommandType;
@@ -577,6 +582,7 @@ public final class kotlinx/html/DefaultUnsafe : kotlinx/html/Unsafe {
 public final class kotlinx/html/Dir : java/lang/Enum, kotlinx/html/AttributeEnum {
 	public static final field ltr Lkotlinx/html/Dir;
 	public static final field rtl Lkotlinx/html/Dir;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/Dir;
 	public static fun values ()[Lkotlinx/html/Dir;
@@ -586,6 +592,7 @@ public final class kotlinx/html/Draggable : java/lang/Enum, kotlinx/html/Attribu
 	public static final field auto Lkotlinx/html/Draggable;
 	public static final field htmlFalse Lkotlinx/html/Draggable;
 	public static final field htmlTrue Lkotlinx/html/Draggable;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/Draggable;
 	public static fun values ()[Lkotlinx/html/Draggable;
@@ -711,6 +718,7 @@ public final class kotlinx/html/Entities : java/lang/Enum {
 	public static final field yacute Lkotlinx/html/Entities;
 	public static final field yen Lkotlinx/html/Entities;
 	public static final field yuml Lkotlinx/html/Entities;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getText ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/Entities;
 	public static fun values ()[Lkotlinx/html/Entities;
@@ -911,6 +919,7 @@ public final class kotlinx/html/FormEncType : java/lang/Enum, kotlinx/html/Attri
 	public static final field applicationXWwwFormUrlEncoded Lkotlinx/html/FormEncType;
 	public static final field multipartFormData Lkotlinx/html/FormEncType;
 	public static final field textPlain Lkotlinx/html/FormEncType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/FormEncType;
 	public static fun values ()[Lkotlinx/html/FormEncType;
@@ -922,6 +931,7 @@ public final class kotlinx/html/FormMethod : java/lang/Enum, kotlinx/html/Attrib
 	public static final field patch Lkotlinx/html/FormMethod;
 	public static final field post Lkotlinx/html/FormMethod;
 	public static final field put Lkotlinx/html/FormMethod;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/FormMethod;
 	public static fun values ()[Lkotlinx/html/FormMethod;
@@ -2249,6 +2259,7 @@ public final class kotlinx/html/IframeSandbox : java/lang/Enum, kotlinx/html/Att
 	public static final field allowFormS Lkotlinx/html/IframeSandbox;
 	public static final field allowSameOrigin Lkotlinx/html/IframeSandbox;
 	public static final field allowScripts Lkotlinx/html/IframeSandbox;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/IframeSandbox;
 	public static fun values ()[Lkotlinx/html/IframeSandbox;
@@ -2258,6 +2269,7 @@ public final class kotlinx/html/InputFormEncType : java/lang/Enum, kotlinx/html/
 	public static final field applicationXWwwFormUrlEncoded Lkotlinx/html/InputFormEncType;
 	public static final field multipartFormData Lkotlinx/html/InputFormEncType;
 	public static final field textPlain Lkotlinx/html/InputFormEncType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/InputFormEncType;
 	public static fun values ()[Lkotlinx/html/InputFormEncType;
@@ -2269,6 +2281,7 @@ public final class kotlinx/html/InputFormMethod : java/lang/Enum, kotlinx/html/A
 	public static final field patch Lkotlinx/html/InputFormMethod;
 	public static final field post Lkotlinx/html/InputFormMethod;
 	public static final field put Lkotlinx/html/InputFormMethod;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/InputFormMethod;
 	public static fun values ()[Lkotlinx/html/InputFormMethod;
@@ -2319,6 +2332,7 @@ public final class kotlinx/html/InputType : java/lang/Enum, kotlinx/html/Attribu
 	public static final field time Lkotlinx/html/InputType;
 	public static final field url Lkotlinx/html/InputType;
 	public static final field week Lkotlinx/html/InputType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/InputType;
 	public static fun values ()[Lkotlinx/html/InputType;
@@ -2360,6 +2374,7 @@ public class kotlinx/html/KEYGEN : kotlinx/html/HTMLTag, kotlinx/html/CommonAttr
 
 public final class kotlinx/html/KeyGenKeyType : java/lang/Enum, kotlinx/html/AttributeEnum {
 	public static final field rsa Lkotlinx/html/KeyGenKeyType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/KeyGenKeyType;
 	public static fun values ()[Lkotlinx/html/KeyGenKeyType;
@@ -2683,6 +2698,7 @@ public class kotlinx/html/RUBY : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInl
 
 public final class kotlinx/html/RunAt : java/lang/Enum, kotlinx/html/AttributeEnum {
 	public static final field server Lkotlinx/html/RunAt;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/RunAt;
 	public static fun values ()[Lkotlinx/html/RunAt;
@@ -3010,6 +3026,7 @@ public abstract interface class kotlinx/html/TagConsumer {
 public final class kotlinx/html/TextAreaWrap : java/lang/Enum, kotlinx/html/AttributeEnum {
 	public static final field hard Lkotlinx/html/TextAreaWrap;
 	public static final field soft Lkotlinx/html/TextAreaWrap;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/TextAreaWrap;
 	public static fun values ()[Lkotlinx/html/TextAreaWrap;
@@ -3020,6 +3037,7 @@ public final class kotlinx/html/ThScope : java/lang/Enum, kotlinx/html/Attribute
 	public static final field colGroup Lkotlinx/html/ThScope;
 	public static final field row Lkotlinx/html/ThScope;
 	public static final field rowGroup Lkotlinx/html/ThScope;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/ThScope;
 	public static fun values ()[Lkotlinx/html/ThScope;
@@ -3241,6 +3259,7 @@ public final class kotlinx/html/consumers/PredicateResult : java/lang/Enum {
 	public static final field DROP Lkotlinx/html/consumers/PredicateResult;
 	public static final field PASS Lkotlinx/html/consumers/PredicateResult;
 	public static final field SKIP Lkotlinx/html/consumers/PredicateResult;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/consumers/PredicateResult;
 	public static fun values ()[Lkotlinx/html/consumers/PredicateResult;
 }
