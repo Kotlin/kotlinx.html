@@ -138,6 +138,12 @@ kotlin {
             }
         }
 
+        commonTest {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
+
         val jsMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-js"))

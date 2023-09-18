@@ -182,24 +182,41 @@ private fun String.startsWithXml() = length >= 3
         && (this[1].let { it == 'm' || it == 'M' })
         && (this[2].let { it == 'l' || it == 'L' })
 
-private fun Appendable.escapeAppend(s: CharSequence) {
+internal fun Appendable.escapeAppend(value: CharSequence) {
     var lastIndex = 0
     val mappings = escapeMap
     val size = mappings.size
 
-    for (idx in s.indices) {
-        val ch = s[idx].code
-        if (ch < 0 || ch >= size) continue
-        val escape = mappings[ch]
-        if (escape != null) {
-            append(s.substring(lastIndex, idx))
-            append(escape)
-            lastIndex = idx + 1
+    var currentIndex = 0
+    while (currentIndex < value.length) {
+        val code = value[currentIndex].code
+
+        if (code == '\\'.code) {
+            append(value.substring(lastIndex, currentIndex))
+            check(currentIndex + 1 < value.length) { "String must not end with '\\'." }
+            append(value[currentIndex + 1])
+            lastIndex = currentIndex + 2
+            currentIndex += 2
+            continue
         }
+
+        if (code < 0 || code >= size) {
+            currentIndex++
+            continue
+        }
+
+        val escape = mappings[code]
+        if (escape != null) {
+            append(value.substring(lastIndex, currentIndex))
+            append(escape)
+            lastIndex = currentIndex + 1
+        }
+
+        currentIndex++
     }
 
-    if (lastIndex < s.length) {
-        append(s.substring(lastIndex, s.length))
+    if (lastIndex < value.length) {
+        append(value.substring(lastIndex, value.length))
     }
 }
 
