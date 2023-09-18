@@ -37,8 +37,7 @@ class TestDOMTrees {
                 <html>
                   <body>
                     <h1>header</h1>
-                    <div>
-                      content<span>yo</span>
+                    <div>content<span>yo</span>
                     </div>
                   </body>
                 </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n"))
@@ -105,9 +104,7 @@ class TestDOMTrees {
   <body>
     <div id="content">
       <p>p1</p>
-      <p>
-        p2
-        <p>p3</p>
+      <p>p2<p>p3</p>
       </p>
     </div>
   </body>
