@@ -6,7 +6,7 @@ import kotlinx.html.js.packageJson
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "1.8.20"
+    kotlin("multiplatform") version "1.9.10"
     id("maven-publish")
     id("signing")
 }
@@ -16,7 +16,7 @@ version = "0.9.1"
 
 buildscript {
     dependencies {
-        classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.11.0")
+        classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.13.2")
     }
 }
 

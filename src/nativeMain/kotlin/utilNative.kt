@@ -3,7 +3,7 @@ package kotlinx.html
 import kotlinx.cinterop.*
 import platform.posix.*
 
-@OptIn(UnsafeNumber::class)
+@OptIn(UnsafeNumber::class, ExperimentalForeignApi::class)
 actual fun currentTimeMillis(): Long {
     memScoped {
         val timeHolder = alloc<time_tVar>()
