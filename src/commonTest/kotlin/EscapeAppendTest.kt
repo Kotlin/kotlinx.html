@@ -6,28 +6,27 @@ class EscapeAppendTest {
 
     @Test
     fun testAppendEscaped() {
-        val result = buildString {
-            escapeAppend("\\&")
-        }
-
-        assertEquals("&", result)
+        assertEquals("&", escape("\\&"))
+        assertEquals("a", escape("\\a"))
     }
 
     @Test
     fun testAppendAmp() {
-        val result = buildString {
-            escapeAppend("&")
-        }
-
-        assertEquals("&amp;", result)
+        assertEquals("&amp;", escape("&"))
     }
 
     @Test
     fun testAppendId() {
-        val result = buildString {
-            escapeAppend("id")
-        }
-
-        assertEquals("id", result)
+        assertEquals("id", escape("id"))
     }
+
+    @Test
+    fun testMixedEscape() {
+        assertEquals("&&amp;", escape("\\&&"))
+        assertEquals("&amp;", escape("\\&amp;"))
+    }
+}
+
+private fun escape(string: String): String = buildString {
+    escapeAppend(string)
 }
