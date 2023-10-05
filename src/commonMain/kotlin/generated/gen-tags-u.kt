@@ -10,6 +10,17 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
+open class U(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("u", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+
+}
+val U.asFlowContent : FlowContent
+    get()  = this
+
+val U.asPhrasingContent : PhrasingContent
+    get()  = this
+
+
+@Suppress("unused")
 open class UL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ul", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }

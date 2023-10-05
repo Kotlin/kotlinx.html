@@ -312,6 +312,7 @@
             <xsd:element ref="textarea"/>
             <xsd:element ref="time"/>
 
+            <xsd:element ref="u"/>
             <xsd:element ref="ul"/>
 
             <xsd:element ref="var"/>
@@ -736,6 +737,8 @@
             </xsd:attribute>
         </xsd:complexType>
     </xsd:element>
+
+    <xsd:element name="u" type="simplePhrasingContentElement"/>
 
     <xsd:element name="ul">
         <xsd:complexType>
