@@ -7,7 +7,7 @@ class EscapeAppendTest {
     @Test
     fun testAppendEscaped() {
         assertEquals("&", escape("\\&"))
-        assertEquals("a", escape("\\a"))
+        assertEquals("\\a", escape("\\a"))
     }
 
     @Test
@@ -24,6 +24,16 @@ class EscapeAppendTest {
     fun testMixedEscape() {
         assertEquals("&&amp;", escape("\\&&"))
         assertEquals("&amp;", escape("\\&amp;"))
+    }
+
+    @Test
+    fun testEscapeSlash() {
+        assertEquals("\\", escape("\\"))
+    }
+
+    @Test
+    fun testEscapeUnicode() {
+        assertEquals("\\u003d", escape("\\u003d"))
     }
 }
 
