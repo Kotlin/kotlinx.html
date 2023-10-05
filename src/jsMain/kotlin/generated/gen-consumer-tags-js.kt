@@ -689,6 +689,12 @@ public inline fun TagConsumer<HTMLElement>.title(crossinline block : TITLE.() ->
 public inline fun TagConsumer<HTMLElement>.tr(classes : String? = null, crossinline block : TR.() -> Unit = {}) : HTMLTableRowElement = TR(attributesMapOf("class", classes), this).visitAndFinalize(this, block) as HTMLTableRowElement
 
 /**
+ * Underlined text style
+ */
+@HtmlTagMarker
+public inline fun TagConsumer<HTMLElement>.u(classes : String? = null, crossinline block : U.() -> Unit = {}) : HTMLElement = U(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
+/**
  * Unordered list
  */
 @HtmlTagMarker

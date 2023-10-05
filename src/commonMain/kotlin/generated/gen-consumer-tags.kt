@@ -688,6 +688,12 @@ inline fun <T, C : TagConsumer<T>> C.title(crossinline block : TITLE.() -> Unit 
 inline fun <T, C : TagConsumer<T>> C.tr(classes : String? = null, crossinline block : TR.() -> Unit = {}) : T = TR(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
 
 /**
+ * Underlined text style
+ */
+@HtmlTagMarker
+inline fun <T, C : TagConsumer<T>> C.u(classes : String? = null, crossinline block : U.() -> Unit = {}) : T = U(attributesMapOf("class", classes), this).visitAndFinalize(this, block)
+
+/**
  * Unordered list
  */
 @HtmlTagMarker
