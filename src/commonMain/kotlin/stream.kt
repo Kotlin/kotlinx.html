@@ -191,7 +191,7 @@ internal fun Appendable.escapeAppend(value: CharSequence) {
     while (currentIndex < value.length) {
         val code = value[currentIndex].code
 
-        if (code == '\\'.code) {
+        if (code == '\\'.code && currentIndex + 1 < value.length && value[currentIndex + 1] == '&') {
             append(value.substring(lastIndex, currentIndex))
             check(currentIndex + 1 < value.length) { "String must not end with '\\'." }
             append(value[currentIndex + 1])
