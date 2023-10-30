@@ -103,6 +103,11 @@ fun attributesMapOf(vararg pairs: String?): Map<String, String> {
 
 fun singletonMapOf(key: String, value: String): Map<String, String> = SingletonStringMap(key, value)
 
+/***
+ * unsafe allows writing strings directly into the HTML DOM without any escaping.
+ * In general, setting HTML without escaping is risky because it is easy to expose your users to a cross-site scripting (XSS) attack.
+ * Consider using the builder DSL instead, or ensure that you are escaping the HTML properly.
+ */
 fun HTMLTag.unsafe(block: Unsafe.() -> Unit): Unit = consumer.onTagContentUnsafe(block)
 
 val emptyMap: Map<String, String> = emptyMap()
