@@ -608,6 +608,14 @@
             </xsd:attribute>
             <xsd:attribute name="nonce" type="xsd:string"/>
             <xsd:attribute name="integrity" type="xsd:string"/>
+            <xsd:attribute name="crossorigin">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:NMTOKEN">
+                        <xsd:enumeration value="anonymous"/>
+                        <xsd:enumeration value="use-credentials"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
         </xsd:complexType>
     </xsd:element>
 
