@@ -50,6 +50,10 @@ open class SCRIPT(initialAttributes : Map<String, String>, override val consumer
         get()  = attributeStringString.get(this, "integrity")
         set(newValue) {attributeStringString.set(this, "integrity", newValue)}
 
+    var crossorigin : ScriptCrossorigin
+        get()  = attributeScriptCrossoriginEnumScriptCrossoriginValues.get(this, "crossorigin")
+        set(newValue) {attributeScriptCrossoriginEnumScriptCrossoriginValues.set(this, "crossorigin", newValue)}
+
     @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override operator fun Entities.unaryPlus() : Unit {
         @Suppress("DEPRECATION") entity(this)

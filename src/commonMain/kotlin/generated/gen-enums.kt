@@ -368,6 +368,13 @@ object ScriptType {
 }
 
 @Suppress("unused")
+enum class ScriptCrossorigin(override val realValue : String) : AttributeEnum {
+    anonymous("anonymous"),
+    useCredentials("use-credentials")
+}
+
+internal val scriptCrossoriginValues : Map<String, ScriptCrossorigin> = ScriptCrossorigin.values().associateBy { it.realValue }
+@Suppress("unused")
 object StyleType {
     val textCss : String = "text/css"
 

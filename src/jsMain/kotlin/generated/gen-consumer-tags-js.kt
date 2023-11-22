@@ -539,12 +539,12 @@ public inline fun TagConsumer<HTMLElement>.samp(classes : String? = null, crossi
  * Script statements
  */
 @HtmlTagMarker
-public fun TagConsumer<HTMLElement>.script(type : String? = null, src : String? = null, content : String = "") : HTMLScriptElement = SCRIPT(attributesMapOf("type", type,"src", src), this).visitAndFinalize(this, {+content}) as HTMLScriptElement
+public fun TagConsumer<HTMLElement>.script(type : String? = null, src : String? = null, crossorigin : ScriptCrossorigin? = null, content : String = "") : HTMLScriptElement = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", crossorigin?.enumEncode()), this).visitAndFinalize(this, {+content}) as HTMLScriptElement
 /**
  * Script statements
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.script(type : String? = null, src : String? = null, crossinline block : SCRIPT.() -> Unit = {}) : HTMLScriptElement = SCRIPT(attributesMapOf("type", type,"src", src), this).visitAndFinalize(this, block) as HTMLScriptElement
+public inline fun TagConsumer<HTMLElement>.script(type : String? = null, src : String? = null, crossorigin : ScriptCrossorigin? = null, crossinline block : SCRIPT.() -> Unit = {}) : HTMLScriptElement = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", crossorigin?.enumEncode()), this).visitAndFinalize(this, block) as HTMLScriptElement
 
 /**
  * Generic document or application section

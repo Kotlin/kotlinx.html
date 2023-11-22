@@ -538,12 +538,12 @@ inline fun <T, C : TagConsumer<T>> C.samp(classes : String? = null, crossinline 
  * Script statements
  */
 @HtmlTagMarker
-fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, content : String = "") : T = SCRIPT(attributesMapOf("type", type,"src", src), this).visitAndFinalize(this, {+content})
+fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, crossorigin : ScriptCrossorigin? = null, content : String = "") : T = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", crossorigin?.enumEncode()), this).visitAndFinalize(this, {+content})
 /**
  * Script statements
  */
 @HtmlTagMarker
-inline fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, crossinline block : SCRIPT.() -> Unit = {}) : T = SCRIPT(attributesMapOf("type", type,"src", src), this).visitAndFinalize(this, block)
+inline fun <T, C : TagConsumer<T>> C.script(type : String? = null, src : String? = null, crossorigin : ScriptCrossorigin? = null, crossinline block : SCRIPT.() -> Unit = {}) : T = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", crossorigin?.enumEncode()), this).visitAndFinalize(this, block)
 
 /**
  * Generic document or application section

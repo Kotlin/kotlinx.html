@@ -63,14 +63,24 @@ inline fun FlowOrMetaDataOrPhrasingContent.noScript(classes : String? = null, cr
  * Script statements
  */
 @HtmlTagMarker
-inline fun FlowOrMetaDataOrPhrasingContent.script(type : String? = null, src : String? = null, crossinline block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src), consumer).visit(block)
+inline fun FlowOrMetaDataOrPhrasingContent.script(type : String? = null, src : String? = null, crossorigin : ScriptCrossorigin? = null, crossinline block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", crossorigin?.enumEncode()), consumer).visit(block)
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
 @Suppress("DEPRECATION")
 /**
  * Script statements
  */
 @HtmlTagMarker
-fun FlowOrMetaDataOrPhrasingContent.script(type : String? = null, src : String? = null, content : String = "") : Unit = SCRIPT(attributesMapOf("type", type,"src", src), consumer).visit({+content})
+fun FlowOrMetaDataOrPhrasingContent.script(type : String? = null, src : String? = null, crossorigin : ScriptCrossorigin? = null, content : String = "") : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", crossorigin?.enumEncode()), consumer).visit({+content})
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.anonymousScript(type : String? = null, src : String? = null, crossinline block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", ScriptCrossorigin.anonymous.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.useCredentialsScript(type : String? = null, src : String? = null, crossinline block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", ScriptCrossorigin.useCredentials.realValue), consumer).visit(block)
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+fun FlowOrMetaDataOrPhrasingContent.anonymousScript(type : String? = null, src : String? = null, content : String = "") : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", ScriptCrossorigin.anonymous.realValue), consumer).visit({+content})
+@HtmlTagMarker
+fun FlowOrMetaDataOrPhrasingContent.useCredentialsScript(type : String? = null, src : String? = null, content : String = "") : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", ScriptCrossorigin.useCredentials.realValue), consumer).visit({+content})
 
 
 /**
