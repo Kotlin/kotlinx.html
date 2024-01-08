@@ -11,8 +11,12 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]
-
+    paths:
+      - '**.gradle.kts'
+      - '**.properties'
+      - 'src/**'
+      - '.github/workflows/**'
+    types: [opened, synchronize, reopened]
 permissions:
   contents: read
 
