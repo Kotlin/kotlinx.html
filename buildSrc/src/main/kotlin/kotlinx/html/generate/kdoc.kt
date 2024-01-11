@@ -1,8 +1,9 @@
 package kotlinx.html.generate
 
-import org.w3c.dom.*
-import java.net.*
-import javax.xml.parsers.*
+import java.net.URL
+import javax.xml.parsers.DocumentBuilderFactory
+import org.w3c.dom.Node
+import org.w3c.dom.NodeList
 
 private val HTML_TABLE_URL = "htmltable.xml".asResourceUrl()
 private val HTML5_TABLE_URL = "html5table.xml".asResourceUrl()
@@ -11,7 +12,11 @@ object KdocRepository {
     lateinit var tags: Map<String, KDocInfo>
 }
 
+private var kdocRepositoryFilled = false
+
 fun fillKdocRepositoryExtension() {
+    if (kdocRepositoryFilled) return
+    kdocRepositoryFilled = true
     KdocRepository.tags = parseDocInfos()
 }
 
@@ -40,7 +45,7 @@ private fun parseDocInfo(xmlPath: URL): List<KDocInfo> {
 data class KDocInfo(
     val name: String,
     val description: String,
-    val helpref: String
+    val helpref: String,
 )
 
 private fun NodeList.asList() = (0 until length).map { item(it) }

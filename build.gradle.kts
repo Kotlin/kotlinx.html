@@ -1,12 +1,14 @@
 import Build_gradle.MavenPomFile
 import kotlinx.html.js.packageJson
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 /**
  * This build script supports following parameters:
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "1.9.21"
+    kotlin("multiplatform") version "1.9.22"
     id("maven-publish")
     id("signing")
 }
@@ -90,7 +92,7 @@ kotlin {
             }
         }
     }
-    js(IR) {
+    js {
         moduleName = project.name
         browser {
             testTask {
@@ -103,6 +105,16 @@ kotlin {
         mavenPublication {
             groupId = group as String
             pom { name by "${project.name}-js" }
+        }
+    }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        moduleName = project.name
+        browser()
+
+        mavenPublication {
+            groupId = group as String
+            pom { name by "${project.name}-wasm-js" }
         }
     }
 
@@ -123,6 +135,17 @@ kotlin {
     macosX64()
     macosArm64()
 
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    applyDefaultHierarchyTemplate {
+        common {
+            group("jsCommon") {
+                withJs()
+                // TODO: switch to `withWasmJs()` after upgrade to Kotlin 2.0
+                withWasm()
+            }
+        }
+    }
+
     metadata {
         mavenPublication {
             groupId = group as String
@@ -140,7 +163,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(kotlin("stdlib-common"))
+                implementation(kotlin("stdlib"))
             }
         }
 
@@ -150,61 +173,6 @@ kotlin {
             }
         }
 
-        val jsMain by getting {
-            dependencies {
-                implementation(kotlin("stdlib-js"))
-            }
-        }
-
-        val jsTest by getting {
-            dependencies {
-                implementation(kotlin("test-js"))
-            }
-        }
-
-        val jvmMain by getting {
-            dependencies {
-                implementation(kotlin("stdlib"))
-            }
-        }
-
-        val jvmTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-            }
-        }
-
-        val nativeMain by creating
-        val nativeTest by creating
-
-        val nativeTargets = listOf(
-            "mingwX64",
-            "linuxX64",
-            "linuxArm64",
-            "iosX64",
-            "iosArm64",
-            "iosArm32",
-            "iosSimulatorArm64",
-            "watchosX86",
-            "watchosX64",
-            "watchosArm32",
-            "watchosArm64",
-            "watchosSimulatorArm64",
-            "tvosX64",
-            "tvosArm64",
-            "tvosSimulatorArm64",
-            "macosX64",
-            "macosArm64",
-            "watchosDeviceArm64",
-        )
-
-        val commonMain by getting
-        nativeMain.dependsOn(commonMain)
-
-        nativeTargets.forEach { target ->
-            findByName("${target}Main")?.dependsOn(nativeMain)
-            findByName("${target}Test")?.dependsOn(nativeTest)
-        }
     }
 }
 
@@ -226,9 +194,14 @@ tasks.register<Task>("generate") {
 
     doLast {
         kotlinx.html.generate.generate(
-            "kotlinx.html",
-            "src/commonMain/kotlin/generated",
-            "src/jsMain/kotlin/generated"
+            pkg = "kotlinx.html",
+            todir = "src/commonMain/kotlin/generated",
+            jsdir = "src/jsMain/kotlin/generated",
+            wasmJsDir = "src/wasmJsMain/kotlin/generated"
+        )
+        kotlinx.html.generate.generateJsTagTests(
+            jsdir = "src/jsTest/kotlin/generated",
+            wasmJsDir = "src/wasmJsTest/kotlin/generated",
         )
     }
 }

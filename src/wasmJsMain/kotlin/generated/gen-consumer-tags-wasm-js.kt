@@ -139,6 +139,7 @@ import kotlinx.html.U
 import kotlinx.html.UL
 import kotlinx.html.VAR
 import kotlinx.html.VIDEO
+import org.w3c.dom.Element
 import org.w3c.dom.HTMLAnchorElement
 import org.w3c.dom.HTMLAreaElement
 import org.w3c.dom.HTMLAudioElement
@@ -151,7 +152,6 @@ import org.w3c.dom.HTMLDataListElement
 import org.w3c.dom.HTMLDetailsElement
 import org.w3c.dom.HTMLDialogElement
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLEmbedElement
 import org.w3c.dom.HTMLFieldSetElement
 import org.w3c.dom.HTMLFormElement
@@ -195,7 +195,7 @@ import org.w3c.dom.HTMLVideoElement
  * Anchor
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.a(
+public inline fun TagConsumer<Element>.a(
   href: String? = null,
   target: String? = null,
   classes: String? = null,
@@ -207,23 +207,23 @@ public inline fun TagConsumer<HTMLElement>.a(
  * Abbreviated form (e.g., WWW, HTTP,etc.)
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.abbr(classes: String? = null, crossinline
-    block: ABBR.() -> Unit = {}): HTMLElement = ABBR(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.abbr(classes: String? = null, crossinline
+    block: ABBR.() -> Unit = {}): Element = ABBR(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Information on author
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.address(classes: String? = null, crossinline
-    block: ADDRESS.() -> Unit = {}): HTMLElement = ADDRESS(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.address(classes: String? = null, crossinline
+    block: ADDRESS.() -> Unit = {}): Element = ADDRESS(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Client-side image map area
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.area(
+public inline fun TagConsumer<Element>.area(
   shape: AreaShape? = null,
   alt: String? = null,
   classes: String? = null,
@@ -236,23 +236,23 @@ public inline fun TagConsumer<HTMLElement>.area(
  * Self-contained syndicatable or reusable composition
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.article(classes: String? = null, crossinline
-    block: ARTICLE.() -> Unit = {}): HTMLElement = ARTICLE(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.article(classes: String? = null, crossinline
+    block: ARTICLE.() -> Unit = {}): Element = ARTICLE(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Sidebar for tangentially related content
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.aside(classes: String? = null, crossinline
-    block: ASIDE.() -> Unit = {}): HTMLElement = ASIDE(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.aside(classes: String? = null, crossinline
+    block: ASIDE.() -> Unit = {}): Element = ASIDE(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Audio player
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.audio(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.audio(classes: String? = null, crossinline
     block: AUDIO.() -> Unit = {}): HTMLAudioElement = AUDIO(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLAudioElement
 
@@ -260,15 +260,15 @@ public inline fun TagConsumer<HTMLElement>.audio(classes: String? = null, crossi
  * Bold text style
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.b(classes: String? = null, crossinline
-    block: B.() -> Unit = {}): HTMLElement = B(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.b(classes: String? = null, crossinline block: B.() -> Unit =
+    {}): Element = B(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Document base URI
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.base(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.base(classes: String? = null, crossinline
     block: BASE.() -> Unit = {}): HTMLBaseElement = BASE(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLBaseElement
 
@@ -276,24 +276,24 @@ public inline fun TagConsumer<HTMLElement>.base(classes: String? = null, crossin
  * Text directionality isolation
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.bdi(classes: String? = null, crossinline
-    block: BDI.() -> Unit = {}): HTMLElement = BDI(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.bdi(classes: String? = null, crossinline
+    block: BDI.() -> Unit = {}): Element = BDI(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * I18N BiDi over-ride
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.bdo(classes: String? = null, crossinline
-    block: BDO.() -> Unit = {}): HTMLElement = BDO(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.bdo(classes: String? = null, crossinline
+    block: BDO.() -> Unit = {}): Element = BDO(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Long quotation
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.blockQuote(classes: String? = null, crossinline
-    block: BLOCKQUOTE.() -> Unit = {}): HTMLElement = BLOCKQUOTE(attributesMapOf("class", classes),
+public inline fun TagConsumer<Element>.blockQuote(classes: String? = null, crossinline
+    block: BLOCKQUOTE.() -> Unit = {}): Element = BLOCKQUOTE(attributesMapOf("class", classes),
     this)
     .visitAndFinalize(this, block) 
 
@@ -301,7 +301,7 @@ public inline fun TagConsumer<HTMLElement>.blockQuote(classes: String? = null, c
  * Document body
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.body(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.body(classes: String? = null, crossinline
     block: BODY.() -> Unit = {}): HTMLBodyElement = BODY(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLBodyElement
 
@@ -309,15 +309,15 @@ public inline fun TagConsumer<HTMLElement>.body(classes: String? = null, crossin
  * Forced line break
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.br(classes: String? = null, crossinline
-    block: BR.() -> Unit = {}): HTMLBRElement = BR(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.br(classes: String? = null, crossinline block: BR.() -> Unit
+    = {}): HTMLBRElement = BR(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLBRElement
 
 /**
  * Push button
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.button(
+public inline fun TagConsumer<Element>.button(
   formEncType: ButtonFormEncType? = null,
   formMethod: ButtonFormMethod? = null,
   name: String? = null,
@@ -332,7 +332,7 @@ public inline fun TagConsumer<HTMLElement>.button(
  * Scriptable bitmap canvas
  */
 @HtmlTagMarker
-public fun TagConsumer<HTMLElement>.canvas(classes: String? = null, content: String = ""):
+public fun TagConsumer<Element>.canvas(classes: String? = null, content: String = ""):
     HTMLCanvasElement = CANVAS(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, {+content})  as HTMLCanvasElement
 
@@ -340,7 +340,7 @@ public fun TagConsumer<HTMLElement>.canvas(classes: String? = null, content: Str
  * Scriptable bitmap canvas
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.canvas(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.canvas(classes: String? = null, crossinline
     block: CANVAS.() -> Unit = {}): HTMLCanvasElement = CANVAS(attributesMapOf("class", classes),
     this)
     .visitAndFinalize(this, block)  as HTMLCanvasElement
@@ -349,31 +349,31 @@ public inline fun TagConsumer<HTMLElement>.canvas(classes: String? = null, cross
  * Table caption
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.caption(classes: String? = null, crossinline
-    block: CAPTION.() -> Unit = {}): HTMLElement = CAPTION(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.caption(classes: String? = null, crossinline
+    block: CAPTION.() -> Unit = {}): Element = CAPTION(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Citation
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.cite(classes: String? = null, crossinline
-    block: CITE.() -> Unit = {}): HTMLElement = CITE(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.cite(classes: String? = null, crossinline
+    block: CITE.() -> Unit = {}): Element = CITE(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Computer code fragment
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.code(classes: String? = null, crossinline
-    block: CODE.() -> Unit = {}): HTMLElement = CODE(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.code(classes: String? = null, crossinline
+    block: CODE.() -> Unit = {}): Element = CODE(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Table column
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.col(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.col(classes: String? = null, crossinline
     block: COL.() -> Unit = {}): HTMLTableColElement = COL(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLTableColElement
 
@@ -381,24 +381,24 @@ public inline fun TagConsumer<HTMLElement>.col(classes: String? = null, crossinl
  * Table column group
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.colGroup(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.colGroup(classes: String? = null, crossinline
     block: COLGROUP.() -> Unit = {}): HTMLTableColElement = COLGROUP(attributesMapOf("class",
     classes), this)
     .visitAndFinalize(this, block)  as HTMLTableColElement
 
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.command(
+public inline fun TagConsumer<Element>.command(
   type: CommandType? = null,
   classes: String? = null,
   crossinline block: COMMAND.() -> Unit = {},
-): HTMLElement = COMMAND(attributesMapOf("type", type?.enumEncode(),"class", classes), this)
+): Element = COMMAND(attributesMapOf("type", type?.enumEncode(),"class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Container for options for 
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.dataList(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.dataList(classes: String? = null, crossinline
     block: DATALIST.() -> Unit = {}): HTMLDataListElement = DATALIST(attributesMapOf("class",
     classes), this)
     .visitAndFinalize(this, block)  as HTMLDataListElement
@@ -407,23 +407,23 @@ public inline fun TagConsumer<HTMLElement>.dataList(classes: String? = null, cro
  * Definition description
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.dd(classes: String? = null, crossinline
-    block: DD.() -> Unit = {}): HTMLElement = DD(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.dd(classes: String? = null, crossinline block: DD.() -> Unit
+    = {}): Element = DD(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Deleted text
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.del(classes: String? = null, crossinline
-    block: DEL.() -> Unit = {}): HTMLElement = DEL(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.del(classes: String? = null, crossinline
+    block: DEL.() -> Unit = {}): Element = DEL(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Disclosure control for hiding details
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.details(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.details(classes: String? = null, crossinline
     block: DETAILS.() -> Unit = {}): HTMLDetailsElement = DETAILS(attributesMapOf("class", classes),
     this)
     .visitAndFinalize(this, block)  as HTMLDetailsElement
@@ -432,15 +432,15 @@ public inline fun TagConsumer<HTMLElement>.details(classes: String? = null, cros
  * Instance definition
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.dfn(classes: String? = null, crossinline
-    block: DFN.() -> Unit = {}): HTMLElement = DFN(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.dfn(classes: String? = null, crossinline
+    block: DFN.() -> Unit = {}): Element = DFN(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Dialog box or window
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.dialog(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.dialog(classes: String? = null, crossinline
     block: DIALOG.() -> Unit = {}): HTMLDialogElement = DIALOG(attributesMapOf("class", classes),
     this)
     .visitAndFinalize(this, block)  as HTMLDialogElement
@@ -449,7 +449,7 @@ public inline fun TagConsumer<HTMLElement>.dialog(classes: String? = null, cross
  * Generic language/style container
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.div(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.div(classes: String? = null, crossinline
     block: DIV.() -> Unit = {}): HTMLDivElement = DIV(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLDivElement
 
@@ -457,31 +457,31 @@ public inline fun TagConsumer<HTMLElement>.div(classes: String? = null, crossinl
  * Definition list
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.dl(classes: String? = null, crossinline
-    block: DL.() -> Unit = {}): HTMLElement = DL(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.dl(classes: String? = null, crossinline block: DL.() -> Unit
+    = {}): Element = DL(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Definition term
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.dt(classes: String? = null, crossinline
-    block: DT.() -> Unit = {}): HTMLElement = DT(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.dt(classes: String? = null, crossinline block: DT.() -> Unit
+    = {}): Element = DT(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Emphasis
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.em(classes: String? = null, crossinline
-    block: EM.() -> Unit = {}): HTMLElement = EM(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.em(classes: String? = null, crossinline block: EM.() -> Unit
+    = {}): Element = EM(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Plugin
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.embed(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.embed(classes: String? = null, crossinline
     block: EMBED.() -> Unit = {}): HTMLEmbedElement = EMBED(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLEmbedElement
 
@@ -489,7 +489,7 @@ public inline fun TagConsumer<HTMLElement>.embed(classes: String? = null, crossi
  * Form control group
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.fieldSet(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.fieldSet(classes: String? = null, crossinline
     block: FIELDSET.() -> Unit = {}): HTMLFieldSetElement = FIELDSET(attributesMapOf("class",
     classes), this)
     .visitAndFinalize(this, block)  as HTMLFieldSetElement
@@ -498,8 +498,8 @@ public inline fun TagConsumer<HTMLElement>.fieldSet(classes: String? = null, cro
  * Caption for 
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.figcaption(classes: String? = null, crossinline
-    block: FIGCAPTION.() -> Unit = {}): HTMLElement = FIGCAPTION(attributesMapOf("class", classes),
+public inline fun TagConsumer<Element>.figcaption(classes: String? = null, crossinline
+    block: FIGCAPTION.() -> Unit = {}): Element = FIGCAPTION(attributesMapOf("class", classes),
     this)
     .visitAndFinalize(this, block) 
 
@@ -507,23 +507,23 @@ public inline fun TagConsumer<HTMLElement>.figcaption(classes: String? = null, c
  * Figure with optional caption
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.figure(classes: String? = null, crossinline
-    block: FIGURE.() -> Unit = {}): HTMLElement = FIGURE(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.figure(classes: String? = null, crossinline
+    block: FIGURE.() -> Unit = {}): Element = FIGURE(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Footer for a page or section
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.footer(classes: String? = null, crossinline
-    block: FOOTER.() -> Unit = {}): HTMLElement = FOOTER(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.footer(classes: String? = null, crossinline
+    block: FOOTER.() -> Unit = {}): Element = FOOTER(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Interactive form
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.form(
+public inline fun TagConsumer<Element>.form(
   action: String? = null,
   encType: FormEncType? = null,
   method: FormMethod? = null,
@@ -537,48 +537,48 @@ public inline fun TagConsumer<HTMLElement>.form(
  * Heading
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.h1(classes: String? = null, crossinline
-    block: H1.() -> Unit = {}): HTMLHeadingElement = H1(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.h1(classes: String? = null, crossinline block: H1.() -> Unit
+    = {}): HTMLHeadingElement = H1(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLHeadingElement
 
 /**
  * Heading
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.h2(classes: String? = null, crossinline
-    block: H2.() -> Unit = {}): HTMLHeadingElement = H2(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.h2(classes: String? = null, crossinline block: H2.() -> Unit
+    = {}): HTMLHeadingElement = H2(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLHeadingElement
 
 /**
  * Heading
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.h3(classes: String? = null, crossinline
-    block: H3.() -> Unit = {}): HTMLHeadingElement = H3(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.h3(classes: String? = null, crossinline block: H3.() -> Unit
+    = {}): HTMLHeadingElement = H3(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLHeadingElement
 
 /**
  * Heading
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.h4(classes: String? = null, crossinline
-    block: H4.() -> Unit = {}): HTMLHeadingElement = H4(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.h4(classes: String? = null, crossinline block: H4.() -> Unit
+    = {}): HTMLHeadingElement = H4(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLHeadingElement
 
 /**
  * Heading
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.h5(classes: String? = null, crossinline
-    block: H5.() -> Unit = {}): HTMLHeadingElement = H5(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.h5(classes: String? = null, crossinline block: H5.() -> Unit
+    = {}): HTMLHeadingElement = H5(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLHeadingElement
 
 /**
  * Heading
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.h6(classes: String? = null, crossinline
-    block: H6.() -> Unit = {}): HTMLHeadingElement = H6(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.h6(classes: String? = null, crossinline block: H6.() -> Unit
+    = {}): HTMLHeadingElement = H6(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLHeadingElement
 
 /**
@@ -587,15 +587,14 @@ public inline fun TagConsumer<HTMLElement>.h6(classes: String? = null, crossinli
 @HtmlTagMarker
 @Suppress("DEPRECATION")
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
-public fun TagConsumer<HTMLElement>.head(content: String = ""): HTMLHeadElement = HEAD(emptyMap,
-    this)
+public fun TagConsumer<Element>.head(content: String = ""): HTMLHeadElement = HEAD(emptyMap, this)
     .visitAndFinalize(this, {+content})  as HTMLHeadElement
 
 /**
  * Document head
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.head(crossinline block: HEAD.() -> Unit = {}):
+public inline fun TagConsumer<Element>.head(crossinline block: HEAD.() -> Unit = {}):
     HTMLHeadElement = HEAD(emptyMap, this)
     .visitAndFinalize(this, block)  as HTMLHeadElement
 
@@ -603,21 +602,21 @@ public inline fun TagConsumer<HTMLElement>.head(crossinline block: HEAD.() -> Un
  * Introductory or navigational aids for a page or section
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.`header`(classes: String? = null, crossinline
-    block: HEADER.() -> Unit = {}): HTMLElement = HEADER(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.`header`(classes: String? = null, crossinline
+    block: HEADER.() -> Unit = {}): Element = HEADER(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.hGroup(classes: String? = null, crossinline
-    block: HGROUP.() -> Unit = {}): HTMLElement = HGROUP(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.hGroup(classes: String? = null, crossinline
+    block: HGROUP.() -> Unit = {}): Element = HGROUP(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Horizontal rule
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.hr(classes: String? = null, crossinline
-    block: HR.() -> Unit = {}): HTMLHRElement = HR(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.hr(classes: String? = null, crossinline block: HR.() -> Unit
+    = {}): HTMLHRElement = HR(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLHRElement
 
 /**
@@ -626,7 +625,7 @@ public inline fun TagConsumer<HTMLElement>.hr(classes: String? = null, crossinli
 @HtmlTagMarker
 @Suppress("DEPRECATION")
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
-public fun TagConsumer<HTMLElement>.html(content: String = "", namespace: String? = null):
+public fun TagConsumer<Element>.html(content: String = "", namespace: String? = null):
     HTMLHtmlElement = HTML(emptyMap, this, namespace)
     .visitAndFinalize(this, {+content})  as HTMLHtmlElement
 
@@ -634,7 +633,7 @@ public fun TagConsumer<HTMLElement>.html(content: String = "", namespace: String
  * Document root element
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.html(namespace: String? = null, crossinline
+public inline fun TagConsumer<Element>.html(namespace: String? = null, crossinline
     block: HTML.() -> Unit = {}): HTMLHtmlElement = HTML(emptyMap, this, namespace)
     .visitAndFinalize(this, block)  as HTMLHtmlElement
 
@@ -642,37 +641,37 @@ public inline fun TagConsumer<HTMLElement>.html(namespace: String? = null, cross
  * Italic text style
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.i(classes: String? = null, crossinline
-    block: I.() -> Unit = {}): HTMLElement = I(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.i(classes: String? = null, crossinline block: I.() -> Unit =
+    {}): Element = I(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Inline subwindow
  */
 @HtmlTagMarker
-public fun TagConsumer<HTMLElement>.iframe(
+public fun TagConsumer<Element>.iframe(
   sandbox: IframeSandbox? = null,
   classes: String? = null,
   content: String = "",
-): HTMLElement = IFRAME(attributesMapOf("sandbox", sandbox?.enumEncode(),"class", classes), this)
+): Element = IFRAME(attributesMapOf("sandbox", sandbox?.enumEncode(),"class", classes), this)
     .visitAndFinalize(this, {+content}) 
 
 /**
  * Inline subwindow
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.iframe(
+public inline fun TagConsumer<Element>.iframe(
   sandbox: IframeSandbox? = null,
   classes: String? = null,
   crossinline block: IFRAME.() -> Unit = {},
-): HTMLElement = IFRAME(attributesMapOf("sandbox", sandbox?.enumEncode(),"class", classes), this)
+): Element = IFRAME(attributesMapOf("sandbox", sandbox?.enumEncode(),"class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Embedded image
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.img(
+public inline fun TagConsumer<Element>.img(
   alt: String? = null,
   src: String? = null,
   classes: String? = null,
@@ -684,7 +683,7 @@ public inline fun TagConsumer<HTMLElement>.img(
  * Form control
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.input(
+public inline fun TagConsumer<Element>.input(
   type: InputType? = null,
   formEncType: InputFormEncType? = null,
   formMethod: InputFormMethod? = null,
@@ -700,34 +699,34 @@ public inline fun TagConsumer<HTMLElement>.input(
  * Inserted text
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.ins(classes: String? = null, crossinline
-    block: INS.() -> Unit = {}): HTMLElement = INS(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.ins(classes: String? = null, crossinline
+    block: INS.() -> Unit = {}): Element = INS(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Text to be entered by the user
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.kbd(classes: String? = null, crossinline
-    block: KBD.() -> Unit = {}): HTMLElement = KBD(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.kbd(classes: String? = null, crossinline
+    block: KBD.() -> Unit = {}): Element = KBD(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Cryptographic key-pair generator form control
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.keyGen(
+public inline fun TagConsumer<Element>.keyGen(
   keyType: KeyGenKeyType? = null,
   classes: String? = null,
   crossinline block: KEYGEN.() -> Unit = {},
-): HTMLElement = KEYGEN(attributesMapOf("keytype", keyType?.enumEncode(),"class", classes), this)
+): Element = KEYGEN(attributesMapOf("keytype", keyType?.enumEncode(),"class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Form field label text
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.label(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.label(classes: String? = null, crossinline
     block: LABEL.() -> Unit = {}): HTMLLabelElement = LABEL(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLLabelElement
 
@@ -735,7 +734,7 @@ public inline fun TagConsumer<HTMLElement>.label(classes: String? = null, crossi
  * Fieldset legend
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.legend(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.legend(classes: String? = null, crossinline
     block: LEGEND.() -> Unit = {}): HTMLLegendElement = LEGEND(attributesMapOf("class", classes),
     this)
     .visitAndFinalize(this, block)  as HTMLLegendElement
@@ -744,15 +743,15 @@ public inline fun TagConsumer<HTMLElement>.legend(classes: String? = null, cross
  * List item
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.li(classes: String? = null, crossinline
-    block: LI.() -> Unit = {}): HTMLLIElement = LI(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.li(classes: String? = null, crossinline block: LI.() -> Unit
+    = {}): HTMLLIElement = LI(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLLIElement
 
 /**
  * A media-independent link
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.link(
+public inline fun TagConsumer<Element>.link(
   href: String? = null,
   rel: String? = null,
   type: String? = null,
@@ -764,15 +763,15 @@ public inline fun TagConsumer<HTMLElement>.link(
  * Container for the dominant contents of another element
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.main(classes: String? = null, crossinline
-    block: MAIN.() -> Unit = {}): HTMLElement = MAIN(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.main(classes: String? = null, crossinline
+    block: MAIN.() -> Unit = {}): Element = MAIN(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Client-side image map
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.map(
+public inline fun TagConsumer<Element>.map(
   name: String? = null,
   classes: String? = null,
   crossinline block: MAP.() -> Unit = {},
@@ -783,30 +782,30 @@ public inline fun TagConsumer<HTMLElement>.map(
  * Highlight
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.mark(classes: String? = null, crossinline
-    block: MARK.() -> Unit = {}): HTMLElement = MARK(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.mark(classes: String? = null, crossinline
+    block: MARK.() -> Unit = {}): Element = MARK(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.math(classes: String? = null, crossinline
-    block: MATH.() -> Unit = {}): HTMLElement = MATH(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.math(classes: String? = null, crossinline
+    block: MATH.() -> Unit = {}): Element = MATH(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 @HtmlTagMarker
-public fun TagConsumer<HTMLElement>.mathml(classes: String? = null, content: String = ""):
-    HTMLElement = MATHML(attributesMapOf("class", classes), this)
+public fun TagConsumer<Element>.mathml(classes: String? = null, content: String = ""): Element =
+    MATHML(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, {+content}) 
 
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.mathml(classes: String? = null, crossinline
-    block: MATHML.() -> Unit = {}): HTMLElement = MATHML(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.mathml(classes: String? = null, crossinline
+    block: MATHML.() -> Unit = {}): Element = MATHML(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Generic metainformation
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.meta(
+public inline fun TagConsumer<Element>.meta(
   name: String? = null,
   content: String? = null,
   charset: String? = null,
@@ -818,7 +817,7 @@ public inline fun TagConsumer<HTMLElement>.meta(
  * Gauge
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.meter(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.meter(classes: String? = null, crossinline
     block: METER.() -> Unit = {}): HTMLMeterElement = METER(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLMeterElement
 
@@ -826,40 +825,39 @@ public inline fun TagConsumer<HTMLElement>.meter(classes: String? = null, crossi
  * Section with navigational links
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.nav(classes: String? = null, crossinline
-    block: NAV.() -> Unit = {}): HTMLElement = NAV(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.nav(classes: String? = null, crossinline
+    block: NAV.() -> Unit = {}): Element = NAV(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Generic metainformation
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.noScript(classes: String? = null, crossinline
-    block: NOSCRIPT.() -> Unit = {}): HTMLElement = NOSCRIPT(attributesMapOf("class", classes),
-    this)
+public inline fun TagConsumer<Element>.noScript(classes: String? = null, crossinline
+    block: NOSCRIPT.() -> Unit = {}): Element = NOSCRIPT(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Generic embedded object
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.htmlObject(classes: String? = null, crossinline
-    block: OBJECT.() -> Unit = {}): HTMLElement = OBJECT(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.htmlObject(classes: String? = null, crossinline
+    block: OBJECT.() -> Unit = {}): Element = OBJECT(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Ordered list
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.ol(classes: String? = null, crossinline
-    block: OL.() -> Unit = {}): HTMLElement = OL(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.ol(classes: String? = null, crossinline block: OL.() -> Unit
+    = {}): Element = OL(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Option group
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.optGroup(
+public inline fun TagConsumer<Element>.optGroup(
   label: String? = null,
   classes: String? = null,
   crossinline block: OPTGROUP.() -> Unit = {},
@@ -870,7 +868,7 @@ public inline fun TagConsumer<HTMLElement>.optGroup(
  * Selectable choice
  */
 @HtmlTagMarker
-public fun TagConsumer<HTMLElement>.option(classes: String? = null, content: String = ""):
+public fun TagConsumer<Element>.option(classes: String? = null, content: String = ""):
     HTMLOptionElement = OPTION(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, {+content})  as HTMLOptionElement
 
@@ -878,7 +876,7 @@ public fun TagConsumer<HTMLElement>.option(classes: String? = null, content: Str
  * Selectable choice
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.option(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.option(classes: String? = null, crossinline
     block: OPTION.() -> Unit = {}): HTMLOptionElement = OPTION(attributesMapOf("class", classes),
     this)
     .visitAndFinalize(this, block)  as HTMLOptionElement
@@ -887,7 +885,7 @@ public inline fun TagConsumer<HTMLElement>.option(classes: String? = null, cross
  * Calculated output value
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.output(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.output(classes: String? = null, crossinline
     block: OUTPUT.() -> Unit = {}): HTMLOutputElement = OUTPUT(attributesMapOf("class", classes),
     this)
     .visitAndFinalize(this, block)  as HTMLOutputElement
@@ -896,15 +894,15 @@ public inline fun TagConsumer<HTMLElement>.output(classes: String? = null, cross
  * Paragraph
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.p(classes: String? = null, crossinline
-    block: P.() -> Unit = {}): HTMLParagraphElement = P(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.p(classes: String? = null, crossinline block: P.() -> Unit =
+    {}): HTMLParagraphElement = P(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLParagraphElement
 
 /**
  * Named property value
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.`param`(
+public inline fun TagConsumer<Element>.`param`(
   name: String? = null,
   `value`: String? = null,
   crossinline block: PARAM.() -> Unit = {},
@@ -915,7 +913,7 @@ public inline fun TagConsumer<HTMLElement>.`param`(
  * Pictures container
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.picture(crossinline block: PICTURE.() -> Unit = {}):
+public inline fun TagConsumer<Element>.picture(crossinline block: PICTURE.() -> Unit = {}):
     HTMLPictureElement = PICTURE(emptyMap, this)
     .visitAndFinalize(this, block)  as HTMLPictureElement
 
@@ -923,7 +921,7 @@ public inline fun TagConsumer<HTMLElement>.picture(crossinline block: PICTURE.()
  * Preformatted text
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.pre(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.pre(classes: String? = null, crossinline
     block: PRE.() -> Unit = {}): HTMLPreElement = PRE(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLPreElement
 
@@ -931,7 +929,7 @@ public inline fun TagConsumer<HTMLElement>.pre(classes: String? = null, crossinl
  * Progress bar
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.progress(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.progress(classes: String? = null, crossinline
     block: PROGRESS.() -> Unit = {}): HTMLProgressElement = PROGRESS(attributesMapOf("class",
     classes), this)
     .visitAndFinalize(this, block)  as HTMLProgressElement
@@ -940,48 +938,48 @@ public inline fun TagConsumer<HTMLElement>.progress(classes: String? = null, cro
  * Short inline quotation
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.q(classes: String? = null, crossinline
-    block: Q.() -> Unit = {}): HTMLElement = Q(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.q(classes: String? = null, crossinline block: Q.() -> Unit =
+    {}): Element = Q(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Parenthesis for ruby annotation text
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.rp(classes: String? = null, crossinline
-    block: RP.() -> Unit = {}): HTMLElement = RP(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.rp(classes: String? = null, crossinline block: RP.() -> Unit
+    = {}): Element = RP(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Ruby annotation text
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.rt(classes: String? = null, crossinline
-    block: RT.() -> Unit = {}): HTMLElement = RT(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.rt(classes: String? = null, crossinline block: RT.() -> Unit
+    = {}): Element = RT(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Ruby annotation(s)
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.ruby(classes: String? = null, crossinline
-    block: RUBY.() -> Unit = {}): HTMLElement = RUBY(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.ruby(classes: String? = null, crossinline
+    block: RUBY.() -> Unit = {}): Element = RUBY(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Strike-through text style
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.s(classes: String? = null, crossinline
-    block: S.() -> Unit = {}): HTMLElement = S(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.s(classes: String? = null, crossinline block: S.() -> Unit =
+    {}): Element = S(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Computer output text style
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.samp(classes: String? = null, crossinline
-    block: SAMP.() -> Unit = {}): HTMLElement = SAMP(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.samp(classes: String? = null, crossinline
+    block: SAMP.() -> Unit = {}): Element = SAMP(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
@@ -990,7 +988,7 @@ public inline fun TagConsumer<HTMLElement>.samp(classes: String? = null, crossin
 @HtmlTagMarker
 @Suppress("DEPRECATION")
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
-public fun TagConsumer<HTMLElement>.script(
+public fun TagConsumer<Element>.script(
   type: String? = null,
   src: String? = null,
   crossorigin: ScriptCrossorigin? = null,
@@ -1003,7 +1001,7 @@ public fun TagConsumer<HTMLElement>.script(
  * Script statements
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.script(
+public inline fun TagConsumer<Element>.script(
   type: String? = null,
   src: String? = null,
   crossorigin: ScriptCrossorigin? = null,
@@ -1016,15 +1014,15 @@ public inline fun TagConsumer<HTMLElement>.script(
  * Generic document or application section
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.section(classes: String? = null, crossinline
-    block: SECTION.() -> Unit = {}): HTMLElement = SECTION(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.section(classes: String? = null, crossinline
+    block: SECTION.() -> Unit = {}): Element = SECTION(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Option selector
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.select(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.select(classes: String? = null, crossinline
     block: SELECT.() -> Unit = {}): HTMLSelectElement = SELECT(attributesMapOf("class", classes),
     this)
     .visitAndFinalize(this, block)  as HTMLSelectElement
@@ -1033,15 +1031,15 @@ public inline fun TagConsumer<HTMLElement>.select(classes: String? = null, cross
  * Small text style
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.small(classes: String? = null, crossinline
-    block: SMALL.() -> Unit = {}): HTMLElement = SMALL(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.small(classes: String? = null, crossinline
+    block: SMALL.() -> Unit = {}): Element = SMALL(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Media source for 
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.source(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.source(classes: String? = null, crossinline
     block: SOURCE.() -> Unit = {}): HTMLSourceElement = SOURCE(attributesMapOf("class", classes),
     this)
     .visitAndFinalize(this, block)  as HTMLSourceElement
@@ -1050,7 +1048,7 @@ public inline fun TagConsumer<HTMLElement>.source(classes: String? = null, cross
  * Generic language/style container
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.span(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.span(classes: String? = null, crossinline
     block: SPAN.() -> Unit = {}): HTMLSpanElement = SPAN(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLSpanElement
 
@@ -1058,8 +1056,8 @@ public inline fun TagConsumer<HTMLElement>.span(classes: String? = null, crossin
  * Strong emphasis
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.strong(classes: String? = null, crossinline
-    block: STRONG.() -> Unit = {}): HTMLElement = STRONG(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.strong(classes: String? = null, crossinline
+    block: STRONG.() -> Unit = {}): Element = STRONG(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
@@ -1068,15 +1066,15 @@ public inline fun TagConsumer<HTMLElement>.strong(classes: String? = null, cross
 @HtmlTagMarker
 @Suppress("DEPRECATION")
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
-public fun TagConsumer<HTMLElement>.style(type: String? = null, content: String = ""):
-    HTMLStyleElement = STYLE(attributesMapOf("type", type), this)
+public fun TagConsumer<Element>.style(type: String? = null, content: String = ""): HTMLStyleElement
+    = STYLE(attributesMapOf("type", type), this)
     .visitAndFinalize(this, {+content})  as HTMLStyleElement
 
 /**
  * Style info
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.style(type: String? = null, crossinline
+public inline fun TagConsumer<Element>.style(type: String? = null, crossinline
     block: STYLE.() -> Unit = {}): HTMLStyleElement = STYLE(attributesMapOf("type", type), this)
     .visitAndFinalize(this, block)  as HTMLStyleElement
 
@@ -1084,41 +1082,41 @@ public inline fun TagConsumer<HTMLElement>.style(type: String? = null, crossinli
  * Subscript
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.sub(classes: String? = null, crossinline
-    block: SUB.() -> Unit = {}): HTMLElement = SUB(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.sub(classes: String? = null, crossinline
+    block: SUB.() -> Unit = {}): Element = SUB(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Caption for 
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.summary(classes: String? = null, crossinline
-    block: SUMMARY.() -> Unit = {}): HTMLElement = SUMMARY(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.summary(classes: String? = null, crossinline
+    block: SUMMARY.() -> Unit = {}): Element = SUMMARY(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Superscript
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.sup(classes: String? = null, crossinline
-    block: SUP.() -> Unit = {}): HTMLElement = SUP(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.sup(classes: String? = null, crossinline
+    block: SUP.() -> Unit = {}): Element = SUP(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 @HtmlTagMarker
-public fun TagConsumer<HTMLElement>.svg(classes: String? = null, content: String = ""): HTMLElement
-    = SVG(attributesMapOf("class", classes), this)
+public fun TagConsumer<Element>.svg(classes: String? = null, content: String = ""): Element =
+    SVG(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, {+content}) 
 
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.svg(classes: String? = null, crossinline
-    block: SVG.() -> Unit = {}): HTMLElement = SVG(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.svg(classes: String? = null, crossinline
+    block: SVG.() -> Unit = {}): Element = SVG(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  *
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.table(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.table(classes: String? = null, crossinline
     block: TABLE.() -> Unit = {}): HTMLTableElement = TABLE(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLTableElement
 
@@ -1126,7 +1124,7 @@ public inline fun TagConsumer<HTMLElement>.table(classes: String? = null, crossi
  * Table body
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.tbody(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.tbody(classes: String? = null, crossinline
     block: TBODY.() -> Unit = {}): HTMLTableSectionElement = TBODY(attributesMapOf("class",
     classes), this)
     .visitAndFinalize(this, block)  as HTMLTableSectionElement
@@ -1135,15 +1133,15 @@ public inline fun TagConsumer<HTMLElement>.tbody(classes: String? = null, crossi
  * Table data cell
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.td(classes: String? = null, crossinline
-    block: TD.() -> Unit = {}): HTMLTableCellElement = TD(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.td(classes: String? = null, crossinline block: TD.() -> Unit
+    = {}): HTMLTableCellElement = TD(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLTableCellElement
 
 /**
  * Multi-line text field
  */
 @HtmlTagMarker
-public fun TagConsumer<HTMLElement>.textArea(
+public fun TagConsumer<Element>.textArea(
   rows: String? = null,
   cols: String? = null,
   wrap: TextAreaWrap? = null,
@@ -1157,7 +1155,7 @@ public fun TagConsumer<HTMLElement>.textArea(
  * Multi-line text field
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.textArea(
+public inline fun TagConsumer<Element>.textArea(
   rows: String? = null,
   cols: String? = null,
   wrap: TextAreaWrap? = null,
@@ -1171,7 +1169,7 @@ public inline fun TagConsumer<HTMLElement>.textArea(
  * Table footer
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.tfoot(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.tfoot(classes: String? = null, crossinline
     block: TFOOT.() -> Unit = {}): HTMLTableSectionElement = TFOOT(attributesMapOf("class",
     classes), this)
     .visitAndFinalize(this, block)  as HTMLTableSectionElement
@@ -1180,7 +1178,7 @@ public inline fun TagConsumer<HTMLElement>.tfoot(classes: String? = null, crossi
  * Table header cell
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.th(
+public inline fun TagConsumer<Element>.th(
   scope: ThScope? = null,
   classes: String? = null,
   crossinline block: TH.() -> Unit = {},
@@ -1191,7 +1189,7 @@ public inline fun TagConsumer<HTMLElement>.th(
  * Table header
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.thead(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.thead(classes: String? = null, crossinline
     block: THEAD.() -> Unit = {}): HTMLTableSectionElement = THEAD(attributesMapOf("class",
     classes), this)
     .visitAndFinalize(this, block)  as HTMLTableSectionElement
@@ -1200,7 +1198,7 @@ public inline fun TagConsumer<HTMLElement>.thead(classes: String? = null, crossi
  * Machine-readable equivalent of date- or time-related data
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.time(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.time(classes: String? = null, crossinline
     block: TIME.() -> Unit = {}): HTMLTimeElement = TIME(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLTimeElement
 
@@ -1208,7 +1206,7 @@ public inline fun TagConsumer<HTMLElement>.time(classes: String? = null, crossin
  * Document title
  */
 @HtmlTagMarker
-public fun TagConsumer<HTMLElement>.title(content: String = ""): HTMLTitleElement = TITLE(emptyMap,
+public fun TagConsumer<Element>.title(content: String = ""): HTMLTitleElement = TITLE(emptyMap,
     this)
     .visitAndFinalize(this, {+content})  as HTMLTitleElement
 
@@ -1216,7 +1214,7 @@ public fun TagConsumer<HTMLElement>.title(content: String = ""): HTMLTitleElemen
  * Document title
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.title(crossinline block: TITLE.() -> Unit = {}):
+public inline fun TagConsumer<Element>.title(crossinline block: TITLE.() -> Unit = {}):
     HTMLTitleElement = TITLE(emptyMap, this)
     .visitAndFinalize(this, block)  as HTMLTitleElement
 
@@ -1224,38 +1222,38 @@ public inline fun TagConsumer<HTMLElement>.title(crossinline block: TITLE.() -> 
  * Table row
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.tr(classes: String? = null, crossinline
-    block: TR.() -> Unit = {}): HTMLTableRowElement = TR(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.tr(classes: String? = null, crossinline block: TR.() -> Unit
+    = {}): HTMLTableRowElement = TR(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLTableRowElement
 
 /**
  * Underlined text style
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.u(classes: String? = null, crossinline
-    block: U.() -> Unit = {}): HTMLElement = U(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.u(classes: String? = null, crossinline block: U.() -> Unit =
+    {}): Element = U(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Unordered list
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.ul(classes: String? = null, crossinline
-    block: UL.() -> Unit = {}): HTMLElement = UL(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.ul(classes: String? = null, crossinline block: UL.() -> Unit
+    = {}): Element = UL(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Unordered list
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.htmlVar(classes: String? = null, crossinline
-    block: VAR.() -> Unit = {}): HTMLElement = VAR(attributesMapOf("class", classes), this)
+public inline fun TagConsumer<Element>.htmlVar(classes: String? = null, crossinline
+    block: VAR.() -> Unit = {}): Element = VAR(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block) 
 
 /**
  * Video player
  */
 @HtmlTagMarker
-public inline fun TagConsumer<HTMLElement>.video(classes: String? = null, crossinline
+public inline fun TagConsumer<Element>.video(classes: String? = null, crossinline
     block: VIDEO.() -> Unit = {}): HTMLVideoElement = VIDEO(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)  as HTMLVideoElement
