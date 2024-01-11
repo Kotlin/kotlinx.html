@@ -1,32 +1,30 @@
 package kotlinx.html.generate
 
-import java.util.*
-
 interface Const<T>
-data class StringConst(val value : String) : Const<String>
-data class ReferenceConst(val propertyName : String) : Const<Any>
+data class StringConst(val value: String) : Const<String>
+data class ReferenceConst(val propertyName: String) : Const<Any>
 
-val Const<*>.asFieldPart : String
+val Const<*>.asFieldPart: String
     get() = when (this) {
         is StringConst -> value.humanize()
         is ReferenceConst -> propertyName
         else -> throw UnsupportedOperationException("Value $this of type ${javaClass.name} is not supported")
     }
 
-val Const<*>.asValue : String
+val Const<*>.asValue: String
     get() = when (this) {
         is StringConst -> value.quote()
         is ReferenceConst -> propertyName
         else -> throw UnsupportedOperationException("Value $this of type ${javaClass.name} is not supported")
     }
 
-fun Appendable.packg(name : String) {
+fun Appendable.packg(name: String) {
     append("package ")
     append(name)
     append("\n")
 }
 
-fun Appendable.import(name : String) {
+fun Appendable.import(name: String) {
     append("import ")
     append(name)
     append("\n")
@@ -44,14 +42,32 @@ fun Appendable.doNotEditWarning() {
     append("/")
 }
 
-fun Appendable.const(value : Const<*>) {
+fun Appendable.const(value: Const<*>) {
     append(value.asValue)
 }
 
-data class Var(val name : String, val type : String, val mutable : Boolean = false, val override : Boolean = false, val forceOmitValVar : Boolean = false, val defaultValue : String = "")
-data class Clazz(val name: String, val parameters: List<String> = listOf(), val variables: List<Var> = listOf(), val parents: List<String> = listOf(), val isPublic: Boolean = true, val isAbstract: Boolean = false, val isOpen: Boolean = false, val isObject: Boolean = false, val isInterface: Boolean = false)
+data class Var(
+    val name: String,
+    val type: String,
+    val mutable: Boolean = false,
+    val override: Boolean = false,
+    val forceOmitValVar: Boolean = false,
+    val defaultValue: String = "",
+)
 
-fun Appendable.variable(variable : Var, omitValVar : Boolean = false, receiver : String = "") {
+data class Clazz(
+    val name: String,
+    val parameters: List<String> = listOf(),
+    val variables: List<Var> = listOf(),
+    val parents: List<String> = listOf(),
+    val isPublic: Boolean = true,
+    val isAbstract: Boolean = false,
+    val isOpen: Boolean = false,
+    val isObject: Boolean = false,
+    val isInterface: Boolean = false,
+)
+
+fun Appendable.variable(variable: Var, omitValVar: Boolean = false, receiver: String = "") {
     if (!omitValVar && !variable.forceOmitValVar) {
         if (variable.override) {
             append("override ")
@@ -84,7 +100,7 @@ fun Appendable.enumEntry(name: String, deprecated: String?, arguments: List<Stri
     }
 }
 
-fun Appendable.delegateBy(expression : String) {
+fun Appendable.delegateBy(expression: String) {
     append(" by ")
     append(expression)
     emptyLine()
@@ -95,7 +111,7 @@ fun <O : Appendable> O.getter(): O {
     return this
 }
 
-fun <O : Appendable> O.setter(block : O.() -> Unit) : O {
+fun <O : Appendable> O.setter(block: O.() -> Unit): O {
     append("    set(newValue) {")
     block()
     append("}\n")
@@ -103,7 +119,7 @@ fun <O : Appendable> O.setter(block : O.() -> Unit) : O {
     return this
 }
 
-fun <O : Appendable> O.clazz(clazz : Clazz, block : O.() -> Unit) : O {
+fun <O : Appendable> O.clazz(clazz: Clazz, block: O.() -> Unit): O {
     val tokens = ArrayList<String>()
     if (clazz.isPublic) {
         //tokens.add("public") // TODO we need to check !isPublic
@@ -115,11 +131,13 @@ fun <O : Appendable> O.clazz(clazz : Clazz, block : O.() -> Unit) : O {
         tokens.add("open")
     }
 
-    tokens.add(when {
-        clazz.isObject -> "object"
-        clazz.isInterface -> "interface"
-        else -> "class"
-    })
+    tokens.add(
+        when {
+            clazz.isObject -> "object"
+            clazz.isInterface -> "interface"
+            else -> "class"
+        }
+    )
     tokens.add(clazz.name)
     tokens.joinTo(this, " ")
 
@@ -148,16 +166,23 @@ fun <O : Appendable> O.clazz(clazz : Clazz, block : O.() -> Unit) : O {
     return this
 }
 
-fun Appendable.functionCall(name : String, arguments : List<CharSequence>) {
+fun Appendable.functionCall(name: String, arguments: List<CharSequence>) {
     append(name)
     arguments.joinTo(this, ", ", "(", ")")
 }
 
-fun Appendable.functionCallConsts(name : String, arguments : List<Const<*>>) {
-    functionCall(name, arguments.map {it.asValue})
+fun Appendable.functionCallConsts(name: String, arguments: List<Const<*>>) {
+    functionCall(name, arguments.map { it.asValue })
 }
 
-fun Appendable.function(name : String, arguments : List<Var> = emptyList(), returnType : String = "Unit", generics : List<String> = emptyList(), receiver : String = "", modifiers: List<String> = emptyList()) {
+fun Appendable.function(
+    name: String,
+    arguments: List<Var> = emptyList(),
+    returnType: String = "Unit",
+    generics: List<String> = emptyList(),
+    receiver: String = "",
+    modifiers: List<String> = emptyList(),
+) {
     (modifiers + "fun").joinTo(this, separator = " ", postfix = " ")
 
     if (generics.isNotEmpty()) {
@@ -184,18 +209,18 @@ fun Appendable.function(name : String, arguments : List<Var> = emptyList(), retu
     }
 }
 
-fun Appendable.receiverDot(receiver : String) {
+fun Appendable.receiverDot(receiver: String) {
     append(receiver)
     append('.')
 }
 
-fun <O : Appendable> O.blockShort(block : O.() -> Unit) : O = with {
+fun <O : Appendable> O.blockShort(block: O.() -> Unit): O = with {
     append("{ ")
     block()
     append(" }\n")
 }
 
-fun <O : Appendable> O.block(block : O.() -> Unit) : O {
+fun <O : Appendable> O.block(block: O.() -> Unit): O {
     append(" {\n")
     block()
     append("}\n")
@@ -203,7 +228,7 @@ fun <O : Appendable> O.block(block : O.() -> Unit) : O {
     return this
 }
 
-fun <O : Appendable> O.defineIs(expression : CharSequence) : O {
+fun <O : Appendable> O.defineIs(expression: CharSequence): O {
     append(" = ")
     append(expression)
     append("\n")
@@ -211,9 +236,11 @@ fun <O : Appendable> O.defineIs(expression : CharSequence) : O {
     return this
 }
 
-fun Appendable.emptyLine() { appendLine() }
+fun Appendable.emptyLine() {
+    appendLine()
+}
 
-fun <T> T.with(block : T.() -> Unit) : T {
+fun <T> T.with(block: T.() -> Unit): T {
     block()
     return this
 }
