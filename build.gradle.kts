@@ -315,3 +315,5 @@ rootProject.plugins.withType(org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().ignoreScripts = false
 }
 
+tasks.getByName("jsBrowserTest").dependsOn("wasmJsTestTestDevelopmentExecutableCompileSync")
+tasks.getByName("wasmJsBrowserTest").dependsOn("jsTestTestDevelopmentExecutableCompileSync")
