@@ -56,7 +56,7 @@ val specialTypes = listOf(
 ).groupBy { it.first }.mapValues { it.value.single().second }
 
 fun specialTypeFor(tagName: String, attributeName: String): AttributeType? =
-        specialTypes[tagName + "." + attributeName] ?: specialTypes["*." + attributeName]
+        specialTypes["$tagName.$attributeName"] ?: specialTypes["*.$attributeName"]
 
 val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
         "^on", "encoded?", "form", "type",
@@ -67,7 +67,7 @@ val wellKnownWords = listOf("span", "class", "enabled?", "edit(able)?",
         "click", "play(ing)?", "context",
         "rows?", "cols?", "group(ed)?", "auto",
         "list", "field", "data", "block", "scripts?",
-        "item", "area", "length", "colors?", "suspend", "focus", "touch"
+        "item", "area", "length", "colors?", "suspend", "focus", "touch", "loading"
 ).map { it.toRegex(RegexOption.IGNORE_CASE) }
 
 val excludeAttributes = listOf("^item$").map { Pattern.compile(it, Pattern.CASE_INSENSITIVE) }

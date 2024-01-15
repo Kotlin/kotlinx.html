@@ -1262,8 +1262,8 @@ public final class kotlinx/html/Gen_consumer_tagsKt {
 	public static final fun iframe (Lkotlinx/html/TagConsumer;Lkotlinx/html/IframeSandbox;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun iframe$default (Lkotlinx/html/TagConsumer;Lkotlinx/html/IframeSandbox;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun iframe$default (Lkotlinx/html/TagConsumer;Lkotlinx/html/IframeSandbox;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
-	public static final fun img (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
-	public static synthetic fun img$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun img (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ImgLoading;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static synthetic fun img$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ImgLoading;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun input (Lkotlinx/html/TagConsumer;Lkotlinx/html/InputType;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun input$default (Lkotlinx/html/TagConsumer;Lkotlinx/html/InputType;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun ins (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
@@ -1532,6 +1532,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun details$default (Lkotlinx/html/FlowOrInteractiveContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun dfn (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun dfn$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun eagerImg (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun eagerImg$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun em (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun em$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun emailInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -1574,8 +1576,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun iframe$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/IframeSandbox;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun imageInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun imageInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun img (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun img$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun img (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ImgLoading;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun img$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ImgLoading;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun input (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputType;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun input$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputType;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun ins (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -1586,6 +1588,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun keyGen$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/KeyGenKeyType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun label (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun label$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun lazyImg (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun lazyImg$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun link (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun link$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun main (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -1882,6 +1886,8 @@ public final class kotlinx/html/Gen_tags_oKt {
 }
 
 public final class kotlinx/html/Gen_tags_pKt {
+	public static final fun eagerImg (Lkotlinx/html/PICTURE;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun eagerImg$default (Lkotlinx/html/PICTURE;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun getAsFlowContent (Lkotlinx/html/P;)Lkotlinx/html/FlowContent;
 	public static final fun getAsFlowContent (Lkotlinx/html/PICTURE;)Lkotlinx/html/FlowContent;
 	public static final fun getAsFlowContent (Lkotlinx/html/PRE;)Lkotlinx/html/FlowContent;
@@ -1891,8 +1897,10 @@ public final class kotlinx/html/Gen_tags_pKt {
 	public static final fun getAsPhrasingContent (Lkotlinx/html/PICTURE;)Lkotlinx/html/PhrasingContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/PRE;)Lkotlinx/html/PhrasingContent;
 	public static final fun getAsPhrasingContent (Lkotlinx/html/PROGRESS;)Lkotlinx/html/PhrasingContent;
-	public static final fun img (Lkotlinx/html/PICTURE;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun img$default (Lkotlinx/html/PICTURE;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun img (Lkotlinx/html/PICTURE;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ImgLoading;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun img$default (Lkotlinx/html/PICTURE;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ImgLoading;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun lazyImg (Lkotlinx/html/PICTURE;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun lazyImg$default (Lkotlinx/html/PICTURE;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun source (Lkotlinx/html/PICTURE;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun source$default (Lkotlinx/html/PICTURE;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
@@ -2179,12 +2187,14 @@ public class kotlinx/html/IMG : kotlinx/html/HTMLTag, kotlinx/html/CommonAttribu
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 	public final fun getHeight ()Ljava/lang/String;
 	public final fun getIsmap ()Z
+	public final fun getLoading ()Lkotlinx/html/ImgLoading;
 	public final fun getSrc ()Ljava/lang/String;
 	public final fun getUsemap ()Ljava/lang/String;
 	public final fun getWidth ()Ljava/lang/String;
 	public final fun setAlt (Ljava/lang/String;)V
 	public final fun setHeight (Ljava/lang/String;)V
 	public final fun setIsmap (Z)V
+	public final fun setLoading (Lkotlinx/html/ImgLoading;)V
 	public final fun setSrc (Ljava/lang/String;)V
 	public final fun setUsemap (Ljava/lang/String;)V
 	public final fun setWidth (Ljava/lang/String;)V
@@ -2283,6 +2293,15 @@ public final class kotlinx/html/IframeSandbox : java/lang/Enum, kotlinx/html/Att
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/IframeSandbox;
 	public static fun values ()[Lkotlinx/html/IframeSandbox;
+}
+
+public final class kotlinx/html/ImgLoading : java/lang/Enum, kotlinx/html/AttributeEnum {
+	public static final field eager Lkotlinx/html/ImgLoading;
+	public static final field lazy Lkotlinx/html/ImgLoading;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getRealValue ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/ImgLoading;
+	public static fun values ()[Lkotlinx/html/ImgLoading;
 }
 
 public final class kotlinx/html/InputFormEncType : java/lang/Enum, kotlinx/html/AttributeEnum {

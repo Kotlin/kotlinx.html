@@ -36,6 +36,8 @@ internal val attributeFormMethodEnumFormMethodValues : Attribute<FormMethod> = E
 
 internal val attributeIframeSandboxEnumIframeSandboxValues : Attribute<IframeSandbox> = EnumAttribute(iframeSandboxValues)
 
+internal val attributeImgLoadingEnumImgLoadingValues : Attribute<ImgLoading> = EnumAttribute(imgLoadingValues)
+
 internal val attributeInputFormEncTypeEnumInputFormEncTypeValues : Attribute<InputFormEncType> = EnumAttribute(inputFormEncTypeValues)
 
 internal val attributeInputFormMethodEnumInputFormMethodValues : Attribute<InputFormMethod> = EnumAttribute(inputFormMethodValues)

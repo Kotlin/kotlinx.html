@@ -74,6 +74,7 @@ import kotlinx.html.IMG
 import kotlinx.html.INPUT
 import kotlinx.html.INS
 import kotlinx.html.IframeSandbox
+import kotlinx.html.ImgLoading
 import kotlinx.html.InputFormEncType
 import kotlinx.html.InputFormMethod
 import kotlinx.html.InputType
@@ -614,9 +615,11 @@ public inline fun <T, C : TagConsumer<T>> C.iframe(
 public inline fun <T, C : TagConsumer<T>> C.img(
   alt: String? = null,
   src: String? = null,
+  loading: ImgLoading? = null,
   classes: String? = null,
   crossinline block: IMG.() -> Unit = {},
-): T = IMG(attributesMapOf("alt", alt,"src", src,"class", classes), this)
+): T = IMG(attributesMapOf("alt", alt,"src", src,"loading", loading?.enumEncode(),"class", classes),
+    this)
     .visitAndFinalize(this, block)
 
 /**

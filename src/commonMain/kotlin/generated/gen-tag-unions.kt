@@ -447,7 +447,11 @@ fun FlowOrInteractiveOrPhrasingContent.allowScriptsIframe(classes : String? = nu
  * Embedded image
  */
 @HtmlTagMarker
-inline fun FlowOrInteractiveOrPhrasingContent.img(alt : String? = null, src : String? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit = IMG(attributesMapOf("alt", alt,"src", src,"class", classes), consumer).visit(block)
+inline fun FlowOrInteractiveOrPhrasingContent.img(alt : String? = null, src : String? = null, loading : ImgLoading? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit = IMG(attributesMapOf("alt", alt,"src", src,"loading", loading?.enumEncode(),"class", classes), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrInteractiveOrPhrasingContent.eagerImg(alt : String? = null, src : String? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit = IMG(attributesMapOf("alt", alt,"src", src,"loading", ImgLoading.eager.realValue,"class", classes), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrInteractiveOrPhrasingContent.lazyImg(alt : String? = null, src : String? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit = IMG(attributesMapOf("alt", alt,"src", src,"loading", ImgLoading.lazy.realValue,"class", classes), consumer).visit(block)
 
 /**
  * Pictures container
