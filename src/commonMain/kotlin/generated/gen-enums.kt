@@ -1,5 +1,3 @@
-@file:Suppress("EnumEntryName")
-
 package kotlinx.html
 
 import kotlinx.html.*
