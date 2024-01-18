@@ -2,8 +2,8 @@ package kotlinx.html.dom
 
 import kotlinx.html.*
 import kotlinx.html.consumers.*
+import kotlinx.html.org.w3c.dom.events.Event
 import org.w3c.dom.*
-import org.w3c.dom.events.*
 import org.xml.sax.*
 import java.io.*
 import java.util.*
@@ -53,7 +53,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     }
 
     override fun onTagEnd(tag: Tag) {
-        if (path.isEmpty() || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
+        if (path.isEmpty() || path.last().tagName.lowercase() != tag.tagName.lowercase()) {
             throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
 

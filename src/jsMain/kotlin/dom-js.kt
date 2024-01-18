@@ -2,10 +2,9 @@ package kotlinx.html.dom
 
 import kotlinx.html.*
 import kotlinx.html.consumers.*
+import kotlinx.html.org.w3c.dom.events.Event
 import org.w3c.dom.*
-import org.w3c.dom.events.*
 
-@Suppress("NOTHING_TO_INLINE")
 private inline fun HTMLElement.setEvent(name: String, noinline callback : (Event) -> Unit) : Unit {
     asDynamic()[name] = callback
 }
@@ -34,7 +33,7 @@ class JSDOMBuilder<out R : HTMLElement>(val document : Document) : TagConsumer<R
     override fun onTagAttributeChange(tag: Tag, attribute: String, value: String?) {
         when {
             path.isEmpty() -> throw IllegalStateException("No current tag")
-            path.last().tagName.toLowerCase() != tag.tagName.toLowerCase() -> throw IllegalStateException("Wrong current tag")
+            path.last().tagName.lowercase() != tag.tagName.lowercase() -> throw IllegalStateException("Wrong current tag")
             else -> path.last().let { node ->
                 if (value == null) {
                     node.removeAttribute(attribute)
@@ -48,13 +47,13 @@ class JSDOMBuilder<out R : HTMLElement>(val document : Document) : TagConsumer<R
     override fun onTagEvent(tag: Tag, event: String, value: (Event) -> Unit) {
         when {
             path.isEmpty() -> throw IllegalStateException("No current tag")
-            path.last().tagName.toLowerCase() != tag.tagName.toLowerCase() -> throw IllegalStateException("Wrong current tag")
+            path.last().tagName.lowercase() != tag.tagName.lowercase() -> throw IllegalStateException("Wrong current tag")
             else -> path.last().setEvent(event, value)
         }
     }
 
     override fun onTagEnd(tag: Tag) {
-        if (path.isEmpty() || path.last().tagName.toLowerCase() != tag.tagName.toLowerCase()) {
+        if (path.isEmpty() || path.last().tagName.lowercase() != tag.tagName.lowercase()) {
             throw IllegalStateException("We haven't entered tag ${tag.tagName} but trying to leave")
         }
 
@@ -102,7 +101,7 @@ class JSDOMBuilder<out R : HTMLElement>(val document : Document) : TagConsumer<R
 
     override fun finalize(): R = lastLeaved?.asR() ?: throw IllegalStateException("We can't finalize as there was no tags")
 
-    @Suppress("UNCHECKED_CAST")
+    @Suppress("UnsafeCastFromDynamic")
     private fun HTMLElement.asR(): R = this.asDynamic()
 
 }

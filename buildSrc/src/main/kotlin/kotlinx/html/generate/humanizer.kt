@@ -5,7 +5,7 @@ fun String.humanize() : String {
         return "empty"
     }
 
-    val fixedAllUpper = if (all { it.isUpperCase() }) toLowerCase() else this
+    val fixedAllUpper = if (all { it.isUpperCase() }) lowercase() else this
     val fixedFirstUpper = fixedAllUpper.decapitalize()
 
     return fixedFirstUpper.replaceHyphensToCamelCase().makeCamelCaseByDictionary().replaceMistakesAndUglyWords().decapitalize()
@@ -53,7 +53,7 @@ fun humanizeJoin(parts: Iterable<String>, separator: String): String {
         filteredParts.add(cutPart)
     }
 
-    return filteredParts.joinToString(separator = separator, transform = String::capitalize) + trailingParts.joinToString("", transform = String::capitalize)
+    return filteredParts.joinToString(separator = separator) { it.capitalize() } + trailingParts.joinToString("") { it.capitalize() }
 }
 
 private fun String.replaceMistakesAndUglyWords() : String =
@@ -95,7 +95,8 @@ private fun String.makeCamelCaseByDictionary() : String {
     var unprocessedStart = 0
     allRanges.forEachIndexed { i, mr ->
         if (mr.range.start >= unprocessedStart) {
-            val startClash = allRanges.safeSubList(i + 1).asSequence().takeWhile { it.range.start == mr.range.start }.maxBy { it.value.length }
+            val startClash = allRanges.safeSubList(i + 1).asSequence().takeWhile { it.range.start == mr.range.start }
+                .maxByOrNull { it.value.length }
             if (startClash == null || startClash.value.length <= mr.value.length) {
                 val possibleTail = when {
                     mr.value.endsWith("ing") -> 3

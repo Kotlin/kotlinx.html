@@ -36,6 +36,8 @@ internal val attributeFormMethodEnumFormMethodValues : Attribute<FormMethod> = E
 
 internal val attributeIframeSandboxEnumIframeSandboxValues : Attribute<IframeSandbox> = EnumAttribute(iframeSandboxValues)
 
+internal val attributeImgLoadingEnumImgLoadingValues : Attribute<ImgLoading> = EnumAttribute(imgLoadingValues)
+
 internal val attributeInputFormEncTypeEnumInputFormEncTypeValues : Attribute<InputFormEncType> = EnumAttribute(inputFormEncTypeValues)
 
 internal val attributeInputFormMethodEnumInputFormMethodValues : Attribute<InputFormMethod> = EnumAttribute(inputFormMethodValues)
@@ -45,6 +47,8 @@ internal val attributeInputTypeEnumInputTypeValues : Attribute<InputType> = Enum
 internal val attributeKeyGenKeyTypeEnumKeyGenKeyTypeValues : Attribute<KeyGenKeyType> = EnumAttribute(keyGenKeyTypeValues)
 
 internal val attributeRunAtEnumRunAtValues : Attribute<RunAt> = EnumAttribute(runAtValues)
+
+internal val attributeScriptCrossoriginEnumScriptCrossoriginValues : Attribute<ScriptCrossorigin> = EnumAttribute(scriptCrossoriginValues)
 
 internal val attributeTextAreaWrapEnumTextAreaWrapValues : Attribute<TextAreaWrap> = EnumAttribute(textAreaWrapValues)
 

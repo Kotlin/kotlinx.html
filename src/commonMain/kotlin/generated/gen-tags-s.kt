@@ -10,6 +10,17 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
+open class S(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("s", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+
+}
+val S.asFlowContent : FlowContent
+    get()  = this
+
+val S.asPhrasingContent : PhrasingContent
+    get()  = this
+
+
+@Suppress("unused")
 open class SAMP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("samp", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
@@ -49,6 +60,10 @@ open class SCRIPT(initialAttributes : Map<String, String>, override val consumer
     var integrity : String
         get()  = attributeStringString.get(this, "integrity")
         set(newValue) {attributeStringString.set(this, "integrity", newValue)}
+
+    var crossorigin : ScriptCrossorigin
+        get()  = attributeScriptCrossoriginEnumScriptCrossoriginValues.get(this, "crossorigin")
+        set(newValue) {attributeScriptCrossoriginEnumScriptCrossoriginValues.set(this, "crossorigin", newValue)}
 
     @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
     override operator fun Entities.unaryPlus() : Unit {

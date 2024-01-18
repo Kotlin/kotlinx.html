@@ -1,16 +1,16 @@
 package kotlinx.html.generate
 
-fun tagUnions() {
-    val groupings = Repository.groupsByTags.filter { it.value.size > 1 }
+fun tagUnions(repository: Repository) {
+    val groupings = repository.groupsByTags.filter { it.value.size > 1 }
     val groups = groupings.values.map { it.map { it.name }.toHashSet() }.distinct().sortedByDescending { it.size }
-    val allUnions = Repository.groupUnions
+    val allUnions = repository.groupUnions
 
     // initial pass
     groups.forEach { group ->
         val name = unionName(group)
         val superGroups = groups.filter { it !== group && it.containsAll(group) }
         val members = group.toList()
-        val intersection = members.map { Repository.tagGroups[it]!!.tags.toSet() }.reduce { a, b -> a.intersect(b) }
+        val intersection = members.map { repository.tagGroups[it]!!.tags.toSet() }.reduce { a, b -> a.intersect(b) }
 
         val union = GroupUnion(members, intersection, emptyList(), emptyList(), superGroups.map(::unionName))
         require(union.name == name)
@@ -31,7 +31,7 @@ fun tagUnions() {
 
     // transpose map
     val unionsByGroups = allUnions.values.flatMap { u -> u.members.map { it to u.name } }.groupBy({ it.first }, { allUnions[it.second]!! })
-    Repository.unionsByGroups = unionsByGroups
+    repository.unionsByGroups = unionsByGroups
 }
 
 fun unionName(members: Iterable<String>) = humanizeJoin(members, "Or")

@@ -143,10 +143,22 @@ inline fun FlowContent.summary(classes : String? = null, crossinline block : SUM
 inline fun FlowContent.table(classes : String? = null, crossinline block : TABLE.() -> Unit = {}) : Unit = TABLE(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
+ * Underlined text style
+ */
+@HtmlTagMarker
+inline fun FlowContent.u(classes : String? = null, crossinline block : U.() -> Unit = {}) : Unit = U(attributesMapOf("class", classes), consumer).visit(block)
+
+/**
  * Unordered list
  */
 @HtmlTagMarker
 inline fun FlowContent.ul(classes : String? = null, crossinline block : UL.() -> Unit = {}) : Unit = UL(attributesMapOf("class", classes), consumer).visit(block)
+
+/**
+ * Strike-through text style
+ */
+@HtmlTagMarker
+inline fun FlowContent.s(classes : String? = null, crossinline block : S.() -> Unit = {}) : Unit = S(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
  * Document base URI

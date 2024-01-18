@@ -23,8 +23,8 @@ track
 wbr""".lines().toSet()
 
 fun Appendable.htmlTagBuilders(receiver : String, tag : TagInfo) {
-    val contentlessTag = tag.name.toLowerCase() in contentlessTags
-    val probablyContentOnly = tag.possibleChildren.isEmpty() && tag.name.toLowerCase() !in emptyTags && !contentlessTag
+    val contentlessTag = tag.name.lowercase() in contentlessTags
+    val probablyContentOnly = tag.possibleChildren.isEmpty() && tag.name.lowercase() !in emptyTags && !contentlessTag
     htmlTagBuilderMethod(receiver, tag, true)
     if (probablyContentOnly) {
         htmlTagBuilderMethod(receiver, tag, false)
@@ -34,7 +34,8 @@ fun Appendable.htmlTagBuilders(receiver : String, tag : TagInfo) {
         htmlTagBuilderMethod(receiver, tag, false)
     }
 
-    val someEnumAttribute = tag.attributes.filter { it.type == AttributeType.ENUM }.maxBy { it.enumValues.size } // ??
+    val someEnumAttribute =
+        tag.attributes.filter { it.type == AttributeType.ENUM }.maxByOrNull { it.enumValues.size } // ??
     if (someEnumAttribute != null && someEnumAttribute.enumValues.size < 25) {
         htmlTagEnumBuilderMethod(receiver, tag, true, someEnumAttribute, 0)
         if (probablyContentOnly) {

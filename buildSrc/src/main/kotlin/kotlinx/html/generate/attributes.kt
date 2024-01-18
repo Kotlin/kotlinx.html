@@ -1,5 +1,12 @@
 package kotlinx.html.generate
 
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.LambdaTypeName
+import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeName
+
 fun String.quote() = "\"$this\""
 
 fun Appendable.attributePseudoDelegate(request: AttributeRequest) {
@@ -14,9 +21,14 @@ fun Appendable.attributePseudoDelegate(request: AttributeRequest) {
     emptyLine()
 }
 
-fun Appendable.attributeProperty(attribute: AttributeInfo, receiver: String? = null, indent: Int = 1) {
+fun Appendable.attributeProperty(
+    repository: Repository,
+    attribute: AttributeInfo,
+    receiver: String? = null,
+    indent: Int = 1
+) {
     val attributeName = attribute.name
-    val request = tagAttributeVar(attribute, receiver, indent)
+    val request = tagAttributeVar(repository, attribute, receiver, indent)
     append("\n")
 
     indent(indent)
@@ -34,25 +46,28 @@ fun Appendable.attributeProperty(attribute: AttributeInfo, receiver: String? = n
     emptyLine()
 }
 
-fun Appendable.facade(facade: AttributeFacade) {
+fun Appendable.facade(repository: Repository, facade: AttributeFacade) {
     val facadeName = facade.name.capitalize() + "Facade"
 
     clazz(Clazz(facadeName, isInterface = true, parents = listOf("Tag"))) {
     }
 
     facade.attributes.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
-        if (attribute.name.isLowerCase() || attribute.name.toLowerCase() !in facade.attributeNames) {
-            attributeProperty(attribute, receiver = facadeName, indent = 0)
+        if (attribute.name.isLowerCase() || attribute.name.lowercase() !in facade.attributeNames) {
+            attributeProperty(repository, attribute, receiver = facadeName, indent = 0)
         }
     }
 }
 
-fun Appendable.eventProperty(parent: String, attribute: AttributeInfo) {
-    variable(receiver = parent, variable = Var(
+fun Appendable.eventProperty(parent: String, attribute: AttributeInfo, shouldUnsafeCast: Boolean) {
+    val type = "(org.w3c.dom.events.Event) -> Unit"
+    variable(
+        receiver = parent, variable = Var(
             name = attribute.fieldName + "Function",
-            type = "(Event) -> Unit",
+            type = type,
             mutable = true
-    ))
+        )
+    )
     emptyLine()
 
     getter().defineIs(StringBuilder().apply {
@@ -61,11 +76,48 @@ fun Appendable.eventProperty(parent: String, attribute: AttributeInfo) {
     })
     setter {
         receiverDot("consumer")
-        functionCall("onTagEvent", listOf(
+        val newValue = if (shouldUnsafeCast) {
+            "newValue.unsafeCast<(Event) -> Unit>()"
+        } else {
+            "newValue"
+        }
+        functionCall(
+            "onTagEvent", listOf(
                 "this",
                 attribute.name.quote(),
-                "newValue"
-        ))
+                newValue
+            )
+        )
     }
     emptyLine()
+}
+
+fun eventProperty(parent: TypeName, attribute: AttributeInfo, shouldUnsafeCast: Boolean): PropertySpec {
+    val propertyType = LambdaTypeName.get(
+        returnType = ClassName("kotlin", "Unit"),
+        parameters = listOf(ParameterSpec.unnamed(ClassName("kotlinx.html.org.w3c.dom.events", "Event"))),
+    )
+    return PropertySpec.builder(attribute.fieldName + "Function", propertyType)
+        .mutable()
+        .receiver(parent)
+        .getter(
+            FunSpec.getterBuilder()
+                .addStatement("throw UnsupportedOperationException(\"You can't read variable ${attribute.fieldName}\")")
+                .build()
+        )
+        .setter(
+            FunSpec.setterBuilder()
+                .addParameter("newValue", propertyType)
+                .addStatement(
+                    "consumer.onTagEvent(this, %S, %L)",
+                    attribute.name,
+                    if (shouldUnsafeCast) {
+                        "newValue.unsafeCast<(Event) -> Unit>()"
+                    } else {
+                        "newValue"
+                    }
+                )
+                .build()
+        )
+        .build()
 }

@@ -2,10 +2,13 @@ package kotlinx.html.stream
 
 import kotlinx.html.*
 import kotlinx.html.consumers.*
-import org.w3c.dom.events.*
+import kotlinx.html.org.w3c.dom.events.Event
 
-class HTMLStreamBuilder<out O : Appendable>(val out: O, val prettyPrint: Boolean, val xhtmlCompatible: Boolean) :
-    TagConsumer<O> {
+class HTMLStreamBuilder<out O : Appendable>(
+    val out: O,
+    val prettyPrint: Boolean,
+    val xhtmlCompatible: Boolean
+) : TagConsumer<O> {
     private var level = 0
     private var ln = true
 
@@ -134,7 +137,7 @@ class HTMLStreamBuilder<out O : Appendable>(val out: O, val prettyPrint: Boolean
     }
 }
 
-private val AVERAGE_PAGE_SIZE = 32768
+private const val AVERAGE_PAGE_SIZE = 32768
 
 fun createHTML(prettyPrint: Boolean = true, xhtmlCompatible: Boolean = false): TagConsumer<String> =
     HTMLStreamBuilder(
@@ -156,7 +159,7 @@ private val escapeMap = mapOf(
     '&' to "&amp;",
     '\"' to "&quot;"
 ).let { mappings ->
-    val maxCode = mappings.keys.map { it.toInt() }.maxOrNull() ?: -1
+    val maxCode = mappings.keys.maxOfOrNull { it.code } ?: -1
 
     Array(maxCode + 1) { mappings[it.toChar()] }
 }
@@ -179,24 +182,41 @@ private fun String.startsWithXml() = length >= 3
         && (this[1].let { it == 'm' || it == 'M' })
         && (this[2].let { it == 'l' || it == 'L' })
 
-private fun Appendable.escapeAppend(s: CharSequence) {
+internal fun Appendable.escapeAppend(value: CharSequence) {
     var lastIndex = 0
     val mappings = escapeMap
     val size = mappings.size
 
-    for (idx in 0..s.length - 1) {
-        val ch = s[idx].toInt()
-        if (ch < 0 || ch >= size) continue
-        val escape = mappings[ch]
-        if (escape != null) {
-            append(s.substring(lastIndex, idx))
-            append(escape)
-            lastIndex = idx + 1
+    var currentIndex = 0
+    while (currentIndex < value.length) {
+        val code = value[currentIndex].code
+
+        if (code == '\\'.code && currentIndex + 1 < value.length && value[currentIndex + 1] == '&') {
+            append(value.substring(lastIndex, currentIndex))
+            check(currentIndex + 1 < value.length) { "String must not end with '\\'." }
+            append(value[currentIndex + 1])
+            lastIndex = currentIndex + 2
+            currentIndex += 2
+            continue
         }
+
+        if (code < 0 || code >= size) {
+            currentIndex++
+            continue
+        }
+
+        val escape = mappings[code]
+        if (escape != null) {
+            append(value.substring(lastIndex, currentIndex))
+            append(escape)
+            lastIndex = currentIndex + 1
+        }
+
+        currentIndex++
     }
 
-    if (lastIndex < s.length) {
-        append(s.substring(lastIndex, s.length))
+    if (lastIndex < value.length) {
+        append(value.substring(lastIndex, value.length))
     }
 }
 

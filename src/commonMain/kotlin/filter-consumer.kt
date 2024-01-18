@@ -1,7 +1,7 @@
 package kotlinx.html.consumers
 
 import kotlinx.html.*
-import org.w3c.dom.events.*
+import kotlinx.html.org.w3c.dom.events.Event
 
 object PredicateResults {
     val PASS = PredicateResult.PASS
@@ -73,12 +73,6 @@ private class FilterTagConsumer<T>(val downstream: TagConsumer<T>, val predicate
     }
 
     private fun canPassCurrentLevel() = dropLevel == null && currentLevel !in skippedLevels
-
-    override fun onTagError(tag: Tag, exception: Throwable) {
-        if (canPassCurrentLevel()) {
-            downstream.onTagError(tag, exception)
-        }
-    }
 
     override fun onTagComment(content: CharSequence) {
         if (canPassCurrentLevel()) {

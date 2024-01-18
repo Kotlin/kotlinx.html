@@ -1,29 +1,24 @@
 import Build_gradle.MavenPomFile
 import kotlinx.html.js.packageJson
-import org.apache.tools.ant.taskdefs.condition.Os
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsSetupTask
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 /**
  * This build script supports following parameters:
- * -Prelease      - activates "release" profile (uploading to Bintray "kotlin/kotlinx" without publication and
- *                  publication to npmjs "kotlinx-html").
- * -Pbranch-build - activates "branch-build" profile (publication to Bintray "kotlin/kotlin-dev" and to npmjs
- *                  "@kotlinx-branch-build/kotlinx-html").
- * -Pmaster-build - activates "master-build" profile (publication to OSS Sonatype snapshot repository and to npmjs
- *                  "@kotlinx-master-build/kotlinx-html").
  * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "1.4.0"
+    kotlin("multiplatform") version "1.9.22"
     id("maven-publish")
+    id("signing")
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.7.2-SNAPSHOT"
+version = "0.10.1"
 
 buildscript {
     dependencies {
-        classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.2.3")
+        classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.13.2")
     }
 }
 
@@ -41,7 +36,7 @@ if (hasProperty("release")) {
 
 /**
  * Handler of "versionTag" property.
- * Required to support Bintray and NPM repositories that doesn't support "-SNAPSHOT" versions. To build and publish
+ * Required to support Maven and NPM repositories that doesn't support "-SNAPSHOT" versions. To build and publish
  * artifacts with specific version run "./gradlew -PversionTag=my-tag" and the final version will be "0.6.13-my-tag".
  */
 if (hasProperty("versionTag")) {
@@ -55,141 +50,98 @@ if (hasProperty("versionTag")) {
     }
 }
 
+if (hasProperty("releaseVersion")) {
+    version = properties["releaseVersion"] as String
+}
+
+val publishingUser = System.getenv("PUBLISHING_USER")
+val publishingPassword = System.getenv("PUBLISHING_PASSWORD")
+val publishingUrl = System.getenv("PUBLISHING_URL")
+
 publishing {
     publications {
         repositories {
-            when {
-                hasProperty("release") -> {
-                    maven {
-                        url = uri("https://api.bintray.com/maven/kotlin/kotlinx/kotlinx.html;publish=1")
-                        credentials {
-                            username = System.getenv("BINTRAY_USERNAME")
-                            password = System.getenv("BINTRAY_PASSWORD")
-                        }
-                    }
+            if (publishingUser == null) return@repositories
+            maven {
+                url = uri(publishingUrl)
+                credentials {
+                    username = publishingUser
+                    password = publishingPassword
                 }
-                hasProperty("branch-build") -> {
-                    require(!(version as String).endsWith("-SNAPSHOT")) {
-                        "Profile 'branch-build' assumes non-snapshot version. Use -PversionTag to fix the build."
-                    }
-
-                    maven {
-                        url = uri("https://api.bintray.com/maven/kotlin/kotlin-dev/kotlinx.html/;publish=1")
-                        credentials {
-                            username = System.getenv("BINTRAY_USERNAME")
-                            password = System.getenv("BINTRAY_PASSWORD")
-                        }
-                    }
-                }
-                hasProperty("master-build") -> {
-                    require((version as String).endsWith("-SNAPSHOT")) {
-                        "Profile 'master-build' assumes snapshot version. Change the version or use another profile."
-                    }
-
-                    maven {
-                        url = uri("https://oss.sonatype.org/content/repositories/snapshots")
-                        credentials {
-                            username = System.getenv("SONATYPE_USERNAME")
-                            password = System.getenv("SONATYPE_PASSWORD")
-                        }
-                    }
-                }
-            }
-        }
-
-        create<MavenPublication>("kotlinx-html-assembly") {
-            artifactId = "kotlinx-html-assembly"
-            jar("jsWebJar") {
-                archiveBaseName by "${project.name}-assembly"
-                archiveClassifier by "webjar"
-                from("$buildDir/js/packages/${project.name}/kotlin/kotlinx-html-js.js")
-                into("META-INF/resources/webjars/${project.name}/${project.version}/")
             }
         }
     }
 }
 
 repositories {
-    jcenter()
     mavenCentral()
+}
 
-    // It is just for release against pre-release versions
-    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
-    maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
-
-    when {
-        /** Allow all profiles but release to use development and SNAPSHOT dependencies. */
-        !hasProperty("release") -> {
-            maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
-            maven {
-                url = uri("https://oss.sonatype.org/content/repositories/snapshots")
-                mavenContent {
-                    snapshotsOnly()
-                }
-            }
-        }
-    }
+val emptyJar = tasks.register<org.gradle.jvm.tasks.Jar>("emptyJar") {
+    archiveAppendix.set("empty")
 }
 
 kotlin {
     jvm {
-        compilations["main"].kotlinOptions.apply {
-            freeCompilerArgs += "-Xdump-declarations-to=${buildDir}/declarations.json"
-        }
-
         mavenPublication {
             groupId = group as String
-            pom.config { name by "${project.name}-jvm" }
+            pom { name by "${project.name}-jvm" }
 
-            javadocJar("jvmJavadocJar")
-            jar("jvmTestSourcesJar") {
-                archiveClassifier by "test-sources"
-                with(sourceSets["jvmTest"]) {
-                    from(kotlin, resources)
-                }
+            artifact(emptyJar) {
+                classifier = "javadoc"
             }
         }
     }
-
     js {
         moduleName = project.name
         browser {
             testTask {
                 useKarma {
                     useChromeHeadless()
-                    useConfigDirectory("${project.projectDir}/src/jsTest/karma")
                 }
             }
         }
 
-        compilations["main"].packageJson {
-            main = "kotlin/kotlinx-html-js.js"
-            name = "kotlinx-html-js"
+        mavenPublication {
+            groupId = group as String
+            pom { name by "${project.name}-js" }
         }
-
-        compilations["main"].kotlinOptions.apply {
-            outputFile = "$buildDir/js/packages/${project.name}/kotlin/${project.name}-js.js"
-            moduleKind = "umd"
-            sourceMap = true
-            sourceMapEmbedSources = "always"
-        }
-
-        compilations["test"].kotlinOptions.apply {
-            moduleKind = "umd"
-            metaInfo = true
-            sourceMap = true
-        }
+    }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        moduleName = project.name
+        browser()
 
         mavenPublication {
             groupId = group as String
-            pom.config { name by "${project.name}-js" }
+            pom { name by "${project.name}-wasm-js" }
+        }
+    }
 
-            javadocJar("jsJavadocJar")
-            jar("jsTestSourcesJar") {
-                archiveClassifier by "test-sources"
-                with(sourceSets["jsTest"]) {
-                    from(kotlin, resources)
-                }
+    mingwX64()
+    linuxX64()
+    linuxArm64()
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+    watchosX64()
+    watchosArm32()
+    watchosArm64()
+    watchosSimulatorArm64()
+    watchosDeviceArm64()
+    tvosX64()
+    tvosArm64()
+    tvosSimulatorArm64()
+    macosX64()
+    macosArm64()
+
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    applyDefaultHierarchyTemplate {
+        common {
+            group("jsCommon") {
+                withJs()
+                // TODO: switch to `withWasmJs()` after upgrade to Kotlin 2.0
+                withWasm()
             }
         }
     }
@@ -198,62 +150,40 @@ kotlin {
         mavenPublication {
             groupId = group as String
             artifactId = "${project.name}-common"
-            pom.config { name by "${project.name}-common" }
-
-            javadocJar("commonJavadocJar")
-            jar("commonTestSourcesJar") {
-                archiveClassifier by "test-sources"
+            pom {
+                name by "${project.name}-common"
             }
         }
     }
 }
 
 kotlin {
+    jvmToolchain(8)
+
     sourceSets {
         commonMain {
             dependencies {
-                implementation(kotlin("stdlib-common"))
+                implementation(kotlin("stdlib"))
             }
         }
 
-        val jsMain by getting {
+        commonTest {
             dependencies {
-                implementation(kotlin("stdlib-js"))
+                implementation(kotlin("test"))
             }
         }
 
-        val jsTest by getting {
-            dependencies {
-                implementation(kotlin("test-js"))
-                api(npm("puppeteer", "*"))
-            }
-        }
-
-        val jvmMain by getting {
-            dependencies {
-                implementation(kotlin("stdlib-jdk8"))
-            }
-        }
-
-        val jvmTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                /* Jackson is required to parse declarations.json. */
-                implementation("com.fasterxml.jackson.core:jackson-core:2.10.1")
-                implementation("com.fasterxml.jackson.core:jackson-databind:2.10.1")
-            }
-        }
     }
 }
 
 tasks.withType<Jar> {
     manifest {
         attributes += sortedMapOf(
-                "Built-By" to System.getProperty("user.name"),
-                "Build-Jdk" to System.getProperty("java.version"),
-                "Implementation-Vendor" to "JetBrains s.r.o.",
-                "Implementation-Version" to archiveVersion.get(),
-                "Created-By" to org.gradle.util.GradleVersion.current()
+            "Built-By" to System.getProperty("user.name"),
+            "Build-Jdk" to System.getProperty("java.version"),
+            "Implementation-Vendor" to "JetBrains s.r.o.",
+            "Implementation-Version" to archiveVersion.get(),
+            "Created-By" to GradleVersion.current()
         )
     }
 }
@@ -264,9 +194,14 @@ tasks.register<Task>("generate") {
 
     doLast {
         kotlinx.html.generate.generate(
-                "kotlinx.html",
-                "src/commonMain/kotlin/generated",
-                "src/jsMain/kotlin/generated"
+            pkg = "kotlinx.html",
+            todir = "src/commonMain/kotlin/generated",
+            jsdir = "src/jsMain/kotlin/generated",
+            wasmJsDir = "src/wasmJsMain/kotlin/generated"
+        )
+        kotlinx.html.generate.generateJsTagTests(
+            jsdir = "src/jsTest/kotlin/generated",
+            wasmJsDir = "src/wasmJsTest/kotlin/generated",
         )
     }
 }
@@ -303,56 +238,24 @@ tasks.register<Copy>("jsPackagePrepare") {
     }
 }
 
-tasks.register<Exec>("publishNpm") {
-    dependsOn("jsPackagePrepare")
-    dependsOn("kotlinNodeJsSetup")
-
-    group = "publishing"
-    description = "Publishes ${project.name} NPM module to 'registry.npmjs.org'."
-
-    val kotlinNodeJsSetupTask = tasks["kotlinNodeJsSetup"] as NodeJsSetupTask
-
-    // For some unknown reason, the node distributive's structure is different on Windows and UNIX.
-    val node = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        kotlinNodeJsSetupTask.destination
-                .resolve("node.exe")
-    } else {
-        kotlinNodeJsSetupTask.destination
-                .resolve("bin")
-                .resolve("node")
+publishing {
+    publications {
+        configureEach {
+            if (this is MavenPublication) {
+                pom.config()
+            }
+        }
     }
-
-    val npm = if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        kotlinNodeJsSetupTask.destination
-                .resolve("node_modules")
-                .resolve("npm")
-                .resolve("bin")
-                .resolve("npm-cli.js")
-    } else {
-        kotlinNodeJsSetupTask.destination
-                .resolve("lib")
-                .resolve("node_modules")
-                .resolve("npm")
-                .resolve("bin")
-                .resolve("npm-cli.js")
-    }
-
-    commandLine(
-            node,
-            npm,
-            "publish",
-            "$buildDir/tmp/jsPackage",
-            "--//registry.npmjs.org/:_authToken=${System.getenv("NPMJS_AUTH")}",
-            "--access=public"
-    )
 }
 
-typealias MavenPomFile = org.gradle.api.publish.maven.MavenPom
+typealias MavenPomFile = MavenPom
 
 fun MavenPomFile.config(config: MavenPomFile.() -> Unit = {}) {
     config()
 
     url by "https://github.com/Kotlin/kotlinx.html"
+    name by "kotlinx.html"
+    description by "A kotlinx.html library provides DSL to build HTML to Writer/Appendable or DOM at JVM and browser (or other JavaScript engine) for better Kotlin programming for Web."
 
     licenses {
         license {
@@ -386,13 +289,31 @@ tasks.withType<GenerateModuleMetadata> {
     enabled = true
 }
 
-fun MavenPublication.jar(taskName: String, config: Action<Jar>) = artifact(tasks.create(taskName, Jar::class, config))
-
-fun MavenPublication.javadocJar(taskName: String, config: Jar.() -> Unit = {}) = jar(taskName) {
-    archiveClassifier by "javadoc"
-    config()
-}
-
 infix fun <T> Property<T>.by(value: T) {
     set(value)
 }
+
+val signingKey = System.getenv("SIGN_KEY_ID")
+val signingKeyPassphrase = System.getenv("SIGN_KEY_PASSPHRASE")
+
+if (!signingKey.isNullOrBlank()) {
+    project.ext["signing.gnupg.keyName"] = signingKey
+    project.ext["signing.gnupg.passphrase"] = signingKeyPassphrase
+
+    signing {
+        useGpgCmd()
+        sign(publishing.publications)
+    }
+}
+
+rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin> {
+    val nodeM1Version = "16.13.1"
+    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().nodeVersion = nodeM1Version
+}
+
+rootProject.plugins.withType(org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin::class.java) {
+    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().ignoreScripts = false
+}
+
+tasks.getByName("jsBrowserTest").dependsOn("wasmJsTestTestDevelopmentExecutableCompileSync")
+tasks.getByName("wasmJsBrowserTest").dependsOn("jsTestTestDevelopmentExecutableCompileSync")

@@ -216,6 +216,13 @@ enum class IframeSandbox(override val realValue : String) : AttributeEnum {
 
 internal val iframeSandboxValues : Map<String, IframeSandbox> = IframeSandbox.values().associateBy { it.realValue }
 @Suppress("unused")
+enum class ImgLoading(override val realValue : String) : AttributeEnum {
+    eager("eager"),
+    lazy("lazy")
+}
+
+internal val imgLoadingValues : Map<String, ImgLoading> = ImgLoading.values().associateBy { it.realValue }
+@Suppress("unused")
 enum class InputType(override val realValue : String) : AttributeEnum {
     button("button"),
     checkBox("checkbox"),
@@ -367,6 +374,13 @@ object ScriptType {
     val values : List<String> = listOf("textEcmaScript", "textJavaScript", "textJavaScript10", "textJavaScript11", "textJavaScript12", "textJavaScript13", "textJavaScript14", "textJavaScript15", "textJScript", "textXJavaScript", "textXEcmaScript", "textVbScript")
 }
 
+@Suppress("unused")
+enum class ScriptCrossorigin(override val realValue : String) : AttributeEnum {
+    anonymous("anonymous"),
+    useCredentials("use-credentials")
+}
+
+internal val scriptCrossoriginValues : Map<String, ScriptCrossorigin> = ScriptCrossorigin.values().associateBy { it.realValue }
 @Suppress("unused")
 object StyleType {
     val textCss : String = "text/css"

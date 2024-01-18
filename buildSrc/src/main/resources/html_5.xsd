@@ -312,10 +312,12 @@
             <xsd:element ref="textarea"/>
             <xsd:element ref="time"/>
 
+            <xsd:element ref="u"/>
             <xsd:element ref="ul"/>
 
             <xsd:element ref="var"/>
             <xsd:element ref="video"/>
+            <xsd:element ref="s"/>
 
         </xsd:choice>
     </xsd:group>
@@ -608,6 +610,14 @@
             </xsd:attribute>
             <xsd:attribute name="nonce" type="xsd:string"/>
             <xsd:attribute name="integrity" type="xsd:string"/>
+            <xsd:attribute name="crossorigin">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:NMTOKEN">
+                        <xsd:enumeration value="anonymous"/>
+                        <xsd:enumeration value="use-credentials"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
         </xsd:complexType>
     </xsd:element>
 
@@ -737,6 +747,8 @@
         </xsd:complexType>
     </xsd:element>
 
+    <xsd:element name="u" type="simplePhrasingContentElement"/>
+
     <xsd:element name="ul">
         <xsd:complexType>
             <xsd:choice>
@@ -831,6 +843,7 @@
     <xsd:element name="main" type="simplePhrasingContentElement"/>
     <xsd:element name="mark" type="simplePhrasingContentElement"/>
     <xsd:element name="math" type="simplePhrasingContentElement"/>
+    <xsd:element name="s" type="simplePhrasingContentElement"/>
 
     <xsd:element name="progress">
         <xsd:complexType mixed="true">
@@ -965,6 +978,14 @@
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:NMTOKEN">
                         <xsd:enumeration value="ismap"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attribute name="loading">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:NMTOKEN">
+                        <xsd:enumeration value="eager"/>
+                        <xsd:enumeration value="lazy"/>
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:attribute>

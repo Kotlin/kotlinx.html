@@ -84,6 +84,10 @@ open class IMG(initialAttributes : Map<String, String>, override val consumer : 
         get()  = attributeBooleanTicker.get(this, "ismap")
         set(newValue) {attributeBooleanTicker.set(this, "ismap", newValue)}
 
+    var loading : ImgLoading
+        get()  = attributeImgLoadingEnumImgLoadingValues.get(this, "loading")
+        set(newValue) {attributeImgLoadingEnumImgLoadingValues.set(this, "loading", newValue)}
+
 
 }
 val IMG.asFlowContent : FlowContent

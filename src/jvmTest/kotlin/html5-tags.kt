@@ -20,17 +20,23 @@ class Html5TagsTest {
 
         print(tree.serialize(true).trim().replace("\r\n", "\n"))
 
-        assertEquals("<!DOCTYPE html>\n<html><body><main class=\"main-test\" id=\"test-node\">content</main></body></html>", tree.serialize(false))
-        assertEquals("""
+        assertEquals(
+            "<!DOCTYPE html>\n<html><body><main class=\"main-test\" id=\"test-node\">content</main></body></html>",
+            tree.serialize(false)
+        )
+        assertEquals(
+            """
                 <!DOCTYPE html>
                 <html>
                   <body>
                     <main class="main-test" id="test-node">content</main>
                   </body>
-                </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n"))
+                </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n")
+        )
     }
 
-    @test fun `able to create complex tree and render it with pretty print`() {
+    @test
+    fun `able to create complex tree and render it with pretty print`() {
         val tree = createHTMLDocument().html {
             body {
                 h1 {
@@ -45,16 +51,21 @@ class Html5TagsTest {
             }
         }
 
-        assertEquals("<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>", tree.serialize(false))
-        assertEquals("""
+        assertEquals(
+            "<!DOCTYPE html>\n<html><body><h1>header</h1><div>content<span>yo</span></div></body></html>",
+            tree.serialize(false)
+        )
+        val serialize = tree.serialize(true)
+        assertEquals(
+            """
                 <!DOCTYPE html>
                 <html>
                   <body>
                     <h1>header</h1>
-                    <div>
-                      content<span>yo</span>
+                    <div>content<span>yo</span>
                     </div>
                   </body>
-                </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n"))
+                </html>""".trimIndent(), serialize.trim().replace("\r\n", "\n")
+        )
     }
 }

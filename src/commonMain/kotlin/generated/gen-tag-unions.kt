@@ -63,14 +63,24 @@ inline fun FlowOrMetaDataOrPhrasingContent.noScript(classes : String? = null, cr
  * Script statements
  */
 @HtmlTagMarker
-inline fun FlowOrMetaDataOrPhrasingContent.script(type : String? = null, src : String? = null, crossinline block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src), consumer).visit(block)
+inline fun FlowOrMetaDataOrPhrasingContent.script(type : String? = null, src : String? = null, crossorigin : ScriptCrossorigin? = null, crossinline block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", crossorigin?.enumEncode()), consumer).visit(block)
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
 @Suppress("DEPRECATION")
 /**
  * Script statements
  */
 @HtmlTagMarker
-fun FlowOrMetaDataOrPhrasingContent.script(type : String? = null, src : String? = null, content : String = "") : Unit = SCRIPT(attributesMapOf("type", type,"src", src), consumer).visit({+content})
+fun FlowOrMetaDataOrPhrasingContent.script(type : String? = null, src : String? = null, crossorigin : ScriptCrossorigin? = null, content : String = "") : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", crossorigin?.enumEncode()), consumer).visit({+content})
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.anonymousScript(type : String? = null, src : String? = null, crossinline block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", ScriptCrossorigin.anonymous.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.useCredentialsScript(type : String? = null, src : String? = null, crossinline block : SCRIPT.() -> Unit = {}) : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", ScriptCrossorigin.useCredentials.realValue), consumer).visit(block)
+@Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+fun FlowOrMetaDataOrPhrasingContent.anonymousScript(type : String? = null, src : String? = null, content : String = "") : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", ScriptCrossorigin.anonymous.realValue), consumer).visit({+content})
+@HtmlTagMarker
+fun FlowOrMetaDataOrPhrasingContent.useCredentialsScript(type : String? = null, src : String? = null, content : String = "") : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", ScriptCrossorigin.useCredentials.realValue), consumer).visit({+content})
 
 
 /**
@@ -289,7 +299,7 @@ inline fun FlowOrPhrasingContent.q(classes : String? = null, crossinline block :
 inline fun FlowOrPhrasingContent.ruby(classes : String? = null, crossinline block : RUBY.() -> Unit = {}) : Unit = RUBY(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
- * Strike-through text style
+ * Computer output text style
  */
 @HtmlTagMarker
 inline fun FlowOrPhrasingContent.samp(classes : String? = null, crossinline block : SAMP.() -> Unit = {}) : Unit = SAMP(attributesMapOf("class", classes), consumer).visit(block)
@@ -437,7 +447,11 @@ fun FlowOrInteractiveOrPhrasingContent.allowScriptsIframe(classes : String? = nu
  * Embedded image
  */
 @HtmlTagMarker
-inline fun FlowOrInteractiveOrPhrasingContent.img(alt : String? = null, src : String? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit = IMG(attributesMapOf("alt", alt,"src", src,"class", classes), consumer).visit(block)
+inline fun FlowOrInteractiveOrPhrasingContent.img(alt : String? = null, src : String? = null, loading : ImgLoading? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit = IMG(attributesMapOf("alt", alt,"src", src,"loading", loading?.enumEncode(),"class", classes), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrInteractiveOrPhrasingContent.eagerImg(alt : String? = null, src : String? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit = IMG(attributesMapOf("alt", alt,"src", src,"loading", ImgLoading.eager.realValue,"class", classes), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrInteractiveOrPhrasingContent.lazyImg(alt : String? = null, src : String? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit = IMG(attributesMapOf("alt", alt,"src", src,"loading", ImgLoading.lazy.realValue,"class", classes), consumer).visit(block)
 
 /**
  * Pictures container

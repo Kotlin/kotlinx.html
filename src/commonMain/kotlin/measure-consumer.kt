@@ -1,7 +1,7 @@
 package kotlinx.html.consumers
 
 import kotlinx.html.*
-import org.w3c.dom.events.*
+import kotlinx.html.org.w3c.dom.events.Event
 
 data class TimedResult<T>(val result: T, val time: Long)
 
@@ -37,10 +37,6 @@ private class TimeMeasureConsumer<R>(val downstream: TagConsumer<R>) : TagConsum
 
     override fun onTagContentUnsafe(block: Unsafe.() -> Unit) {
         downstream.onTagContentUnsafe(block)
-    }
-
-    override fun onTagError(tag: Tag, exception: Throwable) {
-        downstream.onTagError(tag, exception)
     }
 
     override fun onTagComment(content: CharSequence) {
