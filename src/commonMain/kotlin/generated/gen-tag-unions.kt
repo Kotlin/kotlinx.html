@@ -299,7 +299,7 @@ inline fun FlowOrPhrasingContent.q(classes : String? = null, crossinline block :
 inline fun FlowOrPhrasingContent.ruby(classes : String? = null, crossinline block : RUBY.() -> Unit = {}) : Unit = RUBY(attributesMapOf("class", classes), consumer).visit(block)
 
 /**
- * Computer output text style
+ * Sample or quote text style
  */
 @HtmlTagMarker
 inline fun FlowOrPhrasingContent.samp(classes : String? = null, crossinline block : SAMP.() -> Unit = {}) : Unit = SAMP(attributesMapOf("class", classes), consumer).visit(block)

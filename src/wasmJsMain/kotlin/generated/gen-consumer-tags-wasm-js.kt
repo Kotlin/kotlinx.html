@@ -978,7 +978,7 @@ public inline fun TagConsumer<Element>.s(classes: String? = null, crossinline bl
     .visitAndFinalize(this, block) 
 
 /**
- * Computer output text style
+ * Sample or quote text style
  */
 @HtmlTagMarker
 public inline fun TagConsumer<Element>.samp(classes: String? = null, crossinline

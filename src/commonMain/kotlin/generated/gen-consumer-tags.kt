@@ -914,7 +914,7 @@ public inline fun <T, C : TagConsumer<T>> C.s(classes: String? = null, crossinli
     .visitAndFinalize(this, block)
 
 /**
- * Computer output text style
+ * Sample or quote text style
  */
 @HtmlTagMarker
 public inline fun <T, C : TagConsumer<T>> C.samp(classes: String? = null, crossinline
