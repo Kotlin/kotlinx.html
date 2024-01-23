@@ -454,6 +454,11 @@ public class JsTagCastTests {
   }
 
   @test
+  public fun testSlot() {
+    wrapper().slot {}
+  }
+
+  @test
   public fun testSmall() {
     wrapper().small {}
   }
@@ -511,6 +516,11 @@ public class JsTagCastTests {
   @test
   public fun testTd() {
     wrapper().td {}
+  }
+
+  @test
+  public fun testTemplate() {
+    wrapper().template {}
   }
 
   @test

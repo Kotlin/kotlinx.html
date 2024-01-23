@@ -113,6 +113,7 @@ import kotlinx.html.SAMP
 import kotlinx.html.SCRIPT
 import kotlinx.html.SECTION
 import kotlinx.html.SELECT
+import kotlinx.html.SLOT
 import kotlinx.html.SMALL
 import kotlinx.html.SOURCE
 import kotlinx.html.SPAN
@@ -126,6 +127,7 @@ import kotlinx.html.ScriptCrossorigin
 import kotlinx.html.TABLE
 import kotlinx.html.TBODY
 import kotlinx.html.TD
+import kotlinx.html.TEMPLATE
 import kotlinx.html.TEXTAREA
 import kotlinx.html.TFOOT
 import kotlinx.html.TH
@@ -965,6 +967,11 @@ public inline fun <T, C : TagConsumer<T>> C.select(classes: String? = null, cros
     block: SELECT.() -> Unit = {}): T = SELECT(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)
 
+@HtmlTagMarker
+public inline fun <T, C : TagConsumer<T>> C.slot(classes: String? = null, crossinline
+    block: SLOT.() -> Unit = {}): T = SLOT(attributesMapOf("class", classes), this)
+    .visitAndFinalize(this, block)
+
 /**
  * Small text style
  */
@@ -1071,6 +1078,14 @@ public inline fun <T, C : TagConsumer<T>> C.tbody(classes: String? = null, cross
 @HtmlTagMarker
 public inline fun <T, C : TagConsumer<T>> C.td(classes: String? = null, crossinline
     block: TD.() -> Unit = {}): T = TD(attributesMapOf("class", classes), this)
+    .visitAndFinalize(this, block)
+
+/**
+ * Template
+ */
+@HtmlTagMarker
+public inline fun <T, C : TagConsumer<T>> C.template(classes: String? = null, crossinline
+    block: TEMPLATE.() -> Unit = {}): T = TEMPLATE(attributesMapOf("class", classes), this)
     .visitAndFinalize(this, block)
 
 /**

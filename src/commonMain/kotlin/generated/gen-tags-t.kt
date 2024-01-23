@@ -83,6 +83,17 @@ open class TD(initialAttributes : Map<String, String>, override val consumer : T
 }
 
 @Suppress("unused")
+open class TEMPLATE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("template", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+
+}
+val TEMPLATE.asFlowContent : FlowContent
+    get()  = this
+
+val TEMPLATE.asPhrasingContent : PhrasingContent
+    get()  = this
+
+
+@Suppress("unused")
 open class TEXTAREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("textarea", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var autoFocus : Boolean
         get()  = attributeBooleanTicker.get(this, "autofocus")

@@ -172,6 +172,15 @@ val SELECT.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
+open class SLOT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("slot", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+    var name : String
+        get()  = attributeStringString.get(this, "name")
+        set(newValue) {attributeStringString.set(this, "name", newValue)}
+
+
+}
+
+@Suppress("unused")
 open class SMALL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("small", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
