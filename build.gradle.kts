@@ -4,8 +4,8 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 /**
- * This build script supports following parameters:
- * -PversionTag   - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
+ * This build script supports the following parameters:
+ * -PversionTag - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
     kotlin("multiplatform") version "1.9.22"
@@ -203,38 +203,6 @@ tasks.register<Task>("generate") {
             jsdir = "src/jsTest/kotlin/generated",
             wasmJsDir = "src/wasmJsTest/kotlin/generated",
         )
-    }
-}
-
-tasks.register<Copy>("jsPackagePrepare") {
-    dependsOn("jsLegacyMainClasses")
-    tasks["assemble"].dependsOn(this)
-
-    group = "build"
-    description = "Assembles NPM package (result is placed into 'build/tmp/jsPackage')."
-
-    val baseTargetDir = "$buildDir/tmp/jsPackage"
-
-    from("README-JS.md")
-    from("$buildDir/js/packages/${project.name}/kotlin")
-    into(baseTargetDir)
-
-    rename("README-JS.md", "README.md")
-
-    doLast {
-        var npmVersion = version as String
-        if (npmVersion.endsWith("-SNAPSHOT")) {
-            npmVersion = npmVersion.replace("-SNAPSHOT", "-${System.currentTimeMillis()}")
-        }
-
-        val organization = when {
-            project.hasProperty("branch-build") -> "kotlinx-branch-build"
-            project.hasProperty("master-build") -> "kotlinx-master-build"
-            else -> null
-        }
-
-        File(baseTargetDir, "package.json").writeText(packageJson(npmVersion, organization))
-        file("$baseTargetDir/kotlinx-html-js").renameTo(File("$buildDir/js-module/kotlinx-html-js"))
     }
 }
 

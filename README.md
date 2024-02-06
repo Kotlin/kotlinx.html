@@ -6,37 +6,61 @@
 
 # kotlinx.html
 
-A kotlinx.html library provides DSL to build HTML to [Writer](https://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)/[Appendable](https://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html) or DOM. Available to all Kotlin Multiplatform targets and browser(or other JavaScript engine) for better [Kotlin programming](https://kotlinlang.org) for Web.
+The kotlinx.html library provides a DSL
+to build HTML
+to [Writer](https://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)/[Appendable](https://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html)
+or DOM.
+Available to all Kotlin Multiplatform targets and browsers (or other WasmJS or JavaScript engines)
+for better [Kotlin programming](https://kotlinlang.org) for Web.
 
 # Get started
 
-See [Getting started](https://github.com/kotlin/kotlinx.html/wiki/Getting-started) page for details how to include the library.
+See [Getting started](https://github.com/kotlin/kotlinx.html/wiki/Getting-started) page for details how to include the
+library.
 
 # DOM
-You can build DOM tree with JVM and JS naturally
 
-See example for JavaScript-targeted Kotlin
+You can build a DOM tree with JVM, JS, and WASM.
+The following example shows how to build the DOM for WasmJs-targeted Kotlin:
 
 ```kotlin
-window.setInterval({
-    val myDiv = document.create.div("panel") {
-        p { 
-            +"Here is "
-            a("https://kotlinlang.org") { +"official Kotlin site" }
-        }
-    }
+import kotlinx.browser.document
+import kotlinx.browser.window
+import kotlinx.html.a
+import kotlinx.html.div
+import kotlinx.html.dom.append
+import kotlinx.html.dom.create
+import kotlinx.html.p
 
-    document.getElementById("container")!!.appendChild(myDiv)
-
-    document.getElementById("container")!!.append {
+fun main() {
+    val body = document.body ?: error("No body")
+    body.append {
         div {
-            +"added it"
+            p {
+                +"Here is "
+                a("https://kotlinlang.org") { +"official Kotlin site" }
+            }
         }
     }
-}, 1000L)
+
+    val timeP = document.create.p {
+        +"Time: 0"
+    }
+
+    body.append(timeP)
+
+    var time = 0
+    window.setInterval({
+        time++
+        timeP.textContent = "Time: $time"
+
+        return@setInterval null
+    }, 1000)
+}
 ```
 
 # Stream
+
 You can build HTML directly to Writer (JVM) or Appendable (Multiplatform)
 
 ```kotlin
@@ -56,6 +80,7 @@ System.out.appendHTML().html {
 
 See [wiki](https://github.com/kotlin/kotlinx.html/wiki) pages
 
-# Building 
+# Building
+
 See [development](https://github.com/kotlin/kotlinx.html/wiki/Development) page for details.
 
