@@ -1,9 +1,11 @@
 package kotlinx.html.consumers
 
 import kotlinx.html.*
+import kotlin.random.*
 
 class TraceConsumer<R>(val downstream: TagConsumer<R>, val println: (String) -> Unit) : TagConsumer<R> by downstream {
-    private val id = "ID-${currentTimeMillis() % 16384}"
+    private val random = Random.nextInt()
+    private val id = "ID-$random"
     private val path = ArrayList<String>(1024)
 
     override fun onTagStart(tag: Tag) {
