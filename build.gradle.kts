@@ -1,5 +1,3 @@
-import Build_gradle.MavenPomFile
-import kotlinx.html.js.packageJson
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
@@ -11,18 +9,11 @@ plugins {
     kotlin("multiplatform") version "1.9.22"
     id("maven-publish")
     id("signing")
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.13.2"
 }
 
 group = "org.jetbrains.kotlinx"
 version = "0.11.0"
-
-buildscript {
-    dependencies {
-        classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.13.2")
-    }
-}
-
-apply(plugin = "binary-compatibility-validator")
 
 /**
  * If "release" profile is used the "-SNAPSHOT" suffix of the version is removed.
@@ -85,7 +76,7 @@ kotlin {
     jvm {
         mavenPublication {
             groupId = group as String
-            pom { name by "${project.name}-jvm" }
+            pom { name = "${project.name}-jvm" }
 
             artifact(emptyJar) {
                 classifier = "javadoc"
@@ -104,7 +95,7 @@ kotlin {
 
         mavenPublication {
             groupId = group as String
-            pom { name by "${project.name}-js" }
+            pom { name = "${project.name}-js" }
         }
     }
     @OptIn(ExperimentalWasmDsl::class)
@@ -114,7 +105,7 @@ kotlin {
 
         mavenPublication {
             groupId = group as String
-            pom { name by "${project.name}-wasm-js" }
+            pom { name = "${project.name}-wasm-js" }
         }
     }
 
@@ -151,7 +142,7 @@ kotlin {
             groupId = group as String
             artifactId = "${project.name}-common"
             pom {
-                name by "${project.name}-common"
+                name = "${project.name}-common"
             }
         }
     }
@@ -161,22 +152,15 @@ kotlin {
     jvmToolchain(8)
 
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(kotlin("stdlib"))
-            }
-        }
-
         commonTest {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-
     }
 }
 
-tasks.withType<Jar> {
+tasks.withType<Jar>().configureEach {
     manifest {
         attributes += sortedMapOf(
             "Built-By" to System.getProperty("user.name"),
@@ -221,44 +205,40 @@ typealias MavenPomFile = MavenPom
 fun MavenPomFile.config(config: MavenPomFile.() -> Unit = {}) {
     config()
 
-    url by "https://github.com/Kotlin/kotlinx.html"
-    name by "kotlinx.html"
-    description by "A kotlinx.html library provides DSL to build HTML to Writer/Appendable or DOM at JVM and browser (or other JavaScript engine) for better Kotlin programming for Web."
+    url = "https://github.com/Kotlin/kotlinx.html"
+    name = "kotlinx.html"
+    description = "A kotlinx.html library provides DSL to build HTML to Writer/Appendable or DOM at JVM and browser (or other JavaScript engine) for better Kotlin programming for Web."
 
     licenses {
         license {
-            name by "The Apache License, Version 2.0"
-            url by "https://www.apache.org/licenses/LICENSE-2.0.txt"
+            name = "The Apache License, Version 2.0"
+            url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
         }
     }
 
     scm {
-        connection by "scm:git:git@github.com:Kotlin/kotlinx.html.git"
-        url by "https://github.com/Kotlin/kotlinx.html"
-        tag by "HEAD"
+        connection = "scm:git:git@github.com:Kotlin/kotlinx.html.git"
+        url = "https://github.com/Kotlin/kotlinx.html"
+        tag = "HEAD"
     }
 
     developers {
         developer {
-            name by "Sergey Mashkov"
-            organization by "JetBrains s.r.o."
+            name = "Sergey Mashkov"
+            organization = "JetBrains s.r.o."
             roles to "developer"
         }
 
         developer {
-            name by "Anton Dmitriev"
-            organization by "JetBrains s.r.o."
+            name = "Anton Dmitriev"
+            organization = "JetBrains s.r.o."
             roles to "developer"
         }
     }
 }
 
-tasks.withType<GenerateModuleMetadata> {
+tasks.withType<GenerateModuleMetadata>().configureEach {
     enabled = true
-}
-
-infix fun <T> Property<T>.by(value: T) {
-    set(value)
 }
 
 val signingKey = System.getenv("SIGN_KEY_ID")
@@ -274,14 +254,13 @@ if (!signingKey.isNullOrBlank()) {
     }
 }
 
-rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin> {
-    val nodeM1Version = "16.13.1"
-    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().nodeVersion = nodeM1Version
-}
-
 rootProject.plugins.withType(org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin::class.java) {
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().ignoreScripts = false
 }
 
-tasks.getByName("jsBrowserTest").dependsOn("wasmJsTestTestDevelopmentExecutableCompileSync")
-tasks.getByName("wasmJsBrowserTest").dependsOn("jsTestTestDevelopmentExecutableCompileSync")
+tasks.named("jsBrowserTest") {
+    dependsOn("wasmJsTestTestDevelopmentExecutableCompileSync")
+}
+tasks.named("wasmJsBrowserTest") {
+    dependsOn("jsTestTestDevelopmentExecutableCompileSync")
+}
