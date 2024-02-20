@@ -7,9 +7,7 @@ import kotlin.time.*
 val <O : Appendable> TimedValue<O>.out: O
     get() = value
 
-private class TimeMeasureConsumer<R>(val downstream: TagConsumer<R>, val timeSource: TimeSource) : TagConsumer<TimedValue<R>> {
-    private val start = timeSource.markNow()
-
+private class TimeMeasureConsumer<R>(val downstream: TagConsumer<R>, val start: TimeMark) : TagConsumer<TimedValue<R>> {
     override fun onTagStart(tag: Tag) {
         downstream.onTagStart(tag)
     }
@@ -45,4 +43,4 @@ private class TimeMeasureConsumer<R>(val downstream: TagConsumer<R>, val timeSou
     override fun finalize(): TimedValue<R> = TimedValue(downstream.finalize(), start.elapsedNow())
 }
 
-fun <R> TagConsumer<R>.measureTime(timeSource: TimeSource = TimeSource.Monotonic): TagConsumer<TimedValue<R>> = TimeMeasureConsumer(this, timeSource)
+fun <R> TagConsumer<R>.measureTime(timeSource: TimeSource = TimeSource.Monotonic): TagConsumer<TimedValue<R>> = TimeMeasureConsumer(this, timeSource.markNow())
