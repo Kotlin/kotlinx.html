@@ -8,7 +8,6 @@ import org.w3c.dom.*
 import kotlinx.browser.*
 import kotlin.properties.*
 import kotlin.test.*
-import kotlin.test.Test as test
 
 class MyBeanWithDiv {
     var node: HTMLDivElement by Delegates.notNull()
@@ -28,7 +27,7 @@ class InjectToLateInitVarBean {
 }
 
 class InjectorTests {
-    @test fun injectByClass() {
+    @Test fun injectByClass() {
         val bean = MyBeanWithDiv()
         val node = document.create.inject(bean, listOf(
                 InjectByClassName("my-class") to MyBeanWithDiv::node
@@ -42,7 +41,7 @@ class InjectorTests {
         assertEquals(found, bean.node)
     }
 
-    @test fun injectByClassFailed() {
+    @Test fun injectByClassFailed() {
         val bean = MyBeanWithDiv()
         document.create.inject(bean, listOf(
                 InjectByClassName("my-class") to MyBeanWithDiv::node
@@ -58,7 +57,7 @@ class InjectorTests {
         }
     }
 
-    @test fun injectByTagName() {
+    @Test fun injectByTagName() {
         val bean = MyBeanWithP()
         document.create.inject(bean, listOf(
                 InjectByTagName("p") to MyBeanWithP::p
@@ -70,7 +69,7 @@ class InjectorTests {
         assertEquals("P", bean.p.tagName)
     }
 
-    @test fun injectToLateInitVar() {
+    @Test fun injectToLateInitVar() {
         val bean = InjectToLateInitVarBean()
         document.create.inject(bean, listOf(
                 InjectByTagName("p") to InjectToLateInitVarBean::myP
@@ -82,7 +81,7 @@ class InjectorTests {
         assertEquals("P", bean.myP.tagName)
     }
 
-    @test fun exampleFromWiki() {
+    @Test fun exampleFromWiki() {
         val bean = ExampleBean()
 
         document.create.inject(bean, listOf(

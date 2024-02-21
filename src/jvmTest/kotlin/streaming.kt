@@ -5,11 +5,10 @@ import kotlinx.html.consumers.*
 import kotlinx.html.stream.*
 import java.io.*
 import kotlin.test.*
-import org.junit.Test as test
 import kotlin.time.*
 
 class TestStreaming {
-    @test fun `we should be able to construct at least simple things`() {
+    @Test fun `we should be able to construct at least simple things`() {
         assertEquals(
                 "<html>\n  <body>\n    <h1>Test me</h1>\n  </body>\n</html>\n",
                 StringBuilder().apply {
@@ -23,7 +22,7 @@ class TestStreaming {
                 }.toString())
     }
 
-    @test fun `we should be able append multiple htmls`() {
+    @Test fun `we should be able append multiple htmls`() {
         assertEquals(
                 "<html>\n  <body>\n    <h1>Test me</h1>\n  </body>\n</html>\n<html></html>\n",
                 StringBuilder().apply {
@@ -40,7 +39,7 @@ class TestStreaming {
                 }.toString())
     }
 
-    @test(expected = IllegalStateException::class)
+    @Test(expected = IllegalStateException::class)
     fun `we shouldn't be able to change attributes of other tag`() {
         StringBuilder().apply {
             appendHTML().html {
@@ -53,7 +52,7 @@ class TestStreaming {
         }
     }
 
-    @test fun `we should be able to write to different appendable`() {
+    @Test fun `we should be able to write to different appendable`() {
         val sw = StringWriter()
         val result = sw.appendHTML(false).html {
             body {
@@ -66,7 +65,7 @@ class TestStreaming {
         assertEquals("<html><body><p>Kotlin</p></body></html>", sw2.toString())
     }
 
-    @test fun `we should be able filter tags`() {
+    @Test fun `we should be able filter tags`() {
         val sw = StringWriter()
 
         val result = sw.appendHTML(false).filter {
@@ -107,7 +106,7 @@ class TestStreaming {
         assertEquals("<html><body><p>[footer.p]<a>[footer.p.span.a]</a></p></body></html>", sw2.toString())
     }
 
-    @test fun `we should be able to handle many requests`() {
+    @Test fun `we should be able to handle many requests`() {
         for (i in 1..1000000) {
             NullAppendable.appendHTML().html {
                 body {
@@ -138,16 +137,16 @@ class TestStreaming {
         }
     }
 
-    @test fun `we should be able to make extension functions with DSL`() {
+    @Test fun `we should be able to make extension functions with DSL`() {
         assertEquals("<html><body><div class=\"block deprecated\"><a href=\"http://kotlinlang.org\" target=\"_blank\" custom=\"custom\">test me</a></div></body></html>", StringBuilder().appendHTML(false).buildMe().toString())
     }
 
-    @test fun `empty tag should have attributes`() {
+    @Test fun `empty tag should have attributes`() {
         assertEquals("<div id=\"d\"></div>", StringBuilder().appendHTML(false).div { id = "d" }.toString())
         assertEquals("<div id=\"d\"><div id=\"d2\"></div></div>", StringBuilder().appendHTML(false).div { id = "d"; div { id = "d2" } }.toString())
     }
 
-    @test fun `test attributes order`() {
+    @Test fun `test attributes order`() {
         val order1 = StringBuilder().appendHTML(false).html {
             body {
                 div {
@@ -169,7 +168,7 @@ class TestStreaming {
         assertNotEquals(order1, order2)
     }
 
-    @test fun `multiple attributes and custom attribute present`() {
+    @Test fun `multiple attributes and custom attribute present`() {
         assertEquals("<div id=\"d1\" custom=\"c1\" class=\"c1 c2\"></div>", StringBuilder().appendHTML(false).div {
             id = "d1"
             attributes["custom"] = "c1"
@@ -177,24 +176,24 @@ class TestStreaming {
         }.toString())
     }
 
-    @test fun `test tags order`() {
+    @Test fun `test tags order`() {
         assertEquals("<div><p><span></span></p></div>", StringBuilder().appendHTML(false).div { p { span {} } }.toString())
     }
 
-    @test fun `test generated enum could be used`() {
+    @Test fun `test generated enum could be used`() {
         assertEquals("<link rel=\"Stylesheet\" href=\"/path\">", StringBuilder().appendHTML(false).link {
             rel = LinkRel.stylesheet
             href = "/path"
         }.toString())
     }
 
-    @test fun `anchor with href syntax`() {
+    @Test fun `anchor with href syntax`() {
         assertEquals("<a href=\"a.html\">text</a>", StringBuilder().appendHTML(false).a("a.html") {
             +"text"
         }.toString())
     }
 
-    @test fun `multiple content`() {
+    @Test fun `multiple content`() {
         assertEquals("<span>AAAbbb...</span>", StringBuilder().appendHTML(false).span {
             +"AAA"
             +"bbb."
@@ -202,7 +201,7 @@ class TestStreaming {
         }.toString())
     }
 
-    @test fun `content with entity`() {
+    @Test fun `content with entity`() {
         assertEquals("<span>before&amp;after</span>", StringBuilder().appendHTML(false).span {
             +"before"
             +Entities.amp
@@ -210,7 +209,7 @@ class TestStreaming {
         }.toString())
     }
 
-    @test fun `test form with button`() {
+    @Test fun `test form with button`() {
         assertEquals("<form action=\"/someurl\">" +
                 "<input type=\"checkbox\" name=\"cb1\">var1" +
                 "<input type=\"checkbox\" name=\"cb2\" disabled=\"disabled\">var2" +
@@ -231,7 +230,7 @@ class TestStreaming {
                 }.toString())
     }
 
-    @test fun `test measure consumer with loop inside`() {
+    @Test fun `test measure consumer with loop inside`() {
         val count = 1000
         val builder = StringBuilder(26 * (count + 1)).appendHTML(false)
 
@@ -267,7 +266,7 @@ class TestStreaming {
         assertEquals(expected.toString(), rs.value.toString())
     }
 
-    @test fun `escape bad chars`() {
+    @Test fun `escape bad chars`() {
         assertEquals("<div id=\"bad&quot;\" custom=\"bad&amp;&quot;\" onevent=\"fire('evt')\">" +
                 "content&lt;script&gt;" +
                 "</div>",
@@ -279,21 +278,21 @@ class TestStreaming {
                 }.toString())
     }
 
-    @test(expected = IllegalArgumentException::class)
+    @Test(expected = IllegalArgumentException::class)
     fun `bad chars in attribute name`() {
         StringBuilder().appendHTML().div {
             attributes["bad'char"] = "test"
         }
     }
 
-    @test(expected = IllegalArgumentException::class)
+    @Test(expected = IllegalArgumentException::class)
     fun `bad chars 'equals' in attribute name`() {
         StringBuilder().appendHTML().div {
             attributes["bad=char"] = "test"
         }
     }
 
-    @test(expected = IllegalStateException::class)
+    @Test(expected = IllegalStateException::class)
     fun `attribute values couldn't be changed after tag content`() {
         createHTML().div {
             +"content"
@@ -301,20 +300,20 @@ class TestStreaming {
         }
     }
 
-    @test fun `we should print empty tags with no close tag`() {
+    @Test fun `we should print empty tags with no close tag`() {
         assertEquals("<img src=\"my.jpg\">", StringBuilder().appendHTML(
                 prettyPrint = false
         ).img(src = "my.jpg").toString())
     }
 
-    @test fun `we should print empty tags with close tag if xhtmlCompatible flag is set to true`() {
+    @Test fun `we should print empty tags with close tag if xhtmlCompatible flag is set to true`() {
         assertEquals("<img src=\"my.jpg\"/>", StringBuilder().appendHTML(
                 prettyPrint = false,
                 xhtmlCompatible = true
         ).img(src = "my.jpg").toString())
     }
 
-    @test fun `pretty print should take into account inline tags`() {
+    @Test fun `pretty print should take into account inline tags`() {
         val text = StringBuilder().apply {
             appendHTML().div {
                 +"content"
@@ -327,7 +326,7 @@ class TestStreaming {
         assertEquals("<div>content<span>y</span></div>", text.trim())
     }
 
-    @test fun `pretty print should work`() {
+    @Test fun `pretty print should work`() {
         assertEquals("<div>\n" +
                 "  <div>content</div>\n" +
                 "  <div>\n" +
@@ -345,7 +344,7 @@ class TestStreaming {
                 }.toString().trim())
     }
 
-    @test fun `ticker attribute modification should work properly`() {
+    @Test fun `ticker attribute modification should work properly`() {
         assertEquals("<input type=\"checkbox\" checked=\"checked\">", createHTML(false).input {
             type = InputType.checkBox
             checked = true
@@ -358,21 +357,21 @@ class TestStreaming {
         })
     }
 
-    @test fun `meta tag should have name and content suggested attributes`() {
+    @Test fun `meta tag should have name and content suggested attributes`() {
         assertEquals("<meta name=\"name\" content=\"content\">", createHTML(false).meta("name", "content"))
         assertEquals("<head><meta name=\"name\" content=\"content\"></head>", createHTML(false).head {
             meta("name", "content")
         })
     }
 
-    @test fun `we should be able to create div with no body`() {
+    @Test fun `we should be able to create div with no body`() {
         assertEquals("<div></div>", createHTML(false).div())
         assertEquals("<div><div></div></div>", createHTML(false).div {
             div()
         })
     }
 
-    @test fun `meta tag example`() {
+    @Test fun `meta tag example`() {
         createHTML(true).html {
             head {
                 meta {
@@ -386,7 +385,7 @@ class TestStreaming {
         }
     }
 
-    @test fun `svg should have namespace`() {
+    @Test fun `svg should have namespace`() {
         val t = createHTML(false).html {
             body {
                 svg {
@@ -397,7 +396,7 @@ class TestStreaming {
         assertEquals("<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>", t)
     }
 
-    @test fun `pretty print`() {
+    @Test fun `pretty print`() {
         val x = StringBuilder().appendHTML().html {
             body {
                 article {
@@ -422,7 +421,7 @@ class TestStreaming {
             """.trimIndent(), x.trimEnd())
     }
 
-    @test fun testHtmlWithNamespace() {
+    @Test fun testHtmlWithNamespace() {
         val x = createHTML().html(namespace = "test") {
             body {
             }
@@ -435,7 +434,7 @@ class TestStreaming {
         """.trimIndent(), x.trimEnd())
     }
 
-    @test fun testComment() {
+    @Test fun testComment() {
         val x = createHTML().html {
             comment("commented")
             body {  }

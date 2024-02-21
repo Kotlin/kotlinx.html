@@ -4,10 +4,9 @@ import kotlinx.html.*
 import kotlinx.html.consumers.*
 import kotlinx.html.dom.*
 import kotlin.test.*
-import org.junit.Test as test
 
 class TestDOMTrees {
-    @test fun `able to create simple tree`() {
+    @Test fun `able to create simple tree`() {
         val tree = createHTMLDocument().div {
             id = "test-node"
             +"content"
@@ -16,7 +15,7 @@ class TestDOMTrees {
         assertEquals("div", tree.getElementById("test-node")?.tagName?.lowercase())
     }
 
-    @test fun `able to create complex tree and render it with pretty print`() {
+    @Test fun `able to create complex tree and render it with pretty print`() {
         val tree = createHTMLDocument().html {
             body {
                 h1 {
@@ -43,7 +42,7 @@ class TestDOMTrees {
                 </html>""".trimIndent(), tree.serialize(true).trim().replace("\r\n", "\n"))
     }
 
-    @test fun `vals create and append support`() {
+    @Test fun `vals create and append support`() {
         val document = createHTMLDocument().html {
             body {
                 div {
@@ -74,7 +73,7 @@ class TestDOMTrees {
         """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n"))
     }
 
-    @test fun `append function support`() {
+    @Test fun `append function support`() {
         val document = createHTMLDocument().html {
             body {
                 div {
@@ -112,7 +111,7 @@ class TestDOMTrees {
         """.trim().replace("\r\n", "\n"), document.serialize(true).trim().replace("\r\n", "\n"))
     }
 
-    @test fun `should compile wiki example`() {
+    @Test fun `should compile wiki example`() {
         println(document {
             append.filter { if (it.tagName == "div") SKIP else PASS }.html {
                 body {
@@ -125,7 +124,7 @@ class TestDOMTrees {
         }.serialize())
     }
 
-    @test fun `svg should have namespace`() {
+    @Test fun `svg should have namespace`() {
         val d = document {
             append.html {
                 body {
@@ -139,7 +138,7 @@ class TestDOMTrees {
                 d.serialize(false).trim().replace("\r\n", "\n"))
     }
 
-    @test fun `generalize tests`() {
+    @Test fun `generalize tests`() {
         fun <T> T.genericFlow() where T : HtmlBlockTag {
             classes += "aha"
             +"content"
@@ -180,7 +179,7 @@ class TestDOMTrees {
         }
     }
 
-    @test fun `script content`() {
+    @Test fun `script content`() {
         val document = document {
             append.html {
                 head {
@@ -199,7 +198,7 @@ class TestDOMTrees {
             document.serialize(false).trim().replace("\r\n", "\n"))
     }
 
-    @test fun testPrepend() {
+    @Test fun testPrepend() {
         val document = createHTMLDocument().html {
             body {
                 a { text("aaa") }
@@ -217,7 +216,7 @@ class TestDOMTrees {
             document.serialize(false).trim().replace("\r\n", "\n"))
     }
 
-    @test fun testComment() {
+    @Test fun testComment() {
         val document = createHTMLDocument().html {
             comment("commented")
         }

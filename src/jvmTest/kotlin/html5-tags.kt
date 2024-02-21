@@ -3,7 +3,6 @@ package kotlinx.html.tests
 import kotlinx.html.*
 import kotlinx.html.dom.*
 import kotlin.test.*
-import org.junit.Test as test
 
 class Html5TagsTest {
     @Test
@@ -35,7 +34,7 @@ class Html5TagsTest {
         )
     }
 
-    @test
+    @Test
     fun `able to create complex tree and render it with pretty print`() {
         val tree = createHTMLDocument().html {
             body {
