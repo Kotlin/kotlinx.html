@@ -5,6 +5,7 @@ import kotlinx.html.consumers.*
 import kotlinx.html.stream.*
 import java.io.*
 import kotlin.test.*
+import kotlin.time.*
 
 class TestStreaming {
     @Test fun `we should be able to construct at least simple things`() {
@@ -233,29 +234,23 @@ class TestStreaming {
         val count = 1000
         val builder = StringBuilder(26 * (count + 1)).appendHTML(false)
 
-        var minStart: Long
-        var maxStart = 0L
-        var minEnd = 0L
-        var maxEnd: Long
+        val timeSource = TimeSource.Monotonic
+        val now = timeSource.markNow()
+        var measuredDuration = Duration.INFINITE
 
-        minStart = currentTimeMillis()
-        val rs = builder.measureTime().div {
-            maxStart = currentTimeMillis()
+        val rs = builder.measureTime(timeSource = timeSource).div {
+            val measuredStart = timeSource.markNow()
             for (i in 1..count) {
                 div {
                     p { +"node$i" }
                 }
             }
-            minEnd = currentTimeMillis()
+            measuredDuration = measuredStart.elapsedNow()
         }
-        maxEnd = currentTimeMillis()
+        val realDuration = now.elapsedNow()
 
-        val maxTime = maxEnd - minStart
-        val minTime = minEnd - maxStart
-
-        val errorMessage = "Expected time should be between $minTime and $maxTime ms, but actual is ${rs.time} ms"
-        assertTrue(errorMessage) { rs.time >= minTime }
-        assertTrue(errorMessage) { rs.time <= maxTime }
+        val errorMessage = "Expected time should be between $measuredDuration and $realDuration, but actual is ${rs.duration}"
+        assertTrue(errorMessage) { rs.duration in measuredDuration..realDuration }
 
         val expected = StringBuilder().apply {
             append("<div>")
@@ -268,7 +263,7 @@ class TestStreaming {
             append("</div>")
         }
 
-        assertEquals(expected.toString(), rs.result.toString())
+        assertEquals(expected.toString(), rs.value.toString())
     }
 
     @Test fun `escape bad chars`() {

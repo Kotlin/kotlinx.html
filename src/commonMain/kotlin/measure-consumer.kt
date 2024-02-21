@@ -2,15 +2,12 @@ package kotlinx.html.consumers
 
 import kotlinx.html.*
 import kotlinx.html.org.w3c.dom.events.Event
+import kotlin.time.*
 
-data class TimedResult<T>(val result: T, val time: Long)
+val <O : Appendable> TimedValue<O>.out: O
+    get() = value
 
-val <O : Appendable> TimedResult<O>.out: O
-    get() = result
-
-private class TimeMeasureConsumer<R>(val downstream: TagConsumer<R>) : TagConsumer<TimedResult<R>> {
-    private val start = currentTimeMillis()
-
+private class TimeMeasureConsumer<R>(val downstream: TagConsumer<R>, val start: TimeMark) : TagConsumer<TimedValue<R>> {
     override fun onTagStart(tag: Tag) {
         downstream.onTagStart(tag)
     }
@@ -43,7 +40,7 @@ private class TimeMeasureConsumer<R>(val downstream: TagConsumer<R>) : TagConsum
         downstream.onTagComment(content)
     }
 
-    override fun finalize(): TimedResult<R> = TimedResult(downstream.finalize(), currentTimeMillis() - start)
+    override fun finalize(): TimedValue<R> = TimedValue(downstream.finalize(), start.elapsedNow())
 }
 
-fun <R> TagConsumer<R>.measureTime(): TagConsumer<TimedResult<R>> = TimeMeasureConsumer(this)
+fun <R> TagConsumer<R>.measureTime(timeSource: TimeSource = TimeSource.Monotonic): TagConsumer<TimedValue<R>> = TimeMeasureConsumer(this, timeSource.markNow())

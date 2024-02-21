@@ -3,7 +3,7 @@ package kotlinx.html.consumers
 import kotlinx.html.*
 
 class TraceConsumer<R>(val downstream: TagConsumer<R>, val println: (String) -> Unit) : TagConsumer<R> by downstream {
-    private val id = "ID-${currentTimeMillis() % 16384}"
+    private val id = "ID-${hashCode()}"
     private val path = ArrayList<String>(1024)
 
     override fun onTagStart(tag: Tag) {
