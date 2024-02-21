@@ -7,10 +7,9 @@ import kotlinx.html.js.*
 import org.w3c.dom.*
 import kotlinx.browser.*
 import kotlin.test.*
-import kotlin.test.Test as test
 
 class DomTreeImplTest {
-    @test fun simpleTree() {
+    @Test fun simpleTree() {
         val node = document.body!!.append.div {
             p {
                 +"test"
@@ -25,7 +24,7 @@ class DomTreeImplTest {
         assertEquals(node, document.body!!.children.asList().last())
     }
 
-    @test fun appendSingleNode() {
+    @Test fun appendSingleNode() {
         val myDiv: HTMLDivElement = document.body!!.append.div {
             p {
                 +"test"
@@ -37,9 +36,9 @@ class DomTreeImplTest {
         assertEquals("<div><p>test</p></div>", myDiv.outerHTML.replace("\\s+".toRegex(), ""))
     }
 
-    @test fun appendNodeWithEventHandler() {
+    @Test fun appendNodeWithEventHandler() {
     	var clicked = false
-    	
+
         document.body!!.append.div {
             onClickFunction = {
 				clicked = true
@@ -56,11 +55,11 @@ class DomTreeImplTest {
         		}
         	}
         }
-        
+
         assertTrue(clicked)
     }
 
-    @test fun testAtMainPage() {
+    @Test fun testAtMainPage() {
         document.body!!.append.div {
             id = "container"
         }
@@ -82,7 +81,7 @@ class DomTreeImplTest {
         assertEquals("<div class=\"panel\"><p>Here is <a href=\"http://kotlinlang.org\">official Kotlin site</a></p></div>", container.innerHTML)
     }
 
-    @test fun appendMultipleNodes() {
+    @Test fun appendMultipleNodes() {
         val wrapper = wrapper()
 
         val nodes = wrapper.append {
@@ -102,7 +101,7 @@ class DomTreeImplTest {
         assertEquals("<div>div1</div><div>div2</div>", wrapper.innerHTML)
     }
 
-    @test fun appendEntity() {
+    @Test fun appendEntity() {
         val wrapper = wrapper()
         wrapper.append.span {
             +Entities.nbsp
@@ -111,7 +110,7 @@ class DomTreeImplTest {
         assertEquals("<span>&nbsp;</span>", wrapper.innerHTML)
     }
 
-    @test fun pastTagAttributeChangedShouldBeProhibited() {
+    @Test fun pastTagAttributeChangedShouldBeProhibited() {
         try {
             document.body!!.append.trace().div {
                 p {
@@ -127,7 +126,7 @@ class DomTreeImplTest {
         }
     }
 
-    @test fun buildBiggerPage() {
+    @Test fun buildBiggerPage() {
         val wrapper = wrapper()
 
         wrapper.append {
@@ -170,7 +169,7 @@ class DomTreeImplTest {
                 </div>""".trimLines(), wrapper.innerHTML)
     }
 
-    @test fun testAppendAndRemoveClass() {
+    @Test fun testAppendAndRemoveClass() {
         val wrapper = wrapper()
 
         wrapper.append {
@@ -183,7 +182,7 @@ class DomTreeImplTest {
         assertEquals("<span class=\"class2\"></span>", wrapper.innerHTML)
     }
 
-    @test fun testSvg() {
+    @Test fun testSvg() {
         val wrapper = wrapper()
 
         wrapper.append.svg {
@@ -193,7 +192,7 @@ class DomTreeImplTest {
         assertEquals("http://www.w3.org/2000/svg", (wrapper.childNodes.asList() as List<Element>).first { it.tagName.lowercase() == "svg" }.namespaceURI)
     }
 
-    @test fun assignEvent() {
+    @Test fun assignEvent() {
         val wrapper = wrapper()
         var invoked = false
 
@@ -216,7 +215,7 @@ class DomTreeImplTest {
         assertTrue { invoked }
     }
 
-    @test fun testTdThColColGroupCreation() {
+    @Test fun testTdThColColGroupCreation() {
         val td = document.create.td()
         val th = document.create.th()
         val col = document.create.col()
@@ -228,7 +227,7 @@ class DomTreeImplTest {
         assertEquals("COLGROUP", colGroup.tagName.uppercase())
     }
 
-    @test fun testPrepend() {
+    @Test fun testPrepend() {
         val wrapper = wrapper()
         wrapper.appendChild(document.createElement("A").apply { textContent = "aaa" })
 
@@ -241,7 +240,7 @@ class DomTreeImplTest {
         assertEquals("<p>OK</p><a>aaa</a>", wrapper.innerHTML)
     }
 
-    @test fun testComment() {
+    @Test fun testComment() {
         val wrapper = wrapper()
         wrapper.append.div {
             comment("commented")

@@ -270,7 +270,6 @@ private fun generateTagTests(repository: Repository, filePath: String, defaultTa
         writeKotlinPoet {
             addImport("kotlinx.browser", "document")
             addImport("kotlinx.html.dom", "append")
-            addAliasedImport(ClassName("kotlin.test", "Test"), "test")
             addType(
                 TypeSpec
                     .classBuilder("JsTagCastTests")
