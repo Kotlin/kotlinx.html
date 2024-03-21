@@ -1,5 +1,8 @@
 package kotlinx.html
 
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlinx.html.*
 import kotlinx.html.impl.*
 import kotlinx.html.attributes.*
@@ -81,37 +84,61 @@ open class HGROUP(initialAttributes : Map<String, String>, override val consumer
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h1(classes : String? = null, crossinline block : H1.() -> Unit = {}) : Unit = H1(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun HGROUP.h1(classes : String? = null, crossinline block : H1.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    H1(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h2(classes : String? = null, crossinline block : H2.() -> Unit = {}) : Unit = H2(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun HGROUP.h2(classes : String? = null, crossinline block : H2.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    H2(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h3(classes : String? = null, crossinline block : H3.() -> Unit = {}) : Unit = H3(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun HGROUP.h3(classes : String? = null, crossinline block : H3.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    H3(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h4(classes : String? = null, crossinline block : H4.() -> Unit = {}) : Unit = H4(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun HGROUP.h4(classes : String? = null, crossinline block : H4.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    H4(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h5(classes : String? = null, crossinline block : H5.() -> Unit = {}) : Unit = H5(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun HGROUP.h5(classes : String? = null, crossinline block : H5.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    H5(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Heading
  */
 @HtmlTagMarker
-inline fun HGROUP.h6(classes : String? = null, crossinline block : H6.() -> Unit = {}) : Unit = H6(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun HGROUP.h6(classes : String? = null, crossinline block : H6.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    H6(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 val HGROUP.asFlowContent : FlowContent
     get()  = this
@@ -161,13 +188,21 @@ open class HTML(initialAttributes : Map<String, String>, override val consumer :
  * Document body
  */
 @HtmlTagMarker
-inline fun HTML.body(classes : String? = null, crossinline block : BODY.() -> Unit = {}) : Unit = BODY(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun HTML.body(classes : String? = null, crossinline block : BODY.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    BODY(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Document head
  */
 @HtmlTagMarker
-inline fun HTML.head(crossinline block : HEAD.() -> Unit = {}) : Unit = HEAD(emptyMap, consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun HTML.head(crossinline block : HEAD.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    HEAD(emptyMap, consumer).visit(block)
+}
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
 @Suppress("DEPRECATION")
 /**

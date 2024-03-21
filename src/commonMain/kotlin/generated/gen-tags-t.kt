@@ -1,5 +1,8 @@
 package kotlinx.html
 
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlinx.html.*
 import kotlinx.html.impl.*
 import kotlinx.html.attributes.*
@@ -21,37 +24,61 @@ open class TABLE(initialAttributes : Map<String, String>, override val consumer 
  * Table caption
  */
 @HtmlTagMarker
-inline fun TABLE.caption(classes : String? = null, crossinline block : CAPTION.() -> Unit = {}) : Unit = CAPTION(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TABLE.caption(classes : String? = null, crossinline block : CAPTION.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    CAPTION(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Table column group
  */
 @HtmlTagMarker
-inline fun TABLE.colGroup(classes : String? = null, crossinline block : COLGROUP.() -> Unit = {}) : Unit = COLGROUP(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TABLE.colGroup(classes : String? = null, crossinline block : COLGROUP.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    COLGROUP(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Table header
  */
 @HtmlTagMarker
-inline fun TABLE.thead(classes : String? = null, crossinline block : THEAD.() -> Unit = {}) : Unit = THEAD(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TABLE.thead(classes : String? = null, crossinline block : THEAD.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    THEAD(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Table footer
  */
 @HtmlTagMarker
-inline fun TABLE.tfoot(classes : String? = null, crossinline block : TFOOT.() -> Unit = {}) : Unit = TFOOT(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TABLE.tfoot(classes : String? = null, crossinline block : TFOOT.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TFOOT(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Table body
  */
 @HtmlTagMarker
-inline fun TABLE.tbody(classes : String? = null, crossinline block : TBODY.() -> Unit = {}) : Unit = TBODY(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TABLE.tbody(classes : String? = null, crossinline block : TBODY.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TBODY(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Table row
  */
 @HtmlTagMarker
-inline fun TABLE.tr(classes : String? = null, crossinline block : TR.() -> Unit = {}) : Unit = TR(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TABLE.tr(classes : String? = null, crossinline block : TR.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TR(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 
 @Suppress("unused")
@@ -62,7 +89,11 @@ open class TBODY(initialAttributes : Map<String, String>, override val consumer 
  * Table row
  */
 @HtmlTagMarker
-inline fun TBODY.tr(classes : String? = null, crossinline block : TR.() -> Unit = {}) : Unit = TR(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TBODY.tr(classes : String? = null, crossinline block : TR.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TR(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 
 @Suppress("unused")
@@ -163,7 +194,11 @@ open class TFOOT(initialAttributes : Map<String, String>, override val consumer 
  * Table row
  */
 @HtmlTagMarker
-inline fun TFOOT.tr(classes : String? = null, crossinline block : TR.() -> Unit = {}) : Unit = TR(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TFOOT.tr(classes : String? = null, crossinline block : TR.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TR(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 
 @Suppress("unused")
@@ -195,7 +230,11 @@ open class THEAD(initialAttributes : Map<String, String>, override val consumer 
  * Table row
  */
 @HtmlTagMarker
-inline fun THEAD.tr(classes : String? = null, crossinline block : TR.() -> Unit = {}) : Unit = TR(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun THEAD.tr(classes : String? = null, crossinline block : TR.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TR(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 
 @Suppress("unused")
@@ -226,20 +265,44 @@ open class TR(initialAttributes : Map<String, String>, override val consumer : T
  * Table header cell
  */
 @HtmlTagMarker
-inline fun TR.th(scope : ThScope? = null, classes : String? = null, crossinline block : TH.() -> Unit = {}) : Unit = TH(attributesMapOf("scope", scope?.enumEncode(),"class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TR.th(scope : ThScope? = null, classes : String? = null, crossinline block : TH.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TH(attributesMapOf("scope", scope?.enumEncode(),"class", classes), consumer).visit(block)
+}
 @HtmlTagMarker
-inline fun TR.colTh(classes : String? = null, crossinline block : TH.() -> Unit = {}) : Unit = TH(attributesMapOf("scope", ThScope.col.realValue,"class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TR.colTh(classes : String? = null, crossinline block : TH.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TH(attributesMapOf("scope", ThScope.col.realValue,"class", classes), consumer).visit(block)
+}
 @HtmlTagMarker
-inline fun TR.colGroupTh(classes : String? = null, crossinline block : TH.() -> Unit = {}) : Unit = TH(attributesMapOf("scope", ThScope.colGroup.realValue,"class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TR.colGroupTh(classes : String? = null, crossinline block : TH.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TH(attributesMapOf("scope", ThScope.colGroup.realValue,"class", classes), consumer).visit(block)
+}
 @HtmlTagMarker
-inline fun TR.rowTh(classes : String? = null, crossinline block : TH.() -> Unit = {}) : Unit = TH(attributesMapOf("scope", ThScope.row.realValue,"class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TR.rowTh(classes : String? = null, crossinline block : TH.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TH(attributesMapOf("scope", ThScope.row.realValue,"class", classes), consumer).visit(block)
+}
 @HtmlTagMarker
-inline fun TR.rowGroupTh(classes : String? = null, crossinline block : TH.() -> Unit = {}) : Unit = TH(attributesMapOf("scope", ThScope.rowGroup.realValue,"class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TR.rowGroupTh(classes : String? = null, crossinline block : TH.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TH(attributesMapOf("scope", ThScope.rowGroup.realValue,"class", classes), consumer).visit(block)
+}
 
 /**
  * Table data cell
  */
 @HtmlTagMarker
-inline fun TR.td(classes : String? = null, crossinline block : TD.() -> Unit = {}) : Unit = TD(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun TR.td(classes : String? = null, crossinline block : TD.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TD(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 

@@ -1,5 +1,8 @@
 package kotlinx.html
 
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlinx.html.*
 import kotlinx.html.impl.*
 import kotlinx.html.attributes.*
@@ -28,6 +31,10 @@ open class UL(initialAttributes : Map<String, String>, override val consumer : T
  * List item
  */
 @HtmlTagMarker
-inline fun UL.li(classes : String? = null, crossinline block : LI.() -> Unit = {}) : Unit = LI(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun UL.li(classes : String? = null, crossinline block : LI.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    LI(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 

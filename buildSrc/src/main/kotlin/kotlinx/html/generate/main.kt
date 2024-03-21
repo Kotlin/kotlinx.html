@@ -36,16 +36,7 @@ fun generate(pkg: String, todir: String, jsdir: String, wasmJsDir: String) {
 
     repository.tags.values.filterIgnored().groupBy { it.name[0] }.entries.forEach { e ->
         writeIntoFile("$todir/gen-tags-${e.key}.kt") {
-            packg(pkg)
-            emptyLine()
-            import("kotlinx.html.*")
-            import("kotlinx.html.impl.*")
-            import("kotlinx.html.attributes.*")
-            emptyLine()
-
-            doNotEditWarning()
-            emptyLine()
-            emptyLine()
+            fullImportsHeader(pkg)
 
             e.value.forEach {
                 tagClass(repository, it, emptySet())
@@ -124,16 +115,7 @@ fun generate(pkg: String, todir: String, jsdir: String, wasmJsDir: String) {
 
     FileOutputStream("$todir/gen-tag-unions.kt").writer(Charsets.UTF_8).use {
         with(it) {
-            packg(pkg)
-            emptyLine()
-            import("kotlinx.html.*")
-            import("kotlinx.html.impl.*")
-            import("kotlinx.html.attributes.*")
-            emptyLine()
-
-            doNotEditWarning()
-            emptyLine()
-            emptyLine()
+            fullImportsHeader(pkg)
 
             repository.groupUnions.values.forEach { union ->
                 clazz(
@@ -163,16 +145,7 @@ fun generate(pkg: String, todir: String, jsdir: String, wasmJsDir: String) {
 
     FileOutputStream("$todir/gen-tag-groups.kt").writer(Charsets.UTF_8).use {
         with(it) {
-            packg(pkg)
-            emptyLine()
-            import("kotlinx.html.*")
-            import("kotlinx.html.impl.*")
-            import("kotlinx.html.attributes.*")
-            emptyLine()
-
-            doNotEditWarning()
-            emptyLine()
-            emptyLine()
+            fullImportsHeader(pkg)
 
             repository.tagGroups.values.forEach { group ->
                 val unions = repository.unionsByGroups[group.name].orEmpty().map { it.name }
@@ -319,6 +292,7 @@ private fun generateConsumerTags(
         emptyLine()
         packg(pkg)
         emptyLine()
+        contractImports()
         import("kotlinx.html.*")
         import("kotlinx.html.attributes.*")
 
@@ -378,4 +352,24 @@ private fun Appendable.writeKotlinPoet(builder: FileSpec.Builder.() -> Unit) {
         .apply(builder)
         .build()
         .writeTo(this)
+}
+
+private fun Appendable.fullImportsHeader(pkg: String) {
+    packg(pkg)
+    emptyLine()
+    contractImports()
+    import("kotlinx.html.*")
+    import("kotlinx.html.impl.*")
+    import("kotlinx.html.attributes.*")
+    emptyLine()
+
+    doNotEditWarning()
+    emptyLine()
+    emptyLine()
+}
+
+private fun Appendable.contractImports() {
+    import("kotlin.contracts.ExperimentalContracts")
+    import("kotlin.contracts.InvocationKind")
+    import("kotlin.contracts.contract")
 }

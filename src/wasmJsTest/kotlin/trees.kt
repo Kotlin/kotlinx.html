@@ -25,13 +25,17 @@ import kotlinx.html.li
 import kotlinx.html.p
 import kotlinx.html.span
 import kotlinx.html.ul
+import org.w3c.dom.Element
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLFormElement
 import org.w3c.dom.asList
 import org.w3c.dom.get
 import org.w3c.dom.svg.SVGElement
-import kotlin.test.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
+import kotlin.test.fail
 
 class DomTreeImplTest {
     @Test fun simpleTree() {
@@ -257,13 +261,30 @@ class DomTreeImplTest {
         val wrapper = wrapper()
         wrapper.appendChild(document.createElement("A").apply { textContent = "aaa" })
 
+        val pElement: Element
         wrapper.prepend {
-            p {
+            pElement = p {
                 text("OK")
             }
         }
 
+        assertEquals("OK", pElement.textContent)
         assertEquals("<p>OK</p><a>aaa</a>", wrapper.innerHTML)
+    }
+
+    @Test fun testAppend() {
+        val wrapper = wrapper()
+        wrapper.appendChild(document.createElement("A").apply { textContent = "aaa" })
+
+        val pElement: Element
+        wrapper.append() {
+            pElement = p {
+                text("OK")
+            }
+        }
+
+        assertEquals("OK", pElement.textContent)
+        assertEquals("<a>aaa</a><p>OK</p>", wrapper.innerHTML)
     }
 
     @Test fun testComment() {
@@ -276,7 +297,5 @@ class DomTreeImplTest {
     }
 
     private fun wrapper() = document.body!!.append.div {}
-    @Suppress("UNCHECKED_CAST")
-    private fun <T> uninitialized(): T = null as T
     private fun String.trimLines() = trimIndent().lines().filter { it.isNotBlank() }.joinToString("")
 }

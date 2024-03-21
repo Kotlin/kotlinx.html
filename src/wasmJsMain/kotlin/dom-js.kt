@@ -12,8 +12,11 @@ import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.Node
 import org.w3c.dom.asList
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 
-private inline fun Element.setEvent(name: String, noinline callback: (Event) -> Unit): Unit {
+private inline fun Element.setEvent(name: String, noinline callback: (Event) -> Unit) {
     val eventName = name.removePrefix("on")
     addEventListener(eventName, callback)
 }
@@ -126,28 +129,31 @@ fun Document.createTree(): TagConsumer<Element> = JSDOMBuilder(this)
 val Document.create: TagConsumer<Element>
     get() = JSDOMBuilder(this)
 
-fun Node.append(block: TagConsumer<Element>.() -> Unit): List<Element> =
-    ArrayList<Element>().let { result ->
+@OptIn(ExperimentalContracts::class)
+fun Node.append(block: TagConsumer<Element>.() -> Unit): List<Element> {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    return buildList {
         ownerDocumentExt.createTree().onFinalize { it, partial ->
             if (!partial) {
-                result.add(it); appendChild(it)
+                add(it)
+                appendChild(it)
             }
         }.block()
-
-        result
     }
+}
 
-fun Node.prepend(block: TagConsumer<Element>.() -> Unit): List<Element> =
-    ArrayList<Element>().let { result ->
+@OptIn(ExperimentalContracts::class)
+fun Node.prepend(block: TagConsumer<Element>.() -> Unit): List<Element> {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    return buildList {
         ownerDocumentExt.createTree().onFinalize { it, partial ->
             if (!partial) {
-                result.add(it)
+                add(it)
                 insertBefore(it, firstChild)
             }
         }.block()
-
-        result
     }
+}
 
 val Element.append: TagConsumer<Element>
     get() = ownerDocumentExt.createTree().onFinalize { element, partial ->

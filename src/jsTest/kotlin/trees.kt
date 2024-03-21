@@ -1,12 +1,41 @@
 package kotlinx.html.tests
 
-import kotlinx.html.*
-import kotlinx.html.consumers.*
-import kotlinx.html.dom.*
-import kotlinx.html.js.*
-import org.w3c.dom.*
-import kotlinx.browser.*
-import kotlin.test.*
+import kotlinx.browser.document
+import kotlinx.html.Entities
+import kotlinx.html.a
+import kotlinx.html.classes
+import kotlinx.html.consumers.trace
+import kotlinx.html.div
+import kotlinx.html.dom.append
+import kotlinx.html.dom.create
+import kotlinx.html.dom.prepend
+import kotlinx.html.id
+import kotlinx.html.js.col
+import kotlinx.html.js.colGroup
+import kotlinx.html.js.div
+import kotlinx.html.js.form
+import kotlinx.html.js.h1
+import kotlinx.html.js.onClickFunction
+import kotlinx.html.js.onSubmitFunction
+import kotlinx.html.js.p
+import kotlinx.html.js.span
+import kotlinx.html.js.svg
+import kotlinx.html.js.td
+import kotlinx.html.js.th
+import kotlinx.html.li
+import kotlinx.html.p
+import kotlinx.html.span
+import kotlinx.html.ul
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLFormElement
+import org.w3c.dom.asList
+import org.w3c.dom.get
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
+import kotlin.test.fail
 
 class DomTreeImplTest {
     @Test fun simpleTree() {
@@ -231,13 +260,30 @@ class DomTreeImplTest {
         val wrapper = wrapper()
         wrapper.appendChild(document.createElement("A").apply { textContent = "aaa" })
 
+        val pElement: Element
         wrapper.prepend {
-            p {
+            pElement = p {
                 text("OK")
             }
         }
 
+        assertEquals("OK", pElement.textContent)
         assertEquals("<p>OK</p><a>aaa</a>", wrapper.innerHTML)
+    }
+
+    @Test fun testAppend() {
+        val wrapper = wrapper()
+        wrapper.appendChild(document.createElement("A").apply { textContent = "aaa" })
+
+        val pElement: Element
+        wrapper.append {
+            pElement = p {
+                text("OK")
+            }
+        }
+
+        assertEquals("OK", pElement.textContent)
+        assertEquals("<a>aaa</a><p>OK</p>", wrapper.innerHTML)
     }
 
     @Test fun testComment() {

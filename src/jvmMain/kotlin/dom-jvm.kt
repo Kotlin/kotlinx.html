@@ -1,16 +1,28 @@
 package kotlinx.html.dom
 
-import kotlinx.html.*
-import kotlinx.html.consumers.*
+import kotlinx.html.Entities
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import kotlinx.html.Unsafe
+import kotlinx.html.consumers.onFinalize
+import kotlinx.html.consumers.onFinalizeMap
 import kotlinx.html.org.w3c.dom.events.Event
-import org.w3c.dom.*
-import org.xml.sax.*
-import java.io.*
-import java.util.*
-import javax.xml.parsers.*
-import javax.xml.transform.*
-import javax.xml.transform.dom.*
-import javax.xml.transform.stream.*
+import org.w3c.dom.Document
+import org.w3c.dom.Element
+import org.w3c.dom.Node
+import org.xml.sax.InputSource
+import java.io.StringReader
+import java.io.StringWriter
+import java.io.Writer
+import javax.xml.parsers.DocumentBuilder
+import javax.xml.parsers.DocumentBuilderFactory
+import javax.xml.transform.OutputKeys
+import javax.xml.transform.TransformerFactory
+import javax.xml.transform.dom.DOMSource
+import javax.xml.transform.stream.StreamResult
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 
 class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     private val path = arrayListOf<Element>()
@@ -95,7 +107,7 @@ class HTMLDOMBuilder(val document : Document) : TagConsumer<Element> {
     private val UnsafeImpl = object : Unsafe {
         override operator fun String.unaryPlus() {
             val element = documentBuilder
-                .parse(InputSource(StringReader("<unsafeRoot>" + this + "</unsafeRoot>")))
+                .parse(InputSource(StringReader("<unsafeRoot>$this</unsafeRoot>")))
                 .documentElement
 
             val importNode = document.importNode(element, true)
@@ -120,25 +132,30 @@ fun Document.createHTMLTree() : TagConsumer<Element> = HTMLDOMBuilder(this)
 val Document.create : TagConsumer<Element>
     get() = HTMLDOMBuilder(this)
 
-fun Node.append(block : TagConsumer<Element>.() -> Unit) : List<Element> = ArrayList<Element>().let { result ->
-    ownerDocumentExt.createHTMLTree().onFinalize { it, partial ->
-        if (!partial) {
-            appendChild(it); result.add(it)
-        }
-    }.block()
-
-    result
+@OptIn(ExperimentalContracts::class)
+fun Node.append(block : TagConsumer<Element>.() -> Unit) : List<Element> {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    return buildList {
+        ownerDocumentExt.createHTMLTree().onFinalize { it, partial ->
+            if (!partial) {
+                appendChild(it)
+                add(it)
+            }
+        }.block()
+    }
 }
 
-fun Node.prepend(block: TagConsumer<Element>.() -> Unit) : List<Element> = ArrayList<Element>().let { result ->
-    ownerDocumentExt.createHTMLTree().onFinalize { it, partial ->
-        if (!partial) {
-            insertBefore(it, firstChild)
-            result.add(it)
-        }
-    }.block()
-
-    result
+@OptIn(ExperimentalContracts::class)
+fun Node.prepend(block: TagConsumer<Element>.() -> Unit) : List<Element> {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    return buildList {
+        ownerDocumentExt.createHTMLTree().onFinalize { it, partial ->
+            if (!partial) {
+                insertBefore(it, firstChild)
+                add(it)
+            }
+        }.block()
+    }
 }
 
 val Node.append: TagConsumer<Element>
@@ -159,9 +176,10 @@ fun createHTMLDocument() : TagConsumer<Document> = DocumentBuilderFactory.newIns
     document -> HTMLDOMBuilder(document).onFinalizeMap { it, partial -> if (!partial) {document.appendChild(it)}; document }
 }
 
-inline fun document(block : Document.() -> Unit) : Document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().let { document ->
-    document.block()
-    document
+@OptIn(ExperimentalContracts::class)
+inline fun document(block : Document.() -> Unit) : Document {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    return DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument().apply(block)
 }
 
 fun Writer.write(document : Document, prettyPrint : Boolean = true) : Writer {
