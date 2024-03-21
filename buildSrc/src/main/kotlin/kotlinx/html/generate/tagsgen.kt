@@ -12,6 +12,9 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asTypeName
 import java.util.*
 
+private const val BLOCK_LAMBDA = "block"
+private const val CONTENT_LAMBDA = "{+content}"
+
 fun Appendable.tagClass(repository: Repository, tag: TagInfo, excludeAttributes: Set<String>) {
     val parentAttributeIfaces = tag.attributeGroups.map { it.name.capitalize() + "Facade" }
     val parentElementIfaces = tag.tagGroupNames.map { it.humanize().capitalize() }
@@ -21,23 +24,38 @@ fun Appendable.tagClass(repository: Repository, tag: TagInfo, excludeAttributes:
     val namespace = tagNamespaces[tag.name.lowercase()]
     val customizableNamespace = tag.name.lowercase() in tagsWithCustomizableNamespace
 
-    val parameters = mutableListOf(
-        Var("initialAttributes", "Map<String, String>", false, false, true),
-        Var("consumer", "TagConsumer<*>", false, true)
-    )
-    val superConstructorArguments = mutableListOf(
+    val parameters = buildList {
+        add(
+            Var(
+                name = "initialAttributes",
+                type = "Map<String, String>",
+                mutable = false,
+                override = false,
+                forceOmitValVar = true
+            )
+        )
+        add(Var(name = "consumer", type = "TagConsumer<*>", mutable = false, override = true))
+        if (customizableNamespace) {
+            add(
+                Var(
+                    name = "namespace",
+                    type = "String?",
+                    mutable = false,
+                    override = false,
+                    forceOmitValVar = true,
+                    defaultValue = namespace?.quote() ?: "null"
+                )
+            )
+        }
+    }
+    val superConstructorArguments = listOf(
         tag.name.quote(),
         "consumer",
         "initialAttributes",
-        namespace?.quote().toString(),
+        if (customizableNamespace) "namespace" else namespace?.quote().toString(),
         (tag.name in inlineTags).toString(),
         (tag.name in emptyTags).toString()
     )
-
-    if (customizableNamespace) {
-        parameters.add(Var("namespace", "String?", false, false, true, namespace?.quote() ?: "null"))
-        superConstructorArguments[3] = "namespace"
-    }
 
     appendLine("@Suppress(\"unused\")")
     clazz(Clazz(
@@ -141,7 +159,7 @@ fun Appendable.tagClass(repository: Repository, tag: TagInfo, excludeAttributes:
     }
 
     if (parentElementIfaces.size > 1) {
-        val commons = tag.tagGroupNames.map { repository.tagGroups[it]?.tags?.toSet() }.filterNotNull()
+        val commons = tag.tagGroupNames.mapNotNull { repository.tagGroups[it]?.tags?.toSet() }
             .reduce { a, b -> a.intersect(b) }
         if (commons.isNotEmpty()) {
             parentElementIfaces.forEach { group ->
@@ -183,8 +201,6 @@ internal fun Appendable.tagAttributeVar(
     return attributeRequest
 }
 
-fun probeType(htmlClassName: String): Boolean = htmlClassName in knownTagClasses
-
 private fun tagCandidates(tag: TagInfo) = (listOf(tag.memberName) + tagReplacements.map {
     tag.memberName.replace(
         it.first.toRegex(),
@@ -195,13 +211,7 @@ private fun tagCandidates(tag: TagInfo) = (listOf(tag.memberName) + tagReplaceme
 fun getTagResultClass(tag: TagInfo): String? =
     tagCandidates(tag)
         .map { "HTML${it}Element" }
-        .firstOrNull { probeType(it) }
-
-fun contentArgumentValue(tag: TagInfo, blockOrContent: Boolean) = when {
-    tag.name.lowercase() in emptyTags -> "block"
-    blockOrContent -> "block"
-    else -> "{+content}"
-}
+        .firstOrNull { it in knownTagClasses }
 
 fun tagConsumerJs(parameter: String): TypeName =
     ClassName("kotlinx.html", "TagConsumer")
@@ -267,7 +277,7 @@ fun consumerBuilderJsPoet(
                     """
                         |contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
                         |return %T(${constructorArgs.joinToString(", ")})
-                        |    .visitAndFinalize(this, ${contentArgumentValue(tag, blockOrContent)}) $cast
+                        |    .visitAndFinalize(this, $BLOCK_LAMBDA) $cast
                     """.trimMargin(),
                     tagClass,
                 )
@@ -275,7 +285,7 @@ fun consumerBuilderJsPoet(
                 addCode(
                     """
                         |return %T(${constructorArgs.joinToString(", ")})
-                        |    .visitAndFinalize(this, ${contentArgumentValue(tag, blockOrContent)}) $cast
+                        |    .visitAndFinalize(this, $CONTENT_LAMBDA) $cast
                     """.trimMargin(),
                     tagClass,
                 )
@@ -323,7 +333,7 @@ fun consumerBuilderSharedPoet(
                     """
                         |contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
                         |return %T(${constructorArgs.joinToString(", ")})
-                        |    .visitAndFinalize(this, ${contentArgumentValue(tag, blockOrContent)})
+                        |    .visitAndFinalize(this, $BLOCK_LAMBDA)
                     """.trimMargin(),
                     tagClass,
                 )
@@ -331,7 +341,7 @@ fun consumerBuilderSharedPoet(
                 addCode(
                     """
                     |return %T(${constructorArgs.joinToString(", ")})
-                    |    .visitAndFinalize(this, ${contentArgumentValue(tag, blockOrContent)})
+                    |    .visitAndFinalize(this, $CONTENT_LAMBDA)
                     """.trimMargin(),
                     tagClass,
                 )
@@ -363,23 +373,7 @@ fun Appendable.htmlTagBuilderMethod(receiver: String, tag: TagInfo, blockOrConte
         append("inline ")
     }
     function(tag.memberName, arguments, "Unit", receiver = receiver)
-    if (tagBuilderCouldBeInline) {
-        block {
-            indent()
-            appendLine("contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }")
-            indent()
-            functionCall(tag.className, constructorArgs)
-            append(".")
-            functionCall("visit", listOf(contentArgumentValue(tag, blockOrContent)))
-            appendLine()
-        }
-    } else {
-        defineIs(buildString {
-            functionCall(tag.className, constructorArgs)
-            append(".")
-            functionCall("visit", listOf(contentArgumentValue(tag, blockOrContent)))
-        })
-    }
+    tagBody(tagBuilderCouldBeInline, tag, constructorArgs)
 }
 
 fun Appendable.htmlTagEnumBuilderMethod(
@@ -421,23 +415,7 @@ fun Appendable.htmlTagEnumBuilderMethod(
             append("inline ")
         }
         function(enumValue.fieldName + tag.memberName.capitalize(), arguments, "Unit", receiver = receiver)
-        if (tagBuilderCouldBeInline) {
-            block {
-                indent()
-                appendLine("contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }")
-                indent()
-                functionCall(tag.className, constructorArgs)
-                append(".")
-                functionCall("visit", listOf(contentArgumentValue(tag, blockOrContent)))
-                appendLine()
-            }
-        } else {
-            defineIs(buildString {
-                functionCall(tag.className, constructorArgs)
-                append(".")
-                functionCall("visit", listOf(contentArgumentValue(tag, blockOrContent)))
-            })
-        }
+        tagBody(tagBuilderCouldBeInline, tag, constructorArgs)
     }
 }
 
@@ -542,7 +520,16 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent: Boolean): 
 
     fun addNamespaceParameter() {
         if (customizableNamespace) {
-            arguments.add(Var("namespace", "String?", false, false, true, defaultNamespace))
+            arguments.add(
+                Var(
+                    name = "namespace",
+                    type = "String?",
+                    mutable = false,
+                    override = false,
+                    forceOmitValVar = true,
+                    defaultValue = defaultNamespace
+                )
+            )
         }
     }
 
@@ -582,6 +569,28 @@ private fun Appendable.tagKdoc(tag: TagInfo) {
     appendLine("/**")
     appendLine(" * ${kdoc.description}")
     appendLine(" */")
+}
+
+private fun Appendable.tagBody(tagBuilderCouldBeInline: Boolean, tag: TagInfo, constructorArgs: List<String>) {
+    if (tagBuilderCouldBeInline) {
+        block {
+            indent()
+            appendLine("contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }")
+            indent()
+            functionCall(tag.className, constructorArgs)
+            append(".")
+            functionCall("visit", listOf(BLOCK_LAMBDA))
+            appendLine()
+        }
+    } else {
+        defineIs(
+            buildString {
+                functionCall(tag.className, constructorArgs)
+                append(".")
+                functionCall("visit", listOf(CONTENT_LAMBDA))
+            }
+        )
+    }
 }
 
 private val inlineTags = """a
