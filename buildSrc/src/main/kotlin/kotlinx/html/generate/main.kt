@@ -38,6 +38,7 @@ fun generate(pkg: String, todir: String, jsdir: String, wasmJsDir: String) {
         writeIntoFile("$todir/gen-tags-${e.key}.kt") {
             packg(pkg)
             emptyLine()
+            contractImports()
             import("kotlinx.html.*")
             import("kotlinx.html.impl.*")
             import("kotlinx.html.attributes.*")
@@ -126,6 +127,7 @@ fun generate(pkg: String, todir: String, jsdir: String, wasmJsDir: String) {
         with(it) {
             packg(pkg)
             emptyLine()
+            contractImports()
             import("kotlinx.html.*")
             import("kotlinx.html.impl.*")
             import("kotlinx.html.attributes.*")
@@ -165,6 +167,7 @@ fun generate(pkg: String, todir: String, jsdir: String, wasmJsDir: String) {
         with(it) {
             packg(pkg)
             emptyLine()
+            contractImports()
             import("kotlinx.html.*")
             import("kotlinx.html.impl.*")
             import("kotlinx.html.attributes.*")
@@ -319,6 +322,7 @@ private fun generateConsumerTags(
         emptyLine()
         packg(pkg)
         emptyLine()
+        contractImports()
         import("kotlinx.html.*")
         import("kotlinx.html.attributes.*")
 
@@ -378,4 +382,10 @@ private fun Appendable.writeKotlinPoet(builder: FileSpec.Builder.() -> Unit) {
         .apply(builder)
         .build()
         .writeTo(this)
+}
+
+private fun Appendable.contractImports() {
+    import("kotlin.contracts.ExperimentalContracts")
+    import("kotlin.contracts.InvocationKind")
+    import("kotlin.contracts.contract")
 }
