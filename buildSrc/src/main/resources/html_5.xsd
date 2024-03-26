@@ -495,6 +495,24 @@
             <xsd:attribute name="type" type="contentType"/>
             <xsd:attribute name="sizes"/>
             <xsd:attribute name="integrity" type="xsd:string"/>
+            <xsd:attribute name="as">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:NMTOKEN">
+                        <xsd:enumeration value="audio"/>
+                        <xsd:enumeration value="document"/>
+                        <xsd:enumeration value="embed"/>
+                        <xsd:enumeration value="fetch"/>
+                        <xsd:enumeration value="font"/>
+                        <xsd:enumeration value="image"/>
+                        <xsd:enumeration value="object"/>
+                        <xsd:enumeration value="script"/>
+                        <xsd:enumeration value="style"/>
+                        <xsd:enumeration value="track"/>
+                        <xsd:enumeration value="video"/>
+                        <xsd:enumeration value="worker"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
         </xsd:complexType>
     </xsd:element>
 

@@ -181,10 +181,14 @@ class TestStreaming {
     }
 
     @Test fun `test generated enum could be used`() {
-        assertEquals("<link rel=\"Stylesheet\" href=\"/path\">", StringBuilder().appendHTML(false).link {
-            rel = LinkRel.stylesheet
-            href = "/path"
-        }.toString())
+        assertEquals(
+            "<link rel=\"Stylesheet\" href=\"/path\" as=\"style\">",
+            StringBuilder().appendHTML(false).link {
+                rel = LinkRel.stylesheet
+                href = "/path"
+                htmlAs = LinkAs.style
+            }.toString()
+        )
     }
 
     @Test fun `anchor with href syntax`() {

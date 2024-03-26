@@ -45,7 +45,31 @@ inline fun FlowOrMetaDataOrPhrasingContent.radioCommand(classes : String? = null
  * A media-independent link
  */
 @HtmlTagMarker
-inline fun FlowOrMetaDataOrPhrasingContent.link(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type), consumer).visit(block)
+inline fun FlowOrMetaDataOrPhrasingContent.link(href : String? = null, rel : String? = null, type : String? = null, htmlAs : LinkAs? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", htmlAs?.enumEncode()), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.audioLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.audio.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.documentLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.document.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.embedLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.embed.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.fetchLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.fetch.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.fontLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.font.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.imageLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.image.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.htmlObjectLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.htmlObject.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.scriptLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.script.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.styleLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.style.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.trackLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.track.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.videoLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.video.realValue), consumer).visit(block)
+@HtmlTagMarker
+inline fun FlowOrMetaDataOrPhrasingContent.workerLink(href : String? = null, rel : String? = null, type : String? = null, crossinline block : LINK.() -> Unit = {}) : Unit = LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", LinkAs.worker.realValue), consumer).visit(block)
 
 /**
  * Generic metainformation
