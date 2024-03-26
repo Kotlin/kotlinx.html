@@ -406,7 +406,10 @@ object StyleMedia {
 @Suppress("unused")
 enum class TextAreaWrap(override val realValue : String) : AttributeEnum {
     hard("hard"),
-    soft("soft")
+    soft("soft"),
+    @Deprecated("values only supported in IE") virtual("virtual"),
+    @Deprecated("values only supported in IE") physical("physical"),
+    @Deprecated("values only supported in IE") off("off")
 }
 
 internal val textAreaWrapValues : Map<String, TextAreaWrap> = TextAreaWrap.values().associateBy { it.realValue }

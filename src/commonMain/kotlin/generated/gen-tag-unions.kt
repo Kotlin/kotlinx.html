@@ -551,10 +551,28 @@ fun FlowOrInteractiveOrPhrasingContent.textArea(rows : String? = null, cols : St
 inline fun FlowOrInteractiveOrPhrasingContent.hardTextArea(rows : String? = null, cols : String? = null, classes : String? = null, crossinline block : TEXTAREA.() -> Unit = {}) : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.hard.realValue,"class", classes), consumer).visit(block)
 @HtmlTagMarker
 inline fun FlowOrInteractiveOrPhrasingContent.softTextArea(rows : String? = null, cols : String? = null, classes : String? = null, crossinline block : TEXTAREA.() -> Unit = {}) : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.soft.realValue,"class", classes), consumer).visit(block)
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+inline fun FlowOrInteractiveOrPhrasingContent.virtualTextArea(rows : String? = null, cols : String? = null, classes : String? = null, crossinline block : TEXTAREA.() -> Unit = {}) : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.virtual.realValue,"class", classes), consumer).visit(block)
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+inline fun FlowOrInteractiveOrPhrasingContent.physicalTextArea(rows : String? = null, cols : String? = null, classes : String? = null, crossinline block : TEXTAREA.() -> Unit = {}) : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.physical.realValue,"class", classes), consumer).visit(block)
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+inline fun FlowOrInteractiveOrPhrasingContent.offTextArea(rows : String? = null, cols : String? = null, classes : String? = null, crossinline block : TEXTAREA.() -> Unit = {}) : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.off.realValue,"class", classes), consumer).visit(block)
 @HtmlTagMarker
 fun FlowOrInteractiveOrPhrasingContent.hardTextArea(rows : String? = null, cols : String? = null, classes : String? = null, content : String = "") : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.hard.realValue,"class", classes), consumer).visit({+content})
 @HtmlTagMarker
 fun FlowOrInteractiveOrPhrasingContent.softTextArea(rows : String? = null, cols : String? = null, classes : String? = null, content : String = "") : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.soft.realValue,"class", classes), consumer).visit({+content})
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+fun FlowOrInteractiveOrPhrasingContent.virtualTextArea(rows : String? = null, cols : String? = null, classes : String? = null, content : String = "") : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.virtual.realValue,"class", classes), consumer).visit({+content})
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+fun FlowOrInteractiveOrPhrasingContent.physicalTextArea(rows : String? = null, cols : String? = null, classes : String? = null, content : String = "") : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.physical.realValue,"class", classes), consumer).visit({+content})
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+fun FlowOrInteractiveOrPhrasingContent.offTextArea(rows : String? = null, cols : String? = null, classes : String? = null, content : String = "") : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.off.realValue,"class", classes), consumer).visit({+content})
 
 /**
  * Video player
