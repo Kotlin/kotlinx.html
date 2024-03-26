@@ -80,7 +80,7 @@ val contentlessTags = setOf("html", "head", "script", "style")
 
 val deprecated = listOf(
         ".*FormMethod#(put|patch|delete)" to "method is not allowed in browsers",
-        ".*TextAreaWrap#(virtual|physical|off)" to "values only supported in IE"
+        ".*TextAreaWrap#(virtual|physical|off)" to "value only supported in IE"
 ).map { it.first.toRegex(RegexOption.IGNORE_CASE) to it.second }
 
 fun findEnumDeprecation(attribute: AttributeInfo, value: AttributeEnumValue): String? {
