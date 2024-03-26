@@ -1688,6 +1688,9 @@
                     <xsd:restriction base="xsd:NMTOKEN">
                         <xsd:enumeration value="hard"/>
                         <xsd:enumeration value="soft"/>
+                        <xsd:enumeration value="virtual"/>
+                        <xsd:enumeration value="physical"/>
+                        <xsd:enumeration value="off"/>
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:attribute>
