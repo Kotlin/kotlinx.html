@@ -407,9 +407,9 @@ object StyleMedia {
 enum class TextAreaWrap(override val realValue : String) : AttributeEnum {
     hard("hard"),
     soft("soft"),
-    @Deprecated("values only supported in IE") virtual("virtual"),
-    @Deprecated("values only supported in IE") physical("physical"),
-    @Deprecated("values only supported in IE") off("off")
+    @Deprecated("value only supported in IE") virtual("virtual"),
+    @Deprecated("value only supported in IE") physical("physical"),
+    @Deprecated("value only supported in IE") off("off")
 }
 
 internal val textAreaWrapValues : Map<String, TextAreaWrap> = TextAreaWrap.values().associateBy { it.realValue }
