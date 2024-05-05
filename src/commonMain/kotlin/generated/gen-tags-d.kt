@@ -1,5 +1,8 @@
 package kotlinx.html
 
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlinx.html.*
 import kotlinx.html.impl.*
 import kotlinx.html.attributes.*
@@ -17,7 +20,11 @@ open class DATALIST(initialAttributes : Map<String, String>, override val consum
  * Selectable choice
  */
 @HtmlTagMarker
-inline fun DATALIST.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun DATALIST.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    OPTION(attributesMapOf("class", classes), consumer).visit(block)
+}
 /**
  * Selectable choice
  */
@@ -67,7 +74,11 @@ open class DETAILS(initialAttributes : Map<String, String>, override val consume
  * Fieldset legend
  */
 @HtmlTagMarker
-inline fun DETAILS.legend(classes : String? = null, crossinline block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun DETAILS.legend(classes : String? = null, crossinline block : LEGEND.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    LEGEND(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 val DETAILS.asFlowContent : FlowContent
     get()  = this
@@ -105,13 +116,21 @@ open class DL(initialAttributes : Map<String, String>, override val consumer : T
  * Definition description
  */
 @HtmlTagMarker
-inline fun DL.dd(classes : String? = null, crossinline block : DD.() -> Unit = {}) : Unit = DD(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun DL.dd(classes : String? = null, crossinline block : DD.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    DD(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Definition term
  */
 @HtmlTagMarker
-inline fun DL.dt(classes : String? = null, crossinline block : DT.() -> Unit = {}) : Unit = DT(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun DL.dt(classes : String? = null, crossinline block : DT.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    DT(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 
 @Suppress("unused")

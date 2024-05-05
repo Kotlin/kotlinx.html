@@ -1,5 +1,8 @@
 package kotlinx.html
 
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlinx.html.*
 import kotlinx.html.impl.*
 import kotlinx.html.attributes.*
@@ -49,7 +52,11 @@ open class OBJECT(initialAttributes : Map<String, String>, override val consumer
  * Named property value
  */
 @HtmlTagMarker
-inline fun OBJECT.param(name : String? = null, value : String? = null, crossinline block : PARAM.() -> Unit = {}) : Unit = PARAM(attributesMapOf("name", name,"value", value), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun OBJECT.param(name : String? = null, value : String? = null, crossinline block : PARAM.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    PARAM(attributesMapOf("name", name,"value", value), consumer).visit(block)
+}
 
 val OBJECT.asFlowContent : FlowContent
     get()  = this
@@ -77,7 +84,11 @@ open class OL(initialAttributes : Map<String, String>, override val consumer : T
  * List item
  */
 @HtmlTagMarker
-inline fun OL.li(classes : String? = null, crossinline block : LI.() -> Unit = {}) : Unit = LI(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun OL.li(classes : String? = null, crossinline block : LI.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    LI(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 
 @Suppress("unused")
@@ -96,7 +107,11 @@ open class OPTGROUP(initialAttributes : Map<String, String>, override val consum
  * Selectable choice
  */
 @HtmlTagMarker
-inline fun OPTGROUP.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun OPTGROUP.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    OPTION(attributesMapOf("class", classes), consumer).visit(block)
+}
 /**
  * Selectable choice
  */

@@ -1,5 +1,8 @@
 package kotlinx.html
 
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlinx.html.*
 import kotlinx.html.impl.*
 import kotlinx.html.attributes.*
@@ -27,13 +30,21 @@ open class RUBY(initialAttributes : Map<String, String>, override val consumer :
  * Ruby annotation text
  */
 @HtmlTagMarker
-inline fun RUBY.rt(classes : String? = null, crossinline block : RT.() -> Unit = {}) : Unit = RT(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun RUBY.rt(classes : String? = null, crossinline block : RT.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    RT(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Parenthesis for ruby annotation text
  */
 @HtmlTagMarker
-inline fun RUBY.rp(classes : String? = null, crossinline block : RP.() -> Unit = {}) : Unit = RP(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun RUBY.rp(classes : String? = null, crossinline block : RP.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    RP(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 val RUBY.asFlowContent : FlowContent
     get()  = this
