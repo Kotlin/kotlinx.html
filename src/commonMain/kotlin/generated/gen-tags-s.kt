@@ -1,5 +1,8 @@
 package kotlinx.html
 
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlinx.html.*
 import kotlinx.html.impl.*
 import kotlinx.html.attributes.*
@@ -148,7 +151,11 @@ open class SELECT(initialAttributes : Map<String, String>, override val consumer
  * Selectable choice
  */
 @HtmlTagMarker
-inline fun SELECT.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit = OPTION(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun SELECT.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    OPTION(attributesMapOf("class", classes), consumer).visit(block)
+}
 /**
  * Selectable choice
  */
@@ -159,7 +166,11 @@ fun SELECT.option(classes : String? = null, content : String = "") : Unit = OPTI
  * Option group
  */
 @HtmlTagMarker
-inline fun SELECT.optGroup(label : String? = null, classes : String? = null, crossinline block : OPTGROUP.() -> Unit = {}) : Unit = OPTGROUP(attributesMapOf("label", label,"class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun SELECT.optGroup(label : String? = null, classes : String? = null, crossinline block : OPTGROUP.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    OPTGROUP(attributesMapOf("label", label,"class", classes), consumer).visit(block)
+}
 
 val SELECT.asFlowContent : FlowContent
     get()  = this

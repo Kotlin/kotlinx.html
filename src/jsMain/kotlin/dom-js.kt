@@ -1,12 +1,23 @@
 package kotlinx.html.dom
 
-import kotlinx.html.*
-import kotlinx.html.consumers.*
+import kotlinx.html.DefaultUnsafe
+import kotlinx.html.Entities
+import kotlinx.html.Tag
+import kotlinx.html.TagConsumer
+import kotlinx.html.Unsafe
+import kotlinx.html.consumers.onFinalize
 import kotlinx.html.org.w3c.dom.events.Event
-import org.w3c.dom.*
+import org.w3c.dom.Document
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLElement
+import org.w3c.dom.Node
+import org.w3c.dom.asList
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlin.reflect.KProperty
 
-private inline fun HTMLElement.setEvent(name: String, noinline callback : (Event) -> Unit) : Unit {
+private inline fun HTMLElement.setEvent(name: String, noinline callback : (Event) -> Unit) {
     asDynamic()[name] = callback
 }
 
@@ -112,28 +123,31 @@ class JSDOMBuilder<out R : HTMLElement>(val document : Document) : TagConsumer<R
  val Document.create : TagConsumer<HTMLElement>
     get() = JSDOMBuilder(this)
 
-fun Node.append(block: TagConsumer<HTMLElement>.() -> Unit): List<HTMLElement> =
-    ArrayList<HTMLElement>().let { result ->
+@OptIn(ExperimentalContracts::class)
+fun Node.append(block: TagConsumer<HTMLElement>.() -> Unit): List<HTMLElement> {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    return buildList {
         ownerDocumentExt.createTree().onFinalize { it, partial ->
             if (!partial) {
-                result.add(it); appendChild(it)
+                add(it)
+                appendChild(it)
             }
         }.block()
-
-        result
     }
+}
 
-fun Node.prepend(block: TagConsumer<HTMLElement>.() -> Unit): List<HTMLElement> =
-    ArrayList<HTMLElement>().let { result ->
+@OptIn(ExperimentalContracts::class)
+fun Node.prepend(block: TagConsumer<HTMLElement>.() -> Unit): List<HTMLElement> {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    return buildList {
         ownerDocumentExt.createTree().onFinalize { it, partial ->
             if (!partial) {
-                result.add(it)
+                add(it)
                 insertBefore(it, firstChild)
             }
         }.block()
-
-        result
     }
+}
 
 val HTMLElement.append: TagConsumer<HTMLElement>
     get() = ownerDocumentExt.createTree().onFinalize { element, partial ->
@@ -179,7 +193,7 @@ inline val Document.gettingElementById get() = DocumentGettingElementById(this)
  * Implementation details of [Document.gettingElementById]
  * @see Document.gettingElementById
  */
-inline class DocumentGettingElementById(val document: Document) {
+value class DocumentGettingElementById(val document: Document) {
     /**
      * Implementation details of [Document.gettingElementById]. Delegated property
      * @see Document.gettingElementById

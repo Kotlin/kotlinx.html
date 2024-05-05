@@ -1,5 +1,8 @@
 package kotlinx.html
 
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlinx.html.*
 import kotlinx.html.impl.*
 import kotlinx.html.attributes.*
@@ -29,7 +32,11 @@ open class FIELDSET(initialAttributes : Map<String, String>, override val consum
  * Fieldset legend
  */
 @HtmlTagMarker
-inline fun FIELDSET.legend(classes : String? = null, crossinline block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun FIELDSET.legend(classes : String? = null, crossinline block : LEGEND.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    LEGEND(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 
 @Suppress("unused")
@@ -45,13 +52,21 @@ open class FIGURE(initialAttributes : Map<String, String>, override val consumer
  * Fieldset legend
  */
 @HtmlTagMarker
-inline fun FIGURE.legend(classes : String? = null, crossinline block : LEGEND.() -> Unit = {}) : Unit = LEGEND(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun FIGURE.legend(classes : String? = null, crossinline block : LEGEND.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    LEGEND(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 /**
  * Caption for 
  */
 @HtmlTagMarker
-inline fun FIGURE.figcaption(classes : String? = null, crossinline block : FIGCAPTION.() -> Unit = {}) : Unit = FIGCAPTION(attributesMapOf("class", classes), consumer).visit(block)
+@OptIn(ExperimentalContracts::class)
+inline fun FIGURE.figcaption(classes : String? = null, crossinline block : FIGCAPTION.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    FIGCAPTION(attributesMapOf("class", classes), consumer).visit(block)
+}
 
 
 @Suppress("unused")

@@ -1,9 +1,34 @@
 package kotlinx.html.tests
 
-import kotlinx.html.*
-import kotlinx.html.consumers.*
-import kotlinx.html.dom.*
-import kotlin.test.*
+import kotlinx.html.Entities
+import kotlinx.html.HtmlBlockTag
+import kotlinx.html.HtmlHeadTag
+import kotlinx.html.HtmlInlineTag
+import kotlinx.html.ScriptType
+import kotlinx.html.a
+import kotlinx.html.body
+import kotlinx.html.classes
+import kotlinx.html.consumers.filter
+import kotlinx.html.div
+import kotlinx.html.dom.append
+import kotlinx.html.dom.create
+import kotlinx.html.dom.createHTMLDocument
+import kotlinx.html.dom.document
+import kotlinx.html.dom.prepend
+import kotlinx.html.dom.serialize
+import kotlinx.html.h1
+import kotlinx.html.head
+import kotlinx.html.html
+import kotlinx.html.id
+import kotlinx.html.meta
+import kotlinx.html.p
+import kotlinx.html.script
+import kotlinx.html.span
+import kotlinx.html.svg
+import kotlinx.html.unsafe
+import org.w3c.dom.Element
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class TestDOMTrees {
     @Test fun `able to create simple tree`() {
@@ -84,8 +109,9 @@ class TestDOMTrees {
 
         val contentNode = document.getElementById("content")!!
 
+        val p1Element: Element
         val nodes = contentNode.append {
-            p {
+            p1Element = p {
                 +"p1"
             }
             p {
@@ -96,8 +122,8 @@ class TestDOMTrees {
             }
         }
 
+        assertEquals("p1", p1Element.textContent)
         assertEquals(2, nodes.size)
-
         assertEquals("""<!DOCTYPE html>
 <html>
   <body>
@@ -125,8 +151,9 @@ class TestDOMTrees {
     }
 
     @Test fun `svg should have namespace`() {
+        val htmlElement: Element
         val d = document {
-            append.html {
+            htmlElement = append.html {
                 body {
                     svg {
                     }
@@ -134,6 +161,7 @@ class TestDOMTrees {
             }
         }
 
+        assertEquals("", htmlElement.textContent)
         assertEquals("<!DOCTYPE html>\n<html><body><svg xmlns=\"http://www.w3.org/2000/svg\"></svg></body></html>",
                 d.serialize(false).trim().replace("\r\n", "\n"))
     }
@@ -205,12 +233,14 @@ class TestDOMTrees {
             }
         }
 
+        val okElement: Element
         document.getElementsByTagName("body").item(0).prepend {
-            p {
+            okElement = p {
                 text("OK")
             }
         }
 
+        assertEquals("OK", okElement.textContent)
         assertEquals("<!DOCTYPE html>\n" +
                 "<html><body><p>OK</p><a>aaa</a></body></html>",
             document.serialize(false).trim().replace("\r\n", "\n"))
