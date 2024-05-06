@@ -29,18 +29,18 @@ fun Appendable.tagClass(repository: Repository, tag: TagInfo, excludeAttributes:
             Var(
                 name = "initialAttributes",
                 type = "Map<String, String>",
-                mutable = false,
+                varType = VarType.IMMUTABLE,
                 override = false,
                 forceOmitValVar = true
             )
         )
-        add(Var(name = "consumer", type = "TagConsumer<*>", mutable = false, override = true))
+        add(Var(name = "consumer", type = "TagConsumer<*>", varType = VarType.IMMUTABLE, override = true))
         if (customizableNamespace) {
             add(
                 Var(
                     name = "namespace",
                     type = "String?",
-                    mutable = false,
+                    varType = VarType.IMMUTABLE,
                     override = false,
                     forceOmitValVar = true,
                     defaultValue = namespace?.quote() ?: "null"
@@ -197,7 +197,10 @@ internal fun Appendable.tagAttributeVar(
     repository.attributeDelegateRequests.add(attributeRequest)
 
     indent(indent)
-    variable(Var(attribute.fieldName, attribute.typeName, true), receiver = receiver ?: "")
+    variable(
+        Var(name = attribute.fieldName, type = attribute.typeName, varType = VarType.MUTABLE),
+        receiver = receiver ?: "",
+    )
     return attributeRequest
 }
 
@@ -524,7 +527,7 @@ private fun tagBuilderFunctionArguments(tag: TagInfo, blockOrContent: Boolean): 
                 Var(
                     name = "namespace",
                     type = "String?",
-                    mutable = false,
+                    varType = VarType.IMMUTABLE,
                     override = false,
                     forceOmitValVar = true,
                     defaultValue = defaultNamespace

@@ -1,7 +1,5 @@
 package kotlinx.html.generate
 
-import java.util.*
-
 val reservedNames = setOf("class", "val", "var", "object", "true", "false", "as", "is", "for")
 
 fun String.replaceIfReserved() = if (this in reservedNames) "html" + this.capitalize() else this
@@ -12,18 +10,25 @@ fun List<String>.toAttributeValues() : List<AttributeEnumValue> =
 fun Appendable.enumObject(attribute : AttributeInfo) {
     val name = attribute.enumTypeName
 
-    appendLine("@Suppress(\"unused\")")
+    appendLine("@Suppress(\"unused\", \"ConstPropertyName\")")
     clazz(Clazz(name, isObject = true)) {
         attribute.enumValues.forEach {
             append("    ")
-            variable(Var(it.fieldName, "String", false, defaultValue = "\"${it.realName}\""))
+            variable(Var(it.fieldName, "String", varType = VarType.CONST, defaultValue = "\"${it.realName}\""))
             emptyLine()
         }
 
         emptyLine()
         append("    ")
-//        append("private ")
-        variable(Var("values", "List<String>", defaultValue = attribute.enumValues.map {"\"${it.fieldName}\""}.joinToString(", ", "listOf(", ")")))
+        variable(
+            Var(
+                name = "values",
+                type = "List<String>",
+                defaultValue = attribute
+                    .enumValues
+                    .joinToString(", ", "listOf(", ")") { "\"${it.fieldName}\"" },
+            )
+        )
         emptyLine()
     }
 
@@ -32,9 +37,9 @@ fun Appendable.enumObject(attribute : AttributeInfo) {
 
 fun Appendable.enum(attribute : AttributeInfo) {
     val name = attribute.enumTypeName
-    val realValue = Var("realValue", "String", false, true)
+    val realValue = Var(name = "realValue", type = "String", varType = VarType.IMMUTABLE, override = true)
 
-    appendLine("@Suppress(\"unused\")")
+    appendLine("@Suppress(\"unused\", \"EnumEntryName\")")
     append("enum ")
     clazz(Clazz(name, variables = listOf(realValue), parents = listOf("AttributeEnum"))) {
         attribute.enumValues.forEachIndexed { idx, it ->
@@ -53,6 +58,13 @@ fun Appendable.enum(attribute : AttributeInfo) {
 
     emptyLine()
     append("internal ")
-    variable(Var(name.decapitalize() + "Values", "Map<String, $name>", false, defaultValue = "$name.values().associateBy { it.realValue }"))
+    variable(
+        Var(
+            name = name.decapitalize() + "Values",
+            type = "Map<String, $name>",
+            varType = VarType.IMMUTABLE,
+            defaultValue = "$name.entries.associateBy { it.realValue }",
+        ),
+    )
     emptyLine()
 }
