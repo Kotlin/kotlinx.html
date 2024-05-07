@@ -337,6 +337,23 @@ object LinkType {
 }
 
 @Suppress("unused")
+enum class LinkAs(override val realValue : String) : AttributeEnum {
+    audio("audio"),
+    document("document"),
+    embed("embed"),
+    fetch("fetch"),
+    font("font"),
+    image("image"),
+    htmlObject("object"),
+    script("script"),
+    style("style"),
+    track("track"),
+    video("video"),
+    worker("worker")
+}
+
+internal val linkAsValues : Map<String, LinkAs> = LinkAs.values().associateBy { it.realValue }
+@Suppress("unused")
 object MetaHttpEquiv {
     val contentLanguage : String = "content-language"
     val contentType : String = "content-type"

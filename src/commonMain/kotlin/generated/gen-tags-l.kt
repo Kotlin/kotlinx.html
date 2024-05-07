@@ -84,6 +84,10 @@ open class LINK(initialAttributes : Map<String, String>, override val consumer :
         get()  = attributeStringString.get(this, "integrity")
         set(newValue) {attributeStringString.set(this, "integrity", newValue)}
 
+    var htmlAs : LinkAs
+        get()  = attributeLinkAsEnumLinkAsValues.get(this, "as")
+        set(newValue) {attributeLinkAsEnumLinkAsValues.set(this, "as", newValue)}
+
 
 }
 val LINK.asFlowContent : FlowContent
