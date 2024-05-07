@@ -46,6 +46,8 @@ internal val attributeInputTypeEnumInputTypeValues : Attribute<InputType> = Enum
 
 internal val attributeKeyGenKeyTypeEnumKeyGenKeyTypeValues : Attribute<KeyGenKeyType> = EnumAttribute(keyGenKeyTypeValues)
 
+internal val attributeLinkAsEnumLinkAsValues : Attribute<LinkAs> = EnumAttribute(linkAsValues)
+
 internal val attributeRunAtEnumRunAtValues : Attribute<RunAt> = EnumAttribute(runAtValues)
 
 internal val attributeScriptCrossoriginEnumScriptCrossoriginValues : Attribute<ScriptCrossorigin> = EnumAttribute(scriptCrossoriginValues)

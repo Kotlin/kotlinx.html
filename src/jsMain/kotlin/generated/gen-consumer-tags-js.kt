@@ -88,6 +88,7 @@ import kotlinx.html.LABEL
 import kotlinx.html.LEGEND
 import kotlinx.html.LI
 import kotlinx.html.LINK
+import kotlinx.html.LinkAs
 import kotlinx.html.MAIN
 import kotlinx.html.MAP
 import kotlinx.html.MARK
@@ -992,10 +993,12 @@ public inline fun TagConsumer<HTMLElement>.link(
   href: String? = null,
   rel: String? = null,
   type: String? = null,
+  htmlAs: LinkAs? = null,
   crossinline block: LINK.() -> Unit = {},
 ): HTMLLinkElement {
   contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-  return LINK(attributesMapOf("href", href,"rel", rel,"type", type), this)
+  return LINK(attributesMapOf("href", href,"rel", rel,"type", type,"as", htmlAs?.enumEncode()),
+      this)
       .visitAndFinalize(this, block)  as HTMLLinkElement
 }
 
