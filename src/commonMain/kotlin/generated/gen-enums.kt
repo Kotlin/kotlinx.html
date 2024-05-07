@@ -336,6 +336,23 @@ object LinkType {
     val values : List<String> = listOf("textAsp", "textAsa", "textCss", "textHtml", "textJavaScript", "textPlain", "textScriptLet", "textXComponent", "textXHtmlInsertion", "textXml")
 }
 
+@Suppress("unused", "EnumEntryName")
+enum class LinkAs(override val realValue : String) : AttributeEnum {
+    audio("audio"),
+    document("document"),
+    embed("embed"),
+    fetch("fetch"),
+    font("font"),
+    image("image"),
+    htmlObject("object"),
+    script("script"),
+    style("style"),
+    track("track"),
+    video("video"),
+    worker("worker")
+}
+
+internal val linkAsValues : Map<String, LinkAs> = LinkAs.entries.associateBy { it.realValue }
 @Suppress("unused", "ConstPropertyName")
 object MetaHttpEquiv {
     const val contentLanguage : String = "content-language"
