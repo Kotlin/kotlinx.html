@@ -38,6 +38,18 @@ open class A(initialAttributes : Map<String, String>, override val consumer : Ta
         get()  = attributeStringString.get(this, "type")
         set(newValue) {attributeStringString.set(this, "type", newValue)}
 
+    var referrerPolicy : AReferrerPolicy
+        get()  = attributeAReferrerPolicyEnumAReferrerPolicyValues.get(this, "referrerpolicy")
+        set(newValue) {attributeAReferrerPolicyEnumAReferrerPolicyValues.set(this, "referrerpolicy", newValue)}
+
+    var media : String
+        get()  = attributeStringString.get(this, "media")
+        set(newValue) {attributeStringString.set(this, "media", newValue)}
+
+    var downLoad : String
+        get()  = attributeStringString.get(this, "download")
+        set(newValue) {attributeStringString.set(this, "download", newValue)}
+
 
 }
 val A.asFlowContent : FlowContent

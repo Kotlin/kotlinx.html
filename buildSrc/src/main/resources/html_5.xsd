@@ -854,6 +854,21 @@
             <xsd:attribute name="rel" type="linkType"/>
             <xsd:attribute name="hreflang" type="i18LanguageCode"/>
             <xsd:attribute name="type" type="contentType"/>
+            <xsd:attribute name="referrerpolicy">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:NMTOKEN">
+                        <xsd:enumeration value="no-referrer"/>
+                        <xsd:enumeration value="no-referrer-when-downgrade"/>
+                        <xsd:enumeration value="origin"/>
+                        <xsd:enumeration value="origin-when-cross-origin"/>
+                        <xsd:enumeration value="same-origin"/>
+                        <xsd:enumeration value="strict-origin-when-cross-origin"/>
+                        <xsd:enumeration value="unsafe-url"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attribute name="media" type="xsd:string"/>
+            <xsd:attribute name="download" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
 

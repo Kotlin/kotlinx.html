@@ -18,6 +18,8 @@ internal val attributeBooleanBooleanOnOff : Attribute<Boolean> = BooleanAttribut
 
 internal val attributeBooleanTicker : Attribute<Boolean> = TickerAttribute()
 
+internal val attributeAReferrerPolicyEnumAReferrerPolicyValues : Attribute<AReferrerPolicy> = EnumAttribute(aReferrerPolicyValues)
+
 internal val attributeButtonFormEncTypeEnumButtonFormEncTypeValues : Attribute<ButtonFormEncType> = EnumAttribute(buttonFormEncTypeValues)
 
 internal val attributeButtonFormMethodEnumButtonFormMethodValues : Attribute<ButtonFormMethod> = EnumAttribute(buttonFormMethodValues)
