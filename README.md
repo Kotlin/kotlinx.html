@@ -76,6 +76,72 @@ System.out.appendHTML().html {
 }
 ```
 
+## Using kotlinx_html to create a website with http4k
+Add required dependencies 
+```kotlin
+dependencies {
+    testImplementation(kotlin("test"))
+    // http4k dependency 
+    implementation(platform("org.http4k:http4k-bom:5.19.0.0"))
+    implementation("org.http4k:http4k-core")
+    implementation("org.http4k:http4k-server-undertow")
+    implementation("org.http4k:http4k-client-apache")
+
+    //kotlinx.html dependency
+    val kotlinx_html_version = "latest_version"
+    // include for JVM target
+    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:${kotlinx_html_version}")
+
+    // include for JS target
+    implementation("org.jetbrains.kotlinx:kotlinx-html-js:${kotlinx_html_version}")
+
+    // include for Common module
+    implementation("org.jetbrains.kotlinx:kotlinx-html:${kotlinx_html_version}")
+}
+```
+
+```kotlin
+import kotlinx.html.html
+import kotlinx.html.body
+import kotlinx.html.head
+import kotlinx.html.title
+import kotlinx.html.div
+import kotlinx.html.a
+import kotlinx.html.ATarget
+import kotlinx.html.stream.createHTML
+import org.http4k.core.Request
+import org.http4k.core.Response
+import org.http4k.core.Status
+import org.http4k.server.SunHttp
+import org.http4k.server.asServer
+
+
+fun main() {
+    // Create a page
+    val page = createHTML().html {
+        head {
+            title {
+                +"Web Page"
+            }
+        }
+        body {
+            div() {
+                a("https://kotlinlang.org") {
+                    target = ATarget.blank
+                    +"Main site"
+                }
+            }
+        }
+    }
+    // Create a server
+    val app = { _: Request -> Response(Status.OK).body(page) }
+    // Start the server
+    val server = app.asServer(SunHttp(9000)).start()
+    // Stop the server
+    server.stop()
+}
+```
+
 # Documentation
 
 See [wiki](https://github.com/kotlin/kotlinx.html/wiki) pages
