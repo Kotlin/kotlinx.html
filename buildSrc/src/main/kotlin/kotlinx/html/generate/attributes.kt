@@ -62,10 +62,11 @@ fun Appendable.facade(repository: Repository, facade: AttributeFacade) {
 fun Appendable.eventProperty(parent: String, attribute: AttributeInfo, shouldUnsafeCast: Boolean) {
     val type = "(org.w3c.dom.events.Event) -> Unit"
     variable(
-        receiver = parent, variable = Var(
+        receiver = parent,
+        variable = Var(
             name = attribute.fieldName + "Function",
             type = type,
-            mutable = true
+            varType = VarType.MUTABLE,
         )
     )
     emptyLine()
