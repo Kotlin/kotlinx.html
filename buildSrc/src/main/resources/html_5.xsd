@@ -1796,7 +1796,7 @@
     <xsd:element name="area">
         <xsd:complexType>
             <xsd:attributeGroup ref="commonAttributeGroup"/>
-            <xsd:attribute name="Shape" default="rect">
+            <xsd:attribute name="shape" default="rect">
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:NMTOKEN">
                         <xsd:enumeration value="rect"/>

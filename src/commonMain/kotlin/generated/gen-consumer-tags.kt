@@ -202,7 +202,7 @@ public inline fun <T, C : TagConsumer<T>> C.area(
   crossinline block: AREA.() -> Unit = {},
 ): T {
   contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-  return AREA(attributesMapOf("Shape", shape?.enumEncode(),"alt", alt,"class", classes), this)
+  return AREA(attributesMapOf("shape", shape?.enumEncode(),"alt", alt,"class", classes), this)
       .visitAndFinalize(this, block)
 }
 

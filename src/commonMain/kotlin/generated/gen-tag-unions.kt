@@ -312,31 +312,31 @@ inline fun FlowOrPhrasingContent.abbr(classes : String? = null, crossinline bloc
 @OptIn(ExperimentalContracts::class)
 inline fun FlowOrPhrasingContent.area(shape : AreaShape? = null, alt : String? = null, classes : String? = null, crossinline block : AREA.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-    AREA(attributesMapOf("Shape", shape?.enumEncode(),"alt", alt,"class", classes), consumer).visit(block)
+    AREA(attributesMapOf("shape", shape?.enumEncode(),"alt", alt,"class", classes), consumer).visit(block)
 }
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
 inline fun FlowOrPhrasingContent.rectArea(alt : String? = null, classes : String? = null, crossinline block : AREA.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-    AREA(attributesMapOf("Shape", AreaShape.rect.realValue,"alt", alt,"class", classes), consumer).visit(block)
+    AREA(attributesMapOf("shape", AreaShape.rect.realValue,"alt", alt,"class", classes), consumer).visit(block)
 }
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
 inline fun FlowOrPhrasingContent.circleArea(alt : String? = null, classes : String? = null, crossinline block : AREA.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-    AREA(attributesMapOf("Shape", AreaShape.circle.realValue,"alt", alt,"class", classes), consumer).visit(block)
+    AREA(attributesMapOf("shape", AreaShape.circle.realValue,"alt", alt,"class", classes), consumer).visit(block)
 }
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
 inline fun FlowOrPhrasingContent.polyArea(alt : String? = null, classes : String? = null, crossinline block : AREA.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-    AREA(attributesMapOf("Shape", AreaShape.poly.realValue,"alt", alt,"class", classes), consumer).visit(block)
+    AREA(attributesMapOf("shape", AreaShape.poly.realValue,"alt", alt,"class", classes), consumer).visit(block)
 }
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
 inline fun FlowOrPhrasingContent.defaultArea(alt : String? = null, classes : String? = null, crossinline block : AREA.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-    AREA(attributesMapOf("Shape", AreaShape.default.realValue,"alt", alt,"class", classes), consumer).visit(block)
+    AREA(attributesMapOf("shape", AreaShape.default.realValue,"alt", alt,"class", classes), consumer).visit(block)
 }
 
 /**
