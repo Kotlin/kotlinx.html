@@ -1066,10 +1066,40 @@ inline fun FlowOrInteractiveOrPhrasingContent.softTextArea(rows : String? = null
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.soft.realValue,"class", classes), consumer).visit(block)
 }
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+@OptIn(ExperimentalContracts::class)
+inline fun FlowOrInteractiveOrPhrasingContent.virtualTextArea(rows : String? = null, cols : String? = null, classes : String? = null, crossinline block : TEXTAREA.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.virtual.realValue,"class", classes), consumer).visit(block)
+}
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+@OptIn(ExperimentalContracts::class)
+inline fun FlowOrInteractiveOrPhrasingContent.physicalTextArea(rows : String? = null, cols : String? = null, classes : String? = null, crossinline block : TEXTAREA.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.physical.realValue,"class", classes), consumer).visit(block)
+}
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+@OptIn(ExperimentalContracts::class)
+inline fun FlowOrInteractiveOrPhrasingContent.offTextArea(rows : String? = null, cols : String? = null, classes : String? = null, crossinline block : TEXTAREA.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.off.realValue,"class", classes), consumer).visit(block)
+}
 @HtmlTagMarker
 fun FlowOrInteractiveOrPhrasingContent.hardTextArea(rows : String? = null, cols : String? = null, classes : String? = null, content : String = "") : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.hard.realValue,"class", classes), consumer).visit({+content})
 @HtmlTagMarker
 fun FlowOrInteractiveOrPhrasingContent.softTextArea(rows : String? = null, cols : String? = null, classes : String? = null, content : String = "") : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.soft.realValue,"class", classes), consumer).visit({+content})
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+fun FlowOrInteractiveOrPhrasingContent.virtualTextArea(rows : String? = null, cols : String? = null, classes : String? = null, content : String = "") : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.virtual.realValue,"class", classes), consumer).visit({+content})
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+fun FlowOrInteractiveOrPhrasingContent.physicalTextArea(rows : String? = null, cols : String? = null, classes : String? = null, content : String = "") : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.physical.realValue,"class", classes), consumer).visit({+content})
+@Suppress("DEPRECATION")
+@HtmlTagMarker
+fun FlowOrInteractiveOrPhrasingContent.offTextArea(rows : String? = null, cols : String? = null, classes : String? = null, content : String = "") : Unit = TEXTAREA(attributesMapOf("rows", rows,"cols", cols,"wrap", TextAreaWrap.off.realValue,"class", classes), consumer).visit({+content})
 
 /**
  * Video player
