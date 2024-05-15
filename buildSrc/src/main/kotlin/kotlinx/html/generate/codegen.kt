@@ -46,10 +46,16 @@ fun Appendable.const(value: Const<*>) {
     append(value.asValue)
 }
 
+enum class VarType {
+    MUTABLE,
+    IMMUTABLE,
+    CONST,
+}
+
 data class Var(
     val name: String,
     val type: String,
-    val mutable: Boolean = false,
+    val varType: VarType = VarType.IMMUTABLE,
     val override: Boolean = false,
     val forceOmitValVar: Boolean = false,
     val defaultValue: String = "",
@@ -72,7 +78,12 @@ fun Appendable.variable(variable: Var, omitValVar: Boolean = false, receiver: St
         if (variable.override) {
             append("override ")
         }
-        append(if (variable.mutable) "var " else "val ")
+        val typeString = when (variable.varType) {
+            VarType.MUTABLE -> "var "
+            VarType.IMMUTABLE -> "val "
+            VarType.CONST -> "const val "
+        }
+        append(typeString)
     }
 
     if (receiver.isNotEmpty()) {
