@@ -57,8 +57,9 @@ fun humanizeJoin(parts: Iterable<String>, separator: String): String {
 }
 
 private fun String.replaceMistakesAndUglyWords() : String =
-        replace("dbl", "double")
+    replace("dbl", "double")
         .replace("Dbl", "Double")
+        .replace("EnDO", "enDo")
 
 
 private fun String.replaceHyphensToCamelCase() : String =
