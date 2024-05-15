@@ -22,9 +22,19 @@ permissions:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    name: Build on ${{ matrix.os.runner }}
+    runs-on: ${{ matrix.os.runner }}
+    defaults:
+      run:
+        shell: ${{ matrix.os.shell }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - runner: windows-latest
+            shell: msys2 {0}
+          - runner: ubuntu-latest
+            shell: bash
     steps:
     - uses: actions/checkout@v4.1.4
     - name: Set up JDK 11
