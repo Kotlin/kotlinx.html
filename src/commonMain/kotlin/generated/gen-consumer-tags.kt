@@ -19,6 +19,7 @@ import kotlinx.html.ABBR
 import kotlinx.html.ADDRESS
 import kotlinx.html.AREA
 import kotlinx.html.ARTICLE
+import kotlinx.html.AReferrerPolicy
 import kotlinx.html.ASIDE
 import kotlinx.html.AUDIO
 import kotlinx.html.AreaShape
@@ -155,11 +156,13 @@ import kotlinx.html.VIDEO
 public inline fun <T, C : TagConsumer<T>> C.a(
   href: String? = null,
   target: String? = null,
+  referrerPolicy: AReferrerPolicy? = null,
   classes: String? = null,
   crossinline block: A.() -> Unit = {},
 ): T {
   contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-  return A(attributesMapOf("href", href,"target", target,"class", classes), this)
+  return A(attributesMapOf("href", href,"target", target,"referrerpolicy",
+      referrerPolicy?.enumEncode(),"class", classes), this)
       .visitAndFinalize(this, block)
 }
 

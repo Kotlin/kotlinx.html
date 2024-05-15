@@ -76,6 +76,18 @@ object AType {
 }
 
 @Suppress("unused", "EnumEntryName")
+enum class AReferrerPolicy(override val realValue : String) : AttributeEnum {
+    noReferrer("no-referrer"),
+    noReferrerWhenDowngrade("no-referrer-when-downgrade"),
+    origin("origin"),
+    originWhenCrossOrigin("origin-when-cross-origin"),
+    sameOrigin("same-origin"),
+    strictOriginWhenCrossOrigin("strict-origin-when-cross-origin"),
+    unsafeUrl("unsafe-url")
+}
+
+internal val aReferrerPolicyValues : Map<String, AReferrerPolicy> = AReferrerPolicy.entries.associateBy { it.realValue }
+@Suppress("unused", "EnumEntryName")
 enum class AreaShape(override val realValue : String) : AttributeEnum {
     rect("rect"),
     circle("circle"),

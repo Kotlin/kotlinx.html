@@ -707,9 +707,51 @@ inline fun SectioningOrFlowContent.section(classes : String? = null, crossinline
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun FlowOrInteractiveOrPhrasingContent.a(href : String? = null, target : String? = null, classes : String? = null, crossinline block : A.() -> Unit = {}) : Unit {
+inline fun FlowOrInteractiveOrPhrasingContent.a(href : String? = null, target : String? = null, referrerPolicy : AReferrerPolicy? = null, classes : String? = null, crossinline block : A.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-    A(attributesMapOf("href", href,"target", target,"class", classes), consumer).visit(block)
+    A(attributesMapOf("href", href,"target", target,"referrerpolicy", referrerPolicy?.enumEncode(),"class", classes), consumer).visit(block)
+}
+@HtmlTagMarker
+@OptIn(ExperimentalContracts::class)
+inline fun FlowOrInteractiveOrPhrasingContent.noReferrerA(href : String? = null, target : String? = null, classes : String? = null, crossinline block : A.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    A(attributesMapOf("href", href,"target", target,"referrerpolicy", AReferrerPolicy.noReferrer.realValue,"class", classes), consumer).visit(block)
+}
+@HtmlTagMarker
+@OptIn(ExperimentalContracts::class)
+inline fun FlowOrInteractiveOrPhrasingContent.noReferrerWhenDowngradeA(href : String? = null, target : String? = null, classes : String? = null, crossinline block : A.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    A(attributesMapOf("href", href,"target", target,"referrerpolicy", AReferrerPolicy.noReferrerWhenDowngrade.realValue,"class", classes), consumer).visit(block)
+}
+@HtmlTagMarker
+@OptIn(ExperimentalContracts::class)
+inline fun FlowOrInteractiveOrPhrasingContent.originA(href : String? = null, target : String? = null, classes : String? = null, crossinline block : A.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    A(attributesMapOf("href", href,"target", target,"referrerpolicy", AReferrerPolicy.origin.realValue,"class", classes), consumer).visit(block)
+}
+@HtmlTagMarker
+@OptIn(ExperimentalContracts::class)
+inline fun FlowOrInteractiveOrPhrasingContent.originWhenCrossOriginA(href : String? = null, target : String? = null, classes : String? = null, crossinline block : A.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    A(attributesMapOf("href", href,"target", target,"referrerpolicy", AReferrerPolicy.originWhenCrossOrigin.realValue,"class", classes), consumer).visit(block)
+}
+@HtmlTagMarker
+@OptIn(ExperimentalContracts::class)
+inline fun FlowOrInteractiveOrPhrasingContent.sameOriginA(href : String? = null, target : String? = null, classes : String? = null, crossinline block : A.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    A(attributesMapOf("href", href,"target", target,"referrerpolicy", AReferrerPolicy.sameOrigin.realValue,"class", classes), consumer).visit(block)
+}
+@HtmlTagMarker
+@OptIn(ExperimentalContracts::class)
+inline fun FlowOrInteractiveOrPhrasingContent.strictOriginWhenCrossOriginA(href : String? = null, target : String? = null, classes : String? = null, crossinline block : A.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    A(attributesMapOf("href", href,"target", target,"referrerpolicy", AReferrerPolicy.strictOriginWhenCrossOrigin.realValue,"class", classes), consumer).visit(block)
+}
+@HtmlTagMarker
+@OptIn(ExperimentalContracts::class)
+inline fun FlowOrInteractiveOrPhrasingContent.unsafeUrlA(href : String? = null, target : String? = null, classes : String? = null, crossinline block : A.() -> Unit = {}) : Unit {
+    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    A(attributesMapOf("href", href,"target", target,"referrerpolicy", AReferrerPolicy.unsafeUrl.realValue,"class", classes), consumer).visit(block)
 }
 
 /**
