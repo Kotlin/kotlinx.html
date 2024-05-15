@@ -68,6 +68,10 @@ open class ADDRESS(initialAttributes : Map<String, String>, override val consume
 
 @Suppress("unused")
 open class AREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("area", consumer, initialAttributes, null, true, true), HtmlBlockInlineTag {
+    var shape : AreaShape
+        get()  = attributeAreaShapeEnumAreaShapeValues.get(this, "shape")
+        set(newValue) {attributeAreaShapeEnumAreaShapeValues.set(this, "shape", newValue)}
+
     var coords : String
         get()  = attributeStringString.get(this, "coords")
         set(newValue) {attributeStringString.set(this, "coords", newValue)}
