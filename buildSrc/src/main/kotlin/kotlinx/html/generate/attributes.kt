@@ -33,14 +33,12 @@ fun Appendable.attributeProperty(
 
     indent(indent)
     getter().defineIs(StringBuilder().apply {
-        receiverDot(request.delegatePropertyName)
-        functionCall("get", listOf("this", attributeName.quote()))
+        append(request.delegatePropertyName).append("[this, ${attributeName.quote()}]")
     })
 
     indent(indent)
     setter {
-        receiverDot(request.delegatePropertyName)
-        functionCall("set", listOf("this", attributeName.quote(), "newValue"))
+        append(request.delegatePropertyName).append("[this, ${attributeName.quote()}] = newValue")
     }
 
     emptyLine()

@@ -277,7 +277,7 @@ private fun generateConsumerTags(
                 yield(
                     consumerBuilder(tag, false)
                         .toBuilder()
-                        .addSuppressAnnotation("DEPRECATION")
+                        .addSuppressAnnotation("DEPRECATION", "DeprecatedCallableAddReplaceWith")
                         .addDeprecatedAnnotation("This tag doesn't support content or requires unsafe (try unsafe {})")
                         .build()
                 )

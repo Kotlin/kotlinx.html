@@ -37,58 +37,63 @@ val SAMP.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class SCRIPT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("script", consumer, initialAttributes, null, false, false), FlowMetaDataPhrasingContent {
     var charset : String
-        get()  = attributeStringString.get(this, "charset")
-        set(newValue) {attributeStringString.set(this, "charset", newValue)}
+        get()  = attributeStringString[this, "charset"]
+        set(newValue) {attributeStringString[this, "charset"] = newValue}
 
     var type : String
-        get()  = attributeStringString.get(this, "type")
-        set(newValue) {attributeStringString.set(this, "type", newValue)}
+        get()  = attributeStringString[this, "type"]
+        set(newValue) {attributeStringString[this, "type"] = newValue}
 
     var src : String
-        get()  = attributeStringString.get(this, "src")
-        set(newValue) {attributeStringString.set(this, "src", newValue)}
+        get()  = attributeStringString[this, "src"]
+        set(newValue) {attributeStringString[this, "src"] = newValue}
 
     var defer : Boolean
-        get()  = attributeBooleanTicker.get(this, "defer")
-        set(newValue) {attributeBooleanTicker.set(this, "defer", newValue)}
+        get()  = attributeBooleanTicker[this, "defer"]
+        set(newValue) {attributeBooleanTicker[this, "defer"] = newValue}
 
     var async : Boolean
-        get()  = attributeBooleanTicker.get(this, "async")
-        set(newValue) {attributeBooleanTicker.set(this, "async", newValue)}
+        get()  = attributeBooleanTicker[this, "async"]
+        set(newValue) {attributeBooleanTicker[this, "async"] = newValue}
 
     var nonce : String
-        get()  = attributeStringString.get(this, "nonce")
-        set(newValue) {attributeStringString.set(this, "nonce", newValue)}
+        get()  = attributeStringString[this, "nonce"]
+        set(newValue) {attributeStringString[this, "nonce"] = newValue}
 
     var integrity : String
-        get()  = attributeStringString.get(this, "integrity")
-        set(newValue) {attributeStringString.set(this, "integrity", newValue)}
+        get()  = attributeStringString[this, "integrity"]
+        set(newValue) {attributeStringString[this, "integrity"] = newValue}
 
     var crossorigin : ScriptCrossorigin
-        get()  = attributeScriptCrossoriginEnumScriptCrossoriginValues.get(this, "crossorigin")
-        set(newValue) {attributeScriptCrossoriginEnumScriptCrossoriginValues.set(this, "crossorigin", newValue)}
+        get()  = attributeScriptCrossoriginEnumScriptCrossoriginValues[this, "crossorigin"]
+        set(newValue) {attributeScriptCrossoriginEnumScriptCrossoriginValues[this, "crossorigin"] = newValue}
 
-    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    @Suppress("DeprecatedCallableAddReplaceWith")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {})")
     override operator fun Entities.unaryPlus() : Unit {
         @Suppress("DEPRECATION") entity(this)
     }
 
-    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    @Suppress("DeprecatedCallableAddReplaceWith")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {})")
     override operator fun String.unaryPlus() : Unit {
         @Suppress("DEPRECATION") text(this)
     }
 
-    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    @Suppress("DeprecatedCallableAddReplaceWith")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {})")
     override fun text(s : String) : Unit {
         super<HTMLTag>.text(s)
     }
 
-    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    @Suppress("DeprecatedCallableAddReplaceWith")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {})")
     override fun text(n : Number) : Unit {
         super<HTMLTag>.text(n)
     }
 
-    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    @Suppress("DeprecatedCallableAddReplaceWith")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {})")
     override fun entity(e : Entities) : Unit {
         super<HTMLTag>.entity(e)
     }
@@ -118,32 +123,32 @@ val SECTION.asSectioningContent : SectioningContent
 @Suppress("unused")
 open class SELECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("select", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var autoFocus : Boolean
-        get()  = attributeBooleanTicker.get(this, "autofocus")
-        set(newValue) {attributeBooleanTicker.set(this, "autofocus", newValue)}
+        get()  = attributeBooleanTicker[this, "autofocus"]
+        set(newValue) {attributeBooleanTicker[this, "autofocus"] = newValue}
 
     var disabled : Boolean
-        get()  = attributeBooleanTicker.get(this, "disabled")
-        set(newValue) {attributeBooleanTicker.set(this, "disabled", newValue)}
+        get()  = attributeBooleanTicker[this, "disabled"]
+        set(newValue) {attributeBooleanTicker[this, "disabled"] = newValue}
 
     var form : String
-        get()  = attributeStringString.get(this, "form")
-        set(newValue) {attributeStringString.set(this, "form", newValue)}
+        get()  = attributeStringString[this, "form"]
+        set(newValue) {attributeStringString[this, "form"] = newValue}
 
     var multiple : Boolean
-        get()  = attributeBooleanTicker.get(this, "multiple")
-        set(newValue) {attributeBooleanTicker.set(this, "multiple", newValue)}
+        get()  = attributeBooleanTicker[this, "multiple"]
+        set(newValue) {attributeBooleanTicker[this, "multiple"] = newValue}
 
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
     var size : String
-        get()  = attributeStringString.get(this, "size")
-        set(newValue) {attributeStringString.set(this, "size", newValue)}
+        get()  = attributeStringString[this, "size"]
+        set(newValue) {attributeStringString[this, "size"] = newValue}
 
     var required : Boolean
-        get()  = attributeBooleanTicker.get(this, "required")
-        set(newValue) {attributeBooleanTicker.set(this, "required", newValue)}
+        get()  = attributeBooleanTicker[this, "required"]
+        set(newValue) {attributeBooleanTicker[this, "required"] = newValue}
 
 
 }
@@ -185,8 +190,8 @@ val SELECT.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class SLOT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("slot", consumer, initialAttributes, null, false, false), HtmlInlineTag {
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
 
 }
@@ -205,16 +210,16 @@ val SMALL.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class SOURCE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("source", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacade {
     var src : String
-        get()  = attributeStringString.get(this, "src")
-        set(newValue) {attributeStringString.set(this, "src", newValue)}
+        get()  = attributeStringString[this, "src"]
+        set(newValue) {attributeStringString[this, "src"] = newValue}
 
     var type : String
-        get()  = attributeStringString.get(this, "type")
-        set(newValue) {attributeStringString.set(this, "type", newValue)}
+        get()  = attributeStringString[this, "type"]
+        set(newValue) {attributeStringString[this, "type"] = newValue}
 
     var media : String
-        get()  = attributeStringString.get(this, "media")
-        set(newValue) {attributeStringString.set(this, "media", newValue)}
+        get()  = attributeStringString[this, "media"]
+        set(newValue) {attributeStringString[this, "media"] = newValue}
 
 
 }
@@ -244,42 +249,47 @@ val STRONG.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class STYLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("style", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowMetaDataContent {
     var type : String
-        get()  = attributeStringString.get(this, "type")
-        set(newValue) {attributeStringString.set(this, "type", newValue)}
+        get()  = attributeStringString[this, "type"]
+        set(newValue) {attributeStringString[this, "type"] = newValue}
 
     var media : String
-        get()  = attributeStringString.get(this, "media")
-        set(newValue) {attributeStringString.set(this, "media", newValue)}
+        get()  = attributeStringString[this, "media"]
+        set(newValue) {attributeStringString[this, "media"] = newValue}
 
     var scoped : Boolean
-        get()  = attributeBooleanTicker.get(this, "scoped")
-        set(newValue) {attributeBooleanTicker.set(this, "scoped", newValue)}
+        get()  = attributeBooleanTicker[this, "scoped"]
+        set(newValue) {attributeBooleanTicker[this, "scoped"] = newValue}
 
     var nonce : String
-        get()  = attributeStringString.get(this, "nonce")
-        set(newValue) {attributeStringString.set(this, "nonce", newValue)}
+        get()  = attributeStringString[this, "nonce"]
+        set(newValue) {attributeStringString[this, "nonce"] = newValue}
 
-    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    @Suppress("DeprecatedCallableAddReplaceWith")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {})")
     override operator fun Entities.unaryPlus() : Unit {
         @Suppress("DEPRECATION") entity(this)
     }
 
-    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    @Suppress("DeprecatedCallableAddReplaceWith")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {})")
     override operator fun String.unaryPlus() : Unit {
         @Suppress("DEPRECATION") text(this)
     }
 
-    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    @Suppress("DeprecatedCallableAddReplaceWith")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {})")
     override fun text(s : String) : Unit {
         super<HTMLTag>.text(s)
     }
 
-    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    @Suppress("DeprecatedCallableAddReplaceWith")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {})")
     override fun text(n : Number) : Unit {
         super<HTMLTag>.text(n)
     }
 
-    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {}")
+    @Suppress("DeprecatedCallableAddReplaceWith")
+    @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {})")
     override fun entity(e : Entities) : Unit {
         super<HTMLTag>.entity(e)
     }

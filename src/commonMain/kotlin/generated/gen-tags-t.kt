@@ -15,8 +15,8 @@ import kotlinx.html.attributes.*
 @Suppress("unused")
 open class TABLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("table", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var summary : String
-        get()  = attributeStringString.get(this, "summary")
-        set(newValue) {attributeStringString.set(this, "summary", newValue)}
+        get()  = attributeStringString[this, "summary"]
+        set(newValue) {attributeStringString[this, "summary"] = newValue}
 
 
 }
@@ -99,16 +99,16 @@ inline fun TBODY.tr(classes : String? = null, crossinline block : TR.() -> Unit 
 @Suppress("unused")
 open class TD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("td", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var headers : String
-        get()  = attributeStringString.get(this, "headers")
-        set(newValue) {attributeStringString.set(this, "headers", newValue)}
+        get()  = attributeStringString[this, "headers"]
+        set(newValue) {attributeStringString[this, "headers"] = newValue}
 
     var rowSpan : String
-        get()  = attributeStringString.get(this, "rowspan")
-        set(newValue) {attributeStringString.set(this, "rowspan", newValue)}
+        get()  = attributeStringString[this, "rowspan"]
+        set(newValue) {attributeStringString[this, "rowspan"] = newValue}
 
     var colSpan : String
-        get()  = attributeStringString.get(this, "colspan")
-        set(newValue) {attributeStringString.set(this, "colspan", newValue)}
+        get()  = attributeStringString[this, "colspan"]
+        set(newValue) {attributeStringString[this, "colspan"] = newValue}
 
 
 }
@@ -127,52 +127,52 @@ val TEMPLATE.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class TEXTAREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("textarea", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var autoFocus : Boolean
-        get()  = attributeBooleanTicker.get(this, "autofocus")
-        set(newValue) {attributeBooleanTicker.set(this, "autofocus", newValue)}
+        get()  = attributeBooleanTicker[this, "autofocus"]
+        set(newValue) {attributeBooleanTicker[this, "autofocus"] = newValue}
 
     var disabled : Boolean
-        get()  = attributeBooleanTicker.get(this, "disabled")
-        set(newValue) {attributeBooleanTicker.set(this, "disabled", newValue)}
+        get()  = attributeBooleanTicker[this, "disabled"]
+        set(newValue) {attributeBooleanTicker[this, "disabled"] = newValue}
 
     var form : String
-        get()  = attributeStringString.get(this, "form")
-        set(newValue) {attributeStringString.set(this, "form", newValue)}
+        get()  = attributeStringString[this, "form"]
+        set(newValue) {attributeStringString[this, "form"] = newValue}
 
     var maxLength : String
-        get()  = attributeStringString.get(this, "maxlength")
-        set(newValue) {attributeStringString.set(this, "maxlength", newValue)}
+        get()  = attributeStringString[this, "maxlength"]
+        set(newValue) {attributeStringString[this, "maxlength"] = newValue}
 
     var minLength : String
-        get()  = attributeStringString.get(this, "minlength")
-        set(newValue) {attributeStringString.set(this, "minlength", newValue)}
+        get()  = attributeStringString[this, "minlength"]
+        set(newValue) {attributeStringString[this, "minlength"] = newValue}
 
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
     var placeholder : String
-        get()  = attributeStringString.get(this, "placeholder")
-        set(newValue) {attributeStringString.set(this, "placeholder", newValue)}
+        get()  = attributeStringString[this, "placeholder"]
+        set(newValue) {attributeStringString[this, "placeholder"] = newValue}
 
     var readonly : Boolean
-        get()  = attributeBooleanTicker.get(this, "readonly")
-        set(newValue) {attributeBooleanTicker.set(this, "readonly", newValue)}
+        get()  = attributeBooleanTicker[this, "readonly"]
+        set(newValue) {attributeBooleanTicker[this, "readonly"] = newValue}
 
     var required : Boolean
-        get()  = attributeBooleanTicker.get(this, "required")
-        set(newValue) {attributeBooleanTicker.set(this, "required", newValue)}
+        get()  = attributeBooleanTicker[this, "required"]
+        set(newValue) {attributeBooleanTicker[this, "required"] = newValue}
 
     var rows : String
-        get()  = attributeStringString.get(this, "rows")
-        set(newValue) {attributeStringString.set(this, "rows", newValue)}
+        get()  = attributeStringString[this, "rows"]
+        set(newValue) {attributeStringString[this, "rows"] = newValue}
 
     var cols : String
-        get()  = attributeStringString.get(this, "cols")
-        set(newValue) {attributeStringString.set(this, "cols", newValue)}
+        get()  = attributeStringString[this, "cols"]
+        set(newValue) {attributeStringString[this, "cols"] = newValue}
 
     var wrap : TextAreaWrap
-        get()  = attributeTextAreaWrapEnumTextAreaWrapValues.get(this, "wrap")
-        set(newValue) {attributeTextAreaWrapEnumTextAreaWrapValues.set(this, "wrap", newValue)}
+        get()  = attributeTextAreaWrapEnumTextAreaWrapValues[this, "wrap"]
+        set(newValue) {attributeTextAreaWrapEnumTextAreaWrapValues[this, "wrap"] = newValue}
 
 
 }
@@ -204,20 +204,20 @@ inline fun TFOOT.tr(classes : String? = null, crossinline block : TR.() -> Unit 
 @Suppress("unused")
 open class TH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("th", consumer, initialAttributes, null, false, false), HtmlInlineTag {
     var headers : String
-        get()  = attributeStringString.get(this, "headers")
-        set(newValue) {attributeStringString.set(this, "headers", newValue)}
+        get()  = attributeStringString[this, "headers"]
+        set(newValue) {attributeStringString[this, "headers"] = newValue}
 
     var rowSpan : String
-        get()  = attributeStringString.get(this, "rowspan")
-        set(newValue) {attributeStringString.set(this, "rowspan", newValue)}
+        get()  = attributeStringString[this, "rowspan"]
+        set(newValue) {attributeStringString[this, "rowspan"] = newValue}
 
     var colSpan : String
-        get()  = attributeStringString.get(this, "colspan")
-        set(newValue) {attributeStringString.set(this, "colspan", newValue)}
+        get()  = attributeStringString[this, "colspan"]
+        set(newValue) {attributeStringString[this, "colspan"] = newValue}
 
     var scope : ThScope
-        get()  = attributeThScopeEnumThScopeValues.get(this, "scope")
-        set(newValue) {attributeThScopeEnumThScopeValues.set(this, "scope", newValue)}
+        get()  = attributeThScopeEnumThScopeValues[this, "scope"]
+        set(newValue) {attributeThScopeEnumThScopeValues[this, "scope"] = newValue}
 
 
 }
@@ -240,8 +240,8 @@ inline fun THEAD.tr(classes : String? = null, crossinline block : TR.() -> Unit 
 @Suppress("unused")
 open class TIME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("time", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var dateTime : String
-        get()  = attributeStringString.get(this, "datetime")
-        set(newValue) {attributeStringString.set(this, "datetime", newValue)}
+        get()  = attributeStringString[this, "datetime"]
+        set(newValue) {attributeStringString[this, "datetime"] = newValue}
 
 
 }

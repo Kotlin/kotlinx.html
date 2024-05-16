@@ -26,12 +26,12 @@ val B.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class BASE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("base", consumer, initialAttributes, null, true, true), HtmlHeadTag {
     var href : String
-        get()  = attributeStringString.get(this, "href")
-        set(newValue) {attributeStringString.set(this, "href", newValue)}
+        get()  = attributeStringString[this, "href"]
+        set(newValue) {attributeStringString[this, "href"] = newValue}
 
     var target : String
-        get()  = attributeStringString.get(this, "target")
-        set(newValue) {attributeStringString.set(this, "target", newValue)}
+        get()  = attributeStringString[this, "target"]
+        set(newValue) {attributeStringString[this, "target"] = newValue}
 
 
 }
@@ -61,8 +61,8 @@ val BDO.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class BLOCKQUOTE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("blockquote", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var cite : String
-        get()  = attributeStringString.get(this, "cite")
-        set(newValue) {attributeStringString.set(this, "cite", newValue)}
+        get()  = attributeStringString[this, "cite"]
+        set(newValue) {attributeStringString[this, "cite"] = newValue}
 
 
 }
@@ -70,56 +70,56 @@ open class BLOCKQUOTE(initialAttributes : Map<String, String>, override val cons
 @Suppress("unused")
 open class BODY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("body", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var onAfterprint : String
-        get()  = attributeStringString.get(this, "onafterprint")
-        set(newValue) {attributeStringString.set(this, "onafterprint", newValue)}
+        get()  = attributeStringString[this, "onafterprint"]
+        set(newValue) {attributeStringString[this, "onafterprint"] = newValue}
 
     var onBeforeprint : String
-        get()  = attributeStringString.get(this, "onbeforeprint")
-        set(newValue) {attributeStringString.set(this, "onbeforeprint", newValue)}
+        get()  = attributeStringString[this, "onbeforeprint"]
+        set(newValue) {attributeStringString[this, "onbeforeprint"] = newValue}
 
     var onBeforeunLoad : String
-        get()  = attributeStringString.get(this, "onbeforeunload")
-        set(newValue) {attributeStringString.set(this, "onbeforeunload", newValue)}
+        get()  = attributeStringString[this, "onbeforeunload"]
+        set(newValue) {attributeStringString[this, "onbeforeunload"] = newValue}
 
     var onHashChange : String
-        get()  = attributeStringString.get(this, "onhashchange")
-        set(newValue) {attributeStringString.set(this, "onhashchange", newValue)}
+        get()  = attributeStringString[this, "onhashchange"]
+        set(newValue) {attributeStringString[this, "onhashchange"] = newValue}
 
     var onMessage : String
-        get()  = attributeStringString.get(this, "onmessage")
-        set(newValue) {attributeStringString.set(this, "onmessage", newValue)}
+        get()  = attributeStringString[this, "onmessage"]
+        set(newValue) {attributeStringString[this, "onmessage"] = newValue}
 
     var onOffline : String
-        get()  = attributeStringString.get(this, "onoffline")
-        set(newValue) {attributeStringString.set(this, "onoffline", newValue)}
+        get()  = attributeStringString[this, "onoffline"]
+        set(newValue) {attributeStringString[this, "onoffline"] = newValue}
 
     var onOnline : String
-        get()  = attributeStringString.get(this, "ononline")
-        set(newValue) {attributeStringString.set(this, "ononline", newValue)}
+        get()  = attributeStringString[this, "ononline"]
+        set(newValue) {attributeStringString[this, "ononline"] = newValue}
 
     var onPopstate : String
-        get()  = attributeStringString.get(this, "onpopstate")
-        set(newValue) {attributeStringString.set(this, "onpopstate", newValue)}
+        get()  = attributeStringString[this, "onpopstate"]
+        set(newValue) {attributeStringString[this, "onpopstate"] = newValue}
 
     var onRedo : String
-        get()  = attributeStringString.get(this, "onredo")
-        set(newValue) {attributeStringString.set(this, "onredo", newValue)}
+        get()  = attributeStringString[this, "onredo"]
+        set(newValue) {attributeStringString[this, "onredo"] = newValue}
 
     var onResize : String
-        get()  = attributeStringString.get(this, "onresize")
-        set(newValue) {attributeStringString.set(this, "onresize", newValue)}
+        get()  = attributeStringString[this, "onresize"]
+        set(newValue) {attributeStringString[this, "onresize"] = newValue}
 
     var onStorage : String
-        get()  = attributeStringString.get(this, "onstorage")
-        set(newValue) {attributeStringString.set(this, "onstorage", newValue)}
+        get()  = attributeStringString[this, "onstorage"]
+        set(newValue) {attributeStringString[this, "onstorage"] = newValue}
 
     var onUndo : String
-        get()  = attributeStringString.get(this, "onundo")
-        set(newValue) {attributeStringString.set(this, "onundo", newValue)}
+        get()  = attributeStringString[this, "onundo"]
+        set(newValue) {attributeStringString[this, "onundo"] = newValue}
 
     var onUnLoad : String
-        get()  = attributeStringString.get(this, "onunload")
-        set(newValue) {attributeStringString.set(this, "onunload", newValue)}
+        get()  = attributeStringString[this, "onunload"]
+        set(newValue) {attributeStringString[this, "onunload"] = newValue}
 
 
 }
@@ -138,48 +138,48 @@ val BR.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class BUTTON(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("button", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var autoFocus : Boolean
-        get()  = attributeBooleanTicker.get(this, "autofocus")
-        set(newValue) {attributeBooleanTicker.set(this, "autofocus", newValue)}
+        get()  = attributeBooleanTicker[this, "autofocus"]
+        set(newValue) {attributeBooleanTicker[this, "autofocus"] = newValue}
 
     var disabled : Boolean
-        get()  = attributeBooleanTicker.get(this, "disabled")
-        set(newValue) {attributeBooleanTicker.set(this, "disabled", newValue)}
+        get()  = attributeBooleanTicker[this, "disabled"]
+        set(newValue) {attributeBooleanTicker[this, "disabled"] = newValue}
 
     var form : String
-        get()  = attributeStringString.get(this, "form")
-        set(newValue) {attributeStringString.set(this, "form", newValue)}
+        get()  = attributeStringString[this, "form"]
+        set(newValue) {attributeStringString[this, "form"] = newValue}
 
     var formAction : String
-        get()  = attributeStringString.get(this, "formaction")
-        set(newValue) {attributeStringString.set(this, "formaction", newValue)}
+        get()  = attributeStringString[this, "formaction"]
+        set(newValue) {attributeStringString[this, "formaction"] = newValue}
 
     var formEncType : ButtonFormEncType
-        get()  = attributeButtonFormEncTypeEnumButtonFormEncTypeValues.get(this, "formenctype")
-        set(newValue) {attributeButtonFormEncTypeEnumButtonFormEncTypeValues.set(this, "formenctype", newValue)}
+        get()  = attributeButtonFormEncTypeEnumButtonFormEncTypeValues[this, "formenctype"]
+        set(newValue) {attributeButtonFormEncTypeEnumButtonFormEncTypeValues[this, "formenctype"] = newValue}
 
     var formMethod : ButtonFormMethod
-        get()  = attributeButtonFormMethodEnumButtonFormMethodValues.get(this, "formmethod")
-        set(newValue) {attributeButtonFormMethodEnumButtonFormMethodValues.set(this, "formmethod", newValue)}
+        get()  = attributeButtonFormMethodEnumButtonFormMethodValues[this, "formmethod"]
+        set(newValue) {attributeButtonFormMethodEnumButtonFormMethodValues[this, "formmethod"] = newValue}
 
     var formNovalidate : Boolean
-        get()  = attributeBooleanTicker.get(this, "formnovalidate")
-        set(newValue) {attributeBooleanTicker.set(this, "formnovalidate", newValue)}
+        get()  = attributeBooleanTicker[this, "formnovalidate"]
+        set(newValue) {attributeBooleanTicker[this, "formnovalidate"] = newValue}
 
     var formTarget : String
-        get()  = attributeStringString.get(this, "formtarget")
-        set(newValue) {attributeStringString.set(this, "formtarget", newValue)}
+        get()  = attributeStringString[this, "formtarget"]
+        set(newValue) {attributeStringString[this, "formtarget"] = newValue}
 
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
     var value : String
-        get()  = attributeStringString.get(this, "value")
-        set(newValue) {attributeStringString.set(this, "value", newValue)}
+        get()  = attributeStringString[this, "value"]
+        set(newValue) {attributeStringString[this, "value"] = newValue}
 
     var type : ButtonType
-        get()  = attributeButtonTypeEnumButtonTypeValues.get(this, "type")
-        set(newValue) {attributeButtonTypeEnumButtonTypeValues.set(this, "type", newValue)}
+        get()  = attributeButtonTypeEnumButtonTypeValues[this, "type"]
+        set(newValue) {attributeButtonTypeEnumButtonTypeValues[this, "type"] = newValue}
 
 
 }

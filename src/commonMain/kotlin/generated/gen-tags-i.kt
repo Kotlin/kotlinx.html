@@ -26,28 +26,28 @@ val I.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class IFRAME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("iframe", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
     var src : String
-        get()  = attributeStringString.get(this, "src")
-        set(newValue) {attributeStringString.set(this, "src", newValue)}
+        get()  = attributeStringString[this, "src"]
+        set(newValue) {attributeStringString[this, "src"] = newValue}
 
     var height : String
-        get()  = attributeStringString.get(this, "height")
-        set(newValue) {attributeStringString.set(this, "height", newValue)}
+        get()  = attributeStringString[this, "height"]
+        set(newValue) {attributeStringString[this, "height"] = newValue}
 
     var width : String
-        get()  = attributeStringString.get(this, "width")
-        set(newValue) {attributeStringString.set(this, "width", newValue)}
+        get()  = attributeStringString[this, "width"]
+        set(newValue) {attributeStringString[this, "width"] = newValue}
 
     var sandbox : IframeSandbox
-        get()  = attributeIframeSandboxEnumIframeSandboxValues.get(this, "sandbox")
-        set(newValue) {attributeIframeSandboxEnumIframeSandboxValues.set(this, "sandbox", newValue)}
+        get()  = attributeIframeSandboxEnumIframeSandboxValues[this, "sandbox"]
+        set(newValue) {attributeIframeSandboxEnumIframeSandboxValues[this, "sandbox"] = newValue}
 
     var seamless : Boolean
-        get()  = attributeBooleanTicker.get(this, "seamless")
-        set(newValue) {attributeBooleanTicker.set(this, "seamless", newValue)}
+        get()  = attributeBooleanTicker[this, "seamless"]
+        set(newValue) {attributeBooleanTicker[this, "seamless"] = newValue}
 
 
 }
@@ -64,32 +64,32 @@ val IFRAME.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class IMG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("img", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var alt : String
-        get()  = attributeStringString.get(this, "alt")
-        set(newValue) {attributeStringString.set(this, "alt", newValue)}
+        get()  = attributeStringString[this, "alt"]
+        set(newValue) {attributeStringString[this, "alt"] = newValue}
 
     var src : String
-        get()  = attributeStringString.get(this, "src")
-        set(newValue) {attributeStringString.set(this, "src", newValue)}
+        get()  = attributeStringString[this, "src"]
+        set(newValue) {attributeStringString[this, "src"] = newValue}
 
     var height : String
-        get()  = attributeStringString.get(this, "height")
-        set(newValue) {attributeStringString.set(this, "height", newValue)}
+        get()  = attributeStringString[this, "height"]
+        set(newValue) {attributeStringString[this, "height"] = newValue}
 
     var width : String
-        get()  = attributeStringString.get(this, "width")
-        set(newValue) {attributeStringString.set(this, "width", newValue)}
+        get()  = attributeStringString[this, "width"]
+        set(newValue) {attributeStringString[this, "width"] = newValue}
 
     var usemap : String
-        get()  = attributeStringString.get(this, "usemap")
-        set(newValue) {attributeStringString.set(this, "usemap", newValue)}
+        get()  = attributeStringString[this, "usemap"]
+        set(newValue) {attributeStringString[this, "usemap"] = newValue}
 
     var ismap : Boolean
-        get()  = attributeBooleanTicker.get(this, "ismap")
-        set(newValue) {attributeBooleanTicker.set(this, "ismap", newValue)}
+        get()  = attributeBooleanTicker[this, "ismap"]
+        set(newValue) {attributeBooleanTicker[this, "ismap"] = newValue}
 
     var loading : ImgLoading
-        get()  = attributeImgLoadingEnumImgLoadingValues.get(this, "loading")
-        set(newValue) {attributeImgLoadingEnumImgLoadingValues.set(this, "loading", newValue)}
+        get()  = attributeImgLoadingEnumImgLoadingValues[this, "loading"]
+        set(newValue) {attributeImgLoadingEnumImgLoadingValues[this, "loading"] = newValue}
 
 
 }
@@ -106,128 +106,128 @@ val IMG.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class INPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("input", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var type : InputType
-        get()  = attributeInputTypeEnumInputTypeValues.get(this, "type")
-        set(newValue) {attributeInputTypeEnumInputTypeValues.set(this, "type", newValue)}
+        get()  = attributeInputTypeEnumInputTypeValues[this, "type"]
+        set(newValue) {attributeInputTypeEnumInputTypeValues[this, "type"] = newValue}
 
     var accept : String
-        get()  = attributeStringString.get(this, "accept")
-        set(newValue) {attributeStringString.set(this, "accept", newValue)}
+        get()  = attributeStringString[this, "accept"]
+        set(newValue) {attributeStringString[this, "accept"] = newValue}
 
     var alt : String
-        get()  = attributeStringString.get(this, "alt")
-        set(newValue) {attributeStringString.set(this, "alt", newValue)}
+        get()  = attributeStringString[this, "alt"]
+        set(newValue) {attributeStringString[this, "alt"] = newValue}
 
     var autoFocus : Boolean
-        get()  = attributeBooleanTicker.get(this, "autofocus")
-        set(newValue) {attributeBooleanTicker.set(this, "autofocus", newValue)}
+        get()  = attributeBooleanTicker[this, "autofocus"]
+        set(newValue) {attributeBooleanTicker[this, "autofocus"] = newValue}
 
     var autoComplete : Boolean
-        get()  = attributeBooleanBooleanOnOff.get(this, "autocomplete")
-        set(newValue) {attributeBooleanBooleanOnOff.set(this, "autocomplete", newValue)}
+        get()  = attributeBooleanBooleanOnOff[this, "autocomplete"]
+        set(newValue) {attributeBooleanBooleanOnOff[this, "autocomplete"] = newValue}
 
     var checked : Boolean
-        get()  = attributeBooleanTicker.get(this, "checked")
-        set(newValue) {attributeBooleanTicker.set(this, "checked", newValue)}
+        get()  = attributeBooleanTicker[this, "checked"]
+        set(newValue) {attributeBooleanTicker[this, "checked"] = newValue}
 
     var disabled : Boolean
-        get()  = attributeBooleanTicker.get(this, "disabled")
-        set(newValue) {attributeBooleanTicker.set(this, "disabled", newValue)}
+        get()  = attributeBooleanTicker[this, "disabled"]
+        set(newValue) {attributeBooleanTicker[this, "disabled"] = newValue}
 
     var form : String
-        get()  = attributeStringString.get(this, "form")
-        set(newValue) {attributeStringString.set(this, "form", newValue)}
+        get()  = attributeStringString[this, "form"]
+        set(newValue) {attributeStringString[this, "form"] = newValue}
 
     var formAction : String
-        get()  = attributeStringString.get(this, "formaction")
-        set(newValue) {attributeStringString.set(this, "formaction", newValue)}
+        get()  = attributeStringString[this, "formaction"]
+        set(newValue) {attributeStringString[this, "formaction"] = newValue}
 
     var formEncType : InputFormEncType
-        get()  = attributeInputFormEncTypeEnumInputFormEncTypeValues.get(this, "formenctype")
-        set(newValue) {attributeInputFormEncTypeEnumInputFormEncTypeValues.set(this, "formenctype", newValue)}
+        get()  = attributeInputFormEncTypeEnumInputFormEncTypeValues[this, "formenctype"]
+        set(newValue) {attributeInputFormEncTypeEnumInputFormEncTypeValues[this, "formenctype"] = newValue}
 
     var formMethod : InputFormMethod
-        get()  = attributeInputFormMethodEnumInputFormMethodValues.get(this, "formmethod")
-        set(newValue) {attributeInputFormMethodEnumInputFormMethodValues.set(this, "formmethod", newValue)}
+        get()  = attributeInputFormMethodEnumInputFormMethodValues[this, "formmethod"]
+        set(newValue) {attributeInputFormMethodEnumInputFormMethodValues[this, "formmethod"] = newValue}
 
     var formNovalidate : Boolean
-        get()  = attributeBooleanTicker.get(this, "formnovalidate")
-        set(newValue) {attributeBooleanTicker.set(this, "formnovalidate", newValue)}
+        get()  = attributeBooleanTicker[this, "formnovalidate"]
+        set(newValue) {attributeBooleanTicker[this, "formnovalidate"] = newValue}
 
     var formTarget : String
-        get()  = attributeStringString.get(this, "formtarget")
-        set(newValue) {attributeStringString.set(this, "formtarget", newValue)}
+        get()  = attributeStringString[this, "formtarget"]
+        set(newValue) {attributeStringString[this, "formtarget"] = newValue}
 
     var height : String
-        get()  = attributeStringString.get(this, "height")
-        set(newValue) {attributeStringString.set(this, "height", newValue)}
+        get()  = attributeStringString[this, "height"]
+        set(newValue) {attributeStringString[this, "height"] = newValue}
 
     var list : String
-        get()  = attributeStringString.get(this, "list")
-        set(newValue) {attributeStringString.set(this, "list", newValue)}
+        get()  = attributeStringString[this, "list"]
+        set(newValue) {attributeStringString[this, "list"] = newValue}
 
     var max : String
-        get()  = attributeStringString.get(this, "max")
-        set(newValue) {attributeStringString.set(this, "max", newValue)}
+        get()  = attributeStringString[this, "max"]
+        set(newValue) {attributeStringString[this, "max"] = newValue}
 
     var maxLength : String
-        get()  = attributeStringString.get(this, "maxlength")
-        set(newValue) {attributeStringString.set(this, "maxlength", newValue)}
+        get()  = attributeStringString[this, "maxlength"]
+        set(newValue) {attributeStringString[this, "maxlength"] = newValue}
 
     var minLength : String
-        get()  = attributeStringString.get(this, "minlength")
-        set(newValue) {attributeStringString.set(this, "minlength", newValue)}
+        get()  = attributeStringString[this, "minlength"]
+        set(newValue) {attributeStringString[this, "minlength"] = newValue}
 
     var min : String
-        get()  = attributeStringString.get(this, "min")
-        set(newValue) {attributeStringString.set(this, "min", newValue)}
+        get()  = attributeStringString[this, "min"]
+        set(newValue) {attributeStringString[this, "min"] = newValue}
 
     var multiple : Boolean
-        get()  = attributeBooleanTicker.get(this, "multiple")
-        set(newValue) {attributeBooleanTicker.set(this, "multiple", newValue)}
+        get()  = attributeBooleanTicker[this, "multiple"]
+        set(newValue) {attributeBooleanTicker[this, "multiple"] = newValue}
 
     var pattern : String
-        get()  = attributeStringString.get(this, "pattern")
-        set(newValue) {attributeStringString.set(this, "pattern", newValue)}
+        get()  = attributeStringString[this, "pattern"]
+        set(newValue) {attributeStringString[this, "pattern"] = newValue}
 
     var placeholder : String
-        get()  = attributeStringString.get(this, "placeholder")
-        set(newValue) {attributeStringString.set(this, "placeholder", newValue)}
+        get()  = attributeStringString[this, "placeholder"]
+        set(newValue) {attributeStringString[this, "placeholder"] = newValue}
 
     var readonly : Boolean
-        get()  = attributeBooleanTicker.get(this, "readonly")
-        set(newValue) {attributeBooleanTicker.set(this, "readonly", newValue)}
+        get()  = attributeBooleanTicker[this, "readonly"]
+        set(newValue) {attributeBooleanTicker[this, "readonly"] = newValue}
 
     var required : Boolean
-        get()  = attributeBooleanTicker.get(this, "required")
-        set(newValue) {attributeBooleanTicker.set(this, "required", newValue)}
+        get()  = attributeBooleanTicker[this, "required"]
+        set(newValue) {attributeBooleanTicker[this, "required"] = newValue}
 
     var size : String
-        get()  = attributeStringString.get(this, "size")
-        set(newValue) {attributeStringString.set(this, "size", newValue)}
+        get()  = attributeStringString[this, "size"]
+        set(newValue) {attributeStringString[this, "size"] = newValue}
 
     var src : String
-        get()  = attributeStringString.get(this, "src")
-        set(newValue) {attributeStringString.set(this, "src", newValue)}
+        get()  = attributeStringString[this, "src"]
+        set(newValue) {attributeStringString[this, "src"] = newValue}
 
     var step : String
-        get()  = attributeStringString.get(this, "step")
-        set(newValue) {attributeStringString.set(this, "step", newValue)}
+        get()  = attributeStringString[this, "step"]
+        set(newValue) {attributeStringString[this, "step"] = newValue}
 
     var width : String
-        get()  = attributeStringString.get(this, "width")
-        set(newValue) {attributeStringString.set(this, "width", newValue)}
+        get()  = attributeStringString[this, "width"]
+        set(newValue) {attributeStringString[this, "width"] = newValue}
 
     var files : String
-        get()  = attributeStringString.get(this, "files")
-        set(newValue) {attributeStringString.set(this, "files", newValue)}
+        get()  = attributeStringString[this, "files"]
+        set(newValue) {attributeStringString[this, "files"] = newValue}
 
     var value : String
-        get()  = attributeStringString.get(this, "value")
-        set(newValue) {attributeStringString.set(this, "value", newValue)}
+        get()  = attributeStringString[this, "value"]
+        set(newValue) {attributeStringString[this, "value"] = newValue}
 
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
 
 }
@@ -244,12 +244,12 @@ val INPUT.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class INS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ins", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
     var cite : String
-        get()  = attributeStringString.get(this, "cite")
-        set(newValue) {attributeStringString.set(this, "cite", newValue)}
+        get()  = attributeStringString[this, "cite"]
+        set(newValue) {attributeStringString[this, "cite"] = newValue}
 
     var dateTime : String
-        get()  = attributeStringString.get(this, "datetime")
-        set(newValue) {attributeStringString.set(this, "datetime", newValue)}
+        get()  = attributeStringString[this, "datetime"]
+        set(newValue) {attributeStringString[this, "datetime"] = newValue}
 
 
 }

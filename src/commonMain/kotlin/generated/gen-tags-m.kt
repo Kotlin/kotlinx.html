@@ -20,8 +20,8 @@ open class MAIN(initialAttributes : Map<String, String>, override val consumer :
 @Suppress("unused")
 open class MAP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("map", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
 
 }
@@ -62,20 +62,20 @@ open class MATHML(initialAttributes : Map<String, String>, override val consumer
 @Suppress("unused")
 open class META(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meta", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
     var httpEquiv : String
-        get()  = attributeStringString.get(this, "http-equiv")
-        set(newValue) {attributeStringString.set(this, "http-equiv", newValue)}
+        get()  = attributeStringString[this, "http-equiv"]
+        set(newValue) {attributeStringString[this, "http-equiv"] = newValue}
 
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
     var content : String
-        get()  = attributeStringString.get(this, "content")
-        set(newValue) {attributeStringString.set(this, "content", newValue)}
+        get()  = attributeStringString[this, "content"]
+        set(newValue) {attributeStringString[this, "content"] = newValue}
 
     var charset : String
-        get()  = attributeStringString.get(this, "charset")
-        set(newValue) {attributeStringString.set(this, "charset", newValue)}
+        get()  = attributeStringString[this, "charset"]
+        set(newValue) {attributeStringString[this, "charset"] = newValue}
 
 
 }
@@ -92,28 +92,28 @@ val META.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class METER(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meter", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var value : String
-        get()  = attributeStringString.get(this, "value")
-        set(newValue) {attributeStringString.set(this, "value", newValue)}
+        get()  = attributeStringString[this, "value"]
+        set(newValue) {attributeStringString[this, "value"] = newValue}
 
     var min : String
-        get()  = attributeStringString.get(this, "min")
-        set(newValue) {attributeStringString.set(this, "min", newValue)}
+        get()  = attributeStringString[this, "min"]
+        set(newValue) {attributeStringString[this, "min"] = newValue}
 
     var max : String
-        get()  = attributeStringString.get(this, "max")
-        set(newValue) {attributeStringString.set(this, "max", newValue)}
+        get()  = attributeStringString[this, "max"]
+        set(newValue) {attributeStringString[this, "max"] = newValue}
 
     var low : String
-        get()  = attributeStringString.get(this, "low")
-        set(newValue) {attributeStringString.set(this, "low", newValue)}
+        get()  = attributeStringString[this, "low"]
+        set(newValue) {attributeStringString[this, "low"] = newValue}
 
     var high : String
-        get()  = attributeStringString.get(this, "high")
-        set(newValue) {attributeStringString.set(this, "high", newValue)}
+        get()  = attributeStringString[this, "high"]
+        set(newValue) {attributeStringString[this, "high"] = newValue}
 
     var optimum : String
-        get()  = attributeStringString.get(this, "optimum")
-        set(newValue) {attributeStringString.set(this, "optimum", newValue)}
+        get()  = attributeStringString[this, "optimum"]
+        set(newValue) {attributeStringString[this, "optimum"] = newValue}
 
 
 }

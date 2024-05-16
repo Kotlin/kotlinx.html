@@ -15,40 +15,40 @@ import kotlinx.html.attributes.*
 @Suppress("unused")
 open class A(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("a", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var href : String
-        get()  = attributeStringString.get(this, "href")
-        set(newValue) {attributeStringString.set(this, "href", newValue)}
+        get()  = attributeStringString[this, "href"]
+        set(newValue) {attributeStringString[this, "href"] = newValue}
 
     var target : String
-        get()  = attributeStringString.get(this, "target")
-        set(newValue) {attributeStringString.set(this, "target", newValue)}
+        get()  = attributeStringString[this, "target"]
+        set(newValue) {attributeStringString[this, "target"] = newValue}
 
     var ping : String
-        get()  = attributeStringString.get(this, "ping")
-        set(newValue) {attributeStringString.set(this, "ping", newValue)}
+        get()  = attributeStringString[this, "ping"]
+        set(newValue) {attributeStringString[this, "ping"] = newValue}
 
     var rel : String
-        get()  = attributeStringString.get(this, "rel")
-        set(newValue) {attributeStringString.set(this, "rel", newValue)}
+        get()  = attributeStringString[this, "rel"]
+        set(newValue) {attributeStringString[this, "rel"] = newValue}
 
     var hrefLang : String
-        get()  = attributeStringString.get(this, "hreflang")
-        set(newValue) {attributeStringString.set(this, "hreflang", newValue)}
+        get()  = attributeStringString[this, "hreflang"]
+        set(newValue) {attributeStringString[this, "hreflang"] = newValue}
 
     var type : String
-        get()  = attributeStringString.get(this, "type")
-        set(newValue) {attributeStringString.set(this, "type", newValue)}
+        get()  = attributeStringString[this, "type"]
+        set(newValue) {attributeStringString[this, "type"] = newValue}
 
     var referrerPolicy : AReferrerPolicy
-        get()  = attributeAReferrerPolicyEnumAReferrerPolicyValues.get(this, "referrerpolicy")
-        set(newValue) {attributeAReferrerPolicyEnumAReferrerPolicyValues.set(this, "referrerpolicy", newValue)}
+        get()  = attributeAReferrerPolicyEnumAReferrerPolicyValues[this, "referrerpolicy"]
+        set(newValue) {attributeAReferrerPolicyEnumAReferrerPolicyValues[this, "referrerpolicy"] = newValue}
 
     var media : String
-        get()  = attributeStringString.get(this, "media")
-        set(newValue) {attributeStringString.set(this, "media", newValue)}
+        get()  = attributeStringString[this, "media"]
+        set(newValue) {attributeStringString[this, "media"] = newValue}
 
     var downLoad : String
-        get()  = attributeStringString.get(this, "download")
-        set(newValue) {attributeStringString.set(this, "download", newValue)}
+        get()  = attributeStringString[this, "download"]
+        set(newValue) {attributeStringString[this, "download"] = newValue}
 
 
 }
@@ -81,44 +81,44 @@ open class ADDRESS(initialAttributes : Map<String, String>, override val consume
 @Suppress("unused")
 open class AREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("area", consumer, initialAttributes, null, true, true), HtmlBlockInlineTag {
     var shape : AreaShape
-        get()  = attributeAreaShapeEnumAreaShapeValues.get(this, "shape")
-        set(newValue) {attributeAreaShapeEnumAreaShapeValues.set(this, "shape", newValue)}
+        get()  = attributeAreaShapeEnumAreaShapeValues[this, "shape"]
+        set(newValue) {attributeAreaShapeEnumAreaShapeValues[this, "shape"] = newValue}
 
     var coords : String
-        get()  = attributeStringString.get(this, "coords")
-        set(newValue) {attributeStringString.set(this, "coords", newValue)}
+        get()  = attributeStringString[this, "coords"]
+        set(newValue) {attributeStringString[this, "coords"] = newValue}
 
     var href : String
-        get()  = attributeStringString.get(this, "href")
-        set(newValue) {attributeStringString.set(this, "href", newValue)}
+        get()  = attributeStringString[this, "href"]
+        set(newValue) {attributeStringString[this, "href"] = newValue}
 
     var hrefLang : String
-        get()  = attributeStringString.get(this, "hreflang")
-        set(newValue) {attributeStringString.set(this, "hreflang", newValue)}
+        get()  = attributeStringString[this, "hreflang"]
+        set(newValue) {attributeStringString[this, "hreflang"] = newValue}
 
     var alt : String
-        get()  = attributeStringString.get(this, "alt")
-        set(newValue) {attributeStringString.set(this, "alt", newValue)}
+        get()  = attributeStringString[this, "alt"]
+        set(newValue) {attributeStringString[this, "alt"] = newValue}
 
     var target : String
-        get()  = attributeStringString.get(this, "target")
-        set(newValue) {attributeStringString.set(this, "target", newValue)}
+        get()  = attributeStringString[this, "target"]
+        set(newValue) {attributeStringString[this, "target"] = newValue}
 
     var media : String
-        get()  = attributeStringString.get(this, "media")
-        set(newValue) {attributeStringString.set(this, "media", newValue)}
+        get()  = attributeStringString[this, "media"]
+        set(newValue) {attributeStringString[this, "media"] = newValue}
 
     var rel : String
-        get()  = attributeStringString.get(this, "rel")
-        set(newValue) {attributeStringString.set(this, "rel", newValue)}
+        get()  = attributeStringString[this, "rel"]
+        set(newValue) {attributeStringString[this, "rel"] = newValue}
 
     var ping : String
-        get()  = attributeStringString.get(this, "ping")
-        set(newValue) {attributeStringString.set(this, "ping", newValue)}
+        get()  = attributeStringString[this, "ping"]
+        set(newValue) {attributeStringString[this, "ping"] = newValue}
 
     var type : String
-        get()  = attributeStringString.get(this, "type")
-        set(newValue) {attributeStringString.set(this, "type", newValue)}
+        get()  = attributeStringString[this, "type"]
+        set(newValue) {attributeStringString[this, "type"] = newValue}
 
 
 }
@@ -154,24 +154,24 @@ val ASIDE.asSectioningContent : SectioningContent
 @Suppress("unused")
 open class AUDIO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("audio", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var src : String
-        get()  = attributeStringString.get(this, "src")
-        set(newValue) {attributeStringString.set(this, "src", newValue)}
+        get()  = attributeStringString[this, "src"]
+        set(newValue) {attributeStringString[this, "src"] = newValue}
 
     var autoBuffer : Boolean
-        get()  = attributeBooleanTicker.get(this, "autobuffer")
-        set(newValue) {attributeBooleanTicker.set(this, "autobuffer", newValue)}
+        get()  = attributeBooleanTicker[this, "autobuffer"]
+        set(newValue) {attributeBooleanTicker[this, "autobuffer"] = newValue}
 
     var autoPlay : Boolean
-        get()  = attributeBooleanTicker.get(this, "autoplay")
-        set(newValue) {attributeBooleanTicker.set(this, "autoplay", newValue)}
+        get()  = attributeBooleanTicker[this, "autoplay"]
+        set(newValue) {attributeBooleanTicker[this, "autoplay"] = newValue}
 
     var loop : Boolean
-        get()  = attributeBooleanTicker.get(this, "loop")
-        set(newValue) {attributeBooleanTicker.set(this, "loop", newValue)}
+        get()  = attributeBooleanTicker[this, "loop"]
+        set(newValue) {attributeBooleanTicker[this, "loop"] = newValue}
 
     var controls : Boolean
-        get()  = attributeBooleanTicker.get(this, "controls")
-        set(newValue) {attributeBooleanTicker.set(this, "controls", newValue)}
+        get()  = attributeBooleanTicker[this, "controls"]
+        set(newValue) {attributeBooleanTicker[this, "controls"] = newValue}
 
 
 }

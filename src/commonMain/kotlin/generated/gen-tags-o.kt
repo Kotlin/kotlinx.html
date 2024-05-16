@@ -15,36 +15,36 @@ import kotlinx.html.attributes.*
 @Suppress("unused")
 open class OBJECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("object", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var data : String
-        get()  = attributeStringString.get(this, "data")
-        set(newValue) {attributeStringString.set(this, "data", newValue)}
+        get()  = attributeStringString[this, "data"]
+        set(newValue) {attributeStringString[this, "data"] = newValue}
 
     var type : String
-        get()  = attributeStringString.get(this, "type")
-        set(newValue) {attributeStringString.set(this, "type", newValue)}
+        get()  = attributeStringString[this, "type"]
+        set(newValue) {attributeStringString[this, "type"] = newValue}
 
     var height : String
-        get()  = attributeStringString.get(this, "height")
-        set(newValue) {attributeStringString.set(this, "height", newValue)}
+        get()  = attributeStringString[this, "height"]
+        set(newValue) {attributeStringString[this, "height"] = newValue}
 
     var width : String
-        get()  = attributeStringString.get(this, "width")
-        set(newValue) {attributeStringString.set(this, "width", newValue)}
+        get()  = attributeStringString[this, "width"]
+        set(newValue) {attributeStringString[this, "width"] = newValue}
 
     var usemap : String
-        get()  = attributeStringString.get(this, "usemap")
-        set(newValue) {attributeStringString.set(this, "usemap", newValue)}
+        get()  = attributeStringString[this, "usemap"]
+        set(newValue) {attributeStringString[this, "usemap"] = newValue}
 
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
     var form : String
-        get()  = attributeStringString.get(this, "form")
-        set(newValue) {attributeStringString.set(this, "form", newValue)}
+        get()  = attributeStringString[this, "form"]
+        set(newValue) {attributeStringString[this, "form"] = newValue}
 
     var classId : String
-        get()  = attributeStringString.get(this, "classid")
-        set(newValue) {attributeStringString.set(this, "classid", newValue)}
+        get()  = attributeStringString[this, "classid"]
+        set(newValue) {attributeStringString[this, "classid"] = newValue}
 
 
 }
@@ -71,12 +71,12 @@ val OBJECT.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class OL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ol", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var start : String
-        get()  = attributeStringString.get(this, "start")
-        set(newValue) {attributeStringString.set(this, "start", newValue)}
+        get()  = attributeStringString[this, "start"]
+        set(newValue) {attributeStringString[this, "start"] = newValue}
 
     var reversed : Boolean
-        get()  = attributeBooleanTicker.get(this, "reversed")
-        set(newValue) {attributeBooleanTicker.set(this, "reversed", newValue)}
+        get()  = attributeBooleanTicker[this, "reversed"]
+        set(newValue) {attributeBooleanTicker[this, "reversed"] = newValue}
 
 
 }
@@ -94,12 +94,12 @@ inline fun OL.li(classes : String? = null, crossinline block : LI.() -> Unit = {
 @Suppress("unused")
 open class OPTGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("optgroup", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacade {
     var disabled : Boolean
-        get()  = attributeBooleanTicker.get(this, "disabled")
-        set(newValue) {attributeBooleanTicker.set(this, "disabled", newValue)}
+        get()  = attributeBooleanTicker[this, "disabled"]
+        set(newValue) {attributeBooleanTicker[this, "disabled"] = newValue}
 
     var label : String
-        get()  = attributeStringString.get(this, "label")
-        set(newValue) {attributeStringString.set(this, "label", newValue)}
+        get()  = attributeStringString[this, "label"]
+        set(newValue) {attributeStringString[this, "label"] = newValue}
 
 
 }
@@ -122,20 +122,20 @@ fun OPTGROUP.option(classes : String? = null, content : String = "") : Unit = OP
 @Suppress("unused")
 open class OPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("option", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacade {
     var disabled : Boolean
-        get()  = attributeBooleanTicker.get(this, "disabled")
-        set(newValue) {attributeBooleanTicker.set(this, "disabled", newValue)}
+        get()  = attributeBooleanTicker[this, "disabled"]
+        set(newValue) {attributeBooleanTicker[this, "disabled"] = newValue}
 
     var selected : Boolean
-        get()  = attributeBooleanTicker.get(this, "selected")
-        set(newValue) {attributeBooleanTicker.set(this, "selected", newValue)}
+        get()  = attributeBooleanTicker[this, "selected"]
+        set(newValue) {attributeBooleanTicker[this, "selected"] = newValue}
 
     var label : String
-        get()  = attributeStringString.get(this, "label")
-        set(newValue) {attributeStringString.set(this, "label", newValue)}
+        get()  = attributeStringString[this, "label"]
+        set(newValue) {attributeStringString[this, "label"] = newValue}
 
     var value : String
-        get()  = attributeStringString.get(this, "value")
-        set(newValue) {attributeStringString.set(this, "value", newValue)}
+        get()  = attributeStringString[this, "value"]
+        set(newValue) {attributeStringString[this, "value"] = newValue}
 
 
 }
@@ -143,16 +143,16 @@ open class OPTION(initialAttributes : Map<String, String>, override val consumer
 @Suppress("unused")
 open class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("output", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var htmlFor : String
-        get()  = attributeStringString.get(this, "for")
-        set(newValue) {attributeStringString.set(this, "for", newValue)}
+        get()  = attributeStringString[this, "for"]
+        set(newValue) {attributeStringString[this, "for"] = newValue}
 
     var form : String
-        get()  = attributeStringString.get(this, "form")
-        set(newValue) {attributeStringString.set(this, "form", newValue)}
+        get()  = attributeStringString[this, "form"]
+        set(newValue) {attributeStringString[this, "form"] = newValue}
 
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
 
 }

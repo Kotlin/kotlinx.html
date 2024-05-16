@@ -82,7 +82,9 @@ fun Appendable.tagClass(repository: Repository, tag: TagInfo, excludeAttributes:
 
         fun contentlessTagDeprecation() {
             indent()
-            appendLine("@Deprecated(\"This tag most likely doesn't support text content or requires unsafe content (try unsafe {}\")")
+            appendLine("@Suppress(\"DeprecatedCallableAddReplaceWith\")")
+            indent()
+            appendLine("@Deprecated(\"This tag most likely doesn't support text content or requires unsafe content (try unsafe {})\")")
         }
 
         if (tag.name.lowercase() in contentlessTags) {
@@ -224,11 +226,10 @@ fun tagConsumer(parameter: TypeName): TypeName =
     ClassName("kotlinx.html", "TagConsumer")
         .parameterizedBy(parameter)
 
-fun FunSpec.Builder.addSuppressAnnotation(suppress: String) =
+fun FunSpec.Builder.addSuppressAnnotation(vararg suppress: String) =
     addAnnotation(
         AnnotationSpec
-            .builder(Suppress::class)
-            .addMember("%S", suppress)
+            .builder(Suppress::class).apply { suppress.forEach { addMember("%S", it) } }
             .build()
     )
 

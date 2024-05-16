@@ -15,12 +15,12 @@ import kotlinx.html.attributes.*
 @Suppress("unused")
 open class LABEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("label", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var form : String
-        get()  = attributeStringString.get(this, "form")
-        set(newValue) {attributeStringString.set(this, "form", newValue)}
+        get()  = attributeStringString[this, "form"]
+        set(newValue) {attributeStringString[this, "form"] = newValue}
 
     var htmlFor : String
-        get()  = attributeStringString.get(this, "for")
-        set(newValue) {attributeStringString.set(this, "for", newValue)}
+        get()  = attributeStringString[this, "for"]
+        set(newValue) {attributeStringString[this, "for"] = newValue}
 
 
 }
@@ -48,8 +48,8 @@ val LEGEND.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class LI(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("li", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var value : String
-        get()  = attributeStringString.get(this, "value")
-        set(newValue) {attributeStringString.set(this, "value", newValue)}
+        get()  = attributeStringString[this, "value"]
+        set(newValue) {attributeStringString[this, "value"] = newValue}
 
 
 }
@@ -57,36 +57,36 @@ open class LI(initialAttributes : Map<String, String>, override val consumer : T
 @Suppress("unused")
 open class LINK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("link", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
     var href : String
-        get()  = attributeStringString.get(this, "href")
-        set(newValue) {attributeStringString.set(this, "href", newValue)}
+        get()  = attributeStringString[this, "href"]
+        set(newValue) {attributeStringString[this, "href"] = newValue}
 
     var hrefLang : String
-        get()  = attributeStringString.get(this, "hreflang")
-        set(newValue) {attributeStringString.set(this, "hreflang", newValue)}
+        get()  = attributeStringString[this, "hreflang"]
+        set(newValue) {attributeStringString[this, "hreflang"] = newValue}
 
     var rel : String
-        get()  = attributeStringString.get(this, "rel")
-        set(newValue) {attributeStringString.set(this, "rel", newValue)}
+        get()  = attributeStringString[this, "rel"]
+        set(newValue) {attributeStringString[this, "rel"] = newValue}
 
     var media : String
-        get()  = attributeStringString.get(this, "media")
-        set(newValue) {attributeStringString.set(this, "media", newValue)}
+        get()  = attributeStringString[this, "media"]
+        set(newValue) {attributeStringString[this, "media"] = newValue}
 
     var type : String
-        get()  = attributeStringString.get(this, "type")
-        set(newValue) {attributeStringString.set(this, "type", newValue)}
+        get()  = attributeStringString[this, "type"]
+        set(newValue) {attributeStringString[this, "type"] = newValue}
 
     var sizes : String
-        get()  = attributeStringString.get(this, "sizes")
-        set(newValue) {attributeStringString.set(this, "sizes", newValue)}
+        get()  = attributeStringString[this, "sizes"]
+        set(newValue) {attributeStringString[this, "sizes"] = newValue}
 
     var integrity : String
-        get()  = attributeStringString.get(this, "integrity")
-        set(newValue) {attributeStringString.set(this, "integrity", newValue)}
+        get()  = attributeStringString[this, "integrity"]
+        set(newValue) {attributeStringString[this, "integrity"] = newValue}
 
     var htmlAs : LinkAs
-        get()  = attributeLinkAsEnumLinkAsValues.get(this, "as")
-        set(newValue) {attributeLinkAsEnumLinkAsValues.set(this, "as", newValue)}
+        get()  = attributeLinkAsEnumLinkAsValues[this, "as"]
+        set(newValue) {attributeLinkAsEnumLinkAsValues[this, "as"] = newValue}
 
 
 }

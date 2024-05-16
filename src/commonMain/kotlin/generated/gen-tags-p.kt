@@ -26,12 +26,12 @@ val P.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class PARAM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("param", consumer, initialAttributes, null, true, true) {
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
     var value : String
-        get()  = attributeStringString.get(this, "value")
-        set(newValue) {attributeStringString.set(this, "value", newValue)}
+        get()  = attributeStringString[this, "value"]
+        set(newValue) {attributeStringString[this, "value"] = newValue}
 
 
 }
@@ -96,12 +96,12 @@ val PRE.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class PROGRESS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("progress", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var value : String
-        get()  = attributeStringString.get(this, "value")
-        set(newValue) {attributeStringString.set(this, "value", newValue)}
+        get()  = attributeStringString[this, "value"]
+        set(newValue) {attributeStringString[this, "value"] = newValue}
 
     var max : String
-        get()  = attributeStringString.get(this, "max")
-        set(newValue) {attributeStringString.set(this, "max", newValue)}
+        get()  = attributeStringString[this, "max"]
+        set(newValue) {attributeStringString[this, "max"] = newValue}
 
 
 }
