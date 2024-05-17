@@ -171,8 +171,8 @@ inline fun FlowOrMetaDataOrPhrasingContent.script(type : String? = null, src : S
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", crossorigin?.enumEncode()), consumer).visit(block)
 }
+@Suppress("DEPRECATION", "DeprecatedCallableAddReplaceWith")
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
-@Suppress("DEPRECATION")
 /**
  * Script statements
  */
@@ -190,8 +190,8 @@ inline fun FlowOrMetaDataOrPhrasingContent.useCredentialsScript(type : String? =
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", ScriptCrossorigin.useCredentials.realValue), consumer).visit(block)
 }
+@Suppress("DEPRECATION", "DeprecatedCallableAddReplaceWith")
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
-@Suppress("DEPRECATION")
 @HtmlTagMarker
 fun FlowOrMetaDataOrPhrasingContent.anonymousScript(type : String? = null, src : String? = null, content : String = "") : Unit = SCRIPT(attributesMapOf("type", type,"src", src,"crossorigin", ScriptCrossorigin.anonymous.realValue), consumer).visit({+content})
 @HtmlTagMarker
@@ -275,8 +275,8 @@ inline fun FlowOrMetaDataContent.style(type : String? = null, crossinline block 
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     STYLE(attributesMapOf("type", type), consumer).visit(block)
 }
+@Suppress("DEPRECATION", "DeprecatedCallableAddReplaceWith")
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
-@Suppress("DEPRECATION")
 /**
  * Style info
  */

@@ -26,20 +26,20 @@ val EM.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class EMBED(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("embed", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var src : String
-        get()  = attributeStringString.get(this, "src")
-        set(newValue) {attributeStringString.set(this, "src", newValue)}
+        get()  = attributeStringString[this, "src"]
+        set(newValue) {attributeStringString[this, "src"] = newValue}
 
     var height : String
-        get()  = attributeStringString.get(this, "height")
-        set(newValue) {attributeStringString.set(this, "height", newValue)}
+        get()  = attributeStringString[this, "height"]
+        set(newValue) {attributeStringString[this, "height"] = newValue}
 
     var width : String
-        get()  = attributeStringString.get(this, "width")
-        set(newValue) {attributeStringString.set(this, "width", newValue)}
+        get()  = attributeStringString[this, "width"]
+        set(newValue) {attributeStringString[this, "width"] = newValue}
 
     var type : String
-        get()  = attributeStringString.get(this, "type")
-        set(newValue) {attributeStringString.set(this, "type", newValue)}
+        get()  = attributeStringString[this, "type"]
+        set(newValue) {attributeStringString[this, "type"] = newValue}
 
 
 }

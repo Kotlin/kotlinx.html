@@ -15,12 +15,12 @@ import kotlinx.html.attributes.*
 @Suppress("unused")
 open class CANVAS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("canvas", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
     var width : String
-        get()  = attributeStringString.get(this, "width")
-        set(newValue) {attributeStringString.set(this, "width", newValue)}
+        get()  = attributeStringString[this, "width"]
+        set(newValue) {attributeStringString[this, "width"] = newValue}
 
     var height : String
-        get()  = attributeStringString.get(this, "height")
-        set(newValue) {attributeStringString.set(this, "height", newValue)}
+        get()  = attributeStringString[this, "height"]
+        set(newValue) {attributeStringString[this, "height"] = newValue}
 
 
 }
@@ -61,8 +61,8 @@ val CODE.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class COL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("col", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacade {
     var span : String
-        get()  = attributeStringString.get(this, "span")
-        set(newValue) {attributeStringString.set(this, "span", newValue)}
+        get()  = attributeStringString[this, "span"]
+        set(newValue) {attributeStringString[this, "span"] = newValue}
 
 
 }
@@ -70,8 +70,8 @@ open class COL(initialAttributes : Map<String, String>, override val consumer : 
 @Suppress("unused")
 open class COLGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("colgroup", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
     var span : String
-        get()  = attributeStringString.get(this, "span")
-        set(newValue) {attributeStringString.set(this, "span", newValue)}
+        get()  = attributeStringString[this, "span"]
+        set(newValue) {attributeStringString[this, "span"] = newValue}
 
 
 }
@@ -89,28 +89,28 @@ inline fun COLGROUP.col(classes : String? = null, crossinline block : COL.() -> 
 @Suppress("unused")
 open class COMMAND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("command", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
     var type : CommandType
-        get()  = attributeCommandTypeEnumCommandTypeValues.get(this, "type")
-        set(newValue) {attributeCommandTypeEnumCommandTypeValues.set(this, "type", newValue)}
+        get()  = attributeCommandTypeEnumCommandTypeValues[this, "type"]
+        set(newValue) {attributeCommandTypeEnumCommandTypeValues[this, "type"] = newValue}
 
     var label : String
-        get()  = attributeStringString.get(this, "label")
-        set(newValue) {attributeStringString.set(this, "label", newValue)}
+        get()  = attributeStringString[this, "label"]
+        set(newValue) {attributeStringString[this, "label"] = newValue}
 
     var icon : String
-        get()  = attributeStringString.get(this, "icon")
-        set(newValue) {attributeStringString.set(this, "icon", newValue)}
+        get()  = attributeStringString[this, "icon"]
+        set(newValue) {attributeStringString[this, "icon"] = newValue}
 
     var disabled : Boolean
-        get()  = attributeBooleanTicker.get(this, "disabled")
-        set(newValue) {attributeBooleanTicker.set(this, "disabled", newValue)}
+        get()  = attributeBooleanTicker[this, "disabled"]
+        set(newValue) {attributeBooleanTicker[this, "disabled"] = newValue}
 
     var checked : Boolean
-        get()  = attributeBooleanTicker.get(this, "checked")
-        set(newValue) {attributeBooleanTicker.set(this, "checked", newValue)}
+        get()  = attributeBooleanTicker[this, "checked"]
+        set(newValue) {attributeBooleanTicker[this, "checked"] = newValue}
 
     var radioGroup : String
-        get()  = attributeStringString.get(this, "radiogroup")
-        set(newValue) {attributeStringString.set(this, "radiogroup", newValue)}
+        get()  = attributeStringString[this, "radiogroup"]
+        set(newValue) {attributeStringString[this, "radiogroup"] = newValue}
 
 
 }

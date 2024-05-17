@@ -15,16 +15,16 @@ import kotlinx.html.attributes.*
 @Suppress("unused")
 open class FIELDSET(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("fieldset", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var disabled : Boolean
-        get()  = attributeBooleanTicker.get(this, "disabled")
-        set(newValue) {attributeBooleanTicker.set(this, "disabled", newValue)}
+        get()  = attributeBooleanTicker[this, "disabled"]
+        set(newValue) {attributeBooleanTicker[this, "disabled"] = newValue}
 
     var form : String
-        get()  = attributeStringString.get(this, "form")
-        set(newValue) {attributeStringString.set(this, "form", newValue)}
+        get()  = attributeStringString[this, "form"]
+        set(newValue) {attributeStringString[this, "form"] = newValue}
 
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
 
 }
@@ -77,36 +77,36 @@ open class FOOTER(initialAttributes : Map<String, String>, override val consumer
 @Suppress("unused")
 open class FORM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("form", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var acceptCharset : String
-        get()  = attributeStringString.get(this, "accept-charset")
-        set(newValue) {attributeStringString.set(this, "accept-charset", newValue)}
+        get()  = attributeStringString[this, "accept-charset"]
+        set(newValue) {attributeStringString[this, "accept-charset"] = newValue}
 
     var action : String
-        get()  = attributeStringString.get(this, "action")
-        set(newValue) {attributeStringString.set(this, "action", newValue)}
+        get()  = attributeStringString[this, "action"]
+        set(newValue) {attributeStringString[this, "action"] = newValue}
 
     var autoComplete : Boolean
-        get()  = attributeBooleanBooleanOnOff.get(this, "autocomplete")
-        set(newValue) {attributeBooleanBooleanOnOff.set(this, "autocomplete", newValue)}
+        get()  = attributeBooleanBooleanOnOff[this, "autocomplete"]
+        set(newValue) {attributeBooleanBooleanOnOff[this, "autocomplete"] = newValue}
 
     var encType : FormEncType
-        get()  = attributeFormEncTypeEnumFormEncTypeValues.get(this, "enctype")
-        set(newValue) {attributeFormEncTypeEnumFormEncTypeValues.set(this, "enctype", newValue)}
+        get()  = attributeFormEncTypeEnumFormEncTypeValues[this, "enctype"]
+        set(newValue) {attributeFormEncTypeEnumFormEncTypeValues[this, "enctype"] = newValue}
 
     var method : FormMethod
-        get()  = attributeFormMethodEnumFormMethodValues.get(this, "method")
-        set(newValue) {attributeFormMethodEnumFormMethodValues.set(this, "method", newValue)}
+        get()  = attributeFormMethodEnumFormMethodValues[this, "method"]
+        set(newValue) {attributeFormMethodEnumFormMethodValues[this, "method"] = newValue}
 
     var name : String
-        get()  = attributeStringString.get(this, "name")
-        set(newValue) {attributeStringString.set(this, "name", newValue)}
+        get()  = attributeStringString[this, "name"]
+        set(newValue) {attributeStringString[this, "name"] = newValue}
 
     var novalidate : Boolean
-        get()  = attributeBooleanTicker.get(this, "novalidate")
-        set(newValue) {attributeBooleanTicker.set(this, "novalidate", newValue)}
+        get()  = attributeBooleanTicker[this, "novalidate"]
+        set(newValue) {attributeBooleanTicker[this, "novalidate"] = newValue}
 
     var target : String
-        get()  = attributeStringString.get(this, "target")
-        set(newValue) {attributeStringString.set(this, "target", newValue)}
+        get()  = attributeStringString[this, "target"]
+        set(newValue) {attributeStringString[this, "target"] = newValue}
 
 
 }

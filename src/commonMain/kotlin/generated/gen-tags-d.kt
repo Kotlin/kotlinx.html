@@ -46,12 +46,12 @@ open class DD(initialAttributes : Map<String, String>, override val consumer : T
 @Suppress("unused")
 open class DEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("del", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
     var cite : String
-        get()  = attributeStringString.get(this, "cite")
-        set(newValue) {attributeStringString.set(this, "cite", newValue)}
+        get()  = attributeStringString[this, "cite"]
+        set(newValue) {attributeStringString[this, "cite"] = newValue}
 
     var dateTime : String
-        get()  = attributeStringString.get(this, "datetime")
-        set(newValue) {attributeStringString.set(this, "datetime", newValue)}
+        get()  = attributeStringString[this, "datetime"]
+        set(newValue) {attributeStringString[this, "datetime"] = newValue}
 
 
 }
@@ -65,8 +65,8 @@ val DEL.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class DETAILS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("details", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractiveContent {
     var open : Boolean
-        get()  = attributeBooleanTicker.get(this, "open")
-        set(newValue) {attributeBooleanTicker.set(this, "open", newValue)}
+        get()  = attributeBooleanTicker[this, "open"]
+        set(newValue) {attributeBooleanTicker[this, "open"] = newValue}
 
 
 }

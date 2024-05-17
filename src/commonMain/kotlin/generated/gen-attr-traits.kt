@@ -11,392 +11,392 @@ import kotlinx.html.impl.*
 interface CommonAttributeGroupFacade : Tag {
 }
 var CommonAttributeGroupFacade.enableTheming : Boolean
-    get()  = attributeBooleanBoolean.get(this, "EnableTheming")
-    set(newValue) {attributeBooleanBoolean.set(this, "EnableTheming", newValue)}
+    get()  = attributeBooleanBoolean[this, "EnableTheming"]
+    set(newValue) {attributeBooleanBoolean[this, "EnableTheming"] = newValue}
 
 var CommonAttributeGroupFacade.enableViewState : Boolean
-    get()  = attributeBooleanBoolean.get(this, "EnableViewState")
-    set(newValue) {attributeBooleanBoolean.set(this, "EnableViewState", newValue)}
+    get()  = attributeBooleanBoolean[this, "EnableViewState"]
+    set(newValue) {attributeBooleanBoolean[this, "EnableViewState"] = newValue}
 
 var CommonAttributeGroupFacade.skinID : String
-    get()  = attributeStringString.get(this, "SkinID")
-    set(newValue) {attributeStringString.set(this, "SkinID", newValue)}
+    get()  = attributeStringString[this, "SkinID"]
+    set(newValue) {attributeStringString[this, "SkinID"] = newValue}
 
 var CommonAttributeGroupFacade.visible : Boolean
-    get()  = attributeBooleanBoolean.get(this, "Visible")
-    set(newValue) {attributeBooleanBoolean.set(this, "Visible", newValue)}
+    get()  = attributeBooleanBoolean[this, "Visible"]
+    set(newValue) {attributeBooleanBoolean[this, "Visible"] = newValue}
 
 var CommonAttributeGroupFacade.accessKey : String
-    get()  = attributeStringString.get(this, "accesskey")
-    set(newValue) {attributeStringString.set(this, "accesskey", newValue)}
+    get()  = attributeStringString[this, "accesskey"]
+    set(newValue) {attributeStringString[this, "accesskey"] = newValue}
 
 var CommonAttributeGroupFacade.classes : Set<String>
-    get()  = attributeSetStringStringSet.get(this, "class")
-    set(newValue) {attributeSetStringStringSet.set(this, "class", newValue)}
+    get()  = attributeSetStringStringSet[this, "class"]
+    set(newValue) {attributeSetStringStringSet[this, "class"] = newValue}
 
 var CommonAttributeGroupFacade.contentEditable : Boolean
-    get()  = attributeBooleanBoolean.get(this, "contenteditable")
-    set(newValue) {attributeBooleanBoolean.set(this, "contenteditable", newValue)}
+    get()  = attributeBooleanBoolean[this, "contenteditable"]
+    set(newValue) {attributeBooleanBoolean[this, "contenteditable"] = newValue}
 
 var CommonAttributeGroupFacade.contextMenu : String
-    get()  = attributeStringString.get(this, "contextmenu")
-    set(newValue) {attributeStringString.set(this, "contextmenu", newValue)}
+    get()  = attributeStringString[this, "contextmenu"]
+    set(newValue) {attributeStringString[this, "contextmenu"] = newValue}
 
 var CommonAttributeGroupFacade.dataFolderName : String
-    get()  = attributeStringString.get(this, "data-FolderName")
-    set(newValue) {attributeStringString.set(this, "data-FolderName", newValue)}
+    get()  = attributeStringString[this, "data-FolderName"]
+    set(newValue) {attributeStringString[this, "data-FolderName"] = newValue}
 
 var CommonAttributeGroupFacade.dataMsgId : String
-    get()  = attributeStringString.get(this, "data-MsgId")
-    set(newValue) {attributeStringString.set(this, "data-MsgId", newValue)}
+    get()  = attributeStringString[this, "data-MsgId"]
+    set(newValue) {attributeStringString[this, "data-MsgId"] = newValue}
 
 var CommonAttributeGroupFacade.dir : Dir
-    get()  = attributeDirEnumDirValues.get(this, "dir")
-    set(newValue) {attributeDirEnumDirValues.set(this, "dir", newValue)}
+    get()  = attributeDirEnumDirValues[this, "dir"]
+    set(newValue) {attributeDirEnumDirValues[this, "dir"] = newValue}
 
 var CommonAttributeGroupFacade.draggable : Draggable
-    get()  = attributeDraggableEnumDraggableValues.get(this, "draggable")
-    set(newValue) {attributeDraggableEnumDraggableValues.set(this, "draggable", newValue)}
+    get()  = attributeDraggableEnumDraggableValues[this, "draggable"]
+    set(newValue) {attributeDraggableEnumDraggableValues[this, "draggable"] = newValue}
 
 var CommonAttributeGroupFacade.hidden : Boolean
-    get()  = attributeBooleanTicker.get(this, "hidden")
-    set(newValue) {attributeBooleanTicker.set(this, "hidden", newValue)}
+    get()  = attributeBooleanTicker[this, "hidden"]
+    set(newValue) {attributeBooleanTicker[this, "hidden"] = newValue}
 
 var CommonAttributeGroupFacade.id : String
-    get()  = attributeStringString.get(this, "id")
-    set(newValue) {attributeStringString.set(this, "id", newValue)}
+    get()  = attributeStringString[this, "id"]
+    set(newValue) {attributeStringString[this, "id"] = newValue}
 
 var CommonAttributeGroupFacade.itemProp : String
-    get()  = attributeStringString.get(this, "itemprop")
-    set(newValue) {attributeStringString.set(this, "itemprop", newValue)}
+    get()  = attributeStringString[this, "itemprop"]
+    set(newValue) {attributeStringString[this, "itemprop"] = newValue}
 
 var CommonAttributeGroupFacade.lang : String
-    get()  = attributeStringString.get(this, "lang")
-    set(newValue) {attributeStringString.set(this, "lang", newValue)}
+    get()  = attributeStringString[this, "lang"]
+    set(newValue) {attributeStringString[this, "lang"] = newValue}
 
 var CommonAttributeGroupFacade.onAbort : String
-    get()  = attributeStringString.get(this, "onabort")
-    set(newValue) {attributeStringString.set(this, "onabort", newValue)}
+    get()  = attributeStringString[this, "onabort"]
+    set(newValue) {attributeStringString[this, "onabort"] = newValue}
 
 var CommonAttributeGroupFacade.onBlur : String
-    get()  = attributeStringString.get(this, "onblur")
-    set(newValue) {attributeStringString.set(this, "onblur", newValue)}
+    get()  = attributeStringString[this, "onblur"]
+    set(newValue) {attributeStringString[this, "onblur"] = newValue}
 
 var CommonAttributeGroupFacade.onCanPlay : String
-    get()  = attributeStringString.get(this, "oncanplay")
-    set(newValue) {attributeStringString.set(this, "oncanplay", newValue)}
+    get()  = attributeStringString[this, "oncanplay"]
+    set(newValue) {attributeStringString[this, "oncanplay"] = newValue}
 
 var CommonAttributeGroupFacade.onCanPlayThrough : String
-    get()  = attributeStringString.get(this, "oncanplaythrough")
-    set(newValue) {attributeStringString.set(this, "oncanplaythrough", newValue)}
+    get()  = attributeStringString[this, "oncanplaythrough"]
+    set(newValue) {attributeStringString[this, "oncanplaythrough"] = newValue}
 
 var CommonAttributeGroupFacade.onChange : String
-    get()  = attributeStringString.get(this, "onchange")
-    set(newValue) {attributeStringString.set(this, "onchange", newValue)}
+    get()  = attributeStringString[this, "onchange"]
+    set(newValue) {attributeStringString[this, "onchange"] = newValue}
 
 var CommonAttributeGroupFacade.onClick : String
-    get()  = attributeStringString.get(this, "onclick")
-    set(newValue) {attributeStringString.set(this, "onclick", newValue)}
+    get()  = attributeStringString[this, "onclick"]
+    set(newValue) {attributeStringString[this, "onclick"] = newValue}
 
 var CommonAttributeGroupFacade.onContextMenu : String
-    get()  = attributeStringString.get(this, "oncontextmenu")
-    set(newValue) {attributeStringString.set(this, "oncontextmenu", newValue)}
+    get()  = attributeStringString[this, "oncontextmenu"]
+    set(newValue) {attributeStringString[this, "oncontextmenu"] = newValue}
 
 var CommonAttributeGroupFacade.onDoubleClick : String
-    get()  = attributeStringString.get(this, "ondblclick")
-    set(newValue) {attributeStringString.set(this, "ondblclick", newValue)}
+    get()  = attributeStringString[this, "ondblclick"]
+    set(newValue) {attributeStringString[this, "ondblclick"] = newValue}
 
 var CommonAttributeGroupFacade.onDrag : String
-    get()  = attributeStringString.get(this, "ondrag")
-    set(newValue) {attributeStringString.set(this, "ondrag", newValue)}
+    get()  = attributeStringString[this, "ondrag"]
+    set(newValue) {attributeStringString[this, "ondrag"] = newValue}
 
 var CommonAttributeGroupFacade.onDragEnd : String
-    get()  = attributeStringString.get(this, "ondragend")
-    set(newValue) {attributeStringString.set(this, "ondragend", newValue)}
+    get()  = attributeStringString[this, "ondragend"]
+    set(newValue) {attributeStringString[this, "ondragend"] = newValue}
 
 var CommonAttributeGroupFacade.onDragEnter : String
-    get()  = attributeStringString.get(this, "ondragenter")
-    set(newValue) {attributeStringString.set(this, "ondragenter", newValue)}
+    get()  = attributeStringString[this, "ondragenter"]
+    set(newValue) {attributeStringString[this, "ondragenter"] = newValue}
 
 var CommonAttributeGroupFacade.onDragLeave : String
-    get()  = attributeStringString.get(this, "ondragleave")
-    set(newValue) {attributeStringString.set(this, "ondragleave", newValue)}
+    get()  = attributeStringString[this, "ondragleave"]
+    set(newValue) {attributeStringString[this, "ondragleave"] = newValue}
 
 var CommonAttributeGroupFacade.onDragOver : String
-    get()  = attributeStringString.get(this, "ondragover")
-    set(newValue) {attributeStringString.set(this, "ondragover", newValue)}
+    get()  = attributeStringString[this, "ondragover"]
+    set(newValue) {attributeStringString[this, "ondragover"] = newValue}
 
 var CommonAttributeGroupFacade.onDragStart : String
-    get()  = attributeStringString.get(this, "ondragstart")
-    set(newValue) {attributeStringString.set(this, "ondragstart", newValue)}
+    get()  = attributeStringString[this, "ondragstart"]
+    set(newValue) {attributeStringString[this, "ondragstart"] = newValue}
 
 var CommonAttributeGroupFacade.onDrop : String
-    get()  = attributeStringString.get(this, "ondrop")
-    set(newValue) {attributeStringString.set(this, "ondrop", newValue)}
+    get()  = attributeStringString[this, "ondrop"]
+    set(newValue) {attributeStringString[this, "ondrop"] = newValue}
 
 var CommonAttributeGroupFacade.onDurationChange : String
-    get()  = attributeStringString.get(this, "ondurationchange")
-    set(newValue) {attributeStringString.set(this, "ondurationchange", newValue)}
+    get()  = attributeStringString[this, "ondurationchange"]
+    set(newValue) {attributeStringString[this, "ondurationchange"] = newValue}
 
 var CommonAttributeGroupFacade.onEmptied : String
-    get()  = attributeStringString.get(this, "onemptied")
-    set(newValue) {attributeStringString.set(this, "onemptied", newValue)}
+    get()  = attributeStringString[this, "onemptied"]
+    set(newValue) {attributeStringString[this, "onemptied"] = newValue}
 
 var CommonAttributeGroupFacade.onEnded : String
-    get()  = attributeStringString.get(this, "onended")
-    set(newValue) {attributeStringString.set(this, "onended", newValue)}
+    get()  = attributeStringString[this, "onended"]
+    set(newValue) {attributeStringString[this, "onended"] = newValue}
 
 var CommonAttributeGroupFacade.onError : String
-    get()  = attributeStringString.get(this, "onerror")
-    set(newValue) {attributeStringString.set(this, "onerror", newValue)}
+    get()  = attributeStringString[this, "onerror"]
+    set(newValue) {attributeStringString[this, "onerror"] = newValue}
 
 var CommonAttributeGroupFacade.onFocus : String
-    get()  = attributeStringString.get(this, "onfocus")
-    set(newValue) {attributeStringString.set(this, "onfocus", newValue)}
+    get()  = attributeStringString[this, "onfocus"]
+    set(newValue) {attributeStringString[this, "onfocus"] = newValue}
 
 var CommonAttributeGroupFacade.onFocusIn : String
-    get()  = attributeStringString.get(this, "onfocusin")
-    set(newValue) {attributeStringString.set(this, "onfocusin", newValue)}
+    get()  = attributeStringString[this, "onfocusin"]
+    set(newValue) {attributeStringString[this, "onfocusin"] = newValue}
 
 var CommonAttributeGroupFacade.onFocusOut : String
-    get()  = attributeStringString.get(this, "onfocusout")
-    set(newValue) {attributeStringString.set(this, "onfocusout", newValue)}
+    get()  = attributeStringString[this, "onfocusout"]
+    set(newValue) {attributeStringString[this, "onfocusout"] = newValue}
 
 var CommonAttributeGroupFacade.onFormChange : String
-    get()  = attributeStringString.get(this, "onformchange")
-    set(newValue) {attributeStringString.set(this, "onformchange", newValue)}
+    get()  = attributeStringString[this, "onformchange"]
+    set(newValue) {attributeStringString[this, "onformchange"] = newValue}
 
 var CommonAttributeGroupFacade.onFormInput : String
-    get()  = attributeStringString.get(this, "onforminput")
-    set(newValue) {attributeStringString.set(this, "onforminput", newValue)}
+    get()  = attributeStringString[this, "onforminput"]
+    set(newValue) {attributeStringString[this, "onforminput"] = newValue}
 
 var CommonAttributeGroupFacade.onInput : String
-    get()  = attributeStringString.get(this, "oninput")
-    set(newValue) {attributeStringString.set(this, "oninput", newValue)}
+    get()  = attributeStringString[this, "oninput"]
+    set(newValue) {attributeStringString[this, "oninput"] = newValue}
 
 var CommonAttributeGroupFacade.onInvalid : String
-    get()  = attributeStringString.get(this, "oninvalid")
-    set(newValue) {attributeStringString.set(this, "oninvalid", newValue)}
+    get()  = attributeStringString[this, "oninvalid"]
+    set(newValue) {attributeStringString[this, "oninvalid"] = newValue}
 
 var CommonAttributeGroupFacade.onKeyDown : String
-    get()  = attributeStringString.get(this, "onkeydown")
-    set(newValue) {attributeStringString.set(this, "onkeydown", newValue)}
+    get()  = attributeStringString[this, "onkeydown"]
+    set(newValue) {attributeStringString[this, "onkeydown"] = newValue}
 
 var CommonAttributeGroupFacade.onKeyPress : String
-    get()  = attributeStringString.get(this, "onkeypress")
-    set(newValue) {attributeStringString.set(this, "onkeypress", newValue)}
+    get()  = attributeStringString[this, "onkeypress"]
+    set(newValue) {attributeStringString[this, "onkeypress"] = newValue}
 
 var CommonAttributeGroupFacade.onKeyUp : String
-    get()  = attributeStringString.get(this, "onkeyup")
-    set(newValue) {attributeStringString.set(this, "onkeyup", newValue)}
+    get()  = attributeStringString[this, "onkeyup"]
+    set(newValue) {attributeStringString[this, "onkeyup"] = newValue}
 
 var CommonAttributeGroupFacade.onLoad : String
-    get()  = attributeStringString.get(this, "onload")
-    set(newValue) {attributeStringString.set(this, "onload", newValue)}
+    get()  = attributeStringString[this, "onload"]
+    set(newValue) {attributeStringString[this, "onload"] = newValue}
 
 var CommonAttributeGroupFacade.onLoadedData : String
-    get()  = attributeStringString.get(this, "onloadeddata")
-    set(newValue) {attributeStringString.set(this, "onloadeddata", newValue)}
+    get()  = attributeStringString[this, "onloadeddata"]
+    set(newValue) {attributeStringString[this, "onloadeddata"] = newValue}
 
 var CommonAttributeGroupFacade.onLoadedMetaData : String
-    get()  = attributeStringString.get(this, "onloadedmetadata")
-    set(newValue) {attributeStringString.set(this, "onloadedmetadata", newValue)}
+    get()  = attributeStringString[this, "onloadedmetadata"]
+    set(newValue) {attributeStringString[this, "onloadedmetadata"] = newValue}
 
 var CommonAttributeGroupFacade.onLoadStart : String
-    get()  = attributeStringString.get(this, "onloadstart")
-    set(newValue) {attributeStringString.set(this, "onloadstart", newValue)}
+    get()  = attributeStringString[this, "onloadstart"]
+    set(newValue) {attributeStringString[this, "onloadstart"] = newValue}
 
 var CommonAttributeGroupFacade.onMouseDown : String
-    get()  = attributeStringString.get(this, "onmousedown")
-    set(newValue) {attributeStringString.set(this, "onmousedown", newValue)}
+    get()  = attributeStringString[this, "onmousedown"]
+    set(newValue) {attributeStringString[this, "onmousedown"] = newValue}
 
 var CommonAttributeGroupFacade.onMouseEnter : String
-    get()  = attributeStringString.get(this, "onmouseenter")
-    set(newValue) {attributeStringString.set(this, "onmouseenter", newValue)}
+    get()  = attributeStringString[this, "onmouseenter"]
+    set(newValue) {attributeStringString[this, "onmouseenter"] = newValue}
 
 var CommonAttributeGroupFacade.onMouseLeave : String
-    get()  = attributeStringString.get(this, "onmouseleave")
-    set(newValue) {attributeStringString.set(this, "onmouseleave", newValue)}
+    get()  = attributeStringString[this, "onmouseleave"]
+    set(newValue) {attributeStringString[this, "onmouseleave"] = newValue}
 
 var CommonAttributeGroupFacade.onMouseMove : String
-    get()  = attributeStringString.get(this, "onmousemove")
-    set(newValue) {attributeStringString.set(this, "onmousemove", newValue)}
+    get()  = attributeStringString[this, "onmousemove"]
+    set(newValue) {attributeStringString[this, "onmousemove"] = newValue}
 
 var CommonAttributeGroupFacade.onMouseOut : String
-    get()  = attributeStringString.get(this, "onmouseout")
-    set(newValue) {attributeStringString.set(this, "onmouseout", newValue)}
+    get()  = attributeStringString[this, "onmouseout"]
+    set(newValue) {attributeStringString[this, "onmouseout"] = newValue}
 
 var CommonAttributeGroupFacade.onMouseOver : String
-    get()  = attributeStringString.get(this, "onmouseover")
-    set(newValue) {attributeStringString.set(this, "onmouseover", newValue)}
+    get()  = attributeStringString[this, "onmouseover"]
+    set(newValue) {attributeStringString[this, "onmouseover"] = newValue}
 
 var CommonAttributeGroupFacade.onMouseUp : String
-    get()  = attributeStringString.get(this, "onmouseup")
-    set(newValue) {attributeStringString.set(this, "onmouseup", newValue)}
+    get()  = attributeStringString[this, "onmouseup"]
+    set(newValue) {attributeStringString[this, "onmouseup"] = newValue}
 
 var CommonAttributeGroupFacade.onMouseWheel : String
-    get()  = attributeStringString.get(this, "onmousewheel")
-    set(newValue) {attributeStringString.set(this, "onmousewheel", newValue)}
+    get()  = attributeStringString[this, "onmousewheel"]
+    set(newValue) {attributeStringString[this, "onmousewheel"] = newValue}
 
 var CommonAttributeGroupFacade.onPause : String
-    get()  = attributeStringString.get(this, "onpause")
-    set(newValue) {attributeStringString.set(this, "onpause", newValue)}
+    get()  = attributeStringString[this, "onpause"]
+    set(newValue) {attributeStringString[this, "onpause"] = newValue}
 
 var CommonAttributeGroupFacade.onPlay : String
-    get()  = attributeStringString.get(this, "onplay")
-    set(newValue) {attributeStringString.set(this, "onplay", newValue)}
+    get()  = attributeStringString[this, "onplay"]
+    set(newValue) {attributeStringString[this, "onplay"] = newValue}
 
 var CommonAttributeGroupFacade.onPlaying : String
-    get()  = attributeStringString.get(this, "onplaying")
-    set(newValue) {attributeStringString.set(this, "onplaying", newValue)}
+    get()  = attributeStringString[this, "onplaying"]
+    set(newValue) {attributeStringString[this, "onplaying"] = newValue}
 
 var CommonAttributeGroupFacade.onProgress : String
-    get()  = attributeStringString.get(this, "onprogress")
-    set(newValue) {attributeStringString.set(this, "onprogress", newValue)}
+    get()  = attributeStringString[this, "onprogress"]
+    set(newValue) {attributeStringString[this, "onprogress"] = newValue}
 
 var CommonAttributeGroupFacade.onRateChange : String
-    get()  = attributeStringString.get(this, "onratechange")
-    set(newValue) {attributeStringString.set(this, "onratechange", newValue)}
+    get()  = attributeStringString[this, "onratechange"]
+    set(newValue) {attributeStringString[this, "onratechange"] = newValue}
 
 var CommonAttributeGroupFacade.onReadyStateChange : String
-    get()  = attributeStringString.get(this, "onreadystatechange")
-    set(newValue) {attributeStringString.set(this, "onreadystatechange", newValue)}
+    get()  = attributeStringString[this, "onreadystatechange"]
+    set(newValue) {attributeStringString[this, "onreadystatechange"] = newValue}
 
 var CommonAttributeGroupFacade.onScroll : String
-    get()  = attributeStringString.get(this, "onscroll")
-    set(newValue) {attributeStringString.set(this, "onscroll", newValue)}
+    get()  = attributeStringString[this, "onscroll"]
+    set(newValue) {attributeStringString[this, "onscroll"] = newValue}
 
 var CommonAttributeGroupFacade.onSearch : String
-    get()  = attributeStringString.get(this, "onsearch")
-    set(newValue) {attributeStringString.set(this, "onsearch", newValue)}
+    get()  = attributeStringString[this, "onsearch"]
+    set(newValue) {attributeStringString[this, "onsearch"] = newValue}
 
 var CommonAttributeGroupFacade.onSeeked : String
-    get()  = attributeStringString.get(this, "onseeked")
-    set(newValue) {attributeStringString.set(this, "onseeked", newValue)}
+    get()  = attributeStringString[this, "onseeked"]
+    set(newValue) {attributeStringString[this, "onseeked"] = newValue}
 
 var CommonAttributeGroupFacade.onSeeking : String
-    get()  = attributeStringString.get(this, "onseeking")
-    set(newValue) {attributeStringString.set(this, "onseeking", newValue)}
+    get()  = attributeStringString[this, "onseeking"]
+    set(newValue) {attributeStringString[this, "onseeking"] = newValue}
 
 var CommonAttributeGroupFacade.onSelect : String
-    get()  = attributeStringString.get(this, "onselect")
-    set(newValue) {attributeStringString.set(this, "onselect", newValue)}
+    get()  = attributeStringString[this, "onselect"]
+    set(newValue) {attributeStringString[this, "onselect"] = newValue}
 
 var CommonAttributeGroupFacade.onShow : String
-    get()  = attributeStringString.get(this, "onshow")
-    set(newValue) {attributeStringString.set(this, "onshow", newValue)}
+    get()  = attributeStringString[this, "onshow"]
+    set(newValue) {attributeStringString[this, "onshow"] = newValue}
 
 var CommonAttributeGroupFacade.onStalled : String
-    get()  = attributeStringString.get(this, "onstalled")
-    set(newValue) {attributeStringString.set(this, "onstalled", newValue)}
+    get()  = attributeStringString[this, "onstalled"]
+    set(newValue) {attributeStringString[this, "onstalled"] = newValue}
 
 var CommonAttributeGroupFacade.onSubmit : String
-    get()  = attributeStringString.get(this, "onsubmit")
-    set(newValue) {attributeStringString.set(this, "onsubmit", newValue)}
+    get()  = attributeStringString[this, "onsubmit"]
+    set(newValue) {attributeStringString[this, "onsubmit"] = newValue}
 
 var CommonAttributeGroupFacade.onSuspend : String
-    get()  = attributeStringString.get(this, "onsuspend")
-    set(newValue) {attributeStringString.set(this, "onsuspend", newValue)}
+    get()  = attributeStringString[this, "onsuspend"]
+    set(newValue) {attributeStringString[this, "onsuspend"] = newValue}
 
 var CommonAttributeGroupFacade.onTimeUpdate : String
-    get()  = attributeStringString.get(this, "ontimeupdate")
-    set(newValue) {attributeStringString.set(this, "ontimeupdate", newValue)}
+    get()  = attributeStringString[this, "ontimeupdate"]
+    set(newValue) {attributeStringString[this, "ontimeupdate"] = newValue}
 
 var CommonAttributeGroupFacade.onTouchCancel : String
-    get()  = attributeStringString.get(this, "ontouchcancel")
-    set(newValue) {attributeStringString.set(this, "ontouchcancel", newValue)}
+    get()  = attributeStringString[this, "ontouchcancel"]
+    set(newValue) {attributeStringString[this, "ontouchcancel"] = newValue}
 
 var CommonAttributeGroupFacade.onTouchEnd : String
-    get()  = attributeStringString.get(this, "ontouchend")
-    set(newValue) {attributeStringString.set(this, "ontouchend", newValue)}
+    get()  = attributeStringString[this, "ontouchend"]
+    set(newValue) {attributeStringString[this, "ontouchend"] = newValue}
 
 var CommonAttributeGroupFacade.onTouchMove : String
-    get()  = attributeStringString.get(this, "ontouchmove")
-    set(newValue) {attributeStringString.set(this, "ontouchmove", newValue)}
+    get()  = attributeStringString[this, "ontouchmove"]
+    set(newValue) {attributeStringString[this, "ontouchmove"] = newValue}
 
 var CommonAttributeGroupFacade.onTouchStart : String
-    get()  = attributeStringString.get(this, "ontouchstart")
-    set(newValue) {attributeStringString.set(this, "ontouchstart", newValue)}
+    get()  = attributeStringString[this, "ontouchstart"]
+    set(newValue) {attributeStringString[this, "ontouchstart"] = newValue}
 
 var CommonAttributeGroupFacade.onVolumeChange : String
-    get()  = attributeStringString.get(this, "onvolumechange")
-    set(newValue) {attributeStringString.set(this, "onvolumechange", newValue)}
+    get()  = attributeStringString[this, "onvolumechange"]
+    set(newValue) {attributeStringString[this, "onvolumechange"] = newValue}
 
 var CommonAttributeGroupFacade.onWaiting : String
-    get()  = attributeStringString.get(this, "onwaiting")
-    set(newValue) {attributeStringString.set(this, "onwaiting", newValue)}
+    get()  = attributeStringString[this, "onwaiting"]
+    set(newValue) {attributeStringString[this, "onwaiting"] = newValue}
 
 var CommonAttributeGroupFacade.onWheel : String
-    get()  = attributeStringString.get(this, "onwheel")
-    set(newValue) {attributeStringString.set(this, "onwheel", newValue)}
+    get()  = attributeStringString[this, "onwheel"]
+    set(newValue) {attributeStringString[this, "onwheel"] = newValue}
 
 var CommonAttributeGroupFacade.role : String
-    get()  = attributeStringString.get(this, "role")
-    set(newValue) {attributeStringString.set(this, "role", newValue)}
+    get()  = attributeStringString[this, "role"]
+    set(newValue) {attributeStringString[this, "role"] = newValue}
 
 var CommonAttributeGroupFacade.runAt : RunAt
-    get()  = attributeRunAtEnumRunAtValues.get(this, "runat")
-    set(newValue) {attributeRunAtEnumRunAtValues.set(this, "runat", newValue)}
+    get()  = attributeRunAtEnumRunAtValues[this, "runat"]
+    set(newValue) {attributeRunAtEnumRunAtValues[this, "runat"] = newValue}
 
 var CommonAttributeGroupFacade.spellCheck : Boolean
-    get()  = attributeBooleanBoolean.get(this, "spellcheck")
-    set(newValue) {attributeBooleanBoolean.set(this, "spellcheck", newValue)}
+    get()  = attributeBooleanBoolean[this, "spellcheck"]
+    set(newValue) {attributeBooleanBoolean[this, "spellcheck"] = newValue}
 
 var CommonAttributeGroupFacade.style : String
-    get()  = attributeStringString.get(this, "style")
-    set(newValue) {attributeStringString.set(this, "style", newValue)}
+    get()  = attributeStringString[this, "style"]
+    set(newValue) {attributeStringString[this, "style"] = newValue}
 
 var CommonAttributeGroupFacade.subject : String
-    get()  = attributeStringString.get(this, "subject")
-    set(newValue) {attributeStringString.set(this, "subject", newValue)}
+    get()  = attributeStringString[this, "subject"]
+    set(newValue) {attributeStringString[this, "subject"] = newValue}
 
 var CommonAttributeGroupFacade.tabIndex : String
-    get()  = attributeStringString.get(this, "tabIndex")
-    set(newValue) {attributeStringString.set(this, "tabIndex", newValue)}
+    get()  = attributeStringString[this, "tabIndex"]
+    set(newValue) {attributeStringString[this, "tabIndex"] = newValue}
 
 var CommonAttributeGroupFacade.title : String
-    get()  = attributeStringString.get(this, "title")
-    set(newValue) {attributeStringString.set(this, "title", newValue)}
+    get()  = attributeStringString[this, "title"]
+    set(newValue) {attributeStringString[this, "title"] = newValue}
 
 
 interface FormServerAttributeGroupFacade : Tag {
 }
 var FormServerAttributeGroupFacade.defaultButton : String
-    get()  = attributeStringString.get(this, "DefaultButton")
-    set(newValue) {attributeStringString.set(this, "DefaultButton", newValue)}
+    get()  = attributeStringString[this, "DefaultButton"]
+    set(newValue) {attributeStringString[this, "DefaultButton"] = newValue}
 
 var FormServerAttributeGroupFacade.defaultFocus : String
-    get()  = attributeStringString.get(this, "DefaultFocus")
-    set(newValue) {attributeStringString.set(this, "DefaultFocus", newValue)}
+    get()  = attributeStringString[this, "DefaultFocus"]
+    set(newValue) {attributeStringString[this, "DefaultFocus"] = newValue}
 
 var FormServerAttributeGroupFacade.submitDisabledControls : Boolean
-    get()  = attributeBooleanBoolean.get(this, "SubmitDisabledControls")
-    set(newValue) {attributeBooleanBoolean.set(this, "SubmitDisabledControls", newValue)}
+    get()  = attributeBooleanBoolean[this, "SubmitDisabledControls"]
+    set(newValue) {attributeBooleanBoolean[this, "SubmitDisabledControls"] = newValue}
 
 
 interface InputServerAttributeGroupFacade : Tag {
 }
 var InputServerAttributeGroupFacade.causesValidation : Boolean
-    get()  = attributeBooleanBoolean.get(this, "CausesValidation")
-    set(newValue) {attributeBooleanBoolean.set(this, "CausesValidation", newValue)}
+    get()  = attributeBooleanBoolean[this, "CausesValidation"]
+    set(newValue) {attributeBooleanBoolean[this, "CausesValidation"] = newValue}
 
 var InputServerAttributeGroupFacade.validationGroup : String
-    get()  = attributeStringString.get(this, "ValidationGroup")
-    set(newValue) {attributeStringString.set(this, "ValidationGroup", newValue)}
+    get()  = attributeStringString[this, "ValidationGroup"]
+    set(newValue) {attributeStringString[this, "ValidationGroup"] = newValue}
 
 
 interface SelectServerAttributeGroupFacade : Tag {
 }
 var SelectServerAttributeGroupFacade.dataSourceID : String
-    get()  = attributeStringString.get(this, "DataSourceID")
-    set(newValue) {attributeStringString.set(this, "DataSourceID", newValue)}
+    get()  = attributeStringString[this, "DataSourceID"]
+    set(newValue) {attributeStringString[this, "DataSourceID"] = newValue}
 
 var SelectServerAttributeGroupFacade.dataTextField : String
-    get()  = attributeStringString.get(this, "DataTextField")
-    set(newValue) {attributeStringString.set(this, "DataTextField", newValue)}
+    get()  = attributeStringString[this, "DataTextField"]
+    set(newValue) {attributeStringString[this, "DataTextField"] = newValue}
 
 var SelectServerAttributeGroupFacade.dataValueField : String
-    get()  = attributeStringString.get(this, "DataValueField")
-    set(newValue) {attributeStringString.set(this, "DataValueField", newValue)}
+    get()  = attributeStringString[this, "DataValueField"]
+    set(newValue) {attributeStringString[this, "DataValueField"] = newValue}
 
 

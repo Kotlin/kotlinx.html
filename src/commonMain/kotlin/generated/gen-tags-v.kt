@@ -26,36 +26,36 @@ val VAR.asPhrasingContent : PhrasingContent
 @Suppress("unused")
 open class VIDEO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("video", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var src : String
-        get()  = attributeStringString.get(this, "src")
-        set(newValue) {attributeStringString.set(this, "src", newValue)}
+        get()  = attributeStringString[this, "src"]
+        set(newValue) {attributeStringString[this, "src"] = newValue}
 
     var autoBuffer : Boolean
-        get()  = attributeBooleanTicker.get(this, "autobuffer")
-        set(newValue) {attributeBooleanTicker.set(this, "autobuffer", newValue)}
+        get()  = attributeBooleanTicker[this, "autobuffer"]
+        set(newValue) {attributeBooleanTicker[this, "autobuffer"] = newValue}
 
     var autoPlay : Boolean
-        get()  = attributeBooleanTicker.get(this, "autoplay")
-        set(newValue) {attributeBooleanTicker.set(this, "autoplay", newValue)}
+        get()  = attributeBooleanTicker[this, "autoplay"]
+        set(newValue) {attributeBooleanTicker[this, "autoplay"] = newValue}
 
     var loop : Boolean
-        get()  = attributeBooleanTicker.get(this, "loop")
-        set(newValue) {attributeBooleanTicker.set(this, "loop", newValue)}
+        get()  = attributeBooleanTicker[this, "loop"]
+        set(newValue) {attributeBooleanTicker[this, "loop"] = newValue}
 
     var controls : Boolean
-        get()  = attributeBooleanTicker.get(this, "controls")
-        set(newValue) {attributeBooleanTicker.set(this, "controls", newValue)}
+        get()  = attributeBooleanTicker[this, "controls"]
+        set(newValue) {attributeBooleanTicker[this, "controls"] = newValue}
 
     var width : String
-        get()  = attributeStringString.get(this, "width")
-        set(newValue) {attributeStringString.set(this, "width", newValue)}
+        get()  = attributeStringString[this, "width"]
+        set(newValue) {attributeStringString[this, "width"] = newValue}
 
     var height : String
-        get()  = attributeStringString.get(this, "height")
-        set(newValue) {attributeStringString.set(this, "height", newValue)}
+        get()  = attributeStringString[this, "height"]
+        set(newValue) {attributeStringString[this, "height"] = newValue}
 
     var poster : String
-        get()  = attributeStringString.get(this, "poster")
-        set(newValue) {attributeStringString.set(this, "poster", newValue)}
+        get()  = attributeStringString[this, "poster"]
+        set(newValue) {attributeStringString[this, "poster"] = newValue}
 
 
 }

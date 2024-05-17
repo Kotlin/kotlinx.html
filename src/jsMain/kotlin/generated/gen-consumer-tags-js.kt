@@ -763,7 +763,10 @@ public inline fun TagConsumer<HTMLElement>.h6(classes: String? = null, crossinli
  * Document head
  */
 @HtmlTagMarker
-@Suppress("DEPRECATION")
+@Suppress(
+  "DEPRECATION",
+  "DeprecatedCallableAddReplaceWith",
+)
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
 public fun TagConsumer<HTMLElement>.head(content: String = ""): HTMLHeadElement = HEAD(emptyMap,
     this)
@@ -818,7 +821,10 @@ public inline fun TagConsumer<HTMLElement>.hr(classes: String? = null, crossinli
  * Document root element
  */
 @HtmlTagMarker
-@Suppress("DEPRECATION")
+@Suppress(
+  "DEPRECATION",
+  "DeprecatedCallableAddReplaceWith",
+)
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
 public fun TagConsumer<HTMLElement>.html(content: String = "", namespace: String? = null):
     HTMLHtmlElement = HTML(emptyMap, this, namespace)
@@ -1329,7 +1335,10 @@ public inline fun TagConsumer<HTMLElement>.samp(classes: String? = null, crossin
  * Script statements
  */
 @HtmlTagMarker
-@Suppress("DEPRECATION")
+@Suppress(
+  "DEPRECATION",
+  "DeprecatedCallableAddReplaceWith",
+)
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
 public fun TagConsumer<HTMLElement>.script(
   type: String? = null,
@@ -1442,7 +1451,10 @@ public inline fun TagConsumer<HTMLElement>.strong(classes: String? = null, cross
  * Style info
  */
 @HtmlTagMarker
-@Suppress("DEPRECATION")
+@Suppress(
+  "DEPRECATION",
+  "DeprecatedCallableAddReplaceWith",
+)
 @Deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
 public fun TagConsumer<HTMLElement>.style(type: String? = null, content: String = ""):
     HTMLStyleElement = STYLE(attributesMapOf("type", type), this)

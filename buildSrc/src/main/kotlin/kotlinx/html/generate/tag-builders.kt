@@ -29,8 +29,8 @@ fun Appendable.htmlTagBuilders(receiver : String, tag : TagInfo) {
     if (probablyContentOnly) {
         htmlTagBuilderMethod(receiver, tag, false)
     } else if (contentlessTag) {
+        suppress("DEPRECATION", "DeprecatedCallableAddReplaceWith")
         deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
-        suppress("DEPRECATION")
         htmlTagBuilderMethod(receiver, tag, false)
     }
 
@@ -41,8 +41,8 @@ fun Appendable.htmlTagBuilders(receiver : String, tag : TagInfo) {
         if (probablyContentOnly) {
             htmlTagEnumBuilderMethod(receiver, tag, false, someEnumAttribute, 0)
         } else if (contentlessTag) {
+            suppress("DEPRECATION", "DeprecatedCallableAddReplaceWith")
             deprecated("This tag doesn't support content or requires unsafe (try unsafe {})")
-            suppress("DEPRECATION")
             htmlTagEnumBuilderMethod(receiver, tag, false, someEnumAttribute, 0)
         }
     }
