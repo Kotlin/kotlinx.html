@@ -94,6 +94,7 @@
                 <xsd:restriction base="xsd:NMTOKEN">
                     <xsd:enumeration value="ltr"/>
                     <xsd:enumeration value="rtl"/>
+                    <xsd:enumeration value="auto"/>
                 </xsd:restriction>
             </xsd:simpleType>
         </xsd:attribute>

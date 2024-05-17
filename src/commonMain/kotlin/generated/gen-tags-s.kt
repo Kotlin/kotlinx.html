@@ -214,8 +214,8 @@ open class SOURCE(initialAttributes : Map<String, String>, override val consumer
         set(newValue) {attributeStringString[this, "src"] = newValue}
 
     var srcset : String
-        get()  = attributeStringString.get(this, "srcset")
-        set(newValue) {attributeStringString.set(this, "srcset", newValue)}
+        get()  = attributeStringString[this, "srcset"]
+        set(newValue) {attributeStringString[this, "srcset"] = newValue}
 
     var type : String
         get()  = attributeStringString[this, "type"]
