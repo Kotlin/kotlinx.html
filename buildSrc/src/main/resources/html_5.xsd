@@ -1217,6 +1217,7 @@
         <xsd:complexType>
             <xsd:attributeGroup ref="commonAttributeGroup"/>
             <xsd:attribute name="src" type="xsd:anyURI"/>
+            <xsd:attribute name="srcset" type="xsd:anyURI"/>
             <xsd:attribute name="type"/>
             <xsd:attribute name="media"/>
         </xsd:complexType>
