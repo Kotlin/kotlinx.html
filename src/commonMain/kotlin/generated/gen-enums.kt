@@ -10,7 +10,8 @@ import kotlinx.html.*
 @Suppress("unused", "EnumEntryName")
 enum class Dir(override val realValue : String) : AttributeEnum {
     ltr("ltr"),
-    rtl("rtl")
+    rtl("rtl"),
+    auto("auto")
 }
 
 internal val dirValues : Map<String, Dir> = Dir.entries.associateBy { it.realValue }
