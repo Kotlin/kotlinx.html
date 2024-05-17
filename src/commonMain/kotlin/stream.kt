@@ -7,7 +7,7 @@ import kotlinx.html.org.w3c.dom.events.Event
 class HTMLStreamBuilder<out O : Appendable>(
     val out: O,
     val prettyPrint: Boolean,
-    val xhtmlCompatible: Boolean
+    val xhtmlCompatible: Boolean,
 ) : TagConsumer<O> {
     private var level = 0
     private var ln = true
@@ -164,23 +164,18 @@ private val escapeMap = mapOf(
     Array(maxCode + 1) { mappings[it.toChar()] }
 }
 
-private val letterRangeLowerCase = 'a'..'z'
-private val letterRangeUpperCase = 'A'..'Z'
-private val digitRange = '0'..'9'
-
-private fun Char._isLetter() = this in letterRangeLowerCase || this in letterRangeUpperCase
-private fun Char._isDigit() = this in digitRange
-
 private fun String.isValidXmlAttributeName() =
-    !startsWithXml()
-            && this.isNotEmpty()
-            && (this[0]._isLetter() || this[0] == '_')
-            && this.all { it._isLetter() || it._isDigit() || it in "._:-" }
+    this.isNotEmpty()
+        && !startsWithXml()
+        // See https://html.spec.whatwg.org/multipage/syntax.html#attributes-2 for which characters are forbidden
+        // \u000C is the form-feed character. \f is not supported in Kotlin, so it's necessary to use the
+        // unicode literal.
+        && this.none { it in "\t\n\u000C />\"'=" }
 
 private fun String.startsWithXml() = length >= 3
-        && (this[0].let { it == 'x' || it == 'X' })
-        && (this[1].let { it == 'm' || it == 'M' })
-        && (this[2].let { it == 'l' || it == 'L' })
+    && (this[0].let { it == 'x' || it == 'X' })
+    && (this[1].let { it == 'm' || it == 'M' })
+    && (this[2].let { it == 'l' || it == 'L' })
 
 internal fun Appendable.escapeAppend(value: CharSequence) {
     var lastIndex = 0
