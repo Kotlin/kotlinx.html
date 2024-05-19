@@ -263,6 +263,68 @@ enum class InputType(override val realValue : String) : AttributeEnum {
 }
 
 internal val inputTypeValues : Map<String, InputType> = InputType.entries.associateBy { it.realValue }
+@Suppress("unused", "ConstPropertyName")
+object InputAutoComplete {
+    const val on : String = "on"
+    const val off : String = "off"
+    const val addressLine1 : String = "address-line1"
+    const val addressLine2 : String = "address-line2"
+    const val addressLine3 : String = "address-line3"
+    const val addressLevel1 : String = "address-level1"
+    const val addressLevel2 : String = "address-level2"
+    const val addressLevel3 : String = "address-level3"
+    const val addressLevel4 : String = "address-level4"
+    const val streetAddress : String = "street-address"
+    const val country : String = "country"
+    const val countryName : String = "country-name"
+    const val postalCode : String = "postal-code"
+    const val name : String = "name"
+    const val additionalName : String = "additional-name"
+    const val familyName : String = "family-name"
+    const val givenName : String = "given-name"
+    const val honoricPrefix : String = "honoric-prefix"
+    const val honoricSuffix : String = "honoric-suffix"
+    const val nickname : String = "nickname"
+    const val organizationTitle : String = "organization-title"
+    const val username : String = "username"
+    const val newPassword : String = "new-password"
+    const val currentPassword : String = "current-password"
+    const val bday : String = "bday"
+    const val bdayDay : String = "bday-day"
+    const val bdayMonth : String = "bday-month"
+    const val bdayYear : String = "bday-year"
+    const val sex : String = "sex"
+    const val onETimeCode : String = "one-time-code"
+    const val organization : String = "organization"
+    const val ccName : String = "cc-name"
+    const val ccGivenName : String = "cc-given-name"
+    const val ccAdditionalName : String = "cc-additional-name"
+    const val ccFamilyName : String = "cc-family-name"
+    const val ccNumber : String = "cc-number"
+    const val ccExp : String = "cc-exp"
+    const val ccExpMonth : String = "cc-exp-month"
+    const val ccExpYear : String = "cc-exp-year"
+    const val ccCsc : String = "cc-csc"
+    const val ccType : String = "cc-type"
+    const val transactionCurrency : String = "transaction-currency"
+    const val transactionAmount : String = "transaction-amount"
+    const val language : String = "language"
+    const val url : String = "url"
+    const val email : String = "email"
+    const val photo : String = "photo"
+    const val tel : String = "tel"
+    const val telCountryCode : String = "tel-country-code"
+    const val telNational : String = "tel-national"
+    const val telAreaCode : String = "tel-area-code"
+    const val telLocal : String = "tel-local"
+    const val telLocalPrefix : String = "tel-local-prefix"
+    const val telLocalSuffix : String = "tel-local-suffix"
+    const val telExtension : String = "tel-extension"
+    const val impp : String = "impp"
+
+    val values : List<String> = listOf("on", "off", "addressLine1", "addressLine2", "addressLine3", "addressLevel1", "addressLevel2", "addressLevel3", "addressLevel4", "streetAddress", "country", "countryName", "postalCode", "name", "additionalName", "familyName", "givenName", "honoricPrefix", "honoricSuffix", "nickname", "organizationTitle", "username", "newPassword", "currentPassword", "bday", "bdayDay", "bdayMonth", "bdayYear", "sex", "onETimeCode", "organization", "ccName", "ccGivenName", "ccAdditionalName", "ccFamilyName", "ccNumber", "ccExp", "ccExpMonth", "ccExpYear", "ccCsc", "ccType", "transactionCurrency", "transactionAmount", "language", "url", "email", "photo", "tel", "telCountryCode", "telNational", "telAreaCode", "telLocal", "telLocalPrefix", "telLocalSuffix", "telExtension", "impp")
+}
+
 @Suppress("unused", "EnumEntryName")
 enum class InputFormEncType(override val realValue : String) : AttributeEnum {
     multipartFormData("multipart/form-data"),
