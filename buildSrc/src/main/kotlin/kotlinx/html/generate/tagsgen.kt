@@ -16,7 +16,7 @@ private const val BLOCK_LAMBDA = "block"
 private const val CONTENT_LAMBDA = "{+content}"
 
 fun Appendable.tagClass(repository: Repository, tag: TagInfo, excludeAttributes: Set<String>) {
-    val parentAttributeIfaces = tag.attributeGroups.map { it.name.capitalize() + "Facade" }
+    val parentAttributeIfaces = tag.attributeGroups.map { it.className }
     val parentElementIfaces = tag.tagGroupNames.map { it.humanize().capitalize() }
     val allParentIfaces = parentAttributeIfaces + parentElementIfaces
     val betterParentIfaces = humanizeJoin(allParentIfaces)

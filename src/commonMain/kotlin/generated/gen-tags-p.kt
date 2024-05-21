@@ -24,7 +24,7 @@ val P.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class PARAM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("param", consumer, initialAttributes, null, true, true) {
+open class PARAM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("param", consumer, initialAttributes, null, true, true), CoreAttributeGroupFacade {
     var name : String
         get()  = attributeStringString[this, "name"]
         set(newValue) {attributeStringString[this, "name"] = newValue}

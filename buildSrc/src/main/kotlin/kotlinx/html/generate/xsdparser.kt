@@ -31,11 +31,13 @@ fun handleAttributeDeclaration(prefix: String, attributeDeclaration: XSAttribute
 
     if (type.isUnion) {
         val enumEntries = type.asUnion()
-                .filter { it.isRestriction }
-                .map { it.asRestriction() }
-                .flatMap { it.declaredFacets ?: emptyList() }
-                .filter { it.name == "enumeration" }
-                .map { it.value.value }
+            .asSequence()
+            .filter { it.isRestriction }
+            .map { it.asRestriction() }
+            .flatMap { it.declaredFacets ?: emptyList() }
+            .filter { it.name == "enumeration" }
+            .map { it.value.value }
+            .toList()
 
         return AttributeInfo(name, AttributeType.STRING, enumValues = enumEntries.toAttributeValues(), enumTypeName = prefix.capitalize() + name.humanize().capitalize())
     } else if (type.isPrimitive || type.name in setOf<String?>("integer", "string", "boolean", "decimal")) {
@@ -74,13 +76,36 @@ fun AttributeInfo.handleSpecialType(tagName: String = ""): AttributeInfo = speci
     this.copy(type = type)
 } ?: this
 
+private fun parseAttributeFacade(repository: Repository, attributeGroup: XSAttGroupDecl): AttributeFacade {
+    val requiredNames = HashSet<String>()
+    val facadeAttributes = attributeGroup.declaredAttributeUses.map { attributeUse ->
+        val attributeDeclaration = attributeUse.decl
+        if (attributeUse.isRequired) {
+            requiredNames.add(attributeDeclaration.name)
+        }
+
+        handleAttributeDeclaration("", attributeDeclaration).handleSpecialType()
+    }.filter { !it.name.startsWith("On") }.sortedBy { it.name }
+    val inheritedFacades = attributeGroup.attGroups.map { parseAttributeFacade(repository, it) }
+    inheritedFacades.forEach { repository.attributeFacades[it.name] = it }
+    return AttributeFacade(attributeGroup.name, facadeAttributes, requiredNames, inheritedFacades)
+}
+
 fun fillRepository(repository: Repository) {
     val parser = XSOMParser(SAXParserFactory.newInstance())
     parser.parse(SCHEME_URL)
     val schema = parser.result.getSchema(HTML_NAMESPACE)
 
-    val alreadyIncluded = TreeSet<String> { a, b -> a.compareTo(b, true) }
     schema.attGroupDecls.values.sortedByDescending { it.attributeUses.size }.forEach { attributeGroup ->
+        if (!repository.attributeFacades.containsKey(attributeGroup.name)) {
+            repository.attributeFacades[attributeGroup.name] = parseAttributeFacade(repository, attributeGroup)
+        }
+        /*
+        repository.attributeFacades.computeIfAbsent(attributeGroup.name) { _ ->
+            parseAttributeFacade(repository, attributeGroup)
+        }
+        */
+        /*
         val requiredNames = HashSet<String>()
         val facadeAttributes = attributeGroup.attributeUses.map { attributeUse ->
             val attributeDeclaration = attributeUse.decl
@@ -96,9 +121,10 @@ fun fillRepository(repository: Repository) {
         val name = attributeGroup.name
 
         if (facadeAttributes.isNotEmpty()) {
-            repository.attributeFacades[name] = AttributeFacade(name, facadeAttributes, requiredNames)
+            repository.attributeFacades[name] = AttributeFacade(name, facadeAttributes, requiredNames, emptyList())
             alreadyIncluded.addAll(facadeAttributes.map { it.name })
         }
+        */
     }
 
     schema.modelGroupDecls.values.forEach { modelGroupDeclaration ->
@@ -120,16 +146,20 @@ fun fillRepository(repository: Repository) {
         val name = elementDeclaration.name
         val type = elementDeclaration.type
         val suggestedNames = HashSet<String>()
-        globalSuggestedAttributes.get(name)?.let {
-            suggestedNames.addAll(it.filter { !it.startsWith("-") })
+        globalSuggestedAttributes[name]?.let { attributes ->
+            suggestedNames.addAll(attributes.filter { !it.startsWith("-") })
         }
-        val excluded = globalSuggestedAttributes.get(name)?.filter { it.startsWith("-") }?.map { it.removePrefix("-") } ?: emptyList()
+        val excluded = globalSuggestedAttributes[name]
+            ?.filter { it.startsWith("-") }
+            ?.map { it.removePrefix("-") }
+            ?.toSet()
+            ?: emptySet()
 
         val tagInfo: TagInfo
         if (type.isComplexType) {
             val complex = type.asComplexType()
-            val groupDeclarations = complex.attGroups.flatMap { flattenGroups(it) }.distinct().toList()
-            val attributeGroups = groupDeclarations.map { repository.attributeFacades[it.name] }.filterNotNull()
+            val groupDeclarations = complex.attGroups.distinct().sortedBy { it.name }
+            val attributeGroups = groupDeclarations.mapNotNull { repository.attributeFacades[it.name] }
 
             val attributes = complex.declaredAttributeUses.map {
                 if (it.isRequired) {
@@ -146,7 +176,13 @@ fun fillRepository(repository: Repository) {
             if (contentTerm != null) {
                 flattenTerm(contentTerm, children, modelGroupNames)
                 if (contentTerm.isModelGroup) {
-                    directChildren.addAll(contentTerm.asModelGroup().children.map { it.term }.filter { it.isElementDecl }.map { it.asElementDecl().name })
+                    directChildren.addAll(
+                        contentTerm.asModelGroup()
+                            .children
+                            .map { it.term }
+                            .filter { it.isElementDecl }
+                            .map { it.asElementDecl().name },
+                    )
                 }
             }
 
@@ -157,7 +193,15 @@ fun fillRepository(repository: Repository) {
             suggestedNames.addAll(attributeGroups.flatMap { it.attributes }.filter { it.name in globalSuggestedAttributeNames }.map { it.name })
             suggestedNames.removeAll(excluded)
 
-            tagInfo = TagInfo(name, children.toList().sorted(), directChildren, attributeGroups, attributes, suggestedNames, modelGroupNames.sorted().toList())
+            tagInfo = TagInfo(
+                name = name,
+                possibleChildren = children.toList().sorted(),
+                directChildren = directChildren,
+                attributeGroups = attributeGroups,
+                attributes = attributes,
+                suggestedAttributes = suggestedNames,
+                tagGroupNames = modelGroupNames.sorted(),
+            )
         } else {
             throw UnsupportedOperationException()
         }

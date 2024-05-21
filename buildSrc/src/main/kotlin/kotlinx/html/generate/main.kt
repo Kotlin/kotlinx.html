@@ -80,7 +80,7 @@ fun generate(pkg: String, todir: String, jsdir: String, wasmJsDir: String) {
             }
 
             repository.attributeFacades.values.forEach { facade ->
-                facade.attributes.filter { it.enumValues.isNotEmpty() }.filter { !isAttributeExcluded(it.name) }
+                facade.declaredAttributes.filter { it.enumValues.isNotEmpty() }.filter { !isAttributeExcluded(it.name) }
                     .forEach { attribute ->
                         genEnumAttribute(attribute)
                     }
@@ -307,17 +307,14 @@ private fun generateConsumerTags(
 }
 
 private fun generateEventAttrs(repository: Repository, file: String, pkg: String) {
-    val isEventAttribute = { attributeName: String ->
-        attributeName.startsWith("on")
-    }
+    val isEventAttribute = { attributeName: String -> attributeName.startsWith("on") }
     val properties = sequence {
         repository
             .attributeFacades
             .filter { facade -> facade.value.attributeNames.any(isEventAttribute) }
             .forEach { facade ->
                 facade.value.attributes.filter { it.name.startsWith("on") }.forEach {
-                    val parentName = facade.value.name.capitalize() + "Facade"
-                    val parent = ClassName("kotlinx.html", parentName)
+                    val parent = ClassName("kotlinx.html", facade.value.className)
 
                     yield(eventProperty(parent, it, shouldUnsafeCast = false))
                 }
