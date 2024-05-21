@@ -119,10 +119,6 @@ data class TagInfo(
     val suggestedAttributes: Set<String>,
     val tagGroupNames: List<String>,
 ) {
-    init {
-        val foo = "BAR"
-    }
-
     val className: String = name.humanize().uppercase()
     val memberName: String = name.humanize().replaceIfReserved()
 }
