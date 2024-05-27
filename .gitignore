@@ -3,6 +3,7 @@
 target
 build
 .gradle
+.kotlin
 *~
 *.versionsBackup
 **/karma/node_modules
