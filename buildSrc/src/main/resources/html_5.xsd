@@ -1433,14 +1433,7 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:attribute>
-            <xsd:attribute name="autocomplete">
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:NMTOKEN">
-                        <xsd:enumeration value="on"/>
-                        <xsd:enumeration value="off"/>
-                    </xsd:restriction>
-                </xsd:simpleType>
-            </xsd:attribute>
+            <xsd:attribute name="autocomplete" type="autocompleteType" />
             <xsd:attribute name="checked">
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:NMTOKEN">
@@ -2025,6 +2018,74 @@
                     <xsd:enumeration value="text/x-component"/>
                     <xsd:enumeration value="text/x-html-insertion"/>
                     <xsd:enumeration value="text/xml"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string"/>
+            </xsd:simpleType>
+        </xsd:union>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="autocompleteType">
+        <xsd:union>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="on"/>
+                    <xsd:enumeration value="off"/>
+                    <xsd:enumeration value="address-line1"/>
+                    <xsd:enumeration value="address-line2"/>
+                    <xsd:enumeration value="address-line3"/>
+                    <xsd:enumeration value="address-level1"/>
+                    <xsd:enumeration value="address-level2"/>
+                    <xsd:enumeration value="address-level3"/>
+                    <xsd:enumeration value="address-level4"/>
+                    <xsd:enumeration value="street-address"/>
+                    <xsd:enumeration value="country"/>
+                    <xsd:enumeration value="country-name"/>
+                    <xsd:enumeration value="postal-code"/>
+                    <xsd:enumeration value="name"/>
+                    <xsd:enumeration value="additional-name"/>
+                    <xsd:enumeration value="family-name"/>
+                    <xsd:enumeration value="given-name"/>
+                    <xsd:enumeration value="honoric-prefix"/>
+                    <xsd:enumeration value="honoric-suffix"/>
+                    <xsd:enumeration value="nickname"/>
+                    <xsd:enumeration value="organization-title"/>
+                    <xsd:enumeration value="username"/>
+                    <xsd:enumeration value="new-password"/>
+                    <xsd:enumeration value="current-password"/>
+                    <xsd:enumeration value="bday"/>
+                    <xsd:enumeration value="bday-day"/>
+                    <xsd:enumeration value="bday-month"/>
+                    <xsd:enumeration value="bday-year"/>
+                    <xsd:enumeration value="sex"/>
+                    <xsd:enumeration value="one-time-code"/>
+                    <xsd:enumeration value="organization"/>
+                    <xsd:enumeration value="cc-name"/>
+                    <xsd:enumeration value="cc-given-name"/>
+                    <xsd:enumeration value="cc-additional-name"/>
+                    <xsd:enumeration value="cc-family-name"/>
+                    <xsd:enumeration value="cc-number"/>
+                    <xsd:enumeration value="cc-exp"/>
+                    <xsd:enumeration value="cc-exp-month"/>
+                    <xsd:enumeration value="cc-exp-year"/>
+                    <xsd:enumeration value="cc-csc"/>
+                    <xsd:enumeration value="cc-type"/>
+                    <xsd:enumeration value="transaction-currency"/>
+                    <xsd:enumeration value="transaction-amount"/>
+                    <xsd:enumeration value="language"/>
+                    <xsd:enumeration value="url"/>
+                    <xsd:enumeration value="email"/>
+                    <xsd:enumeration value="photo"/>
+                    <xsd:enumeration value="tel"/>
+                    <xsd:enumeration value="tel-country-code"/>
+                    <xsd:enumeration value="tel-national"/>
+                    <xsd:enumeration value="tel-area-code"/>
+                    <xsd:enumeration value="tel-local"/>
+                    <xsd:enumeration value="tel-local-prefix"/>
+                    <xsd:enumeration value="tel-local-suffix"/>
+                    <xsd:enumeration value="tel-extension"/>
+                    <xsd:enumeration value="impp"/>
                 </xsd:restriction>
             </xsd:simpleType>
             <xsd:simpleType>

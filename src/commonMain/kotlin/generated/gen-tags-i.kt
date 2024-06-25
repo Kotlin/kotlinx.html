@@ -121,9 +121,9 @@ open class INPUT(initialAttributes : Map<String, String>, override val consumer 
         get()  = attributeBooleanTicker[this, "autofocus"]
         set(newValue) {attributeBooleanTicker[this, "autofocus"] = newValue}
 
-    var autoComplete : Boolean
-        get()  = attributeBooleanBooleanOnOff[this, "autocomplete"]
-        set(newValue) {attributeBooleanBooleanOnOff[this, "autocomplete"] = newValue}
+    var autoComplete : String
+        get()  = attributeStringString[this, "autocomplete"]
+        set(newValue) {attributeStringString[this, "autocomplete"] = newValue}
 
     var checked : Boolean
         get()  = attributeBooleanTicker[this, "checked"]

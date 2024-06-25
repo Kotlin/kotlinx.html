@@ -214,11 +214,11 @@ class TestStreaming {
     }
 
     @Test fun `test form with button`() {
-        assertEquals("<form action=\"/someurl\">" +
-                "<input type=\"checkbox\" name=\"cb1\">var1" +
+        assertEquals(
+            "<form action=\"/someurl\"><input type=\"checkbox\" name=\"cb1\">var1" +
                 "<input type=\"checkbox\" name=\"cb2\" disabled=\"disabled\">var2" +
-                "<input type=\"submit\" value=\"Go!\">" +
-                "</form>",
+                "<input type=\"text\" name=\"t1\" autocomplete=\"impp\">" +
+                "<input type=\"submit\" value=\"Go!\"></form>",
                 StringBuilder().appendHTML(false).form("/someurl") {
                     checkBoxInput(name = "cb1") {
                         +"var1"
@@ -226,6 +226,9 @@ class TestStreaming {
                     input(type = InputType.checkBox, name = "cb2") {
                         disabled = true
                         +"var2"
+                    }
+                    textInput(name = "t1") {
+                        autoComplete = InputAutoComplete.impp
                     }
 
                     submitInput {
@@ -240,7 +243,7 @@ class TestStreaming {
 
         val timeSource = TimeSource.Monotonic
         val now = timeSource.markNow()
-        var measuredDuration = Duration.INFINITE
+        val measuredDuration: Duration
 
         val rs = builder.measureTime(timeSource = timeSource).div {
             val measuredStart = timeSource.markNow()
