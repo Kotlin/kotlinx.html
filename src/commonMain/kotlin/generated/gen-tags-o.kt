@@ -53,9 +53,9 @@ open class OBJECT(initialAttributes : Map<String, String>, override val consumer
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun OBJECT.param(name : String? = null, value : String? = null, crossinline block : PARAM.() -> Unit = {}) : Unit {
+inline fun OBJECT.param(name : String? = null, value : String? = null, classes : String? = null, crossinline block : PARAM.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-    PARAM(attributesMapOf("name", name,"value", value), consumer).visit(block)
+    PARAM(attributesMapOf("name", name,"value", value,"class", classes), consumer).visit(block)
 }
 
 val OBJECT.asFlowContent : FlowContent

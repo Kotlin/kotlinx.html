@@ -1216,10 +1216,11 @@ public inline fun TagConsumer<HTMLElement>.p(classes: String? = null, crossinlin
 public inline fun TagConsumer<HTMLElement>.`param`(
   name: String? = null,
   `value`: String? = null,
+  classes: String? = null,
   crossinline block: PARAM.() -> Unit = {},
 ): HTMLParamElement {
   contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-  return PARAM(attributesMapOf("name", name,"value", value), this)
+  return PARAM(attributesMapOf("name", name,"value", value,"class", classes), this)
       .visitAndFinalize(this, block)  as HTMLParamElement
 }
 

@@ -26,7 +26,15 @@ class Repository {
     var unionsByGroups: Map<String, List<GroupUnion>> = emptyMap()
 }
 
-data class AttributeFacade(val name: String, val attributes: List<AttributeInfo>, val required: Set<String>) {
+data class AttributeFacade(
+    val name: String,
+    val declaredAttributes: List<AttributeInfo>,
+    val required: Set<String>,
+    val inheritedFacades: List<AttributeFacade>,
+) {
+    val className = name.capitalize() + "Facade"
+    val attributes: List<AttributeInfo> = declaredAttributes + inheritedFacades.flatMap { it.attributes }
+    val parents = if (inheritedFacades.isNotEmpty()) inheritedFacades.map { it.className } else listOf("Tag")
     val attributeNames = attributes.map { it.name }.toSet()
 }
 

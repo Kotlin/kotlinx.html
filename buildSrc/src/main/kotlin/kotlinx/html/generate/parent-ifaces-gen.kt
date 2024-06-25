@@ -5,7 +5,7 @@ import java.util.*
 
 fun generateParentInterfaces(repository: Repository, todir: String, packg: String) {
     val allParentIfaces = repository.tags.values.filterIgnored().map { tag ->
-        val parentAttributeIfaces = tag.attributeGroups.map { it.name.humanize().capitalize() + "Facade" }
+        val parentAttributeIfaces = tag.attributeGroups.map { it.className }
         val parentElementIfaces = tag.tagGroupNames.map { it.humanize().capitalize() }
         val sum = parentAttributeIfaces + parentElementIfaces
 

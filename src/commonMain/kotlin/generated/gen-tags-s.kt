@@ -35,7 +35,7 @@ val SAMP.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class SCRIPT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("script", consumer, initialAttributes, null, false, false), FlowMetaDataPhrasingContent {
+open class SCRIPT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("script", consumer, initialAttributes, null, false, false), CoreAttributeGroupFacadeFlowMetaDataPhrasingContent {
     var charset : String
         get()  = attributeStringString[this, "charset"]
         set(newValue) {attributeStringString[this, "charset"] = newValue}

@@ -1162,10 +1162,11 @@ public inline fun <T, C : TagConsumer<T>> C.p(classes: String? = null, crossinli
 public inline fun <T, C : TagConsumer<T>> C.`param`(
   name: String? = null,
   `value`: String? = null,
+  classes: String? = null,
   crossinline block: PARAM.() -> Unit = {},
 ): T {
   contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-  return PARAM(attributesMapOf("name", name,"value", value), this)
+  return PARAM(attributesMapOf("name", name,"value", value,"class", classes), this)
       .visitAndFinalize(this, block)
 }
 

@@ -45,14 +45,12 @@ fun Appendable.attributeProperty(
 }
 
 fun Appendable.facade(repository: Repository, facade: AttributeFacade) {
-    val facadeName = facade.name.capitalize() + "Facade"
-
-    clazz(Clazz(facadeName, isInterface = true, parents = listOf("Tag"))) {
+    clazz(Clazz(facade.className, isInterface = true, parents = facade.parents)) {
     }
 
-    facade.attributes.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
+    facade.declaredAttributes.filter { !isAttributeExcluded(it.name) }.forEach { attribute ->
         if (attribute.name.isLowerCase() || attribute.name.lowercase() !in facade.attributeNames) {
-            attributeProperty(repository, attribute, receiver = facadeName, indent = 0)
+            attributeProperty(repository, attribute, receiver = facade.className, indent = 0)
         }
     }
 }

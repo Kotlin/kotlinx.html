@@ -136,7 +136,7 @@ val BR.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class BUTTON(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("button", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+open class BUTTON(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("button", consumer, initialAttributes, null, true, false), ButtonServerCommonFlowInteractivePhrasingGroupFacadeAttributeContent {
     var autoFocus : Boolean
         get()  = attributeBooleanTicker[this, "autofocus"]
         set(newValue) {attributeBooleanTicker[this, "autofocus"] = newValue}
