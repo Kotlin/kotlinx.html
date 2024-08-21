@@ -125,6 +125,10 @@ kotlin {
     tvosSimulatorArm64()
     macosX64()
     macosArm64()
+    androidNativeArm32()
+    androidNativeArm64()
+    androidNativeX86()
+    androidNativeX64()
 
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     applyDefaultHierarchyTemplate {
