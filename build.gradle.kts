@@ -108,6 +108,15 @@ kotlin {
             pom { name = "${project.name}-wasm-js" }
         }
     }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmWasi {
+        nodejs()
+
+        mavenPublication {
+            groupId = group as String
+            pom { name = "${project.name}-wasm-wasi" }
+        }
+    }
 
     mingwX64()
     linuxX64()
