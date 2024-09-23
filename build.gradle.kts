@@ -108,6 +108,15 @@ kotlin {
             pom { name = "${project.name}-wasm-js" }
         }
     }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmWasi {
+        nodejs()
+
+        mavenPublication {
+            groupId = group as String
+            pom { name = "${project.name}-wasm-wasi" }
+        }
+    }
 
     mingwX64()
     linuxX64()
@@ -125,6 +134,10 @@ kotlin {
     tvosSimulatorArm64()
     macosX64()
     macosArm64()
+    androidNativeArm32()
+    androidNativeArm64()
+    androidNativeX86()
+    androidNativeX64()
 
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     applyDefaultHierarchyTemplate {
