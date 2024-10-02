@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
  * -PversionTag - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "2.0.0"
+    kotlin("multiplatform") version "2.0.20"
     id("maven-publish")
     id("signing")
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.13.2"
