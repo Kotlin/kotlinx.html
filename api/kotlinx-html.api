@@ -1,15 +1,21 @@
 public class kotlinx/html/A : kotlinx/html/HTMLTag, kotlinx/html/CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
 	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
+	public final fun getDownLoad ()Ljava/lang/String;
 	public final fun getHref ()Ljava/lang/String;
 	public final fun getHrefLang ()Ljava/lang/String;
+	public final fun getMedia ()Ljava/lang/String;
 	public final fun getPing ()Ljava/lang/String;
+	public final fun getReferrerPolicy ()Lkotlinx/html/AReferrerPolicy;
 	public final fun getRel ()Ljava/lang/String;
 	public final fun getTarget ()Ljava/lang/String;
 	public final fun getType ()Ljava/lang/String;
+	public final fun setDownLoad (Ljava/lang/String;)V
 	public final fun setHref (Ljava/lang/String;)V
 	public final fun setHrefLang (Ljava/lang/String;)V
+	public final fun setMedia (Ljava/lang/String;)V
 	public final fun setPing (Ljava/lang/String;)V
+	public final fun setReferrerPolicy (Lkotlinx/html/AReferrerPolicy;)V
 	public final fun setRel (Ljava/lang/String;)V
 	public final fun setTarget (Ljava/lang/String;)V
 	public final fun setType (Ljava/lang/String;)V
@@ -35,6 +41,7 @@ public class kotlinx/html/AREA : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInl
 	public final fun getMedia ()Ljava/lang/String;
 	public final fun getPing ()Ljava/lang/String;
 	public final fun getRel ()Ljava/lang/String;
+	public final fun getShape ()Lkotlinx/html/AreaShape;
 	public final fun getTarget ()Ljava/lang/String;
 	public final fun getType ()Ljava/lang/String;
 	public final fun setAlt (Ljava/lang/String;)V
@@ -44,6 +51,7 @@ public class kotlinx/html/AREA : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInl
 	public final fun setMedia (Ljava/lang/String;)V
 	public final fun setPing (Ljava/lang/String;)V
 	public final fun setRel (Ljava/lang/String;)V
+	public final fun setShape (Lkotlinx/html/AreaShape;)V
 	public final fun setTarget (Ljava/lang/String;)V
 	public final fun setType (Ljava/lang/String;)V
 }
@@ -53,23 +61,37 @@ public class kotlinx/html/ARTICLE : kotlinx/html/HTMLTag, kotlinx/html/CommonAtt
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 }
 
+public final class kotlinx/html/AReferrerPolicy : java/lang/Enum, kotlinx/html/AttributeEnum {
+	public static final field noReferrer Lkotlinx/html/AReferrerPolicy;
+	public static final field noReferrerWhenDowngrade Lkotlinx/html/AReferrerPolicy;
+	public static final field origin Lkotlinx/html/AReferrerPolicy;
+	public static final field originWhenCrossOrigin Lkotlinx/html/AReferrerPolicy;
+	public static final field sameOrigin Lkotlinx/html/AReferrerPolicy;
+	public static final field strictOriginWhenCrossOrigin Lkotlinx/html/AReferrerPolicy;
+	public static final field unsafeUrl Lkotlinx/html/AReferrerPolicy;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getRealValue ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/AReferrerPolicy;
+	public static fun values ()[Lkotlinx/html/AReferrerPolicy;
+}
+
 public final class kotlinx/html/ARel {
 	public static final field INSTANCE Lkotlinx/html/ARel;
-	public final fun getAlternate ()Ljava/lang/String;
-	public final fun getAppEndIx ()Ljava/lang/String;
-	public final fun getBookmark ()Ljava/lang/String;
-	public final fun getChapter ()Ljava/lang/String;
-	public final fun getContentS ()Ljava/lang/String;
-	public final fun getCopyright ()Ljava/lang/String;
-	public final fun getGlossary ()Ljava/lang/String;
-	public final fun getHelp ()Ljava/lang/String;
-	public final fun getIndex ()Ljava/lang/String;
-	public final fun getNext ()Ljava/lang/String;
-	public final fun getPrev ()Ljava/lang/String;
-	public final fun getSection ()Ljava/lang/String;
-	public final fun getStart ()Ljava/lang/String;
-	public final fun getStylesheet ()Ljava/lang/String;
-	public final fun getSubsection ()Ljava/lang/String;
+	public static final field alternate Ljava/lang/String;
+	public static final field appEndIx Ljava/lang/String;
+	public static final field bookmark Ljava/lang/String;
+	public static final field chapter Ljava/lang/String;
+	public static final field contentS Ljava/lang/String;
+	public static final field copyright Ljava/lang/String;
+	public static final field glossary Ljava/lang/String;
+	public static final field help Ljava/lang/String;
+	public static final field index Ljava/lang/String;
+	public static final field next Ljava/lang/String;
+	public static final field prev Ljava/lang/String;
+	public static final field section Ljava/lang/String;
+	public static final field start Ljava/lang/String;
+	public static final field stylesheet Ljava/lang/String;
+	public static final field subsection Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -78,27 +100,39 @@ public class kotlinx/html/ASIDE : kotlinx/html/HTMLTag, kotlinx/html/CommonAttri
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 }
 
+public abstract interface class kotlinx/html/AServerAttributeGroupFacade : kotlinx/html/Tag {
+}
+
+public final class kotlinx/html/AServerAttributeGroupFacade$DefaultImpls {
+	public static fun comment (Lkotlinx/html/AServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun entity (Lkotlinx/html/AServerAttributeGroupFacade;Lkotlinx/html/Entities;)V
+	public static fun text (Lkotlinx/html/AServerAttributeGroupFacade;Ljava/lang/Number;)V
+	public static fun text (Lkotlinx/html/AServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/AServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/AServerAttributeGroupFacade;Lkotlinx/html/Entities;)V
+}
+
 public final class kotlinx/html/ATarget {
 	public static final field INSTANCE Lkotlinx/html/ATarget;
-	public final fun getBlank ()Ljava/lang/String;
-	public final fun getParent ()Ljava/lang/String;
-	public final fun getSelf ()Ljava/lang/String;
-	public final fun getTop ()Ljava/lang/String;
+	public static final field blank Ljava/lang/String;
+	public static final field parent Ljava/lang/String;
+	public static final field self Ljava/lang/String;
+	public static final field top Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
 public final class kotlinx/html/AType {
 	public static final field INSTANCE Lkotlinx/html/AType;
-	public final fun getTextAsa ()Ljava/lang/String;
-	public final fun getTextAsp ()Ljava/lang/String;
-	public final fun getTextCss ()Ljava/lang/String;
-	public final fun getTextHtml ()Ljava/lang/String;
-	public final fun getTextJavaScript ()Ljava/lang/String;
-	public final fun getTextPlain ()Ljava/lang/String;
-	public final fun getTextScriptLet ()Ljava/lang/String;
-	public final fun getTextXComponent ()Ljava/lang/String;
-	public final fun getTextXHtmlInsertion ()Ljava/lang/String;
-	public final fun getTextXml ()Ljava/lang/String;
+	public static final field textAsa Ljava/lang/String;
+	public static final field textAsp Ljava/lang/String;
+	public static final field textCss Ljava/lang/String;
+	public static final field textHtml Ljava/lang/String;
+	public static final field textJavaScript Ljava/lang/String;
+	public static final field textPlain Ljava/lang/String;
+	public static final field textScriptLet Ljava/lang/String;
+	public static final field textXComponent Ljava/lang/String;
+	public static final field textXHtmlInsertion Ljava/lang/String;
+	public static final field textXml Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -130,21 +164,21 @@ public final class kotlinx/html/ApiKt {
 
 public final class kotlinx/html/AreaRel {
 	public static final field INSTANCE Lkotlinx/html/AreaRel;
-	public final fun getAlternate ()Ljava/lang/String;
-	public final fun getAppEndIx ()Ljava/lang/String;
-	public final fun getBookmark ()Ljava/lang/String;
-	public final fun getChapter ()Ljava/lang/String;
-	public final fun getContentS ()Ljava/lang/String;
-	public final fun getCopyright ()Ljava/lang/String;
-	public final fun getGlossary ()Ljava/lang/String;
-	public final fun getHelp ()Ljava/lang/String;
-	public final fun getIndex ()Ljava/lang/String;
-	public final fun getNext ()Ljava/lang/String;
-	public final fun getPrev ()Ljava/lang/String;
-	public final fun getSection ()Ljava/lang/String;
-	public final fun getStart ()Ljava/lang/String;
-	public final fun getStylesheet ()Ljava/lang/String;
-	public final fun getSubsection ()Ljava/lang/String;
+	public static final field alternate Ljava/lang/String;
+	public static final field appEndIx Ljava/lang/String;
+	public static final field bookmark Ljava/lang/String;
+	public static final field chapter Ljava/lang/String;
+	public static final field contentS Ljava/lang/String;
+	public static final field copyright Ljava/lang/String;
+	public static final field glossary Ljava/lang/String;
+	public static final field help Ljava/lang/String;
+	public static final field index Ljava/lang/String;
+	public static final field next Ljava/lang/String;
+	public static final field prev Ljava/lang/String;
+	public static final field section Ljava/lang/String;
+	public static final field start Ljava/lang/String;
+	public static final field stylesheet Ljava/lang/String;
+	public static final field subsection Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -161,10 +195,10 @@ public final class kotlinx/html/AreaShape : java/lang/Enum, kotlinx/html/Attribu
 
 public final class kotlinx/html/AreaTarget {
 	public static final field INSTANCE Lkotlinx/html/AreaTarget;
-	public final fun getBlank ()Ljava/lang/String;
-	public final fun getParent ()Ljava/lang/String;
-	public final fun getSelf ()Ljava/lang/String;
-	public final fun getTop ()Ljava/lang/String;
+	public static final field blank Ljava/lang/String;
+	public static final field parent Ljava/lang/String;
+	public static final field self Ljava/lang/String;
+	public static final field top Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -239,7 +273,7 @@ public class kotlinx/html/BR : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInlin
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 }
 
-public class kotlinx/html/BUTTON : kotlinx/html/HTMLTag, kotlinx/html/CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+public class kotlinx/html/BUTTON : kotlinx/html/HTMLTag, kotlinx/html/ButtonServerCommonFlowInteractivePhrasingGroupFacadeAttributeContent {
 	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
 	public final fun getAutoFocus ()Z
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
@@ -268,10 +302,10 @@ public class kotlinx/html/BUTTON : kotlinx/html/HTMLTag, kotlinx/html/CommonAttr
 
 public final class kotlinx/html/BaseTarget {
 	public static final field INSTANCE Lkotlinx/html/BaseTarget;
-	public final fun getBlank ()Ljava/lang/String;
-	public final fun getParent ()Ljava/lang/String;
-	public final fun getSelf ()Ljava/lang/String;
-	public final fun getTop ()Ljava/lang/String;
+	public static final field blank Ljava/lang/String;
+	public static final field parent Ljava/lang/String;
+	public static final field self Ljava/lang/String;
+	public static final field top Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -299,11 +333,35 @@ public final class kotlinx/html/ButtonFormMethod : java/lang/Enum, kotlinx/html/
 
 public final class kotlinx/html/ButtonFormTarget {
 	public static final field INSTANCE Lkotlinx/html/ButtonFormTarget;
-	public final fun getBlank ()Ljava/lang/String;
-	public final fun getParent ()Ljava/lang/String;
-	public final fun getSelf ()Ljava/lang/String;
-	public final fun getTop ()Ljava/lang/String;
+	public static final field blank Ljava/lang/String;
+	public static final field parent Ljava/lang/String;
+	public static final field self Ljava/lang/String;
+	public static final field top Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
+}
+
+public abstract interface class kotlinx/html/ButtonServerAttributeGroupFacade : kotlinx/html/Tag {
+}
+
+public final class kotlinx/html/ButtonServerAttributeGroupFacade$DefaultImpls {
+	public static fun comment (Lkotlinx/html/ButtonServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun entity (Lkotlinx/html/ButtonServerAttributeGroupFacade;Lkotlinx/html/Entities;)V
+	public static fun text (Lkotlinx/html/ButtonServerAttributeGroupFacade;Ljava/lang/Number;)V
+	public static fun text (Lkotlinx/html/ButtonServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/ButtonServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/ButtonServerAttributeGroupFacade;Lkotlinx/html/Entities;)V
+}
+
+public abstract interface class kotlinx/html/ButtonServerCommonFlowInteractivePhrasingGroupFacadeAttributeContent : kotlinx/html/ButtonServerAttributeGroupFacade, kotlinx/html/CommonAttributeGroupFacade, kotlinx/html/CommonAttributeGroupFacadeFlowInteractiveContent, kotlinx/html/CommonAttributeGroupFacadeFlowInteractivePhrasingContent, kotlinx/html/FlowInteractiveContent, kotlinx/html/FlowInteractivePhrasingContent, kotlinx/html/FlowPhrasingContent, kotlinx/html/HtmlBlockInlineTag, kotlinx/html/HtmlBlockTag, kotlinx/html/HtmlInlineTag {
+}
+
+public final class kotlinx/html/ButtonServerCommonFlowInteractivePhrasingGroupFacadeAttributeContent$DefaultImpls {
+	public static fun comment (Lkotlinx/html/ButtonServerCommonFlowInteractivePhrasingGroupFacadeAttributeContent;Ljava/lang/String;)V
+	public static fun entity (Lkotlinx/html/ButtonServerCommonFlowInteractivePhrasingGroupFacadeAttributeContent;Lkotlinx/html/Entities;)V
+	public static fun text (Lkotlinx/html/ButtonServerCommonFlowInteractivePhrasingGroupFacadeAttributeContent;Ljava/lang/Number;)V
+	public static fun text (Lkotlinx/html/ButtonServerCommonFlowInteractivePhrasingGroupFacadeAttributeContent;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/ButtonServerCommonFlowInteractivePhrasingGroupFacadeAttributeContent;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/ButtonServerCommonFlowInteractivePhrasingGroupFacadeAttributeContent;Lkotlinx/html/Entities;)V
 }
 
 public final class kotlinx/html/ButtonType : java/lang/Enum, kotlinx/html/AttributeEnum {
@@ -381,7 +439,7 @@ public final class kotlinx/html/CommandType : java/lang/Enum, kotlinx/html/Attri
 	public static fun values ()[Lkotlinx/html/CommandType;
 }
 
-public abstract interface class kotlinx/html/CommonAttributeGroupFacade : kotlinx/html/Tag {
+public abstract interface class kotlinx/html/CommonAttributeGroupFacade : kotlinx/html/CommonEventsGroupFacade, kotlinx/html/CoreAttributeGroupFacade, kotlinx/html/CoreServerAttributeGroupFacade {
 }
 
 public final class kotlinx/html/CommonAttributeGroupFacade$DefaultImpls {
@@ -489,6 +547,18 @@ public final class kotlinx/html/CommonAttributeGroupFacadeFlowSectioningContent$
 	public static fun unaryPlus (Lkotlinx/html/CommonAttributeGroupFacadeFlowSectioningContent;Lkotlinx/html/Entities;)V
 }
 
+public abstract interface class kotlinx/html/CommonEventsGroupFacade : kotlinx/html/Tag {
+}
+
+public final class kotlinx/html/CommonEventsGroupFacade$DefaultImpls {
+	public static fun comment (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static fun entity (Lkotlinx/html/CommonEventsGroupFacade;Lkotlinx/html/Entities;)V
+	public static fun text (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/Number;)V
+	public static fun text (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/CommonEventsGroupFacade;Lkotlinx/html/Entities;)V
+}
+
 public final class kotlinx/html/CompatibilityKt {
 	public static final fun getFalse_ (Lkotlinx/html/Draggable;)Lkotlinx/html/Draggable;
 	public static final fun getFor_ (Lkotlinx/html/LABEL;)Ljava/lang/String;
@@ -516,6 +586,42 @@ public final class kotlinx/html/CompatibilityKt {
 	public static final fun var_ (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun var_$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static synthetic fun var_$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class kotlinx/html/CoreAttributeGroupFacade : kotlinx/html/Tag {
+}
+
+public final class kotlinx/html/CoreAttributeGroupFacade$DefaultImpls {
+	public static fun comment (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun entity (Lkotlinx/html/CoreAttributeGroupFacade;Lkotlinx/html/Entities;)V
+	public static fun text (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/Number;)V
+	public static fun text (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/CoreAttributeGroupFacade;Lkotlinx/html/Entities;)V
+}
+
+public abstract interface class kotlinx/html/CoreAttributeGroupFacadeFlowMetaDataPhrasingContent : kotlinx/html/CoreAttributeGroupFacade, kotlinx/html/FlowMetaDataContent, kotlinx/html/FlowMetaDataPhrasingContent, kotlinx/html/FlowPhrasingContent {
+}
+
+public final class kotlinx/html/CoreAttributeGroupFacadeFlowMetaDataPhrasingContent$DefaultImpls {
+	public static fun comment (Lkotlinx/html/CoreAttributeGroupFacadeFlowMetaDataPhrasingContent;Ljava/lang/String;)V
+	public static fun entity (Lkotlinx/html/CoreAttributeGroupFacadeFlowMetaDataPhrasingContent;Lkotlinx/html/Entities;)V
+	public static fun text (Lkotlinx/html/CoreAttributeGroupFacadeFlowMetaDataPhrasingContent;Ljava/lang/Number;)V
+	public static fun text (Lkotlinx/html/CoreAttributeGroupFacadeFlowMetaDataPhrasingContent;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/CoreAttributeGroupFacadeFlowMetaDataPhrasingContent;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/CoreAttributeGroupFacadeFlowMetaDataPhrasingContent;Lkotlinx/html/Entities;)V
+}
+
+public abstract interface class kotlinx/html/CoreServerAttributeGroupFacade : kotlinx/html/Tag {
+}
+
+public final class kotlinx/html/CoreServerAttributeGroupFacade$DefaultImpls {
+	public static fun comment (Lkotlinx/html/CoreServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun entity (Lkotlinx/html/CoreServerAttributeGroupFacade;Lkotlinx/html/Entities;)V
+	public static fun text (Lkotlinx/html/CoreServerAttributeGroupFacade;Ljava/lang/Number;)V
+	public static fun text (Lkotlinx/html/CoreServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/CoreServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/CoreServerAttributeGroupFacade;Lkotlinx/html/Entities;)V
 }
 
 public class kotlinx/html/DATALIST : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInlineTag {
@@ -580,6 +686,7 @@ public final class kotlinx/html/DefaultUnsafe : kotlinx/html/Unsafe {
 }
 
 public final class kotlinx/html/Dir : java/lang/Enum, kotlinx/html/AttributeEnum {
+	public static final field auto Lkotlinx/html/Dir;
 	public static final field ltr Lkotlinx/html/Dir;
 	public static final field rtl Lkotlinx/html/Dir;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -2974,209 +3081,213 @@ public final class kotlinx/html/FormServerAttributeGroupFacade$DefaultImpls {
 
 public final class kotlinx/html/FormTarget {
 	public static final field INSTANCE Lkotlinx/html/FormTarget;
-	public final fun getBlank ()Ljava/lang/String;
-	public final fun getParent ()Ljava/lang/String;
-	public final fun getSelf ()Ljava/lang/String;
-	public final fun getTop ()Ljava/lang/String;
+	public static final field blank Ljava/lang/String;
+	public static final field parent Ljava/lang/String;
+	public static final field self Ljava/lang/String;
+	public static final field top Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
 public final class kotlinx/html/Gen_attr_traitsKt {
-	public static final fun getAccessKey (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getAccessKey (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getCausesValidation (Lkotlinx/html/ButtonServerAttributeGroupFacade;)Z
 	public static final fun getCausesValidation (Lkotlinx/html/InputServerAttributeGroupFacade;)Z
-	public static final fun getClasses (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/util/Set;
-	public static final fun getContentEditable (Lkotlinx/html/CommonAttributeGroupFacade;)Z
-	public static final fun getContextMenu (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getDataFolderName (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getDataMsgId (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getClasses (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/util/Set;
+	public static final fun getContentEditable (Lkotlinx/html/CoreAttributeGroupFacade;)Z
+	public static final fun getContextMenu (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getDataFolderName (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getDataMsgId (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getDataSourceID (Lkotlinx/html/SelectServerAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getDataTextField (Lkotlinx/html/SelectServerAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getDataValueField (Lkotlinx/html/SelectServerAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getDefaultButton (Lkotlinx/html/FormServerAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getDefaultFocus (Lkotlinx/html/FormServerAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getDir (Lkotlinx/html/CommonAttributeGroupFacade;)Lkotlinx/html/Dir;
-	public static final fun getDraggable (Lkotlinx/html/CommonAttributeGroupFacade;)Lkotlinx/html/Draggable;
-	public static final fun getEnableTheming (Lkotlinx/html/CommonAttributeGroupFacade;)Z
-	public static final fun getEnableViewState (Lkotlinx/html/CommonAttributeGroupFacade;)Z
-	public static final fun getHidden (Lkotlinx/html/CommonAttributeGroupFacade;)Z
-	public static final fun getId (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getItemProp (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getLang (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnAbort (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnBlur (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnCanPlay (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnCanPlayThrough (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnChange (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnClick (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnContextMenu (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnDoubleClick (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnDrag (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnDragEnd (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnDragEnter (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnDragLeave (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnDragOver (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnDragStart (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnDrop (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnDurationChange (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnEmptied (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnEnded (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnError (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnFocus (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnFocusIn (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnFocusOut (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnFormChange (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnFormInput (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnInput (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnInvalid (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnKeyDown (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnKeyPress (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnKeyUp (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnLoad (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnLoadStart (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnLoadedData (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnLoadedMetaData (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnMouseDown (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnMouseEnter (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnMouseLeave (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnMouseMove (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnMouseOut (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnMouseOver (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnMouseUp (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnMouseWheel (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnPause (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnPlay (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnPlaying (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnProgress (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnRateChange (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnReadyStateChange (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnScroll (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnSearch (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnSeeked (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnSeeking (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnSelect (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnShow (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnStalled (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnSubmit (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnSuspend (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnTimeUpdate (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnTouchCancel (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnTouchEnd (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnTouchMove (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnTouchStart (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnVolumeChange (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnWaiting (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getOnWheel (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getRole (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getRunAt (Lkotlinx/html/CommonAttributeGroupFacade;)Lkotlinx/html/RunAt;
-	public static final fun getSkinID (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getSpellCheck (Lkotlinx/html/CommonAttributeGroupFacade;)Z
-	public static final fun getStyle (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getSubject (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getDir (Lkotlinx/html/CoreAttributeGroupFacade;)Lkotlinx/html/Dir;
+	public static final fun getDraggable (Lkotlinx/html/CoreAttributeGroupFacade;)Lkotlinx/html/Draggable;
+	public static final fun getEnableTheming (Lkotlinx/html/CoreServerAttributeGroupFacade;)Z
+	public static final fun getEnableViewState (Lkotlinx/html/CoreServerAttributeGroupFacade;)Z
+	public static final fun getHidden (Lkotlinx/html/CoreAttributeGroupFacade;)Z
+	public static final fun getId (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getItemProp (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getLang (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getOnAbort (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnBlur (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnCanPlay (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnCanPlayThrough (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnChange (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnClick (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnContextMenu (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnDoubleClick (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnDrag (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnDragEnd (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnDragEnter (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnDragLeave (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnDragOver (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnDragStart (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnDrop (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnDurationChange (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnEmptied (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnEnded (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnError (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnFocus (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnFocusIn (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnFocusOut (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnFormChange (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnFormInput (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnInput (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnInvalid (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnKeyDown (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnKeyPress (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnKeyUp (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnLoad (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnLoadStart (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnLoadedData (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnLoadedMetaData (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnMouseDown (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnMouseEnter (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnMouseLeave (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnMouseMove (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnMouseOut (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnMouseOver (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnMouseUp (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnMouseWheel (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnPause (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnPlay (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnPlaying (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnProgress (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnRateChange (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnReadyStateChange (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnScroll (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnSearch (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnSeeked (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnSeeking (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnSelect (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnShow (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnStalled (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnSubmit (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnSuspend (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnTimeUpdate (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnTouchCancel (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnTouchEnd (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnTouchMove (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnTouchStart (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnVolumeChange (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnWaiting (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getOnWheel (Lkotlinx/html/CommonEventsGroupFacade;)Ljava/lang/String;
+	public static final fun getRole (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getRunAt (Lkotlinx/html/CoreAttributeGroupFacade;)Lkotlinx/html/RunAt;
+	public static final fun getSkinID (Lkotlinx/html/CoreServerAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getSpellCheck (Lkotlinx/html/CoreAttributeGroupFacade;)Z
+	public static final fun getStyle (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getSubject (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getSubmitDisabledControls (Lkotlinx/html/FormServerAttributeGroupFacade;)Z
-	public static final fun getTabIndex (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getTitle (Lkotlinx/html/CommonAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getTabIndex (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getTitle (Lkotlinx/html/CoreAttributeGroupFacade;)Ljava/lang/String;
+	public static final fun getValidationGroup (Lkotlinx/html/ButtonServerAttributeGroupFacade;)Ljava/lang/String;
 	public static final fun getValidationGroup (Lkotlinx/html/InputServerAttributeGroupFacade;)Ljava/lang/String;
-	public static final fun getVisible (Lkotlinx/html/CommonAttributeGroupFacade;)Z
-	public static final fun setAccessKey (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun getVisible (Lkotlinx/html/CoreServerAttributeGroupFacade;)Z
+	public static final fun setAccessKey (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setCausesValidation (Lkotlinx/html/ButtonServerAttributeGroupFacade;Z)V
 	public static final fun setCausesValidation (Lkotlinx/html/InputServerAttributeGroupFacade;Z)V
-	public static final fun setClasses (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/util/Set;)V
-	public static final fun setContentEditable (Lkotlinx/html/CommonAttributeGroupFacade;Z)V
-	public static final fun setContextMenu (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setDataFolderName (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setDataMsgId (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setClasses (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/util/Set;)V
+	public static final fun setContentEditable (Lkotlinx/html/CoreAttributeGroupFacade;Z)V
+	public static final fun setContextMenu (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setDataFolderName (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setDataMsgId (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setDataSourceID (Lkotlinx/html/SelectServerAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setDataTextField (Lkotlinx/html/SelectServerAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setDataValueField (Lkotlinx/html/SelectServerAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setDefaultButton (Lkotlinx/html/FormServerAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setDefaultFocus (Lkotlinx/html/FormServerAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setDir (Lkotlinx/html/CommonAttributeGroupFacade;Lkotlinx/html/Dir;)V
-	public static final fun setDraggable (Lkotlinx/html/CommonAttributeGroupFacade;Lkotlinx/html/Draggable;)V
-	public static final fun setEnableTheming (Lkotlinx/html/CommonAttributeGroupFacade;Z)V
-	public static final fun setEnableViewState (Lkotlinx/html/CommonAttributeGroupFacade;Z)V
-	public static final fun setHidden (Lkotlinx/html/CommonAttributeGroupFacade;Z)V
-	public static final fun setId (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setItemProp (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setLang (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnAbort (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnBlur (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnCanPlay (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnCanPlayThrough (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnChange (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnClick (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnContextMenu (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnDoubleClick (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnDrag (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnDragEnd (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnDragEnter (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnDragLeave (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnDragOver (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnDragStart (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnDrop (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnDurationChange (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnEmptied (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnEnded (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnError (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnFocus (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnFocusIn (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnFocusOut (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnFormChange (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnFormInput (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnInput (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnInvalid (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnKeyDown (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnKeyPress (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnKeyUp (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnLoad (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnLoadStart (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnLoadedData (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnLoadedMetaData (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnMouseDown (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnMouseEnter (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnMouseLeave (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnMouseMove (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnMouseOut (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnMouseOver (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnMouseUp (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnMouseWheel (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnPause (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnPlay (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnPlaying (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnProgress (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnRateChange (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnReadyStateChange (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnScroll (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnSearch (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnSeeked (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnSeeking (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnSelect (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnShow (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnStalled (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnSubmit (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnSuspend (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnTimeUpdate (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnTouchCancel (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnTouchEnd (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnTouchMove (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnTouchStart (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnVolumeChange (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnWaiting (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setOnWheel (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setRole (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setRunAt (Lkotlinx/html/CommonAttributeGroupFacade;Lkotlinx/html/RunAt;)V
-	public static final fun setSkinID (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setSpellCheck (Lkotlinx/html/CommonAttributeGroupFacade;Z)V
-	public static final fun setStyle (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setSubject (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setDir (Lkotlinx/html/CoreAttributeGroupFacade;Lkotlinx/html/Dir;)V
+	public static final fun setDraggable (Lkotlinx/html/CoreAttributeGroupFacade;Lkotlinx/html/Draggable;)V
+	public static final fun setEnableTheming (Lkotlinx/html/CoreServerAttributeGroupFacade;Z)V
+	public static final fun setEnableViewState (Lkotlinx/html/CoreServerAttributeGroupFacade;Z)V
+	public static final fun setHidden (Lkotlinx/html/CoreAttributeGroupFacade;Z)V
+	public static final fun setId (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setItemProp (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setLang (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnAbort (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnBlur (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnCanPlay (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnCanPlayThrough (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnChange (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnClick (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnContextMenu (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnDoubleClick (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnDrag (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnDragEnd (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnDragEnter (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnDragLeave (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnDragOver (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnDragStart (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnDrop (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnDurationChange (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnEmptied (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnEnded (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnError (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnFocus (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnFocusIn (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnFocusOut (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnFormChange (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnFormInput (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnInput (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnInvalid (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnKeyDown (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnKeyPress (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnKeyUp (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnLoad (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnLoadStart (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnLoadedData (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnLoadedMetaData (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnMouseDown (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnMouseEnter (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnMouseLeave (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnMouseMove (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnMouseOut (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnMouseOver (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnMouseUp (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnMouseWheel (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnPause (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnPlay (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnPlaying (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnProgress (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnRateChange (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnReadyStateChange (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnScroll (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnSearch (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnSeeked (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnSeeking (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnSelect (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnShow (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnStalled (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnSubmit (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnSuspend (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnTimeUpdate (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnTouchCancel (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnTouchEnd (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnTouchMove (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnTouchStart (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnVolumeChange (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnWaiting (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setOnWheel (Lkotlinx/html/CommonEventsGroupFacade;Ljava/lang/String;)V
+	public static final fun setRole (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setRunAt (Lkotlinx/html/CoreAttributeGroupFacade;Lkotlinx/html/RunAt;)V
+	public static final fun setSkinID (Lkotlinx/html/CoreServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setSpellCheck (Lkotlinx/html/CoreAttributeGroupFacade;Z)V
+	public static final fun setStyle (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setSubject (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setSubmitDisabledControls (Lkotlinx/html/FormServerAttributeGroupFacade;Z)V
-	public static final fun setTabIndex (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setTitle (Lkotlinx/html/CommonAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setTabIndex (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setTitle (Lkotlinx/html/CoreAttributeGroupFacade;Ljava/lang/String;)V
+	public static final fun setValidationGroup (Lkotlinx/html/ButtonServerAttributeGroupFacade;Ljava/lang/String;)V
 	public static final fun setValidationGroup (Lkotlinx/html/InputServerAttributeGroupFacade;Ljava/lang/String;)V
-	public static final fun setVisible (Lkotlinx/html/CommonAttributeGroupFacade;Z)V
+	public static final fun setVisible (Lkotlinx/html/CoreServerAttributeGroupFacade;Z)V
 }
 
 public final class kotlinx/html/Gen_consumer_tagsKt {
-	public static final fun a (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
-	public static synthetic fun a$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun a (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/AReferrerPolicy;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static synthetic fun a$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/AReferrerPolicy;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun abbr (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun abbr$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun address (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
@@ -3305,8 +3416,8 @@ public final class kotlinx/html/Gen_consumer_tagsKt {
 	public static synthetic fun legend$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun li (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun li$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
-	public static final fun link (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
-	public static synthetic fun link$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun link (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/LinkAs;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static synthetic fun link$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/LinkAs;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun main (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun main$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun map (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
@@ -3339,8 +3450,8 @@ public final class kotlinx/html/Gen_consumer_tagsKt {
 	public static synthetic fun output$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun p (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun p$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
-	public static final fun param (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
-	public static synthetic fun param$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun param (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static synthetic fun param$default (Lkotlinx/html/TagConsumer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun picture (Lkotlinx/html/TagConsumer;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static synthetic fun picture$default (Lkotlinx/html/TagConsumer;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun pre (Lkotlinx/html/TagConsumer;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
@@ -3489,8 +3600,8 @@ public final class kotlinx/html/Gen_tag_groupsKt {
 }
 
 public final class kotlinx/html/Gen_tag_unionsKt {
-	public static final fun a (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun a$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun a (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/AReferrerPolicy;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun a$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/AReferrerPolicy;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun abbr (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun abbr$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun allowFormSIframe (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;)V
@@ -3517,6 +3628,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun aside$default (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun audio (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun audio$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun audioLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun audioLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun b (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun b$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun bdi (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -3567,6 +3680,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun details$default (Lkotlinx/html/FlowOrInteractiveContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun dfn (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun dfn$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun documentLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun documentLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun eagerImg (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun eagerImg$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun em (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -3575,8 +3690,14 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun emailInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun embed (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun embed$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun embedLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun embedLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun fetchLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun fetchLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun fileInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun fileInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun fontLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun fontLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun getButton (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/ButtonFormEncType;Ljava/lang/String;Lkotlinx/html/ButtonType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun getButton$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/ButtonFormEncType;Ljava/lang/String;Lkotlinx/html/ButtonType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun h1 (Lkotlinx/html/FlowOrHeadingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -3601,6 +3722,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun hiddenInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun htmlObject (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun htmlObject$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun htmlObjectLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun htmlObjectLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun htmlVar (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun htmlVar$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun i (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -3611,6 +3734,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun iframe$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/IframeSandbox;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun imageInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun imageInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun imageLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun imageLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun img (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ImgLoading;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun img$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ImgLoading;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun input (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputType;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -3625,8 +3750,8 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun label$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun lazyImg (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun lazyImg$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun link (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun link$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun link (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/LinkAs;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun link$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/LinkAs;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun main (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun main$default (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun map (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -3643,16 +3768,32 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun monthInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun nav (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun nav$default (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun noReferrerA (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun noReferrerA$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun noReferrerWhenDowngradeA (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun noReferrerWhenDowngradeA$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun noScript (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun noScript$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun numberInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun numberInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun offTextArea (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun offTextArea (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun offTextArea$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static synthetic fun offTextArea$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun originA (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun originA$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun originWhenCrossOriginA (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun originWhenCrossOriginA$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun output (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun output$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun passwordInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun passwordInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun patchButton (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/ButtonFormEncType;Ljava/lang/String;Lkotlinx/html/ButtonType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun patchButton$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/ButtonFormEncType;Ljava/lang/String;Lkotlinx/html/ButtonType;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun physicalTextArea (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun physicalTextArea (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun physicalTextArea$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static synthetic fun physicalTextArea$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun picture (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun picture$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun polyArea (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -3679,12 +3820,16 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun rsaKeyGen$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun ruby (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun ruby$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun sameOriginA (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun sameOriginA$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun samp (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun samp$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun script (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ScriptCrossorigin;Ljava/lang/String;)V
 	public static final fun script (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ScriptCrossorigin;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun script$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ScriptCrossorigin;Ljava/lang/String;ILjava/lang/Object;)V
 	public static synthetic fun script$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlinx/html/ScriptCrossorigin;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun scriptLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun scriptLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun searchInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun searchInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun section (Lkotlinx/html/SectioningOrFlowContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -3699,12 +3844,16 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun softTextArea$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun span (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun span$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun strictOriginWhenCrossOriginA (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun strictOriginWhenCrossOriginA$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun strong (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun strong$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun style (Lkotlinx/html/FlowOrMetaDataContent;Ljava/lang/String;Ljava/lang/String;)V
 	public static final fun style (Lkotlinx/html/FlowOrMetaDataContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun style$default (Lkotlinx/html/FlowOrMetaDataContent;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 	public static synthetic fun style$default (Lkotlinx/html/FlowOrMetaDataContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun styleLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun styleLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun sub (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun sub$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun submitInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -3727,6 +3876,10 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun time$default (Lkotlinx/html/FlowOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun timeInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun timeInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun trackLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun trackLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun unsafeUrlA (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun unsafeUrlA$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun urlInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun urlInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun useCredentialsScript (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
@@ -3735,8 +3888,16 @@ public final class kotlinx/html/Gen_tag_unionsKt {
 	public static synthetic fun useCredentialsScript$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun video (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun video$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun videoLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun videoLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun virtualTextArea (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun virtualTextArea (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun virtualTextArea$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static synthetic fun virtualTextArea$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun weekInput (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun weekInput$default (Lkotlinx/html/FlowOrInteractiveOrPhrasingContent;Lkotlinx/html/InputFormEncType;Lkotlinx/html/InputFormMethod;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun workerLink (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun workerLink$default (Lkotlinx/html/FlowOrMetaDataOrPhrasingContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 
 public final class kotlinx/html/Gen_tags_aKt {
@@ -3916,8 +4077,8 @@ public final class kotlinx/html/Gen_tags_oKt {
 	public static final fun option (Lkotlinx/html/OPTGROUP;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun option$default (Lkotlinx/html/OPTGROUP;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 	public static synthetic fun option$default (Lkotlinx/html/OPTGROUP;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun param (Lkotlinx/html/OBJECT;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun param$default (Lkotlinx/html/OBJECT;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun param (Lkotlinx/html/OBJECT;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun param$default (Lkotlinx/html/OBJECT;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 
 public final class kotlinx/html/Gen_tags_pKt {
@@ -4241,7 +4402,7 @@ public class kotlinx/html/INPUT : kotlinx/html/HTMLTag, kotlinx/html/CommonAttri
 	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
 	public final fun getAccept ()Ljava/lang/String;
 	public final fun getAlt ()Ljava/lang/String;
-	public final fun getAutoComplete ()Z
+	public final fun getAutoComplete ()Ljava/lang/String;
 	public final fun getAutoFocus ()Z
 	public final fun getChecked ()Z
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
@@ -4273,7 +4434,7 @@ public class kotlinx/html/INPUT : kotlinx/html/HTMLTag, kotlinx/html/CommonAttri
 	public final fun getWidth ()Ljava/lang/String;
 	public final fun setAccept (Ljava/lang/String;)V
 	public final fun setAlt (Ljava/lang/String;)V
-	public final fun setAutoComplete (Z)V
+	public final fun setAutoComplete (Ljava/lang/String;)V
 	public final fun setAutoFocus (Z)V
 	public final fun setChecked (Z)V
 	public final fun setDisabled (Z)V
@@ -4315,10 +4476,10 @@ public class kotlinx/html/INS : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInli
 
 public final class kotlinx/html/IframeName {
 	public static final field INSTANCE Lkotlinx/html/IframeName;
-	public final fun getBlank ()Ljava/lang/String;
-	public final fun getParent ()Ljava/lang/String;
-	public final fun getSelf ()Ljava/lang/String;
-	public final fun getTop ()Ljava/lang/String;
+	public static final field blank Ljava/lang/String;
+	public static final field parent Ljava/lang/String;
+	public static final field self Ljava/lang/String;
+	public static final field top Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -4339,6 +4500,67 @@ public final class kotlinx/html/ImgLoading : java/lang/Enum, kotlinx/html/Attrib
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/ImgLoading;
 	public static fun values ()[Lkotlinx/html/ImgLoading;
+}
+
+public final class kotlinx/html/InputAutoComplete {
+	public static final field INSTANCE Lkotlinx/html/InputAutoComplete;
+	public static final field additionalName Ljava/lang/String;
+	public static final field addressLevel1 Ljava/lang/String;
+	public static final field addressLevel2 Ljava/lang/String;
+	public static final field addressLevel3 Ljava/lang/String;
+	public static final field addressLevel4 Ljava/lang/String;
+	public static final field addressLine1 Ljava/lang/String;
+	public static final field addressLine2 Ljava/lang/String;
+	public static final field addressLine3 Ljava/lang/String;
+	public static final field bday Ljava/lang/String;
+	public static final field bdayDay Ljava/lang/String;
+	public static final field bdayMonth Ljava/lang/String;
+	public static final field bdayYear Ljava/lang/String;
+	public static final field ccAdditionalName Ljava/lang/String;
+	public static final field ccCsc Ljava/lang/String;
+	public static final field ccExp Ljava/lang/String;
+	public static final field ccExpMonth Ljava/lang/String;
+	public static final field ccExpYear Ljava/lang/String;
+	public static final field ccFamilyName Ljava/lang/String;
+	public static final field ccGivenName Ljava/lang/String;
+	public static final field ccName Ljava/lang/String;
+	public static final field ccNumber Ljava/lang/String;
+	public static final field ccType Ljava/lang/String;
+	public static final field country Ljava/lang/String;
+	public static final field countryName Ljava/lang/String;
+	public static final field currentPassword Ljava/lang/String;
+	public static final field email Ljava/lang/String;
+	public static final field familyName Ljava/lang/String;
+	public static final field givenName Ljava/lang/String;
+	public static final field honoricPrefix Ljava/lang/String;
+	public static final field honoricSuffix Ljava/lang/String;
+	public static final field impp Ljava/lang/String;
+	public static final field language Ljava/lang/String;
+	public static final field name Ljava/lang/String;
+	public static final field newPassword Ljava/lang/String;
+	public static final field nickname Ljava/lang/String;
+	public static final field off Ljava/lang/String;
+	public static final field on Ljava/lang/String;
+	public static final field onETimeCode Ljava/lang/String;
+	public static final field organization Ljava/lang/String;
+	public static final field organizationTitle Ljava/lang/String;
+	public static final field photo Ljava/lang/String;
+	public static final field postalCode Ljava/lang/String;
+	public static final field sex Ljava/lang/String;
+	public static final field streetAddress Ljava/lang/String;
+	public static final field tel Ljava/lang/String;
+	public static final field telAreaCode Ljava/lang/String;
+	public static final field telCountryCode Ljava/lang/String;
+	public static final field telExtension Ljava/lang/String;
+	public static final field telLocal Ljava/lang/String;
+	public static final field telLocalPrefix Ljava/lang/String;
+	public static final field telLocalSuffix Ljava/lang/String;
+	public static final field telNational Ljava/lang/String;
+	public static final field transactionAmount Ljava/lang/String;
+	public static final field transactionCurrency Ljava/lang/String;
+	public static final field url Ljava/lang/String;
+	public static final field username Ljava/lang/String;
+	public final fun getValues ()Ljava/util/List;
 }
 
 public final class kotlinx/html/InputFormEncType : java/lang/Enum, kotlinx/html/AttributeEnum {
@@ -4365,10 +4587,10 @@ public final class kotlinx/html/InputFormMethod : java/lang/Enum, kotlinx/html/A
 
 public final class kotlinx/html/InputFormTarget {
 	public static final field INSTANCE Lkotlinx/html/InputFormTarget;
-	public final fun getBlank ()Ljava/lang/String;
-	public final fun getParent ()Ljava/lang/String;
-	public final fun getSelf ()Ljava/lang/String;
-	public final fun getTop ()Ljava/lang/String;
+	public static final field blank Ljava/lang/String;
+	public static final field parent Ljava/lang/String;
+	public static final field self Ljava/lang/String;
+	public static final field top Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -4482,6 +4704,7 @@ public class kotlinx/html/LINK : kotlinx/html/HTMLTag, kotlinx/html/CommonAttrib
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 	public final fun getHref ()Ljava/lang/String;
 	public final fun getHrefLang ()Ljava/lang/String;
+	public final fun getHtmlAs ()Lkotlinx/html/LinkAs;
 	public final fun getIntegrity ()Ljava/lang/String;
 	public final fun getMedia ()Ljava/lang/String;
 	public final fun getRel ()Ljava/lang/String;
@@ -4489,6 +4712,7 @@ public class kotlinx/html/LINK : kotlinx/html/HTMLTag, kotlinx/html/CommonAttrib
 	public final fun getType ()Ljava/lang/String;
 	public final fun setHref (Ljava/lang/String;)V
 	public final fun setHrefLang (Ljava/lang/String;)V
+	public final fun setHtmlAs (Lkotlinx/html/LinkAs;)V
 	public final fun setIntegrity (Ljava/lang/String;)V
 	public final fun setMedia (Ljava/lang/String;)V
 	public final fun setRel (Ljava/lang/String;)V
@@ -4496,52 +4720,71 @@ public class kotlinx/html/LINK : kotlinx/html/HTMLTag, kotlinx/html/CommonAttrib
 	public final fun setType (Ljava/lang/String;)V
 }
 
+public final class kotlinx/html/LinkAs : java/lang/Enum, kotlinx/html/AttributeEnum {
+	public static final field audio Lkotlinx/html/LinkAs;
+	public static final field document Lkotlinx/html/LinkAs;
+	public static final field embed Lkotlinx/html/LinkAs;
+	public static final field fetch Lkotlinx/html/LinkAs;
+	public static final field font Lkotlinx/html/LinkAs;
+	public static final field htmlObject Lkotlinx/html/LinkAs;
+	public static final field image Lkotlinx/html/LinkAs;
+	public static final field script Lkotlinx/html/LinkAs;
+	public static final field style Lkotlinx/html/LinkAs;
+	public static final field track Lkotlinx/html/LinkAs;
+	public static final field video Lkotlinx/html/LinkAs;
+	public static final field worker Lkotlinx/html/LinkAs;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getRealValue ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/LinkAs;
+	public static fun values ()[Lkotlinx/html/LinkAs;
+}
+
 public final class kotlinx/html/LinkMedia {
 	public static final field INSTANCE Lkotlinx/html/LinkMedia;
-	public final fun getAll ()Ljava/lang/String;
-	public final fun getAural ()Ljava/lang/String;
-	public final fun getBraille ()Ljava/lang/String;
-	public final fun getHandheld ()Ljava/lang/String;
-	public final fun getPrint ()Ljava/lang/String;
-	public final fun getProjection ()Ljava/lang/String;
-	public final fun getScreen ()Ljava/lang/String;
-	public final fun getTty ()Ljava/lang/String;
-	public final fun getTv ()Ljava/lang/String;
+	public static final field all Ljava/lang/String;
+	public static final field aural Ljava/lang/String;
+	public static final field braille Ljava/lang/String;
+	public static final field handheld Ljava/lang/String;
+	public static final field print Ljava/lang/String;
+	public static final field projection Ljava/lang/String;
+	public static final field screen Ljava/lang/String;
+	public static final field tty Ljava/lang/String;
+	public static final field tv Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
 public final class kotlinx/html/LinkRel {
 	public static final field INSTANCE Lkotlinx/html/LinkRel;
-	public final fun getAlternate ()Ljava/lang/String;
-	public final fun getAppEndIx ()Ljava/lang/String;
-	public final fun getBookmark ()Ljava/lang/String;
-	public final fun getChapter ()Ljava/lang/String;
-	public final fun getContentS ()Ljava/lang/String;
-	public final fun getCopyright ()Ljava/lang/String;
-	public final fun getGlossary ()Ljava/lang/String;
-	public final fun getHelp ()Ljava/lang/String;
-	public final fun getIndex ()Ljava/lang/String;
-	public final fun getNext ()Ljava/lang/String;
-	public final fun getPrev ()Ljava/lang/String;
-	public final fun getSection ()Ljava/lang/String;
-	public final fun getStart ()Ljava/lang/String;
-	public final fun getStylesheet ()Ljava/lang/String;
-	public final fun getSubsection ()Ljava/lang/String;
+	public static final field alternate Ljava/lang/String;
+	public static final field appEndIx Ljava/lang/String;
+	public static final field bookmark Ljava/lang/String;
+	public static final field chapter Ljava/lang/String;
+	public static final field contentS Ljava/lang/String;
+	public static final field copyright Ljava/lang/String;
+	public static final field glossary Ljava/lang/String;
+	public static final field help Ljava/lang/String;
+	public static final field index Ljava/lang/String;
+	public static final field next Ljava/lang/String;
+	public static final field prev Ljava/lang/String;
+	public static final field section Ljava/lang/String;
+	public static final field start Ljava/lang/String;
+	public static final field stylesheet Ljava/lang/String;
+	public static final field subsection Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
 public final class kotlinx/html/LinkType {
 	public static final field INSTANCE Lkotlinx/html/LinkType;
-	public final fun getTextAsa ()Ljava/lang/String;
-	public final fun getTextAsp ()Ljava/lang/String;
-	public final fun getTextCss ()Ljava/lang/String;
-	public final fun getTextHtml ()Ljava/lang/String;
-	public final fun getTextJavaScript ()Ljava/lang/String;
-	public final fun getTextPlain ()Ljava/lang/String;
-	public final fun getTextScriptLet ()Ljava/lang/String;
-	public final fun getTextXComponent ()Ljava/lang/String;
-	public final fun getTextXHtmlInsertion ()Ljava/lang/String;
-	public final fun getTextXml ()Ljava/lang/String;
+	public static final field textAsa Ljava/lang/String;
+	public static final field textAsp Ljava/lang/String;
+	public static final field textCss Ljava/lang/String;
+	public static final field textHtml Ljava/lang/String;
+	public static final field textJavaScript Ljava/lang/String;
+	public static final field textPlain Ljava/lang/String;
+	public static final field textScriptLet Ljava/lang/String;
+	public static final field textXComponent Ljava/lang/String;
+	public static final field textXHtmlInsertion Ljava/lang/String;
+	public static final field textXml Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -4616,10 +4859,10 @@ public final class kotlinx/html/MetaDataContent$DefaultImpls {
 
 public final class kotlinx/html/MetaHttpEquiv {
 	public static final field INSTANCE Lkotlinx/html/MetaHttpEquiv;
-	public final fun getContentLanguage ()Ljava/lang/String;
-	public final fun getContentType ()Ljava/lang/String;
-	public final fun getDefaultStyle ()Ljava/lang/String;
-	public final fun getRefresh ()Ljava/lang/String;
+	public static final field contentLanguage Ljava/lang/String;
+	public static final field contentType Ljava/lang/String;
+	public static final field defaultStyle Ljava/lang/String;
+	public static final field refresh Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -4698,10 +4941,10 @@ public class kotlinx/html/OUTPUT : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockI
 
 public final class kotlinx/html/ObjectName {
 	public static final field INSTANCE Lkotlinx/html/ObjectName;
-	public final fun getBlank ()Ljava/lang/String;
-	public final fun getParent ()Ljava/lang/String;
-	public final fun getSelf ()Ljava/lang/String;
-	public final fun getTop ()Ljava/lang/String;
+	public static final field blank Ljava/lang/String;
+	public static final field parent Ljava/lang/String;
+	public static final field self Ljava/lang/String;
+	public static final field top Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -4710,7 +4953,7 @@ public class kotlinx/html/P : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInline
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 }
 
-public class kotlinx/html/PARAM : kotlinx/html/HTMLTag {
+public class kotlinx/html/PARAM : kotlinx/html/HTMLTag, kotlinx/html/CoreAttributeGroupFacade {
 	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 	public final fun getName ()Ljava/lang/String;
@@ -4790,7 +5033,7 @@ public class kotlinx/html/SAMP : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockInl
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 }
 
-public class kotlinx/html/SCRIPT : kotlinx/html/HTMLTag, kotlinx/html/FlowMetaDataPhrasingContent {
+public class kotlinx/html/SCRIPT : kotlinx/html/HTMLTag, kotlinx/html/CoreAttributeGroupFacadeFlowMetaDataPhrasingContent {
 	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
 	public fun entity (Lkotlinx/html/Entities;)V
 	public final fun getAsync ()Z
@@ -4857,9 +5100,11 @@ public class kotlinx/html/SOURCE : kotlinx/html/HTMLTag, kotlinx/html/CommonAttr
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 	public final fun getMedia ()Ljava/lang/String;
 	public final fun getSrc ()Ljava/lang/String;
+	public final fun getSrcset ()Ljava/lang/String;
 	public final fun getType ()Ljava/lang/String;
 	public final fun setMedia (Ljava/lang/String;)V
 	public final fun setSrc (Ljava/lang/String;)V
+	public final fun setSrcset (Ljava/lang/String;)V
 	public final fun setType (Ljava/lang/String;)V
 }
 
@@ -4922,18 +5167,18 @@ public final class kotlinx/html/ScriptCrossorigin : java/lang/Enum, kotlinx/html
 
 public final class kotlinx/html/ScriptType {
 	public static final field INSTANCE Lkotlinx/html/ScriptType;
-	public final fun getTextEcmaScript ()Ljava/lang/String;
-	public final fun getTextJScript ()Ljava/lang/String;
-	public final fun getTextJavaScript ()Ljava/lang/String;
-	public final fun getTextJavaScript10 ()Ljava/lang/String;
-	public final fun getTextJavaScript11 ()Ljava/lang/String;
-	public final fun getTextJavaScript12 ()Ljava/lang/String;
-	public final fun getTextJavaScript13 ()Ljava/lang/String;
-	public final fun getTextJavaScript14 ()Ljava/lang/String;
-	public final fun getTextJavaScript15 ()Ljava/lang/String;
-	public final fun getTextVbScript ()Ljava/lang/String;
-	public final fun getTextXEcmaScript ()Ljava/lang/String;
-	public final fun getTextXJavaScript ()Ljava/lang/String;
+	public static final field textEcmaScript Ljava/lang/String;
+	public static final field textJScript Ljava/lang/String;
+	public static final field textJavaScript Ljava/lang/String;
+	public static final field textJavaScript10 Ljava/lang/String;
+	public static final field textJavaScript11 Ljava/lang/String;
+	public static final field textJavaScript12 Ljava/lang/String;
+	public static final field textJavaScript13 Ljava/lang/String;
+	public static final field textJavaScript14 Ljava/lang/String;
+	public static final field textJavaScript15 Ljava/lang/String;
+	public static final field textVbScript Ljava/lang/String;
+	public static final field textXEcmaScript Ljava/lang/String;
+	public static final field textXJavaScript Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -4975,21 +5220,21 @@ public final class kotlinx/html/SelectServerAttributeGroupFacade$DefaultImpls {
 
 public final class kotlinx/html/StyleMedia {
 	public static final field INSTANCE Lkotlinx/html/StyleMedia;
-	public final fun getAll ()Ljava/lang/String;
-	public final fun getAural ()Ljava/lang/String;
-	public final fun getBraille ()Ljava/lang/String;
-	public final fun getHandheld ()Ljava/lang/String;
-	public final fun getPrint ()Ljava/lang/String;
-	public final fun getProjection ()Ljava/lang/String;
-	public final fun getScreen ()Ljava/lang/String;
-	public final fun getTty ()Ljava/lang/String;
-	public final fun getTv ()Ljava/lang/String;
+	public static final field all Ljava/lang/String;
+	public static final field aural Ljava/lang/String;
+	public static final field braille Ljava/lang/String;
+	public static final field handheld Ljava/lang/String;
+	public static final field print Ljava/lang/String;
+	public static final field projection Ljava/lang/String;
+	public static final field screen Ljava/lang/String;
+	public static final field tty Ljava/lang/String;
+	public static final field tv Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
 public final class kotlinx/html/StyleType {
 	public static final field INSTANCE Lkotlinx/html/StyleType;
-	public final fun getTextCss ()Ljava/lang/String;
+	public static final field textCss Ljava/lang/String;
 	public final fun getValues ()Ljava/util/List;
 }
 
@@ -5129,11 +5374,26 @@ public abstract interface class kotlinx/html/TagConsumer {
 
 public final class kotlinx/html/TextAreaWrap : java/lang/Enum, kotlinx/html/AttributeEnum {
 	public static final field hard Lkotlinx/html/TextAreaWrap;
+	public static final field off Lkotlinx/html/TextAreaWrap;
+	public static final field physical Lkotlinx/html/TextAreaWrap;
 	public static final field soft Lkotlinx/html/TextAreaWrap;
+	public static final field virtual Lkotlinx/html/TextAreaWrap;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public fun getRealValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lkotlinx/html/TextAreaWrap;
 	public static fun values ()[Lkotlinx/html/TextAreaWrap;
+}
+
+public abstract interface class kotlinx/html/TextareaServerAttributeGroupFacade : kotlinx/html/Tag {
+}
+
+public final class kotlinx/html/TextareaServerAttributeGroupFacade$DefaultImpls {
+	public static fun comment (Lkotlinx/html/TextareaServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun entity (Lkotlinx/html/TextareaServerAttributeGroupFacade;Lkotlinx/html/Entities;)V
+	public static fun text (Lkotlinx/html/TextareaServerAttributeGroupFacade;Ljava/lang/Number;)V
+	public static fun text (Lkotlinx/html/TextareaServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/TextareaServerAttributeGroupFacade;Ljava/lang/String;)V
+	public static fun unaryPlus (Lkotlinx/html/TextareaServerAttributeGroupFacade;Lkotlinx/html/Entities;)V
 }
 
 public final class kotlinx/html/ThScope : java/lang/Enum, kotlinx/html/AttributeEnum {

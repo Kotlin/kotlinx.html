@@ -1,19 +1,21 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 /**
  * This build script supports the following parameters:
  * -PversionTag - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "2.0.20"
+    kotlin("multiplatform") version "2.0.21"
     id("maven-publish")
     id("signing")
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.13.2"
 }
 
 group = "org.jetbrains.kotlinx"
-version = "0.11.0"
+version = "0.12.0"
 
 /**
  * If "release" profile is used the "-SNAPSHOT" suffix of the version is removed.
@@ -98,7 +100,6 @@ kotlin {
             pom { name = "${project.name}-js" }
         }
     }
-    @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         moduleName = project.name
         browser()
@@ -108,7 +109,6 @@ kotlin {
             pom { name = "${project.name}-wasm-js" }
         }
     }
-    @OptIn(ExperimentalWasmDsl::class)
     wasmWasi {
         nodejs()
 
@@ -273,6 +273,7 @@ rootProject.plugins.withType(org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
 tasks.named("jsBrowserTest") {
     dependsOn("wasmJsTestTestDevelopmentExecutableCompileSync")
 }
+
 tasks.named("wasmJsBrowserTest") {
     dependsOn("jsTestTestDevelopmentExecutableCompileSync")
 }

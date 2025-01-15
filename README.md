@@ -1,8 +1,7 @@
 [![Kotlin Stable](https://kotl.in/badges/stable.svg)](https://kotlinlang.org/docs/components-stability.html)
 [![Official JetBrains Project](https://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-green.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Kotlin](https://img.shields.io/badge/kotlin-1.9.21-blue.svg?logo=kotlin)](http://kotlinlang.org)
-[![TeamCity (simple build status)](https://teamcity.jetbrains.com/app/rest/builds/aggregated/strob:\(branch:\(buildType:\(id:KotlinTools_KotlinxHtml_BuildGradleMasterBranch\),policy:active_history_and_active_vcs_branches\),locator:\(buildType:\(id:KotlinTools_KotlinxHtml_BuildGradleMasterBranch\)\)\)/statusIcon.svg)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=KotlinTools_KotlinxHtml_BuildGradleMasterBranch&branch_Kotlin_KotlinX=%3Cdefault%3E&tab=buildTypeStatusDiv&guest=1)
+[![Kotlin](https://img.shields.io/badge/kotlin-2.1.0-blue.svg?logo=kotlin)](http://kotlinlang.org)
 
 # kotlinx.html
 
@@ -82,5 +81,5 @@ See [wiki](https://github.com/kotlin/kotlinx.html/wiki) pages
 
 # Building
 
-See [development](https://github.com/kotlin/kotlinx.html/wiki/Development) page for details.
+See the [development](https://github.com/kotlin/kotlinx.html/wiki/Development) page for details.
 
