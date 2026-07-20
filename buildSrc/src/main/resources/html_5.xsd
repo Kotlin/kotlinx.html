@@ -1907,7 +1907,7 @@
     <xsd:element name="th">
         <xsd:complexType mixed="true">
             <xsd:choice>
-                <xsd:group ref="phrasingContent"/>
+                <xsd:group ref="flowContent"/>
             </xsd:choice>
             <xsd:attributeGroup ref="commonAttributeGroup"/>
             <xsd:attribute name="headers"/>

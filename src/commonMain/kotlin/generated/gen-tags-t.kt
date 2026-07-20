@@ -202,7 +202,7 @@ inline fun TFOOT.tr(classes : String? = null, crossinline block : TR.() -> Unit 
 
 
 @Suppress("unused")
-open class TH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("th", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+open class TH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("th", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var headers : String
         get()  = attributeStringString[this, "headers"]
         set(newValue) {attributeStringString[this, "headers"] = newValue}
