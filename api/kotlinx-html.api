@@ -2854,6 +2854,9 @@ public final class kotlinx/html/Entities : java/lang/Enum {
 	public static fun values ()[Lkotlinx/html/Entities;
 }
 
+public abstract interface annotation class kotlinx/html/ExperimentalKotlinxHtmlApi : java/lang/annotation/Annotation {
+}
+
 public class kotlinx/html/FIELDSET : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockTag {
 	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
@@ -5300,7 +5303,7 @@ public class kotlinx/html/TFOOT : kotlinx/html/HTMLTag, kotlinx/html/CommonAttri
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
 }
 
-public class kotlinx/html/TH : kotlinx/html/HTMLTag, kotlinx/html/HtmlInlineTag {
+public class kotlinx/html/TH : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockTag {
 	public fun <init> (Ljava/util/Map;Lkotlinx/html/TagConsumer;)V
 	public final fun getColSpan ()Ljava/lang/String;
 	public fun getConsumer ()Lkotlinx/html/TagConsumer;
@@ -5336,8 +5339,8 @@ public class kotlinx/html/TR : kotlinx/html/HTMLTag, kotlinx/html/CommonAttribut
 }
 
 public abstract interface class kotlinx/html/Tag {
-	public abstract fun comment (Ljava/lang/String;)V
-	public abstract fun entity (Lkotlinx/html/Entities;)V
+	public fun comment (Ljava/lang/String;)V
+	public fun entity (Lkotlinx/html/Entities;)V
 	public abstract fun getAttributes ()Ljava/util/Map;
 	public abstract fun getAttributesEntries ()Ljava/util/Collection;
 	public abstract fun getConsumer ()Lkotlinx/html/TagConsumer;
@@ -5345,10 +5348,10 @@ public abstract interface class kotlinx/html/Tag {
 	public abstract fun getInlineTag ()Z
 	public abstract fun getNamespace ()Ljava/lang/String;
 	public abstract fun getTagName ()Ljava/lang/String;
-	public abstract fun text (Ljava/lang/Number;)V
-	public abstract fun text (Ljava/lang/String;)V
-	public abstract fun unaryPlus (Ljava/lang/String;)V
-	public abstract fun unaryPlus (Lkotlinx/html/Entities;)V
+	public fun text (Ljava/lang/Number;)V
+	public fun text (Ljava/lang/String;)V
+	public fun unaryPlus (Ljava/lang/String;)V
+	public fun unaryPlus (Lkotlinx/html/Entities;)V
 }
 
 public final class kotlinx/html/Tag$DefaultImpls {
@@ -5362,6 +5365,7 @@ public final class kotlinx/html/Tag$DefaultImpls {
 
 public abstract interface class kotlinx/html/TagConsumer {
 	public abstract fun finalize ()Ljava/lang/Object;
+	public abstract fun getHead ()Ljava/lang/Object;
 	public abstract fun onTagAttributeChange (Lkotlinx/html/Tag;Ljava/lang/String;Ljava/lang/String;)V
 	public abstract fun onTagComment (Ljava/lang/CharSequence;)V
 	public abstract fun onTagContent (Ljava/lang/CharSequence;)V
@@ -5418,11 +5422,11 @@ public class kotlinx/html/UL : kotlinx/html/HTMLTag, kotlinx/html/HtmlBlockTag {
 }
 
 public abstract interface class kotlinx/html/Unsafe {
-	public abstract fun raw (Ljava/lang/Number;)V
-	public abstract fun raw (Ljava/lang/String;)V
-	public abstract fun raw (Lkotlinx/html/Entities;)V
+	public fun raw (Ljava/lang/Number;)V
+	public fun raw (Ljava/lang/String;)V
+	public fun raw (Lkotlinx/html/Entities;)V
 	public abstract fun unaryPlus (Ljava/lang/String;)V
-	public abstract fun unaryPlus (Lkotlinx/html/Entities;)V
+	public fun unaryPlus (Lkotlinx/html/Entities;)V
 }
 
 public final class kotlinx/html/Unsafe$DefaultImpls {
@@ -5477,7 +5481,7 @@ public abstract class kotlinx/html/attributes/Attribute {
 
 public abstract interface class kotlinx/html/attributes/AttributeEncoder {
 	public abstract fun decode (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;
-	public abstract fun empty (Ljava/lang/String;Lkotlinx/html/Tag;)Ljava/lang/Object;
+	public fun empty (Ljava/lang/String;Lkotlinx/html/Tag;)Ljava/lang/Object;
 	public abstract fun encode (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;
 }
 
@@ -5577,6 +5581,7 @@ public final class kotlinx/html/consumers/DelayedConsumer : kotlinx/html/TagCons
 	public fun <init> (Lkotlinx/html/TagConsumer;)V
 	public fun finalize ()Ljava/lang/Object;
 	public final fun getDownstream ()Lkotlinx/html/TagConsumer;
+	public fun getHead ()Ljava/lang/Object;
 	public fun onTagAttributeChange (Lkotlinx/html/Tag;Ljava/lang/String;Ljava/lang/String;)V
 	public fun onTagComment (Ljava/lang/CharSequence;)V
 	public fun onTagContent (Ljava/lang/CharSequence;)V
@@ -5600,6 +5605,7 @@ public final class kotlinx/html/consumers/FinalizeConsumer : kotlinx/html/TagCon
 	public fun finalize ()Ljava/lang/Object;
 	public final fun getBlock ()Lkotlin/jvm/functions/Function2;
 	public final fun getDownstream ()Lkotlinx/html/TagConsumer;
+	public fun getHead ()Ljava/lang/Object;
 	public fun onTagAttributeChange (Lkotlinx/html/Tag;Ljava/lang/String;Ljava/lang/String;)V
 	public fun onTagComment (Ljava/lang/CharSequence;)V
 	public fun onTagContent (Ljava/lang/CharSequence;)V
@@ -5641,6 +5647,7 @@ public final class kotlinx/html/consumers/TraceConsumer : kotlinx/html/TagConsum
 	public fun <init> (Lkotlinx/html/TagConsumer;Lkotlin/jvm/functions/Function1;)V
 	public fun finalize ()Ljava/lang/Object;
 	public final fun getDownstream ()Lkotlinx/html/TagConsumer;
+	public fun getHead ()Ljava/lang/Object;
 	public final fun getPrintln ()Lkotlin/jvm/functions/Function1;
 	public fun onTagAttributeChange (Lkotlinx/html/Tag;Ljava/lang/String;Ljava/lang/String;)V
 	public fun onTagComment (Ljava/lang/CharSequence;)V
@@ -5684,6 +5691,8 @@ public final class kotlinx/html/dom/HTMLDOMBuilder : kotlinx/html/TagConsumer {
 	public synthetic fun finalize ()Ljava/lang/Object;
 	public fun finalize ()Lorg/w3c/dom/Element;
 	public final fun getDocument ()Lorg/w3c/dom/Document;
+	public synthetic fun getHead ()Ljava/lang/Object;
+	public fun getHead ()Lorg/w3c/dom/Element;
 	public fun onTagAttributeChange (Lkotlinx/html/Tag;Ljava/lang/String;Ljava/lang/String;)V
 	public fun onTagComment (Ljava/lang/CharSequence;)V
 	public fun onTagContent (Ljava/lang/CharSequence;)V
@@ -5733,6 +5742,8 @@ public final class kotlinx/html/stream/HTMLStreamBuilder : kotlinx/html/TagConsu
 	public fun <init> (Ljava/lang/Appendable;ZZ)V
 	public fun finalize ()Ljava/lang/Appendable;
 	public synthetic fun finalize ()Ljava/lang/Object;
+	public fun getHead ()Ljava/lang/Appendable;
+	public synthetic fun getHead ()Ljava/lang/Object;
 	public final fun getOut ()Ljava/lang/Appendable;
 	public final fun getPrettyPrint ()Z
 	public final fun getUnsafeImpl ()Lkotlinx/html/Unsafe;

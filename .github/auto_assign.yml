@@ -1,0 +1,8 @@
+addReviewers: true
+addAssignees: false
+
+reviewers:
+  - Mr3zee
+  - bjhham
+
+numberOfReviewers: 0

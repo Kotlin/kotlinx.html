@@ -2,16 +2,16 @@
 
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 /**
  * This build script supports the following parameters:
  * -PversionTag - works together with "branch-build" profile and overrides "-SNAPSHOT" suffix of the version.
  */
 plugins {
-    kotlin("multiplatform") version "2.0.21"
+    kotlin("multiplatform") version "2.2.21"
     id("maven-publish")
     id("signing")
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.13.2"
 }
 
 group = "org.jetbrains.kotlinx"
@@ -34,7 +34,7 @@ if (hasProperty("release")) {
  */
 if (hasProperty("versionTag")) {
     val versionString = version as String
-    val versionTag = properties["versionTag"]
+    val versionTag = findProperty("versionTag")
     if (versionString.endsWith("-SNAPSHOT")) {
         version = versionString.replace("-SNAPSHOT", "-$versionTag")
         logger.lifecycle("Project will be built with version '$version'.")
@@ -44,7 +44,7 @@ if (hasProperty("versionTag")) {
 }
 
 if (hasProperty("releaseVersion")) {
-    version = properties["releaseVersion"] as String
+    version = findProperty("releaseVersion") as String
 }
 
 val publishingUser = System.getenv("PUBLISHING_USER")
@@ -66,15 +66,17 @@ publishing {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
 val emptyJar = tasks.register<org.gradle.jvm.tasks.Jar>("emptyJar") {
     archiveAppendix.set("empty")
 }
 
 kotlin {
+    @OptIn(ExperimentalAbiValidation::class)
+    abiValidation {
+        enabled.set(true)
+        klib.enabled.set(true)
+    }
+
     jvm {
         mavenPublication {
             groupId = group as String
@@ -86,7 +88,7 @@ kotlin {
         }
     }
     js {
-        moduleName = project.name
+        outputModuleName.set(project.name)
         browser {
             testTask {
                 useKarma {
@@ -101,7 +103,7 @@ kotlin {
         }
     }
     wasmJs {
-        moduleName = project.name
+        outputModuleName.set(project.name)
         browser()
 
         mavenPublication {
@@ -169,7 +171,16 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+        wasmJsMain {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-browser:0.5.0")
+            }
+        }
     }
+}
+
+tasks.named("check") {
+    dependsOn("checkLegacyAbi")
 }
 
 tasks.withType<Jar>().configureEach {
@@ -238,13 +249,13 @@ fun MavenPomFile.config(config: MavenPomFile.() -> Unit = {}) {
         developer {
             name = "Sergey Mashkov"
             organization = "JetBrains s.r.o."
-            roles to "developer"
+            roles.add("developer")
         }
 
         developer {
             name = "Anton Dmitriev"
             organization = "JetBrains s.r.o."
-            roles to "developer"
+            roles.add("developer")
         }
     }
 }
@@ -268,12 +279,4 @@ if (!signingKey.isNullOrBlank()) {
 
 rootProject.plugins.withType(org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin::class.java) {
     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().ignoreScripts = false
-}
-
-tasks.named("jsBrowserTest") {
-    dependsOn("wasmJsTestTestDevelopmentExecutableCompileSync")
-}
-
-tasks.named("wasmJsBrowserTest") {
-    dependsOn("jsTestTestDevelopmentExecutableCompileSync")
 }

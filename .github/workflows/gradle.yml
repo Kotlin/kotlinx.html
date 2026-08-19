@@ -5,7 +5,7 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
-name: Run JVM test
+name: Run tests
 
 on:
   push:
@@ -14,6 +14,7 @@ on:
     paths:
       - '**.gradle.kts'
       - '**.properties'
+      - 'api/**'
       - 'src/**'
       - '.github/workflows/**'
     types: [opened, synchronize, reopened]
@@ -21,28 +22,61 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: Build on ${{ matrix.os.runner }}
+  jvm:
+    name: JVM tests on ${{ matrix.os.runner }}
     runs-on: ${{ matrix.os.runner }}
-    defaults:
-      run:
-        shell: ${{ matrix.os.shell }}
     strategy:
       fail-fast: false
       matrix:
         os:
           - runner: windows-latest
-            shell: msys2 {0}
+            command: ./gradlew.bat jvmTest
           - runner: ubuntu-latest
-            shell: bash
+            command: ./gradlew jvmTest
     steps:
-    - uses: actions/checkout@v4.1.4
-    - name: Set up JDK 11
-      uses: actions/setup-java@v4.2.1
+    - uses: actions/checkout@v7
+    - name: Set up JDKs 8 and 21
+      uses: actions/setup-java@v5
       with:
-        java-version: '11'
+        java-version: |
+          8
+          21
         distribution: 'temurin'
-    - name: Build with Gradle
-      uses: gradle/actions/setup-gradle@v3.3.2
+    - name: Set up Gradle
+      uses: gradle/actions/setup-gradle@v6
+    - name: Run JVM tests
+      run: ${{ matrix.os.command }}
+
+  web:
+    name: Web tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+    - name: Set up JDKs 8 and 21
+      uses: actions/setup-java@v5
       with:
-        arguments: jvmTest
+        java-version: |
+          8
+          21
+        distribution: 'temurin'
+    - name: Set up Gradle
+      uses: gradle/actions/setup-gradle@v6
+    - name: Run web tests
+      run: ./gradlew jsBrowserTest wasmJsBrowserTest
+
+  api:
+    name: API check
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v7
+    - name: Set up JDKs 8 and 21
+      uses: actions/setup-java@v5
+      with:
+        java-version: |
+          8
+          21
+        distribution: 'zulu'
+    - name: Set up Gradle
+      uses: gradle/actions/setup-gradle@v6
+    - name: Check API
+      run: ./gradlew checkLegacyAbi
